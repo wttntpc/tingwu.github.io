@@ -10,20 +10,25 @@ let lang = localStorage.getItem('tingting-language') || 'zh';
 
 const copy = {
   zh: {
-    nav: [['首頁', '/'], ['關於', '/about'], ['文章', '/blog']],
+    nav: [['首頁', '/'], ['關於', '/about'], ['學術發表', '/publications'], ['文章', '/blog']],
     footer: '探索身體活動如何改變大腦與心智。',
     heroLead: '我是吳亭葶，一位認知神經科學博士生與運動防護員。我研究身體活動、執行功能與心理健康之間的關係，並運用資料與 AI 把複雜問題變得清楚。',
     profileRole: '認知神經科學博士生 · 國立中央大學',
     profilePillars: '認知神經科學 × 運動科學 × AI 資料分析',
-    fullProfile: '完整學經歷與發表 →',
+    fullProfile: '完整學經歷 →',
     selectedAreas: '研究主軸',
-    topicsTitle: '專長與興趣',
     focuses: [
       ['運動與情緒和認知功能', '研究身體活動如何影響情緒與認知功能。'],
       ['認知神經科學', '運用 EEG 與行為測量，探索執行功能、神經可塑性及運動後的認知變化。'],
       ['AI 與資料分析', '使用 Python、Matlab 與統計工具，建立透明、有效率且可重現的研究流程。']
     ],
-    facts: [['9+', '期刊論文'], ['14+', '研討會發表'], ['3', '核心研究領域']],
+    featuredTitle: '精選論文',
+    allPublications: '查看完整學術發表 →',
+    featuredPublications: [
+      ['2026', 'Effects of volume-matched acute resistance exercise at different intensities on high-order and core executive functions in older adults', 'Acta Psychologica'],
+      ['2025', '比較傳統式與血流限制阻力健身運動對計畫相關執行功能之影響', '運動表現期刊'],
+      ['2024', 'The combined impact of physical activity and sedentary behavior on executive functions in older adults', 'Psychology Research and Behavior Management']
+    ],
     latestTitle: '最近的文章',
     allPosts: '查看所有文章 →',
     introTitle: '關於我',
@@ -51,7 +56,6 @@ const copy = {
       ['2023', '中國醫藥大學智育獎'],
       ['2021–2022', '運動醫學系學業績優獎']
     ],
-    pubTitle: '學術著作',
     blogEyebrow: 'Writing',
     blogTitle: '研究筆記與想法',
     blogDesc: '關於認知神經科學、運動健康、資料分析與 AI 工作流的觀察。',
@@ -59,20 +63,25 @@ const copy = {
     notFound: '找不到這個頁面。'
   },
   en: {
-    nav: [['Home', '/'], ['About', '/about'], ['Writing', '/blog']],
+    nav: [['Home', '/'], ['About', '/about'], ['Publications', '/publications'], ['Writing', '/blog']],
     footer: 'Exploring how physical activity shapes the mind.',
     heroLead: 'I am Ting-Ting Wu, a Ph.D. student in cognitive neuroscience and a certified athletic trainer. I study physical activity, executive function, and healthy aging—and use data and AI to make complex questions clearer.',
     profileRole: 'Ph.D. Student in Cognitive Neuroscience · National Central University',
     profilePillars: 'Cognitive Neuroscience × Exercise Science × AI & Data',
-    fullProfile: 'Full profile & publications →',
+    fullProfile: 'Full profile →',
     selectedAreas: 'Research pillars',
-    topicsTitle: 'Expertise & interests',
     focuses: [
       ['Cognitive neuroscience', 'Using EEG and behavioral measures to study executive function, neuroplasticity, and post-exercise cognitive change.'],
       ['Exercise & healthy aging', 'Studying how resistance exercise, aerobic activity, and daily movement support brain health in older adults.'],
       ['AI & data analysis', 'Using Python, Matlab, and statistical tools to build transparent, efficient, reproducible research workflows.']
     ],
-    facts: [['9+', 'Journal articles'], ['14+', 'Conference presentations'], ['3', 'Research pillars']],
+    featuredTitle: 'Selected publications',
+    allPublications: 'View all publications →',
+    featuredPublications: [
+      ['2026', 'Effects of volume-matched acute resistance exercise at different intensities on high-order and core executive functions in older adults', 'Acta Psychologica'],
+      ['2025', 'Comparing traditional and blood flow restriction resistance exercise on planning-related executive function', 'Journal of Sports Performance'],
+      ['2024', 'The combined impact of physical activity and sedentary behavior on executive functions in older adults', 'Psychology Research and Behavior Management']
+    ],
     latestTitle: 'Latest writing',
     allPosts: 'See all writing →',
     introTitle: 'Profile',
@@ -100,7 +109,6 @@ const copy = {
       ['2023', 'Intellectual Award (Graduate Honor), China Medical University'],
       ['2021–2022', 'Academic Excellence Award, Department of Sports Medicine, CMU']
     ],
-    pubTitle: 'Publications',
     blogEyebrow: 'Writing',
     blogTitle: 'Research notes & ideas',
     blogDesc: 'Observations on cognitive neuroscience, exercise and health, data analysis, and AI-enabled research.',
@@ -132,6 +140,10 @@ async function getPosts() {
   return response.json();
 }
 
+function newestFirst(posts) {
+  return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+}
+
 function postRow(post) {
   return `<a class="post-card" href="#/post/${post.id}">
     <div class="post-meta">${post.category}<br>${post.date}</div>
@@ -141,7 +153,7 @@ function postRow(post) {
 }
 
 async function renderHome() {
-  const posts = (await getPosts()).filter(post => post.id !== 'publications').slice(0, 2);
+  const posts = newestFirst((await getPosts()).filter(post => post.id !== 'publications')).slice(0, 2);
   const c = t();
   app.innerHTML = `<div class="page-shell home-shell">
     <section class="profile-hero">
@@ -155,20 +167,13 @@ async function renderHome() {
       </div>
     </section>
     <section class="home-block"><h2>${c.selectedAreas}</h2><div class="pillar-grid">${c.focuses.map(item => `<a class="pillar-card" href="#/about/skills"><b>${item[0]}</b><span>${item[1]}</span></a>`).join('')}</div></section>
-    <section class="home-stats">${c.facts.map(item => `<span><b>${item[0]}</b> ${item[1]}</span>`).join('<i>·</i>')}</section>
-    <section class="home-block topics-block"><h2>${c.topicsTitle}</h2><div class="topic-groups">${c.skillGroups.map(group => `<div class="topic-group"><h3>${group[0]}</h3><div class="topic-chips">${group[1].map(topic => `<span>${topic}</span>`).join('')}</div></div>`).join('')}</div></section>
+    <section class="home-block featured-publications"><div class="block-heading"><h2>${c.featuredTitle}</h2><a href="#/publications">${c.allPublications}</a></div><div class="publication-preview-list">${c.featuredPublications.map(item => `<a href="#/publications" class="publication-preview"><span>${item[0]}</span><div><b>${item[1]}</b><small>${item[2]}</small></div></a>`).join('')}</div></section>
     <section class="home-block latest-section"><div class="block-heading"><h2>${c.latestTitle}</h2><a href="#/blog">${c.allPosts}</a></div><div class="post-list">${posts.map(postRow).join('')}</div></section>
   </div>`;
 }
 
 async function renderAbout(section = '') {
   const c = t();
-  let publications = '';
-  try {
-    const response = await fetch('posts/publications.md');
-    if (response.ok) publications = marked.parse(await response.text());
-  } catch (_) { publications = '<p>Publications are being updated.</p>'; }
-
   const labels = lang === 'zh' ? {
     home: '首頁', title: '關於我', meta: '吳亭葶 Ting-Ting Wu', language: '語言：English', toc: '目錄',
     role: '認知神經科學博士生 / 運動防護員 / 研究者', education: '學經歷', expertise: '專長領域', honors: '榮譽', contact: '聯繫',
@@ -178,7 +183,7 @@ async function renderAbout(section = '') {
     role: 'Ph.D. Student in Cognitive Neuroscience / Athletic Trainer / Researcher', education: 'Education & experience', expertise: 'Expertise', honors: 'Honors', contact: 'Contact',
     bio2: 'My work sits at the intersection of exercise science and cognitive neuroscience. I study how exercise intensity, physical activity, and sedentary behavior shape executive function, emotion, and healthy aging, while exploring reproducible data analysis and AI-enabled research workflows.'
   };
-  const tocItems = [[c.introTitle, 'intro'], [labels.education, 'journey'], [labels.expertise, 'skills'], [c.pubTitle, 'publications'], [labels.honors, 'awards'], [labels.contact, 'contact']];
+  const tocItems = [[c.introTitle, 'intro'], [labels.education, 'journey'], [labels.expertise, 'skills'], [labels.honors, 'awards'], [labels.contact, 'contact']];
 
   app.innerHTML = `<div class="page-shell about-page"><article class="about-article">
     <header class="post-header">
@@ -192,7 +197,6 @@ async function renderAbout(section = '') {
       <section id="about-intro" class="about-section"><h2>${lang === 'zh' ? '吳亭葶 Ting-Ting Wu' : 'Ting-Ting Wu 吳亭葶'}</h2><blockquote><strong>${labels.role}</strong></blockquote><p>${c.introText}</p><p>${labels.bio2}</p></section>
       <section id="about-journey" class="about-section"><h2>${labels.education}</h2><ul class="plain-list">${c.journey.map(item => `<li><strong>${item[0]}</strong>　${item[1]}<br><span>${item[2]}</span></li>`).join('')}</ul></section>
       <section id="about-skills" class="about-section"><h2>${labels.expertise}</h2><ul class="expertise-list">${c.focuses.map(item => `<li><strong>${item[0]}</strong>：${item[1]}</li>`).join('')}</ul><div class="about-skill-groups">${c.skillGroups.slice(1).map(group => `<div><h3>${group[0]}</h3><p>${group[1].join('、')}</p></div>`).join('')}</div></section>
-      <section id="about-publications" class="about-section publications"><div class="publication-links"><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div><div class="markdown-body">${publications}</div></section>
       <section id="about-awards" class="about-section"><h2>${labels.honors}</h2><ul class="plain-list">${c.awards.map(item => `<li><strong>${item[0]}</strong>　${item[1]}</li>`).join('')}</ul></section>
       <section id="about-contact" class="about-section"><h2>${labels.contact}</h2><ul><li>Email：<a href="mailto:wtt.ntpc@gmail.com">wtt.ntpc@gmail.com</a></li><li><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID</a></li><li><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar</a></li><li><a href="https://github.com/wttntpc" target="_blank" rel="noopener noreferrer">GitHub</a></li></ul></section>
     </div>
@@ -203,8 +207,24 @@ async function renderAbout(section = '') {
   }
 }
 
+async function renderPublications() {
+  const response = await fetch('posts/publications.md');
+  if (!response.ok) throw new Error('Unable to load publications');
+  const content = marked.parse(await response.text());
+  const labels = lang === 'zh' ? {
+    home: '首頁', title: '學術發表', description: '期刊論文與國內外研討會發表紀錄。'
+  } : {
+    home: 'Home', title: 'Publications', description: 'Journal articles and national and international conference presentations.'
+  };
+  app.innerHTML = `<div class="page-shell publications-page"><article>
+    <header class="post-header"><div class="breadcrumbs"><a href="#/">${labels.home}</a></div><h1>${labels.title}</h1><p>${labels.description}</p></header>
+    <div class="publication-links"><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div>
+    <div class="markdown-body">${content}</div>
+  </article></div>`;
+}
+
 async function renderBlog() {
-  const posts = (await getPosts()).filter(post => post.id !== 'publications');
+  const posts = newestFirst((await getPosts()).filter(post => post.id !== 'publications'));
   const c = t();
   app.innerHTML = `<div class="page-shell"><header class="inner-hero"><p class="eyebrow">${c.blogEyebrow}</p><h1 class="display">${c.blogTitle}</h1><p>${c.blogDesc}</p></header>
     <div class="blog-grid">${posts.map(post => `<a class="blog-card" href="#/post/${post.id}"><div class="post-meta">${post.category} · ${post.date}</div><h2>${post.title}</h2><p>${post.description}</p></a>`).join('')}</div></div>`;
@@ -227,6 +247,7 @@ async function router() {
   try {
     if (path === '/') await renderHome();
     else if (path === '/about' || path.startsWith('/about/')) await renderAbout(path.split('/')[2] || '');
+    else if (path === '/publications') await renderPublications();
     else if (path === '/blog') await renderBlog();
     else if (path.startsWith('/post/')) await renderPost(path.split('/')[2]);
     else app.innerHTML = `<div class="error-state"><h1>${t().notFound}</h1></div>`;
