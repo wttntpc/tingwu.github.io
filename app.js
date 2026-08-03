@@ -75,14 +75,14 @@ async function router() {
   app.innerHTML = `<div style="text-align: center; padding: 3rem;">${t('loading')}</div>`;
 
   if (hash === '/') {
-    renderHome();
+    await renderHome();
   } else if (hash === '/about') {
-    renderAbout();
+    await renderAbout();
   } else if (hash === '/blog') {
-    renderBlog();
+    await renderBlog();
   } else if (hash.startsWith('/post/')) {
     const postId = hash.split('/')[2];
-    renderPost(postId);
+    await renderPost(postId);
   } else {
     app.innerHTML = `<h1>${t('not_found')}</h1>`;
   }
@@ -132,7 +132,22 @@ async function renderHome() {
   app.innerHTML = html;
 }
 
-function renderAbout() {
+async function renderAbout() {
+  app.innerHTML = `<div style="text-align: center; padding: 3rem;">${t('loading')}</div>`;
+  
+  let pubHtml = '';
+  try {
+    const res = await fetch('posts/publications.md');
+    if (res.ok) {
+      const text = await res.text();
+      // Remove the duplicate h1 and h2 headers from publications.md if they exist, or let marked parse it.
+      // publications.md has ## 期刊論文 and ## 研討會發表. 
+      pubHtml = marked.parse(text);
+    }
+  } catch (e) {
+    console.error('Failed to load publications', e);
+  }
+
   if (currentLang === 'zh') {
     app.innerHTML = `
       <div class="markdown-body">
@@ -152,6 +167,12 @@ function renderAbout() {
         </ul>
         <h2>聯絡方式</h2>
         <p>Email: <a href="mailto:wtt.ntpc@gmail.com">wtt.ntpc@gmail.com</a></p>
+        
+        <br/><hr/><br/>
+        
+        <div class="publications-section">
+          ${pubHtml}
+        </div>
       </div>
     `;
   } else {
@@ -173,6 +194,12 @@ function renderAbout() {
         </ul>
         <h2>Contact</h2>
         <p>Email: <a href="mailto:wtt.ntpc@gmail.com">wtt.ntpc@gmail.com</a></p>
+        
+        <br/><hr/><br/>
+        
+        <div class="publications-section">
+          ${pubHtml}
+        </div>
       </div>
     `;
   }
