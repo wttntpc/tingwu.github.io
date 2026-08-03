@@ -3,6 +3,8 @@ const navLinks = document.querySelector('#nav-links');
 const langToggle = document.querySelector('#lang-toggle');
 const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
+const themeToggle = document.querySelector('#theme-toggle');
+const topLink = document.querySelector('#top-link');
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 
@@ -19,6 +21,11 @@ const copy = {
     focusEyebrow: 'Research focus',
     focusTitle: '研究領域',
     focusIntro: '我的工作橫跨實驗室與實務現場，關注不同運動刺激如何影響認知功能，並以可重現的分析方法連結科學證據與真實世界。',
+    profileRole: '認知神經科學博士生 · 國立中央大學',
+    profilePillars: '認知神經科學 × 運動科學 × AI 資料分析',
+    fullProfile: '完整學經歷與發表 →',
+    selectedAreas: '研究主軸',
+    topicsTitle: '專長與興趣',
     focuses: [
       ['認知神經科學', '運用 EEG 與行為測量，探索執行功能、神經可塑性及運動後的認知變化。'],
       ['運動與健康老化', '研究阻力運動、有氧運動與身體活動如何支持高齡者的大腦與日常功能。'],
@@ -73,6 +80,11 @@ const copy = {
     focusEyebrow: 'Research focus',
     focusTitle: 'Research areas',
     focusIntro: 'My work bridges laboratory research and real-world practice, examining how different exercise stimuli affect cognition through transparent, reproducible analysis.',
+    profileRole: 'Ph.D. Student in Cognitive Neuroscience · National Central University',
+    profilePillars: 'Cognitive Neuroscience × Exercise Science × AI & Data',
+    fullProfile: 'Full profile & publications →',
+    selectedAreas: 'Research pillars',
+    topicsTitle: 'Expertise & interests',
     focuses: [
       ['Cognitive neuroscience', 'Using EEG and behavioral measures to study executive function, neuroplasticity, and post-exercise cognitive change.'],
       ['Exercise & healthy aging', 'Studying how resistance exercise, aerobic activity, and daily movement support brain health in older adults.'],
@@ -151,32 +163,22 @@ function postRow(post) {
 async function renderHome() {
   const posts = (await getPosts()).filter(post => post.id !== 'publications').slice(0, 2);
   const c = t();
-  app.innerHTML = `<div class="page-shell">
-    <section class="hero editorial-hero">
-      <div class="hero-copy">
-        <p class="eyebrow">${c.heroEyebrow}</p>
-        <h1 class="display">${c.heroTitle}</h1>
-        <p class="hero-lead">${c.heroLead}</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#/about">${c.aboutButton}</a>
-          <a class="button button-secondary" href="#/about/publications">${c.pubButton}</a>
-        </div>
-        <p class="hero-credential">${c.heroNote}</p>
+  app.innerHTML = `<div class="page-shell home-shell">
+    <section class="profile-hero">
+      <div class="avatar-wrap"><img src="https://github.com/wttntpc.png?size=240" alt="Ting-Ting Wu" width="120" height="120" onerror="this.style.display='none'"><span aria-hidden="true">TW</span></div>
+      <div class="profile-id">
+        <h1>${lang === 'zh' ? '吳亭葶' : 'Ting-Ting Wu'} <span>${lang === 'zh' ? 'Ting-Ting Wu' : '吳亭葶'}</span></h1>
+        <p class="profile-role">${c.profileRole}</p>
+        <p class="profile-pillars">${c.profilePillars}</p>
+        <p class="profile-intro">${c.heroLead}</p>
+        <div class="profile-links"><a href="#/about">${c.fullProfile}</a><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div>
       </div>
     </section>
-    <section class="focus-section">
-      <div class="section-intro">
-        <div><p class="eyebrow">${c.focusEyebrow}</p><h2 class="section-heading">${c.focusTitle}</h2></div>
-        <p>${c.focusIntro}</p>
-      </div>
-      <div class="focus-grid">${c.focuses.map((item, i) => `<article class="focus-card"><span class="focus-number">0${i + 1}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join('')}</div>
-    </section>
-  </div>
-  <section class="facts"><div class="fact-label">${c.factsLabel}</div>${c.facts.map(item => `<div class="fact"><strong>${item[0]}</strong><span>${item[1]}</span></div>`).join('')}</section>
-  <div class="page-shell"><section class="latest-section">
-    <div class="latest-head"><div><p class="eyebrow">${c.latestEyebrow}</p><h2 class="section-heading">${c.latestTitle}</h2></div><a class="text-link" href="#/blog">${c.allPosts}</a></div>
-    <div class="post-list">${posts.map(postRow).join('')}</div>
-  </section></div>`;
+    <section class="home-block"><h2>${c.selectedAreas}</h2><div class="pillar-grid">${c.focuses.map(item => `<a class="pillar-card" href="#/about/skills"><b>${item[0]}</b><span>${item[1]}</span></a>`).join('')}</div></section>
+    <section class="home-stats">${c.facts.map(item => `<span><b>${item[0]}</b> ${item[1]}</span>`).join('<i>·</i>')}</section>
+    <section class="home-block topics-block"><h2>${c.topicsTitle}</h2><div class="topic-chips">${c.skills.map(topic => `<span>${topic}</span>`).join('')}</div></section>
+    <section class="home-block latest-section"><div class="block-heading"><h2>${c.latestTitle}</h2><a href="#/blog">${c.allPosts}</a></div><div class="post-list">${posts.map(postRow).join('')}</div></section>
+  </div>`;
 }
 
 async function renderAbout(section = '') {
@@ -249,6 +251,14 @@ menuToggle.addEventListener('click', () => {
   const open = navPanel.classList.toggle('is-open');
   menuToggle.setAttribute('aria-expanded', String(open));
 });
+themeToggle.addEventListener('click', () => {
+  const dark = document.documentElement.dataset.theme === 'dark';
+  if (dark) delete document.documentElement.dataset.theme;
+  else document.documentElement.dataset.theme = 'dark';
+  localStorage.setItem('tingting-theme', dark ? 'light' : 'dark');
+});
+topLink.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+window.addEventListener('scroll', () => topLink.classList.toggle('is-visible', window.scrollY > 700), { passive: true });
 window.addEventListener('hashchange', router);
 document.querySelector('#year').textContent = new Date().getFullYear();
 updateChrome();
