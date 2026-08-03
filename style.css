@@ -147,13 +147,22 @@ button { font: inherit; }
 .conference-table th, .conference-table td { padding: .65rem .7rem; border-bottom: 1px solid var(--tertiary); vertical-align: top; }
 .conference-table tbody tr:last-child td { border-bottom: 0; }
 
-.blog-grid { display: grid; gap: 1rem; padding: 1rem 0 5rem; }
+.category-filter { display: flex; flex-wrap: wrap; gap: .55rem; margin: .5rem 0 1.25rem; }
+.category-filter a { display: inline-flex; align-items: center; gap: .45rem; padding: .52rem .78rem; border: 1px solid var(--tertiary); border-radius: 999px; color: var(--secondary); text-decoration: none; font-size: .76rem; }
+.category-filter a:hover { border-color: var(--accent); color: var(--accent); }
+.category-filter a[aria-current="page"] { border-color: var(--accent); color: #fff; background: var(--accent); }
+.category-filter b { min-width: 1.2rem; padding: .05rem .3rem; border-radius: 999px; background: color-mix(in srgb, currentColor 12%, transparent); font-size: .65rem; text-align: center; }
+.blog-grid { display: grid; gap: 1rem; padding: 0 0 5rem; }
 .blog-card { display: block; padding: 1.3rem 1.4rem; border-radius: var(--radius); background: var(--entry); text-decoration: none; }
 .blog-card:hover { outline: 1px solid var(--accent); }
 .blog-card h2 { margin: .5rem 0 .35rem; font-size: 1.15rem; }
 .blog-card p { margin: 0; color: var(--secondary); font-size: .82rem; }
 .blog-version-intro { max-width: 42rem; padding-left: .9rem; border-left: 2px solid var(--accent); font-size: .82rem; }
 .version-badge { display: inline-block; margin-top: 1rem; color: var(--accent); font-size: .72rem; font-weight: 700; letter-spacing: .02em; }
+.tag-list { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .9rem; }
+.tag-list span { padding: .2rem .5rem; border-radius: 4px; color: var(--secondary); background: var(--theme); font-size: .68rem; }
+.article-header .tag-list span { background: var(--entry); }
+.empty-category { margin: 1rem 0; padding: 2.5rem 1rem; border: 1px dashed var(--tertiary); border-radius: var(--radius); color: var(--secondary); text-align: center; }
 
 .article-shell { padding: 4rem 0 5rem; }
 .back-link { display: inline-block; margin-bottom: 2rem; color: var(--secondary); text-decoration: none; font-size: .78rem; }

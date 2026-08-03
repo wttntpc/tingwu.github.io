@@ -60,6 +60,15 @@ const copy = {
     blogTitle: '研究筆記與想法',
     blogDesc: '關於認知神經科學、運動健康、資料分析與 AI 工作流的觀察。',
     blogVersionIntro: '每篇文章都提供「簡單白話版」與「專業版」，可依閱讀需求自由切換。',
+    categories: [
+      ['all', '全部文章'],
+      ['popular-science', '學術科普'],
+      ['research-methods', '研究方法'],
+      ['data-analysis', '數據分析'],
+      ['ai-tools', 'AI 工具與工作流']
+    ],
+    categoryFilterLabel: '依主題篩選文章',
+    noPosts: '這個分類的文章正在準備中。',
     simpleVersion: '簡單白話版',
     professionalVersion: '專業版',
     versionHint: '先掌握重點，或切換到專業版閱讀術語、方法與研究細節。',
@@ -117,6 +126,15 @@ const copy = {
     blogTitle: 'Research notes & ideas',
     blogDesc: 'Observations on cognitive neuroscience, exercise and health, data analysis, and AI-enabled research.',
     blogVersionIntro: 'Every article includes a plain-language and a professional version for different reading needs.',
+    categories: [
+      ['all', 'All writing'],
+      ['popular-science', 'Science for everyone'],
+      ['research-methods', 'Research methods'],
+      ['data-analysis', 'Data analysis'],
+      ['ai-tools', 'AI tools & workflows']
+    ],
+    categoryFilterLabel: 'Filter writing by topic',
+    noPosts: 'Articles in this category are in preparation.',
     simpleVersion: 'Plain-language',
     professionalVersion: 'Professional',
     versionHint: 'Start with the key ideas, or switch to the professional version for terminology, methods, and research detail.',
@@ -152,9 +170,18 @@ function newestFirst(posts) {
   return [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
 }
 
+function categoryLabel(category) {
+  return t().categories.find(item => item[0] === category)?.[1] || category;
+}
+
+function tagList(post) {
+  if (!Array.isArray(post.tags) || post.tags.length === 0) return '';
+  return `<div class="tag-list" aria-label="${lang === 'zh' ? '文章標籤' : 'Article tags'}">${post.tags.map(tag => `<span>${tag}</span>`).join('')}</div>`;
+}
+
 function postRow(post) {
   return `<a class="post-card" href="#/post/${post.id}">
-    <div class="post-meta">${post.category}<br>${post.date}</div>
+    <div class="post-meta">${categoryLabel(post.category)}<br>${post.date}</div>
     <div><h3>${post.title}</h3><p>${post.description}</p></div>
     <span class="post-arrow" aria-hidden="true">→</span>
   </a>`;
@@ -231,11 +258,14 @@ async function renderPublications() {
   </article></div>`;
 }
 
-async function renderBlog() {
+async function renderBlog(requestedCategory = 'all') {
   const posts = newestFirst((await getPosts()).filter(post => post.id !== 'publications'));
   const c = t();
+  const activeCategory = c.categories.some(item => item[0] === requestedCategory) ? requestedCategory : 'all';
+  const visiblePosts = activeCategory === 'all' ? posts : posts.filter(post => post.category === activeCategory);
   app.innerHTML = `<div class="page-shell"><header class="inner-hero"><p class="eyebrow">${c.blogEyebrow}</p><h1 class="display">${c.blogTitle}</h1><p>${c.blogDesc}</p><p class="blog-version-intro">${c.blogVersionIntro}</p></header>
-    <div class="blog-grid">${posts.map(post => `<a class="blog-card" href="#/post/${post.id}"><div class="post-meta">${post.category} · ${post.date}</div><h2>${post.title}</h2><p>${post.description}</p><span class="version-badge">${c.simpleVersion} · ${c.professionalVersion}</span></a>`).join('')}</div></div>`;
+    <nav class="category-filter" aria-label="${c.categoryFilterLabel}">${c.categories.map(([id, label]) => { const count = id === 'all' ? posts.length : posts.filter(post => post.category === id).length; const href = id === 'all' ? '#/blog' : `#/blog/${id}`; return `<a href="${href}" ${activeCategory === id ? 'aria-current="page"' : ''}><span>${label}</span><b>${count}</b></a>`; }).join('')}</nav>
+    <div class="blog-grid">${visiblePosts.length ? visiblePosts.map(post => `<a class="blog-card" href="#/post/${post.id}"><div class="post-meta">${categoryLabel(post.category)} · ${post.date}</div><h2>${post.title}</h2><p>${post.description}</p>${tagList(post)}<span class="version-badge">${c.simpleVersion} · ${c.professionalVersion}</span></a>`).join('') : `<p class="empty-category">${c.noPosts}</p>`}</div></div>`;
 }
 
 function parseArticleVersions(source) {
@@ -262,7 +292,7 @@ async function renderPost(id) {
   const versions = parseArticleVersions(await response.text());
   const selectedVersion = localStorage.getItem('tingting-article-version') === 'professional' ? 'professional' : 'simple';
   const c = t();
-  app.innerHTML = `<article class="article-shell"><a class="back-link" href="#/blog">${c.back}</a><header class="article-header"><div class="post-meta">${meta ? `${meta.category} · ${meta.date}` : ''}</div><h1>${meta?.title || ''}</h1>${meta?.description ? `<p>${meta.description}</p>` : ''}</header>
+  app.innerHTML = `<article class="article-shell"><a class="back-link" href="#/blog">${c.back}</a><header class="article-header"><div class="post-meta">${meta ? `${categoryLabel(meta.category)} · ${meta.date}` : ''}</div><h1>${meta?.title || ''}</h1>${meta?.description ? `<p>${meta.description}</p>` : ''}${meta ? tagList(meta) : ''}</header>
     <div class="version-bar"><div class="version-toggle" role="group" aria-label="${lang === 'zh' ? '文章版本切換' : 'Article version'}"><button type="button" data-version="simple" aria-pressed="${selectedVersion === 'simple'}">${c.simpleVersion}</button><button type="button" data-version="professional" aria-pressed="${selectedVersion === 'professional'}">${c.professionalVersion}</button></div><p>${c.versionHint}</p></div>
     <div class="article-version markdown-body" data-version-content="simple" ${selectedVersion !== 'simple' ? 'hidden' : ''}>${marked.parse(versions.simple)}</div>
     <div class="article-version markdown-body" data-version-content="professional" ${selectedVersion !== 'professional' ? 'hidden' : ''}>${marked.parse(versions.professional)}</div></article>`;
@@ -284,7 +314,7 @@ async function router() {
     if (path === '/') await renderHome();
     else if (path === '/about' || path.startsWith('/about/')) await renderAbout(path.split('/')[2] || '');
     else if (path === '/publications') await renderPublications();
-    else if (path === '/blog') await renderBlog();
+    else if (path === '/blog' || path.startsWith('/blog/')) await renderBlog(path.split('/')[2] || 'all');
     else if (path.startsWith('/post/')) await renderPost(path.split('/')[2]);
     else app.innerHTML = `<div class="error-state"><h1>${t().notFound}</h1></div>`;
   } catch (error) {
