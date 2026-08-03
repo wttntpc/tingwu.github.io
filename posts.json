@@ -12,5 +12,12 @@
     "date": "2026-07-28",
     "category": "Research",
     "description": "統整近期在認知神經科學領域，關於身體活動與大腦健康關聯性的重要文獻與實驗結果。"
+  },
+  {
+    "id": "publications",
+    "title": "學術文章列表 (Publications)",
+    "date": "2026-08-03",
+    "category": "Research",
+    "description": "期刊論文與國內外研討會發表紀錄總覽。"
   }
 ]

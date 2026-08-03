@@ -46,6 +46,7 @@ async function renderHome() {
         </div>
         <div style="margin-top: 1.5rem;">
           <a href="#/about" class="btn btn-ghost" style="margin-right: 1rem;">完整學經歷 →</a>
+          <a href="#/post/publications" class="btn btn-ghost" style="margin-right: 1rem;">學術文章列表 →</a>
           <a href="#/blog" class="btn">閱讀文章 →</a>
         </div>
       </div>
