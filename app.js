@@ -59,6 +59,10 @@ const copy = {
     blogEyebrow: 'Writing',
     blogTitle: '研究筆記與想法',
     blogDesc: '關於認知神經科學、運動健康、資料分析與 AI 工作流的觀察。',
+    blogVersionIntro: '每篇文章都提供「簡單白話版」與「專業版」，可依閱讀需求自由切換。',
+    simpleVersion: '簡單白話版',
+    professionalVersion: '專業版',
+    versionHint: '先掌握重點，或切換到專業版閱讀術語、方法與研究細節。',
     back: '← 返回文章列表',
     notFound: '找不到這個頁面。'
   },
@@ -112,6 +116,10 @@ const copy = {
     blogEyebrow: 'Writing',
     blogTitle: 'Research notes & ideas',
     blogDesc: 'Observations on cognitive neuroscience, exercise and health, data analysis, and AI-enabled research.',
+    blogVersionIntro: 'Every article includes a plain-language and a professional version for different reading needs.',
+    simpleVersion: 'Plain-language',
+    professionalVersion: 'Professional',
+    versionHint: 'Start with the key ideas, or switch to the professional version for terminology, methods, and research detail.',
     back: '← Back to writing',
     notFound: 'This page could not be found.'
   }
@@ -226,16 +234,44 @@ async function renderPublications() {
 async function renderBlog() {
   const posts = newestFirst((await getPosts()).filter(post => post.id !== 'publications'));
   const c = t();
-  app.innerHTML = `<div class="page-shell"><header class="inner-hero"><p class="eyebrow">${c.blogEyebrow}</p><h1 class="display">${c.blogTitle}</h1><p>${c.blogDesc}</p></header>
-    <div class="blog-grid">${posts.map(post => `<a class="blog-card" href="#/post/${post.id}"><div class="post-meta">${post.category} · ${post.date}</div><h2>${post.title}</h2><p>${post.description}</p></a>`).join('')}</div></div>`;
+  app.innerHTML = `<div class="page-shell"><header class="inner-hero"><p class="eyebrow">${c.blogEyebrow}</p><h1 class="display">${c.blogTitle}</h1><p>${c.blogDesc}</p><p class="blog-version-intro">${c.blogVersionIntro}</p></header>
+    <div class="blog-grid">${posts.map(post => `<a class="blog-card" href="#/post/${post.id}"><div class="post-meta">${post.category} · ${post.date}</div><h2>${post.title}</h2><p>${post.description}</p><span class="version-badge">${c.simpleVersion} · ${c.professionalVersion}</span></a>`).join('')}</div></div>`;
+}
+
+function parseArticleVersions(source) {
+  const simpleMarker = '<!-- SIMPLE -->';
+  const professionalMarker = '<!-- PROFESSIONAL -->';
+  const simpleStart = source.indexOf(simpleMarker);
+  const professionalStart = source.indexOf(professionalMarker);
+
+  if (simpleStart === -1 || professionalStart === -1 || professionalStart < simpleStart) {
+    const fallback = source.trim();
+    return { simple: fallback, professional: fallback };
+  }
+
+  return {
+    simple: source.slice(simpleStart + simpleMarker.length, professionalStart).trim(),
+    professional: source.slice(professionalStart + professionalMarker.length).trim()
+  };
 }
 
 async function renderPost(id) {
   const [posts, response] = await Promise.all([getPosts(), fetch(`posts/${id}.md`)]);
   if (!response.ok) throw new Error('Post not found');
   const meta = posts.find(post => post.id === id);
-  const body = marked.parse(await response.text());
-  app.innerHTML = `<article class="article-shell"><a class="back-link" href="#/blog">${t().back}</a><header class="article-header"><div class="post-meta">${meta ? `${meta.category} · ${meta.date}` : ''}</div><h1>${meta?.title || ''}</h1>${meta?.description ? `<p>${meta.description}</p>` : ''}</header><div class="markdown-body">${body}</div></article>`;
+  const versions = parseArticleVersions(await response.text());
+  const selectedVersion = localStorage.getItem('tingting-article-version') === 'professional' ? 'professional' : 'simple';
+  const c = t();
+  app.innerHTML = `<article class="article-shell"><a class="back-link" href="#/blog">${c.back}</a><header class="article-header"><div class="post-meta">${meta ? `${meta.category} · ${meta.date}` : ''}</div><h1>${meta?.title || ''}</h1>${meta?.description ? `<p>${meta.description}</p>` : ''}</header>
+    <div class="version-bar"><div class="version-toggle" role="group" aria-label="${lang === 'zh' ? '文章版本切換' : 'Article version'}"><button type="button" data-version="simple" aria-pressed="${selectedVersion === 'simple'}">${c.simpleVersion}</button><button type="button" data-version="professional" aria-pressed="${selectedVersion === 'professional'}">${c.professionalVersion}</button></div><p>${c.versionHint}</p></div>
+    <div class="article-version markdown-body" data-version-content="simple" ${selectedVersion !== 'simple' ? 'hidden' : ''}>${marked.parse(versions.simple)}</div>
+    <div class="article-version markdown-body" data-version-content="professional" ${selectedVersion !== 'professional' ? 'hidden' : ''}>${marked.parse(versions.professional)}</div></article>`;
+  document.querySelectorAll('.version-toggle button').forEach(button => button.addEventListener('click', () => {
+    const version = button.dataset.version;
+    localStorage.setItem('tingting-article-version', version);
+    document.querySelectorAll('.version-toggle button').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.version === version)));
+    document.querySelectorAll('[data-version-content]').forEach(content => { content.hidden = content.dataset.versionContent !== version; });
+  }));
   document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
 }
 

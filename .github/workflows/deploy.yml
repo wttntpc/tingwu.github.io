@@ -28,6 +28,10 @@ jobs:
           node --check app.js
           node -e "JSON.parse(require('fs').readFileSync('posts.json', 'utf8'))"
           test -s posts/publications.md
+          grep -q '<!-- SIMPLE -->' posts/research-update-1.md
+          grep -q '<!-- PROFESSIONAL -->' posts/research-update-1.md
+          grep -q '<!-- SIMPLE -->' posts/first-ai-code.md
+          grep -q '<!-- PROFESSIONAL -->' posts/first-ai-code.md
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
