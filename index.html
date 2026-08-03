@@ -18,11 +18,12 @@
     <header class="header">
       <nav class="nav">
         <a href="#/" class="logo">Ting-Ting Wu 吳亭葶</a>
-        <ul class="nav-links">
-          <li><a href="#/">首頁 (Home)</a></li>
-          <li><a href="#/blog">文章 (Blog)</a></li>
-          <li><a href="#/about">關於我 (About)</a></li>
-        </ul>
+        <div style="display: flex; align-items: center; gap: 2rem;">
+          <ul class="nav-links" id="nav-links">
+            <!-- 動態載入導覽列 -->
+          </ul>
+          <button id="lang-toggle" class="btn-ghost" style="padding: 0.2rem 0.6rem; cursor: pointer; border: 1px solid var(--border-color); border-radius: var(--radius); font-size: 0.85rem; font-family: monospace;">EN</button>
+        </div>
       </nav>
     </header>
 
