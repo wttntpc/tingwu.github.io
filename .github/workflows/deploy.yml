@@ -27,12 +27,8 @@ jobs:
         run: |
           node --check app.js
           node -e "JSON.parse(require('fs').readFileSync('posts.json', 'utf8'))"
-          node -e "const p=JSON.parse(require('fs').readFileSync('posts.json','utf8')); const a=['popular-science','research-methods','data-analysis','ai-tools']; if(p.some(x=>!a.includes(x.category)||!Array.isArray(x.tags))) throw Error('Invalid article category or tags')"
+          node -e "const fs=require('fs'); const p=JSON.parse(fs.readFileSync('posts.json','utf8')); const a=['popular-science','research-methods','data-analysis','ai-tools']; for(const x of p){const f='posts/'+x.id+'.md'; if(!a.includes(x.category)||!Array.isArray(x.tags)) throw Error('Invalid metadata: '+x.id); if(!fs.existsSync(f)) throw Error('Missing article: '+f); const s=fs.readFileSync(f,'utf8'); if(!s.includes('<!-- SIMPLE -->')||!s.includes('<!-- PROFESSIONAL -->')) throw Error('Missing versions: '+f)}"
           test -s posts/publications.md
-          grep -q '<!-- SIMPLE -->' posts/research-update-1.md
-          grep -q '<!-- PROFESSIONAL -->' posts/research-update-1.md
-          grep -q '<!-- SIMPLE -->' posts/first-ai-code.md
-          grep -q '<!-- PROFESSIONAL -->' posts/first-ai-code.md
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact

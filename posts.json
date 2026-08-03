@@ -14,5 +14,37 @@
     "category": "ai-tools",
     "tags": ["AI", "Python", "研究工作流"],
     "description": "分享我如何將 AI 導入資料分析、程式除錯與網站開發的日常工作流程。"
+  },
+  {
+    "id": "python-statistics-pipeline",
+    "title": "從研究設計到報告：Python 統計分析 Pipeline 的核心原則",
+    "date": "2026-08-03",
+    "category": "data-analysis",
+    "tags": ["Python", "統計分析", "可重現研究"],
+    "description": "統計分析不只是執行檢定；從研究設計、資料驗證到效果量與報告，每一步都需要留下判斷依據。"
+  },
+  {
+    "id": "eeg-preprocessing-principles",
+    "title": "EEG 前處理不是按下按鈕：八個步驟與品質檢查",
+    "date": "2026-08-03",
+    "category": "research-methods",
+    "tags": ["EEG", "EEGLAB", "訊號處理"],
+    "description": "從原始腦電訊號到可分析資料，整理濾波、重參考、壞道、ICA 與品質紀錄的完整思路。"
+  },
+  {
+    "id": "teleportation-reaction-time-task",
+    "title": "反應時間與移動時間有何不同？認識瞬間移動認知作業",
+    "date": "2026-08-03",
+    "category": "research-methods",
+    "tags": ["認知作業", "反應時間", "資料品質"],
+    "description": "用一個簡單的點擊作業，理解大腦開始反應與身體完成動作其實是兩段不同的歷程。"
+  },
+  {
+    "id": "garmin-raw-data-hrv",
+    "title": "Garmin 原始資料到 HRV：為什麼 BBI 不能補值？",
+    "date": "2026-08-03",
+    "category": "data-analysis",
+    "tags": ["Garmin", "HRV", "生理訊號"],
+    "description": "穿戴裝置資料不是整齊的試算表；時間戳、不同更新頻率與資料缺口，都會影響 HRV 的可信度。"
   }
 ]
