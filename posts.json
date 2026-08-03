@@ -49,10 +49,18 @@
   },
   {
     "id": "hermes-telegram-academic-brief",
-    "title": "讓 Hermes 每天把學術文章送到手機：免費模型、Telegram 與 Skills",
+    "title": "讓 Hermes 每天把學術文章送到手機：免費模型、Telegram 與排程",
     "date": "2026-08-03",
     "category": "ai-tools",
-    "tags": ["Hermes", "Telegram", "AI Skills"],
-    "description": "把免費模型、Telegram、排程與可重用 Skills 組合成每天主動推送學術新知的個人研究助理。"
+    "tags": ["Hermes", "Telegram", "自動排程"],
+    "description": "把免費或本機模型、Telegram 與排程組合成每天主動推送學術新知的個人研究助理。"
+  },
+  {
+    "id": "ai-tools-skills-research-workflow",
+    "title": "把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流",
+    "date": "2026-08-03",
+    "category": "ai-tools",
+    "tags": ["AI Skills", "GitHub", "研究工作流"],
+    "description": "用 AI-tools-skills 串接 GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。"
   }
 ]
