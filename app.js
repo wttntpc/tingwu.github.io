@@ -91,7 +91,7 @@ function renderAbout() {
       <h2>學術著作</h2>
       <p>目前累積 9 篇以上的期刊論文發表，探討身體活動與健身運動對大腦與情緒的神經調控機制。</p>
       <h2>聯絡方式</h2>
-      <p>Email: <a href="mailto:wtt.ntpc@gmail.com">wtt.ntpc@gmail.com</a></p>
+      <p>Email: <a href="mailto:tingwu.new@gmail.com">tingwu.new@gmail.com</a></p>
     </div>
   `;
 }
