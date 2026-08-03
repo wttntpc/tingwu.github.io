@@ -107,6 +107,10 @@ async function renderHome() {
           <a href="#/post/publications" class="btn-ghost" style="margin-right: 1rem;">${t('btn_pub')}</a>
           <a href="#/blog" class="btn-ghost">${t('btn_blog')}</a>
         </div>
+        <div style="margin-top: 1rem; font-family: monospace;">
+          <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" class="btn-ghost" style="border-bottom: none; margin-right: 1.5rem;">🔗 ORCID ↗</a>
+          <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW" target="_blank" class="btn-ghost" style="border-bottom: none;">🎓 Google Scholar ↗</a>
+        </div>
       </div>
     </section>
 
