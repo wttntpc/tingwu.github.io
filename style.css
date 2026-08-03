@@ -152,12 +152,20 @@ button { font: inherit; }
 .blog-card:hover { outline: 1px solid var(--accent); }
 .blog-card h2 { margin: .5rem 0 .35rem; font-size: 1.15rem; }
 .blog-card p { margin: 0; color: var(--secondary); font-size: .82rem; }
+.blog-version-intro { max-width: 42rem; padding-left: .9rem; border-left: 2px solid var(--accent); font-size: .82rem; }
+.version-badge { display: inline-block; margin-top: 1rem; color: var(--accent); font-size: .72rem; font-weight: 700; letter-spacing: .02em; }
 
 .article-shell { padding: 4rem 0 5rem; }
 .back-link { display: inline-block; margin-bottom: 2rem; color: var(--secondary); text-decoration: none; font-size: .78rem; }
 .article-header { margin-bottom: 2.5rem; }
 .article-header h1 { margin: .5rem 0; font-size: clamp(1.8rem, 5vw, 2.7rem); line-height: 1.35; }
 .article-header p { color: var(--secondary); }
+.version-bar { position: sticky; top: .75rem; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 0 0 2.5rem; padding: .75rem .9rem; border: 1px solid var(--tertiary); border-radius: var(--radius); background: color-mix(in srgb, var(--theme) 92%, transparent); box-shadow: 0 8px 24px rgba(0, 0, 0, .05); backdrop-filter: blur(10px); }
+.version-bar p { margin: 0; color: var(--secondary); font-size: .72rem; line-height: 1.5; text-align: right; }
+.version-toggle { display: inline-flex; flex: 0 0 auto; padding: .2rem; border-radius: 999px; background: var(--entry); }
+.version-toggle button { padding: .48rem .82rem; border: 0; border-radius: 999px; color: var(--secondary); background: transparent; font: inherit; font-size: .76rem; font-weight: 700; cursor: pointer; }
+.version-toggle button[aria-pressed="true"] { color: #fff; background: var(--accent); }
+.article-version[hidden] { display: none; }
 .markdown-body { color: var(--content); font-size: .92rem; }
 .markdown-body h1 { display: none; }
 .markdown-body h2 { margin-top: 2.8rem; }
@@ -179,6 +187,8 @@ button { font: inherit; }
 .top-link.is-visible { visibility: visible; opacity: 1; }
 
 @media (max-width: 720px) {
+  .version-bar { position: static; align-items: stretch; flex-direction: column; }
+  .version-bar p { text-align: left; }
   .nav-shell { width: min(calc(100% - 28px), var(--nav-width)); }
   .brand-name { display: none; }
   .menu-toggle { display: block; cursor: pointer; }
