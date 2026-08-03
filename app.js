@@ -36,8 +36,12 @@ const copy = {
       ['2024—2026', '《運動表現期刊》編輯助理', '學術出版與編輯工作'],
       ['2022—2025', '研究助理與課程助教', '參與多項國科會研究計畫及教學工作']
     ],
-    skillsTitle: '專業技能',
-    skills: ['EEG／腦電圖', 'VO₂max／體適能測量', 'EEGLAB', 'SPM12', 'HHSA toolbox', 'Python', 'Matlab', 'SPSS', 'JASP', '運動防護', 'EMT-1', '高齡體適能'],
+    skillGroups: [
+      ['研究領域', ['認知神經科學', '運動與健康老化', '執行功能', '心理健康']],
+      ['研究測量', ['EEG／腦電圖', 'VO₂max／體適能測量', '行為作業']],
+      ['資料分析工具', ['EEGLAB', 'SPM12', 'HHSA toolbox', 'Python', 'Matlab', 'SPSS', 'JASP']],
+      ['專業證照', ['運動防護員', 'EMT-1', '銀髮族體適能 C 級指導員']]
+    ],
     awardsTitle: '獲獎紀錄',
     awards: [
       ['2025', '教育部博士生獎學金、中央大學博士班入學獎學金'],
@@ -81,8 +85,12 @@ const copy = {
       ['2024—2026', 'Editorial Assistant, Journal of Sports Performance', 'Academic publishing and editorial support'],
       ['2022—2025', 'Research & Teaching Assistant', 'Research projects and university teaching']
     ],
-    skillsTitle: 'Methods & skills',
-    skills: ['EEG', 'VO₂max testing', 'EEGLAB', 'SPM12', 'HHSA toolbox', 'Python', 'Matlab', 'SPSS', 'JASP', 'Athletic training', 'EMT-1', 'Senior fitness'],
+    skillGroups: [
+      ['Research areas', ['Cognitive neuroscience', 'Exercise & healthy aging', 'Executive function', 'Mental health']],
+      ['Research measures', ['EEG', 'VO₂max & fitness testing', 'Behavioral tasks']],
+      ['Data & software', ['EEGLAB', 'SPM12', 'HHSA toolbox', 'Python', 'Matlab', 'SPSS', 'JASP']],
+      ['Certifications', ['Certified Athletic Trainer', 'EMT-1', 'Senior Fitness Instructor (Level C)']]
+    ],
     awardsTitle: 'Selected honors',
     awards: [
       ['2025', 'MOE Ph.D. Scholarship & NCU Entrance Scholarship'],
@@ -148,7 +156,7 @@ async function renderHome() {
     </section>
     <section class="home-block"><h2>${c.selectedAreas}</h2><div class="pillar-grid">${c.focuses.map(item => `<a class="pillar-card" href="#/about/skills"><b>${item[0]}</b><span>${item[1]}</span></a>`).join('')}</div></section>
     <section class="home-stats">${c.facts.map(item => `<span><b>${item[0]}</b> ${item[1]}</span>`).join('<i>·</i>')}</section>
-    <section class="home-block topics-block"><h2>${c.topicsTitle}</h2><div class="topic-chips">${c.skills.map(topic => `<span>${topic}</span>`).join('')}</div></section>
+    <section class="home-block topics-block"><h2>${c.topicsTitle}</h2><div class="topic-groups">${c.skillGroups.map(group => `<div class="topic-group"><h3>${group[0]}</h3><div class="topic-chips">${group[1].map(topic => `<span>${topic}</span>`).join('')}</div></div>`).join('')}</div></section>
     <section class="home-block latest-section"><div class="block-heading"><h2>${c.latestTitle}</h2><a href="#/blog">${c.allPosts}</a></div><div class="post-list">${posts.map(postRow).join('')}</div></section>
   </div>`;
 }
@@ -183,7 +191,7 @@ async function renderAbout(section = '') {
       <p class="about-avatar"><span><img src="https://github.com/wttntpc.png?size=280" alt="Ting-Ting Wu" width="140" height="140" onerror="this.style.display='none'"><b aria-hidden="true">TW</b></span></p>
       <section id="about-intro" class="about-section"><h2>${lang === 'zh' ? '吳亭葶 Ting-Ting Wu' : 'Ting-Ting Wu 吳亭葶'}</h2><blockquote><strong>${labels.role}</strong></blockquote><p>${c.introText}</p><p>${labels.bio2}</p></section>
       <section id="about-journey" class="about-section"><h2>${labels.education}</h2><ul class="plain-list">${c.journey.map(item => `<li><strong>${item[0]}</strong>　${item[1]}<br><span>${item[2]}</span></li>`).join('')}</ul></section>
-      <section id="about-skills" class="about-section"><h2>${labels.expertise}</h2><ul class="expertise-list">${c.focuses.map(item => `<li><strong>${item[0]}</strong>：${item[1]}</li>`).join('')}<li><strong>${c.skillsTitle}</strong>：${c.skills.join('、')}</li></ul></section>
+      <section id="about-skills" class="about-section"><h2>${labels.expertise}</h2><ul class="expertise-list">${c.focuses.map(item => `<li><strong>${item[0]}</strong>：${item[1]}</li>`).join('')}</ul><div class="about-skill-groups">${c.skillGroups.slice(1).map(group => `<div><h3>${group[0]}</h3><p>${group[1].join('、')}</p></div>`).join('')}</div></section>
       <section id="about-publications" class="about-section publications"><div class="publication-links"><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div><div class="markdown-body">${publications}</div></section>
       <section id="about-awards" class="about-section"><h2>${labels.honors}</h2><ul class="plain-list">${c.awards.map(item => `<li><strong>${item[0]}</strong>　${item[1]}</li>`).join('')}</ul></section>
       <section id="about-contact" class="about-section"><h2>${labels.contact}</h2><ul><li>Email：<a href="mailto:wtt.ntpc@gmail.com">wtt.ntpc@gmail.com</a></li><li><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID</a></li><li><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar</a></li><li><a href="https://github.com/wttntpc" target="_blank" rel="noopener noreferrer">GitHub</a></li></ul></section>
