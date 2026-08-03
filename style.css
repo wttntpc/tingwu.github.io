@@ -77,7 +77,10 @@ button { font: inherit; }
 .home-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem; margin: 1.25rem 0 0; padding: .65rem 1rem; border-radius: var(--radius); background: var(--entry); color: var(--secondary); font-size: .76rem; }
 .home-stats b { color: var(--primary); }
 .home-stats i { font-style: normal; }
-.topic-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.topic-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.topic-group { padding: .9rem 1rem; border: 1px solid var(--tertiary); border-radius: var(--radius); }
+.topic-group h3 { margin: 0 0 .65rem; font-size: .82rem; }
+.topic-chips { display: flex; flex-wrap: wrap; gap: .45rem; }
 .topic-chips span { padding: .3rem .65rem; border-radius: 999px; background: var(--entry); color: var(--secondary); font-size: .75rem; }
 .block-heading { display: flex; justify-content: space-between; align-items: baseline; }
 .block-heading a { color: var(--secondary); text-decoration: none; font-size: .78rem; }
@@ -125,6 +128,10 @@ button { font: inherit; }
 .plain-list, .expertise-list { padding-left: 1.25rem; }
 .plain-list li, .expertise-list li { margin-bottom: .75rem; }
 .plain-list li span { color: var(--secondary); font-size: .78rem; }
+.about-skill-groups { display: grid; gap: .8rem; margin-top: 1.4rem; }
+.about-skill-groups > div { padding: .8rem 1rem; border-radius: var(--radius); background: var(--entry); }
+.about-skill-groups h3 { margin: 0 0 .25rem; color: var(--primary); font-size: .82rem; }
+.about-skill-groups p { margin: 0; color: var(--secondary); font-size: .78rem; }
 .publication-links { display: flex; justify-content: flex-end; gap: .5rem; margin-bottom: .5rem; }
 .publication-links a { padding: .3rem .55rem; border-radius: var(--radius); background: var(--entry); color: var(--primary); text-decoration: none; font-size: .68rem; }
 
@@ -197,6 +204,7 @@ button { font: inherit; }
   .home-stats { align-items: flex-start; flex-direction: column; }
   .site-footer { grid-template-columns: 1fr; }
   .footer-links { flex-wrap: wrap; }
+  .topic-groups { grid-template-columns: 1fr; }
   .about-toc nav { grid-template-columns: 1fr; }
   .post-header h1 { font-size: 2rem; }
 }
