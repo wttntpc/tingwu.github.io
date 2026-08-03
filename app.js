@@ -145,66 +145,111 @@ async function renderAbout() {
     const res = await fetch('posts/publications.md');
     if (res.ok) {
       const text = await res.text();
-      // Remove the duplicate h1 and h2 headers from publications.md if they exist, or let marked parse it.
-      // publications.md has ## 期刊論文 and ## 研討會發表. 
       pubHtml = marked.parse(text);
     }
   } catch (e) {
     console.error('Failed to load publications', e);
   }
 
-  if (currentLang === 'zh') {
+  const isZh = currentLang === 'zh';
+
+  const sidebarHtml = `
+    <nav class="about-sidebar">
+      <div class="about-sidebar-title">${isZh ? '頁面導覽' : 'INDEX'}</div>
+      <ul>
+        <li><a href="#about-intro">${isZh ? '簡介' : 'Bio'}</a></li>
+        <li><a href="#about-expertise">${isZh ? '專業領域' : 'Expertise'}</a></li>
+        <li><a href="#about-experience">${isZh ? '經歷證照' : 'Experience'}</a></li>
+        <li><a href="#about-awards">${isZh ? '榮譽獎項' : 'Awards'}</a></li>
+        <li><a href="#about-publications">${isZh ? '學術發表' : 'Publications'}</a></li>
+      </ul>
+    </nav>
+  `;
+
+  if (isZh) {
     app.innerHTML = `
-      <div class="markdown-body">
-        <h1>關於我 (About Me)</h1>
-        <p>你好，我是吳亭葶 Ting-Ting Wu。<br/>我是認知神經科學的博士班學生，同時也是一位具備豐富實務經驗的運動防護員。</p>
-        <h2>專業領域</h2>
-        <ul>
-          <li>認知神經科學 (Cognitive Neuroscience)</li>
-          <li>運動醫學與防護 (Sports Medicine & Athletic Training)</li>
-          <li>AI 與資料分析 (AI & Data Analysis)</li>
-        </ul>
-        <h2>經歷與證照</h2>
-        <ul>
-          <li>國立中央大學 認知神經科學研究所 博士生</li>
-          <li>專業運動防護員 (Athletic Trainer)</li>
-          <li>超過 5 張以上的專業證照與研習認證</li>
-        </ul>
-        <h2>聯絡方式</h2>
-        <p>Email: <a href="mailto:wtt.ntpc@gmail.com">wtt.ntpc@gmail.com</a></p>
-        
-        <br/><hr/><br/>
-        
-        <div class="publications-section">
-          ${pubHtml}
+      <div class="about-container">
+        <div class="about-content markdown-body">
+          <h1 id="about-intro">關於我 (About Me)</h1>
+          <p>你好，我是吳亭葶 Ting-Ting Wu。<br/>我是認知神經科學的博士班學生，同時也是一位具備豐富實務經驗的運動防護員。</p>
+          
+          <h2 id="about-expertise">專業領域</h2>
+          <ul>
+            <li>認知神經科學 (Cognitive Neuroscience)</li>
+            <li>運動醫學與防護 (Sports Medicine & Athletic Training)</li>
+            <li>AI 與資料分析 (AI & Data Analysis)</li>
+          </ul>
+
+          <h2 id="about-experience">經歷與證照</h2>
+          <ul>
+            <li>國立中央大學 認知神經科學研究所 博士生</li>
+            <li>專業運動防護員 (Athletic Trainer)</li>
+            <li>超過 5 張以上的專業證照與研習認證</li>
+          </ul>
+
+          <h2 id="about-awards">榮譽獎項 (Honors & Awards)</h2>
+          <ul>
+            <li><strong>2025</strong> 國立中央大學 114學年度中央大學博士班入學獎學金</li>
+            <li><strong>2025</strong> 國立中央大學 114學年度教育部博士生獎學金</li>
+            <li><strong>2025</strong> 國立清華大學 中華民國斐陶斐榮譽會員</li>
+            <li><strong>2025</strong> 財團法人平安菁英教育基金會 113-2菁英獎學金</li>
+            <li><strong>2025</strong> 第十二屆國際競技與健身運動心理學研討會 【最佳口頭發表】</li>
+            <li><strong>2023</strong> 台灣運動心理學會年會暨學術研討會 【海報發表優秀論文獎】</li>
+            <li><strong>2023</strong> 中國醫藥大學 智育獎 【畢業生獎項】</li>
+            <li><strong>2022</strong> 中國醫藥大學運動醫學系 科研卓越競賽運動科學組 第二名</li>
+            <li><strong>2021</strong> 永續智慧創新黑客松競賽大毅建設命題之銀髮第三人生場次 第二名</li>
+            <li><strong>2021–2022</strong> 中國醫藥大學運動醫學系 學業績優獎（第一名、第二名）</li>
+          </ul>
+
+          <h2 id="about-publications">學術文章發表 (Publications)</h2>
+          <div class="publications-section">
+            ${pubHtml}
+          </div>
         </div>
+        ${sidebarHtml}
       </div>
     `;
   } else {
     app.innerHTML = `
-      <div class="markdown-body">
-        <h1>About Me</h1>
-        <p>Hello, I'm Ting-Ting Wu.<br/>I am a Ph.D. student in Cognitive Neuroscience and an experienced Athletic Trainer.</p>
-        <h2>Areas of Expertise</h2>
-        <ul>
-          <li>Cognitive Neuroscience</li>
-          <li>Sports Medicine & Athletic Training</li>
-          <li>AI & Data Analysis</li>
-        </ul>
-        <h2>Experience & Certifications</h2>
-        <ul>
-          <li>Ph.D. Student, Institute of Cognitive Neuroscience, National Central University</li>
-          <li>Certified Athletic Trainer</li>
-          <li>Holds over 5 professional certifications and workshop credentials</li>
-        </ul>
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:wtt.ntpc@gmail.com">wtt.ntpc@gmail.com</a></p>
-        
-        <br/><hr/><br/>
-        
-        <div class="publications-section">
-          ${pubHtml}
+      <div class="about-container">
+        <div class="about-content markdown-body">
+          <h1 id="about-intro">About Me</h1>
+          <p>Hello, I'm Ting-Ting Wu.<br/>I am a Ph.D. student in Cognitive Neuroscience and an experienced Athletic Trainer.</p>
+          
+          <h2 id="about-expertise">Areas of Expertise</h2>
+          <ul>
+            <li>Cognitive Neuroscience</li>
+            <li>Sports Medicine & Athletic Training</li>
+            <li>AI & Data Analysis</li>
+          </ul>
+
+          <h2 id="about-experience">Experience & Certifications</h2>
+          <ul>
+            <li>Ph.D. Student, Institute of Cognitive Neuroscience, National Central University</li>
+            <li>Certified Athletic Trainer</li>
+            <li>Holds over 5 professional certifications and workshop credentials</li>
+          </ul>
+
+          <h2 id="about-awards">Honors & Awards</h2>
+          <ul>
+            <li><strong>2025</strong> Ph.D. Entrance Scholarship, National Central University</li>
+            <li><strong>2025</strong> Ministry of Education Ph.D. Scholarship, Taiwan</li>
+            <li><strong>2025</strong> Honorary Member, The Phi Tau Phi Scholastic Honor Society of R.O.C.</li>
+            <li><strong>2025</strong> Ping-An Elite Educational Foundation Scholarship</li>
+            <li><strong>2025</strong> Best Oral Presentation Award, 12th International Seminar of Sport and Exercise Psychology</li>
+            <li><strong>2023</strong> Outstanding Poster Presentation Award, Society for Sport and Exercise Psychology of Taiwan</li>
+            <li><strong>2023</strong> Intellectual Award (Graduate Honor), China Medical University</li>
+            <li><strong>2022</strong> 2nd Place, Sports Science Division, Research Excellence Competition, CMU</li>
+            <li><strong>2021</strong> 2nd Place, Sustainable Smart Innovation Hackathon</li>
+            <li><strong>2021–2022</strong> Academic Excellence Award (1st & 2nd Place), Dept. of Sports Medicine, CMU</li>
+          </ul>
+
+          <h2 id="about-publications">Publications</h2>
+          <div class="publications-section">
+            ${pubHtml}
+          </div>
         </div>
+        ${sidebarHtml}
       </div>
     `;
   }
