@@ -48,6 +48,20 @@ Bot token 就像密碼，不能放進 GitHub、文章或公開截圖；同時應
 
 Telegram 收到的內容是一份「待我判斷的閱讀清單」，不是替我決定哪些研究一定正確。
 
+## 我的實際每日任務
+
+我把設定保存在自己的 Hermes repo，任務名稱是 `daily-science-brief`：每天上午 8 點，搜尋過去 3 天與五個主題相關的新研究。
+
+| 主題 | 關鍵方向 |
+|---|---|
+| 運動 | 身體活動、運動介入、VO₂max、有氧與阻力運動 |
+| 情緒 | 情緒反應、感受與心情調節 |
+| HRV | 心率變異性與自律神經 |
+| EEG | 腦波、神經震盪與腦電圖 |
+| 認知 | 執行功能、抑制、工作記憶、認知彈性與計畫 |
+
+搜尋不是找到多少就全部傳送。我會優先保留研究型原文、系統性回顧與統合分析，限制每日篇數，並要求每篇都有可開啟的來源連結。這樣 Telegram 收到的是可以開始閱讀的精選清單，而不是大量未整理的搜尋結果。
+
 > 我真正想建立的不是每天自動產生更多文字，而是一個會準時把研究線索送到手上，同時保留來源與判斷空間的工作系統。
 
 <!-- PROFESSIONAL -->
@@ -111,24 +125,65 @@ hermes gateway run
 
 ## 四、建立每日學術文獻排程
 
-Hermes 的 cron 由 gateway daemon 執行。可以直接在對話中描述：
+Hermes 的 cron 由 gateway daemon 執行。我的實際設定保存在私人 repo [wttntpc/hermes-agent](https://github.com/wttntpc/hermes-agent)，核心規格如下：
 
 ```text
-每天早上 8 點搜尋最近新增的運動、執行功能、EEG、HRV 與健康老化研究，
-篩選最相關的 3 篇，整理研究問題、樣本、方法、主要結果、限制及 DOI／來源連結，
-標示期刊論文或預印本，不得補造引用，並傳送到 Telegram。
+name: daily-science-brief
+schedule: 0 8 * * *
+lookback: 過去 3 天
+delivery: Telegram
+topics: Exercise、Emotion、HRV、EEG、Cognition
 ```
 
-也可以用 CLI 建立：
+如果從 Telegram 對話中建立任務，可以把 delivery 設為 `origin`，結果會回到建立任務的原聊天室；若從終端機建立，建議先在 Telegram 執行 `/sethome`，並明確使用 `--deliver telegram`。
+
+### 可直接交給 Hermes 的任務說明
+
+```text
+建立一個名稱為 daily-science-brief 的 cron 任務，每天上午 8 點執行並傳送到 Telegram。
+
+搜尋過去 3 天與以下主題高度相關的新文獻：
+1. 運動、身體活動、運動介入、VO₂max、有氧與阻力運動
+2. 情緒、情感反應、感受與心情調節
+3. HRV、心率變異性與自律神經
+4. EEG、腦波與神經震盪
+5. 認知功能、執行功能、抑制、工作記憶、認知彈性與計畫
+
+優先使用 PubMed／Europe PMC；以 Crossref 補 DOI、ISSN、出版商與期刊資料；
+再查 arXiv、bioRxiv、medRxiv 與 Semantic Scholar。Google Scholar 只作人工備援。
+
+最多選出 5 篇最相關文獻，優先納入 Original Article、Systematic Review 與 Meta-analysis。
+每篇以繁體中文整理原文標題、中文標題、前 5 位作者、期刊、年份、研究類型、
+研究問題、樣本、方法、主要結果、限制、DOI 或可直接開啟的來源連結，
+並說明它與主題 1–5 的關聯。跨主題研究需特別標示。
+
+不得補造 PMID、DOI、Impact Factor、期刊分區或研究結果。
+若無合法 JCR 查詢來源，Impact Factor 與 JCR 分區標示為「待確認」；查不到的欄位寫「無」，
+但不要因此中斷後續摘要。排除與過去 7 天推送內容重複的文章。
+```
+
+這份設定保留原 repo 的五個研究主題與資料來源順序，同時補上「每日最多 5 篇」、七天去重，以及 JCR 無法合法確認時不得推測等限制。
+
+### 使用 CLI 建立
 
 ```bash
 hermes cron create "0 8 * * *" \
-  "搜尋近幾日與指定研究主題相關的新文獻；驗證標題、作者、年份與 DOI，選出 3 篇並以繁體中文整理。若無法確認來源就不要收錄。" \
+  "執行 daily-science-brief：依已確認的五個主題搜尋過去 3 天文獻，最多選出 5 篇；驗證來源與 DOI，以繁體中文整理，禁止補造資料並排除七天內重複項目。" \
   --deliver telegram \
-  --name "每日學術文獻"
+  --name "daily-science-brief"
 ```
 
-建立後應先手動觸發一次，檢查主機時區、來源連結、訊息長度與 Telegram 投遞位置。免費模型遇到速率限制時，排程仍可能失敗，因此需要定期查看 cron status。
+若使用這個較短的 CLI 提示，五個主題與輸出規則應先保存為 Hermes 可讀取的 Skill 或規則檔；否則建議直接在 Telegram 貼上前面的完整任務說明。
+
+建立後先檢查並手動測試：
+
+```bash
+hermes cron list
+hermes cron status
+hermes cron run <job-id>
+```
+
+確認主機時區為預期時區、來源連結能開啟、Telegram 收件位置正確，且訊息長度適合手機閱讀。免費模型遇到速率限制時，排程仍可能失敗，因此需要定期檢查執行狀態。
 
 ## 五、建立可查核的摘要規則
 
