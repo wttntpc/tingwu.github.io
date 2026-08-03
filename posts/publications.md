@@ -4,8 +4,7 @@
 
 <ol class="publication-list">
   <li><strong>Wu, T. T.</strong>, Chang, Y. K., Yao, Z. F., Ren, F. F., Wang, S. C., &amp; Chen, F. T. (2026). Effects of volume-matched acute resistance exercise at different intensities on high-order and core executive functions in older adults. <em>Acta Psychologica, 269</em>, 107484.</li>
-  <li>Chen, H. Y., Hung, C. S., <strong>Wu, T. T.</strong>, Ren, F. F., Chang, Y. K., &amp; Chen, F. T. (2024). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11552394
-        /" target="_blank" rel="noopener noreferrer">The combined impact of physical activity and sedentary behavior on executive functions in older adults: A cross-sectional study.</a> <em>Psychology Research and Behavior Management, 17</em>, 3851–3861.</li>
+  <li>Chen, H. Y., Hung, C. S., <strong>Wu, T. T.</strong>, Ren, F. F., Chang, Y. K., &amp; Chen, F. T. (2024). The combined impact of physical activity and sedentary behavior on executive functions in older adults: A cross-sectional study. <em>Psychology Research and Behavior Management, 17</em>, 3851–3861.</li>
   <li>陳毓君、<strong>吳亭葶</strong>、董思妤、姚韋如、陳豐慈（2026）。急性有氧健身運動對情緒之影響：神經科學觀點之文獻回顧。<em>體育學報，59</em>(2)，101–128。</li>
   <li><strong>吳亭葶</strong>、洪辰歆、王上杰、謝漱石、陳豐慈（2025）。比較傳統式與血流限制阻力健身運動對計畫相關執行功能之影響。<em>運動表現期刊，12</em>(2)，329–348。</li>
   <li>洪辰歆、<strong>吳亭葶</strong>、陳豐慈、施家如、張育愷（2024）。身體活動型態對乳癌患者認知功能之影響：文獻回顧。<em>臺灣運動心理學報，24</em>(1)，35–63。</li>
