@@ -44,12 +44,12 @@ const copy = {
     ],
     awardsTitle: '獲獎紀錄',
     awards: [
-      ['2025', '教育部博士生獎學金、中央大學博士班入學獎學金'],
+      ['2025', '教育部博士生獎學金'],
+      ['2025', '國立中央大學博士班入學獎學金'],
       ['2025', '中華民國斐陶斐榮譽學會榮譽會員'],
-      ['2025', '第十二屆國際競技與健身運動心理學研討會・最佳口頭發表'],
-      ['2023', '台灣運動心理學會年會・海報發表優秀論文獎'],
+      ['2025', '財團法人平安菁英教育基金會・113-2 菁英獎學金'],
       ['2023', '中國醫藥大學・智育獎（畢業生獎項）'],
-      ['2021–22', '中國醫藥大學運動醫學系・學業績優獎']
+      ['2021–2022', '中國醫藥大學運動醫學系・學業績優獎']
     ],
     pubTitle: '學術著作',
     blogEyebrow: 'Writing',
@@ -93,12 +93,12 @@ const copy = {
     ],
     awardsTitle: 'Selected honors',
     awards: [
-      ['2025', 'MOE Ph.D. Scholarship & NCU Entrance Scholarship'],
+      ['2025', 'Ministry of Education Ph.D. Scholarship, Taiwan'],
+      ['2025', 'Ph.D. Entrance Scholarship, National Central University'],
       ['2025', 'Phi Tau Phi Scholastic Honor Society'],
-      ['2025', 'Best Oral Presentation, 12th ISSEP'],
-      ['2023', 'Outstanding Poster Award, SSEPT Annual Conference'],
+      ['2025', 'Ping-An Elite Educational Foundation Scholarship'],
       ['2023', 'Intellectual Award (Graduate Honor), China Medical University'],
-      ['2021–22', 'Academic Excellence Awards, CMU']
+      ['2021–2022', 'Academic Excellence Award, Department of Sports Medicine, CMU']
     ],
     pubTitle: 'Publications',
     blogEyebrow: 'Writing',
