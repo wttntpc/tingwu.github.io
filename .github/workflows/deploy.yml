@@ -27,6 +27,7 @@ jobs:
         run: |
           node --check app.js
           node -e "JSON.parse(require('fs').readFileSync('posts.json', 'utf8'))"
+          node -e "const p=JSON.parse(require('fs').readFileSync('posts.json','utf8')); const a=['popular-science','research-methods','data-analysis','ai-tools']; if(p.some(x=>!a.includes(x.category)||!Array.isArray(x.tags))) throw Error('Invalid article category or tags')"
           test -s posts/publications.md
           grep -q '<!-- SIMPLE -->' posts/research-update-1.md
           grep -q '<!-- PROFESSIONAL -->' posts/research-update-1.md

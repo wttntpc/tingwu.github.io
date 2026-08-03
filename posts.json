@@ -3,14 +3,16 @@
     "id": "research-update-1",
     "title": "身體活動如何影響大腦健康？",
     "date": "2026-07-28",
-    "category": "Research",
+    "category": "popular-science",
+    "tags": ["運動", "大腦健康", "執行功能"],
     "description": "整理身體活動、認知功能、情緒調節與神經可塑性之間的重要連結。"
   },
   {
     "id": "first-ai-code",
     "title": "第一次的 AI Code 分享",
     "date": "2026-08-01",
-    "category": "AI & Code",
+    "category": "ai-tools",
+    "tags": ["AI", "Python", "研究工作流"],
     "description": "分享我如何將 AI 導入資料分析、程式除錯與網站開發的日常工作流程。"
   }
 ]
