@@ -192,7 +192,7 @@ async function renderHome() {
   const c = t();
   app.innerHTML = `<div class="page-shell home-shell">
     <section class="profile-hero">
-      <div class="avatar-wrap"><img src="https://github.com/wttntpc.png?size=240" alt="Ting-Ting Wu" width="120" height="120" onerror="this.style.display='none'"><span aria-hidden="true">TW</span></div>
+      <div class="avatar-wrap" role="img" aria-label="${lang === 'zh' ? '個人照片待更新' : 'Profile photo coming soon'}"><span aria-hidden="true">TW</span></div>
       <div class="profile-id">
         <h1>${lang === 'zh' ? '吳亭葶' : 'Ting-Ting Wu'} <span>${lang === 'zh' ? 'Ting-Ting Wu' : '吳亭葶'}</span></h1>
         <p class="profile-role">${c.profileRole}</p>
@@ -228,7 +228,7 @@ async function renderAbout(section = '') {
     </header>
     <details class="about-toc" open><summary>${labels.toc}</summary><nav>${tocItems.map(item => `<a href="#/about/${item[1]}" ${section === item[1] ? 'aria-current="location"' : ''}>${item[0]}</a>`).join('')}</nav></details>
     <div class="about-content">
-      <p class="about-avatar"><span><img src="https://github.com/wttntpc.png?size=280" alt="Ting-Ting Wu" width="140" height="140" onerror="this.style.display='none'"><b aria-hidden="true">TW</b></span></p>
+      <p class="about-avatar"><span role="img" aria-label="${lang === 'zh' ? '個人照片待更新' : 'Profile photo coming soon'}"><b aria-hidden="true">TW</b></span></p>
       <section id="about-intro" class="about-section"><h2>${lang === 'zh' ? '吳亭葶 Ting-Ting Wu' : 'Ting-Ting Wu 吳亭葶'}</h2><blockquote><strong>${labels.role}</strong></blockquote><p>${c.introText}</p><p>${labels.bio2}</p></section>
       <section id="about-journey" class="about-section"><h2>${labels.education}</h2><ul class="plain-list">${c.journey.map(item => `<li><strong>${item[0]}</strong>　${item[1]}<br><span>${item[2]}</span></li>`).join('')}</ul></section>
       <section id="about-skills" class="about-section"><h2>${labels.expertise}</h2><ul class="expertise-list">${c.focuses.map(item => `<li><strong>${item[0]}</strong>：${item[1]}</li>`).join('')}</ul><div class="about-skill-groups">${c.skillGroups.slice(1).map(group => `<div><h3>${group[0]}</h3><p>${group[1].join('、')}</p></div>`).join('')}</div></section>
