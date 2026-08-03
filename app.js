@@ -27,7 +27,7 @@ const copy = {
     latestTitle: '最近的文章',
     allPosts: '查看所有文章 →',
     introTitle: '關於我',
-    introText: '你好，我是吳亭葶。我目前就讀國立中央大學認知神經科學研究所博士班，也是一名具備實務經驗的運動防護員。我的研究關心身體活動如何改變執行功能、情緒與腦部健康，特別聚焦於高齡族群。',
+    introText: '你好，我是吳亭葶。我目前就讀國立中央大學認知神經科學研究所博士班，也是一名運動防護員。我的研究關心身體活動如何改變執行功能、情緒與腦部健康。',
     journeyTitle: '學歷與經歷',
     journey: [
       ['2025—至今', '國立中央大學・認知神經科學研究所博士班', '研究方向：運動、執行功能與認知神經科學'],
@@ -55,7 +55,7 @@ const copy = {
   },
   en: {
     nav: [['Home', '/'], ['About', '/about'], ['Writing', '/blog']],
-    footer: 'Exploring how movement shapes the mind.',
+    footer: 'Exploring how physical activity shapes the mind.',
     heroLead: 'I am Ting-Ting Wu, a Ph.D. student in cognitive neuroscience and a certified athletic trainer. I study physical activity, executive function, and healthy aging—and use data and AI to make complex questions clearer.',
     profileRole: 'Ph.D. Student in Cognitive Neuroscience · National Central University',
     profilePillars: 'Cognitive Neuroscience × Exercise Science × AI & Data',
