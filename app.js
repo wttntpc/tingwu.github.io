@@ -199,33 +199,33 @@ async function renderPost(id) {
     const posts = await metaRes.json();
     const postMeta = posts.find(p => p.id === id);
 
-    const res = await fetch(\`posts/\${id}.md\`);
+    const res = await fetch(`posts/${id}.md`);
     if (!res.ok) throw new Error('Not found');
     const text = await res.text();
     
-    let html = \`
-      <div style="margin-bottom: 2rem;"><a href="#/blog" style="color: var(--text-muted); font-size: 0.95rem;">\${t('back_to_blog')}</a></div>
+    let html = `
+      <div style="margin-bottom: 2rem;"><a href="#/blog" style="color: var(--text-muted); font-size: 0.95rem;">${t('back_to_blog')}</a></div>
       <article class="markdown-body">
-    \`;
+    `;
     
     if (postMeta) {
-      html += \`
+      html += `
         <div style="margin-bottom: 2rem; text-align: center;">
-          <h1 style="margin-bottom: 0.5rem;">\${postMeta.title}</h1>
+          <h1 style="margin-bottom: 0.5rem;">${postMeta.title}</h1>
           <div style="font-family: monospace; color: var(--text-muted);">
-            \${postMeta.date} &nbsp;·&nbsp; \${postMeta.category}
+            ${postMeta.date} &nbsp;·&nbsp; ${postMeta.category}
           </div>
         </div>
-      \`;
+      `;
     } else {
       // Remove the h1 from markdown if we don't have meta, to keep it clean, but since it's just raw md, we let it render
     }
 
     html += marked.parse(text);
-    html += \`</article>\`;
+    html += `</article>`;
     app.innerHTML = html;
   } catch (e) {
-    app.innerHTML = \`<div style="padding: 2rem; text-align: center;">\${t('post_error')}</div>\`;
+    app.innerHTML = `<div style="padding: 2rem; text-align: center;">${t('post_error')}</div>`;
   }
 }
 
