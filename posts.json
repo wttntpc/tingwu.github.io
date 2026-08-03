@@ -53,7 +53,7 @@
     "date": "2026-08-03",
     "category": "ai-tools",
     "tags": ["Hermes", "Telegram", "自動排程"],
-    "description": "把免費或本機模型、Telegram 與排程組合成每天主動推送學術新知的個人研究助理。"
+    "description": "從安裝、模型選擇、BotFather、安全設定到每天 8 點的 cronjob，完整建立可查核的 Telegram 學術文獻簡報。"
   },
   {
     "id": "ai-tools-skills-research-workflow",

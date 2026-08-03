@@ -180,6 +180,13 @@ button { font: inherit; }
 .markdown-body p, .markdown-body li { line-height: 1.85; }
 .markdown-body blockquote { margin: 1.8rem 0; padding: .8rem 1rem; border-left: 3px solid var(--accent); background: var(--entry); }
 .markdown-body pre { overflow-x: auto; padding: 1rem; border-radius: var(--radius); background: var(--code-bg); }
+.markdown-body img { display: block; width: 100%; height: auto; }
+.markdown-body .article-figure { margin: 1.75rem 0 2.2rem; }
+.markdown-body .article-figure img { border: 1px solid var(--tertiary); border-radius: var(--radius); background: #f4efe5; }
+.markdown-body .article-figure figcaption { margin-top: .65rem; color: var(--secondary); font-size: .72rem; line-height: 1.6; text-align: center; }
+.markdown-body table { width: 100%; margin: 1.5rem 0; border-collapse: collapse; font-size: .8rem; }
+.markdown-body th, .markdown-body td { padding: .65rem .75rem; border: 1px solid var(--tertiary); text-align: left; vertical-align: top; }
+.markdown-body th { background: var(--entry); color: var(--primary); }
 .markdown-body hr { margin: 3rem 0; border: 0; border-top: 1px solid var(--tertiary); }
 .error-state, .loading { min-height: 60vh; display: grid; place-items: center; color: var(--secondary); }
 
