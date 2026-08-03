@@ -78,7 +78,7 @@ button { font: inherit; }
 .home-stats b { color: var(--primary); }
 .home-stats i { font-style: normal; }
 .topic-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
-.topic-chips span, .tag-cloud span { padding: .3rem .65rem; border-radius: 999px; background: var(--entry); color: var(--secondary); font-size: .75rem; }
+.topic-chips span { padding: .3rem .65rem; border-radius: 999px; background: var(--entry); color: var(--secondary); font-size: .75rem; }
 .block-heading { display: flex; justify-content: space-between; align-items: baseline; }
 .block-heading a { color: var(--secondary); text-decoration: none; font-size: .78rem; }
 .block-heading a:hover { color: var(--accent); }
@@ -128,31 +128,8 @@ button { font: inherit; }
 .publication-links { display: flex; justify-content: flex-end; gap: .5rem; margin-bottom: .5rem; }
 .publication-links a { padding: .3rem .55rem; border-radius: var(--radius); background: var(--entry); color: var(--primary); text-decoration: none; font-size: .68rem; }
 
-.about-layout { display: grid; grid-template-columns: 170px 1fr; gap: 2.5rem; padding: 2rem 0 5rem; }
-.about-aside { position: sticky; top: 2rem; align-self: start; padding: 1rem; border-radius: var(--radius); background: var(--entry); }
-.aside-label { color: var(--secondary); font-size: .65rem; font-weight: 600; text-transform: uppercase; }
-.about-aside ul { margin: .65rem 0 1rem; padding: 0; list-style: none; }
-.about-aside a { display: block; padding: .3rem 0; color: var(--secondary); text-decoration: none; font-size: .75rem; }
-.about-aside a:hover, .about-aside a[aria-current="location"] { color: var(--accent); }
-.button { display: inline-block; padding: .4rem .65rem; border: 1px solid var(--tertiary); border-radius: var(--radius); color: var(--primary); text-decoration: none; font-size: .74rem; }
-.about-main section { margin-bottom: 3.5rem; scroll-margin-top: 2rem; }
-.about-main h2, .markdown-body h2 { margin: 0 0 1rem; font-size: 1.45rem; }
-.lead { color: var(--content); font-size: 1rem; }
-.timeline { padding-left: 1.1rem; border-left: 2px solid var(--tertiary); }
-.timeline-item { position: relative; margin-bottom: 1.3rem; }
-.timeline-item::before { content: ""; position: absolute; left: calc(-1.1rem - 5px); top: .55rem; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.timeline-item time { color: var(--accent); font-size: .7rem; }
-.timeline-item h3 { margin: .1rem 0; font-size: .9rem; }
-.timeline-item p { margin: 0; color: var(--secondary); font-size: .78rem; }
-.tag-cloud { display: flex; flex-wrap: wrap; gap: .45rem; }
-.award-list { margin: 0; padding: 0; list-style: none; }
-.award-list li { display: grid; grid-template-columns: 65px 1fr; gap: .7rem; padding: .65rem 0; border-bottom: 1px solid var(--tertiary); font-size: .8rem; }
-.award-list strong, .award-badge { color: var(--accent); }
-
-.publication-heading { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
-.publication-heading h2 { margin: .25rem 0 0; }
-.publication-profiles { display: flex; flex-wrap: wrap; gap: .45rem; }
-.publication-profiles a { padding: .3rem .5rem; border-radius: var(--radius); background: var(--entry); color: var(--primary); text-decoration: none; font-size: .68rem; }
+.markdown-body h2 { margin: 0 0 1rem; font-size: 1.45rem; }
+.award-badge { color: var(--accent); }
 .publication-note { margin: 0 0 2rem; padding: .8rem 1rem; border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; background: var(--entry); color: var(--secondary); font-size: .78rem; }
 .publication-list { padding-left: 1.25rem !important; }
 .publication-list li { margin-bottom: 1.2rem !important; padding-left: .35rem; }
@@ -209,10 +186,6 @@ button { font: inherit; }
   .profile-id h1 span { display: block; margin-top: .15rem; font-size: .85rem; }
   .pillar-grid { grid-template-columns: 1fr; }
   .pillar-card { min-height: auto; }
-  .about-layout { grid-template-columns: 1fr; gap: 1.5rem; }
-  .about-aside { position: static; }
-  .about-aside ul { display: flex; flex-wrap: wrap; gap: .35rem 1rem; }
-  .publication-heading { align-items: flex-start; flex-direction: column; }
   .about-page { padding-top: 2rem; }
 }
 
