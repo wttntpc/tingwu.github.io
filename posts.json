@@ -1,12 +1,5 @@
 [
   {
-    "id": "first-ai-code",
-    "title": "第一次的 AI Code 分享",
-    "date": "2026-08-01",
-    "category": "AI & Code",
-    "description": "分享我如何將 AI 導入資料分析、程式除錯與網站開發的日常工作流程。"
-  },
-  {
     "id": "research-update-1",
     "title": "身體活動如何影響大腦健康？",
     "date": "2026-07-28",
@@ -14,10 +7,10 @@
     "description": "整理身體活動、認知功能、情緒調節與神經可塑性之間的重要連結。"
   },
   {
-    "id": "publications",
-    "title": "學術文章與研討會發表",
-    "date": "2026-08-03",
-    "category": "Publications",
-    "description": "期刊論文與國內外研討會發表紀錄。"
-  }
+    "id": "first-ai-code",
+    "title": "第一次的 AI Code 分享",
+    "date": "2026-08-01",
+    "category": "AI & Code",
+    "description": "分享我如何將 AI 導入資料分析、程式除錯與網站開發的日常工作流程。"
+  },
 ]
