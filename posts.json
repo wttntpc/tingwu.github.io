@@ -4,20 +4,20 @@
     "title": "第一次的 AI Code 分享",
     "date": "2026-08-01",
     "category": "AI & Code",
-    "description": "分享我是如何開始使用 AI 來協助撰寫與重構程式碼，並將其應用於我的資料分析與網站開發中。"
+    "description": "分享我如何將 AI 導入資料分析、程式除錯與網站開發的日常工作流程。"
   },
   {
     "id": "research-update-1",
-    "title": "認知神經科學近期研究進展",
+    "title": "身體活動如何影響大腦健康？",
     "date": "2026-07-28",
     "category": "Research",
-    "description": "統整近期在認知神經科學領域，關於身體活動與大腦健康關聯性的重要文獻與實驗結果。"
+    "description": "整理身體活動、認知功能、情緒調節與神經可塑性之間的重要連結。"
   },
   {
     "id": "publications",
-    "title": "學術文章列表 (Publications)",
+    "title": "學術文章與研討會發表",
     "date": "2026-08-03",
-    "category": "Research",
-    "description": "期刊論文與國內外研討會發表紀錄總覽。"
+    "category": "Publications",
+    "description": "期刊論文與國內外研討會發表紀錄。"
   }
 ]

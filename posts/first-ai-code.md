@@ -1,27 +1,24 @@
-這是我第一篇分享 AI 與程式開發結合的文章。
+在資料分析與研究過程中，我經常使用 Python 或 R 處理實驗資料。開始使用 AI 工具之後，我逐漸建立一套更有效率的工作方式：
 
-在資料分析與研究過程中，我常常需要撰寫 Python 或 R 語言來處理實驗數據。自從開始使用 AI 工具（例如 ChatGPT, Claude 等）後，我發現：
+1. **加速重複性資料處理**，把時間留給研究問題本身。
+2. 遇到錯誤時，透過 AI 協助理解問題與測試修正方式。
+3. 快速進入原本陌生的工具或框架，再逐步驗證產出的結果。
 
-1. **自動化處理資料**變得非常迅速。
-2. 遇到 Bug 時，AI 可以幫助快速除錯。
-3. 把原本不會的框架（例如這次的 React 網站開發），透過 AI 也能快速建立起來。
-
-以下是一段我常用來處理資料的 Python 程式碼範例：
+## 一個簡單的資料清理範例
 
 ```python
 import pandas as pd
-import numpy as np
 
 def clean_data(file_path):
     df = pd.read_csv(file_path)
-    # 填補空值
-    df.fillna(df.mean(), inplace=True)
-    # 移除重複項目
-    df.drop_duplicates(inplace=True)
-    return df
+    numeric = df.select_dtypes(include="number").columns
+    df[numeric] = df[numeric].fillna(df[numeric].mean())
+    return df.drop_duplicates()
 
 cleaned_data = clean_data("experiment_results.csv")
 print(cleaned_data.head())
 ```
 
-未來我也會在這裡陸續分享我是如何把 AI 工作流導入我的日常研究與生活中。
+AI 並不取代研究者的判斷。對我而言，它更像是一位能快速討論、協助整理與提出檢查方向的夥伴；資料品質、統計假設和研究倫理，仍需要由研究者負責。
+
+未來我會在這裡持續分享 AI 如何進入我的研究與生活工作流。
