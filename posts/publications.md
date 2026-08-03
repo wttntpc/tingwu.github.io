@@ -4,14 +4,15 @@
 
 <ol class="publication-list">
   <li><strong>Wu, T. T.</strong>, Chang, Y. K., Yao, Z. F., Ren, F. F., Wang, S. C., &amp; Chen, F. T. (2026). Effects of volume-matched acute resistance exercise at different intensities on high-order and core executive functions in older adults. <em>Acta Psychologica, 269</em>, 107484.</li>
-  <li>Chen, H. Y., Hung, C. S., <strong>Wu, T. T.</strong>, Ren, F. F., Chang, Y. K., &amp; Chen, F. T. (2024). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11552394/" target="_blank" rel="noopener noreferrer">The combined impact of physical activity and sedentary behavior on executive functions in older adults: A cross-sectional study.</a> <em>Psychology Research and Behavior Management, 17</em>, 3851–3861.</li>
+  <li>Chen, H. Y., Hung, C. S., <strong>Wu, T. T.</strong>, Ren, F. F., Chang, Y. K., &amp; Chen, F. T. (2024). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11552394
+        /" target="_blank" rel="noopener noreferrer">The combined impact of physical activity and sedentary behavior on executive functions in older adults: A cross-sectional study.</a> <em>Psychology Research and Behavior Management, 17</em>, 3851–3861.</li>
+  <li>陳毓君、<strong>吳亭葶</strong>、董思妤、姚韋如、陳豐慈（2026）。急性有氧健身運動對情緒之影響：神經科學觀點之文獻回顧。<em>體育學報，59</em>(2)，101–128。</li>
   <li><strong>吳亭葶</strong>、洪辰歆、王上杰、謝漱石、陳豐慈（2025）。比較傳統式與血流限制阻力健身運動對計畫相關執行功能之影響。<em>運動表現期刊，12</em>(2)，329–348。</li>
   <li>洪辰歆、<strong>吳亭葶</strong>、陳豐慈、施家如、張育愷（2024）。身體活動型態對乳癌患者認知功能之影響：文獻回顧。<em>臺灣運動心理學報，24</em>(1)，35–63。</li>
   <li>王上杰、<strong>吳亭葶</strong>、林宥芊、郭育瑄、陳豐慈（2025）。急性有氧健身運動對高齡者計畫相關執行功能之影響：身體活動量及靜態行為之調節角色。<em>臺灣運動心理學報，25</em>(1)，67–90。</li>
   <li>陳玨縈、洪辰歆、<strong>吳亭葶</strong>、董思妤、陳豐慈、張育愷（2025）。急性有氧健身運動與咖啡因對執行功能與心情狀態之影響：強度劑量反應之研究。<em>臺灣運動心理學報，25</em>(2)，49–79。</li>
   <li>陳豐慈、李瑞鴻、<strong>吳亭葶</strong>、張育愷（2025）。AMSTAR 2：運動科學領域系統性回顧方法學品質評估新指引。<em>中華體育季刊，39</em>(4)，387–400。</li>
   <li>陳律仰、<strong>吳亭葶</strong>、陳玨縈、張怡潔、劉明煌、吳聰義、陳豐慈（已接受）。單次運動按摩對射箭表現與抑制控制之影響。<em>運動表現期刊</em>。</li>
-  <li>陳毓君、<strong>吳亭葶</strong>、董思妤、姚韋如、陳豐慈（2026）。急性有氧健身運動對情緒之影響：神經科學觀點之文獻回顧。<em>體育學報，59</em>(2)，101–128。</li>
 </ol>
 
 ## 研討會發表 Conference Presentations
