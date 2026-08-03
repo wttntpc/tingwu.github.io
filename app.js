@@ -1,6 +1,68 @@
 const app = document.getElementById('app');
+const navLinks = document.getElementById('nav-links');
+const langToggle = document.getElementById('lang-toggle');
 
-// 設定 Marked.js 使用 highlight.js 進行程式碼上色
+// Language State
+let currentLang = localStorage.getItem('lang') || 'zh';
+
+const i18n = {
+  zh: {
+    nav_home: '首頁',
+    nav_blog: '文章',
+    nav_about: '關於我',
+    loading: '載入中...',
+    not_found: '404 找不到網頁',
+    hero_name: '吳亭葶 Ting-Ting Wu',
+    hero_title: '認知神經科學博士生 & 運動防護員',
+    hero_pills: ['徒手・運動治療', 'AI・程式開發', '學術研究'],
+    btn_about: '完整學經歷 →',
+    btn_pub: '學術文章列表 →',
+    btn_blog: '閱讀文章 →',
+    latest_posts: '最新文章',
+    blog_title: '文章列表',
+    back_to_blog: '← 返回文章列表',
+    post_error: '無法載入文章，或者該文章不存在。'
+  },
+  en: {
+    nav_home: 'Home',
+    nav_blog: 'Blog',
+    nav_about: 'About',
+    loading: 'Loading...',
+    not_found: '404 Page Not Found',
+    hero_name: 'Ting-Ting Wu',
+    hero_title: 'Ph.D. Student in Cognitive Neuroscience & Athletic Trainer',
+    hero_pills: ['Manual Therapy', 'AI & Coding', 'Academic Research'],
+    btn_about: 'Full CV →',
+    btn_pub: 'Publications →',
+    btn_blog: 'Read Blog →',
+    latest_posts: 'Latest Posts',
+    blog_title: 'Blog Posts',
+    back_to_blog: '← Back to Blog',
+    post_error: 'Failed to load post, or it does not exist.'
+  }
+};
+
+function t(key) {
+  return i18n[currentLang][key];
+}
+
+// Toggle Language
+langToggle.addEventListener('click', () => {
+  currentLang = currentLang === 'zh' ? 'en' : 'zh';
+  localStorage.setItem('lang', currentLang);
+  updateNav();
+  router(); // re-render page
+});
+
+function updateNav() {
+  langToggle.textContent = currentLang === 'zh' ? 'EN' : '中文';
+  navLinks.innerHTML = `
+    <li><a href="#/">${t('nav_home')}</a></li>
+    <li><a href="#/blog">${t('nav_blog')}</a></li>
+    <li><a href="#/about">${t('nav_about')}</a></li>
+  `;
+}
+
 marked.setOptions({
   highlight: function(code, lang) {
     const language = hljs.getLanguage(lang) ? lang : 'plaintext';
@@ -8,10 +70,9 @@ marked.setOptions({
   }
 });
 
-// 路由設定
 async function router() {
   const hash = window.location.hash.slice(1) || '/';
-  app.innerHTML = '<div style="text-align: center; padding: 3rem;">載入中...</div>';
+  app.innerHTML = `<div style="text-align: center; padding: 3rem;">${t('loading')}</div>`;
 
   if (hash === '/') {
     renderHome();
@@ -23,44 +84,41 @@ async function router() {
     const postId = hash.split('/')[2];
     renderPost(postId);
   } else {
-    app.innerHTML = '<h1>404 找不到網頁</h1>';
+    app.innerHTML = `<h1>${t('not_found')}</h1>`;
   }
 }
 
-// 渲染首頁
 async function renderHome() {
   const res = await fetch('posts.json');
   const posts = await res.json();
-  const recentPosts = posts.slice(0, 2);
+  const recentPosts = posts.filter(p => p.id !== 'publications').slice(0, 2);
 
   let html = `
     <section class="hero">
-      <img src="https://ui-avatars.com/api/?name=Ting-Ting+Wu&background=0d7377&color=fff&size=120" alt="Avatar" class="avatar" />
+      <img src="https://ui-avatars.com/api/?name=Ting-Ting+Wu&background=334155&color=fff&size=140" alt="Avatar" class="avatar" />
       <div>
-        <h1>吳亭葶 Ting-Ting Wu</h1>
-        <p>認知神經科學博士生 & 運動防護員</p>
+        <h1>${t('hero_name')}</h1>
+        <p>${t('hero_title')}</p>
         <div class="pills">
-          <span class="pill">徒手・運動治療</span>
-          <span class="pill">AI・程式開發</span>
-          <span class="pill">學術研究</span>
+          ${t('hero_pills').map(pill => `<span class="pill">${pill}</span>`).join('')}
         </div>
         <div style="margin-top: 1.5rem;">
-          <a href="#/about" class="btn btn-ghost" style="margin-right: 1rem;">完整學經歷 →</a>
-          <a href="#/post/publications" class="btn btn-ghost" style="margin-right: 1rem;">學術文章列表 →</a>
-          <a href="#/blog" class="btn">閱讀文章 →</a>
+          <a href="#/about" class="btn-ghost" style="margin-right: 1rem;">${t('btn_about')}</a>
+          <a href="#/post/publications" class="btn-ghost" style="margin-right: 1rem;">${t('btn_pub')}</a>
+          <a href="#/blog" class="btn-ghost">${t('btn_blog')}</a>
         </div>
       </div>
     </section>
 
     <section>
-      <h2 style="margin-bottom: 1.5rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; display: inline-block;">最新文章</h2>
+      <h2>${t('latest_posts')}</h2>
       <div>
   `;
 
   recentPosts.forEach(post => {
     html += `
       <a href="#/post/${post.id}" class="card">
-        <div class="card-meta"><span class="pill">${post.category}</span> <span style="margin-left: 1rem;">${post.date}</span></div>
+        <div class="card-meta"><span class="pill">${post.category}</span> <span>${post.date}</span></div>
         <h3 class="card-title">${post.title}</h3>
       </a>
     `;
@@ -70,42 +128,62 @@ async function renderHome() {
   app.innerHTML = html;
 }
 
-// 渲染關於我
 function renderAbout() {
-  app.innerHTML = `
-    <div class="markdown-body">
-      <h1>關於我 (About Me)</h1>
-      <p>你好，我是吳亭葶 Ting-Ting Wu。<br/>我是認知神經科學的博士班學生，同時也是一位具備豐富實務經驗的運動防護員。</p>
-      <h2>專業領域</h2>
-      <ul>
-        <li>認知神經科學 (Cognitive Neuroscience)</li>
-        <li>運動醫學與防護 (Sports Medicine & Athletic Training)</li>
-        <li>AI 與資料分析 (AI & Data Analysis)</li>
-      </ul>
-      <h2>經歷與證照</h2>
-      <ul>
-        <li>國立中央大學 認知神經科學研究所 博士生</li>
-        <li>專業運動防護員 (Athletic Trainer)</li>
-      </ul>
-      <h2>學術著作</h2>
-      <p>目前累積 9 篇以上的期刊論文發表，探討身體活動與健身運動對大腦與情緒的神經調控機制。</p>
-      <h2>聯絡方式</h2>
-      <p>Email: <a href="mailto:tingwu.new@gmail.com">tingwu.new@gmail.com</a></p>
-    </div>
-  `;
+  if (currentLang === 'zh') {
+    app.innerHTML = `
+      <div class="markdown-body">
+        <h1>關於我 (About Me)</h1>
+        <p>你好，我是吳亭葶 Ting-Ting Wu。<br/>我是認知神經科學的博士班學生，同時也是一位具備豐富實務經驗的運動防護員。</p>
+        <h2>專業領域</h2>
+        <ul>
+          <li>認知神經科學 (Cognitive Neuroscience)</li>
+          <li>運動醫學與防護 (Sports Medicine & Athletic Training)</li>
+          <li>AI 與資料分析 (AI & Data Analysis)</li>
+        </ul>
+        <h2>經歷與證照</h2>
+        <ul>
+          <li>國立中央大學 認知神經科學研究所 博士生</li>
+          <li>專業運動防護員 (Athletic Trainer)</li>
+          <li>超過 5 張以上的專業證照與研習認證</li>
+        </ul>
+        <h2>聯絡方式</h2>
+        <p>Email: <a href="mailto:wtt.ntpc@gmail.com">wtt.ntpc@gmail.com</a></p>
+      </div>
+    `;
+  } else {
+    app.innerHTML = `
+      <div class="markdown-body">
+        <h1>About Me</h1>
+        <p>Hello, I'm Ting-Ting Wu.<br/>I am a Ph.D. student in Cognitive Neuroscience and an experienced Athletic Trainer.</p>
+        <h2>Areas of Expertise</h2>
+        <ul>
+          <li>Cognitive Neuroscience</li>
+          <li>Sports Medicine & Athletic Training</li>
+          <li>AI & Data Analysis</li>
+        </ul>
+        <h2>Experience & Certifications</h2>
+        <ul>
+          <li>Ph.D. Student, Institute of Cognitive Neuroscience, National Central University</li>
+          <li>Certified Athletic Trainer</li>
+          <li>Holds over 5 professional certifications and workshop credentials</li>
+        </ul>
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:wtt.ntpc@gmail.com">wtt.ntpc@gmail.com</a></p>
+      </div>
+    `;
+  }
 }
 
-// 渲染文章列表
 async function renderBlog() {
   const res = await fetch('posts.json');
   const posts = await res.json();
   
-  let html = `<h1 style="margin-bottom: 2rem;">文章列表 (Blog)</h1><div>`;
+  let html = `<h1>${t('blog_title')}</h1><div style="margin-top: 2rem;">`;
   
   posts.forEach(post => {
     html += `
       <a href="#/post/${post.id}" class="card">
-        <div class="card-meta"><span class="pill">${post.category}</span> <span style="margin-left: 1rem;">${post.date}</span></div>
+        <div class="card-meta"><span class="pill">${post.category}</span> <span>${post.date}</span></div>
         <h2 class="card-title">${post.title}</h2>
         <p style="color: var(--text-secondary);">${post.description}</p>
       </a>
@@ -115,43 +193,43 @@ async function renderBlog() {
   app.innerHTML = html;
 }
 
-// 渲染單篇文章
 async function renderPost(id) {
   try {
-    // 取得文章標題等 metadata
     const metaRes = await fetch('posts.json');
     const posts = await metaRes.json();
     const postMeta = posts.find(p => p.id === id);
 
-    // 取得 Markdown 內容
-    const res = await fetch(`posts/${id}.md`);
-    if (!res.ok) throw new Error('找不到文章');
+    const res = await fetch(\`posts/\${id}.md\`);
+    if (!res.ok) throw new Error('Not found');
     const text = await res.text();
     
-    let html = `
-      <div style="margin-bottom: 1rem;"><a href="#/blog" style="color: var(--text-muted);">← 返回文章列表</a></div>
+    let html = \`
+      <div style="margin-bottom: 2rem;"><a href="#/blog" style="color: var(--text-muted); font-size: 0.95rem;">\${t('back_to_blog')}</a></div>
       <article class="markdown-body">
-    `;
+    \`;
     
     if (postMeta) {
-      html += `
-        <div style="margin-bottom: 1rem;">
-          <span class="pill">${postMeta.category}</span>
-          <span style="margin-left: 1rem; color: var(--text-muted);">${postMeta.date}</span>
+      html += \`
+        <div style="margin-bottom: 2rem; text-align: center;">
+          <h1 style="margin-bottom: 0.5rem;">\${postMeta.title}</h1>
+          <div style="font-family: monospace; color: var(--text-muted);">
+            \${postMeta.date} &nbsp;·&nbsp; \${postMeta.category}
+          </div>
         </div>
-        <h1 style="margin-bottom: 2rem;">${postMeta.title}</h1>
-      `;
+      \`;
+    } else {
+      // Remove the h1 from markdown if we don't have meta, to keep it clean, but since it's just raw md, we let it render
     }
 
     html += marked.parse(text);
-    html += `</article>`;
+    html += \`</article>\`;
     app.innerHTML = html;
   } catch (e) {
-    app.innerHTML = '<div style="padding: 2rem;">無法載入文章，或者該文章不存在。</div>';
+    app.innerHTML = \`<div style="padding: 2rem; text-align: center;">\${t('post_error')}</div>\`;
   }
 }
 
-// 監聽網址變化
+// Initialize
+updateNav();
 window.addEventListener('hashchange', router);
-// 初始載入
 router();
