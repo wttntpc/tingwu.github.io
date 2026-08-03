@@ -10,21 +10,21 @@ const copy = {
   zh: {
     nav: [['首頁', '/'], ['關於', '/about'], ['文章', '/blog']],
     footer: '探索身體活動如何改變大腦與心智。',
-    heroEyebrow: '認知神經科學・運動科學',
-    heroTitle: '讓運動科學，<br>遇見<em>大腦</em>。',
+    heroEyebrow: '吳亭葶 Ting-Ting Wu · Academic Portfolio',
+    heroTitle: 'Cognitive Neuroscience<br><em>× Exercise Science</em>',
     heroLead: '我是吳亭葶，一位認知神經科學博士生與運動防護員。我研究身體活動、執行功能與健康老化之間的關係，並運用資料與 AI 把複雜問題變得清楚。',
     aboutButton: '認識我的研究 <span>↗</span>',
     pubButton: '瀏覽學術著作',
-    heroNote: 'Movement × Mind',
+    heroNote: '國立中央大學博士生 · 運動防護員 · 臺灣',
     focusEyebrow: 'Research focus',
-    focusTitle: '從身體出發，<br>理解心智。',
+    focusTitle: '研究領域',
     focusIntro: '我的工作橫跨實驗室與實務現場，關注不同運動刺激如何影響認知功能，並以可重現的分析方法連結科學證據與真實世界。',
     focuses: [
       ['認知神經科學', '運用 EEG 與行為測量，探索執行功能、神經可塑性及運動後的認知變化。'],
       ['運動與健康老化', '研究阻力運動、有氧運動與身體活動如何支持高齡者的大腦與日常功能。'],
       ['AI 與資料分析', '使用 Python、Matlab 與統計工具，建立透明、有效率且可重現的研究流程。']
     ],
-    factsLabel: 'Research at a glance',
+    factsLabel: '學術成果概覽',
     facts: [['9+', '期刊論文'], ['14+', '研討會發表'], ['3', '核心研究領域']],
     latestEyebrow: 'Notes & updates',
     latestTitle: '最近的文章',
@@ -64,14 +64,14 @@ const copy = {
   en: {
     nav: [['Home', '/'], ['About', '/about'], ['Writing', '/blog']],
     footer: 'Exploring how movement shapes the mind.',
-    heroEyebrow: 'Cognitive neuroscience · Exercise science',
-    heroTitle: 'Where movement<br>meets the <em>mind</em>.',
+    heroEyebrow: 'Ting-Ting Wu · Academic Portfolio',
+    heroTitle: 'Cognitive Neuroscience<br><em>× Exercise Science</em>',
     heroLead: 'I am Ting-Ting Wu, a Ph.D. student in cognitive neuroscience and a certified athletic trainer. I study physical activity, executive function, and healthy aging—and use data and AI to make complex questions clearer.',
     aboutButton: 'Explore my research <span>↗</span>',
     pubButton: 'View publications',
-    heroNote: 'Movement × Mind',
+    heroNote: 'Ph.D. Student · Athletic Trainer · Taiwan',
     focusEyebrow: 'Research focus',
-    focusTitle: 'Starting with the body,<br>understanding the mind.',
+    focusTitle: 'Research areas',
     focusIntro: 'My work bridges laboratory research and real-world practice, examining how different exercise stimuli affect cognition through transparent, reproducible analysis.',
     focuses: [
       ['Cognitive neuroscience', 'Using EEG and behavioral measures to study executive function, neuroplasticity, and post-exercise cognitive change.'],
@@ -152,7 +152,7 @@ async function renderHome() {
   const posts = (await getPosts()).filter(post => post.id !== 'publications').slice(0, 2);
   const c = t();
   app.innerHTML = `<div class="page-shell">
-    <section class="hero">
+    <section class="hero editorial-hero">
       <div class="hero-copy">
         <p class="eyebrow">${c.heroEyebrow}</p>
         <h1 class="display">${c.heroTitle}</h1>
@@ -161,11 +161,7 @@ async function renderHome() {
           <a class="button button-primary" href="#/about">${c.aboutButton}</a>
           <a class="button button-secondary" href="#/about/publications">${c.pubButton}</a>
         </div>
-      </div>
-      <div class="hero-visual" aria-label="Ting-Ting Wu monogram illustration">
-        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
-        <div class="portrait-placeholder" aria-hidden="true">T·W</div>
-        <div class="hero-note">${c.heroNote}</div>
+        <p class="hero-credential">${c.heroNote}</p>
       </div>
     </section>
     <section class="focus-section">
