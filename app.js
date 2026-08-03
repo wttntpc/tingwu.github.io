@@ -189,19 +189,35 @@ async function renderAbout(section = '') {
     if (response.ok) publications = marked.parse(await response.text());
   } catch (_) { publications = '<p>Publications are being updated.</p>'; }
 
-  app.innerHTML = `<div class="page-shell">
-    <header class="inner-hero"><p class="eyebrow">${c.aboutEyebrow}</p><h1 class="display">${c.aboutTitle}</h1><p>${c.aboutDesc}</p></header>
-    <div class="about-layout">
-      <aside class="about-aside"><span class="aside-label">${c.asideTitle}</span><ul>${c.aside.map(item => `<li><a href="#/about/${item[1]}" ${section === item[1] ? 'aria-current="location"' : ''}>${item[0]}</a></li>`).join('')}</ul><a class="button button-secondary" href="mailto:wtt.ntpc@gmail.com">Email me ↗</a></aside>
-      <div class="about-main">
-        <section id="about-intro"><h2>${c.introTitle}</h2><p class="lead">${c.introText}</p></section>
-        <section id="about-journey"><h2>${c.journeyTitle}</h2><div class="timeline">${c.journey.map(item => `<div class="timeline-item"><time>${item[0]}</time><h3>${item[1]}</h3><p>${item[2]}</p></div>`).join('')}</div></section>
-        <section id="about-skills"><h2>${c.skillsTitle}</h2><div class="tag-cloud">${c.skills.map(skill => `<span>${skill}</span>`).join('')}</div></section>
-        <section id="about-awards"><h2>${c.awardsTitle}</h2><ul class="award-list">${c.awards.map(item => `<li><strong>${item[0]}</strong><span>${item[1]}</span></li>`).join('')}</ul></section>
-        <section id="about-publications" class="publications"><div class="publication-heading"><div><span class="aside-label">Academic work</span><h2>${c.pubTitle}</h2></div><div class="publication-profiles"><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div></div><div class="markdown-body">${publications}</div></section>
-      </div>
+  const labels = lang === 'zh' ? {
+    home: '首頁', title: '關於我', meta: '吳亭葶 Ting-Ting Wu', language: '語言：English', toc: '目錄',
+    role: '認知神經科學博士生 / 運動防護員 / 研究者', education: '學經歷', expertise: '專長領域', honors: '榮譽', contact: '聯繫',
+    bio2: '我的研究位於運動科學與認知神經科學的交界，關注運動強度、身體活動與靜態行為如何影響執行功能、情緒及健康老化。除了實驗研究，我也持續探索 AI 與可重現資料分析如何改善研究工作流程。'
+  } : {
+    home: 'Home', title: 'About', meta: 'Ting-Ting Wu', language: 'Language: 中文', toc: 'Table of contents',
+    role: 'Ph.D. Student in Cognitive Neuroscience / Athletic Trainer / Researcher', education: 'Education & experience', expertise: 'Expertise', honors: 'Honors', contact: 'Contact',
+    bio2: 'My work sits at the intersection of exercise science and cognitive neuroscience. I study how exercise intensity, physical activity, and sedentary behavior shape executive function, emotion, and healthy aging, while exploring reproducible data analysis and AI-enabled research workflows.'
+  };
+  const tocItems = [[c.introTitle, 'intro'], [labels.education, 'journey'], [labels.expertise, 'skills'], [c.pubTitle, 'publications'], [labels.honors, 'awards'], [labels.contact, 'contact']];
+
+  app.innerHTML = `<div class="page-shell about-page"><article class="about-article">
+    <header class="post-header">
+      <div class="breadcrumbs"><a href="#/">${labels.home}</a></div>
+      <h1>${labels.title}</h1>
+      <div class="page-meta"><span>${labels.meta}</span><span>·</span><button type="button" class="inline-language">${labels.language}</button></div>
+    </header>
+    <details class="about-toc" open><summary>${labels.toc}</summary><nav>${tocItems.map(item => `<a href="#/about/${item[1]}" ${section === item[1] ? 'aria-current="location"' : ''}>${item[0]}</a>`).join('')}</nav></details>
+    <div class="about-content">
+      <p class="about-avatar"><span><img src="https://github.com/wttntpc.png?size=280" alt="Ting-Ting Wu" width="140" height="140" onerror="this.style.display='none'"><b aria-hidden="true">TW</b></span></p>
+      <section id="about-intro" class="about-section"><h2>${lang === 'zh' ? '吳亭葶 Ting-Ting Wu' : 'Ting-Ting Wu 吳亭葶'}</h2><blockquote><strong>${labels.role}</strong></blockquote><p>${c.introText}</p><p>${labels.bio2}</p></section>
+      <section id="about-journey" class="about-section"><h2>${labels.education}</h2><ul class="plain-list">${c.journey.map(item => `<li><strong>${item[0]}</strong>　${item[1]}<br><span>${item[2]}</span></li>`).join('')}</ul></section>
+      <section id="about-skills" class="about-section"><h2>${labels.expertise}</h2><ul class="expertise-list">${c.focuses.map(item => `<li><strong>${item[0]}</strong>：${item[1]}</li>`).join('')}<li><strong>${c.skillsTitle}</strong>：${c.skills.join('、')}</li></ul></section>
+      <section id="about-publications" class="about-section publications"><div class="publication-links"><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div><div class="markdown-body">${publications}</div></section>
+      <section id="about-awards" class="about-section"><h2>${labels.honors}</h2><ul class="plain-list">${c.awards.map(item => `<li><strong>${item[0]}</strong>　${item[1]}</li>`).join('')}</ul></section>
+      <section id="about-contact" class="about-section"><h2>${labels.contact}</h2><ul><li>Email：<a href="mailto:wtt.ntpc@gmail.com">wtt.ntpc@gmail.com</a></li><li><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID</a></li><li><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar</a></li><li><a href="https://github.com/wttntpc" target="_blank" rel="noopener noreferrer">GitHub</a></li></ul></section>
     </div>
-  </div>`;
+  </article></div>`;
+  document.querySelector('.inline-language').addEventListener('click', () => langToggle.click());
   if (section) {
     requestAnimationFrame(() => document.querySelector(`#about-${CSS.escape(section)}`)?.scrollIntoView());
   }
