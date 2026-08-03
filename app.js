@@ -14,7 +14,7 @@ const copy = {
     footer: '探索身體活動如何改變大腦與心智。',
     heroLead: '我是吳亭葶，一位認知神經科學博士生與運動防護員。我研究身體活動、執行功能與心理健康之間的關係，並運用資料與 AI 把複雜問題變得清楚。',
     profileRole: '認知神經科學博士生 · 國立中央大學',
-    profilePillars: '認知神經科學 × 運動科學 × AI 資料分析',
+    profilePillars: '運動科學 × 認知神經科學 × AI 資料分析',
     fullProfile: '完整學經歷 →',
     selectedAreas: '研究主軸',
     focuses: [
