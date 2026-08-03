@@ -16,7 +16,7 @@
 
 如此一來，即使換了 Agent，我仍能沿用相近的工作原則。
 
-## 我會優先選擇三個研究連接
+## 我會優先選擇四個研究連接
 
 ### GitHub：保存可追蹤的程式與流程
 
@@ -30,6 +30,12 @@ Zotero 是我的文獻資料庫。連接後，AI 可以先查詢既有收藏、�
 
 HackMD 適合保存統計分析、EEG 前處理與認知作業等研究筆記。AI 可以讀取既有 SOP，再將新的分析結果整理成一致格式。
 
+### Gemini Notebook：針對指定資料深入閱讀
+
+Gemini Notebook（原 NotebookLM）適合把選定的論文、網頁與研究筆記放在同一個 notebook 中，再針對這些來源提問、比較內容或產生簡報摘要與 Audio Overview。它的回答會附上來源引用，方便回到原文核對，但仍不能取代閱讀原始文獻。
+
+我會把 Zotero 當作文獻收藏庫，把 Gemini Notebook 當作特定研究主題的閱讀與綜整空間；兩者用途不同。
+
 ## 連接工具後，還需要學術研究流程
 
 [AI-tools-skills](https://github.com/wttntpc/AI-tools-skills) 解決「如何連上工具」，[AI-academic-skills](https://github.com/wttntpc/AI-academic-skills-) 則處理「連上之後如何研究」。後者可以把文獻搜尋、品質評讀、內容整理、研究寫作、同儕審查與知識同步拆成不同階段。
@@ -40,7 +46,7 @@ HackMD 適合保存統計分析、EEG 前處理與認知作業等研究筆記。
 → 品質評讀
 → 研究筆記
 → 寫作與審查
-→ 同步到 Zotero／知識庫
+→ 同步到 Zotero／Gemini Notebook／知識庫
 ```
 
 > 工具連接只是入口。真正有價值的是把研究判斷整理成可以重複、查核與持續改善的流程。
@@ -68,12 +74,36 @@ git clone https://github.com/wttntpc/AI-tools-skills.git
 repo 內的 `skills/00-install-all` 可依序處理全部連接，但我更建議從單一 Skill 開始。研究環境通常先選：
 
 ```text
+skills/01-notebooklm
 skills/02-github
 skills/10-zotero
 skills/11-hackmd
 ```
 
 按需求安裝能減少不必要的憑證、背景服務與除錯範圍。
+
+### Gemini Notebook 的安裝與登入
+
+Google 已將 NotebookLM 更名為 Gemini Notebook；目前第三方套件與指令仍沿用 `notebooklm` 名稱。Windows 可先安裝 CLI 與 Chromium，再完成瀏覽器登入並執行健康檢查：
+
+```bash
+uv tool install notebooklm-mcp-cli
+uvx --from playwright playwright install chromium
+uvx --from notebooklm-mcp-cli nlm login
+uvx --from notebooklm-mcp-cli nlm doctor
+```
+
+完成登入後，Hermes 的 `~/.hermes/config.yaml` 可加入：
+
+```yaml
+mcp_servers:
+  notebooklm:
+    command: uvx
+    args: ["--from", "notebooklm-mcp-cli", "notebooklm-mcp"]
+    enabled: true
+```
+
+這裡的 MCP 執行檔是 `notebooklm-mcp`，不是 `nlm mcp`。`notebooklm-mcp-cli` 與這套 MCP bridge 是第三方工具，並非 Google 官方產品，而且會使用瀏覽器授權狀態。使用前應檢查原始碼與帳號權限，不要把 cookie、快取或憑證提交到 GitHub；機密、未公開或受機構規範的研究資料，也應先確認是否允許上傳。
 
 ## 二、規則檔與工具設定分開管理
 
@@ -87,15 +117,16 @@ Hermes 的 MCP 設定位於 `~/.hermes/config.yaml`。其他 Agent 可能使用�
 4. 任何寫入、發信或新增文獻動作都需額外確認。
 5. `.env`、token 與私人資料不得提交到 GitHub。
 
-## 三、GitHub、Zotero 與 HackMD 的分工
+## 三、GitHub、Zotero、HackMD 與 Gemini Notebook 的分工
 
 | 工具 | 在研究流程中的角色 | 驗證方式 |
 |---|---|---|
 | GitHub | 程式、Skill、版本與網站 | 檢查登入、repo 與 diff |
 | Zotero | 文獻收藏、引用資訊與去重 | 唯讀列出近期文獻或搜尋主題 |
 | HackMD | SOP、分析決策與共筆 | 列出筆記並讀取指定內容 |
+| Gemini Notebook | 指定來源的問答、跨文獻整理與 Audio Overview | 列出 notebook、匯入測試來源並核對引用 |
 
-GitHub 保存的是可執行與可追蹤的研究資產；Zotero 保存文獻來源；HackMD 保存方法與判斷紀錄。三者不應互相取代，也不應把私人文獻內容或研究資料直接 commit 到公開 repo。
+GitHub 保存可執行與可追蹤的研究資產；Zotero 管理文獻收藏與引用；HackMD 保存自己撰寫的方法與判斷紀錄；Gemini Notebook 則以選定來源為範圍協助閱讀、比較與綜整。四者不應互相取代，也不應把私人文獻內容或研究資料直接 commit 到公開 repo。
 
 ## 四、延伸到完整學術技能鏈
 
@@ -116,11 +147,14 @@ Find
 
 ## 五、安裝完成不等於工作流完成
 
-設定後應以一個小型任務驗收：讓 Agent 從 Zotero 找到一篇已知文獻、讀取一份 HackMD SOP、在 GitHub 建立不含敏感資料的修改，最後回報每個步驟的來源與狀態。
+設定後應以一個小型任務驗收：讓 Agent 從 Zotero 找到一篇已知文獻、讀取一份 HackMD SOP、列出一個 Gemini Notebook 並核對已知來源的引用，再於 GitHub 建立不含敏感資料的修改，最後回報每個步驟的來源與狀態。
 
 若任何工具失敗，應先修復該連接，而不是讓模型憑記憶補出內容。Skills 的目的不是擴大 AI 權限，而是把權限邊界、操作順序與驗證方法寫得更清楚。
 
 ## 相關資源
 
 - [AI-tools-skills：跨 Agent 工具連接](https://github.com/wttntpc/AI-tools-skills)
+- [Gemini Notebook Skill：連接與安裝說明](https://github.com/wttntpc/AI-tools-skills/tree/main/skills/01-notebooklm)
 - [AI-academic-skills：學術研究技能鏈](https://github.com/wttntpc/AI-academic-skills-)
+- [Google：NotebookLM 更名為 Gemini Notebook](https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/)
+- [Gemini Notebook 官方功能說明](https://support.google.com/notebooklm/answer/16164461)

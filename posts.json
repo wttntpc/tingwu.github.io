@@ -60,7 +60,7 @@
     "title": "把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流",
     "date": "2026-08-03",
     "category": "ai-tools",
-    "tags": ["AI Skills", "GitHub", "研究工作流"],
-    "description": "用 AI-tools-skills 串接 GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。"
+    "tags": ["AI Skills", "GitHub", "Gemini Notebook", "研究工作流"],
+    "description": "用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。"
   }
 ]
