@@ -74,17 +74,22 @@ async function router() {
   const hash = window.location.hash.slice(1) || '/';
   app.innerHTML = `<div style="text-align: center; padding: 3rem;">${t('loading')}</div>`;
 
-  if (hash === '/') {
-    await renderHome();
-  } else if (hash === '/about') {
-    await renderAbout();
-  } else if (hash === '/blog') {
-    await renderBlog();
-  } else if (hash.startsWith('/post/')) {
-    const postId = hash.split('/')[2];
-    await renderPost(postId);
-  } else {
-    app.innerHTML = `<h1>${t('not_found')}</h1>`;
+  try {
+    if (hash === '/') {
+      await renderHome();
+    } else if (hash === '/about') {
+      await renderAbout();
+    } else if (hash === '/blog') {
+      await renderBlog();
+    } else if (hash.startsWith('/post/')) {
+      const postId = hash.split('/')[2];
+      await renderPost(postId);
+    } else {
+      app.innerHTML = `<h1>${t('not_found')}</h1>`;
+    }
+  } catch (e) {
+    console.error('Router error:', e);
+    app.innerHTML = `<div style="text-align: center; padding: 3rem; color: red;">Error loading page: ${e.message}<br><button onclick="window.location.reload()" style="margin-top:1rem;padding:0.5rem 1rem;">Retry / 重新整理</button></div>`;
   }
 }
 
