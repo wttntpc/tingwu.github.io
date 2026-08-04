@@ -62,5 +62,13 @@
     "category": "ai-tools",
     "tags": ["AI Skills", "GitHub", "Gemini Notebook", "研究工作流"],
     "description": "用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。"
+  },
+  {
+    "id": "hhsa-nonlinear-eeg",
+    "title": "非線性腦波分析入門：從線性方法看不到的大腦動態，到 Holo-Hilbert Spectral Analysis",
+    "date": "2026-08-04",
+    "category": "research-methods",
+    "tags": ["EEG", "HHSA", "非線性分析"],
+    "description": "傳統頻譜分析只看單一頻段強弱，卻可能漏掉頻段之間的跨頻耦合。介紹 HHSA 方法定位，及其在運動科學研究中的應用缺口。"
   }
 ]
