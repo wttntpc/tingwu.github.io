@@ -527,6 +527,90 @@ function initCfcDemo() {
   draw(Number(slider.value));
 }
 
+function initFilterDemo() {
+  const demo = document.querySelector('#filterDemo');
+  if (!demo) return;
+  const canvas = demo.querySelector('#filterCanvas');
+  const ctx = canvas.getContext('2d');
+  const hpSlider = demo.querySelector('#hpSlider');
+  const lpSlider = demo.querySelector('#lpSlider');
+  const hpValue = demo.querySelector('#hpValue');
+  const lpValue = demo.querySelector('#lpValue');
+  const width = canvas.width;
+  const height = canvas.height;
+  const midY = height / 2;
+  const fs = 250; // Hz
+  const n = 500; // 2 seconds of synthetic signal
+  const dt = 1 / fs;
+
+  const raw = [];
+  for (let i = 0; i < n; i++) {
+    const t = i * dt;
+    const drift = 35 * Math.sin(2 * Math.PI * 0.2 * t);
+    const alphaWave = 12 * Math.sin(2 * Math.PI * 10 * t);
+    const lineNoise = 6 * Math.sin(2 * Math.PI * 58 * t);
+    const jitter = (Math.random() - 0.5) * 2;
+    raw.push(drift + alphaWave + lineNoise + jitter);
+  }
+
+  function highPass(x, cutoffHz) {
+    if (cutoffHz <= 0) return x.slice();
+    const rc = 1 / (2 * Math.PI * cutoffHz);
+    const alpha = rc / (rc + dt);
+    const y = [x[0]];
+    for (let i = 1; i < x.length; i++) {
+      y.push(alpha * (y[i - 1] + x[i] - x[i - 1]));
+    }
+    return y;
+  }
+
+  function lowPass(x, cutoffHz) {
+    if (cutoffHz >= fs / 2) return x.slice();
+    const rc = 1 / (2 * Math.PI * cutoffHz);
+    const alpha = dt / (rc + dt);
+    const y = [x[0]];
+    for (let i = 1; i < x.length; i++) {
+      y.push(y[i - 1] + alpha * (x[i] - y[i - 1]));
+    }
+    return y;
+  }
+
+  function drawSeries(series, color, lineWidth, scale) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lineWidth;
+    ctx.beginPath();
+    series.forEach((v, i) => {
+      const x = (i / (series.length - 1)) * width;
+      const y = midY - v * scale;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+  }
+
+  function render() {
+    const hp = Number(hpSlider.value) / 10; // slider steps of 1 => 0.1 Hz resolution
+    const lp = Number(lpSlider.value);
+    hpValue.textContent = `${hp.toFixed(1)} Hz`;
+    lpValue.textContent = `${lp} Hz`;
+    const filtered = lowPass(highPass(raw, hp), lp);
+    const scale = height / 140;
+    ctx.clearRect(0, 0, width, height);
+    const styles = getComputedStyle(document.documentElement);
+    ctx.strokeStyle = styles.getPropertyValue('--tertiary').trim() || '#d6d6d6';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, midY);
+    ctx.lineTo(width, midY);
+    ctx.stroke();
+    drawSeries(raw, '#9b9c9d', 1, scale);
+    drawSeries(filtered, styles.getPropertyValue('--accent').trim() || '#0d7377', 2, scale);
+  }
+
+  hpSlider.addEventListener('input', render);
+  lpSlider.addEventListener('input', render);
+  render();
+}
+
 async function renderPost(id) {
   const [posts, response] = await Promise.all([getPosts(), fetch(`posts/${id}.md`)]);
   if (!response.ok) throw new Error('Post not found');
@@ -548,6 +632,7 @@ async function renderPost(id) {
   initReactionDemo();
   initBbiDemo();
   initCfcDemo();
+  initFilterDemo();
 }
 
 async function router() {
