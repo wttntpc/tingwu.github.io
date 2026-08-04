@@ -8,6 +8,19 @@
 
 等待時間與方塊位置採隨機方式，目的在減少受試者預先猜測目標何時、在哪裡出現。
 
+<div class="rt-demo" id="rtDemo">
+  <div class="rt-demo-stage" id="rtStage">
+    <button type="button" class="rt-demo-target rt-start" id="rtStart">按住</button>
+    <button type="button" class="rt-demo-target rt-target" id="rtTarget" hidden>點我</button>
+  </div>
+  <p class="rt-demo-status" id="rtStatus">用滑鼠或手指按住紅色方塊，等藍色方塊出現後立刻放開，再點擊藍色方塊。</p>
+  <div class="rt-demo-result" id="rtResult" hidden>
+    <span>反應時間 RT：<b id="rtValue">–</b> ms</span>
+    <span>移動時間 MT：<b id="mtValue">–</b> ms</span>
+  </div>
+</div>
+<p class="demo-caveat">⚠️ 示範用途，非臨床或研究等級測量；正式作業使用專用輸入裝置與更嚴謹的時間校準與試驗次數。</p>
+
 ## 兩個時間代表不同歷程
 
 - **反應時間（RT）**：從藍色方塊出現，到手指離開紅色方塊。
