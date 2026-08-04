@@ -70,5 +70,37 @@
     "category": "research-methods",
     "tags": ["EEG", "HHSA", "非線性分析"],
     "description": "傳統頻譜分析只看單一頻段強弱，卻可能漏掉頻段之間的跨頻耦合。介紹 HHSA 方法定位，及其在運動科學研究中的應用缺口。"
+  },
+  {
+    "id": "cardsort-cognitive-flexibility-task",
+    "title": "規則悄悄換了，你多快發現？認識圖卡分類作業與認知彈性",
+    "date": "2026-08-05",
+    "category": "research-methods",
+    "tags": ["認知作業", "執行功能", "認知彈性"],
+    "description": "圖卡分類作業用雙重規則系統測量認知彈性：切換代價與難度負荷兩個指標，分別代表規則轉換與選項增加的認知成本。"
+  },
+  {
+    "id": "conflict-inhibitory-control-task",
+    "title": "當直覺是錯的，你需要多久踩剎車？認識方向感作業與抑制控制",
+    "date": "2026-08-05",
+    "category": "research-methods",
+    "tags": ["認知作業", "執行功能", "抑制控制"],
+    "description": "方向感作業用一致／不一致箭頭測量抑制控制：從一致性效果到 Delta Plot、Gratton Effect，拆解抑制歷程的動態變化。"
+  },
+  {
+    "id": "pathend-spatial-working-memory-task",
+    "title": "記住位置還不夠，要在腦中走一遍：認識路徑終點 II 與空間工作記憶",
+    "date": "2026-08-05",
+    "category": "research-methods",
+    "tags": ["認知作業", "工作記憶", "空間認知"],
+    "description": "路徑終點 II 作業要求玩家記住箭頭位置與方向，並在腦中模擬沿路徑行走，同時涉及空間工作記憶與抗干擾能力。"
+  },
+  {
+    "id": "seqclick-working-memory-span-task",
+    "title": "記住內容不夠，還要記住順序：認識順向點擊作業與工作記憶廣度",
+    "date": "2026-08-05",
+    "category": "research-methods",
+    "tags": ["認知作業", "工作記憶", "Corsi測驗"],
+    "description": "順向點擊作業是 Corsi 積木敲擊測驗的數位化版本，測量視覺空間工作記憶廣度，並拆解出校正動作時間後的純記憶處理指標。"
   }
 ]
