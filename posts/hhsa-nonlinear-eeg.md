@@ -33,6 +33,17 @@ Holo-Hilbert Spectral Analysis（HHSA）是中央大學認知神經科學研究�
 
 Canolty 與 Knight（2010）的回顧指出，phase-amplitude 跨頻耦合（CFC）的強度會依任務而異、隨感覺／動作／認知事件快速改變，且與學習表現相關。其功能性意義在於：高頻活動反映局部皮質運算，低頻節律則跨腦區同步、由外部刺激與內在認知事件驅動——CFC 可能是連結「大尺度、行為時間尺度的腦網路活動」與「局部、快速皮質運算」的機制。這正是純粹頻段功率分析無法捕捉的資訊。
 
+<div class="cfc-demo" id="cfcDemo">
+  <canvas id="cfcCanvas" width="640" height="220" role="img" aria-label="跨頻耦合示意圖：慢波調節快波振幅"></canvas>
+  <div class="cfc-controls">
+    <label for="cfcSlider">耦合強度</label>
+    <input type="range" id="cfcSlider" min="0" max="100" value="70">
+    <span id="cfcValue">70%</span>
+  </div>
+  <p class="rt-demo-status">藍色為慢波（如 theta），可代表跨腦區同步的節律；青色為快波（如 gamma），振幅隨慢波相位起伏——虛線是振幅包絡線。把耦合強度拉到 0%，快波振幅會變成固定不變，兩個節律之間就不再有可觀察到的關係。</p>
+</div>
+<p class="demo-caveat">⚠️ 數學示意圖，用固定公式即時運算模擬耦合強度，非真實腦波記錄。</p>
+
 ## HHSA 的技術定位
 
 Holo-Hilbert Spectral Analysis（Huang et al., 2016）以巢狀的 Empirical Mode Decomposition（EMD）＋ Hilbert-Huang Transform（HHT）為基礎，同時處理：
