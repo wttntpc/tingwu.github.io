@@ -196,6 +196,14 @@ button { font: inherit; }
 .cfc-controls input[type="range"] { flex: 1; accent-color: var(--accent); }
 .cfc-controls span { min-width: 3.2rem; color: var(--accent); font-weight: 700; text-align: right; }
 
+/* Interactive high-pass/low-pass filter demo */
+.filter-demo { margin: 1.8rem 0 .75rem; padding: 1.1rem 1.2rem 1.3rem; border-radius: var(--radius); background: var(--entry); }
+.filter-demo canvas { display: block; width: 100%; height: auto; max-width: 640px; margin: 0 auto .9rem; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--theme); }
+.filter-controls { display: flex; align-items: center; gap: .7rem; margin-bottom: .6rem; font-size: .82rem; color: var(--primary); }
+.filter-controls label { min-width: 6.2rem; }
+.filter-controls input[type="range"] { flex: 1; accent-color: var(--accent); }
+.filter-controls span { min-width: 4.2rem; color: var(--accent); font-weight: 700; text-align: right; }
+
 .article-shell { padding: 4rem 0 5rem; }
 .back-link { display: inline-block; margin-bottom: 2rem; color: var(--secondary); text-decoration: none; font-size: .78rem; }
 .article-header { margin-bottom: 2.5rem; }
