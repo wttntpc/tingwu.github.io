@@ -8,6 +8,17 @@
 
 如果分析方法只看單一頻段各自的強弱（傳統的頻譜分析），就會完全錯過這種頻段之間互相調節的訊息。
 
+<div class="cfc-demo" id="cfcDemo">
+  <canvas id="cfcCanvas" width="640" height="220" role="img" aria-label="跨頻耦合示意圖：慢波調節快波振幅"></canvas>
+  <div class="cfc-controls">
+    <label for="cfcSlider">耦合強度</label>
+    <input type="range" id="cfcSlider" min="0" max="100" value="70">
+    <span id="cfcValue">70%</span>
+  </div>
+  <p class="rt-demo-status">藍色是慢波，青色是快波——拖動滑桿看快波的振幅怎麼被慢波「調節」。拉到 0% 時兩者互不相關，快波振幅固定不變；拉越高，快波的忽大忽小就越明顯跟著慢波的節奏走。</p>
+</div>
+<p class="demo-caveat">⚠️ 數學示意圖，用固定公式即時運算模擬耦合強度，非真實腦波記錄。</p>
+
 ## HHSA：同時看「加法」和「乘法」關係
 
 Holo-Hilbert Spectral Analysis（HHSA）是中央大學認知神經科學研究所團隊發展的分析方法，設計目的就是解決這個限制（Huang et al., 2016）。簡單說：
@@ -31,18 +42,7 @@ Holo-Hilbert Spectral Analysis（HHSA）是中央大學認知神經科學研究�
 
 ## 跨頻耦合：被傳統方法忽略的訊息
 
-Canolty 與 Knight（2010）的回顧指出，phase-amplitude 跨頻耦合（CFC）的強度會依任務而異、隨感覺／動作／認知事件快速改變，且與學習表現相關。其功能性意義在於：高頻活動反映局部皮質運算，低頻節律則跨腦區同步、由外部刺激與內在認知事件驅動——CFC 可能是連結「大尺度、行為時間尺度的腦網路活動」與「局部、快速皮質運算」的機制。這正是純粹頻段功率分析無法捕捉的資訊。
-
-<div class="cfc-demo" id="cfcDemo">
-  <canvas id="cfcCanvas" width="640" height="220" role="img" aria-label="跨頻耦合示意圖：慢波調節快波振幅"></canvas>
-  <div class="cfc-controls">
-    <label for="cfcSlider">耦合強度</label>
-    <input type="range" id="cfcSlider" min="0" max="100" value="70">
-    <span id="cfcValue">70%</span>
-  </div>
-  <p class="rt-demo-status">藍色為慢波（如 theta），可代表跨腦區同步的節律；青色為快波（如 gamma），振幅隨慢波相位起伏——虛線是振幅包絡線。把耦合強度拉到 0%，快波振幅會變成固定不變，兩個節律之間就不再有可觀察到的關係。</p>
-</div>
-<p class="demo-caveat">⚠️ 數學示意圖，用固定公式即時運算模擬耦合強度，非真實腦波記錄。</p>
+Canolty 與 Knight（2010）的回顧指出，phase-amplitude 跨頻耦合（CFC）的強度會依任務而異、隨感覺／動作／認知事件快速改變，且與學習表現相關。其功能性意義在於：高頻活動反映局部皮質運算，低頻節律則跨腦區同步、由外部刺激與內在認知事件驅動——CFC 可能是連結「大尺度、行為時間尺度的腦網路活動」與「局部、快速皮質運算」的機制。這正是純粹頻段功率分析無法捕捉的資訊。（下方「簡單白話版」有一個可拖動滑桿的即時示範）
 
 ## HHSA 的技術定位
 

@@ -17,6 +17,24 @@
 7. 用 ICA 協助分離眨眼、肌肉與其他雜訊。
 8. 在有合理依據時插補被移除的壞道。
 
+## 動手試試看：濾波會如何改變訊號？
+
+<div class="filter-demo" id="filterDemo">
+  <canvas id="filterCanvas" width="640" height="220" role="img" aria-label="高通／低通濾波即時示範"></canvas>
+  <div class="filter-controls">
+    <label for="hpSlider">高通 High-pass</label>
+    <input type="range" id="hpSlider" min="0" max="20" value="0" step="1">
+    <span id="hpValue">0.0 Hz</span>
+  </div>
+  <div class="filter-controls">
+    <label for="lpSlider">低通 Low-pass</label>
+    <input type="range" id="lpSlider" min="20" max="100" value="100" step="5">
+    <span id="lpValue">100 Hz</span>
+  </div>
+  <p class="rt-demo-status" id="filterStatus">灰色為原始訊號（含慢速飄移＋10 Hz 節律＋58 Hz 類線雜訊）；彩色為即時運算後的濾波結果。把高通拉高可以去除慢速飄移，但拉太高會連同慢波節律一起削弱；把低通拉低可以去除高頻雜訊，但拉太低連 10 Hz 節律的振幅都會被壓縮。</p>
+</div>
+<p class="demo-caveat">⚠️ 合成訊號示範單極濾波器（single-pole IIR）之截止頻率效果，非真實 EEG 記錄；實際前處理應使用 EEGLAB 等工具之正式濾波器設計並檢查頻率響應。</p>
+
 ## 為什麼不能全部交給自動程式？
 
 自動工具可以快速標示可疑電極或訊號成分，但它不知道研究真正想測量什麼。若門檻太嚴格，可能把有用的腦訊號一起刪掉；太寬鬆則可能留下過多雜訊。
@@ -39,23 +57,7 @@ EEG 前處理會直接影響後續頻譜、事件相關電位或連結性分析�
 
 ## 三、濾波參數必須回應研究問題
 
-範例流程使用 0.5 Hz high-pass、100 Hz low-pass 與 59–61 Hz notch，以降低基線漂移、高頻雜訊和 60 Hz 電源干擾。若研究關心高頻活動、慢波或 ERP，濾波邊界及轉換帶都可能需要改變。若要降採樣，通常應先完成適當的 anti-aliasing low-pass filter。Widmann、Schröger 與 Maess（2015）系統性整理了濾波器型態、截止頻率與 roll-off 如何影響訊號失真，並提醒濾波本身也可能製造偽跡（filter artifact），選擇時必須報告依據，而非套用套裝軟體的預設值。
-
-<div class="filter-demo" id="filterDemo">
-  <canvas id="filterCanvas" width="640" height="220" role="img" aria-label="高通／低通濾波即時示範"></canvas>
-  <div class="filter-controls">
-    <label for="hpSlider">高通 High-pass</label>
-    <input type="range" id="hpSlider" min="0" max="20" value="0" step="1">
-    <span id="hpValue">0.0 Hz</span>
-  </div>
-  <div class="filter-controls">
-    <label for="lpSlider">低通 Low-pass</label>
-    <input type="range" id="lpSlider" min="20" max="100" value="100" step="5">
-    <span id="lpValue">100 Hz</span>
-  </div>
-  <p class="rt-demo-status" id="filterStatus">灰色為原始訊號（含慢速飄移＋10 Hz 節律＋58 Hz 類線雜訊）；彩色為即時運算後的濾波結果。把高通拉高可以去除慢速飄移，但拉太高會連同慢波節律一起削弱；把低通拉低可以去除高頻雜訊，但拉太低連 10 Hz 節律的振幅都會被壓縮。</p>
-</div>
-<p class="demo-caveat">⚠️ 合成訊號示範單極濾波器（single-pole IIR）之截止頻率效果，非真實 EEG 記錄；實際前處理應使用 EEGLAB 等工具之正式濾波器設計並檢查頻率響應。</p>
+範例流程使用 0.5 Hz high-pass、100 Hz low-pass 與 59–61 Hz notch，以降低基線漂移、高頻雜訊和 60 Hz 電源干擾。若研究關心高頻活動、慢波或 ERP，濾波邊界及轉換帶都可能需要改變。若要降採樣，通常應先完成適當的 anti-aliasing low-pass filter。Widmann、Schröger 與 Maess（2015）系統性整理了濾波器型態、截止頻率與 roll-off 如何影響訊號失真，並提醒濾波本身也可能製造偽跡（filter artifact），選擇時必須報告依據，而非套用套裝軟體的預設值。（下方「簡單白話版」有一個可以實際拖動滑桿的濾波示範）
 
 ## 四、重參考與 EOG 處理
 
