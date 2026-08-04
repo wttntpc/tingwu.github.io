@@ -207,18 +207,39 @@ async function renderHome() {
   </div>`;
 }
 
+const researchFrameworkDiagram = {
+  zh: `flowchart LR
+  A["運動介入<br/>12 週有氧運動"] --> B["生理適能改變<br/>VO2peak／體組成"]
+  A --> C["神經生理指標<br/>EEG／HHSA"]
+  B --> D["執行功能與認知表現<br/>反應時間／正確率"]
+  C --> D
+  B --> E["情緒與心理健康<br/>STAI-T／BDI-II／BAI"]
+  D --> F["健康老化與生活品質"]
+  E --> F`,
+  en: `flowchart LR
+  A["Exercise intervention<br/>12-week aerobic program"] --> B["Fitness &amp; physiology change<br/>VO2peak / body composition"]
+  A --> C["Neurophysiology<br/>EEG / HHSA"]
+  B --> D["Executive function &amp; cognition<br/>reaction time / accuracy"]
+  C --> D
+  B --> E["Emotion &amp; mental health<br/>STAI-T / BDI-II / BAI"]
+  D --> F["Healthy aging &amp; quality of life"]
+  E --> F`
+};
+
 async function renderAbout(section = '') {
   const c = t();
   const labels = lang === 'zh' ? {
     home: '首頁', title: '關於我', meta: '吳亭葶 Ting-Ting Wu', language: '語言：English', toc: '目錄',
     role: '認知神經科學博士生 / 運動防護員 / 研究者', education: '學經歷', expertise: '專長領域', honors: '榮譽', contact: '聯繫',
-    bio2: '我的研究位於運動科學與認知神經科學的交界，關注運動強度、身體活動與靜態行為如何影響執行功能、情緒及健康老化。除了實驗研究，我也持續探索 AI 與可重現資料分析如何改善研究工作流程。'
+    bio2: '我的研究位於運動科學與認知神經科學的交界，關注運動強度、身體活動與靜態行為如何影響執行功能、情緒及健康老化。除了實驗研究，我也持續探索 AI 與可重現資料分析如何改善研究工作流程。',
+    framework: '研究框架', frameworkCaveat: '示意圖，簡化呈現研究變項間的關係，非統計模型或因果推論結果。'
   } : {
     home: 'Home', title: 'About', meta: 'Ting-Ting Wu', language: 'Language: 中文', toc: 'Table of contents',
     role: 'Ph.D. Student in Cognitive Neuroscience / Athletic Trainer / Researcher', education: 'Education & experience', expertise: 'Expertise', honors: 'Honors', contact: 'Contact',
-    bio2: 'My work sits at the intersection of exercise science and cognitive neuroscience. I study how exercise intensity, physical activity, and sedentary behavior shape executive function, emotion, and healthy aging, while exploring reproducible data analysis and AI-enabled research workflows.'
+    bio2: 'My work sits at the intersection of exercise science and cognitive neuroscience. I study how exercise intensity, physical activity, and sedentary behavior shape executive function, emotion, and healthy aging, while exploring reproducible data analysis and AI-enabled research workflows.',
+    framework: 'Research framework', frameworkCaveat: 'Simplified schematic of how these variables relate — not a statistical model or a causal claim.'
   };
-  const tocItems = [[c.introTitle, 'intro'], [labels.education, 'journey'], [labels.expertise, 'skills'], [labels.honors, 'awards'], [labels.contact, 'contact']];
+  const tocItems = [[c.introTitle, 'intro'], [labels.framework, 'framework'], [labels.education, 'journey'], [labels.expertise, 'skills'], [labels.honors, 'awards'], [labels.contact, 'contact']];
 
   app.innerHTML = `<div class="page-shell about-page"><article class="about-article">
     <header class="post-header">
@@ -230,6 +251,7 @@ async function renderAbout(section = '') {
     <div class="about-content">
       <p class="about-avatar"><span role="img" aria-label="${lang === 'zh' ? '個人照片待更新' : 'Profile photo coming soon'}"><b aria-hidden="true">TW</b></span></p>
       <section id="about-intro" class="about-section"><h2>${lang === 'zh' ? '吳亭葶 Ting-Ting Wu' : 'Ting-Ting Wu 吳亭葶'}</h2><blockquote><strong>${labels.role}</strong></blockquote><p>${c.introText}</p><p>${labels.bio2}</p></section>
+      <section id="about-framework" class="about-section"><h2>${labels.framework}</h2><div class="mermaid-wrap"><pre class="mermaid">${researchFrameworkDiagram[lang]}</pre></div><p class="demo-caveat">⚠️ ${labels.frameworkCaveat}</p></section>
       <section id="about-journey" class="about-section"><h2>${labels.education}</h2><ul class="plain-list">${c.journey.map(item => `<li><strong>${item[0]}</strong>　${item[1]}<br><span>${item[2]}</span></li>`).join('')}</ul></section>
       <section id="about-skills" class="about-section"><h2>${labels.expertise}</h2><ul class="expertise-list">${c.focuses.map(item => `<li><strong>${item[0]}</strong>：${item[1]}</li>`).join('')}</ul><div class="about-skill-groups">${c.skillGroups.slice(1).map(group => `<div><h3>${group[0]}</h3><p>${group[1].join('、')}</p></div>`).join('')}</div></section>
       <section id="about-awards" class="about-section"><h2>${labels.honors}</h2><ul class="plain-list">${c.awards.map(item => `<li><strong>${item[0]}</strong>　${item[1]}</li>`).join('')}</ul></section>
@@ -237,6 +259,10 @@ async function renderAbout(section = '') {
     </div>
   </article></div>`;
   document.querySelector('.inline-language').addEventListener('click', () => langToggle.click());
+  if (window.__mermaid) {
+    const node = document.querySelector('#about-framework .mermaid');
+    if (node) window.__mermaid.run({ nodes: [node] }).catch(err => console.error(err));
+  }
   if (section) {
     requestAnimationFrame(() => document.querySelector(`#about-${CSS.escape(section)}`)?.scrollIntoView());
   }
@@ -285,6 +311,78 @@ function parseArticleVersions(source) {
   };
 }
 
+function initReactionDemo() {
+  const demo = document.querySelector('#rtDemo');
+  if (!demo) return;
+  const stage = demo.querySelector('#rtStage');
+  const startBtn = demo.querySelector('#rtStart');
+  const targetBtn = demo.querySelector('#rtTarget');
+  const status = demo.querySelector('#rtStatus');
+  const result = demo.querySelector('#rtResult');
+  const rtValue = demo.querySelector('#rtValue');
+  const mtValue = demo.querySelector('#mtValue');
+
+  let state = 'idle';
+  let timerId = null;
+  let tStimulus = 0;
+  let tReleased = 0;
+
+  function resetTrial(message) {
+    clearTimeout(timerId);
+    state = 'idle';
+    targetBtn.hidden = true;
+    status.textContent = message;
+  }
+
+  function placeTargetRandomly() {
+    const bounds = stage.getBoundingClientRect();
+    const maxLeft = Math.max(bounds.width - 84, 0);
+    const maxTop = Math.max(bounds.height - 84, 0);
+    targetBtn.style.left = `${Math.round(Math.random() * maxLeft)}px`;
+    targetBtn.style.top = `${Math.round(Math.random() * maxTop)}px`;
+  }
+
+  startBtn.addEventListener('pointerdown', event => {
+    event.preventDefault();
+    if (state !== 'idle') return;
+    state = 'waiting';
+    result.hidden = true;
+    status.textContent = '等待中…現在放開就算提前猜測。';
+    const delay = 1200 + Math.random() * 2000;
+    timerId = setTimeout(() => {
+      state = 'target-shown';
+      placeTargetRandomly();
+      targetBtn.hidden = false;
+      tStimulus = performance.now();
+      status.textContent = '放開紅色方塊，再點擊藍色方塊！';
+    }, delay);
+  });
+
+  startBtn.addEventListener('pointerup', () => {
+    if (state === 'waiting') {
+      resetTrial('太早放開了，這算提前猜測——再試一次。');
+      return;
+    }
+    if (state === 'target-shown') {
+      tReleased = performance.now();
+      state = 'released';
+      status.textContent = '現在點擊藍色方塊。';
+    }
+  });
+
+  targetBtn.addEventListener('pointerdown', event => {
+    event.preventDefault();
+    if (state !== 'released') return;
+    const tClicked = performance.now();
+    const rt = Math.round(tReleased - tStimulus);
+    const mt = Math.round(tClicked - tReleased);
+    rtValue.textContent = rt;
+    mtValue.textContent = mt;
+    result.hidden = false;
+    resetTrial('點「按住」再試一次。');
+  });
+}
+
 async function renderPost(id) {
   const [posts, response] = await Promise.all([getPosts(), fetch(`posts/${id}.md`)]);
   if (!response.ok) throw new Error('Post not found');
@@ -303,6 +401,7 @@ async function renderPost(id) {
     document.querySelectorAll('[data-version-content]').forEach(content => { content.hidden = content.dataset.versionContent !== version; });
   }));
   document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+  initReactionDemo();
 }
 
 async function router() {
