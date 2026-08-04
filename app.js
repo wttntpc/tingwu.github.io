@@ -383,6 +383,150 @@ function initReactionDemo() {
   });
 }
 
+function initBbiDemo() {
+  const demo = document.querySelector('#bbiDemo');
+  if (!demo) return;
+  const timeline = demo.querySelector('#bbiTimeline');
+  const rmssdOut = demo.querySelector('#bbiRmssd');
+  const countOut = demo.querySelector('#bbiCount');
+  const status = demo.querySelector('#bbiStatus');
+  const gapBtn = demo.querySelector('#bbiModeGap');
+  const fillBtn = demo.querySelector('#bbiModeFill');
+
+  // Simulated beat timestamps (ms), two real segments separated by a device dropout.
+  const segmentA = [0, 780, 1585, 2380, 3200, 3960];
+  const dropoutMs = 4000;
+  const segmentB = segmentA.map(t => t + 3960 + dropoutMs).slice(1); // continues after the gap
+  const realBeats = segmentA.concat(segmentB);
+  const lastKnownBbi = segmentA[segmentA.length - 1] - segmentA[segmentA.length - 2]; // 760ms
+  const GAP_THRESHOLD_MS = 1500;
+
+  function buildFilledBeats() {
+    const filled = [...segmentA];
+    let t = segmentA[segmentA.length - 1];
+    const gapEnd = segmentB[0];
+    while (t + lastKnownBbi < gapEnd) {
+      t += lastKnownBbi;
+      filled.push(t);
+    }
+    return filled.concat(segmentB);
+  }
+
+  function rmssd(beats, { excludeLargeGaps }) {
+    const diffs = [];
+    for (let i = 1; i < beats.length; i++) {
+      const d = beats[i] - beats[i - 1];
+      if (excludeLargeGaps && d > GAP_THRESHOLD_MS) continue;
+      diffs.push(d);
+    }
+    if (diffs.length < 2) return { value: null, n: diffs.length };
+    let sumSq = 0;
+    for (let i = 1; i < diffs.length; i++) {
+      sumSq += (diffs[i] - diffs[i - 1]) ** 2;
+    }
+    return { value: Math.sqrt(sumSq / (diffs.length - 1)), n: diffs.length };
+  }
+
+  function render(mode) {
+    const beats = mode === 'fill' ? buildFilledBeats() : realBeats;
+    const totalSpan = beats[beats.length - 1] - beats[0];
+    timeline.innerHTML = beats.map((t, i) => {
+      const isSynthetic = mode === 'fill' && t > segmentA[segmentA.length - 1] && t < segmentB[0];
+      const left = (t / totalSpan) * 100;
+      return `<span class="bbi-beat${isSynthetic ? ' bbi-beat-synthetic' : ''}" style="left:${left}%" title="${isSynthetic ? '填補產生的假心跳' : '真實心跳'}"></span>`;
+    }).join('');
+    const { value, n } = rmssd(beats, { excludeLargeGaps: mode === 'gap' });
+    rmssdOut.textContent = value === null ? '–' : value.toFixed(1);
+    countOut.textContent = `（採用 ${n} 個相鄰間隔）`;
+    status.textContent = mode === 'gap'
+      ? '目前顯示：保留缺口，只用同一段連續心跳的間隔計算 RMSSD。'
+      : '目前顯示：用最後已知的 BBI（760 ms）向前填補缺口——填補區間的點是軟體生出來的假心跳，不是真實觀測。';
+    gapBtn.setAttribute('aria-pressed', String(mode === 'gap'));
+    fillBtn.setAttribute('aria-pressed', String(mode === 'fill'));
+  }
+
+  gapBtn.addEventListener('click', () => render('gap'));
+  fillBtn.addEventListener('click', () => render('fill'));
+  render('gap');
+}
+
+function initCfcDemo() {
+  const demo = document.querySelector('#cfcDemo');
+  if (!demo) return;
+  const canvas = demo.querySelector('#cfcCanvas');
+  const ctx = canvas.getContext('2d');
+  const slider = demo.querySelector('#cfcSlider');
+  const valueOut = demo.querySelector('#cfcValue');
+  const width = canvas.width;
+  const height = canvas.height;
+  const midY = height / 2;
+  const slowFreq = 1.4; // cycles across the canvas — stands in for a slow rhythm (e.g. theta)
+  const fastFreq = 18; // cycles across the canvas — stands in for a fast rhythm (e.g. gamma)
+
+  function draw(couplingPct) {
+    const coupling = couplingPct / 100;
+    ctx.clearRect(0, 0, width, height);
+    const styles = getComputedStyle(document.documentElement);
+    const gridColor = styles.getPropertyValue('--tertiary').trim() || '#d6d6d6';
+    const slowColor = '#2f6fed';
+    const fastColor = styles.getPropertyValue('--accent').trim() || '#0d7377';
+
+    ctx.strokeStyle = gridColor;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, midY);
+    ctx.lineTo(width, midY);
+    ctx.stroke();
+
+    // Slow rhythm (phase reference)
+    ctx.strokeStyle = slowColor;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (let x = 0; x <= width; x++) {
+      const phase = (x / width) * slowFreq * 2 * Math.PI;
+      const y = midY - Math.sin(phase) * (height * 0.28);
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // Fast rhythm, amplitude modulated by the slow rhythm's phase (phase-amplitude coupling)
+    ctx.strokeStyle = fastColor;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    for (let x = 0; x <= width; x++) {
+      const slowPhase = (x / width) * slowFreq * 2 * Math.PI;
+      const envelope = 1 - coupling + coupling * (1 + Math.cos(slowPhase)) / 2;
+      const fastPhase = (x / width) * fastFreq * 2 * Math.PI;
+      const y = midY - Math.sin(fastPhase) * envelope * (height * 0.16);
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // Envelope guide (dashed)
+    ctx.strokeStyle = fastColor;
+    ctx.globalAlpha = 0.45;
+    ctx.setLineDash([4, 4]);
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let x = 0; x <= width; x++) {
+      const slowPhase = (x / width) * slowFreq * 2 * Math.PI;
+      const envelope = 1 - coupling + coupling * (1 + Math.cos(slowPhase)) / 2;
+      const y = midY - envelope * (height * 0.16);
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.globalAlpha = 1;
+  }
+
+  slider.addEventListener('input', () => {
+    valueOut.textContent = `${slider.value}%`;
+    draw(Number(slider.value));
+  });
+  valueOut.textContent = `${slider.value}%`;
+  draw(Number(slider.value));
+}
+
 async function renderPost(id) {
   const [posts, response] = await Promise.all([getPosts(), fetch(`posts/${id}.md`)]);
   if (!response.ok) throw new Error('Post not found');
@@ -402,6 +546,8 @@ async function renderPost(id) {
   }));
   document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
   initReactionDemo();
+  initBbiDemo();
+  initCfcDemo();
 }
 
 async function router() {

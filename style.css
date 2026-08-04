@@ -177,6 +177,25 @@ button { font: inherit; }
 .mermaid-wrap { overflow-x: auto; margin: .5rem 0; padding: 1rem; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--entry); }
 .mermaid-wrap svg { max-width: 100%; height: auto; }
 
+/* Interactive BBI / HRV demo */
+.bbi-demo { margin: 1.8rem 0 .75rem; padding: 1.1rem 1.2rem 1.3rem; border-radius: var(--radius); background: var(--entry); }
+.bbi-timeline { position: relative; height: 56px; margin-bottom: .9rem; border: 1px dashed var(--tertiary); border-radius: var(--radius); background: var(--theme); }
+.bbi-beat { position: absolute; top: 50%; width: 12px; height: 12px; transform: translate(-50%, -50%); border-radius: 50%; background: #2f6fed; }
+.bbi-beat-synthetic { background: #c0392b; box-shadow: 0 0 0 2px color-mix(in srgb, #c0392b 25%, transparent); }
+.bbi-controls { display: flex; flex-wrap: wrap; gap: .55rem; margin-bottom: .8rem; }
+.bbi-mode-btn { padding: .5rem .85rem; border: 1px solid var(--tertiary); border-radius: 999px; color: var(--secondary); background: var(--theme); font: inherit; font-size: .78rem; cursor: pointer; }
+.bbi-mode-btn[aria-pressed="true"] { border-color: var(--accent); color: #fff; background: var(--accent); }
+.bbi-result { margin-bottom: .5rem; color: var(--primary); font-size: .88rem; }
+.bbi-result b { color: var(--accent); font-size: 1.1rem; }
+.bbi-result span { color: var(--secondary); font-size: .74rem; }
+
+/* Interactive cross-frequency coupling demo */
+.cfc-demo { margin: 1.8rem 0 .75rem; padding: 1.1rem 1.2rem 1.3rem; border-radius: var(--radius); background: var(--entry); }
+.cfc-demo canvas { display: block; width: 100%; height: auto; max-width: 640px; margin: 0 auto .9rem; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--theme); }
+.cfc-controls { display: flex; align-items: center; gap: .7rem; margin-bottom: .7rem; font-size: .82rem; color: var(--primary); }
+.cfc-controls input[type="range"] { flex: 1; accent-color: var(--accent); }
+.cfc-controls span { min-width: 3.2rem; color: var(--accent); font-weight: 700; text-align: right; }
+
 .article-shell { padding: 4rem 0 5rem; }
 .back-link { display: inline-block; margin-bottom: 2rem; color: var(--secondary); text-decoration: none; font-size: .78rem; }
 .article-header { margin-bottom: 2.5rem; }

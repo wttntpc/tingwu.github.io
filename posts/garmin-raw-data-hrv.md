@@ -14,6 +14,17 @@ BBI 是兩次心跳之間的時間。如果上一筆 BBI 被複製到後面幾�
 
 因此，BBI 不應使用向前填補或一般插值。真正的 BBI 筆數應回到原始 JSON 計算，而不是看合併後表格有多少非空格子。
 
+<div class="bbi-demo" id="bbiDemo">
+  <div class="bbi-timeline" id="bbiTimeline" role="img" aria-label="BBI 心跳間隔時間軸示意圖"></div>
+  <div class="bbi-controls" role="radiogroup" aria-label="處理方式切換">
+    <button type="button" class="bbi-mode-btn" id="bbiModeGap" data-mode="gap" aria-pressed="true">保留缺口（正確）</button>
+    <button type="button" class="bbi-mode-btn" id="bbiModeFill" data-mode="fill" aria-pressed="false">前向填補（錯誤示範）</button>
+  </div>
+  <div class="bbi-result">RMSSD：<b id="bbiRmssd">–</b> ms　<span id="bbiCount"></span></div>
+  <p class="rt-demo-status" id="bbiStatus">目前顯示：保留缺口，只用同一段連續心跳的間隔計算 RMSSD。</p>
+</div>
+<p class="demo-caveat">⚠️ 示範用資料為模擬數值，非真實受試者記錄；用來呈現「向前填補如何無中生有製造心跳、進而扭曲 RMSSD」這個概念，RMSSD 為即時計算而非預先寫死的數字。</p>
+
 ## 有十分鐘資料，不代表十分鐘都完整
 
 第一筆到最後一筆相差十分鐘，只能說明首末跨度。中間可能有斷線或長時間沒有新資料。做 HRV 前，要先按照時間順序找出資料缺口，把資料切成連續片段，再從單一片段中建立分析視窗。
