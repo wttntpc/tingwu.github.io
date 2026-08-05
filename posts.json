@@ -41,11 +41,11 @@
   },
   {
     "id": "garmin-raw-data-hrv",
-    "title": "Garmin 原始資料到 HRV：為什麼 BBI 不能補值？",
-    "date": "2026-08-03",
+    "title": "從手錶 PPG 到 HRV：交感、副交感與 Poincaré plot",
+    "date": "2026-08-05",
     "category": "data-analysis",
-    "tags": ["Garmin", "HRV", "生理訊號"],
-    "description": "穿戴裝置資料不是整齊的試算表；時間戳、不同更新頻率與資料缺口，都會影響 HRV 的可信度。"
+    "tags": ["Garmin", "HRV", "PPG", "Poincaré plot", "生理訊號"],
+    "description": "從交感與副交感調節、腕式 PPG 的限制，到互動比較休息、運動後與不同生活型態的 Poincaré plot。"
   },
   {
     "id": "hermes-telegram-academic-brief",

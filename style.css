@@ -189,6 +189,21 @@ button { font: inherit; }
 .bbi-result b { color: var(--accent); font-size: 1.1rem; }
 .bbi-result span { color: var(--secondary); font-size: .74rem; }
 
+/* Interactive Poincaré plot comparison */
+.poincare-demo { margin: 1.8rem 0 .75rem; padding: 1.1rem 1.2rem 1.3rem; border-radius: var(--radius); background: var(--entry); }
+.poincare-controls { display: flex; flex-wrap: wrap; gap: .55rem; margin-bottom: 1rem; }
+.poincare-controls button { padding: .5rem .8rem; border: 1px solid var(--tertiary); border-radius: 999px; color: var(--secondary); background: var(--theme); font: inherit; font-size: .76rem; cursor: pointer; }
+.poincare-controls button[aria-pressed="true"] { border-color: var(--accent); color: #fff; background: var(--accent); }
+.poincare-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+.poincare-card { min-width: 0; padding: .85rem; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--theme); }
+.markdown-body .poincare-card h3 { margin: 0 0 .65rem; font-size: .88rem; }
+.poincare-card canvas { display: block; width: 100%; height: auto; border: 1px solid var(--tertiary); border-radius: calc(var(--radius) - 2px); }
+.poincare-card dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem; margin: .7rem 0 0; }
+.poincare-card dl div { padding: .45rem .5rem; border-radius: calc(var(--radius) - 3px); background: var(--entry); }
+.poincare-card dt { color: var(--secondary); font-size: .65rem; }
+.poincare-card dd { margin: .12rem 0 0; color: var(--primary); font-size: .78rem; font-weight: 700; }
+.poincare-note { margin: .9rem 0 0; color: var(--secondary); font-size: .75rem; line-height: 1.65; }
+
 /* Interactive cross-frequency coupling demo */
 .cfc-demo { margin: 1.8rem 0 .75rem; padding: 1.1rem 1.2rem 1.3rem; border-radius: var(--radius); background: var(--entry); }
 .cfc-demo canvas { display: block; width: 100%; height: auto; max-width: 640px; margin: 0 auto .9rem; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--theme); }
@@ -243,6 +258,7 @@ button { font: inherit; }
 .top-link.is-visible { visibility: visible; opacity: 1; }
 
 @media (max-width: 720px) {
+  .poincare-grid { grid-template-columns: 1fr; }
   .version-bar { position: static; align-items: stretch; flex-direction: column; }
   .version-bar p { text-align: left; }
   .nav-shell { width: min(calc(100% - 28px), var(--nav-width)); }
