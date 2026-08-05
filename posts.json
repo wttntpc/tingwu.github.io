@@ -50,10 +50,10 @@
   {
     "id": "hermes-telegram-academic-brief",
     "title": "讓 Hermes 每天把學術文章送到手機：免費模型、Telegram 與排程",
-    "date": "2026-08-03",
+    "date": "2026-08-05",
     "category": "ai-tools",
-    "tags": ["Hermes", "Telegram", "自動排程"],
-    "description": "從安裝、模型選擇、BotFather、安全設定到每天 8 點的 cronjob，完整建立可查核的 Telegram 學術文獻簡報。"
+    "tags": ["Hermes", "Telegram", "自動排程", "AI Agent"],
+    "description": "從 Hermes 架構、Session、Memory 與 Skills，到模型選擇、Telegram 安全設定及每天 8 點的 cronjob，完整建立可查核的學術文獻推送。"
   },
   {
     "id": "ai-tools-skills-research-workflow",
