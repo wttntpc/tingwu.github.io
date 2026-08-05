@@ -139,6 +139,8 @@ button { font: inherit; }
 .publication-list { padding-left: 1.25rem !important; }
 .publication-list li { margin-bottom: 1.2rem !important; padding-left: .35rem; }
 .publication-list a { color: var(--accent); text-underline-offset: 3px; }
+.doi-tag { display: block; margin-top: .25rem; color: var(--secondary); font-size: .7rem; font-family: monospace; }
+.doi-tag.doi-missing { color: #c0392b; font-family: var(--font); font-style: italic; }
 .conference-table-wrap { overflow-x: auto; border: 1px solid var(--tertiary); border-radius: var(--radius); }
 .conference-table { width: 100%; min-width: 670px; border-collapse: collapse; font-size: .73rem; }
 .conference-table th { background: var(--entry); text-align: left; }
