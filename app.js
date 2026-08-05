@@ -78,14 +78,14 @@ const copy = {
   en: {
     nav: [['Home', '/'], ['About', '/about'], ['Publications', '/publications'], ['Writing', '/blog']],
     footer: 'Exploring how physical activity shapes the mind.',
-    heroLead: 'I am Ting-Ting Wu, a Ph.D. student in cognitive neuroscience and a certified athletic trainer. I study physical activity, executive function, and healthy aging—and use data and AI to make complex questions clearer.',
-    profileRole: 'Ph.D. Student in Cognitive Neuroscience · National Central University',
-    profilePillars: 'Cognitive Neuroscience × Exercise Science × AI & Data',
+    heroLead: 'I am Ting-Ting Wu, a Ph.D. student in the Institute of Cognitive Neuroscience and a certified athletic trainer. I study physical activity, executive function, and brain oscillations and use data and AI to make complex questions clearer.',
+    profileRole: 'Ph.D. Student in Institute of Cognitive Neuroscience · National Central University',
+    profilePillars: 'Kinesiology × Cognitive Neuroscience × AI & Data',
     fullProfile: 'Full profile →',
     selectedAreas: 'Research pillars',
     focuses: [
       ['Cognitive neuroscience', 'Using EEG and behavioral measures to study executive function, neuroplasticity, and post-exercise cognitive change.'],
-      ['Exercise & healthy aging', 'Studying how resistance exercise, aerobic activity, and daily movement support brain health in older adults.'],
+      ['Kinesiology & Physical activity', 'Studying how resistance exercise, aerobic activity, and daily movement support brain health in older adults.'],
       ['AI & data analysis', 'Using Python, Matlab, and statistical tools to build transparent, efficient, reproducible research workflows.']
     ],
     featuredTitle: 'Selected publications',
@@ -231,7 +231,7 @@ async function renderAbout(section = '') {
   const labels = lang === 'zh' ? {
     home: '首頁', title: '關於我', meta: '吳亭葶 Ting-Ting Wu', language: '語言：English', toc: '目錄',
     role: '認知神經科學博士生 / 運動防護員 / 研究者', education: '學經歷', expertise: '專長領域', honors: '榮譽', contact: '聯繫',
-    bio2: '我的研究位於運動科學與認知神經科學的交界，關注運動強度、身體活動與靜態行為如何影響執行功能、情緒及健康老化。除了實驗研究，我也持續探索 AI 與可重現資料分析如何改善研究工作流程。',
+    bio2: '我的研究主題是運動科學與認知神經科學的交界，關注身體活動如何影響執行功能、情緒及大腦功能。除了實驗研究，我也持續探索 AI 與可重現資料分析如何改善研究工作流程。',
     framework: '研究框架', frameworkCaveat: '示意圖，簡化呈現研究變項間的關係，非統計模型或因果推論結果。'
   } : {
     home: 'Home', title: 'About', meta: 'Ting-Ting Wu', language: 'Language: 中文', toc: 'Table of contents',
