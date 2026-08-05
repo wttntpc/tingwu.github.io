@@ -2,6 +2,33 @@
 
 穿戴裝置匯出的資料，看起來可能只是一串數字，但背後記錄的是心臟在自律神經調節下，每一拍之間很細微的時間變化。我們使用的是手錶的光體積變化描記法（photoplethysmography, PPG）：手錶以光線感測手腕血流脈動，再估算每次脈搏之間的間隔。
 
+## 先認識 BBI 與 RR interval
+
+**BBI（beat-to-beat interval）**是相鄰兩次心搏之間經過的時間，通常以毫秒（ms）表示。例如，第一拍到第二拍相隔 800 ms、第二拍到第三拍相隔 830 ms，這段資料的 BBI 就是 800、830 ms。BBI 越短，當下心跳通常越快；BBI 越長，心跳通常越慢。
+
+**RR interval**則是心電圖（ECG）中，前一個 R 波尖峰到下一個 R 波尖峰的時間。它也是逐拍間隔，但名稱明確指出訊號來自 ECG。手錶 PPG 沒有量到 R 波，而是偵測手腕的脈波，所以較精確的名稱是 pulse-to-pulse interval（PPI）；[Garmin Enhanced BBI 白皮書](https://www8.garmin.com/garminhealth/news/Garmin-Enhanced-BBI_Final.pdf)則將腕式 PPG 取得的逐拍間隔稱為 BBI。
+
+| 名稱 | 從哪裡量到 | 適合怎麼稱呼 |
+|---|---|---|
+| RR interval | ECG 的相鄰 R 波 | 原始心電心搏間隔 |
+| NN interval | 排除異位心搏與雜訊後的正常 RR interval | 用於標準 HRV 分析 |
+| PPI／BBI | PPG 脈波或裝置提供的逐拍間隔 | 本文的手錶資料 |
+
+### RR interval 怎麼計算？
+
+只要把後一拍的時間減去前一拍即可：
+
+```text
+心搏時間：0 ms、800 ms、1630 ms、2410 ms
+逐拍間隔：    800 ms、830 ms、 780 ms
+
+RR(i) = R峰時間(i+1) − R峰時間(i)
+```
+
+四個心搏時間只能產生三個間隔，因為第一拍之前沒有可供相減的心搏。若某個間隔是 800 ms，對應的瞬時心率約為 `60,000 ÷ 800 = 75 bpm`；但不能只用平均心率反推一整段 RR interval 來計算 HRV，因為那會抹掉每一拍真正的變化。
+
+如果 Garmin 原始資料已經提供 `bBI` 數值，這個欄位本身就是逐拍間隔，不需要再將相鄰兩個 `bBI` 相減。只有手上是 ECG R-peak 或脈搏 peak 的時間戳記時，才使用相鄰時間差建立 interval series；相鄰 BBI 之差則是之後計算 RMSSD 的步驟。
+
 ## HRV、交感與副交感神經
 
 心率變異度（HRV）不是「心跳快不快」，而是相鄰心搏間隔變化的程度。交感神經可把身體推向動員與應付挑戰的狀態；副交感神經，尤其迷走神經，則參與安靜、恢復與逐拍調節。兩套系統會隨呼吸、姿勢、睡眠、壓力、疾病與運動共同改變心跳。
@@ -28,8 +55,6 @@ Poincaré plot 把第 n 個心搏間隔放在橫軸、第 n+1 個放在縱軸。
 <p class="demo-caveat">⚠️ 圖中是為了說明形狀而產生的模擬資料，不是本研究結果，也不是診斷工具。族群平均趨勢不能預測單一個人；年齡、呼吸、姿勢、藥物、量測時間與資料品質都可能改變 HRV。運動情境指停止運動後的早期恢復，並假設已排除明顯 PPG 動作雜訊。</p>
 
 現有研究常把「較高心肺適能或規律運動者在標準化靜息量測下，呈現較高的迷走神經相關 HRV」作為假設，但結果會受族群與方法影響。尤其「久坐」不等同於「沒有運動」；系統性回顧對久坐時間與 HRV 的關係仍未得到一致結論，因此圖中的久坐比較只用來形成可檢驗問題，而不是宣告既定差異。
-
-## 一列空白不一定代表壞掉
 
 不同指標並不會在同一時間更新。心率、血氧、壓力指標和每次心跳間隔，都有自己的時間戳記。若直接把它們填滿成一張整齊表格，反而可能製造不存在的資料。
 
@@ -65,6 +90,36 @@ BBI 是兩次心跳之間的時間。如果上一筆 BBI 被複製到後面幾�
 <!-- PROFESSIONAL -->
 
 Garmin raw JSON 可包含 HeartRate、BBI、SpO₂ 與 Stress 等資料流。各資料流具有獨立 timestamp 與不同更新節奏，因此轉換工作的目的不是強迫所有指標同步，而是在保留原始時間結構的前提下，建立可檢查的分析資料。
+
+## BBI、RR、NN 與 PPI 的操作型定義
+
+心搏間隔的一般計算式為：
+
+```text
+interval(i) = beat_time(i+1) − beat_time(i)
+```
+
+若 `beat_time` 是 ECG 的 R-peak timestamp，結果是 RR interval；經異位心搏、遺漏偵測與 artifact 處理後，保留的正常竇性心搏間隔稱為 NN interval。若 peak 來自 PPG 脈波，結果較精確地稱為 pulse-to-pulse interval（PPI）。BBI／IBI 是不限定感測方式的統稱，但資料論文仍應交代訊號來源。
+
+以毫秒為單位時，單一 interval 與瞬時心率的換算為：
+
+```text
+instantaneous HR (bpm) = 60,000 / interval (ms)
+interval (ms) = 60,000 / instantaneous HR (bpm)
+```
+
+這個換算只描述單一心搏間隔，不能用一段資料的 mean HR 重建逐拍序列。HRV 需要保留原本的 interval-to-interval fluctuation。
+
+```python
+import numpy as np
+
+# 只有在輸入是依時間排序的 beat／R-peak timestamps 時才做差分
+beat_time_ms = np.array([0, 800, 1630, 2410])
+interval_ms = np.diff(beat_time_ms)  # [800, 830, 780]
+instant_hr_bpm = 60_000 / interval_ms
+```
+
+Garmin export 若已提供 `bBI`，應先依文件確認其單位與 timestamp 定義，然後直接保留為 interval series；不可再次 `diff(bBI)` 當成 BBI。`diff(bBI)` 得到的是相鄰間隔差，會在 RMSSD 等 successive-difference 指標中使用。另需注意：N 個有效 beat timestamps 只能形成 N−1 個 intervals，而 artifact correction 後的 NN 數量可能更少。
 
 ## 從自律神經到腕式 PPG 的測量鏈
 
