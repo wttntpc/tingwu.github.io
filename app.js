@@ -450,6 +450,129 @@ function initBbiDemo() {
   render('gap');
 }
 
+function initPoincareDemos() {
+  const scenarios = {
+    rest: { label: '安靜休息', mean: 900, sd1: 38, sd2: 76, seed: 11 },
+    recovery: { label: '運動後早期恢復', mean: 560, sd1: 10, sd2: 25, seed: 23 },
+    fitHigh: { label: '心肺適能較高', mean: 970, sd1: 47, sd2: 91, seed: 31 },
+    fitLow: { label: '心肺適能較低', mean: 810, sd1: 25, sd2: 53, seed: 43 },
+    active: { label: '規律運動', mean: 920, sd1: 42, sd2: 82, seed: 59 },
+    sedentary: { label: '久坐情境', mean: 840, sd1: 28, sd2: 59, seed: 71 }
+  };
+  const comparisons = {
+    'rest-recovery': {
+      keys: ['rest', 'recovery'],
+      note: '運動後早期恢復的模擬點雲較集中、平均 BBI 較短；實際恢復速度需依相同個體與相同時間窗比較。'
+    },
+    fitness: {
+      keys: ['fitHigh', 'fitLow'],
+      note: '這是「較高適能可能伴隨較高靜息迷走神經相關 HRV」的研究假設，不代表每位高適能者都會有較大的點雲。'
+    },
+    habit: {
+      keys: ['active', 'sedentary'],
+      note: '規律運動與久坐是不同構念；現有研究對久坐時間與 HRV 的關係並不一致，應分別量測與建模。'
+    }
+  };
+
+  function random(seed) {
+    let value = seed >>> 0;
+    return () => {
+      value = (1664525 * value + 1013904223) >>> 0;
+      return value / 4294967296;
+    };
+  }
+
+  function normalPair(rand) {
+    const u1 = Math.max(rand(), 1e-9);
+    const u2 = rand();
+    const radius = Math.sqrt(-2 * Math.log(u1));
+    return [radius * Math.cos(2 * Math.PI * u2), radius * Math.sin(2 * Math.PI * u2)];
+  }
+
+  function makePoints(scenario) {
+    const rand = random(scenario.seed);
+    const points = [];
+    for (let i = 0; i < 110; i++) {
+      const [along, across] = normalPair(rand);
+      points.push({
+        x: scenario.mean + (scenario.sd2 * along - scenario.sd1 * across) / Math.SQRT2,
+        y: scenario.mean + (scenario.sd2 * along + scenario.sd1 * across) / Math.SQRT2
+      });
+    }
+    return points;
+  }
+
+  function draw(canvas, scenario) {
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+    const pad = 36;
+    const min = 400;
+    const max = 1150;
+    const scaleX = value => pad + ((value - min) / (max - min)) * (width - pad * 2);
+    const scaleY = value => height - pad - ((value - min) / (max - min)) * (height - pad * 2);
+    const styles = getComputedStyle(document.documentElement);
+    const grid = styles.getPropertyValue('--tertiary').trim() || '#d6d6d6';
+    const textColor = styles.getPropertyValue('--secondary').trim() || '#6b7280';
+    const accent = styles.getPropertyValue('--accent').trim() || '#0d7377';
+
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeStyle = grid;
+    ctx.fillStyle = textColor;
+    ctx.font = '11px sans-serif';
+    ctx.lineWidth = 1;
+    [500, 700, 900, 1100].forEach(tick => {
+      const x = scaleX(tick);
+      const y = scaleY(tick);
+      ctx.beginPath(); ctx.moveTo(x, pad); ctx.lineTo(x, height - pad); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(width - pad, y); ctx.stroke();
+      ctx.fillText(String(tick), x - 10, height - 16);
+      ctx.fillText(String(tick), 4, y + 4);
+    });
+    ctx.setLineDash([5, 4]);
+    ctx.strokeStyle = textColor;
+    ctx.beginPath(); ctx.moveTo(scaleX(min), scaleY(min)); ctx.lineTo(scaleX(max), scaleY(max)); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.fillStyle = accent;
+    ctx.globalAlpha = .58;
+    makePoints(scenario).forEach(point => {
+      ctx.beginPath();
+      ctx.arc(scaleX(point.x), scaleY(point.y), 2.4, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = textColor;
+    ctx.fillText('BBI(n) ms', width / 2 - 24, height - 2);
+    ctx.save();
+    ctx.translate(11, height / 2 + 28);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('BBI(n+1) ms', 0, 0);
+    ctx.restore();
+  }
+
+  document.querySelectorAll('[data-poincare-demo]').forEach(demo => {
+    const grid = demo.querySelector('[data-poincare-grid]');
+    const note = demo.querySelector('[data-poincare-note]');
+
+    function render(comparisonId) {
+      const comparison = comparisons[comparisonId];
+      grid.innerHTML = comparison.keys.map((key, index) => {
+        const scenario = scenarios[key];
+        const heartRate = Math.round(60000 / scenario.mean);
+        const rmssd = scenario.sd1 * Math.SQRT2;
+        return `<section class="poincare-card"><h3>${scenario.label}</h3><canvas width="330" height="300" data-scenario="${key}" aria-label="${scenario.label}的模擬 Poincaré plot"></canvas><dl><div><dt>平均心率</dt><dd>${heartRate} bpm</dd></div><div><dt>RMSSD</dt><dd>${rmssd.toFixed(1)} ms</dd></div><div><dt>SD1</dt><dd>${scenario.sd1} ms</dd></div><div><dt>SD2</dt><dd>${scenario.sd2} ms</dd></div></dl></section>`;
+      }).join('');
+      grid.querySelectorAll('canvas').forEach(canvas => draw(canvas, scenarios[canvas.dataset.scenario]));
+      note.textContent = comparison.note;
+      demo.querySelectorAll('[data-comparison]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.comparison === comparisonId)));
+    }
+
+    demo.querySelectorAll('[data-comparison]').forEach(button => button.addEventListener('click', () => render(button.dataset.comparison)));
+    render('rest-recovery');
+  });
+}
+
 function initCfcDemo() {
   const demo = document.querySelector('#cfcDemo');
   if (!demo) return;
@@ -631,6 +754,7 @@ async function renderPost(id) {
   document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
   initReactionDemo();
   initBbiDemo();
+  initPoincareDemos();
   initCfcDemo();
   initFilterDemo();
 }
