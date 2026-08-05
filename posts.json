@@ -64,6 +64,14 @@
     "description": "用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。"
   },
   {
+    "id": "ai-academic-skills-paper-screening-grants",
+    "title": "文獻篩選到計畫書撰寫：把 AI-academic-skills 拆成找、評、寫三步驟",
+    "date": "2026-08-05",
+    "category": "ai-tools",
+    "tags": ["AI Skills", "文獻評讀", "計畫書撰寫", "GRADE"],
+    "description": "文獻篩選與計畫書撰寫是研究工作中最花時間的兩段流程。整理 AI-academic-skills 中的 litpilot、paper-review、paper-digest 與 research-grants，把「找文獻」「判斷可信度」「依機構格式寫作」拆成可查核的獨立步驟。"
+  },
+  {
     "id": "hhsa-nonlinear-eeg",
     "title": "非線性腦波分析入門：從線性方法看不到的大腦動態，到 Holo-Hilbert Spectral Analysis",
     "date": "2026-08-04",

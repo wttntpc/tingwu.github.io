@@ -52,6 +52,10 @@ QC 採個人 × SetSize 分層之 IQR-based 離群值排除（factor=3.0）。�
 
 工作記憶是執行功能三大核心成分之一，也是運動介入文獻中效果量常見中等程度的認知結果。國立中央大學認知神經科學研究所（Chen et al., 2024）的研究發現，規律運動的中年職業婦女在工作記憶等執行功能指標上，較久坐族群更能隨年齡增長維持穩定表現。由於路徑終點 II 同時涉及空間工作記憶與心像操作／規劃歷程，若介入效果存在，理論上應更容易在記憶編碼時間與反應規劃時間兩個分開記錄的指標上，觀察到不同的變化型態，而非僅呈現單一總反應時間的改變。
 
+## 完整分析 SOP
+
+本文聚焦於作業設計與構念詮釋；完整的資料前處理、離群值排除規則與逐步分析流程，請見 [路徑終點 II 作業資料分析指南](https://hackmd.io/@TingWu/SksWJF74Me)（HackMD）。
+
 ## References
 
 Anagnostou, E., Dimopoulou, P., Sklavos, S., Zouvelou, V., &amp; Zambelis, T. (2020). Identifying jitter outliers in single fiber electromyography: Comparison of four methods. *Muscle &amp; Nerve, 63*(2), 217–224. https://doi.org/10.1002/mus.27093

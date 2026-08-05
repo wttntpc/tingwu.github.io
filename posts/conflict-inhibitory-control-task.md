@@ -44,6 +44,10 @@
 
 抑制控制是執行功能文獻中效果量最常被檢視、也最常呈現顯著介入效果的成分之一。國立中央大學認知神經科學研究所團隊（Chang et al., 2024）以穿戴式裝置量測平台，比較 14 位大學甲組女子足球選手與 12 位無規律運動習慣之女大學生，發現兩組在肢體肌肉量與多項認知功能分數（包含注意力與工作記憶之反應時間）上存在顯著差異，且一個月心率資料之平均心率中位數與認知功能分數呈顯著負相關。該研究提供了「規律訓練族群與久坐族群在快速反應／抑制類作業上確實可能存在差異」的實證參照，但樣本為運動員與大學生之橫斷比較，並非介入研究，解讀時不應直接類推至介入前後之因果效果。
 
+## 完整分析 SOP
+
+本文聚焦於作業設計與構念詮釋；完整的資料前處理、離群值排除規則與逐步分析流程，請見 [方向感作業資料分析指南](https://hackmd.io/@TingWu/rkkc_zZQMe)（HackMD）。
+
 ## References
 
 Chang, C.-K., Chen, Y.-L., &amp; Juan, C.-H. (2024). Predicting sports performance of elite female football players through smart wearable measurement platform. *Progress in Brain Research, 286*, 1–31. https://doi.org/10.1016/bs.pbr.2024.04.002
