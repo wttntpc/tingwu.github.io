@@ -17,7 +17,7 @@
 
 ## 更完整的做法：把既有文獻庫也一起評讀
 
-litpilot 預設只掃「最近 30 天」的新文獻，這對「這週有沒有新研究」很好用，但計畫書的理論基礎通常需要涵蓋好幾年的文獻，不能只看最近一個月。所以我另外整理了一份 [文獻證據庫串接指引](https://github.com/wttntpc/AI-academic-skills-/blob/main/workflows/grant-evidence-base.md)：先把 Zotero 裡已經收藏的舊文獻抓出來，跟 litpilot／paper-lookup 找到的新文獻放在一起，**全部**（包含舊的、原本就信任的）交給 paper-review 評讀，再推進 Gemini NotebookLM 做跨文獻的綜合提問，最後才交給 research-grants 寫作。這樣理論基礎才不會只反映「這個月剛好搜到什麼」。
+litpilot 預設只掃「最近 30 天」的新文獻，這對「這週有沒有新研究」很好用，但計畫書的理論基礎通常需要涵蓋好幾年的文獻，不能只看最近一個月。所以我另外做了一個 [`grant-evidence-base`](https://github.com/wttntpc/AI-academic-skills-/tree/main/grant-evidence-base) Skill：先把 Zotero 裡已經收藏的舊文獻抓出來，跟 litpilot／paper-lookup 找到的新文獻放在一起，**全部**（包含舊的、原本就信任的）交給 paper-review 評讀，再推進 Gemini NotebookLM 做跨文獻的綜合提問，最後才交給 research-grants 寫作。這樣理論基礎才不會只反映「這個月剛好搜到什麼」。
 
 ## 為什麼要拆成這麼多步驟
 
@@ -52,9 +52,9 @@ litpilot 預設只掃「最近 30 天」的新文獻，這對「這週有沒有�
 
 姊妹 Skill `scientific-writing`（同樣來自 k-dense-ai）則負責手稿本身：IMRaD 結構、依研究類型選擇對應的報告規範（CONSORT／PRISMA／STROBE／ARRIVE）、ICMJE／CRediT 作者列表規則，以及**證據綁定的主張檢查**——確保正文中的每個宣稱都能對應到來源，不是模型自己補的數字或方法。兩者皆為純本機執行、無網路呼叫，圖表生成則是選用功能（透過 `scientific-schematics`，需要 OpenRouter API key，會把提示詞送到第三方服務，未發表的敏感內容需自行評估是否適合傳送）。
 
-## 進階串接：既有 Zotero 庫＋NotebookLM 綜整，補齊 litpilot 的時間窗口盲點
+## 進階串接：`grant-evidence-base` Skill，補齊 litpilot 的時間窗口盲點
 
-`litpilot` 的預設搜尋窗口是最近 30 天（排程週報則是 7 天），這是為了「追蹤新文獻」而設計，不是為了建立計畫書需要的多年份理論基礎。目前套件裡沒有任何單一 Skill 直接做到「把既有 Zotero 收藏＋NotebookLM 綜合閱讀＋新文獻篩選」三者串起來一起評讀，因此我另外寫了一份 [`workflows/grant-evidence-base.md`](https://github.com/wttntpc/AI-academic-skills-/blob/main/workflows/grant-evidence-base.md) 作為手動串接指引，六個步驟：
+`litpilot` 的預設搜尋窗口是最近 30 天（排程週報則是 7 天），這是為了「追蹤新文獻」而設計，不是為了建立計畫書需要的多年份理論基礎。原本這套串接只是一份手寫的操作指引，放在 repo 裡一份普通的 markdown 檔——但這樣 Claude Code 完全不會主動想到要照著做，因為它掃描技能的機制只認 skill 資料夾裡的 `SKILL.md`，不會去讀一份散落在別處的文件。所以後來把它改寫成正式的 [`grant-evidence-base`](https://github.com/wttntpc/AI-academic-skills-/tree/main/grant-evidence-base) Skill，設定好觸發語句（例如「幫我把 Zotero 跟 NotebookLM 一起評讀」），這樣它才會跟其他 Skill 一樣被自動安裝、自動觸發，而不必每次都手動提醒。它本身不做任何新的事，純粹是照順序呼叫五個既有 Skill：
 
 1. 明確設定文獻年限範圍，覆蓋 litpilot 的 30 天預設
 2. 用 `zotero-bridge` 的唯讀查詢，把既有 Zotero 收藏列出來當起始文獻庫
@@ -78,7 +78,7 @@ litpilot 預設只掃「最近 30 天」的新文獻，這對「這週有沒有�
 ## 相關資源
 
 - [AI-academic-skills：學術研究技能鏈](https://github.com/wttntpc/AI-academic-skills-)
-- [文獻證據庫串接指引：既有 Zotero 庫＋NotebookLM 綜整＋新文獻](https://github.com/wttntpc/AI-academic-skills-/blob/main/workflows/grant-evidence-base.md)
+- [`grant-evidence-base`：既有 Zotero 庫＋NotebookLM 綜整＋新文獻的串接 Skill](https://github.com/wttntpc/AI-academic-skills-/tree/main/grant-evidence-base)
 - [k-dense-ai/scientific-agent-skills](https://github.com/k-dense-ai/scientific-agent-skills)（`paper-lookup`／`scientific-writing`／`research-grants`／`peer-review` 來源，MIT）
 - [drpwchen/paper-review-and-digest](https://github.com/drpwchen/paper-review-and-digest)（`paper-review`／`paper-digest` 來源，MIT）
 - [AI-tools-skills：跨 Agent 工具連接（前置設定）](https://github.com/wttntpc/AI-tools-skills)
