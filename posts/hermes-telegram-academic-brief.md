@@ -9,6 +9,29 @@
 
 > 這不是「讓 AI 每天替我讀完論文」，而是建立一份準時送達、保留來源、可以再人工判斷的閱讀清單。
 
+## 先用白話理解：Hermes 到底是什麼？
+
+Hermes 不是另一個語言模型，也不只是聊天視窗。比較準確的說法是：它是一個能把「模型、工具、記憶、Skills、排程與通訊軟體」接在一起的 AI Agent 執行環境。模型負責理解與生成內容，Hermes 則負責讓模型可以搜尋資料、讀寫檔案、呼叫工具、定時執行工作，並把結果傳到 Telegram。
+
+| 元件 | 白話說法 | 在這個工作流的用途 |
+|---|---|---|
+| 語言模型 | 負責思考與整理的「大腦」 | 判讀搜尋結果、摘要論文、按照格式輸出 |
+| Tools | Agent 可以使用的「手腳」 | 搜尋網頁、查詢文獻、開啟 DOI、處理檔案 |
+| Skills | 可重複使用的「工作手冊」 | 固定文獻搜尋順序、摘要欄位與查核規則 |
+| Memory | 跨任務保存的「長期筆記」 | 記錄偏好與重要背景，但不等於自動讀取全部舊對話 |
+| Gateway | 長時間在線的「接線與傳送中心」 | 連接 Telegram，並承載 cron 排程器 |
+| Cron | 「鬧鐘」 | 每天上午 8 點啟動新的文獻整理任務 |
+
+因此，即使使用免費或本機模型，真正決定成果是否可靠的仍是工作流程：來源要指定、欄位要固定、查不到要誠實標示，最後還要由研究者核對。
+
+### 它真的會「越用越懂我」嗎？
+
+會，但不是偷偷重新訓練模型。Hermes 的成長主要來自三種可檢查的資料：對話與 Session 索引、長期記憶，以及寫成 Markdown 的 Skill。完成複雜任務後，Agent 可以把成功步驟整理成 Skill，日後按需要載入；這比較像助理逐漸整理出工作手冊，而不是模型權重自動改變。
+
+還要注意「同一個 Hermes」不代表所有聊天共用同一段即時記憶。終端機、Telegram 與其他平台可共用模型設定、工具、檔案與 Skills，但每條 Session 的即時對話通常彼此獨立。跨 Session 的舊內容需要透過搜尋或記憶機制取回。因此，cron 每次啟動新 Session 時，不能只說「照我們昨天談的做」，而要把完整規格寫在 prompt 或 Skill 中。
+
+> Skills 可能由 Agent 建立、更新或刪除。研究工作流若牽涉查核規則，建議把 Skill 放進 Git 版本控制，變更後先看差異再採用。
+
 ## 完成後會得到什麼？
 
 每天上午 8 點，Telegram 會收到最多 5 篇新文獻。內容包含原文標題、中文標題、作者、期刊、研究類型、樣本、方法、主要結果、限制，以及可直接開啟的 DOI 或來源連結。找不到的欄位標示「無」或「待確認」，不能由 AI 猜測。
@@ -34,7 +57,16 @@ Telegram 將結果送到手機
 - 一個支援工具呼叫的模型：可選免費雲端模型或本機模型。
 - 清楚的研究主題、資料來源順序與摘要查核規則。
 
-如果是第一次安裝，我建議 Windows 使用者先選 WSL2；它比較接近 Hermes 的 Linux 使用環境。原生 Windows 安裝也可行，但目前仍是較新的支援路徑。
+如果是第一次安裝，可先依需求選擇 Windows 原生或 WSL2：
+
+| 情況 | 建議 |
+|---|---|
+| 只需要聊天、Telegram、cron、瀏覽器工具與一般 MCP | 原生 Windows 即可，路徑也比較直覺 |
+| 已有 Linux 開發環境、需要 POSIX 工具或 Dashboard 內嵌終端機 | 使用 WSL2 |
+| 想讓 gateway 長時間運作 | 兩者皆可；原生 Windows 使用排程工作，WSL2 建議啟用 systemd |
+| 不想處理 Windows 與 Linux 兩套路徑 | 優先原生 Windows |
+
+Hermes 官方目前把原生 Windows 標示為 early beta；若遇到子程序、路徑或中文字元問題，再改用 WSL2 會比較容易排除。
 
 ## 第一步：安裝 Hermes
 
@@ -49,7 +81,7 @@ hermes
 原生 Windows 則在 PowerShell 執行：
 
 ```powershell
-iex (irm https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.ps1)
+iex (irm https://hermes-agent.nousresearch.com/install.ps1)
 ```
 
 安裝完若找不到 `hermes`，先關閉再重新開啟終端機。第一次設定不要急著加入 Telegram；先和 Hermes 對話一次，確認模型與基本工具可以正常運作。
@@ -190,6 +222,27 @@ PubMed / Europe PMC / Crossref / preprint APIs
 
 Gateway 每 60 秒檢查排程，到期後以新的 Agent session 執行任務，完成後把 final response 交給設定的 delivery target。這代表主機、網路與 gateway 必須在排程時間保持可用；Telegram bot 本身不會代替 Hermes 執行任務。
 
+### Hermes 是協調層，不是模型本身
+
+Hermes 將不同責任拆開處理：模型提供推理能力，Tools 提供可執行動作，Skills 提供程序性知識，Memory 提供長期背景，Gateway 負責訊息平台與背景服務，cron 則負責在指定時間建立獨立任務。這種拆分讓模型可以更換，但研究規格、傳送方式與排程仍能保留。
+
+| 層級 | 儲存或執行內容 | 對每日文獻摘要的影響 |
+|---|---|---|
+| Provider／Model | 推理、工具選擇、文字生成 | 影響摘要品質、速度、費用與工具呼叫穩定性 |
+| Tools | 搜尋、瀏覽、終端機、檔案操作 | 決定 Agent 是否真的打開來源核對，而非只憑模型記憶 |
+| Skills | `SKILL.md` 與相關參考檔 | 固定搜尋策略、輸出格式、排除條件與驗收方式 |
+| Session／Memory | 當次對話、歷史索引、長期偏好 | 幫助延續背景，但不應作為唯一的任務規格來源 |
+| Gateway／Cron | 訊息路由、背景服務與排程 | 決定任務是否準時啟動，以及結果送往哪個聊天室 |
+
+### Session、Memory 與 Skill 不要混為一談
+
+- **Session** 是一條獨立對話線。Telegram DM、群組、Topic、CLI 與 cron 任務可能各自形成不同 Session。
+- **內建 Memory** 可保存 `MEMORY.md`、`USER.md` 等長期資訊，並可透過 FTS5 搜尋歷史；它不會在每次任務開始前無限制載入所有舊對話。
+- **Honcho 等記憶 Provider** 可進一步建立偏好與使用者模型，但屬額外服務或設定，並不是完成 cron 推送的必要條件。
+- **Skill** 是明確、可版本控制的程序文件，最適合存放「每日文獻摘要必須怎麼做」。官方 Skills 系統採按需載入，只有任務需要時才展開完整內容，以降低不必要的上下文。
+
+Hermes 可在成功完成包含多次工具呼叫的複雜工作後，建議或建立新 Skill，也能透過 `skill_manage` 更新現有 Skill。這是所謂「自我進化」的重要來源，但並非模型自行重訓。對研究用途而言，任何自動修改都應納入版本控制與人工審閱，尤其不能讓 Agent 靜默放寬 DOI、來源或查核規則。
+
 開始前建議決定：
 
 1. 執行環境：原生 Windows、WSL2、Linux 或 macOS。
@@ -211,7 +264,7 @@ hermes
 ### 原生 Windows PowerShell
 
 ```powershell
-iex (irm https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.ps1)
+iex (irm https://hermes-agent.nousresearch.com/install.ps1)
 ```
 
 安裝後開啟新的 PowerShell 視窗，再檢查：
@@ -222,6 +275,8 @@ hermes --version
 ```
 
 原生 Windows 支援仍屬 early beta；若遇到路徑、子程序或非 ASCII 字元問題，可改用 WSL2。無論採哪一條路徑，都應先讓一般對話與工具測試成功，再加入訊息平台和排程，這樣才能判斷錯誤發生在哪一層。
+
+官方文件指出，原生 Windows 已可使用 CLI、Telegram gateway、cron、瀏覽器工具、MCP、本機 Ollama／LM Studio 與 Web Dashboard；主要缺少的是需要 POSIX PTY 的 Dashboard 內嵌終端機。WSL2 則更接近 Linux 部署，但要額外理解 Windows 與 Linux 的檔案路徑、網路和常駐機制。如果 Ollama 或 LM Studio 跑在 Windows、Hermes 跑在 WSL2，還必須確認模型服務不是只綁定 `127.0.0.1`，並處理 Windows 防火牆與 WSL2 網路位址。
 
 ## 三、模型選擇與費用控制
 
@@ -292,6 +347,10 @@ hermes gateway status
 
 WSL2 使用者還應確認 systemd 已啟用；原生 Windows 則檢查登入後的背景排程是否成功啟動。重新開機後再次執行 `hermes gateway status`，比只看第一次前景測試更可靠。
 
+Telegram 的 home channel 只是預設收件位置。官方 cron delivery 也能指定 `telegram:<chat-id>`、特定 Topic 的 `chat_id:thread_id`、`local`、`origin` 或多個平台。個人研究工作流先固定一個私人 DM 最容易驗證；若改用群組或 Topic，還要另外確認群組 allowed users／allowed chats、BotFather privacy mode，以及是否要求提及 bot 才回應。
+
+目前 Telegram 採預設拒絕策略：若未設定允許的使用者，所有使用者都會被拒絕。這比把 bot 公開後再阻擋陌生人安全，但也代表「bot 沒回覆」時應先檢查 numeric user ID，而不是反覆重建 token。
+
 ## 六、把研究規格寫成可查核的任務
 
 我的原始設定保存在公開 repo [wttntpc/hermes-agent](https://github.com/wttntpc/hermes-agent)，任務名稱為 `daily-science-brief`：每天 08:00 搜尋過去 3 天的新研究，主題涵蓋 Exercise、Emotion、HRV、EEG 與 Cognition。
@@ -354,6 +413,16 @@ hermes cron create "0 8 * * *" \
 
 `0 8 * * *` 依執行主機的時間運作。建立前應確認作業系統顯示 Asia/Taipei 的正確日期、時間與時區。
 
+### 排程真正執行時會發生什麼？
+
+每次 scheduler tick 時，Hermes 會讀取 `~/.hermes/cron/jobs.json`、比對 `next_run_at`，為到期任務建立新的 Agent Session，載入附加的 Skills，執行提示至完成，傳送 final response，最後更新執行紀錄與下一次時間。`~/.hermes/cron/.tick.lock` 會避免同一批任務因重疊 tick 而重複執行。
+
+這套流程帶來三個實務結論：
+
+1. cron prompt 應該自給自足，不能依賴建立任務時的聊天上下文。
+2. Agent 的最終回答會自動交給 delivery target，不必在 prompt 裡再要求呼叫一次傳訊工具。
+3. 若任務執行超過一分鐘，不代表 scheduler 會重複啟動同一批工作；但仍應限制每日篇數與搜尋範圍，避免長時間占用模型配額。
+
 ## 八、驗收與持續監測
 
 建立後立即執行：
@@ -384,7 +453,21 @@ hermes cron run daily-science-brief
 hermes cron remove daily-science-brief
 ```
 
-## 九、摘要品質與研究倫理界線
+## 九、版本、安全與維運注意事項
+
+本文參考的 Smart4A 教材強調 Hermes 的記憶、技能與多平台特性；實際版本功能則以官方文件為準。Hermes v0.13.0 的更新包含 gateway 重啟後恢復中斷 Session、cron `no_agent` watchdog、更多平台 allowlist、預設開啟敏感資訊遮罩，以及對組合後 cron prompt（包含 Skill 內容）進行 prompt-injection 掃描。
+
+這些保護能降低風險，但不能取代資料治理：
+
+- PII redaction 是防護層，不代表可以放心上傳未去識別的受試者資料。
+- 使用本機模型可避免把提示傳給雲端模型，但 PubMed、Crossref、搜尋引擎與其他外部 Tools 仍會收到查詢。
+- 社群 Skill 安裝前應先 `inspect` 並查看來源；安全掃描不是完整的人工程式碼審查。
+- `~/.hermes/.env`、`auth.json`、Telegram token 與模型金鑰都不應加入 Git。
+- Agent 可以修改 Skills，因此重要研究規格應保留 Git 版本、審查差異並限制可寫目錄。
+
+升級後不要直接假設舊任務正常。應重新執行 `hermes gateway status`、手動跑一次 cron、確認 home channel、檢查輸出格式，再等待下一次正式排程。
+
+## 十、摘要品質與研究倫理界線
 
 可靠摘要至少要保留來源、文獻類型、樣本、設計、主要測量、主要結果、限制與主題關聯。模型找不到資料時應停止推論，而不是用常識補齊；Impact Factor 與 JCR 分區只能引用合法、可核對的資料。
 
@@ -392,7 +475,7 @@ hermes cron remove daily-science-brief
 
 最終仍由研究者開啟原文、確認方法與結果，再決定是否收藏至 Zotero、加入 Gemini Notebook 或轉寫為研究筆記。自動推送負責「發現」，不能代替品質評讀。
 
-## 十、常見錯誤對照
+## 十一、常見錯誤對照
 
 | 現象 | 可能原因 | 處理方式 |
 |---|---|---|
@@ -404,6 +487,9 @@ hermes cron remove daily-science-brief
 | 免費模型突然不能用 | 配額、速率或供應狀態改變 | 重新用 `hermes model` 測試並更新 job pin |
 | DOI 或期刊資料不一致 | 模型未完成交叉核對 | 強制先開啟 PubMed／Crossref 來源，人工抽查 |
 | 每天重複相同文獻 | cron session 不保留前次記憶 | 使用持久化去重清單或 Skill 規範最近七天紀錄 |
+| Telegram 群組中偶爾回覆、偶爾不回覆 | privacy mode、allowed chats 或 require mention 規則不一致 | 先用私人 DM 驗證，再逐項加入群組限制 |
+| WSL2 連不到 Windows 的 Ollama／LM Studio | 模型服務只綁定 localhost 或被防火牆阻擋 | 允許區域網路介面並從 WSL2 測試 endpoint |
+| 更新 Hermes 後排程行為改變 | gateway、cron 或設定結構隨版本更新 | 查閱 release notes，重啟 gateway 並重新做手動驗收 |
 
 ## 延伸閱讀
 
@@ -412,4 +498,9 @@ hermes cron remove daily-science-brief
 - [Hermes 安裝文件](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/getting-started/installation.md)
 - [Hermes Telegram 設定文件](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/messaging/telegram.md)
 - [Hermes Scheduled Tasks 文件](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/cron.md)
+- [Hermes Skills System 文件](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/skills.md)
+- [Hermes Honcho Memory 文件](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/honcho.md)
+- [Hermes v0.13.0 Release Notes](https://github.com/NousResearch/hermes-agent/blob/main/RELEASE_v0.13.0.md)
+- [Hermes Windows WSL2 指南](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/windows-wsl-quickstart.md)
 - [Hermes 原生 Windows 指南](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/windows-native.md)
+- [Smart4A：Hermes Agent 安裝速查](https://hermes.smart4a.tw/)（概念與教材編排參考；版本與指令以官方文件為準）
