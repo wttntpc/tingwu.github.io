@@ -15,6 +15,10 @@
 
 **research-grants** 這個 Skill 內建 NSF、NIH、DOE、DARPA 與台灣國科會（NSTC）五個機構各自的格式規範與審查重點——例如 NSF 的智識價值與廣泛影響力並重、NIH 的 Specific Aims 一頁限制、國科會特定的研究架構圖要求。與其每次重新查「這個機構到底要什麼格式」，不如直接照對應機構的清單走一遍。
 
+## 更完整的做法：把既有文獻庫也一起評讀
+
+litpilot 預設只掃「最近 30 天」的新文獻，這對「這週有沒有新研究」很好用，但計畫書的理論基礎通常需要涵蓋好幾年的文獻，不能只看最近一個月。所以我另外整理了一份 [文獻證據庫串接指引](https://github.com/wttntpc/AI-academic-skills-/blob/main/workflows/grant-evidence-base.md)：先把 Zotero 裡已經收藏的舊文獻抓出來，跟 litpilot／paper-lookup 找到的新文獻放在一起，**全部**（包含舊的、原本就信任的）交給 paper-review 評讀，再推進 Gemini NotebookLM 做跨文獻的綜合提問，最後才交給 research-grants 寫作。這樣理論基礎才不會只反映「這個月剛好搜到什麼」。
+
 ## 為什麼要拆成這麼多步驟
 
 如果直接要求 AI「幫我找文獻並寫進計畫書」，中間的判斷過程會整個消失在一次對話裡，之後很難回頭確認：這篇文獻是真的存在、還是被生成出來的？證據等級是怎麼評出來的？把「找」「評」「寫」拆成三個獨立階段，每個階段都有明確的輸入輸出，出錯時也比較容易回頭抓到是哪一步出了問題。
@@ -48,6 +52,19 @@
 
 姊妹 Skill `scientific-writing`（同樣來自 k-dense-ai）則負責手稿本身：IMRaD 結構、依研究類型選擇對應的報告規範（CONSORT／PRISMA／STROBE／ARRIVE）、ICMJE／CRediT 作者列表規則，以及**證據綁定的主張檢查**——確保正文中的每個宣稱都能對應到來源，不是模型自己補的數字或方法。兩者皆為純本機執行、無網路呼叫，圖表生成則是選用功能（透過 `scientific-schematics`，需要 OpenRouter API key，會把提示詞送到第三方服務，未發表的敏感內容需自行評估是否適合傳送）。
 
+## 進階串接：既有 Zotero 庫＋NotebookLM 綜整，補齊 litpilot 的時間窗口盲點
+
+`litpilot` 的預設搜尋窗口是最近 30 天（排程週報則是 7 天），這是為了「追蹤新文獻」而設計，不是為了建立計畫書需要的多年份理論基礎。目前套件裡沒有任何單一 Skill 直接做到「把既有 Zotero 收藏＋NotebookLM 綜合閱讀＋新文獻篩選」三者串起來一起評讀，因此我另外寫了一份 [`workflows/grant-evidence-base.md`](https://github.com/wttntpc/AI-academic-skills-/blob/main/workflows/grant-evidence-base.md) 作為手動串接指引，六個步驟：
+
+1. 明確設定文獻年限範圍，覆蓋 litpilot 的 30 天預設
+2. 用 `zotero-bridge` 的唯讀查詢，把既有 Zotero 收藏列出來當起始文獻庫
+3. 用拉寬窗口的 litpilot／`paper-lookup` 補新文獻，依 DOI 去重
+4. **不分新舊**，全部交給 `paper-review` 評讀——「已經在 Zotero 裡多年，理應可信」不能是跳過評讀的理由
+5. 把評讀過的文獻推進 NotebookLM，用 `notebook_query` 做跨文獻的綜合提問（例如「這些研究報告的效果量在哪裡有分歧？」）
+6. 把評讀結果＋NotebookLM 綜整交給 `research-grants`／`scientific-writing` 撰寫
+
+這個串接屬於「深度處理」流程，適合在動筆寫計畫書之前跑一次，不建議當成日常文獻追蹤——日常追蹤仍交給 litpilot 預設的 30 天窗口即可。另外，NotebookLM 是第三方服務，未發表的手稿或機密初步資料在推送前應先確認是否適合外傳。
+
 ## 為什麼要把「找」「評」「寫」拆成獨立階段
 
 多數文獻工具停在「找到論文」或「摘要這篇 PDF」。把流程拆成獨立階段的價值在於：每一階段都有明確輸入、輸出與停止條件——`paper-review` 在全文不可得時中止、子 Agent 查證失敗時回報而非用猜測填補、`scientific-writing` 拒絕生成缺乏來源支持的主張。這比「請 AI 從搜尋一路寫到計畫書」更容易在事後回頭核對每一個判斷點。
@@ -61,6 +78,7 @@
 ## 相關資源
 
 - [AI-academic-skills：學術研究技能鏈](https://github.com/wttntpc/AI-academic-skills-)
+- [文獻證據庫串接指引：既有 Zotero 庫＋NotebookLM 綜整＋新文獻](https://github.com/wttntpc/AI-academic-skills-/blob/main/workflows/grant-evidence-base.md)
 - [k-dense-ai/scientific-agent-skills](https://github.com/k-dense-ai/scientific-agent-skills)（`paper-lookup`／`scientific-writing`／`research-grants`／`peer-review` 來源，MIT）
 - [drpwchen/paper-review-and-digest](https://github.com/drpwchen/paper-review-and-digest)（`paper-review`／`paper-digest` 來源，MIT）
 - [AI-tools-skills：跨 Agent 工具連接（前置設定）](https://github.com/wttntpc/AI-tools-skills)
