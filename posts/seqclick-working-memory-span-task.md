@@ -48,6 +48,10 @@ QC 採個人 × SetSize 分層之 IQR-based 離群值排除（factor=3.0），�
 
 工作記憶廣度是執行功能核心成分之一，也是老化與認知介入文獻中最常被檢視的指標之一。國立中央大學認知神經科學研究所（Chen et al., 2024）之研究顯示，規律運動之中年女性在工作記憶測驗上較久坐族群更能隨年齡增長維持穩定；另一篇同機構研究（Chang et al., 2024）比較大學甲組女子足球選手與一般女大學生，發現兩組在工作記憶類反應時間測驗上存在顯著差異，且一個月穿戴式裝置量測之平均心率與認知功能分數呈顯著負相關。這些發現共同指向：工作記憶是運動與認知神經科學研究中相對穩定可觀察到組間差異的指標，但兩篇引用研究皆非本研究之介入設計（分別為橫斷比較與運動員 vs. 對照組比較），解讀時仍應以本研究自身之前後測資料為準，不宜直接套用其他研究之效果量作為預期基準。
 
+## 完整分析 SOP
+
+本文聚焦於作業設計與構念詮釋；完整的資料前處理、離群值排除規則與逐步分析流程，請見 [順向點擊作業資料分析指南](https://hackmd.io/@TingWu/BJ324kU4Ml)（HackMD）。
+
 ## References
 
 Anagnostou, E., Dimopoulou, P., Sklavos, S., Zouvelou, V., &amp; Zambelis, T. (2020). Identifying jitter outliers in single fiber electromyography: Comparison of four methods. *Muscle &amp; Nerve, 63*(2), 217–224. https://doi.org/10.1002/mus.27093

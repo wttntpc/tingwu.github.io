@@ -51,6 +51,10 @@ CIPH 使用手冊未針對本作業提供絕對反應時間門檻。QC 採個人
 
 執行功能（含認知彈性）是運動科學文獻中最常被檢視的認知結果之一。國立中央大學認知神經科學研究所（Chen et al., 2024）針對中年職業婦女的研究發現：規律運動組在執行功能與反應時間上，隨年齡增長仍能維持穩定表現，而久坐族群則出現隨齡下滑；該研究並展示以行動應用程式（"the Brain Gym" App）進行認知評估的可行性，與本作業之數位化評估精神一致。這類發現提供了「運動介入應該預期在執行功能指標上看到什麼」的參照基準，但仍須留意：不同作業、不同族群、不同介入強度下的效果量可能有相當差異，不宜直接套用單一研究之效果量作為預期值。
 
+## 完整分析 SOP
+
+本文聚焦於作業設計與構念詮釋；完整的資料前處理、離群值排除規則與逐步分析流程，請見 [圖卡分類作業資料分析指南](https://hackmd.io/@TingWu/rkLEP24Nze)（HackMD）。
+
 ## References
 
 Anagnostou, E., Dimopoulou, P., Sklavos, S., Zouvelou, V., &amp; Zambelis, T. (2020). Identifying jitter outliers in single fiber electromyography: Comparison of four methods. *Muscle &amp; Nerve, 63*(2), 217–224. https://doi.org/10.1002/mus.27093
