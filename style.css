@@ -162,6 +162,17 @@ button { font: inherit; }
 .category-filter a:hover { border-color: var(--accent); color: var(--accent); }
 .category-filter a[aria-current="page"] { border-color: var(--accent); color: #fff; background: var(--accent); }
 .category-filter b { min-width: 1.2rem; padding: .05rem .3rem; border-radius: 999px; background: color-mix(in srgb, currentColor 12%, transparent); font-size: .65rem; text-align: center; }
+.article-search { max-width: 680px; margin: .25rem 0 1rem; }
+.article-search > label { display: block; margin-bottom: .45rem; color: var(--primary); font-size: .76rem; font-weight: 700; }
+.article-search-control { display: flex; align-items: center; min-height: 46px; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--paper); transition: border-color .18s ease, box-shadow .18s ease; }
+.article-search-control:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent); }
+.article-search-control > span { padding-left: .9rem; color: var(--secondary); font-size: 1.25rem; line-height: 1; }
+.article-search-control input { flex: 1; min-width: 0; padding: .72rem .75rem; border: 0; outline: 0; color: var(--primary); background: transparent; font: inherit; font-size: .85rem; }
+.article-search-control input::placeholder { color: var(--secondary); opacity: .8; }
+.article-search-control input::-webkit-search-cancel-button { display: none; }
+.article-search-control button { align-self: stretch; margin: 5px; padding: 0 .75rem; border: 0; border-radius: calc(var(--radius) - 4px); color: var(--accent); background: color-mix(in srgb, var(--accent) 9%, transparent); cursor: pointer; font: inherit; font-size: .74rem; font-weight: 700; }
+.article-search-control button:hover { background: color-mix(in srgb, var(--accent) 16%, transparent); }
+.article-search > p { min-height: 1.1rem; margin: .4rem 0 0; color: var(--secondary); font-size: .72rem; }
 .blog-grid { display: grid; gap: 1rem; padding: 0 0 5rem; }
 .blog-card { position: relative; display: block; padding: 1.45rem 1.5rem; overflow: hidden; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--paper); text-decoration: none; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
 .blog-card::before { position: absolute; top: 0; bottom: 0; left: 0; width: 3px; content: ""; background: var(--accent); transform: scaleY(0); transform-origin: bottom; transition: transform .18s ease; }

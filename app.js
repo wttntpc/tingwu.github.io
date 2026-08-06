@@ -69,6 +69,11 @@ const copy = {
     ],
     categoryFilterLabel: '依主題篩選文章',
     noPosts: '這個分類的文章正在準備中。',
+    searchLabel: '搜尋文章',
+    searchPlaceholder: '搜尋標題、摘要或標籤…',
+    clearSearch: '清除',
+    searchResults: count => `找到 ${count} 篇文章`,
+    noSearchResults: '找不到符合條件的文章，請嘗試其他關鍵字。',
     simpleVersion: '簡單白話版',
     professionalVersion: '專業版',
     versionHint: '先掌握重點，或切換到專業版閱讀術語、方法與研究細節。',
@@ -135,6 +140,11 @@ const copy = {
     ],
     categoryFilterLabel: 'Filter writing by topic',
     noPosts: 'Articles in this category are in preparation.',
+    searchLabel: 'Search articles',
+    searchPlaceholder: 'Search titles, summaries, or tags…',
+    clearSearch: 'Clear',
+    searchResults: count => `${count} article${count === 1 ? '' : 's'} found`,
+    noSearchResults: 'No matching articles. Try a different keyword.',
     simpleVersion: 'Plain-language',
     professionalVersion: 'Professional',
     versionHint: 'Start with the key ideas, or switch to the professional version for terminology, methods, and research detail.',
@@ -289,9 +299,34 @@ async function renderBlog(requestedCategory = 'all') {
   const c = t();
   const activeCategory = c.categories.some(item => item[0] === requestedCategory) ? requestedCategory : 'all';
   const visiblePosts = activeCategory === 'all' ? posts : posts.filter(post => post.category === activeCategory);
+  const renderCards = items => items.map(post => `<a class="blog-card" href="#/post/${post.id}"><div class="post-meta">${categoryLabel(post.category)} · ${post.date}</div><h2>${post.title}</h2><p>${post.description}</p>${tagList(post)}<span class="version-badge">${c.simpleVersion} · ${c.professionalVersion}</span></a>`).join('');
   app.innerHTML = `<div class="page-shell"><header class="inner-hero"><p class="eyebrow">${c.blogEyebrow}</p><h1 class="display">${c.blogTitle}</h1><p>${c.blogDesc}</p><p class="blog-version-intro">${c.blogVersionIntro}</p></header>
+    <div class="article-search"><label for="article-search-input">${c.searchLabel}</label><div class="article-search-control"><span aria-hidden="true">⌕</span><input id="article-search-input" type="search" inputmode="search" autocomplete="off" placeholder="${c.searchPlaceholder}"><button id="article-search-clear" type="button" hidden>${c.clearSearch}</button></div><p id="article-search-status" role="status" aria-live="polite"></p></div>
     <nav class="category-filter" aria-label="${c.categoryFilterLabel}">${c.categories.map(([id, label]) => { const count = id === 'all' ? posts.length : posts.filter(post => post.category === id).length; const href = id === 'all' ? '#/blog' : `#/blog/${id}`; return `<a href="${href}" ${activeCategory === id ? 'aria-current="page"' : ''}><span>${label}</span><b>${count}</b></a>`; }).join('')}</nav>
-    <div class="blog-grid">${visiblePosts.length ? visiblePosts.map(post => `<a class="blog-card" href="#/post/${post.id}"><div class="post-meta">${categoryLabel(post.category)} · ${post.date}</div><h2>${post.title}</h2><p>${post.description}</p>${tagList(post)}<span class="version-badge">${c.simpleVersion} · ${c.professionalVersion}</span></a>`).join('') : `<p class="empty-category">${c.noPosts}</p>`}</div></div>`;
+    <div class="blog-grid" id="article-search-results">${visiblePosts.length ? renderCards(visiblePosts) : `<p class="empty-category">${c.noPosts}</p>`}</div></div>`;
+
+  const searchInput = document.querySelector('#article-search-input');
+  const clearButton = document.querySelector('#article-search-clear');
+  const status = document.querySelector('#article-search-status');
+  const results = document.querySelector('#article-search-results');
+
+  const updateSearch = () => {
+    const query = searchInput.value.trim().toLocaleLowerCase(lang === 'zh' ? 'zh-Hant' : 'en');
+    const matches = query ? visiblePosts.filter(post => {
+      const searchable = [post.title, post.description, categoryLabel(post.category), ...(post.tags || [])].join(' ').toLocaleLowerCase(lang === 'zh' ? 'zh-Hant' : 'en');
+      return searchable.includes(query);
+    }) : visiblePosts;
+    clearButton.hidden = query.length === 0;
+    status.textContent = query ? c.searchResults(matches.length) : '';
+    results.innerHTML = matches.length ? renderCards(matches) : `<p class="empty-category">${query ? c.noSearchResults : c.noPosts}</p>`;
+  };
+
+  searchInput.addEventListener('input', updateSearch);
+  clearButton.addEventListener('click', () => {
+    searchInput.value = '';
+    updateSearch();
+    searchInput.focus();
+  });
 }
 
 function parseArticleVersions(source) {
