@@ -32,6 +32,14 @@
     "description": "Observed post-hoc power 常只是 p 值的回音；改用效果量、信賴區間、重要效果門檻與敏感度分析，才能分辨接近零與結果不精確。"
   },
   {
+    "id": "data-analysis-workflow",
+    "title": "數據如何變成結論？從研究問題到可重現報告的分析流程",
+    "date": "2026-08-06",
+    "category": "data-analysis",
+    "tags": ["數據分析", "研究設計", "統計推論", "可重現研究"],
+    "description": "數據分析不只是選檢定與計算 p 值；從問題定義、資料清理、探索、模型診斷到效果估計，整理一套能被檢查與重現的完整流程。"
+  },
+  {
     "id": "eeg-preprocessing-principles",
     "title": "EEG 前處理不是按下按鈕：八個步驟與品質檢查",
     "date": "2026-08-03",
