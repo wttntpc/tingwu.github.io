@@ -623,30 +623,6 @@ function initFlankerDemo() {
       document.addEventListener('keydown', handleKey);
       setTimeout(showFixation, 1000);
     });
-
-    const handleKey = (e) => {
-      if (state !== 'shown') return;
-      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-      e.preventDefault();
-
-      const tResponded = performance.now();
-      const trial = trials[currentTrial];
-      trial.rt = tResponded - tStimulus;
-      
-      const pressedLeft = e.key === 'ArrowLeft';
-      trial.correct = pressedLeft === trial.isLeft;
-      
-      stimulus.classList.add(trial.correct ? 'correct' : 'incorrect');
-
-      state = 'idle';
-      currentTrial++;
-      if (currentTrial < maxTrials) {
-        setTimeout(showFixation, 400);
-      } else {
-        document.removeEventListener('keydown', handleKey);
-        setTimeout(finishGame, 400);
-      }
-    };
   });
 }
 
