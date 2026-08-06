@@ -8,6 +8,23 @@ const topLink = document.querySelector('#top-link');
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 
+function renderMermaidNodes(selector = '.mermaid') {
+  let attempts = 0;
+  const maxAttempts = 30; // 3 seconds timeout
+  const run = () => {
+    if (window.__mermaid) {
+      const nodes = Array.from(document.querySelectorAll(selector));
+      if (nodes.length > 0) {
+        window.__mermaid.run({ nodes }).catch(err => console.error('Mermaid render error:', err));
+      }
+    } else if (attempts < maxAttempts) {
+      attempts++;
+      setTimeout(run, 100);
+    }
+  };
+  run();
+}
+
 const copy = {
   zh: {
     nav: [['首頁', '/'], ['關於', '/about'], ['學術發表', '/publications'], ['文章', '/blog']],
@@ -311,10 +328,7 @@ async function renderAbout(section = '') {
     </div>
   </article></div>`;
   document.querySelector('.inline-language').addEventListener('click', () => langToggle.click());
-  if (window.__mermaid) {
-    const node = document.querySelector('#about-framework .mermaid');
-    if (node) window.__mermaid.run({ nodes: [node] }).catch(err => console.error(err));
-  }
+  renderMermaidNodes('#about-framework .mermaid');
   if (section) {
     requestAnimationFrame(() => document.querySelector(`#about-${CSS.escape(section)}`)?.scrollIntoView());
   }
@@ -533,6 +547,7 @@ function initFlankerDemo() {
       stimulus.textContent = '結束';
       startBtn.hidden = false;
       startBtn.textContent = '再試一次';
+      if (controls) controls.hidden = true;
       
       const congruentTrials = trials.filter(t => t.isCongruent && t.correct);
       const incongruentTrials = trials.filter(t => !t.isCongruent && t.correct);
@@ -551,15 +566,62 @@ function initFlankerDemo() {
       status.textContent = '測驗完成！請看下方結果。';
     }
 
+    const handleInput = (direction) => {
+      if (state !== 'shown') return;
+      const tResponded = performance.now();
+      const trial = trials[currentTrial];
+      trial.rt = tResponded - tStimulus;
+      
+      const pressedLeft = direction === 'left';
+      trial.correct = pressedLeft === trial.isLeft;
+      
+      stimulus.classList.add(trial.correct ? 'correct' : 'incorrect');
+
+      state = 'idle';
+      currentTrial++;
+      setTimeout(() => {
+        if (currentTrial < maxTrials) {
+          showFixation();
+        } else {
+          finishGame();
+        }
+      }, 400);
+    };
+
+    const handleKey = (e) => {
+      if (state !== 'shown') return;
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      handleInput(e.key === 'ArrowLeft' ? 'left' : 'right');
+    };
+
+    // Add onscreen button support
+    let controls = demo.querySelector('.flanker-controls');
+    if (!controls) {
+      controls = document.createElement('div');
+      controls.className = 'flanker-controls';
+      controls.style.cssText = 'display:flex; justify-content:center; gap:1.5rem; margin-top:1rem;';
+      controls.innerHTML = `
+        <button type="button" class="flanker-btn btn-left" style="padding:0.6rem 1.5rem; font-size:1.2rem; border-radius:8px; border:1px solid var(--tertiary); background:var(--theme); cursor:pointer;">← 左 (Arrow Left)</button>
+        <button type="button" class="flanker-btn btn-right" style="padding:0.6rem 1.5rem; font-size:1.2rem; border-radius:8px; border:1px solid var(--tertiary); background:var(--theme); cursor:pointer;">右 (Arrow Right) →</button>
+      `;
+      demo.appendChild(controls);
+      controls.hidden = true;
+
+      controls.querySelector('.btn-left').addEventListener('click', () => handleInput('left'));
+      controls.querySelector('.btn-right').addEventListener('click', () => handleInput('right'));
+    }
+
     startBtn.addEventListener('click', () => {
       generateTrials();
       currentTrial = 0;
       startBtn.hidden = true;
       resultBox.hidden = true;
-      status.textContent = '請將雙手放在鍵盤左右方向鍵上 (← / →)';
-      // Add keyboard listener
+      if (controls) controls.hidden = false;
+      status.textContent = '中央箭頭指哪邊？可使用下方按鈕或鍵盤左右鍵 (← / →)';
+      document.removeEventListener('keydown', handleKey);
       document.addEventListener('keydown', handleKey);
-      setTimeout(showFixation, 1500);
+      setTimeout(showFixation, 1000);
     });
 
     const handleKey = (e) => {
@@ -1186,6 +1248,7 @@ async function renderPost(id) {
     document.querySelectorAll('[data-version-content]').forEach(content => { content.hidden = content.dataset.versionContent !== version; });
   }));
   document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+  renderMermaidNodes('.markdown-body .mermaid');
   initCorsiDemo();
   initFlankerDemo();
   initCardSortDemo();
