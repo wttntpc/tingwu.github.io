@@ -7,6 +7,7 @@ const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
+if (lang !== 'zh' && lang !== 'en') lang = 'zh';
 
 function renderMermaidNodes(selector = '.mermaid') {
   let attempts = 0;
@@ -170,21 +171,26 @@ const copy = {
   }
 };
 
-const t = () => copy[lang];
+const t = () => copy[lang] || copy.zh;
 
 function updateChrome() {
+  if (!navLinks) return;
   const path = (location.hash.slice(1) || '/').split('/').slice(0, 2).join('/') || '/';
-  navLinks.innerHTML = t().nav.map(([label, href]) =>
-    `<li><a href="#${href}" ${path === href ? 'aria-current="page"' : ''}>${label}</a></li>`
-  ).join('');
-  langToggle.textContent = lang === 'zh' ? 'EN' : '中文';
+  const c = t();
+  if (c && c.nav) {
+    navLinks.innerHTML = c.nav.map(([label, href]) =>
+      `<li><a href="#${href}" ${path === href ? 'aria-current="page"' : ''}>${label}</a></li>`
+    ).join('');
+  }
+  if (langToggle) langToggle.textContent = lang === 'zh' ? 'EN' : '中文';
   document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
-  document.querySelector('#footer-tagline').textContent = t().footer;
+  const footerTagline = document.querySelector('#footer-tagline');
+  if (footerTagline && c && c.footer) footerTagline.textContent = c.footer;
 }
 
 function closeMenu() {
-  navPanel.classList.remove('is-open');
-  menuToggle.setAttribute('aria-expanded', 'false');
+  if (navPanel) navPanel.classList.remove('is-open');
+  if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
 }
 
 const POSTS_DATA = [
@@ -1380,6 +1386,7 @@ async function renderPost(id) {
 }
 
 async function router() {
+  if (!app) return;
   closeMenu();
   updateChrome();
   app.innerHTML = '<div class="loading">Loading<span>...</span></div>';
@@ -1390,33 +1397,43 @@ async function router() {
     else if (path === '/publications') await renderPublications();
     else if (path === '/blog' || path.startsWith('/blog/')) await renderBlog(path.split('/')[2] || 'all');
     else if (path.startsWith('/post/')) await renderPost(path.split('/')[2]);
-    else app.innerHTML = `<div class="error-state"><h1>${t().notFound}</h1></div>`;
+    else app.innerHTML = `<div class="error-state"><h1>${t()?.notFound || 'Page Not Found'}</h1></div>`;
   } catch (error) {
-    console.error(error);
-    app.innerHTML = `<div class="error-state"><h1>${t().notFound}</h1></div>`;
+    console.error('Router error:', error);
+    app.innerHTML = `<div class="error-state"><h1>${t()?.notFound || 'Page Not Found'}</h1><p style="text-align:center; font-size:0.85rem; color:var(--secondary); margin-top:1rem;">${error?.message || ''}</p></div>`;
   }
   window.scrollTo(0, 0);
-  app.focus({ preventScroll: true });
+  if (app.focus) app.focus({ preventScroll: true });
 }
 
-langToggle.addEventListener('click', () => {
-  lang = lang === 'zh' ? 'en' : 'zh';
-  localStorage.setItem('tingting-language', lang);
-  router();
-});
-menuToggle.addEventListener('click', () => {
-  const open = navPanel.classList.toggle('is-open');
-  menuToggle.setAttribute('aria-expanded', String(open));
-});
-themeToggle.addEventListener('click', () => {
-  const dark = document.documentElement.dataset.theme === 'dark';
-  if (dark) delete document.documentElement.dataset.theme;
-  else document.documentElement.dataset.theme = 'dark';
-  localStorage.setItem('tingting-theme', dark ? 'light' : 'dark');
-});
-topLink.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-window.addEventListener('scroll', () => topLink.classList.toggle('is-visible', window.scrollY > 700), { passive: true });
+if (langToggle) {
+  langToggle.addEventListener('click', () => {
+    lang = lang === 'zh' ? 'en' : 'zh';
+    localStorage.setItem('tingting-language', lang);
+    router();
+  });
+}
+if (menuToggle && navPanel) {
+  menuToggle.addEventListener('click', () => {
+    const open = navPanel.classList.toggle('is-open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+  });
+}
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const dark = document.documentElement.dataset.theme === 'dark';
+    if (dark) delete document.documentElement.dataset.theme;
+    else document.documentElement.dataset.theme = 'dark';
+    localStorage.setItem('tingting-theme', dark ? 'light' : 'dark');
+  });
+}
+if (topLink) {
+  topLink.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  window.addEventListener('scroll', () => topLink.classList.toggle('is-visible', window.scrollY > 700), { passive: true });
+}
 window.addEventListener('hashchange', router);
-document.querySelector('#year').textContent = new Date().getFullYear();
+const yearEl = document.querySelector('#year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
 updateChrome();
 router();
