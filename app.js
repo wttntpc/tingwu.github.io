@@ -187,10 +187,154 @@ function closeMenu() {
   menuToggle.setAttribute('aria-expanded', 'false');
 }
 
+const POSTS_DATA = [
+  {
+    "id": "research-update-1",
+    "title": "身體活動如何影響大腦健康？",
+    "date": "2026-07-28",
+    "category": "popular-science",
+    "tags": ["運動", "大腦健康", "執行功能"],
+    "description": "整理身體活動、認知功能、情緒調節與神經可塑性之間的重要連結。"
+  },
+  {
+    "id": "first-ai-code",
+    "title": "第一次的 AI Code 分享",
+    "date": "2026-08-01",
+    "category": "ai-tools",
+    "tags": ["AI", "Python", "研究工作流"],
+    "description": "分享我如何將 AI 導入資料分析、程式除錯與網站開發的日常工作流程。"
+  },
+  {
+    "id": "python-statistics-pipeline",
+    "title": "從研究設計到報告：Python 統計分析 Pipeline 的核心原則",
+    "date": "2026-08-03",
+    "category": "data-analysis",
+    "tags": ["Python", "統計分析", "可重現研究"],
+    "description": "統計分析不只是執行檢定；從研究設計、資料驗證到效果量與報告，每一步都需要留下判斷依據。"
+  },
+  {
+    "id": "post-hoc-power-confidence-interval",
+    "title": "統計不顯著後，要算 Post-hoc Power 嗎？從信賴區間看懂研究結果",
+    "date": "2026-08-06",
+    "category": "data-analysis",
+    "tags": ["統計分析", "Statistical Power", "信賴區間", "MCID", "等效性檢定"],
+    "description": "Observed post-hoc power 常只是 p 值的回音；改用效果量、信賴區間、重要效果門檻與敏感度分析，才能分辨接近零與結果不精確。"
+  },
+  {
+    "id": "data-analysis-workflow",
+    "title": "數據如何變成結論？從研究問題到可重現報告的分析流程",
+    "date": "2026-08-06",
+    "category": "data-analysis",
+    "tags": ["數據分析", "研究設計", "統計推論", "可重現研究"],
+    "description": "數據分析不只是選檢定與計算 p 值；從問題定義、資料清理、探索、模型診斷到效果估計，整理一套能被檢查與重現的完整流程。"
+  },
+  {
+    "id": "eeg-preprocessing-principles",
+    "title": "EEG 前處理不是按下按鈕：八個步驟與品質檢查",
+    "date": "2026-08-03",
+    "category": "research-methods",
+    "tags": ["EEG", "EEGLAB", "訊號處理"],
+    "description": "從原始腦電訊號到可分析資料，整理濾波、重參考、壞道、ICA 與品質紀錄的完整思路。"
+  },
+  {
+    "id": "teleportation-reaction-time-task",
+    "title": "反應時間與移動時間有何不同？認識瞬間移動認知作業",
+    "date": "2026-08-03",
+    "category": "research-methods",
+    "tags": ["認知作業", "反應時間", "資料品質"],
+    "description": "用一個簡單的點擊作業，理解大腦開始反應與身體完成動作其實是兩段不同的歷程。"
+  },
+  {
+    "id": "garmin-raw-data-hrv",
+    "title": "從手錶 PPG 到 HRV：交感、副交感與 Poincaré plot",
+    "date": "2026-08-05",
+    "category": "data-analysis",
+    "tags": ["Garmin", "HRV", "PPG", "Poincaré plot", "生理訊號"],
+    "description": "從交感與副交感調節、腕式 PPG 的限制，到互動比較休息、運動後與不同生活型態的 Poincaré plot。"
+  },
+  {
+    "id": "hermes-telegram-academic-brief",
+    "title": "讓 Hermes 每天把學術文章送到手機：免費模型、Telegram 與排程",
+    "date": "2026-08-05",
+    "category": "ai-tools",
+    "tags": ["Hermes", "Telegram", "自動排程", "AI Agent"],
+    "description": "從 Hermes 架構、Session、Memory 與 Skills，到模型選擇、Telegram 安全設定及每天 8 點的 cronjob，完整建立可查核的學術文獻推送。"
+  },
+  {
+    "id": "ai-tools-skills-research-workflow",
+    "title": "把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流",
+    "date": "2026-08-03",
+    "category": "ai-tools",
+    "tags": ["AI Skills", "GitHub", "Gemini Notebook", "研究工作流"],
+    "description": "用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。"
+  },
+  {
+    "id": "ai-academic-skills-paper-screening-grants",
+    "title": "文獻篩選到計畫書撰寫：把 AI-academic-skills 拆成找、評、寫三步驟",
+    "date": "2026-08-05",
+    "category": "ai-tools",
+    "tags": ["AI Skills", "文獻評讀", "計畫書撰寫", "GRADE", "Zotero", "NotebookLM"],
+    "description": "文獻篩選與計畫書撰寫是研究工作中最花時間的兩段流程。整理 AI-academic-skills 中的 litpilot、paper-review、paper-digest 與 research-grants，並加上把既有 Zotero 收藏與 NotebookLM 綜整一起納入評讀的串接流程。"
+  },
+  {
+    "id": "hhsa-nonlinear-eeg",
+    "title": "非線性腦波分析入門：從線性方法看不到的大腦動態，到 Holo-Hilbert Spectral Analysis",
+    "date": "2026-08-04",
+    "category": "research-methods",
+    "tags": ["EEG", "HHSA", "非線性分析"],
+    "description": "傳統頻譜分析只看單一頻段強弱，卻可能漏掉頻段之間的跨頻耦合。介紹 HHSA 方法定位，及其在運動科學研究中的應用缺口。"
+  },
+  {
+    "id": "cardsort-cognitive-flexibility-task",
+    "title": "規則悄悄換了，你多快發現？認識圖卡分類作業與認知彈性",
+    "date": "2026-08-05",
+    "category": "research-methods",
+    "tags": ["認知作業", "執行功能", "認知彈性"],
+    "description": "圖卡分類作業用雙重規則系統測量認知彈性：切換代價與難度負荷兩個指標，分別代表規則轉換與選項增加的認知成本。"
+  },
+  {
+    "id": "conflict-inhibitory-control-task",
+    "title": "當直覺是錯的，你需要多久踩剎車？認識方向感作業與抑制控制",
+    "date": "2026-08-05",
+    "category": "research-methods",
+    "tags": ["認知作業", "執行功能", "抑制控制"],
+    "description": "方向感作業用一致／不一致箭頭測量抑制控制：從一致性效果到 Delta Plot、Gratton Effect，拆解抑制歷程的動態變化。"
+  },
+  {
+    "id": "pathend-spatial-working-memory-task",
+    "title": "記住位置還不夠，要在腦中走一遍：認識路徑終點 II 與空間工作記憶",
+    "date": "2026-08-05",
+    "category": "research-methods",
+    "tags": ["認知作業", "工作記憶", "空間認知"],
+    "description": "路徑終點 II 作業要求玩家記住箭頭位置與方向，並在腦中模擬沿路徑行走，同時涉及空間工作記憶與抗干擾能力。"
+  },
+  {
+    "id": "seqclick-working-memory-span-task",
+    "title": "記住內容不夠，還要記住順序：認識順向點擊作業與工作記憶廣度",
+    "date": "2026-08-05",
+    "category": "research-methods",
+    "tags": ["認知作業", "工作記憶", "Corsi測驗"],
+    "description": "順向點擊作業是 Corsi 積木敲擊測驗的數位化版本，測量視覺空間工作記憶廣度，並拆解出校正動作時間後的純記憶處理指標。"
+  }
+];
+
+let cachedPosts = null;
 async function getPosts() {
-  const response = await fetch('posts.json');
-  if (!response.ok) throw new Error('Unable to load posts');
-  return response.json();
+  if (cachedPosts) return cachedPosts;
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 1200);
+    const response = await fetch('posts.json', { signal: controller.signal });
+    clearTimeout(timeoutId);
+    if (response.ok) {
+      cachedPosts = await response.json();
+      return cachedPosts;
+    }
+  } catch (e) {
+    console.warn('Using embedded POSTS_DATA fallback');
+  }
+  cachedPosts = POSTS_DATA;
+  return cachedPosts;
 }
 
 function newestFirst(posts) {
