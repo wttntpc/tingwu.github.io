@@ -12,20 +12,17 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/" />
     <title>吳亭葶 Ting-Ting Wu｜Cognitive Neuroscience</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=20260806-4" />
     <script>try{if(localStorage.getItem('tingting-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
-    <script type="module">
+    <script src="app.js?v=20260806-4" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
       window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
     </script>
-    <script src="app.js" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -71,6 +68,7 @@
 
     <main id="app" tabindex="-1">
       <div class="loading">Loading<span>...</span></div>
+      <noscript><div class="error-state"><h1>請啟用 JavaScript</h1><p>這個網站需要 JavaScript 才能顯示頁面內容。</p></div></noscript>
     </main>
 
     <footer class="site-footer">
