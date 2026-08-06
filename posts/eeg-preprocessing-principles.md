@@ -17,6 +17,20 @@
 7. 用 ICA 協助分離眨眼、肌肉與其他雜訊。
 8. 在有合理依據時插補被移除的壞道。
 
+<div class="mermaid-wrap">
+<pre class="mermaid">
+flowchart TD
+    A["載入原始 EEG 資料<br>確認中繼資訊與電極位置"] --> B["目視檢查<br>記錄異常區段"]
+    B --> C["頻率濾波<br>High-pass, Low-pass, Notch"]
+    C --> D["重參考與移除 EOG<br>如: 雙側乳突平均"]
+    D --> E["壞道標示與排除<br>Flatline, line-noise, 等"]
+    E --> F["獨立成分分析 ICA<br>分離腦訊號與雜訊"]
+    F --> G["辨認與移除雜訊成分<br>眨眼、肌肉、環境電磁"]
+    G --> H["壞道插補與最終稽核<br>Spherical spline interpolation"]
+    H --> I((可用於後續分析的 EEG))
+</pre>
+</div>
+
 ## 動手試試看：濾波會如何改變訊號？
 
 <div class="filter-demo" id="filterDemo">
@@ -50,6 +64,20 @@ EEG 前處理會直接影響後續頻譜、事件相關電位或連結性分析�
 ## 一、保留原始資料並確認中繼資訊
 
 載入原始 `.CNT` 檔後，先確認電極數、採樣率、事件標記與 channel location 是否正確。錯誤的電極座標會使頭皮拓樸圖與後續空間分析失去意義。原始檔應維持唯讀，所有處理產生新的版本。
+
+<div class="mermaid-wrap">
+<pre class="mermaid">
+flowchart TD
+    A["載入原始 EEG 資料<br>確認中繼資訊與電極位置"] --> B["目視檢查<br>記錄異常區段"]
+    B --> C["頻率濾波<br>High-pass, Low-pass, Notch"]
+    C --> D["重參考與移除 EOG<br>如: 雙側乳突平均"]
+    D --> E["壞道標示與排除<br>Flatline, line-noise, 等"]
+    E --> F["獨立成分分析 ICA<br>分離腦訊號與雜訊"]
+    F --> G["辨認與移除雜訊成分<br>眨眼、肌肉、環境電磁"]
+    G --> H["壞道插補與最終稽核<br>Spherical spline interpolation"]
+    H --> I((可用於後續分析的 EEG))
+</pre>
+</div>
 
 ## 二、目視檢查不是可省略的步驟
 

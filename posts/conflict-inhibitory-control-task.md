@@ -2,6 +2,15 @@
 
 畫面上出現一個箭頭，玩家要朝箭頭指的方向滑動——大部分時候是這樣沒錯，但有一半的機率，箭頭是「反的」：真正該滑的方向跟箭頭指的方向剛好相反。玩家永遠不知道下一題是不是反的，只能每一題重新判斷。
 
+<div class="flanker-demo">
+  <div class="flanker-status" aria-live="polite">準備好測試你的抑制控制能力了嗎？</div>
+  <div class="flanker-stage">
+    <div class="flanker-stimulus"></div>
+  </div>
+  <button class="flanker-start">開始測驗 (10 題)</button>
+  <div class="flanker-result" hidden></div>
+</div>
+
 ## 兩條路徑在打架
 
 這個作業測的是**抑制控制（Inhibitory Control）**——大腦壓下「自動、直覺反應」以完成正確目標行為的能力。背後的理論想法是：反應的產生來自兩條互相競爭的路徑——一條是看到刺激就自動快速激活的「直接路徑」，一條是需要刻意判斷、主動抑制錯誤反應的「刻意路徑」。當箭頭是反的，直接路徑會想照箭頭方向滑，刻意路徑則要出來喊停、糾正方向——這個「喊停」需要花時間，不是瞬間發生的。
@@ -22,6 +31,15 @@
 <!-- PROFESSIONAL -->
 
 方向感作業（Conflict Task）是 CIPH 認知評估套件中用於測量**抑制控制（Inhibitory Control）**的核心作業，屬於經典認知衝突典範（如 Simon task）之變體。
+
+<div class="flanker-demo">
+  <div class="flanker-status" aria-live="polite">準備好測試你的抑制控制能力了嗎？</div>
+  <div class="flanker-stage">
+    <div class="flanker-stimulus"></div>
+  </div>
+  <button class="flanker-start">開始測驗 (10 題)</button>
+  <div class="flanker-result" hidden></div>
+</div>
 
 ## 理論框架
 
