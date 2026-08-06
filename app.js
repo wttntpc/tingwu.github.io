@@ -9,6 +9,18 @@ const topLink = document.querySelector('#top-link');
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
 
+function safeMarkdownParse(mdText) {
+  if (!mdText) return '';
+  if (typeof window.marked !== 'undefined' && typeof window.marked.parse === 'function') {
+    try {
+      return window.marked.parse(mdText);
+    } catch (e) {
+      console.warn('marked.parse error:', e);
+    }
+  }
+  return mdText;
+}
+
 function renderMermaidNodes(selector = '.mermaid') {
   let attempts = 0;
   const maxAttempts = 30; // 3 seconds timeout
@@ -487,7 +499,7 @@ async function renderAbout(section = '') {
 async function renderPublications() {
   const response = await fetch('posts/publications.md');
   if (!response.ok) throw new Error('Unable to load publications');
-  const content = marked.parse(await response.text());
+  const content = safeMarkdownParse(await response.text());
   const labels = lang === 'zh' ? {
     home: '首頁', title: '學術發表', description: '期刊論文與國內外研討會發表紀錄。'
   } : {
@@ -1365,15 +1377,19 @@ async function renderPost(id) {
   const c = t();
   app.innerHTML = `<article class="article-shell"><a class="back-link" href="#/blog">${c.back}</a><header class="article-header"><div class="post-meta">${meta ? `${categoryLabel(meta.category)} · ${meta.date}` : ''}</div><h1>${meta?.title || ''}</h1>${meta?.description ? `<p>${meta.description}</p>` : ''}${meta ? tagList(meta) : ''}</header>
     <div class="version-bar"><div class="version-toggle" role="group" aria-label="${lang === 'zh' ? '文章版本切換' : 'Article version'}"><button type="button" data-version="simple" aria-pressed="${selectedVersion === 'simple'}">${c.simpleVersion}</button><button type="button" data-version="professional" aria-pressed="${selectedVersion === 'professional'}">${c.professionalVersion}</button></div><p>${c.versionHint}</p></div>
-    <div class="article-version markdown-body" data-version-content="simple" ${selectedVersion !== 'simple' ? 'hidden' : ''}>${marked.parse(versions.simple)}</div>
-    <div class="article-version markdown-body" data-version-content="professional" ${selectedVersion !== 'professional' ? 'hidden' : ''}>${marked.parse(versions.professional)}</div></article>`;
+    <div class="article-version markdown-body" data-version-content="simple" ${selectedVersion !== 'simple' ? 'hidden' : ''}>${safeMarkdownParse(versions.simple)}</div>
+    <div class="article-version markdown-body" data-version-content="professional" ${selectedVersion !== 'professional' ? 'hidden' : ''}>${safeMarkdownParse(versions.professional)}</div></article>`;
   document.querySelectorAll('.version-toggle button').forEach(button => button.addEventListener('click', () => {
     const version = button.dataset.version;
     localStorage.setItem('tingting-article-version', version);
     document.querySelectorAll('.version-toggle button').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.version === version)));
     document.querySelectorAll('[data-version-content]').forEach(content => { content.hidden = content.dataset.versionContent !== version; });
   }));
-  document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+  if (typeof window.hljs !== 'undefined' && typeof window.hljs.highlightElement === 'function') {
+    document.querySelectorAll('pre code').forEach(block => {
+      try { window.hljs.highlightElement(block); } catch (e) {}
+    });
+  }
   renderMermaidNodes('.markdown-body .mermaid');
   initCorsiDemo();
   initFlankerDemo();
