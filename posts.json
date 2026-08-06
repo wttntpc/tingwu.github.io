@@ -24,6 +24,14 @@
     "description": "統計分析不只是執行檢定；從研究設計、資料驗證到效果量與報告，每一步都需要留下判斷依據。"
   },
   {
+    "id": "post-hoc-power-confidence-interval",
+    "title": "統計不顯著後，要算 Post-hoc Power 嗎？從信賴區間看懂研究結果",
+    "date": "2026-08-06",
+    "category": "data-analysis",
+    "tags": ["統計分析", "Statistical Power", "信賴區間", "MCID", "等效性檢定"],
+    "description": "Observed post-hoc power 常只是 p 值的回音；改用效果量、信賴區間、重要效果門檻與敏感度分析，才能分辨接近零與結果不精確。"
+  },
+  {
     "id": "eeg-preprocessing-principles",
     "title": "EEG 前處理不是按下按鈕：八個步驟與品質檢查",
     "date": "2026-08-03",
