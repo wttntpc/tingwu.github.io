@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#173f3a" />
+    <meta name="description" content="吳亭葶的個人網站：認知神經科學、運動醫學、執行功能與 AI 資料分析。" />
+    <base href="/tingwu.github.io/" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/" />
+    <meta property="og:title" content="吳亭葶 Ting-Ting Wu" />
+    <meta property="og:description" content="Kinesiology × Cognitive neuroscience × human performance." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/" />
+    <title>吳亭葶 Ting-Ting Wu｜Cognitive Neuroscience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+    </script>
+    <script src="app.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Executive Function", "EEG", "Athletic Training"]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">跳到主要內容</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="回到首頁">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span><span class="sr-only">開啟選單</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="主要導覽"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="切換深色模式" title="切換深色模式"><span aria-hidden="true">◐</span></button>
+          <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <div class="loading">Loading<span>...</span></div>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+      </div>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="回到頁首">↑</button>
+  </body>
+</html>
