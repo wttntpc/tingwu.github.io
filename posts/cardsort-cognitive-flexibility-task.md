@@ -2,6 +2,16 @@
 
 畫面上方出現 1-2 張「目標圖卡」，下方是 3-5 張「選項圖卡」，每張圖卡都有顏色跟形狀兩個屬性。玩家要從選項中找出正確答案——但「正確答案」的判斷規則，每一題都可能不一樣。
 
+<div class="cardsort-demo">
+  <div class="cs-status" aria-live="polite">準備好測試你的認知彈性了嗎？</div>
+  <div style="font-size: 0.8rem; color: var(--secondary); margin-bottom: 0.5rem;">目標圖卡</div>
+  <div class="cs-target"></div>
+  <div style="font-size: 0.8rem; color: var(--secondary); margin-bottom: 0.5rem;">選項圖卡</div>
+  <div class="cs-options"></div>
+  <button class="cs-start">開始測驗 (10 題)</button>
+  <div class="cs-result" hidden></div>
+</div>
+
 ## 兩套規則，玩家要自己判斷該用哪一套
 
 - **規則一（完全匹配）**：如果選項裡有一張顏色、形狀都跟目標圖卡一樣，選它。
@@ -23,6 +33,16 @@
 <!-- PROFESSIONAL -->
 
 圖卡分類作業（Card Sort Task）是 CIPH 認知評估套件中用於測量**認知彈性／集組轉換（Cognitive Flexibility / Set-Shifting）**與**抽象推理／規則推導（Abstract Reasoning / Rule Inference）**的作業，設計理念類似威斯康辛卡片分類測驗（Wisconsin Card Sorting Test, WCST）之精簡數位化版本。
+
+<div class="cardsort-demo">
+  <div class="cs-status" aria-live="polite">準備好測試你的認知彈性了嗎？</div>
+  <div style="font-size: 0.8rem; color: var(--secondary); margin-bottom: 0.5rem;">目標圖卡</div>
+  <div class="cs-target"></div>
+  <div style="font-size: 0.8rem; color: var(--secondary); margin-bottom: 0.5rem;">選項圖卡</div>
+  <div class="cs-options"></div>
+  <button class="cs-start">開始測驗 (10 題)</button>
+  <div class="cs-result" hidden></div>
+</div>
 
 ## 理論框架
 

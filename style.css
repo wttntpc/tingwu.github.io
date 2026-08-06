@@ -187,6 +187,41 @@ button { font: inherit; }
 .article-header .tag-list span { background: var(--entry); }
 .empty-category { margin: 1rem 0; padding: 2.5rem 1rem; border: 1px dashed var(--tertiary); border-radius: var(--radius); color: var(--secondary); text-align: center; }
 
+/* Interactive Card Sort task demo */
+.cardsort-demo { margin: 1.8rem 0 .75rem; padding: 1.1rem 1.2rem 1.3rem; border-radius: var(--radius); background: var(--entry); text-align: center; }
+.cs-target, .cs-options { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; min-height: 70px; }
+.cs-card { width: 60px; height: 80px; border: 1px solid var(--tertiary); border-radius: 8px; background: var(--theme); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.1s, box-shadow 0.1s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.cs-target .cs-card { cursor: default; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+.cs-options .cs-card:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+.cs-card.correct { background: color-mix(in srgb, #2ecc71 30%, var(--theme)); border-color: #2ecc71; }
+.cs-card.incorrect { background: color-mix(in srgb, #e74c3c 30%, var(--theme)); border-color: #e74c3c; }
+.cs-status { margin: 0 0 1rem; color: var(--primary); font-size: .85rem; min-height: 1.3rem; font-weight: 600; }
+.cs-start { padding: 0.6rem 1.2rem; border: none; border-radius: 20px; background: var(--accent); color: #fff; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+.cs-start:hover { background: color-mix(in srgb, var(--accent) 80%, black); }
+.cs-result { background: color-mix(in srgb, var(--theme) 50%, transparent); padding: 1rem; border-radius: var(--radius); margin-top: 1rem; }
+
+/* Interactive Flanker task demo */
+.flanker-demo { margin: 1.8rem 0 .75rem; padding: 1.1rem 1.2rem 1.3rem; border-radius: var(--radius); background: var(--entry); text-align: center; }
+.flanker-stage { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 160px; margin-bottom: 1rem; border: 1px dashed var(--tertiary); border-radius: var(--radius); background: var(--theme); }
+.flanker-stimulus { font-size: 3rem; font-weight: bold; font-family: monospace; letter-spacing: 0.2rem; color: var(--primary); transition: color 0.2s; }
+.flanker-stimulus.correct { color: #2ecc71; }
+.flanker-stimulus.incorrect { color: #e74c3c; }
+.flanker-status { margin: 0 0 1rem; color: var(--primary); font-size: .85rem; min-height: 1.3rem; font-weight: 600; }
+.flanker-start { padding: 0.6rem 1.2rem; border: none; border-radius: 20px; background: var(--accent); color: #fff; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+.flanker-start:hover { background: color-mix(in srgb, var(--accent) 80%, black); }
+.flanker-result { background: color-mix(in srgb, var(--theme) 50%, transparent); padding: 1rem; border-radius: var(--radius); margin-top: 1rem; }
+
+/* Interactive Corsi block-tapping demo */
+.corsi-demo { margin: 1.8rem 0 .75rem; padding: 1.1rem 1.2rem 1.3rem; border-radius: var(--radius); background: var(--entry); text-align: center; }
+.corsi-stage { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 260px; margin: 0 auto 1rem; aspect-ratio: 1; }
+.corsi-block { border: none; border-radius: 8px; background: color-mix(in srgb, var(--tertiary) 60%, transparent); cursor: pointer; transition: background 0.1s, transform 0.1s; }
+.corsi-block:active { transform: scale(0.95); }
+.corsi-block.active { background: #f39c12; box-shadow: 0 0 12px rgba(243, 156, 18, 0.6); }
+.corsi-block.clicked { background: #3498db; }
+.corsi-status { margin: 0 0 1rem; color: var(--primary); font-size: .85rem; min-height: 1.3rem; font-weight: 600; }
+.corsi-start { padding: 0.6rem 1.2rem; border: none; border-radius: 20px; background: var(--accent); color: #fff; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+.corsi-start:hover { background: color-mix(in srgb, var(--accent) 80%, black); }
+
 /* Interactive reaction-time demo (teleportation task) */
 .rt-demo { margin: 1.8rem 0 .75rem; padding: 1.1rem 1.2rem 1.3rem; border-radius: var(--radius); background: var(--entry); }
 .rt-demo-stage { position: relative; height: 200px; margin-bottom: .9rem; border: 1px dashed var(--tertiary); border-radius: var(--radius); background: var(--theme); }

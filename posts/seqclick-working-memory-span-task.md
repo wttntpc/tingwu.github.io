@@ -2,6 +2,12 @@
 
 畫面上有幾個方塊，會依序一個個亮起來，中間間隔很短。玩家要記住它們亮起的**順序**，等提示結束後，依**相同順序**依次點擊這些方塊。這是經典「Corsi 積木敲擊測驗」的數位化改編版本，用來測量**視覺空間工作記憶廣度**。
 
+<div id="corsiDemo" class="corsi-demo">
+  <div class="corsi-status" aria-live="polite">準備好測試你的工作記憶了嗎？</div>
+  <div class="corsi-stage"></div>
+  <button class="corsi-start">開始測驗</button>
+</div>
+
 ## 記住「內容」還不夠，還要記住「順序」
 
 跟單純記住「有哪些方塊」不同，這個作業要求玩家把一串位置**依序**重現出來——這牽涉到序列編碼與提取的能力，而不只是記憶容量。序列長度（一次要記幾個方塊）從 4 顆到 6 顆不等，長度越長，負荷越重。
@@ -23,6 +29,12 @@
 <!-- PROFESSIONAL -->
 
 順向點擊作業（Sequence Clicking Task）是 CIPH 認知評估套件中用於測量**視覺空間工作記憶廣度（Visuospatial Working Memory Span）**的作業，為 Corsi Block-Tapping Test 之數位化改編版本。
+
+<div id="corsiDemo" class="corsi-demo">
+  <div class="corsi-status" aria-live="polite">準備好測試你的工作記憶了嗎？</div>
+  <div class="corsi-stage"></div>
+  <button class="corsi-start">開始測驗</button>
+</div>
 
 ## 理論框架
 

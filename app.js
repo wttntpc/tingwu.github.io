@@ -218,22 +218,64 @@ async function renderHome() {
 }
 
 const researchFrameworkDiagram = {
-  zh: `flowchart LR
-  A["運動介入<br/>12 週有氧運動"] --> B["生理適能改變<br/>VO2peak／體組成"]
-  A --> C["神經生理指標<br/>EEG／HHSA"]
-  B --> D["執行功能與認知表現<br/>反應時間／正確率"]
-  C --> D
-  B --> E["情緒與心理健康<br/>STAI-T／BDI-II／BAI"]
-  D --> F["健康老化與生活品質"]
-  E --> F`,
-  en: `flowchart LR
-  A["Exercise intervention<br/>12-week aerobic program"] --> B["Fitness &amp; physiology change<br/>VO2peak / body composition"]
-  A --> C["Neurophysiology<br/>EEG / HHSA"]
-  B --> D["Executive function &amp; cognition<br/>reaction time / accuracy"]
-  C --> D
-  B --> E["Emotion &amp; mental health<br/>STAI-T / BDI-II / BAI"]
-  D --> F["Healthy aging &amp; quality of life"]
-  E --> F`
+  zh: `flowchart TD
+  subgraph K["運動科學 (Kinesiology)"]
+    PA["身體活動與久坐行為"]
+    EX["運動介入 (阻力／有氧)"]
+    FIT["心肺適能與體組成"]
+  end
+  
+  subgraph C["認知神經科學 (Cognitive Neuroscience)"]
+    EEG["神經生理機制<br>(EEG / HHSA 跨頻耦合)"]
+    COG["執行功能<br>(抑制控制、工作記憶、認知彈性)"]
+    EMO["情緒與心理健康"]
+  end
+  
+  subgraph M["研究方法與工具 (Methodology & AI)"]
+    DATA["資料科學與統計建模"]
+    AI["AI 驅動的自動化工作流"]
+  end
+
+  PA <--> EX
+  EX --> FIT
+  FIT --> EEG
+  FIT --> COG
+  FIT --> EMO
+  EEG <--> COG
+  EEG <--> EMO
+  COG <--> EMO
+  
+  M -. "支持測量與推論" .-> K
+  M -. "支持測量與推論" .-> C`,
+  en: `flowchart TD
+  subgraph K["Kinesiology"]
+    PA["Physical Activity & Sedentary Behavior"]
+    EX["Exercise Interventions (Resistance/Aerobic)"]
+    FIT["Cardiorespiratory Fitness & Body Composition"]
+  end
+  
+  subgraph C["Cognitive Neuroscience"]
+    EEG["Neurophysiology<br>(EEG / HHSA)"]
+    COG["Executive Function<br>(Inhibition, Memory, Flexibility)"]
+    EMO["Emotion & Mental Health"]
+  end
+  
+  subgraph M["Methodology & AI"]
+    DATA["Data Science & Statistical Modeling"]
+    AI["AI-Driven Reproducible Workflows"]
+  end
+
+  PA <--> EX
+  EX --> FIT
+  FIT --> EEG
+  FIT --> COG
+  FIT --> EMO
+  EEG <--> COG
+  EEG <--> EMO
+  COG <--> EMO
+  
+  M -. "Enhance measurement & inference" .-> K
+  M -. "Enhance measurement & inference" .-> C`
 };
 
 async function renderAbout(section = '') {
@@ -344,6 +386,363 @@ function parseArticleVersions(source) {
     simple: source.slice(simpleStart + simpleMarker.length, professionalStart).trim(),
     professional: source.slice(professionalStart + professionalMarker.length).trim()
   };
+}
+
+function initCorsiDemo() {
+  const demos = document.querySelectorAll('.corsi-demo');
+  if (demos.length === 0) return;
+
+  demos.forEach(demo => {
+    const stage = demo.querySelector('.corsi-stage');
+    const status = demo.querySelector('.corsi-status');
+    const startBtn = demo.querySelector('.corsi-start');
+    if (!stage || !status || !startBtn) return;
+
+    // Only create blocks if they don't exist yet
+    if (stage.children.length === 0) {
+      for (let i = 0; i < 9; i++) {
+        const block = document.createElement('button');
+        block.className = 'corsi-block';
+        block.dataset.index = i;
+        stage.appendChild(block);
+      }
+    }
+
+    const blocks = Array.from(stage.querySelectorAll('.corsi-block'));
+    let sequence = [];
+    let userStep = 0;
+    let state = 'idle'; 
+    let activeTimeout;
+    
+    function playSequence() {
+      state = 'playing';
+      status.textContent = '請記住發亮的順序...';
+      startBtn.hidden = true;
+      let i = 0;
+      
+      blocks.forEach(b => b.classList.remove('active', 'clicked'));
+
+      const playNext = () => {
+        if (i > 0) blocks[sequence[i-1]].classList.remove('active');
+        if (i < sequence.length) {
+          blocks[sequence[i]].classList.add('active');
+          i++;
+          activeTimeout = setTimeout(playNext, 800);
+        } else {
+          state = 'waiting_user';
+          status.textContent = '換你了！請依序點擊方塊。';
+        }
+      };
+      
+      activeTimeout = setTimeout(playNext, 600);
+    }
+
+    function nextLevel() {
+      let next;
+      do {
+        next = Math.floor(Math.random() * 9);
+      } while (sequence.length > 0 && next === sequence[sequence.length - 1]);
+      sequence.push(next);
+      userStep = 0;
+      status.textContent = `第 ${sequence.length} 關準備...`;
+      activeTimeout = setTimeout(playSequence, 1000);
+    }
+
+    startBtn.addEventListener('click', () => {
+      clearTimeout(activeTimeout);
+      blocks.forEach(b => b.classList.remove('active', 'clicked'));
+      sequence = [];
+      nextLevel();
+    });
+
+    blocks.forEach(block => {
+      block.addEventListener('click', () => {
+        if (state !== 'waiting_user') return;
+        
+        const idx = parseInt(block.dataset.index);
+        block.classList.add('clicked');
+        setTimeout(() => block.classList.remove('clicked'), 200);
+
+        if (idx === sequence[userStep]) {
+          userStep++;
+          if (userStep === sequence.length) {
+            state = 'playing';
+            status.textContent = '正確！準備下一回合...';
+            activeTimeout = setTimeout(nextLevel, 500);
+          }
+        } else {
+          state = 'gameover';
+          status.textContent = `遊戲結束！你的工作記憶廣度 (Span) 是 ${sequence.length - 1}`;
+          startBtn.hidden = false;
+          startBtn.textContent = '再試一次';
+        }
+      });
+    });
+  });
+}
+
+function initFlankerDemo() {
+  const demos = document.querySelectorAll('.flanker-demo');
+  if (demos.length === 0) return;
+
+  demos.forEach(demo => {
+    const stage = demo.querySelector('.flanker-stage');
+    const status = demo.querySelector('.flanker-status');
+    const startBtn = demo.querySelector('.flanker-start');
+    const stimulus = demo.querySelector('.flanker-stimulus');
+    const resultBox = demo.querySelector('.flanker-result');
+    if (!stage || !status || !startBtn || !stimulus) return;
+
+    let state = 'idle'; // idle, waiting, shown, gameover
+    let trials = [];
+    let currentTrial = 0;
+    const maxTrials = 10;
+    let tStimulus = 0;
+
+    function generateTrials() {
+      trials = [];
+      for (let i = 0; i < maxTrials; i++) {
+        const isCongruent = Math.random() > 0.5;
+        const isLeft = Math.random() > 0.5;
+        let text = '';
+        if (isCongruent) {
+          text = isLeft ? '<<<<<' : '>>>>>';
+        } else {
+          text = isLeft ? '>><>>' : '<<><<';
+        }
+        trials.push({ text, isCongruent, isLeft, rt: null, correct: false });
+      }
+    }
+
+    function showFixation() {
+      state = 'waiting';
+      stimulus.textContent = '+';
+      stimulus.className = 'flanker-stimulus';
+      setTimeout(showStimulus, 500 + Math.random() * 500);
+    }
+
+    function showStimulus() {
+      if (state !== 'waiting') return;
+      state = 'shown';
+      stimulus.textContent = trials[currentTrial].text;
+      tStimulus = performance.now();
+    }
+
+    function finishGame() {
+      state = 'gameover';
+      stimulus.textContent = '結束';
+      startBtn.hidden = false;
+      startBtn.textContent = '再試一次';
+      
+      const congruentTrials = trials.filter(t => t.isCongruent && t.correct);
+      const incongruentTrials = trials.filter(t => !t.isCongruent && t.correct);
+      
+      const cRt = congruentTrials.length ? Math.round(congruentTrials.reduce((a, b) => a + b.rt, 0) / congruentTrials.length) : 'N/A';
+      const iRt = incongruentTrials.length ? Math.round(incongruentTrials.reduce((a, b) => a + b.rt, 0) / incongruentTrials.length) : 'N/A';
+      
+      resultBox.innerHTML = `
+        <div style="display:flex; justify-content:space-around; margin-top:1rem;">
+          <div><b>一致 (Congruent)</b><br/>${cRt} ms</div>
+          <div><b>不一致 (Incongruent)</b><br/>${iRt} ms</div>
+        </div>
+        <p style="margin-top:0.5rem; font-size:0.75rem; color:var(--secondary);">* 抑制代價 (Interference Cost) = ${iRt !== 'N/A' && cRt !== 'N/A' ? iRt - cRt : 'N/A'} ms</p>
+      `;
+      resultBox.hidden = false;
+      status.textContent = '測驗完成！請看下方結果。';
+    }
+
+    startBtn.addEventListener('click', () => {
+      generateTrials();
+      currentTrial = 0;
+      startBtn.hidden = true;
+      resultBox.hidden = true;
+      status.textContent = '請將雙手放在鍵盤左右方向鍵上 (← / →)';
+      // Add keyboard listener
+      document.addEventListener('keydown', handleKey);
+      setTimeout(showFixation, 1500);
+    });
+
+    const handleKey = (e) => {
+      if (state !== 'shown') return;
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+
+      const tResponded = performance.now();
+      const trial = trials[currentTrial];
+      trial.rt = tResponded - tStimulus;
+      
+      const pressedLeft = e.key === 'ArrowLeft';
+      trial.correct = pressedLeft === trial.isLeft;
+      
+      stimulus.classList.add(trial.correct ? 'correct' : 'incorrect');
+
+      state = 'idle';
+      currentTrial++;
+      if (currentTrial < maxTrials) {
+        setTimeout(showFixation, 400);
+      } else {
+        document.removeEventListener('keydown', handleKey);
+        setTimeout(finishGame, 400);
+      }
+    };
+  });
+}
+
+function initCardSortDemo() {
+  const demos = document.querySelectorAll('.cardsort-demo');
+  if (demos.length === 0) return;
+
+  const shapes = ['circle', 'square', 'triangle'];
+  const colors = ['#e74c3c', '#3498db', '#2ecc71'];
+
+  demos.forEach(demo => {
+    const targetArea = demo.querySelector('.cs-target');
+    const optionsArea = demo.querySelector('.cs-options');
+    const status = demo.querySelector('.cs-status');
+    const startBtn = demo.querySelector('.cs-start');
+    const resultBox = demo.querySelector('.cs-result');
+    if (!targetArea || !optionsArea || !status || !startBtn) return;
+
+    let state = 'idle';
+    let trials = [];
+    let currentTrial = 0;
+    const maxTrials = 10;
+    let tStart = 0;
+    let currentTarget = null;
+    let currentCorrectIndex = -1;
+
+    function renderCard(shape, color) {
+      const el = document.createElement('div');
+      el.className = 'cs-card';
+      let shapeHtml = '';
+      if (shape === 'circle') shapeHtml = `<div style="width:40px; height:40px; border-radius:50%; background:${color};"></div>`;
+      else if (shape === 'square') shapeHtml = `<div style="width:40px; height:40px; background:${color};"></div>`;
+      else if (shape === 'triangle') shapeHtml = `<div style="width:0; height:0; border-left:20px solid transparent; border-right:20px solid transparent; border-bottom:40px solid ${color};"></div>`;
+      el.innerHTML = shapeHtml;
+      return el;
+    }
+
+    function generateTrial() {
+      // 50% Match rule, 50% Non-match rule
+      const isMatch = Math.random() > 0.5;
+      const targetShape = shapes[Math.floor(Math.random() * shapes.length)];
+      const targetColor = colors[Math.floor(Math.random() * colors.length)];
+      
+      let options = [];
+      let correctIdx = Math.floor(Math.random() * 3);
+      
+      for (let i = 0; i < 3; i++) {
+        if (i === correctIdx) {
+          if (isMatch) {
+            options.push({ shape: targetShape, color: targetColor });
+          } else {
+            // Find completely different shape and color
+            let diffShape = shapes.find(s => s !== targetShape);
+            let diffColor = colors.find(c => c !== targetColor);
+            options.push({ shape: diffShape, color: diffColor });
+          }
+        } else {
+          // Distractors
+          if (isMatch) {
+            // Distractors should not be perfect matches
+            let s = shapes[Math.floor(Math.random() * shapes.length)];
+            let c = colors[Math.floor(Math.random() * colors.length)];
+            while (s === targetShape && c === targetColor) {
+              s = shapes[Math.floor(Math.random() * shapes.length)];
+              c = colors[Math.floor(Math.random() * colors.length)];
+            }
+            options.push({ shape: s, color: c });
+          } else {
+            // Non-match rule: distractors MUST share at least one attribute so they aren't completely different
+            let shareAttr = Math.random() > 0.5; // Share shape or color
+            if (shareAttr) {
+              let c = colors.find(c => c !== targetColor);
+              options.push({ shape: targetShape, color: c || colors[0] });
+            } else {
+              let s = shapes.find(s => s !== targetShape);
+              options.push({ shape: s || shapes[0], color: targetColor });
+            }
+          }
+        }
+      }
+      return { isMatch, target: { shape: targetShape, color: targetColor }, options, correctIdx, rt: null, correct: false };
+    }
+
+    function showTrial() {
+      targetArea.innerHTML = '';
+      optionsArea.innerHTML = '';
+      
+      const trial = trials[currentTrial];
+      
+      const tCard = renderCard(trial.target.shape, trial.target.color);
+      targetArea.appendChild(tCard);
+
+      trial.options.forEach((opt, idx) => {
+        const oCard = renderCard(opt.shape, opt.color);
+        oCard.addEventListener('click', () => {
+          if (state !== 'playing') return;
+          handleResponse(idx);
+        });
+        optionsArea.appendChild(oCard);
+      });
+
+      state = 'playing';
+      tStart = performance.now();
+      status.textContent = `第 ${currentTrial + 1} / ${maxTrials} 題 (請選出答案)`;
+    }
+
+    function handleResponse(idx) {
+      const trial = trials[currentTrial];
+      trial.rt = performance.now() - tStart;
+      trial.correct = (idx === trial.correctIdx);
+
+      const cards = optionsArea.querySelectorAll('.cs-card');
+      cards[idx].classList.add(trial.correct ? 'correct' : 'incorrect');
+
+      state = 'idle';
+      setTimeout(() => {
+        currentTrial++;
+        if (currentTrial < maxTrials) {
+          showTrial();
+        } else {
+          finishGame();
+        }
+      }, 500);
+    }
+
+    function finishGame() {
+      state = 'gameover';
+      targetArea.innerHTML = '';
+      optionsArea.innerHTML = '';
+      startBtn.hidden = false;
+      startBtn.textContent = '再測一次';
+      
+      const matchTrials = trials.filter(t => t.isMatch && t.correct);
+      const nonMatchTrials = trials.filter(t => !t.isMatch && t.correct);
+      
+      const mRt = matchTrials.length ? Math.round(matchTrials.reduce((a, b) => a + b.rt, 0) / matchTrials.length) : 'N/A';
+      const nmRt = nonMatchTrials.length ? Math.round(nonMatchTrials.reduce((a, b) => a + b.rt, 0) / nonMatchTrials.length) : 'N/A';
+      
+      resultBox.innerHTML = `
+        <div style="display:flex; justify-content:space-around; margin-top:1rem;">
+          <div><b>規則一 (完全匹配)</b><br/>${mRt} ms</div>
+          <div><b>規則二 (完全不同)</b><br/>${nmRt} ms</div>
+        </div>
+        <p style="margin-top:0.5rem; font-size:0.75rem; color:var(--secondary);">* 切換代價 (Switching Cost) = ${nmRt !== 'N/A' && mRt !== 'N/A' ? nmRt - mRt : 'N/A'} ms</p>
+      `;
+      resultBox.hidden = false;
+      status.textContent = '測驗完成！請看下方結果。';
+    }
+
+    startBtn.addEventListener('click', () => {
+      trials = [];
+      for(let i=0; i<maxTrials; i++) trials.push(generateTrial());
+      currentTrial = 0;
+      startBtn.hidden = true;
+      resultBox.hidden = true;
+      showTrial();
+    });
+  });
 }
 
 function initReactionDemo() {
@@ -787,6 +1186,9 @@ async function renderPost(id) {
     document.querySelectorAll('[data-version-content]').forEach(content => { content.hidden = content.dataset.versionContent !== version; });
   }));
   document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+  initCorsiDemo();
+  initFlankerDemo();
+  initCardSortDemo();
   initReactionDemo();
   initBbiDemo();
   initPoincareDemos();
