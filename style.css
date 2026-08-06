@@ -310,6 +310,13 @@ button { font: inherit; }
 .markdown-body tbody tr:nth-child(even) { background: color-mix(in srgb, var(--paper) 60%, transparent); }
 .markdown-body hr { margin: 3rem 0; border: 0; border-top: 1px solid var(--tertiary); }
 .error-state, .loading { min-height: 60vh; display: grid; place-items: center; color: var(--secondary); }
+.error-state { display: flex; flex-direction: column; justify-content: center; gap: .75rem; text-align: center; }
+.error-state h1, .error-state p { margin: 0; }
+.error-state button { margin-top: .35rem; padding: .6rem .9rem; border: 1px solid var(--accent); border-radius: var(--radius); color: #fff; background: var(--accent); cursor: pointer; font-weight: 700; }
+.error-state button:hover { filter: brightness(.94); }
+.markdown-fallback { padding: 1rem 1.1rem; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--paper); }
+.markdown-fallback > p { margin-top: 0; color: var(--secondary); font-size: .78rem; }
+.markdown-fallback pre { margin: 0; overflow-wrap: anywhere; white-space: pre-wrap; font-family: var(--font); font-size: .84rem; line-height: 1.8; }
 
 .site-footer { width: min(calc(100% - 40px), var(--main-width)); margin: auto; padding: 2rem 0; display: grid; grid-template-columns: 1fr auto; gap: 1rem; border-top: 1px solid var(--tertiary); color: var(--secondary); font-size: .72rem; }
 .footer-name { margin: 0; color: var(--primary); font-weight: 600; }

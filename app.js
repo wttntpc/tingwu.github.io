@@ -5,9 +5,16 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
+const SITE_VERSION = '20260806-4';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+  })[char]);
+}
 
 function safeMarkdownParse(mdText) {
   if (!mdText) return '';
@@ -18,7 +25,10 @@ function safeMarkdownParse(mdText) {
       console.warn('marked.parse error:', e);
     }
   }
-  return mdText;
+  const message = lang === 'zh'
+    ? '文章格式載入較慢，先顯示可閱讀的純文字版本。'
+    : 'Formatting is loading slowly. A readable plain-text version is shown below.';
+  return `<div class="markdown-fallback"><p>${message}</p><pre>${escapeHtml(mdText)}</pre></div>`;
 }
 
 function renderMermaidNodes(selector = '.mermaid') {
@@ -337,17 +347,28 @@ const POSTS_DATA = [
 ];
 
 let cachedPosts = null;
+async function fetchSiteFile(path, timeoutMs = 10000) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const separator = path.includes('?') ? '&' : '?';
+    const response = await fetch(`${path}${separator}v=${SITE_VERSION}`, {
+      cache: 'no-cache',
+      signal: controller.signal
+    });
+    if (!response.ok) throw new Error(`Unable to load ${path} (${response.status})`);
+    return response;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
 async function getPosts() {
   if (cachedPosts) return cachedPosts;
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 1200);
-    const response = await fetch('posts.json', { signal: controller.signal });
-    clearTimeout(timeoutId);
-    if (response.ok) {
-      cachedPosts = await response.json();
-      return cachedPosts;
-    }
+    const response = await fetchSiteFile('posts.json', 2500);
+    cachedPosts = await response.json();
+    return cachedPosts;
   } catch (e) {
     console.warn('Using embedded POSTS_DATA fallback');
   }
@@ -497,8 +518,7 @@ async function renderAbout(section = '') {
 }
 
 async function renderPublications() {
-  const response = await fetch('posts/publications.md');
-  if (!response.ok) throw new Error('Unable to load publications');
+  const response = await fetchSiteFile('posts/publications.md');
   const content = safeMarkdownParse(await response.text());
   const labels = lang === 'zh' ? {
     home: '首頁', title: '學術發表', description: '期刊論文與國內外研討會發表紀錄。'
@@ -1369,8 +1389,7 @@ function initFilterDemo() {
 }
 
 async function renderPost(id) {
-  const [posts, response] = await Promise.all([getPosts(), fetch(`posts/${id}.md`)]);
-  if (!response.ok) throw new Error('Post not found');
+  const [posts, response] = await Promise.all([getPosts(), fetchSiteFile(`posts/${id}.md`)]);
   const meta = posts.find(post => post.id === id);
   const versions = parseArticleVersions(await response.text());
   const selectedVersion = localStorage.getItem('tingting-article-version') === 'professional' ? 'professional' : 'simple';
@@ -1416,7 +1435,11 @@ async function router() {
     else app.innerHTML = `<div class="error-state"><h1>${t()?.notFound || 'Page Not Found'}</h1></div>`;
   } catch (error) {
     console.error('Router error:', error);
-    app.innerHTML = `<div class="error-state"><h1>${t()?.notFound || 'Page Not Found'}</h1><p style="text-align:center; font-size:0.85rem; color:var(--secondary); margin-top:1rem;">${error?.message || ''}</p></div>`;
+    const title = lang === 'zh' ? '網站內容暫時無法載入' : 'The site content could not be loaded';
+    const message = lang === 'zh' ? '請檢查網路連線後再試一次；若網站剛更新，也可以重新載入取得最新版本。' : 'Check your connection and try again. If the site was just updated, reload to get the latest version.';
+    const retry = lang === 'zh' ? '重新載入' : 'Reload';
+    app.innerHTML = `<div class="error-state"><h1>${title}</h1><p>${message}</p><button id="route-retry" type="button">${retry}</button></div>`;
+    document.querySelector('#route-retry')?.addEventListener('click', router);
   }
   window.scrollTo(0, 0);
   if (app.focus) app.focus({ preventScroll: true });
@@ -1448,6 +1471,11 @@ if (topLink) {
   window.addEventListener('scroll', () => topLink.classList.toggle('is-visible', window.scrollY > 700), { passive: true });
 }
 window.addEventListener('hashchange', router);
+window.addEventListener('markdownready', () => {
+  const path = location.hash.slice(1) || '/';
+  if (path === '/publications' || path.startsWith('/post/')) router();
+});
+window.addEventListener('mermaidready', () => renderMermaidNodes());
 const yearEl = document.querySelector('#year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
