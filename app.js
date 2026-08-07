@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260806-4';
+const SITE_VERSION = '20260807-1';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -205,14 +205,27 @@ function updateChrome() {
     ).join('');
   }
   if (langToggle) langToggle.textContent = lang === 'zh' ? 'EN' : '中文';
+  updateMenuLabel();
   document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
   const footerTagline = document.querySelector('#footer-tagline');
   if (footerTagline && c && c.footer) footerTagline.textContent = c.footer;
 }
 
+function updateMenuLabel() {
+  if (!menuToggle) return;
+  const open = menuToggle.getAttribute('aria-expanded') === 'true';
+  const label = lang === 'zh'
+    ? (open ? '關閉選單' : '開啟選單')
+    : (open ? 'Close menu' : 'Open menu');
+  menuToggle.setAttribute('aria-label', label);
+  const text = menuToggle.querySelector('.sr-only');
+  if (text) text.textContent = label;
+}
+
 function closeMenu() {
   if (navPanel) navPanel.classList.remove('is-open');
   if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+  updateMenuLabel();
 }
 
 const POSTS_DATA = [
@@ -1344,6 +1357,7 @@ if (menuToggle && navPanel) {
   menuToggle.addEventListener('click', () => {
     const open = navPanel.classList.toggle('is-open');
     menuToggle.setAttribute('aria-expanded', String(open));
+    updateMenuLabel();
   });
 }
 if (themeToggle) {
