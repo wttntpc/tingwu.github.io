@@ -1,5 +1,7 @@
 <!-- SIMPLE -->
 
+> **閱讀指引｜難度：中等**：需要會開啟終端機並貼上指令。第一次設定請閱讀 SIMPLE 版，預留約 30–60 分鐘；已熟悉命令列、模型 endpoint 與背景服務者，可切換 PROFESSIONAL 版。
+
 我希望 AI 不只在我打開電腦時回答問題，而是每天早上主動把值得閱讀的學術文章送到手機。這篇文章記錄我的實際做法：讓 Hermes Agent 搜尋與整理文獻、用 cron 在每天上午 8 點啟動任務，再透過 Telegram 把結果送給我。
 
 <figure class="article-figure">
@@ -8,6 +10,16 @@
 </figure>
 
 > 這不是「讓 AI 每天替我讀完論文」，而是建立一份準時送達、保留來源、可以再人工判斷的閱讀清單。
+
+## 5 分鐘讀完的極簡版：先看完整路線
+
+1. 安裝 Hermes，執行 `hermes`，確認可以正常對話。
+2. 執行 `hermes model`，選擇已測試過 tool calling 的免費或本機模型。
+3. 用 BotFather 建立 Telegram bot，再執行 `hermes gateway setup` 填入 token 與自己的數字型 user ID。
+4. 執行 `hermes gateway`，在 Telegram 測試回覆，並於該聊天室傳送 `/sethome`。
+5. 建立 `daily-science-brief`，再用 `hermes cron run daily-science-brief` 立即驗收，不要等到隔天。
+
+> ⚠️ **最容易漏掉的一件事：執行 Hermes 的電腦必須開機、連網，而且 gateway 必須持續運作。**若無法讓個人電腦常駐，可改用 always-on 小主機／伺服器；否則就接受任務只會在電腦開機且 gateway 正常時執行。
 
 ## 先用白話理解：Hermes 到底是什麼？
 
@@ -22,6 +34,8 @@ Hermes 不是另一個語言模型，也不只是聊天視窗。比較準確的�
 | Gateway | 長時間在線的「接線與傳送中心」 | 連接 Telegram，並承載 cron 排程器 |
 | Cron | 「鬧鐘」 | 每天上午 8 點啟動新的文獻整理任務 |
 
+> **名詞小字典**：Gateway＝讓 Hermes 持續接收與傳送訊息的背景服務；cron＝按時間啟動任務的排程器；bot token＝BotFather 發的機器人密碼；user ID＝Telegram 的數字帳號識別碼，不是 `@username`；Session＝一條獨立對話；Skill＝可重複使用的工作規則。
+
 因此，即使使用免費或本機模型，真正決定成果是否可靠的仍是工作流程：來源要指定、欄位要固定、查不到要誠實標示，最後還要由研究者核對。
 
 ### 它真的會「越用越懂我」嗎？
@@ -34,7 +48,26 @@ Hermes 不是另一個語言模型，也不只是聊天視窗。比較準確的�
 
 ## 完成後會得到什麼？
 
-每天上午 8 點，Telegram 會收到最多 5 篇新文獻。內容包含原文標題、中文標題、作者、期刊、研究類型、樣本、方法、主要結果、限制，以及可直接開啟的 DOI 或來源連結。找不到的欄位標示「無」或「待確認」，不能由 AI 猜測。
+初學者建議每天先收最多 5 篇新文獻；我的進階設定可增加到 20 篇，並拆成「跨主題交集優先」與「其餘單一主題」兩個區塊。內容包含原文標題、中文標題、作者、期刊、研究類型、樣本、方法、主要結果、限制，以及可直接開啟的 DOI 或來源連結。找不到的欄位標示「無」或「待確認」，不能由 AI 猜測。
+
+<figure class="telegram-preview">
+  <div class="telegram-phone" role="img" aria-label="Telegram 每日學術文獻推送格式示意">
+    <div class="telegram-phone-header"><strong>Daily Science Brief</strong><span>08:00</span></div>
+    <div class="telegram-bubble">
+      <strong>📚 今日新文獻｜跨主題交集優先</strong><br>
+      1. 運動介入與 HRV 的新研究<br>
+      <small>研究類型：Original Article<br>樣本：成人運動介入研究<br>主要結果：……<br>限制：……<br>DOI：可直接開啟的來源連結</small>
+    </div>
+    <div class="telegram-bubble">
+      <strong>單一主題的新文獻</strong><br>
+      2. EEG 與執行功能研究<br>
+      <small>找不到的欄位：待確認</small>
+    </div>
+  </div>
+  <figcaption>訊息成品示意，不是真實 Telegram 截圖，也不是實際研究結果。正式發布真實截圖前，請遮住 bot 名稱、chat ID、PMID／私人收藏資訊與任何 token。</figcaption>
+</figure>
+
+要換成真實成品圖時，先讓 `hermes cron run daily-science-brief` 完整推送一次，再截取 Telegram 的訊息區。裁掉手機通知列與私人聊天室名稱，遮住 bot username、chat ID 或私人收藏標記；BotFather token 不應出現在任何截圖。將處理後的圖片交給我，即可用真實畫面替換上方示意圖。
 
 整個系統有四個部分：
 
@@ -86,6 +119,8 @@ iex (irm https://hermes-agent.nousresearch.com/install.ps1)
 
 安裝完若找不到 `hermes`，先關閉再重新開啟終端機。第一次設定不要急著加入 Telegram；先和 Hermes 對話一次，確認模型與基本工具可以正常運作。
 
+> **成功長這樣 👉 Hermes 已啟動**：執行 `hermes --version` 會顯示版本資訊；執行 `hermes` 後能進入對話畫面，而且沒有出現「找不到指令」、缺少模型設定或 API key 錯誤。畫面文字可能隨版本改變，判斷重點是可以送出問題並收到回答。
+
 ## 第二步：選擇免費或本機模型
 
 在一般終端機執行：
@@ -108,6 +143,8 @@ hermes model
 
 Bot token 等同密碼。不要貼進文章、對話截圖或 GitHub；如果曾經公開，立即在 BotFather 使用 `/revoke`，再產生新 token。
 
+> **成功長這樣 👉 Bot 已建立**：BotFather 會顯示建立完成、提供 bot 連結，並回傳一串類似 `123456789:[已遮蔽]` 的 token。若要截圖，只保留「建立完成」與 bot username；完整 token 不應出現在圖片裡。
+
 接著查出自己的數字型 Telegram user ID。這不是 `@username`，而是一串數字；可用 Telegram 的 `@userinfobot` 查詢。
 
 ## 第四步：讓 Hermes 連上 Telegram
@@ -128,20 +165,23 @@ hermes gateway
 
 回到 Telegram，開啟剛建立的 bot 並傳送一則測試訊息。收到 Hermes 回覆後，在同一個對話輸入：
 
+> **成功長這樣 👉 第一次測試回覆**：你傳送「請只回覆：連線成功」，bot 在同一個聊天室回覆「連線成功」。如果看到 `Unauthorized`、`Forbidden` 或完全沒有回覆，尚未成功，先檢查 gateway、token 與 allowed user ID。
+
 ```text
 /sethome
 ```
 
-這會把目前聊天室設為排程結果的預設收件位置。個人使用不需要關閉 BotFather 的 group privacy，也不建議把 bot 加入公開群組。
+傳這個指令，是告訴 Hermes：「以後每天的自動訊息就送到這個聊天室」。個人使用不需要關閉 BotFather 的 group privacy，也不建議把 bot 加入公開群組。
+
+> **成功長這樣 👉 收件位置已設定**：bot 會確認目前聊天室已成為 home channel，或表示排程訊息會送到此處；實際措辭可能隨版本不同。若沒有任何確認，先不要建立 cron。
 
 ## 第五步：建立每天上午 8 點的任務
 
-我實際使用的任務名稱是 `daily-science-brief`，完整研究規格保存在 [wttntpc/hermes-agent](https://github.com/wttntpc/hermes-agent)。五個主題是：
+任務名稱是 `daily-science-brief`。目前的進階工作流已移除情緒主題，並把研究範圍細分成 7 個查詢群組；第一次設定可先用以下 4 個核心領域測試：
 
 | 主題 | 搜尋方向 |
 |---|---|
 | 運動 | 身體活動、運動介入、VO₂max、有氧與阻力運動 |
-| 情緒 | 情緒反應、感受與心情調節 |
 | HRV | 心率變異性與自律神經 |
 | EEG | 腦波、神經震盪與腦電圖 |
 | 認知 | 執行功能、抑制、工作記憶、認知彈性與計畫 |
@@ -152,7 +192,7 @@ hermes gateway
 請建立一個名為 daily-science-brief 的 cron 任務，
 每天上午 8 點執行，結果傳送到 Telegram。
 
-搜尋過去 3 天與運動、情緒、HRV、EEG、認知功能高度相關的新文獻。
+搜尋過去 3 天與運動、HRV、EEG、認知功能高度相關的新文獻。
 優先使用 PubMed／Europe PMC，再以 Crossref 補 DOI 與期刊資料，
 其次才查 arXiv、bioRxiv、medRxiv 與 Semantic Scholar。
 
@@ -161,6 +201,10 @@ hermes gateway
 查不到的資料寫「無」或「待確認」，絕對不要補造。
 ```
 
+> **進階調整**：確認 5 篇版本穩定後，可改成每天最多 20 篇，並要求輸出兩區塊：第一區「跨主題交集文獻」，第二區「其餘單一主題文獻」。目前實際工作流使用 7 個查詢群組、交集優先，且不再納入情緒主題；這樣既保留廣度，也不會讓單一關鍵詞的文章蓋過真正跨領域的研究。
+
+如果介面顯示 cron expression，`0 8 * * *` 就是「每天上午 8 點」；五個欄位依序是「分、時、日、月、星期」。時間依執行 Hermes 的主機時區計算。
+
 建立後，先不要等到隔天。立即列出並手動執行：
 
 ```bash
@@ -168,6 +212,8 @@ hermes cron list
 hermes cron run daily-science-brief
 hermes cron status
 ```
+
+> **成功長這樣 👉 排程已可交付**：`hermes cron list` 能看到 `daily-science-brief` 為啟用狀態與下一次執行時間；手動 `run` 後 Telegram 收到一則完整摘要；`status` 或執行紀錄沒有錯誤。三項都通過，才算完成。
 
 ## 第六步：讓 gateway 長時間運作
 
@@ -201,11 +247,32 @@ Impact Factor 與 JCR 分區不適合由模型憑搜尋片段推測。沒有合�
 
 <!-- PROFESSIONAL -->
 
+> **閱讀指引｜難度：中等**：熟悉終端機、模型 endpoint、環境變數與背景服務者可直接閱讀本版，約 20–40 分鐘完成設定與驗收；第一次接觸 Hermes，建議先切換 SIMPLE 版。
+
+## TL;DR：專業版部署順序
+
+1. 安裝 Hermes，完成 `hermes --version`、一般對話與工具測試。
+2. 鎖定已驗證的 provider／model，再完成 Telegram token 與 allowed user ID 設定。
+3. 前景啟動 gateway，測試回覆並在目標聊天室傳送 `/sethome`。
+4. 建立 `0 8 * * *` 排程，先用 5 篇模式驗收，再升級為 20 篇與交集優先模式。
+5. 安裝 gateway 背景服務、重新開機、手動執行 cron，最後等待一次正式排程。
+
+> ⚠️ **運行條件**：主機必須開機、連網，gateway 也必須常駐。無法讓工作電腦持續運作時，可部署到 always-on 小主機／伺服器；否則排程只會在主機與 gateway 可用時執行。
+
 這個工作流把 Hermes Agent 當作長時間運行的執行層，以支援工具呼叫的雲端免費模型或本機模型作為推理層，使用 Hermes cron 建立每日排程，最後由 Telegram gateway 把結果送到指定 home channel。
 
 <figure class="article-figure">
   <img src="assets/hermes-academic-brief-workflow.png" alt="文獻來源經 AI Agent 查核與排程後傳送至手機的系統架構" loading="lazy">
   <figcaption>系統邊界：模型負責整理，Hermes 負責工具與排程，Telegram 負責傳送；原始來源仍需由研究者核對。</figcaption>
+</figure>
+
+<figure class="telegram-preview">
+  <div class="telegram-phone" role="img" aria-label="Telegram 每日學術文獻推送格式示意">
+    <div class="telegram-phone-header"><strong>Daily Science Brief</strong><span>08:00</span></div>
+    <div class="telegram-bubble"><strong>📚 跨主題交集優先</strong><br><small>1. 運動介入 × HRV｜研究類型、樣本、方法、主要結果、限制與 DOI</small></div>
+    <div class="telegram-bubble"><strong>其餘單一主題</strong><br><small>2. EEG 與執行功能｜查不到的欄位標示「待確認」</small></div>
+  </div>
+  <figcaption>訊息成品示意，不是真實 Telegram 截圖或研究結果。取得真實推送後，可用已遮蔽 bot 名稱、chat ID 與私人資訊的截圖替換。</figcaption>
 </figure>
 
 ## 一、先理解架構與必要條件
@@ -233,6 +300,8 @@ Hermes 將不同責任拆開處理：模型提供推理能力，Tools 提供可�
 | Skills | `SKILL.md` 與相關參考檔 | 固定搜尋策略、輸出格式、排除條件與驗收方式 |
 | Session／Memory | 當次對話、歷史索引、長期偏好 | 幫助延續背景，但不應作為唯一的任務規格來源 |
 | Gateway／Cron | 訊息路由、背景服務與排程 | 決定任務是否準時啟動，以及結果送往哪個聊天室 |
+
+> **名詞速查**：Gateway＝常駐訊息與排程服務；cron＝定時啟動任務的排程器；bot token＝Telegram bot 的機密憑證；user ID＝數字型帳號識別碼，不是 `@username`；Session＝彼此分離的一次對話；Skill＝可版本控制、可重用的任務規則。
 
 ### Session、Memory 與 Skill 不要混為一談
 
@@ -276,6 +345,8 @@ hermes --version
 
 原生 Windows 支援仍屬 early beta；若遇到路徑、子程序或非 ASCII 字元問題，可改用 WSL2。無論採哪一條路徑，都應先讓一般對話與工具測試成功，再加入訊息平台和排程，這樣才能判斷錯誤發生在哪一層。
 
+> **成功長這樣 👉 Hermes 已啟動**：`hermes --version` 能顯示版本，CLI 可以進入 session 並完成一次回答；若使用工具測試，也不應出現 provider、API key 或 tool calling 錯誤。
+
 官方文件指出，原生 Windows 已可使用 CLI、Telegram gateway、cron、瀏覽器工具、MCP、本機 Ollama／LM Studio 與 Web Dashboard；主要缺少的是需要 POSIX PTY 的 Dashboard 內嵌終端機。WSL2 則更接近 Linux 部署，但要額外理解 Windows 與 Linux 的檔案路徑、網路和常駐機制。如果 Ollama 或 LM Studio 跑在 Windows、Hermes 跑在 WSL2，還必須確認模型服務不是只綁定 `127.0.0.1`，並處理 Windows 防火牆與 WSL2 網路位址。
 
 ## 三、模型選擇與費用控制
@@ -302,6 +373,8 @@ hermes config set cron.model <目前已驗證的免費模型-id>
 ## 四、Telegram BotFather 與最小權限設定
 
 在官方 `@BotFather` 傳送 `/newbot`，設定顯示名稱與以 `bot` 結尾的唯一 username，取得 token。接著用 `@userinfobot` 查詢自己的 numeric user ID。
+
+> **成功長這樣 👉 BotFather 已完成**：畫面會顯示 bot 建立完成、bot 連結與 token。token 只存入 Hermes 的安全設定；教學截圖應把整串 token 完全遮住，而不是只遮其中幾碼。
 
 推薦使用互動式設定：
 
@@ -334,11 +407,15 @@ hermes gateway
 
 Telegram 能正常回覆後，在預計接收排程結果的 DM 或群組傳送：
 
+> **成功長這樣 👉 Gateway 已連線**：在 Telegram 傳送「請只回覆：連線成功」，同一個 bot 對話收到正常回答；Hermes 前景終端機沒有 `Unauthorized`、allowlist 或連線錯誤。
+
 ```text
 /sethome
 ```
 
-`/sethome` 會設定 `TELEGRAM_HOME_CHANNEL`。個人 DM 的 chat ID 通常與 numeric user ID 相同；群組 ID 則通常為負數。接著安裝並檢查背景服務：
+白話來說，傳送 `/sethome` 是告訴 Hermes：「以後每天的自動訊息就送到這個聊天室」。技術上它會設定 `TELEGRAM_HOME_CHANNEL`；個人 DM 的 chat ID 通常與 numeric user ID 相同，群組 ID 則通常為負數。
+
+> **成功長這樣 👉 Home channel 已設定**：bot 會確認目前聊天室已設為 home channel，或表示排程結果將傳送到這裡；確認文字可能依版本不同。接著才安裝並檢查背景服務：
 
 ```bash
 hermes gateway install
@@ -353,7 +430,7 @@ Telegram 的 home channel 只是預設收件位置。官方 cron delivery 也能
 
 ## 六、把研究規格寫成可查核的任務
 
-我的原始設定保存在公開 repo [wttntpc/hermes-agent](https://github.com/wttntpc/hermes-agent)，任務名稱為 `daily-science-brief`：每天 08:00 搜尋過去 3 天的新研究，主題涵蓋 Exercise、Emotion、HRV、EEG 與 Cognition。
+任務名稱為 `daily-science-brief`：每天 08:00 搜尋過去 3 天的新研究。本文保留 5 篇的初學者預設；目前的進階做法則細分成 7 個查詢群組、每日最多 20 篇，先列跨主題交集，再列其餘單一主題，並已移除情緒主題。
 
 ### 可直接交給 Hermes 的完整提示
 
@@ -361,15 +438,17 @@ Telegram 的 home channel 只是預設收件位置。官方 cron delivery 也能
 建立名稱為 daily-science-brief 的 recurring cron 任務：
 - schedule: 0 8 * * *
 - deliver: telegram
-- 每天最多輸出 5 篇
+- 初次測試每天最多輸出 5 篇；穩定後可改為最多 20 篇
 - 排除過去 7 天已推送的重複文獻
 
 你是我的科學文獻摘要助手。搜尋過去 3 天與以下主題高度相關的新文獻：
 1. Exercise、physical activity、exercise intervention、VO₂max、aerobic fitness、resistance exercise
-2. Emotion、feeling、affective reactivity、mood regulation
-3. Heart rate variability、HRV、autonomic nervous system
-4. EEG、brain oscillations、electroencephalography、neural oscillations
-5. Cognition、executive function、inhibition、working memory、switching、cognitive flexibility、planning
+2. Heart rate variability、HRV、autonomic nervous system
+3. EEG、brain oscillations、electroencephalography、neural oscillations
+4. Cognition、executive function、inhibition、working memory、switching、cognitive flexibility、planning
+
+若採進階模式，請把上述核心領域細分為目前使用的 7 個查詢群組，最多納入 20 篇，
+並分成兩區塊輸出：A. 跨主題交集文獻（優先）；B. 其餘單一主題文獻。
 
 資料來源依序為：
 1. PubMed／Europe PMC
@@ -390,9 +469,11 @@ Telegram 的 home channel 只是預設收件位置。官方 cron delivery 也能
 先開啟來源核對標題、作者、年份與 DOI，再納入摘要。
 ```
 
-原 repo 末段寫的是「主題 1–4」，但實際共有五個主題；本文已修正為「主題 1–5」。同時增加每日最多 5 篇、七天去重與同儕審查狀態，讓手機版輸出更可讀，也避免重複推送。
+5 篇模式適合第一次驗收與手機閱讀；20 篇模式則適合穩定運行後擴大探索範圍。無論選哪一種，都應保留七天去重、同儕審查狀態與來源核對規則。
 
 ## 七、建立 cronjob
+
+`0 8 * * *` 代表「每天上午 8 點」；五個欄位依序是「分、時、日、月、星期」。它依執行 Hermes 的主機時區運作，因此建立前要先核對系統時間與 `Asia/Taipei` 時區。
 
 ### 方法 A：在 Telegram 或 Hermes 對話中建立
 
@@ -402,7 +483,7 @@ Telegram 的 home channel 只是預設收件位置。官方 cron delivery 也能
 
 ```bash
 hermes cron create "0 8 * * *" \
-  "執行 daily-science-brief 規格：搜尋過去 3 天五個研究主題，最多 5 篇，核對來源與 DOI，以繁體中文輸出，禁止補造，排除七天內重複文獻。" \
+  "執行 daily-science-brief 規格：搜尋過去 3 天的 7 個研究查詢群組，不含情緒主題，最多 20 篇；先列跨主題交集，再列其餘單一主題。核對來源與 DOI，以繁體中文輸出，禁止補造，排除七天內重複文獻。" \
   --deliver telegram \
   --name "daily-science-brief" \
   --provider openrouter \
@@ -410,8 +491,6 @@ hermes cron create "0 8 * * *" \
 ```
 
 若採短提示，完整規則應封裝成 Hermes Skill，並用 `--skill <skill-name>` 附加到排程；否則短提示可能漏掉來源順序與查核條件。cron session 是獨立的新 session，不應假設它記得建立任務時的聊天內容。
-
-`0 8 * * *` 依執行主機的時間運作。建立前應確認作業系統顯示 Asia/Taipei 的正確日期、時間與時區。
 
 ### 排程真正執行時會發生什麼？
 
@@ -437,12 +516,14 @@ hermes cron runs <job-id> --limit 20
 第一次驗收應逐項確認：
 
 1. Telegram 是否送到正確聊天室。
-2. 是否最多 5 篇，且內容適合手機閱讀。
+2. 篇數是否符合所選模式：初學版最多 5 篇；進階版最多 20 篇，且分成「交集優先」與「其餘單一主題」。
 3. 每篇 DOI／PubMed 連結能否開啟。
 4. 標題、作者、年份是否與原始頁面一致。
 5. 預印本是否清楚標示未同儕審查。
 6. gateway 重開機後是否仍會運作。
 7. cron 是否固定使用預期的 provider 與 model。
+
+> **成功長這樣 👉 排程驗收通過**：list 顯示任務已啟用與正確的 next run；手動 run 後 Telegram 收到完整格式；runs／status 沒有 delivery 或模型錯誤；重新開機後 gateway 仍正常。不要只以「任務建立成功」當作完成。
 
 需要暫停、恢復、手動執行或刪除時，可用：
 
@@ -455,7 +536,7 @@ hermes cron remove daily-science-brief
 
 ## 九、版本、安全與維運注意事項
 
-本文參考的 Smart4A 教材強調 Hermes 的記憶、技能與多平台特性；實際版本功能則以官方文件為準。Hermes v0.13.0 的更新包含 gateway 重啟後恢復中斷 Session、cron `no_agent` watchdog、更多平台 allowlist、預設開啟敏感資訊遮罩，以及對組合後 cron prompt（包含 Skill 內容）進行 prompt-injection 掃描。
+Hermes 更新速度快，本文刻意不綁定單一版本號；實際功能與指令一律以官方最新文件為準。每次升級都應重新檢查 gateway、cron、allowlist、敏感資訊遮罩與 Skill 安全機制，不能只沿用舊版假設。
 
 這些保護能降低風險，但不能取代資料治理：
 
@@ -493,14 +574,12 @@ hermes cron remove daily-science-brief
 
 ## 延伸閱讀
 
-- [我的 daily-science-brief 設定](https://github.com/wttntpc/hermes-agent)
 - [Hermes Agent 官方專案](https://github.com/NousResearch/hermes-agent)
 - [Hermes 安裝文件](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/getting-started/installation.md)
 - [Hermes Telegram 設定文件](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/messaging/telegram.md)
 - [Hermes Scheduled Tasks 文件](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/cron.md)
 - [Hermes Skills System 文件](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/skills.md)
 - [Hermes Honcho Memory 文件](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/features/honcho.md)
-- [Hermes v0.13.0 Release Notes](https://github.com/NousResearch/hermes-agent/blob/main/RELEASE_v0.13.0.md)
 - [Hermes Windows WSL2 指南](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/windows-wsl-quickstart.md)
 - [Hermes 原生 Windows 指南](https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/windows-native.md)
 - [Smart4A：Hermes Agent 安裝速查](https://hermes.smart4a.tw/)（概念與教材編排參考；版本與指令以官方文件為準）
