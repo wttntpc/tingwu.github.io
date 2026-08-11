@@ -3,29 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#173f3a" />
+    <meta name="theme-color" content="#f8f7f3" />
     <meta name="description" content="吳亭葶的個人網站：認知神經科學、運動醫學、執行功能與 AI 資料分析。" />
-    <base href="/tingwu.github.io/" />
+    <base href="./" />
     <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/" />
     <meta property="og:title" content="吳亭葶 Ting-Ting Wu" />
     <meta property="og:description" content="Kinesiology × Cognitive neuroscience × human performance." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/" />
     <title>吳亭葶 Ting-Ting Wu｜Cognitive Neuroscience</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" />
-    <link rel="stylesheet" href="style.css" />
-    <script>try{if(localStorage.getItem('tingting-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" defer></script>
-    <script type="module">
+    <link rel="stylesheet" href="style.css?v=20260811-2" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#1d1e20'}}catch(e){}</script>
+    <script src="app.js?v=20260811-2" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
       window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
     </script>
-    <script src="app.js" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -58,7 +55,7 @@
           <span class="brand-mark">TW</span>
           <span class="brand-name">Ting-Ting Wu</span>
         </a>
-        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="開啟選單">
           <span></span><span></span><span></span><span class="sr-only">開啟選單</span>
         </button>
         <div class="nav-panel" id="nav-panel">
@@ -70,7 +67,8 @@
     </header>
 
     <main id="app" tabindex="-1">
-      <div class="loading">Loading<span>...</span></div>
+      <div class="loading">Loading<span>…</span></div>
+      <noscript><div class="error-state"><h1>請啟用 JavaScript</h1><p>這個網站需要 JavaScript 才能顯示內容。</p></div></noscript>
     </main>
 
     <footer class="site-footer">

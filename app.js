@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260811-1';
+const SITE_VERSION = '20260811-2';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -204,11 +204,29 @@ function updateChrome() {
       `<li><a href="#${href}" ${path === href ? 'aria-current="page"' : ''}>${label}</a></li>`
     ).join('');
   }
-  if (langToggle) langToggle.textContent = lang === 'zh' ? 'EN' : '中文';
+  if (langToggle) {
+    langToggle.textContent = lang === 'zh' ? 'EN' : '中文';
+    const label = lang === 'zh' ? '切換為英文' : 'Switch to Chinese';
+    langToggle.setAttribute('aria-label', label);
+    langToggle.setAttribute('title', label);
+  }
   updateMenuLabel();
+  updateThemeChrome();
   document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
   const footerTagline = document.querySelector('#footer-tagline');
   if (footerTagline && c && c.footer) footerTagline.textContent = c.footer;
+}
+
+function updateThemeChrome() {
+  const dark = document.documentElement.dataset.theme === 'dark';
+  const label = lang === 'zh'
+    ? (dark ? '切換淺色模式' : '切換深色模式')
+    : (dark ? 'Switch to light mode' : 'Switch to dark mode');
+  if (themeToggle) {
+    themeToggle.setAttribute('aria-label', label);
+    themeToggle.setAttribute('title', label);
+  }
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#1d1e20' : '#f8f7f3');
 }
 
 function updateMenuLabel() {
@@ -441,7 +459,7 @@ async function renderBlog(requestedCategory = 'all') {
   const visiblePosts = activeCategory === 'all' ? posts : posts.filter(post => post.category === activeCategory);
   const renderCards = items => items.map(post => `<a class="blog-card" href="#/post/${post.id}"><div class="post-meta">${categoryLabel(post.category)} · ${post.date}</div><h2>${post.title}</h2><p>${post.description}</p>${tagList(post)}<span class="version-badge">${c.simpleVersion} · ${c.professionalVersion}</span></a>`).join('');
   app.innerHTML = `<div class="page-shell"><header class="inner-hero"><p class="eyebrow">${c.blogEyebrow}</p><h1 class="display">${c.blogTitle}</h1><p>${c.blogDesc}</p><p class="blog-version-intro">${c.blogVersionIntro}</p></header>
-    <div class="article-search"><label for="article-search-input">${c.searchLabel}</label><div class="article-search-control"><span aria-hidden="true">⌕</span><input id="article-search-input" type="search" inputmode="search" autocomplete="off" placeholder="${c.searchPlaceholder}"><button id="article-search-clear" type="button" hidden>${c.clearSearch}</button></div><p id="article-search-status" role="status" aria-live="polite"></p></div>
+    <div class="article-search"><label for="article-search-input">${c.searchLabel}</label><div class="article-search-control"><span aria-hidden="true">⌕</span><input id="article-search-input" name="article-search" type="search" inputmode="search" autocomplete="off" spellcheck="false" placeholder="${c.searchPlaceholder}"><button id="article-search-clear" type="button" hidden>${c.clearSearch}</button></div><p id="article-search-status" role="status" aria-live="polite"></p></div>
     <nav class="category-filter" aria-label="${c.categoryFilterLabel}">${c.categories.map(([id, label]) => { const count = id === 'all' ? posts.length : posts.filter(post => post.category === id).length; const href = id === 'all' ? '#/blog' : `#/blog/${id}`; return `<a href="${href}" ${activeCategory === id ? 'aria-current="page"' : ''}><span>${label}</span><b>${count}</b></a>`; }).join('')}</nav>
     <div class="blog-grid" id="article-search-results">${visiblePosts.length ? renderCards(visiblePosts) : `<p class="empty-category">${c.noPosts}</p>`}</div></div>`;
 
@@ -514,7 +532,7 @@ function initCorsiDemo() {
     
     function playSequence() {
       state = 'playing';
-      status.textContent = '請記住發亮的順序...';
+      status.textContent = '請記住發亮的順序…';
       startBtn.hidden = true;
       let i = 0;
       
@@ -542,7 +560,7 @@ function initCorsiDemo() {
       } while (sequence.length > 0 && next === sequence[sequence.length - 1]);
       sequence.push(next);
       userStep = 0;
-      status.textContent = `第 ${sequence.length} 關準備...`;
+      status.textContent = `第 ${sequence.length} 關準備…`;
       activeTimeout = setTimeout(playSequence, 1000);
     }
 
@@ -565,7 +583,7 @@ function initCorsiDemo() {
           userStep++;
           if (userStep === sequence.length) {
             state = 'playing';
-            status.textContent = '正確！準備下一回合...';
+            status.textContent = '正確！準備下一回合…';
             activeTimeout = setTimeout(nextLevel, 500);
           }
         } else {
@@ -640,11 +658,11 @@ function initFlankerDemo() {
       const iRt = incongruentTrials.length ? Math.round(incongruentTrials.reduce((a, b) => a + b.rt, 0) / incongruentTrials.length) : 'N/A';
       
       resultBox.innerHTML = `
-        <div style="display:flex; justify-content:space-around; margin-top:1rem;">
+        <div class="demo-result-grid">
           <div><b>一致 (Congruent)</b><br/>${cRt} ms</div>
           <div><b>不一致 (Incongruent)</b><br/>${iRt} ms</div>
         </div>
-        <p style="margin-top:0.5rem; font-size:0.75rem; color:var(--secondary);">* 抑制代價 (Interference Cost) = ${iRt !== 'N/A' && cRt !== 'N/A' ? iRt - cRt : 'N/A'} ms</p>
+        <p class="demo-result-note">* 抑制代價 (Interference Cost) = ${iRt !== 'N/A' && cRt !== 'N/A' ? iRt - cRt : 'N/A'} ms</p>
       `;
       resultBox.hidden = false;
       status.textContent = '測驗完成！請看下方結果。';
@@ -684,10 +702,9 @@ function initFlankerDemo() {
     if (!controls) {
       controls = document.createElement('div');
       controls.className = 'flanker-controls';
-      controls.style.cssText = 'display:flex; justify-content:center; gap:1.5rem; margin-top:1rem;';
       controls.innerHTML = `
-        <button type="button" class="flanker-btn btn-left" style="padding:0.6rem 1.5rem; font-size:1.2rem; border-radius:8px; border:1px solid var(--tertiary); background:var(--theme); cursor:pointer;">← 左 (Arrow Left)</button>
-        <button type="button" class="flanker-btn btn-right" style="padding:0.6rem 1.5rem; font-size:1.2rem; border-radius:8px; border:1px solid var(--tertiary); background:var(--theme); cursor:pointer;">右 (Arrow Right) →</button>
+        <button type="button" class="flanker-btn btn-left">← 左 (Arrow Left)</button>
+        <button type="button" class="flanker-btn btn-right">右 (Arrow Right) →</button>
       `;
       demo.appendChild(controls);
       controls.hidden = true;
@@ -733,14 +750,19 @@ function initCardSortDemo() {
     let currentTarget = null;
     let currentCorrectIndex = -1;
 
-    function renderCard(shape, color) {
-      const el = document.createElement('div');
+    function renderCard(shape, color, interactive = false) {
+      const el = document.createElement(interactive ? 'button' : 'div');
       el.className = 'cs-card';
-      let shapeHtml = '';
-      if (shape === 'circle') shapeHtml = `<div style="width:40px; height:40px; border-radius:50%; background:${color};"></div>`;
-      else if (shape === 'square') shapeHtml = `<div style="width:40px; height:40px; background:${color};"></div>`;
-      else if (shape === 'triangle') shapeHtml = `<div style="width:0; height:0; border-left:20px solid transparent; border-right:20px solid transparent; border-bottom:40px solid ${color};"></div>`;
-      el.innerHTML = shapeHtml;
+      if (interactive) el.type = 'button';
+      const shapeElement = document.createElement('div');
+      const colorName = color === colors[0] ? 'red' : color === colors[1] ? 'blue' : 'green';
+      shapeElement.className = `cs-shape cs-shape-${shape} cs-color-${colorName}`;
+      shapeElement.setAttribute('aria-hidden', 'true');
+      el.appendChild(shapeElement);
+      const shapeLabel = { circle: '圓形', square: '方形', triangle: '三角形' }[shape];
+      const colorLabel = { red: '紅色', blue: '藍色', green: '綠色' }[colorName];
+      el.setAttribute('aria-label', `${colorLabel}${shapeLabel}`);
+      if (!interactive) el.setAttribute('role', 'img');
       return el;
     }
 
@@ -800,7 +822,7 @@ function initCardSortDemo() {
       targetArea.appendChild(tCard);
 
       trial.options.forEach((opt, idx) => {
-        const oCard = renderCard(opt.shape, opt.color);
+        const oCard = renderCard(opt.shape, opt.color, true);
         oCard.addEventListener('click', () => {
           if (state !== 'playing') return;
           handleResponse(idx);
@@ -846,11 +868,11 @@ function initCardSortDemo() {
       const nmRt = nonMatchTrials.length ? Math.round(nonMatchTrials.reduce((a, b) => a + b.rt, 0) / nonMatchTrials.length) : 'N/A';
       
       resultBox.innerHTML = `
-        <div style="display:flex; justify-content:space-around; margin-top:1rem;">
+        <div class="demo-result-grid">
           <div><b>規則一 (完全匹配)</b><br/>${mRt} ms</div>
           <div><b>規則二 (完全不同)</b><br/>${nmRt} ms</div>
         </div>
-        <p style="margin-top:0.5rem; font-size:0.75rem; color:var(--secondary);">* 切換代價 (Switching Cost) = ${nmRt !== 'N/A' && mRt !== 'N/A' ? nmRt - mRt : 'N/A'} ms</p>
+        <p class="demo-result-note">* 切換代價 (Switching Cost) = ${nmRt !== 'N/A' && mRt !== 'N/A' ? nmRt - mRt : 'N/A'} ms</p>
       `;
       resultBox.hidden = false;
       status.textContent = '測驗完成！請看下方結果。';
@@ -1306,6 +1328,10 @@ async function renderPost(id) {
     document.querySelectorAll('.version-toggle button').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.version === version)));
     document.querySelectorAll('[data-version-content]').forEach(content => { content.hidden = content.dataset.versionContent !== version; });
   }));
+  document.querySelectorAll('.markdown-body img').forEach(image => {
+    image.loading = 'lazy';
+    image.decoding = 'async';
+  });
   if (typeof window.hljs !== 'undefined' && typeof window.hljs.highlightElement === 'function') {
     document.querySelectorAll('pre code').forEach(block => {
       try { window.hljs.highlightElement(block); } catch (e) {}
@@ -1326,7 +1352,7 @@ async function router() {
   if (!app) return;
   closeMenu();
   updateChrome();
-  app.innerHTML = '<div class="loading">Loading<span>...</span></div>';
+  app.innerHTML = '<div class="loading">Loading<span>…</span></div>';
   const path = location.hash.slice(1) || '/';
   try {
     if (path === '/') await renderHome();
@@ -1367,6 +1393,7 @@ if (themeToggle) {
     if (dark) delete document.documentElement.dataset.theme;
     else document.documentElement.dataset.theme = 'dark';
     localStorage.setItem('tingting-theme', dark ? 'light' : 'dark');
+    updateThemeChrome();
   });
 }
 if (topLink) {
