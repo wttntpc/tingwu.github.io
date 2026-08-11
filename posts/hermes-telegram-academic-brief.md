@@ -396,6 +396,16 @@ hermes config set cron.model <目前已驗證的免費模型-id>
 
 > **成功長這樣 👉 BotFather 已完成**：畫面會顯示 bot 建立完成、bot 連結與 token。token 只存入 Hermes 的安全設定；教學截圖應把整串 token 完全遮住，而不是只遮其中幾碼。
 
+<figure class="article-figure">
+  <img src="assets/hermes-botfather-public-guide.png" alt="Telegram 官方 BotFather 的公開指令畫面，包含 newbot 與 token 等命令" loading="lazy">
+  <figcaption>BotFather 公開教學畫面：確認藍色驗證標章後使用 <code>/newbot</code>；圖中沒有私人 token。</figcaption>
+</figure>
+
+<figure class="article-figure">
+  <img src="assets/hermes-telegram-user-id-redacted.png" alt="Telegram ID 查詢結果，數字型 user ID 已以不透明色塊完整遮蔽" loading="lazy">
+  <figcaption>Numeric user ID 查詢範例：兩處 ID 都已完整遮蔽。實際值只用於 allowed users 設定，不進文章或 GitHub。</figcaption>
+</figure>
+
 推薦使用互動式設定：
 
 ```bash
@@ -425,9 +435,19 @@ TELEGRAM_ALLOWED_USERS=<your-numeric-user-id>
 hermes gateway
 ```
 
+<figure class="article-figure">
+  <img src="assets/hermes-gateway-start-public.png" alt="Windows PowerShell 顯示 Hermes Gateway Starting 與 cron scheduler 啟動畫面" loading="lazy">
+  <figcaption>Gateway 前景啟動畫面：程序已開始承載 messaging platforms 與 cron scheduler；是否真正連線仍要以 Telegram 測試回覆判定。</figcaption>
+</figure>
+
 Telegram 能正常回覆後，在預計接收排程結果的 DM 或群組傳送：
 
 > **成功長這樣 👉 Gateway 已連線**：在 Telegram 傳送「請只回覆：連線成功」，同一個 bot 對話收到正常回答；Hermes 前景終端機沒有 `Unauthorized`、allowlist 或連線錯誤。
+
+<figure class="article-figure">
+  <img src="assets/hermes-telegram-first-reply-redacted.png" alt="Hermes Telegram bot 第一次測試回覆，帳號側欄、bot 名稱、姓名與私人內容均已移除或遮蔽" loading="lazy">
+  <figcaption>Telegram 第一次回覆範例：公開版已裁除帳號側欄與頭像，並遮蔽自建 bot 名稱、個人姓名及私人引用內容。</figcaption>
+</figure>
 
 ```text
 /sethome
