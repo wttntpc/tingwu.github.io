@@ -13,6 +13,7 @@
   --radius: 6px;
   --main-width: 760px;
   --nav-width: 1024px;
+  --home-width: 1080px;
   --font: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Noto Serif TC", "Songti TC", serif;
 }
@@ -66,20 +67,25 @@ button { font: inherit; }
 
 #app { min-height: 72vh; }
 .page-shell, .article-shell { width: min(calc(100% - 40px), var(--main-width)); margin: auto; }
-.home-shell { padding: 4.5rem 0 5.5rem; }
+.home-shell { width: min(calc(100% - 40px), var(--home-width)); padding: 5.5rem 0 6.5rem; }
 
-.profile-hero { display: grid; grid-template-columns: 120px 1fr; gap: 2.2rem; align-items: start; margin-bottom: 2rem; padding-bottom: 2.7rem; border-bottom: 1px solid var(--tertiary); }
-.avatar-wrap { position: relative; width: 120px; height: 120px; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--tertiary); border-radius: 50%; background: var(--paper); box-shadow: inset 0 0 0 7px var(--theme); color: var(--accent); font-family: var(--font-display); font-size: 1.55rem; font-weight: 700; }
-.profile-id h1 { max-width: 18ch; margin: -.35rem 0 .45rem; font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.45rem); line-height: 1.28; letter-spacing: .018em; text-wrap: balance; }
-.profile-id h1 span { color: var(--secondary); font-size: 1rem; font-weight: 400; }
-.profile-role { margin: 0; color: var(--secondary); font-size: .92rem; }
+.profile-hero { display: grid; grid-template-columns: minmax(150px, 2.6fr) minmax(0, 8fr); gap: clamp(2.5rem, 7vw, 7rem); align-items: end; margin-bottom: 0; padding-bottom: 4.5rem; border-bottom: 1px solid var(--tertiary); animation: editorial-rise .38s ease-out both; }
+.profile-rail { align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; }
+.profile-kicker { margin: 0; color: var(--secondary); font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.avatar-wrap { position: relative; width: 100%; max-width: 174px; aspect-ratio: 4 / 5; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--tertiary); border-radius: 4px; background: var(--paper); box-shadow: inset 0 0 0 9px var(--theme); color: var(--accent); font-family: var(--font-display); font-size: 2rem; font-weight: 600; letter-spacing: .08em; }
+.profile-id { padding-top: 1rem; }
+.profile-id h1 { max-width: 13ch; margin: 0 0 1.2rem; font-family: var(--font-display); font-size: clamp(3.35rem, 7vw, 6rem); font-weight: 600; line-height: 1.02; letter-spacing: -.035em; text-wrap: balance; }
+.profile-id h1 span { display: block; margin-top: .7rem; color: var(--secondary); font-family: var(--font); font-size: clamp(.9rem, 1.8vw, 1.15rem); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; }
+.profile-role { max-width: 48rem; margin: 0; color: var(--secondary); font-size: .9rem; }
 .profile-pillars { margin: .7rem 0; color: var(--accent); font-size: .84rem; font-weight: 600; letter-spacing: .02em; }
-.profile-intro { margin: .85rem 0 0; color: var(--content); font-size: .94rem; line-height: 1.85; text-wrap: pretty; }
-.profile-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
-.profile-links a { color: var(--accent); text-decoration: none; font-size: .8rem; font-weight: 500; }
+.profile-intro { max-width: 42rem; margin: 1.25rem 0 0; color: var(--content); font-size: 1rem; line-height: 1.95; text-wrap: pretty; }
+.profile-links { display: flex; flex-wrap: wrap; gap: .35rem 1.25rem; margin-top: 1.6rem; }
+.profile-links a { min-height: 44px; display: inline-flex; align-items: center; color: var(--accent); text-decoration: none; font-size: .78rem; font-weight: 600; }
 .profile-links a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-.home-block { margin-top: 3.4rem; }
+.home-editorial-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr); gap: clamp(2.5rem, 6vw, 5rem); padding: 4.5rem 0 5rem; border-bottom: 1px solid var(--tertiary); animation: editorial-rise .38s .06s ease-out both; }
+.home-editorial-grid .home-block { margin-top: 0; }
+.home-block { margin-top: 4.5rem; }
 .home-block > h2, .block-heading h2 { margin: 0 0 1.15rem; font-family: var(--font-display); font-size: 1.15rem; letter-spacing: .02em; }
 .pillar-grid { counter-reset: research-pillar; border-top: 1px solid var(--tertiary); }
 .pillar-card { counter-increment: research-pillar; display: grid; grid-template-columns: 3.25rem minmax(10rem, .85fr) minmax(0, 1.5fr); gap: 1rem; align-items: baseline; padding: 1.1rem .3rem; border-bottom: 1px solid var(--tertiary); text-decoration: none; transition: padding .18s ease, background .18s ease; }
@@ -87,6 +93,8 @@ button { font: inherit; }
 .pillar-card:hover { padding-right: .7rem; padding-left: .7rem; background: color-mix(in srgb, var(--paper) 78%, transparent); }
 .pillar-card b { font-family: var(--font-display); font-size: .9rem; line-height: 1.55; }
 .pillar-card span { color: var(--secondary); font-size: .76rem; line-height: 1.7; text-wrap: pretty; }
+.home-editorial-grid .pillar-card { grid-template-columns: 2.5rem 1fr; align-items: start; }
+.home-editorial-grid .pillar-card span { grid-column: 2; }
 .publication-preview-list { border-top: 1px solid var(--tertiary); }
 .publication-preview { display: grid; grid-template-columns: 52px 1fr; gap: 1rem; padding: 1.05rem .3rem; border-bottom: 1px solid var(--tertiary); text-decoration: none; transition: padding .18s ease, background .18s ease; }
 .publication-preview:hover { padding-right: .6rem; padding-left: .6rem; background: var(--paper); }
@@ -105,6 +113,12 @@ button { font: inherit; }
 .post-card h3 { margin: .5rem 0 .4rem; font-family: var(--font-display); font-size: 1.08rem; line-height: 1.55; }
 .post-card p { margin: 0; color: var(--secondary); font-size: .82rem; }
 .post-arrow { position: absolute; right: 1.2rem; top: 1.1rem; color: var(--secondary); }
+.latest-section { animation: editorial-rise .38s .12s ease-out both; }
+.latest-section .post-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.latest-section .post-card { min-height: 12rem; padding: 1.35rem 3rem 1.6rem 1.25rem; border-right: 1px solid var(--tertiary); }
+.latest-section .post-card:last-child { border-right: 0; }
+
+@keyframes editorial-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 .eyebrow { margin: 0 0 .75rem; color: var(--accent); font-size: .68rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
 .display { margin: 0; font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.35; letter-spacing: .015em; }
@@ -360,10 +374,15 @@ button { font: inherit; }
   .nav-links a { white-space: nowrap; font-size: .78rem; }
   .page-shell, .article-shell, .site-footer { width: min(calc(100% - 28px), var(--main-width)); }
   .home-shell { padding-top: 3rem; }
-  .profile-hero { grid-template-columns: 88px 1fr; gap: 1.2rem; }
-  .avatar-wrap { width: 88px; height: 88px; }
-  .profile-id h1 { font-size: 1.65rem; }
-  .profile-id h1 span { display: block; margin-top: .15rem; font-size: .85rem; }
+  .profile-hero { grid-template-columns: 104px minmax(0, 1fr); gap: 1.5rem; align-items: start; padding-bottom: 3rem; }
+  .profile-rail { gap: 1rem; }
+  .avatar-wrap { width: 104px; }
+  .profile-id { padding-top: 0; }
+  .profile-id h1 { font-size: clamp(2.35rem, 10vw, 3.4rem); }
+  .profile-id h1 span { margin-top: .45rem; font-size: .75rem; }
+  .home-editorial-grid { grid-template-columns: 1fr; gap: 3.5rem; padding: 3.5rem 0 4rem; }
+  .latest-section .post-list { grid-template-columns: 1fr; }
+  .latest-section .post-card { min-height: 0; border-right: 0; }
   .pillar-card { grid-template-columns: 2.5rem 1fr; gap: .7rem; }
   .pillar-card span { grid-column: 2; }
   .about-page { padding-top: 2rem; }
@@ -374,7 +393,8 @@ button { font: inherit; }
 
 @media (max-width: 460px) {
   .profile-hero { display: block; }
-  .avatar-wrap { margin-bottom: 1rem; }
+  .profile-rail { display: grid; grid-template-columns: 1fr 86px; align-items: start; margin-bottom: 2rem; }
+  .avatar-wrap { width: 86px; justify-self: end; }
   .profile-links { gap: .7rem; }
   .site-footer { grid-template-columns: 1fr; }
   .footer-links { flex-wrap: wrap; }
