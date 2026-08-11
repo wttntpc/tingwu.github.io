@@ -145,7 +145,17 @@ Bot token 等同密碼。不要貼進文章、對話截圖或 GitHub；如果曾
 
 > **成功長這樣 👉 Bot 已建立**：BotFather 會顯示建立完成、提供 bot 連結，並回傳一串類似 `123456789:[已遮蔽]` 的 token。若要截圖，只保留「建立完成」與 bot username；完整 token 不應出現在圖片裡。
 
+<figure class="article-figure">
+  <img src="assets/hermes-botfather-public-guide.png" alt="Telegram 官方 BotFather 的公開指令畫面，包含 newbot 與 token 等命令" loading="lazy">
+  <figcaption>成功畫面 1：確認帳號是有藍色驗證標章的官方 BotFather，再使用 <code>/newbot</code> 建立 bot。這張公開版截圖不含任何私人 token。</figcaption>
+</figure>
+
 接著查出自己的數字型 Telegram user ID。這不是 `@username`，而是一串數字；可用 Telegram 的 `@userinfobot` 查詢。
+
+<figure class="article-figure">
+  <img src="assets/hermes-telegram-user-id-redacted.png" alt="Telegram ID 查詢結果，數字型 user ID 已以不透明色塊完整遮蔽" loading="lazy">
+  <figcaption>成功畫面 2：查詢結果會出現數字型 user ID。圖中兩處 ID 均已完整遮蔽；實際數字只應填入 Hermes 的 allowed users 設定，不應放進文章或 GitHub。</figcaption>
+</figure>
 
 ## 第四步：讓 Hermes 連上 Telegram
 
@@ -163,9 +173,19 @@ hermes gateway setup
 hermes gateway
 ```
 
+<figure class="article-figure">
+  <img src="assets/hermes-gateway-start-public.png" alt="Windows PowerShell 顯示 Hermes Gateway Starting 與 cron scheduler 啟動畫面" loading="lazy">
+  <figcaption>成功畫面 3：終端機出現 <code>Hermes Gateway Starting</code>，並顯示 messaging platforms 與 cron scheduler。這只代表 gateway 程序已開始；仍須用下一張圖的 Telegram 實際回覆確認連線成功。</figcaption>
+</figure>
+
 回到 Telegram，開啟剛建立的 bot 並傳送一則測試訊息。收到 Hermes 回覆後，在同一個對話輸入：
 
 > **成功長這樣 👉 第一次測試回覆**：你傳送「請只回覆：連線成功」，bot 在同一個聊天室回覆「連線成功」。如果看到 `Unauthorized`、`Forbidden` 或完全沒有回覆，尚未成功，先檢查 gateway、token 與 allowed user ID。
+
+<figure class="article-figure">
+  <img src="assets/hermes-telegram-first-reply-redacted.png" alt="Hermes Telegram bot 第一次測試回覆，bot 名稱、帳號、姓名與聊天資訊均已遮蔽" loading="lazy">
+  <figcaption>成功畫面 4：bot 已能在同一個 Telegram 聊天室回覆。公開版已裁除帳號側欄與頭像，並遮蔽自建 bot 名稱、個人姓名及私人引用內容；畫面只保留不具識別性的測試問候。</figcaption>
+</figure>
 
 ```text
 /sethome
