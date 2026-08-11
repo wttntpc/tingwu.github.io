@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260811-7';
+const SITE_VERSION = '20260811-8';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';

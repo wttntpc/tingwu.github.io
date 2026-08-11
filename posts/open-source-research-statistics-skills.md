@@ -8,19 +8,19 @@ GitHub 上找得到的 Skill，就一定是開源嗎？**不是。**「公開可
 
 | 研究工作 | 建議 Skill | 能協助什麼 | 授權 |
 |---|---|---|---|
-| 找文獻 | `paper-lookup` | 查 PubMed、PMC、Crossref、OpenAlex 等來源，保留 DOI 與查詢資訊 | MIT |
-| 快速讀懂單篇論文 | `paper-digest` | 依全文整理研究問題、方法、結果與複習卡 | MIT |
-| 深度評讀單篇論文 | `paper-review` | 檢查期刊、作者、方法、引用與研究限制 | MIT |
-| 多篇文獻整合 | `literature-review` | 規劃跨資料庫搜尋、篩選、主題統整與引文查核 | MIT |
-| 研究寫作 | `scientific-writing` | 管理論述與證據對應、報告規範及引用一致性 | MIT |
-| 稿件品質檢查 | `peer-review` | 檢查方法、統計、倫理、圖表、可重現性與報告完整度 | MIT |
-| 計畫書 | `research-grants` | 整理研究意義、創新性、方法、預算與計畫格式 | MIT |
-| 選擇統計方法 | `statistical-analysis` | 檢定選擇、假設檢查、效果量與 APA 格式報告 | MIT |
-| 樣本數規劃 | `statistical-power` | 事前檢力、最小可偵測效果、power curve 與模擬 | MIT |
-| 統計模型實作 | `statsmodels` | OLS、GLM、混合模型、時間序列與模型診斷 | BSD-3-Clause |
-| HRV／PPG／EEG 等生理訊號 | `neurokit2` | 生理訊號處理、HRV、事件分析與複雜度指標 | MIT |
-| 通用資料分析流程 | `data:*` | 資料探索、統計分析、視覺化、Dashboard 與結果驗證 | Apache-2.0 |
-| 生醫與單細胞研究 | `bio-research:*` | 單細胞 QC、scvi-tools、Nextflow 與實驗資料轉換 | Apache-2.0 |
+| 找文獻 | [`paper-lookup`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/paper-lookup) | 查 PubMed、PMC、Crossref、OpenAlex 等來源，保留 DOI 與查詢資訊 | MIT |
+| 快速讀懂單篇論文 | [`paper-digest`](https://github.com/drpwchen/paper-review-and-digest/tree/main/paper-digest) | 依全文整理研究問題、方法、結果與複習卡 | MIT |
+| 深度評讀單篇論文 | [`paper-review`](https://github.com/drpwchen/paper-review-and-digest/tree/main/paper-review) | 檢查期刊、作者、方法、引用與研究限制 | MIT |
+| 多篇文獻整合 | [`literature-review`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/literature-review) | 規劃跨資料庫搜尋、篩選、主題統整與引文查核 | MIT |
+| 研究寫作 | [`scientific-writing`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/scientific-writing) | 管理論述與證據對應、報告規範及引用一致性 | MIT |
+| 稿件品質檢查 | [`peer-review`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/peer-review) | 檢查方法、統計、倫理、圖表、可重現性與報告完整度 | MIT |
+| 計畫書 | [`research-grants`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/research-grants) | 整理研究意義、創新性、方法、預算與計畫格式 | MIT |
+| 選擇統計方法 | [`statistical-analysis`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/statistical-analysis) | 檢定選擇、假設檢查、效果量與 APA 格式報告 | MIT |
+| 樣本數規劃 | [`statistical-power`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/statistical-power) | 事前檢力、最小可偵測效果、power curve 與模擬 | MIT |
+| 統計模型實作 | [`statsmodels`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/statsmodels) | OLS、GLM、混合模型、時間序列與模型診斷 | BSD-3-Clause |
+| HRV／PPG／EEG 等生理訊號 | [`neurokit2`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/neurokit2) | 生理訊號處理、HRV、事件分析與複雜度指標 | MIT |
+| 通用資料分析流程 | [`data:*`](https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills) | 資料探索、統計分析、視覺化、Dashboard 與結果驗證 | Apache-2.0 |
+| 生醫與單細胞研究 | [`bio-research:*`](https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills) | 單細胞 QC、scvi-tools、Nextflow 與實驗資料轉換 | Apache-2.0 |
 
 其中，K-Dense 的研究 Skills 集合在公開儲存庫中採 MIT 授權，但作者也提醒：**每個 Skill 仍應以自身 `SKILL.md` 的 `license` 欄位為準。** Anthropic 的 Data 與 Bio Research 則收錄於 Apache-2.0 的 [Knowledge Work Plugins](https://github.com/anthropics/knowledge-work-plugins)。
 
@@ -104,32 +104,32 @@ Agent Skill 是提供給 AI agent 的可重用程序知識，可能包含 `SKILL
 
 ### 1. 文獻探索與證據吸收
 
-- `paper-lookup`：面向多資料庫檢索與識別碼查找，強調可重現的查詢來源、參數和取得日期。
-- `paper-digest`：以單篇全文為前提做教學式內容重組，不應用摘要取代全文，也不等同品質評讀。
-- `paper-review`：負責單篇研究的深度批判性評讀，涵蓋期刊與作者背景、引用查核、研究設計、統計與限制。
-- `literature-review`：處理多篇文獻的系統性搜尋、篩選、資料擷取與主題統整；實際執行仍應事先登錄 protocol，並保存完整搜尋式與排除理由。
+- [`paper-lookup`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/paper-lookup)：面向多資料庫檢索與識別碼查找，強調可重現的查詢來源、參數和取得日期。
+- [`paper-digest`](https://github.com/drpwchen/paper-review-and-digest/tree/main/paper-digest)：以單篇全文為前提做教學式內容重組，不應用摘要取代全文，也不等同品質評讀。
+- [`paper-review`](https://github.com/drpwchen/paper-review-and-digest/tree/main/paper-review)：負責單篇研究的深度批判性評讀，涵蓋期刊與作者背景、引用查核、研究設計、統計與限制。
+- [`literature-review`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/literature-review)：處理多篇文獻的系統性搜尋、篩選、資料擷取與主題統整；實際執行仍應事先登錄 protocol，並保存完整搜尋式與排除理由。
 
 這四項不是彼此替代。`paper-lookup` 回答「有哪些文獻」，`paper-digest` 回答「這篇做了什麼」，`paper-review` 回答「這篇多可信」，`literature-review` 則回答「整體證據如何」。
 
 ### 2. 研究規劃與統計推論
 
-- `statistical-power` 適合資料收集前的樣本數規劃、最小可偵測效果與模擬式檢力；不應把觀察到的 p 值倒推成事後檢力，作為不顯著結果的解釋。
-- `statistical-analysis` 提供從研究問題、變項型態、相依結構到假設檢查、效果量與報告格式的分析路徑。
-- `statsmodels` 是較低階的模型實作 Skill，適合需要係數推論、殘差診斷、GLM、mixed models 或 time series 的任務。
-- Anthropic `data:*` 是較完整的資料工作流，包括 `explore-data`、`statistical-analysis`、`create-viz`、`build-dashboard` 與 `validate-data`。其中 `validate-data` 特別適合作為分享前的獨立 QA 關卡。
+- [`statistical-power`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/statistical-power) 適合資料收集前的樣本數規劃、最小可偵測效果與模擬式檢力；不應把觀察到的 p 值倒推成事後檢力，作為不顯著結果的解釋。
+- [`statistical-analysis`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/statistical-analysis) 提供從研究問題、變項型態、相依結構到假設檢查、效果量與報告格式的分析路徑。
+- [`statsmodels`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/statsmodels) 是較低階的模型實作 Skill，適合需要係數推論、殘差診斷、GLM、mixed models 或 time series 的任務。
+- Anthropic [`data:*`](https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills) 是較完整的資料工作流，包括 [`explore-data`](https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/explore-data)、[`statistical-analysis`](https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/statistical-analysis)、[`create-viz`](https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/create-viz)、[`build-dashboard`](https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/build-dashboard) 與 [`validate-data`](https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/validate-data)。其中 `validate-data` 特別適合作為分享前的獨立 QA 關卡。
 
 建議保留「問題定義 → 資料品質 → 模型假設 → 效果估計 → 敏感度分析 → 可重現報告」順序，而不是先選一個檢定名稱再尋找合理化理由。
 
 ### 3. 生理訊號與生醫分析
 
-- `neurokit2` 將 ECG、PPG、HRV、EEG、EDA、呼吸與肌電等生理訊號的處理流程帶入研究工作；腕式 PPG 的峰值間隔、移動偽影與裝置演算法限制仍需獨立記錄。
-- Anthropic `bio-research:*` 涵蓋 `single-cell-rna-qc`、`scvi-tools`、`nextflow-development` 與 `instrument-data-to-allotrope` 等較專門流程，適合實際有相應資料與運算環境時按需安裝，不適合為了「可能有一天會用到」而整包載入。
+- [`neurokit2`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/neurokit2) 將 ECG、PPG、HRV、EEG、EDA、呼吸與肌電等生理訊號的處理流程帶入研究工作；腕式 PPG 的峰值間隔、移動偽影與裝置演算法限制仍需獨立記錄。
+- Anthropic [`bio-research:*`](https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills) 涵蓋 [`single-cell-rna-qc`](https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills/single-cell-rna-qc)、[`scvi-tools`](https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills/scvi-tools)、[`nextflow-development`](https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills/nextflow-development) 與 [`instrument-data-to-allotrope`](https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills/instrument-data-to-allotrope) 等較專門流程，適合實際有相應資料與運算環境時按需安裝，不適合為了「可能有一天會用到」而整包載入。
 
 ### 4. 科學寫作與品質控制
 
-- `scientific-writing` 強調論述—證據對應、報告規範、作者責任、保密與一致性檢查。
-- `peer-review` 將方法、統計、可重現性、倫理、圖表與引用檢查整理成結構化審查，但最終評語仍由具領域知識的人負責。
-- `research-grants` 協助組織研究意義、創新性、方法與申請格式；各補助機構的當年度規定仍須回到官方公告確認。
+- [`scientific-writing`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/scientific-writing) 強調論述—證據對應、報告規範、作者責任、保密與一致性檢查。
+- [`peer-review`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/peer-review) 將方法、統計、可重現性、倫理、圖表與引用檢查整理成結構化審查，但最終評語仍由具領域知識的人負責。
+- [`research-grants`](https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/research-grants) 協助組織研究意義、創新性、方法與申請格式；各補助機構的當年度規定仍須回到官方公告確認。
 
 ## 三種授權的實務差異
 
