@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260811-10';
+const SITE_VERSION = '20260811-11';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -256,7 +256,7 @@ const POSTS_DATA = [
   { "id": "data-analysis-workflow", "title": "數據如何變成結論？從研究問題到可重現報告的分析流程", "date": "2026-08-06", "category": "data-analysis", "tags": ["數據分析", "研究設計", "統計推論", "可重現研究"], "description": "數據分析不只是選檢定與計算 p 值；從問題定義、資料清理、探索、模型診斷到效果估計，整理一套能被檢查與重現的完整流程。" },
   { "id": "eeg-preprocessing-principles", "title": "EEG 前處理不是按下按鈕：八個步驟與品質檢查", "date": "2026-08-03", "category": "research-methods", "tags": ["EEG", "EEGLAB", "訊號處理"], "description": "從原始腦電訊號到可分析資料，整理濾波、重參考、壞道、ICA 與品質紀錄的完整思路。" },
   { "id": "teleportation-reaction-time-task", "title": "反應時間與移動時間有何不同？認識瞬間移動認知作業", "date": "2026-08-03", "category": "research-methods", "tags": ["認知作業", "反應時間", "資料品質"], "description": "用一個簡單的點擊作業，理解大腦開始反應與身體完成動作其實是兩段不同的歷程。" },
-  { "id": "garmin-raw-data-hrv", "title": "從手錶 PPG 到 HRV：交感、副交感與 Poincaré plot", "date": "2026-08-05", "category": "data-analysis", "tags": ["Garmin", "HRV", "PPG", "Poincaré plot", "生理訊號"], "description": "從交感與副交感調節、腕式 PPG 的限制，到互動比較休息、運動後與不同生活型態的 Poincaré plot。" },
+  { "id": "garmin-raw-data-hrv", "title": "從手錶 PPG 到 HRV：交感、副交感與 Poincaré plot", "date": "2026-08-05", "category": "data-analysis", "tags": ["Garmin", "HRV", "PPG", "Poincaré plot", "生理訊號"], "description": "完整理解 BBI、ECG 與腕式 PPG 的量測原理，以及時域、頻域、Poincaré plot、entropy、DFA 與 RQA 等 HRV 指標的限制。" },
   { "id": "hermes-telegram-academic-brief", "title": "讓 Hermes 每天把學術文章送到手機：免費模型、Telegram 與排程", "date": "2026-08-05", "category": "ai-tools", "tags": ["Hermes", "Telegram", "自動排程", "AI Agent"], "description": "從 Hermes 架構、Session、Memory 與 Skills，到模型選擇、Telegram 安全設定及每天 8 點的 cronjob，完整建立可查核的學術文獻推送。" },
   { "id": "ai-tools-skills-research-workflow", "title": "把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流", "date": "2026-08-03", "category": "ai-tools", "tags": ["AI Skills", "GitHub", "Gemini Notebook", "研究工作流"], "description": "用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。" },
   { "id": "ai-academic-skills-paper-screening-grants", "title": "文獻篩選到計畫書撰寫：把 AI-academic-skills 拆成找、評、寫三步驟", "date": "2026-08-05", "category": "ai-tools", "tags": ["AI Skills", "文獻評讀", "計畫書撰寫", "GRADE", "Zotero", "NotebookLM"], "description": "文獻篩選與計畫書撰寫是研究工作中最花時間的兩段流程。整理 AI-academic-skills 中的 litpilot、paper-review、paper-digest 與 research-grants，並加上把既有 Zotero 收藏與 NotebookLM 綜整一起納入評讀的串接流程。" },
@@ -988,8 +988,10 @@ function initReactionDemo() {
 }
 
 function initBbiDemo() {
-  const demo = document.querySelector('#bbiDemo');
-  if (!demo) return;
+  const demos = document.querySelectorAll('.bbi-demo');
+  if (demos.length === 0) return;
+
+  demos.forEach(demo => {
   const timeline = demo.querySelector('#bbiTimeline');
   const rmssdOut = demo.querySelector('#bbiRmssd');
   const countOut = demo.querySelector('#bbiCount');
@@ -1052,6 +1054,7 @@ function initBbiDemo() {
   gapBtn.addEventListener('click', () => render('gap'));
   fillBtn.addEventListener('click', () => render('fill'));
   render('gap');
+  });
 }
 
 function initPoincareDemos() {

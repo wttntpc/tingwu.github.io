@@ -77,7 +77,7 @@
     "date": "2026-08-05",
     "category": "data-analysis",
     "tags": ["Garmin", "HRV", "PPG", "Poincaré plot", "生理訊號"],
-    "description": "從交感與副交感調節、腕式 PPG 的限制，到互動比較休息、運動後與不同生活型態的 Poincaré plot。"
+    "description": "完整理解 BBI、ECG 與腕式 PPG 的量測原理，以及時域、頻域、Poincaré plot、entropy、DFA 與 RQA 等 HRV 指標的限制。"
   },
   {
     "id": "hermes-telegram-academic-brief",
