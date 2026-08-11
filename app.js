@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260811-2';
+const SITE_VERSION = '20260811-3';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -226,7 +226,7 @@ function updateThemeChrome() {
     themeToggle.setAttribute('aria-label', label);
     themeToggle.setAttribute('title', label);
   }
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#1d1e20' : '#f8f7f3');
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#111a27' : '#f7f3e8');
 }
 
 function updateMenuLabel() {
