@@ -1,14 +1,15 @@
 <!-- SIMPLE -->
 
-畫面上出現一個箭頭，玩家要朝箭頭指的方向滑動——大部分時候是這樣沒錯，但有一半的機率，箭頭是「反的」：真正該滑的方向跟箭頭指的方向剛好相反。玩家永遠不知道下一題是不是反的，只能每一題重新判斷。
+畫面每次會出現一支指向上、下、左或右的箭頭。**藍色箭頭要往箭頭指的方向滑；紅色箭頭則要往完全相反的方向滑。**兩種條件各占一半並隨機出現，玩家必須先辨認顏色規則，再決定動作方向。
 
-<div class="flanker-demo">
-  <div class="flanker-status" aria-live="polite">準備好測試你的抑制控制能力了嗎？</div>
-  <div class="flanker-stage">
-    <div class="flanker-stimulus"></div>
+<div class="conflict-demo">
+  <p class="conflict-rule"><span class="condition-swatch condition-blue"></span>藍色：同方向　<span class="condition-swatch condition-red"></span>紅色：反方向</p>
+  <div class="conflict-status" aria-live="polite">準備好測試你的抑制控制能力了嗎？</div>
+  <div class="conflict-stage">
+    <div class="conflict-stimulus" aria-hidden="true"></div>
   </div>
-  <button class="flanker-start">開始測驗 (10 題)</button>
-  <div class="flanker-result" hidden></div>
+  <button type="button" class="conflict-start">開始測驗（10 題）</button>
+  <div class="conflict-result" hidden></div>
 </div>
 
 ## 兩條路徑在打架
@@ -17,8 +18,8 @@
 
 ## 一致 vs. 不一致，差的那段時間就是抑制的成本
 
-- **一致（Congruent）**：滑動方向跟箭頭方向相同，直覺反應剛好是對的，不太需要抑制。
-- **不一致（Incongruent）**：滑動方向跟箭頭方向相反，直覺反應是錯的，需要主動抑制。
+- **一致（Congruent）**：藍色箭頭；滑動方向跟箭頭方向相同，直覺反應剛好是對的，不太需要抑制。
+- **不一致（Incongruent）**：紅色箭頭；滑動方向跟箭頭方向相反，需要壓下照箭頭滑動的自動反應。
 
 不一致比一致慢多少（一致性效果，Congruency Effect），大致反映了抑制控制要花多少額外力氣。
 
@@ -32,27 +33,30 @@
 
 方向感作業（Conflict Task）是 CIPH 認知評估套件中用於測量**抑制控制（Inhibitory Control）**的核心作業，屬於經典認知衝突典範（如 Simon task）之變體。
 
-<div class="flanker-demo">
-  <div class="flanker-status" aria-live="polite">準備好測試你的抑制控制能力了嗎？</div>
-  <div class="flanker-stage">
-    <div class="flanker-stimulus"></div>
+<div class="conflict-demo">
+  <p class="conflict-rule"><span class="condition-swatch condition-blue"></span>藍色：同方向　<span class="condition-swatch condition-red"></span>紅色：反方向</p>
+  <div class="conflict-status" aria-live="polite">準備好測試你的抑制控制能力了嗎？</div>
+  <div class="conflict-stage">
+    <div class="conflict-stimulus" aria-hidden="true"></div>
   </div>
-  <button class="flanker-start">開始測驗 (10 題)</button>
-  <div class="flanker-result" hidden></div>
+  <button type="button" class="conflict-start">開始測驗（10 題）</button>
+  <div class="conflict-result" hidden></div>
 </div>
 
 ## 理論框架
 
-理論基礎為**「激活—抑制」雙歷程模型（Activation-Suppression Dual-Process Model）**：反應之產生來自兩條競爭路徑——由刺激自動快速激活的**直接路徑**，與需要有意識決策、主動抑制錯誤反應的**刻意路徑**。這種自上而下的抑制並非瞬間發生，而是一個需要時間投入、對抗自動反應路徑的主動控制歷程（Ridderinkhof, 2002）。依 Diamond（2013）之執行功能框架，抑制控制包含反應抑制（Response Inhibition）與干擾控制（Interference Control）兩個次成分，本作業主要測量後者。
+理論基礎為**「激活—抑制」雙歷程模型（Activation-Suppression Dual-Process Model）**：反應之產生來自兩條競爭路徑——由刺激自動快速激活的**直接路徑**，與需要有意識決策、主動抑制錯誤反應的**刻意路徑**。這種自上而下的抑制並非瞬間發生，而是一個需要時間投入、對抗自動反應路徑的主動控制歷程（Ridderinkhof, 2002）。依 Diamond（2013）之執行功能框架，抑制控制包含反應抑制（Response Inhibition）與干擾控制（Interference Control）兩個次成分；依本作業的設計說明，主要測量的是**反應抑制**。
 
 ## 作業設計與核心指標
 
-作業以藍色箭頭（Congruent，滑動方向與箭頭相同）與紅色箭頭（Incongruent，滑動方向與箭頭相反）50/50 隨機呈現，防止受試者發展預期性動作定勢。核心指標：
+作業以藍色箭頭（Congruent，滑動方向與箭頭相同）與紅色箭頭（Incongruent，目標方向為箭頭旋轉 180°）50/50 隨機呈現。箭頭可指向 0°、90°、180° 或 270°，實際滑動角度則記錄於 `SwipeAngle`。核心指標：
 
-- **一致性效果（Congruency Effect）**＝RT(Incongruent) − RT(Congruent)：抑制控制效率之基礎指標，值越大代表抑制優勢反應的成本越高。
+- **反應時間與準確率**：`ReactionTime` 原始單位為秒，分析時換算為毫秒；`IsCorrect` 轉為 0／1 準確率。
+- **一致性效果（Congruency Effect）**＝RT(Incongruent) − RT(Congruent)：正值越大代表抑制優勢反應的時間成本越高。準確率效果則為 Accuracy(Incongruent) − Accuracy(Congruent)，負值代表不一致條件的準確率較低。
 - **Delta Plot 斜率**：以 Vincentizing 法將 RT 分布分位數化，觀察衝突效果隨處理時間的變化——負斜率代表抑制機制隨處理時間推進而成功啟動（較成熟之認知控制型態）；正斜率則相反。
 - **Gratton Effect（衝突適應）**：前一試驗為高衝突時，當前試驗的干擾效果減小的現象，反映大腦依近期經驗動態調整控制資源，以線性混合效應模型（RT ~ CurrentCondition × PrevCondition, random intercept by subject）檢驗交互項是否顯著。
 - **錯誤速度指標（Error Speed Index）＝RT(error)/RT(correct)**：<1 提示衝動性錯誤（自動反應未被抑制），>1 提示困惑性錯誤（決策猶豫）。
+- **角度偏差（Angle Deviation）**：先依顏色規則計算目標滑動角度，再用環形角度差處理跨越 0°／360° 的情況，用來觀察動作精確度與速度—準確度權衡。
 
 ## 分析取向
 
@@ -64,7 +68,7 @@
 
 ## 完整分析 SOP
 
-本文聚焦於作業設計與構念詮釋；完整的資料前處理、離群值排除規則與逐步分析流程，請見 [方向感作業資料分析指南](https://hackmd.io/@TingWu/rkkc_zZQMe)（HackMD）。
+本文聚焦於作業設計與構念詮釋；完整的資料欄位、前處理、離群值排除規則與逐步分析流程，請見 [方向感作業資料分析指南](https://hackmd.io/zVej9JtsSrejGwV1oEO-ww?both)（HackMD，v1.6）。
 
 ## References
 

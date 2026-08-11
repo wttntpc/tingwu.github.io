@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260811-8';
+const SITE_VERSION = '20260811-9';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -603,129 +603,149 @@ function initCorsiDemo() {
   });
 }
 
-function initFlankerDemo() {
-  const demos = document.querySelectorAll('.flanker-demo');
+function initConflictDemo() {
+  const demos = document.querySelectorAll('.conflict-demo');
   if (demos.length === 0) return;
 
   demos.forEach(demo => {
-    const stage = demo.querySelector('.flanker-stage');
-    const status = demo.querySelector('.flanker-status');
-    const startBtn = demo.querySelector('.flanker-start');
-    const stimulus = demo.querySelector('.flanker-stimulus');
-    const resultBox = demo.querySelector('.flanker-result');
-    if (!stage || !status || !startBtn || !stimulus) return;
+    const stage = demo.querySelector('.conflict-stage');
+    const status = demo.querySelector('.conflict-status');
+    const startBtn = demo.querySelector('.conflict-start');
+    const stimulus = demo.querySelector('.conflict-stimulus');
+    const resultBox = demo.querySelector('.conflict-result');
+    if (!stage || !status || !startBtn || !stimulus || !resultBox) return;
 
-    let state = 'idle'; // idle, waiting, shown, gameover
+    let state = 'idle';
     let trials = [];
     let currentTrial = 0;
     const maxTrials = 10;
     let tStimulus = 0;
+    let swipeStart = null;
+    const directionSymbols = { up: '↑', right: '→', down: '↓', left: '←' };
+    const directionLabels = { up: '上', right: '右', down: '下', left: '左' };
 
     function generateTrials() {
-      trials = [];
-      for (let i = 0; i < maxTrials; i++) {
-        const isCongruent = Math.random() > 0.5;
-        const isLeft = Math.random() > 0.5;
-        let text = '';
-        if (isCongruent) {
-          text = isLeft ? '<<<<<' : '>>>>>';
-        } else {
-          text = isLeft ? '>><>>' : '<<><<';
-        }
-        trials.push({ text, isCongruent, isLeft, rt: null, correct: false });
-      }
+      trials = window.ConflictTask.createTrials(maxTrials);
     }
 
     function showFixation() {
       state = 'waiting';
+      swipeStart = null;
       stimulus.textContent = '+';
-      stimulus.className = 'flanker-stimulus';
+      stimulus.className = 'conflict-stimulus';
+      stage.classList.remove('is-correct', 'is-incorrect');
+      status.textContent = `第 ${currentTrial + 1}／${maxTrials} 題：請準備`;
       setTimeout(showStimulus, 500 + Math.random() * 500);
     }
 
     function showStimulus() {
       if (state !== 'waiting') return;
       state = 'shown';
-      stimulus.textContent = trials[currentTrial].text;
+      const trial = trials[currentTrial];
+      stimulus.textContent = directionSymbols[trial.arrowDirection];
+      stimulus.className = `conflict-stimulus ${trial.isReversed ? 'is-incongruent' : 'is-congruent'}`;
+      status.textContent = trial.isReversed ? '紅色：請選相反方向' : '藍色：請選相同方向';
       tStimulus = performance.now();
     }
 
     function finishGame() {
       state = 'gameover';
-      stimulus.textContent = '結束';
+      stimulus.textContent = '完成';
+      stimulus.className = 'conflict-stimulus';
       startBtn.hidden = false;
       startBtn.textContent = '再試一次';
-      if (controls) controls.hidden = true;
-      
-      const congruentTrials = trials.filter(t => t.isCongruent && t.correct);
-      const incongruentTrials = trials.filter(t => !t.isCongruent && t.correct);
-      
-      const cRt = congruentTrials.length ? Math.round(congruentTrials.reduce((a, b) => a + b.rt, 0) / congruentTrials.length) : 'N/A';
-      const iRt = incongruentTrials.length ? Math.round(incongruentTrials.reduce((a, b) => a + b.rt, 0) / incongruentTrials.length) : 'N/A';
-      
+      controls.hidden = true;
+      document.removeEventListener('keydown', handleKey);
+
+      const congruentTrials = trials.filter(t => !t.isReversed && t.correct);
+      const incongruentTrials = trials.filter(t => t.isReversed && t.correct);
+      const correctCount = trials.filter(t => t.correct).length;
+      const meanRt = conditionTrials => conditionTrials.length
+        ? Math.round(conditionTrials.reduce((sum, trial) => sum + trial.rt, 0) / conditionTrials.length)
+        : null;
+      const cRt = meanRt(congruentTrials);
+      const iRt = meanRt(incongruentTrials);
+      const interferenceCost = cRt !== null && iRt !== null ? iRt - cRt : null;
+
       resultBox.innerHTML = `
         <div class="demo-result-grid">
-          <div><b>一致 (Congruent)</b><br/>${cRt} ms</div>
-          <div><b>不一致 (Incongruent)</b><br/>${iRt} ms</div>
+          <div><b>藍色／一致</b><br>${cRt === null ? 'N/A' : `${cRt} ms`}</div>
+          <div><b>紅色／不一致</b><br>${iRt === null ? 'N/A' : `${iRt} ms`}</div>
         </div>
-        <p class="demo-result-note">* 抑制代價 (Interference Cost) = ${iRt !== 'N/A' && cRt !== 'N/A' ? iRt - cRt : 'N/A'} ms</p>
+        <p class="demo-result-note">準確率：${Math.round(correctCount / maxTrials * 100)}%<br>一致性效果：${interferenceCost === null ? 'N/A' : `${interferenceCost} ms`}</p>
       `;
       resultBox.hidden = false;
-      status.textContent = '測驗完成！請看下方結果。';
+      status.textContent = '測驗完成！結果僅供理解作業，不代表正式評估。';
     }
 
-    const handleInput = (direction) => {
+    const handleInput = direction => {
       if (state !== 'shown') return;
-      const tResponded = performance.now();
       const trial = trials[currentTrial];
-      trial.rt = tResponded - tStimulus;
-      
-      const pressedLeft = direction === 'left';
-      trial.correct = pressedLeft === trial.isLeft;
-      
-      stimulus.classList.add(trial.correct ? 'correct' : 'incorrect');
+      trial.rt = performance.now() - tStimulus;
+      trial.correct = direction === trial.targetDirection;
+      stage.classList.add(trial.correct ? 'is-correct' : 'is-incorrect');
+      status.textContent = trial.correct
+        ? `正確：目標方向是${directionLabels[trial.targetDirection]}`
+        : `錯誤：正確方向是${directionLabels[trial.targetDirection]}`;
 
       state = 'idle';
       currentTrial++;
       setTimeout(() => {
-        if (currentTrial < maxTrials) {
-          showFixation();
-        } else {
-          finishGame();
-        }
-      }, 400);
+        if (currentTrial < maxTrials) showFixation();
+        else finishGame();
+      }, 450);
     };
 
-    const handleKey = (e) => {
+    const handleKey = event => {
       if (state !== 'shown') return;
-      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-      e.preventDefault();
-      handleInput(e.key === 'ArrowLeft' ? 'left' : 'right');
+      const keyDirection = {
+        ArrowUp: 'up', ArrowRight: 'right', ArrowDown: 'down', ArrowLeft: 'left'
+      }[event.key];
+      if (!keyDirection) return;
+      event.preventDefault();
+      handleInput(keyDirection);
     };
 
-    // Add onscreen button support
-    let controls = demo.querySelector('.flanker-controls');
-    if (!controls) {
-      controls = document.createElement('div');
-      controls.className = 'flanker-controls';
-      controls.innerHTML = `
-        <button type="button" class="flanker-btn btn-left">← 左 (Arrow Left)</button>
-        <button type="button" class="flanker-btn btn-right">右 (Arrow Right) →</button>
-      `;
-      demo.appendChild(controls);
-      controls.hidden = true;
+    const controls = document.createElement('div');
+    controls.className = 'conflict-controls';
+    controls.setAttribute('aria-label', '滑動方向選擇');
+    controls.innerHTML = `
+      <button type="button" class="conflict-btn" data-direction="up" aria-label="往上滑">↑</button>
+      <button type="button" class="conflict-btn" data-direction="left" aria-label="往左滑">←</button>
+      <button type="button" class="conflict-btn" data-direction="down" aria-label="往下滑">↓</button>
+      <button type="button" class="conflict-btn" data-direction="right" aria-label="往右滑">→</button>
+    `;
+    demo.appendChild(controls);
+    controls.hidden = true;
+    controls.querySelectorAll('.conflict-btn').forEach(button => {
+      button.addEventListener('click', () => handleInput(button.dataset.direction));
+    });
 
-      controls.querySelector('.btn-left').addEventListener('click', () => handleInput('left'));
-      controls.querySelector('.btn-right').addEventListener('click', () => handleInput('right'));
-    }
+    stage.addEventListener('pointerdown', event => {
+      if (state !== 'shown') return;
+      swipeStart = { x: event.clientX, y: event.clientY };
+      stage.setPointerCapture?.(event.pointerId);
+    });
+    stage.addEventListener('pointerup', event => {
+      if (!swipeStart) return;
+      const start = swipeStart;
+      swipeStart = null;
+      if (state !== 'shown') return;
+      const direction = window.ConflictTask.getSwipeDirection(
+        event.clientX - start.x,
+        event.clientY - start.y
+      );
+      if (direction) handleInput(direction);
+    });
+    stage.addEventListener('pointercancel', () => { swipeStart = null; });
 
     startBtn.addEventListener('click', () => {
       generateTrials();
       currentTrial = 0;
       startBtn.hidden = true;
       resultBox.hidden = true;
-      if (controls) controls.hidden = false;
-      status.textContent = '中央箭頭指哪邊？可使用下方按鈕或鍵盤左右鍵 (← / →)';
+      controls.hidden = false;
+      status.textContent = '藍色選同方向，紅色選反方向；可在箭頭區滑動，或使用按鈕與鍵盤。';
       document.removeEventListener('keydown', handleKey);
       document.addEventListener('keydown', handleKey);
       setTimeout(showFixation, 1000);
@@ -1345,7 +1365,7 @@ async function renderPost(id) {
   }
   renderMermaidNodes('.markdown-body .mermaid');
   initCorsiDemo();
-  initFlankerDemo();
+  initConflictDemo();
   initCardSortDemo();
   initReactionDemo();
   initBbiDemo();
