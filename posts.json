@@ -1,5 +1,13 @@
 [
   {
+    "id": "open-source-research-statistics-skills",
+    "title": "開源研究 Skills 怎麼選？文獻、統計與研究寫作工具箱",
+    "date": "2026-08-11",
+    "category": "ai-tools",
+    "tags": ["開源軟體", "AI Skills", "文獻研究", "統計分析", "研究工作流"],
+    "description": "盤點具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權的學術研究與統計 Skills，說明用途、適用階段與再利用注意事項。"
+  },
+  {
     "id": "ten-design-skills-academic-website",
     "title": "十套前端設計 Skills 都要裝嗎？以學術研究與個人網站為例的選擇指南",
     "date": "2026-08-11",
