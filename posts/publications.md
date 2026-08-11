@@ -20,7 +20,7 @@
 <table class="conference-table">
   <thead><tr><th>年份</th><th>會議與發表題目</th><th>地點</th><th>形式</th></tr></thead>
   <tbody>
-    <tr><td>2026</td><td><strong>Wu, T. T.</strong>, Chen, Y. L., &amp; Ruan, C. H. Body composition, emotion, and cognitive function in college students: A cross-sectional analysis.</td><td>桃園，臺灣</td><td>海報</td></tr>
+    <tr><td>2026</td><td><strong>Wu, T. T.</strong>, Chen, Y. L., &amp; Juan, C. H. Body composition, emotion, and cognitive function in college students: A cross-sectional analysis.</td><td>桃園，臺灣</td><td>海報</td></tr>
     <tr><td>2025</td><td><strong>Wu, T. T.</strong>, Wang, S. C., Chiang, C. Y., Yao, Z. F., &amp; Chen, F. T. Effects of volume-matched acute resistance exercise on inhibitory control in older adults. The 16th ISSP World Congress.</td><td>香港</td><td>海報</td></tr>
     <tr><td>2025</td><td><strong>Wu, T. T.</strong>, &amp; Chen, F. T. The effects of volume-matched acute resistance exercise on planning-related executive function in older adults. 12th International Seminar of Sport and Exercise Psychology.</td><td>馬來西亞</td><td>口頭<br><span class="award-badge">Best Oral</span></td></tr>
     <tr><td>2025</td><td>Chen, F. T., <strong>Wu, T. T.</strong>, Chiang, C. Y., &amp; Wang, S. C. The effect of volume-matched acute resistance exercise on metacognition-related executive function in older adults. The 16th ISSP World Congress.</td><td>香港</td><td>海報</td></tr>
