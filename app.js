@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260811-13';
+const SITE_VERSION = '20260812-1';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -247,6 +247,7 @@ function closeMenu() {
 }
 
 const POSTS_DATA = [
+  { "id": "fitness-hrv-cognitive-performance", "title": "體適能較好，注意力就更穩嗎？從 HRV 看認知作業中的心身調節", "date": "2026-08-12", "category": "popular-science", "tags": ["心肺適能", "HRV", "持續注意", "認知功能", "研究解讀"], "description": "解讀一項比較高、低體適能年輕男性的研究：較高體適能與持續注意反應及較穩定的 HRV 有關，但不是所有認知能力都較好。" },
   { "id": "open-source-research-statistics-skills", "title": "開源研究 Skills 怎麼選？文獻、統計與研究寫作工具箱", "date": "2026-08-11", "category": "ai-tools", "tags": ["開源軟體", "AI Skills", "文獻研究", "統計分析", "研究工作流"], "description": "盤點具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權的學術研究與統計 Skills，說明用途、適用階段與再利用注意事項。" },
   { "id": "ten-design-skills-academic-website", "title": "十套前端設計 Skills 都要裝嗎？以學術研究與個人網站為例的選擇指南", "date": "2026-08-11", "category": "ai-tools", "tags": ["AI Skills", "網站設計", "學術研究", "工具評估"], "description": "比較十套熱門前端設計 Skills，辨認哪些適合研究視覺化、個人學術網站與長文呈現，以及為什麼安裝越多不一定越好。" },
   { "id": "research-update-1", "title": "身體活動如何影響大腦健康？", "date": "2026-07-28", "category": "popular-science", "tags": ["運動", "大腦健康", "執行功能"], "description": "整理身體活動、認知功能、情緒調節與神經可塑性之間的重要連結。" },
