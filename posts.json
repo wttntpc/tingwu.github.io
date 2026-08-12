@@ -1,5 +1,13 @@
 [
   {
+    "id": "fitness-hrv-cognitive-performance",
+    "title": "體適能較好，注意力就更穩嗎？從 HRV 看認知作業中的心身調節",
+    "date": "2026-08-12",
+    "category": "popular-science",
+    "tags": ["心肺適能", "HRV", "持續注意", "認知功能", "研究解讀"],
+    "description": "解讀一項比較高、低體適能年輕男性的研究：較高體適能與持續注意反應及較穩定的 HRV 有關，但不是所有認知能力都較好。"
+  },
+  {
     "id": "open-source-research-statistics-skills",
     "title": "開源研究 Skills 怎麼選？文獻、統計與研究寫作工具箱",
     "date": "2026-08-11",
