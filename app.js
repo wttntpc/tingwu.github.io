@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260814-8';
+const SITE_VERSION = '20260814-9';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -247,6 +247,10 @@ function closeMenu() {
 }
 
 const POSTS_DATA = [
+  { "id": "data-types-tidy-research-data", "title": "資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？", "date": "2026-08-14", "category": "data-analysis", "tags": ["資料整理", "Tidy Data", "資料字典", "可重現研究"], "description": "從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。" },
+  { "id": "research-data-visualization", "title": "不要只畫平均數：研究資料視覺化的選圖與判讀原則", "date": "2026-08-14", "category": "data-analysis", "tags": ["資料視覺化", "原始資料", "信賴區間", "重複量測"], "description": "依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。" },
+  { "id": "p-value-hypothesis-testing", "title": "P 值不是假設為真的機率：從假設檢定到正確研究解讀", "date": "2026-08-14", "category": "data-analysis", "tags": ["P 值", "假設檢定", "統計顯著", "研究解讀"], "description": "釐清 p 值的條件機率定義、顯著與不顯著的常見誤解，以及如何結合效果估計、信賴區間與研究設計報告結果。" },
+  { "id": "effect-size-confidence-interval-sample-size", "title": "效果量、信賴區間與樣本數：研究結果有多大、又有多確定？", "date": "2026-08-14", "category": "data-analysis", "tags": ["效果量", "信賴區間", "樣本數", "統計檢定力"], "description": "把原始與標準化效果、區間精確度、SESOI、power 與 precision-based planning 放進同一套研究規劃與結果判讀框架。" },
   { "id": "fitness-hrv-cognitive-performance", "title": "體適能較好，注意力就更穩嗎？從 HRV 看認知作業中的心身調節", "date": "2026-08-12", "category": "popular-science", "tags": ["心肺適能", "HRV", "持續注意", "認知功能", "研究解讀"], "description": "解讀一項比較高、低體適能年輕男性的研究：較高體適能與持續注意反應及較穩定的 HRV 有關，但不是所有認知能力都較好。" },
   { "id": "open-source-research-statistics-skills", "title": "開源研究 Skills 怎麼選？文獻、統計與研究寫作工具箱", "date": "2026-08-11", "category": "ai-tools", "tags": ["開源軟體", "AI Skills", "文獻研究", "統計分析", "研究工作流"], "description": "盤點具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權的學術研究與統計 Skills，說明用途、適用階段與再利用注意事項。" },
   { "id": "ten-design-skills-academic-website", "title": "十套前端設計 Skills 都要裝嗎？以學術研究與個人網站為例的選擇指南", "date": "2026-08-11", "category": "ai-tools", "tags": ["AI Skills", "網站設計", "學術研究", "工具評估"], "description": "比較十套熱門前端設計 Skills，辨認哪些適合研究視覺化、個人學術網站與長文呈現，以及為什麼安裝越多不一定越好。" },

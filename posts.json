@@ -1,5 +1,37 @@
 [
   {
+    "id": "data-types-tidy-research-data",
+    "title": "資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？",
+    "date": "2026-08-14",
+    "category": "data-analysis",
+    "tags": ["資料整理", "Tidy Data", "資料字典", "可重現研究"],
+    "description": "從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。"
+  },
+  {
+    "id": "research-data-visualization",
+    "title": "不要只畫平均數：研究資料視覺化的選圖與判讀原則",
+    "date": "2026-08-14",
+    "category": "data-analysis",
+    "tags": ["資料視覺化", "原始資料", "信賴區間", "重複量測"],
+    "description": "依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。"
+  },
+  {
+    "id": "p-value-hypothesis-testing",
+    "title": "P 值不是假設為真的機率：從假設檢定到正確研究解讀",
+    "date": "2026-08-14",
+    "category": "data-analysis",
+    "tags": ["P 值", "假設檢定", "統計顯著", "研究解讀"],
+    "description": "釐清 p 值的條件機率定義、顯著與不顯著的常見誤解，以及如何結合效果估計、信賴區間與研究設計報告結果。"
+  },
+  {
+    "id": "effect-size-confidence-interval-sample-size",
+    "title": "效果量、信賴區間與樣本數：研究結果有多大、又有多確定？",
+    "date": "2026-08-14",
+    "category": "data-analysis",
+    "tags": ["效果量", "信賴區間", "樣本數", "統計檢定力"],
+    "description": "把原始與標準化效果、區間精確度、SESOI、power 與 precision-based planning 放進同一套研究規劃與結果判讀框架。"
+  },
+  {
     "id": "multi-ai-research-team-workflow",
     "title": "Claude、Codex、Antigravity、Hermes：我的 AI 研究團隊如何分工",
     "date": "2026-08-14",
