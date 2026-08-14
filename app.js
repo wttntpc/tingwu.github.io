@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260814-9';
+const SITE_VERSION = '20260814-10';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -114,6 +114,19 @@ const copy = {
     clearSearch: '清除',
     searchResults: count => `找到 ${count} 篇文章`,
     noSearchResults: '找不到符合條件的文章，請嘗試其他關鍵字。',
+    dataGuideEyebrow: 'Learning path',
+    dataGuideTitle: '數據分析學習地圖',
+    dataGuideDesc: '第一次閱讀建議依照 01—04 前進；已有基礎者可直接選擇需要的主題。',
+    dataGuideCount: count => `目前收錄 ${count} 篇數據分析文章`,
+    dataGuideStart: '從完整分析流程開始 →',
+    dataGuideTracks: [
+      ['資料與流程', '先理解研究問題、資料結構與可重現分析。'],
+      ['探索與視覺化', '先看見分布、個體差異與研究設計，再選擇摘要方式。'],
+      ['統計推論', '正確解讀 p 值、效果量、信賴區間與樣本數。'],
+      ['工具與生理訊號', '把原則落實到 Python pipeline、PPG 與 HRV 分析。']
+    ],
+    dataAllArticles: '全部數據分析文章',
+    dataAllArticlesDesc: '可使用搜尋欄查找統計名詞、方法或研究應用。',
     simpleVersion: '簡單白話版',
     professionalVersion: '專業版',
     versionHint: '先掌握重點，或切換到專業版閱讀術語、方法與研究細節。',
@@ -185,6 +198,19 @@ const copy = {
     clearSearch: 'Clear',
     searchResults: count => `${count} article${count === 1 ? '' : 's'} found`,
     noSearchResults: 'No matching articles. Try a different keyword.',
+    dataGuideEyebrow: 'Learning path',
+    dataGuideTitle: 'Data analysis learning map',
+    dataGuideDesc: 'New readers can follow stages 01—04; experienced readers can jump directly to the topic they need.',
+    dataGuideCount: count => `${count} data analysis articles`,
+    dataGuideStart: 'Start with the complete analysis workflow →',
+    dataGuideTracks: [
+      ['Data & workflow', 'Begin with research questions, data structure, and reproducible analysis.'],
+      ['Exploration & visualization', 'Inspect distributions, individual differences, and study design before summarizing.'],
+      ['Statistical inference', 'Interpret p values, effect sizes, confidence intervals, and sample size correctly.'],
+      ['Tools & biosignals', 'Apply the principles to Python pipelines, PPG, and HRV analysis.']
+    ],
+    dataAllArticles: 'All data analysis articles',
+    dataAllArticlesDesc: 'Search for a statistical term, method, or research application.',
     simpleVersion: 'Plain-language',
     professionalVersion: 'Professional',
     versionHint: 'Start with the key ideas, or switch to the professional version for terminology, methods, and research detail.',
@@ -458,15 +484,43 @@ async function renderPublications() {
   </article></div>`;
 }
 
+function renderDataAnalysisGuide(posts) {
+  const c = t();
+  const postById = new Map(posts.map(post => [post.id, post]));
+  const trackPostIds = [
+    ['data-analysis-workflow', 'data-types-tidy-research-data'],
+    ['research-data-visualization'],
+    ['p-value-hypothesis-testing', 'effect-size-confidence-interval-sample-size', 'post-hoc-power-confidence-interval'],
+    ['python-statistics-pipeline', 'audit-ai-statistical-analysis-results', 'garmin-raw-data-hrv']
+  ];
+  const tracks = c.dataGuideTracks.map(([title, description], index) => {
+    const links = trackPostIds[index]
+      .map(id => postById.get(id))
+      .filter(Boolean)
+      .map(post => `<li><a href="#/post/${post.id}">${post.title}<span aria-hidden="true">→</span></a></li>`)
+      .join('');
+    return `<li class="learning-track"><div class="learning-track-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</div><div><h3>${title}</h3><p>${description}</p><ul>${links}</ul></div></li>`;
+  }).join('');
+  return `<section class="data-learning-guide" aria-labelledby="data-learning-title">
+    <header class="learning-guide-header"><div><p class="eyebrow">${c.dataGuideEyebrow}</p><h2 id="data-learning-title">${c.dataGuideTitle}</h2><p>${c.dataGuideDesc}</p></div><span>${c.dataGuideCount(posts.length)}</span></header>
+    <ol class="learning-track-list">${tracks}</ol>
+    <a class="learning-start-link" href="#/post/data-analysis-workflow">${c.dataGuideStart}</a>
+  </section>`;
+}
+
 async function renderBlog(requestedCategory = 'all') {
   const posts = newestFirst((await getPosts()).filter(post => post.id !== 'publications'));
   const c = t();
   const activeCategory = c.categories.some(item => item[0] === requestedCategory) ? requestedCategory : 'all';
   const visiblePosts = activeCategory === 'all' ? posts : posts.filter(post => post.category === activeCategory);
   const renderCards = items => items.map((post, index) => `<a class="blog-card${index === 0 ? ' blog-card-featured' : ''}" href="#/post/${post.id}">${index === 0 ? `<span class="featured-label">${lang === 'zh' ? '最新文章' : 'Latest article'}</span>` : ''}<div class="post-meta">${categoryLabel(post.category)} · ${post.date}</div><h2>${post.title}</h2><p>${post.description}</p>${tagList(post)}<span class="version-badge">${c.simpleVersion} · ${c.professionalVersion}</span></a>`).join('');
+  const dataGuide = activeCategory === 'data-analysis' ? renderDataAnalysisGuide(visiblePosts) : '';
+  const articleListHeading = activeCategory === 'data-analysis' ? `<header class="article-list-heading"><h2>${c.dataAllArticles}</h2><p>${c.dataAllArticlesDesc}</p></header>` : '';
+  const searchControls = `<div class="article-search"><label for="article-search-input">${c.searchLabel}</label><div class="article-search-control"><span aria-hidden="true">⌕</span><input id="article-search-input" name="article-search" type="search" inputmode="search" autocomplete="off" spellcheck="false" placeholder="${c.searchPlaceholder}"><button id="article-search-clear" type="button" hidden>${c.clearSearch}</button></div><p id="article-search-status" role="status" aria-live="polite"></p></div>`;
+  const categoryFilter = `<nav class="category-filter" aria-label="${c.categoryFilterLabel}">${c.categories.map(([id, label]) => { const count = id === 'all' ? posts.length : posts.filter(post => post.category === id).length; const href = id === 'all' ? '#/blog' : `#/blog/${id}`; return `<a href="${href}" ${activeCategory === id ? 'aria-current="page"' : ''}><span>${label}</span><b>${count}</b></a>`; }).join('')}</nav>`;
+  const blogControls = activeCategory === 'data-analysis' ? `${categoryFilter}${dataGuide}${articleListHeading}${searchControls}` : `${searchControls}${categoryFilter}`;
   app.innerHTML = `<div class="page-shell blog-page"><header class="inner-hero"><p class="eyebrow">${c.blogEyebrow}</p><h1 class="display">${c.blogTitle}</h1><p>${c.blogDesc}</p><p class="blog-version-intro">${c.blogVersionIntro}</p></header>
-    <div class="article-search"><label for="article-search-input">${c.searchLabel}</label><div class="article-search-control"><span aria-hidden="true">⌕</span><input id="article-search-input" name="article-search" type="search" inputmode="search" autocomplete="off" spellcheck="false" placeholder="${c.searchPlaceholder}"><button id="article-search-clear" type="button" hidden>${c.clearSearch}</button></div><p id="article-search-status" role="status" aria-live="polite"></p></div>
-    <nav class="category-filter" aria-label="${c.categoryFilterLabel}">${c.categories.map(([id, label]) => { const count = id === 'all' ? posts.length : posts.filter(post => post.category === id).length; const href = id === 'all' ? '#/blog' : `#/blog/${id}`; return `<a href="${href}" ${activeCategory === id ? 'aria-current="page"' : ''}><span>${label}</span><b>${count}</b></a>`; }).join('')}</nav>
+    ${blogControls}
     <div class="blog-grid" id="article-search-results">${visiblePosts.length ? renderCards(visiblePosts) : `<p class="empty-category">${c.noPosts}</p>`}</div></div>`;
 
   const searchInput = document.querySelector('#article-search-input');

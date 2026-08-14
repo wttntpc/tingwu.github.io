@@ -188,6 +188,30 @@ button { font: inherit; }
 .category-filter a:hover { border-color: var(--accent); color: var(--accent); }
 .category-filter a[aria-current="page"] { border-color: var(--accent); color: #fff; background: var(--accent); }
 .category-filter b { min-width: 1.2rem; padding: .05rem .3rem; border-radius: 999px; background: color-mix(in srgb, currentColor 12%, transparent); font-size: .65rem; text-align: center; }
+.data-learning-guide { margin: 2rem 0 3.25rem; padding: 1.5rem; border: 1px solid var(--tertiary); border-top: 3px solid var(--accent); border-radius: var(--radius); background: color-mix(in srgb, var(--paper) 82%, transparent); }
+.learning-guide-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: start; padding-bottom: 1.25rem; border-bottom: 1px solid var(--tertiary); }
+.learning-guide-header .eyebrow { margin: 0 0 .35rem; }
+.learning-guide-header h2 { margin: 0 0 .45rem; color: var(--primary); font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 1.85rem); }
+.learning-guide-header div > p:last-child { max-width: 44rem; margin: 0; color: var(--secondary); font-size: .82rem; }
+.learning-guide-header > span { padding: .38rem .6rem; border: 1px solid var(--tertiary); border-radius: 999px; color: var(--secondary); white-space: nowrap; font-size: .68rem; }
+.learning-track-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
+.learning-track { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: .85rem; padding: 1.3rem 1.15rem 1.3rem 0; border-bottom: 1px solid var(--tertiary); }
+.learning-track:nth-child(odd) { padding-right: 1.35rem; border-right: 1px solid var(--tertiary); }
+.learning-track:nth-child(even) { padding-left: 1.35rem; }
+.learning-track-number { color: var(--accent); font-family: var(--font-display); font-size: 1.15rem; line-height: 1.35; }
+.learning-track h3 { margin: 0 0 .35rem; color: var(--primary); font-size: .9rem; }
+.learning-track p { margin: 0 0 .7rem; color: var(--secondary); font-size: .75rem; line-height: 1.7; }
+.learning-track ul { margin: 0; padding: 0; list-style: none; }
+.learning-track li + li { margin-top: .35rem; }
+.learning-track a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .6rem; align-items: start; padding: .32rem 0; color: var(--primary); text-decoration: none; font-size: .76rem; line-height: 1.55; }
+.learning-track a span { color: var(--accent); transition: transform .18s ease; }
+.learning-track a:hover { color: var(--accent); }
+.learning-track a:hover span { transform: translateX(3px); }
+.learning-track a:focus-visible, .learning-start-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.learning-start-link { min-height: 44px; display: inline-flex; align-items: center; margin-top: 1rem; color: var(--accent); text-decoration: none; font-size: .78rem; font-weight: 700; }
+.article-list-heading { margin: 0 0 1rem; }
+.article-list-heading h2 { margin: 0 0 .25rem; color: var(--primary); font-family: var(--font-display); font-size: 1.35rem; }
+.article-list-heading p { margin: 0; color: var(--secondary); font-size: .76rem; }
 .article-search { max-width: 680px; margin: .25rem 0 1rem; }
 .article-search > label { display: block; margin-bottom: .45rem; color: var(--primary); font-size: .76rem; font-weight: 700; }
 .article-search-control { display: flex; align-items: center; min-height: 46px; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--paper); transition: border-color .18s ease, box-shadow .18s ease; }
@@ -459,6 +483,10 @@ button { font: inherit; }
   .blog-card-featured { grid-column: auto; min-height: 0; display: block; padding: 1.65rem 1.35rem; }
   .blog-card-featured .featured-label { display: inline-block; }
   .blog-card-featured .tag-list { margin-top: .9rem; }
+  .learning-guide-header { grid-template-columns: 1fr; gap: .75rem; }
+  .learning-guide-header > span { width: max-content; }
+  .learning-track-list { grid-template-columns: 1fr; }
+  .learning-track, .learning-track:nth-child(odd), .learning-track:nth-child(even) { padding: 1.15rem 0; border-right: 0; }
   .pillar-card { grid-template-columns: 2.5rem 1fr; gap: .7rem; }
   .pillar-card span { grid-column: 2; }
   .about-page { padding-top: 2rem; }
@@ -478,6 +506,7 @@ button { font: inherit; }
   .footer-links { flex-wrap: wrap; }
   .about-toc nav { grid-template-columns: 1fr; }
   .post-header h1 { font-size: 2rem; }
+  .data-learning-guide { padding: 1.15rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
