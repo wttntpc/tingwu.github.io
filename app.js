@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260812-1';
+const SITE_VERSION = '20260814-1';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -320,8 +320,20 @@ function postRow(post) {
 }
 
 async function renderHome() {
-  const posts = newestFirst((await getPosts()).filter(post => post.id !== 'publications')).slice(0, 2);
+  const allPosts = newestFirst((await getPosts()).filter(post => post.id !== 'publications'));
+  const posts = allPosts.slice(0, 2);
   const c = t();
+  const overview = lang === 'zh' ? [
+    ['研究主軸', c.focuses.length, '查看專長', '#/about/skills'],
+    ['公開文章', allPosts.length, '瀏覽文章', '#/blog'],
+    ['精選發表', c.featuredPublications.length, '查看發表', '#/publications'],
+    ['閱讀模式', 2, '白話／專業', '#/blog']
+  ] : [
+    ['Research areas', c.focuses.length, 'View expertise', '#/about/skills'],
+    ['Public articles', allPosts.length, 'Browse articles', '#/blog'],
+    ['Selected works', c.featuredPublications.length, 'View publications', '#/publications'],
+    ['Reading modes', 2, 'Simple / professional', '#/blog']
+  ];
   app.innerHTML = `<div class="page-shell home-shell">
     <section class="profile-hero">
       <div class="profile-rail">
@@ -336,6 +348,9 @@ async function renderHome() {
         <div class="profile-links"><a href="#/about">${c.fullProfile}</a><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div>
       </div>
     </section>
+    <nav class="home-overview" aria-label="${lang === 'zh' ? '研究與內容概覽' : 'Research and content overview'}">
+      ${overview.map((item, index) => `<a href="${item[3]}" class="overview-item${index === 1 ? ' overview-item-primary' : ''}"><span>${item[0]}</span><strong>${item[1]}</strong><small>${item[2]} →</small></a>`).join('')}
+    </nav>
     <div class="home-editorial-grid">
       <section class="home-block research-section"><h2>${c.selectedAreas}</h2><div class="pillar-grid">${c.focuses.map(item => `<a class="pillar-card" href="#/about/skills"><b>${item[0]}</b><span>${item[1]}</span></a>`).join('')}</div></section>
       <section class="home-block featured-publications"><div class="block-heading"><h2>${c.featuredTitle}</h2><a href="#/publications">${c.allPublications}</a></div><div class="publication-preview-list">${c.featuredPublications.map(item => `<a href="#/publications" class="publication-preview"><span>${item[0]}</span><div><b>${item[1]}</b><small>${item[2]}</small></div></a>`).join('')}</div></section>
@@ -464,8 +479,8 @@ async function renderBlog(requestedCategory = 'all') {
   const c = t();
   const activeCategory = c.categories.some(item => item[0] === requestedCategory) ? requestedCategory : 'all';
   const visiblePosts = activeCategory === 'all' ? posts : posts.filter(post => post.category === activeCategory);
-  const renderCards = items => items.map(post => `<a class="blog-card" href="#/post/${post.id}"><div class="post-meta">${categoryLabel(post.category)} · ${post.date}</div><h2>${post.title}</h2><p>${post.description}</p>${tagList(post)}<span class="version-badge">${c.simpleVersion} · ${c.professionalVersion}</span></a>`).join('');
-  app.innerHTML = `<div class="page-shell"><header class="inner-hero"><p class="eyebrow">${c.blogEyebrow}</p><h1 class="display">${c.blogTitle}</h1><p>${c.blogDesc}</p><p class="blog-version-intro">${c.blogVersionIntro}</p></header>
+  const renderCards = items => items.map((post, index) => `<a class="blog-card${index === 0 ? ' blog-card-featured' : ''}" href="#/post/${post.id}">${index === 0 ? `<span class="featured-label">${lang === 'zh' ? '最新文章' : 'Latest article'}</span>` : ''}<div class="post-meta">${categoryLabel(post.category)} · ${post.date}</div><h2>${post.title}</h2><p>${post.description}</p>${tagList(post)}<span class="version-badge">${c.simpleVersion} · ${c.professionalVersion}</span></a>`).join('');
+  app.innerHTML = `<div class="page-shell blog-page"><header class="inner-hero"><p class="eyebrow">${c.blogEyebrow}</p><h1 class="display">${c.blogTitle}</h1><p>${c.blogDesc}</p><p class="blog-version-intro">${c.blogVersionIntro}</p></header>
     <div class="article-search"><label for="article-search-input">${c.searchLabel}</label><div class="article-search-control"><span aria-hidden="true">⌕</span><input id="article-search-input" name="article-search" type="search" inputmode="search" autocomplete="off" spellcheck="false" placeholder="${c.searchPlaceholder}"><button id="article-search-clear" type="button" hidden>${c.clearSearch}</button></div><p id="article-search-status" role="status" aria-live="polite"></p></div>
     <nav class="category-filter" aria-label="${c.categoryFilterLabel}">${c.categories.map(([id, label]) => { const count = id === 'all' ? posts.length : posts.filter(post => post.category === id).length; const href = id === 'all' ? '#/blog' : `#/blog/${id}`; return `<a href="${href}" ${activeCategory === id ? 'aria-current="page"' : ''}><span>${label}</span><b>${count}</b></a>`; }).join('')}</nav>
     <div class="blog-grid" id="article-search-results">${visiblePosts.length ? renderCards(visiblePosts) : `<p class="empty-category">${c.noPosts}</p>`}</div></div>`;
@@ -752,6 +767,17 @@ function initConflictDemo() {
       setTimeout(showFixation, 1000);
     });
   });
+}
+
+function updateArticleOutline(version) {
+  const outline = document.querySelector('.article-outline');
+  const content = document.querySelector(`[data-version-content="${version}"]`);
+  if (!outline || !content) return;
+  const headings = [...content.querySelectorAll('h2')];
+  const label = lang === 'zh' ? '本篇章節' : 'In this article';
+  headings.forEach((heading, index) => { heading.id = `article-${version}-section-${index + 1}`; });
+  outline.hidden = headings.length === 0;
+  outline.innerHTML = headings.length ? `<span>${label}</span><div>${headings.map((heading, index) => `<a href="#${heading.id}"><b>${String(index + 1).padStart(2, '0')}</b>${escapeHtml(heading.textContent.trim())}</a>`).join('')}</div>` : '';
 }
 
 function initCardSortDemo() {
@@ -1350,6 +1376,7 @@ async function renderPost(id) {
   const c = t();
   app.innerHTML = `<article class="article-shell"><a class="back-link" href="#/blog">${c.back}</a><header class="article-header"><div class="post-meta">${meta ? `${categoryLabel(meta.category)} · ${meta.date}` : ''}</div><h1>${meta?.title || ''}</h1>${meta?.description ? `<p>${meta.description}</p>` : ''}${meta ? tagList(meta) : ''}</header>
     <div class="version-bar"><div class="version-toggle" role="group" aria-label="${lang === 'zh' ? '文章版本切換' : 'Article version'}"><button type="button" data-version="simple" aria-pressed="${selectedVersion === 'simple'}">${c.simpleVersion}</button><button type="button" data-version="professional" aria-pressed="${selectedVersion === 'professional'}">${c.professionalVersion}</button></div><p>${c.versionHint}</p></div>
+    <nav class="article-outline" aria-label="${lang === 'zh' ? '文章章節導覽' : 'Article sections'}"></nav>
     <div class="article-version markdown-body" data-version-content="simple" ${selectedVersion !== 'simple' ? 'hidden' : ''}>${safeMarkdownParse(versions.simple)}</div>
     <div class="article-version markdown-body" data-version-content="professional" ${selectedVersion !== 'professional' ? 'hidden' : ''}>${safeMarkdownParse(versions.professional)}</div></article>`;
   document.querySelectorAll('.version-toggle button').forEach(button => button.addEventListener('click', () => {
@@ -1357,7 +1384,9 @@ async function renderPost(id) {
     localStorage.setItem('tingting-article-version', version);
     document.querySelectorAll('.version-toggle button').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.version === version)));
     document.querySelectorAll('[data-version-content]').forEach(content => { content.hidden = content.dataset.versionContent !== version; });
+    updateArticleOutline(version);
   }));
+  updateArticleOutline(selectedVersion);
   document.querySelectorAll('.markdown-body img').forEach(image => {
     image.loading = 'lazy';
     image.decoding = 'async';
