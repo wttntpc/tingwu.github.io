@@ -221,12 +221,6 @@ button { font: inherit; }
 .tag-list { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .9rem; }
 .tag-list span { padding: .2rem .5rem; border: 1px solid color-mix(in srgb, var(--tertiary) 72%, transparent); border-radius: 3px; color: var(--secondary); background: var(--theme); font-size: .66rem; }
 .article-header .tag-list span { background: var(--entry); }
-.article-outline { margin: -1.4rem 0 2.8rem; padding: 1rem 0; overflow: hidden; border-top: 1px solid var(--tertiary); border-bottom: 1px solid var(--tertiary); }
-.article-outline > span { display: block; margin: 0 0 .7rem; color: var(--secondary); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.article-outline > div { display: flex; gap: .55rem; overflow-x: auto; padding-bottom: .35rem; scrollbar-width: thin; }
-.article-outline a { flex: 0 0 min(17rem, 76vw); display: grid; grid-template-columns: 2rem 1fr; gap: .55rem; align-items: start; min-height: 56px; padding: .65rem .75rem; border: 1px solid var(--tertiary); border-radius: var(--radius); color: var(--primary); background: color-mix(in srgb, var(--paper) 60%, transparent); text-decoration: none; font-family: var(--font-display); font-size: .78rem; line-height: 1.5; }
-.article-outline a:hover { border-color: var(--accent); color: var(--accent); background: var(--paper); }
-.article-outline b { color: var(--accent); font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: .65rem; font-weight: 500; letter-spacing: .08em; }
 .empty-category { margin: 1rem 0; padding: 2.5rem 1rem; border: 1px dashed var(--tertiary); border-radius: var(--radius); color: var(--secondary); text-align: center; }
 
 /* Interactive Card Sort task demo */
@@ -462,7 +456,7 @@ button { font: inherit; }
 @media print {
   :root { --theme: #fff; --paper: #fff; --primary: #111; --secondary: #444; --tertiary: #bbb; --content: #222; --accent: #245c55; }
   body { background: #fff; font-size: 11pt; }
-  .site-header, .site-footer, .top-link, .version-bar, .article-outline, .article-search, .category-filter { display: none !important; }
+  .site-header, .site-footer, .top-link, .version-bar, .article-search, .category-filter { display: none !important; }
   #app { min-height: 0; }
   .page-shell, .article-shell { width: 100%; }
   .article-shell, .about-page, .publications-page { padding: 0; }

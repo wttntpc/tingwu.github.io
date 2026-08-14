@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260814-3';
+const SITE_VERSION = '20260814-4';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -769,28 +769,6 @@ function initConflictDemo() {
   });
 }
 
-function updateArticleOutline(version, postId) {
-  const outline = document.querySelector('.article-outline');
-  const content = document.querySelector(`[data-version-content="${version}"]`);
-  if (!outline || !content) return;
-  const headings = [...content.querySelectorAll('h2')];
-  const label = lang === 'zh' ? '本篇章節' : 'In this article';
-  document.querySelectorAll('[data-version-content] h2[id^="article-section-"]').forEach(heading => heading.removeAttribute('id'));
-  headings.forEach((heading, index) => { heading.id = `article-section-${index + 1}`; });
-  outline.hidden = headings.length === 0;
-  outline.innerHTML = headings.length ? `<span>${label}</span><div>${headings.map((heading, index) => `<a href="${window.ArticleNavigation.sectionHref(postId, index + 1)}" data-article-section="${index + 1}"><b>${String(index + 1).padStart(2, '0')}</b>${escapeHtml(heading.textContent.trim())}</a>`).join('')}</div>` : '';
-  outline.onclick = event => {
-    const link = event.target.closest('[data-article-section]');
-    if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    event.preventDefault();
-    const sectionIndex = Number(link.dataset.articleSection);
-    const target = document.querySelector(`#article-section-${sectionIndex}`);
-    if (!target) return;
-    history.replaceState(null, '', link.getAttribute('href'));
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-}
-
 function initCardSortDemo() {
   const demos = document.querySelectorAll('.cardsort-demo');
   if (demos.length === 0) return;
@@ -1379,7 +1357,7 @@ function initFilterDemo() {
   render();
 }
 
-async function renderPost(id, requestedSectionIndex = null) {
+async function renderPost(id) {
   const [posts, response] = await Promise.all([getPosts(), fetchSiteFile(`posts/${id}.md`)]);
   const meta = posts.find(post => post.id === id);
   const versions = parseArticleVersions(await response.text());
@@ -1387,7 +1365,6 @@ async function renderPost(id, requestedSectionIndex = null) {
   const c = t();
   app.innerHTML = `<article class="article-shell"><a class="back-link" href="#/blog">${c.back}</a><header class="article-header"><div class="post-meta">${meta ? `${categoryLabel(meta.category)} · ${meta.date}` : ''}</div><h1>${meta?.title || ''}</h1>${meta?.description ? `<p>${meta.description}</p>` : ''}${meta ? tagList(meta) : ''}</header>
     <div class="version-bar"><div class="version-toggle" role="group" aria-label="${lang === 'zh' ? '文章版本切換' : 'Article version'}"><button type="button" data-version="simple" aria-pressed="${selectedVersion === 'simple'}">${c.simpleVersion}</button><button type="button" data-version="professional" aria-pressed="${selectedVersion === 'professional'}">${c.professionalVersion}</button></div><p>${c.versionHint}</p></div>
-    <nav class="article-outline" aria-label="${lang === 'zh' ? '文章章節導覽' : 'Article sections'}"></nav>
     <div class="article-version markdown-body" data-version-content="simple" ${selectedVersion !== 'simple' ? 'hidden' : ''}>${safeMarkdownParse(versions.simple)}</div>
     <div class="article-version markdown-body" data-version-content="professional" ${selectedVersion !== 'professional' ? 'hidden' : ''}>${safeMarkdownParse(versions.professional)}</div></article>`;
   document.querySelectorAll('.version-toggle button').forEach(button => button.addEventListener('click', () => {
@@ -1395,12 +1372,7 @@ async function renderPost(id, requestedSectionIndex = null) {
     localStorage.setItem('tingting-article-version', version);
     document.querySelectorAll('.version-toggle button').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.version === version)));
     document.querySelectorAll('[data-version-content]').forEach(content => { content.hidden = content.dataset.versionContent !== version; });
-    updateArticleOutline(version, id);
-    const currentRoute = window.ArticleNavigation.parsePostPath(location.hash.slice(1));
-    if (currentRoute?.sectionIndex) document.querySelector(`#article-section-${currentRoute.sectionIndex}`)?.scrollIntoView({ block: 'start' });
   }));
-  updateArticleOutline(selectedVersion, id);
-  if (requestedSectionIndex) requestAnimationFrame(() => document.querySelector(`#article-section-${requestedSectionIndex}`)?.scrollIntoView({ block: 'start' }));
   document.querySelectorAll('.markdown-body img').forEach(image => {
     image.loading = 'lazy';
     image.decoding = 'async';
@@ -1432,11 +1404,7 @@ async function router() {
     else if (path === '/about' || path.startsWith('/about/')) await renderAbout(path.split('/')[2] || '');
     else if (path === '/publications') await renderPublications();
     else if (path === '/blog' || path.startsWith('/blog/')) await renderBlog(path.split('/')[2] || 'all');
-    else if (path.startsWith('/post/')) {
-      const postRoute = window.ArticleNavigation.parsePostPath(path);
-      if (postRoute) await renderPost(postRoute.postId, postRoute.sectionIndex);
-      else app.innerHTML = `<div class="error-state"><h1>${t()?.notFound || 'Page Not Found'}</h1></div>`;
-    }
+    else if (path.startsWith('/post/')) await renderPost(path.split('/')[2]);
     else app.innerHTML = `<div class="error-state"><h1>${t()?.notFound || 'Page Not Found'}</h1></div>`;
   } catch (error) {
     console.error('Router error:', error);
