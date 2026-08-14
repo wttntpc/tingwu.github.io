@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260814-7';
+const SITE_VERSION = '20260814-8';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -359,66 +359,47 @@ async function renderHome() {
   </div>`;
 }
 
-const researchFrameworkDiagram = {
-  zh: `flowchart TD
-  subgraph K["運動科學 (Kinesiology)"]
-    PA["身體活動與久坐行為"]
-    EX["運動介入 (阻力／有氧)"]
-    FIT["心肺適能與體組成"]
-  end
-  
-  subgraph C["認知神經科學 (Cognitive Neuroscience)"]
-    EEG["神經生理機制<br>(EEG / HHSA 跨頻耦合)"]
-    COG["執行功能<br>(抑制控制、工作記憶、認知彈性)"]
-    EMO["情緒與心理健康"]
-  end
-  
-  subgraph M["研究方法與工具 (Methodology & AI)"]
-    DATA["資料科學與統計建模"]
-    AI["AI 驅動的自動化工作流"]
-  end
-
-  PA <--> EX
-  EX --> FIT
-  FIT --> EEG
-  FIT --> COG
-  FIT --> EMO
-  EEG <--> COG
-  EEG <--> EMO
-  COG <--> EMO
-  
-  M -. "支持測量與推論" .-> K
-  M -. "支持測量與推論" .-> C`,
-  en: `flowchart TD
-  subgraph K["Kinesiology"]
-    PA["Physical Activity & Sedentary Behavior"]
-    EX["Exercise Interventions (Resistance/Aerobic)"]
-    FIT["Cardiorespiratory Fitness & Body Composition"]
-  end
-  
-  subgraph C["Cognitive Neuroscience"]
-    EEG["Neurophysiology<br>(EEG / HHSA)"]
-    COG["Executive Function<br>(Inhibition, Memory, Flexibility)"]
-    EMO["Emotion & Mental Health"]
-  end
-  
-  subgraph M["Methodology & AI"]
-    DATA["Data Science & Statistical Modeling"]
-    AI["AI-Driven Reproducible Workflows"]
-  end
-
-  PA <--> EX
-  EX --> FIT
-  FIT --> EEG
-  FIT --> COG
-  FIT --> EMO
-  EEG <--> COG
-  EEG <--> EMO
-  COG <--> EMO
-  
-  M -. "Enhance measurement & inference" .-> K
-  M -. "Enhance measurement & inference" .-> C`
+const researchFramework = {
+  zh: {
+    ariaLabel: '吳亭葶的研究框架：從運動與身體活動，經由腦與自律神經機制，連結至認知、情緒與健康老化。',
+    questionLabel: '核心研究問題',
+    question: '身體活動與運動處方，如何透過腦—身體機制促進認知功能、情緒健康與健康老化？',
+    stages: [
+      { number: '01', eyebrow: '輸入與介入', title: '運動與身體狀態', items: ['身體活動與久坐行為', '有氧／阻力運動處方', '心肺適能與體組成'] },
+      { number: '02', eyebrow: '機制與測量', title: '腦—身體調節', items: ['腦波與神經動態（EEG／HHSA）', '自律神經調節（HRV）', '情緒與心理健康'] },
+      { number: '03', eyebrow: '研究結果', title: '認知與健康老化', items: ['執行功能與認知表現', '腦健康與神經可塑性', '健康老化與生活功能'] }
+    ],
+    methodsLabel: '貫穿全流程的方法學',
+    methods: ['行為作業與生理訊號', '統計建模與資料視覺化', '可重現研究流程', 'AI 輔助研究工作流']
+  },
+  en: {
+    ariaLabel: 'Ting-Ting Wu’s research framework: linking exercise and physical activity to cognition, emotion, and healthy aging through brain and autonomic mechanisms.',
+    questionLabel: 'Core research question',
+    question: 'How can physical activity and exercise prescription support cognition, emotional well-being, and healthy aging through brain–body mechanisms?',
+    stages: [
+      { number: '01', eyebrow: 'Exposure & intervention', title: 'Exercise and physical state', items: ['Physical activity and sedentary behavior', 'Aerobic and resistance exercise prescription', 'Cardiorespiratory fitness and body composition'] },
+      { number: '02', eyebrow: 'Mechanisms & measures', title: 'Brain–body regulation', items: ['Brain activity and neural dynamics (EEG / HHSA)', 'Autonomic regulation (HRV)', 'Emotion and mental health'] },
+      { number: '03', eyebrow: 'Research outcomes', title: 'Cognition and healthy aging', items: ['Executive function and cognitive performance', 'Brain health and neuroplasticity', 'Healthy aging and everyday function'] }
+    ],
+    methodsLabel: 'Methods supporting the full research cycle',
+    methods: ['Behavioral tasks and biosignals', 'Statistical modeling and visualization', 'Reproducible research workflows', 'AI-assisted research workflows']
+  }
 };
+
+function renderResearchFramework() {
+  const framework = researchFramework[lang];
+  return `<div class="research-framework" role="group" aria-label="${framework.ariaLabel}">
+    <header class="framework-question"><span>${framework.questionLabel}</span><strong>${framework.question}</strong></header>
+    <div class="framework-flow">
+      ${framework.stages.map((stage, index) => `${index > 0 ? '<span class="framework-arrow" aria-hidden="true">→</span>' : ''}
+        <section class="framework-stage framework-stage-${index + 1}">
+          <div class="framework-stage-heading"><span>${stage.number}</span><div><small>${stage.eyebrow}</small><h3>${stage.title}</h3></div></div>
+          <ul>${stage.items.map(item => `<li>${item}</li>`).join('')}</ul>
+        </section>`).join('')}
+    </div>
+    <footer class="framework-methods"><strong>${framework.methodsLabel}</strong><ul>${framework.methods.map(item => `<li>${item}</li>`).join('')}</ul></footer>
+  </div>`;
+}
 
 async function renderAbout(section = '') {
   const c = t();
@@ -445,7 +426,7 @@ async function renderAbout(section = '') {
     <div class="about-content">
       <p class="about-avatar"><span role="img" aria-label="${lang === 'zh' ? '個人照片待更新' : 'Profile photo coming soon'}"><b aria-hidden="true">TW</b></span></p>
       <section id="about-intro" class="about-section"><h2>${lang === 'zh' ? '吳亭葶 Ting-Ting Wu' : 'Ting-Ting Wu 吳亭葶'}</h2><blockquote><strong>${labels.role}</strong></blockquote><p>${c.introText}</p><p>${labels.bio2}</p></section>
-      <section id="about-framework" class="about-section"><h2>${labels.framework}</h2><div class="mermaid-wrap"><pre class="mermaid">${researchFrameworkDiagram[lang]}</pre></div><p class="demo-caveat">⚠️ ${labels.frameworkCaveat}</p></section>
+      <section id="about-framework" class="about-section"><h2>${labels.framework}</h2>${renderResearchFramework()}<p class="demo-caveat">⚠️ ${labels.frameworkCaveat}</p></section>
       <section id="about-journey" class="about-section"><h2>${labels.education}</h2><ul class="plain-list">${c.journey.map(item => `<li><strong>${item[0]}</strong>　${item[1]}<br><span>${item[2]}</span></li>`).join('')}</ul></section>
       <section id="about-skills" class="about-section"><h2>${labels.expertise}</h2><ul class="expertise-list">${c.focuses.map(item => `<li><strong>${item[0]}</strong>：${item[1]}</li>`).join('')}</ul><div class="about-skill-groups">${c.skillGroups.slice(1).map(group => `<div><h3>${group[0]}</h3><p>${group[1].join('、')}</p></div>`).join('')}</div></section>
       <section id="about-awards" class="about-section"><h2>${labels.honors}</h2><ul class="plain-list">${c.awards.map(item => `<li><strong>${item[0]}</strong>　${item[1]}</li>`).join('')}</ul></section>
@@ -453,7 +434,6 @@ async function renderAbout(section = '') {
     </div>
   </article></div>`;
   document.querySelector('.inline-language').addEventListener('click', () => langToggle.click());
-  renderMermaidNodes('#about-framework .mermaid');
   if (section) {
     requestAnimationFrame(() => document.querySelector(`#about-${CSS.escape(section)}`)?.scrollIntoView());
   }
