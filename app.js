@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260814-5';
+const SITE_VERSION = '20260814-6';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -338,7 +338,7 @@ async function renderHome() {
     <section class="profile-hero">
       <div class="profile-rail">
         <p class="profile-kicker">${lang === 'zh' ? '研究者檔案 · 01' : 'Research profile · 01'}</p>
-        <div class="avatar-wrap"><img src="assets/profile-tingting.webp" width="750" height="1000" alt="${lang === 'zh' ? '吳亭葶的個人照片' : 'Portrait of Ting-Ting Wu'}" decoding="async" fetchpriority="high"></div>
+        <div class="avatar-wrap" role="img" aria-label="${lang === 'zh' ? '個人照片待更新' : 'Profile photo coming soon'}"><span aria-hidden="true">TW</span></div>
       </div>
       <div class="profile-id">
         <h1>${lang === 'zh' ? '吳亭葶' : 'Ting-Ting Wu'} <span>${lang === 'zh' ? 'Ting-Ting Wu' : '吳亭葶'}</span></h1>
@@ -443,7 +443,7 @@ async function renderAbout(section = '') {
     </header>
     <details class="about-toc" open><summary>${labels.toc}</summary><nav>${tocItems.map(item => `<a href="#/about/${item[1]}" ${section === item[1] ? 'aria-current="location"' : ''}>${item[0]}</a>`).join('')}</nav></details>
     <div class="about-content">
-      <p class="about-avatar"><span><img src="assets/profile-tingting.webp" width="750" height="1000" alt="${lang === 'zh' ? '吳亭葶的個人照片' : 'Portrait of Ting-Ting Wu'}" loading="lazy" decoding="async"></span></p>
+      <p class="about-avatar"><span role="img" aria-label="${lang === 'zh' ? '個人照片待更新' : 'Profile photo coming soon'}"><b aria-hidden="true">TW</b></span></p>
       <section id="about-intro" class="about-section"><h2>${lang === 'zh' ? '吳亭葶 Ting-Ting Wu' : 'Ting-Ting Wu 吳亭葶'}</h2><blockquote><strong>${labels.role}</strong></blockquote><p>${c.introText}</p><p>${labels.bio2}</p></section>
       <section id="about-framework" class="about-section"><h2>${labels.framework}</h2><div class="mermaid-wrap"><pre class="mermaid">${researchFrameworkDiagram[lang]}</pre></div><p class="demo-caveat">⚠️ ${labels.frameworkCaveat}</p></section>
       <section id="about-journey" class="about-section"><h2>${labels.education}</h2><ul class="plain-list">${c.journey.map(item => `<li><strong>${item[0]}</strong>　${item[1]}<br><span>${item[2]}</span></li>`).join('')}</ul></section>
