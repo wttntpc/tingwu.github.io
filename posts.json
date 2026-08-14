@@ -1,5 +1,37 @@
 [
   {
+    "id": "multi-ai-research-team-workflow",
+    "title": "Claude、Codex、Antigravity、Hermes：我的 AI 研究團隊如何分工",
+    "date": "2026-08-14",
+    "category": "ai-tools",
+    "tags": ["AI 工作流", "多代理協作", "Claude", "Codex", "Hermes"],
+    "description": "把四套 AI 工具安排成研究內容、程式實作、視覺驗證與長期排程的協作團隊，並建立避免檔案衝突、責任擴散與自動化偏誤的規則。"
+  },
+  {
+    "id": "research-knowledge-stack-zotero-hackmd-notebooklm-github",
+    "title": "Zotero、HackMD、NotebookLM 與 GitHub：研究資料到底該放哪裡？",
+    "date": "2026-08-14",
+    "category": "ai-tools",
+    "tags": ["知識管理", "Zotero", "HackMD", "NotebookLM", "GitHub"],
+    "description": "以單一事實來源與 FAIR 原則安排文獻、研究筆記、限定來源綜整、程式及版本，讓研究材料能互相連結又不產生多份衝突副本。"
+  },
+  {
+    "id": "ai-assisted-reproducible-research-workflow",
+    "title": "從研究問題到可重現分析：我的 AI 輔助研究完整流程",
+    "date": "2026-08-14",
+    "category": "research-methods",
+    "tags": ["AI 研究", "可重現研究", "資料分析", "研究設計", "版本控制"],
+    "description": "從 estimand、分析計畫、原始資料保護與品質檢查，到模型診斷、效果估計、敏感度分析及可重現發布，說明 AI 可以參與與不能代替的判斷。"
+  },
+  {
+    "id": "audit-ai-statistical-analysis-results",
+    "title": "如何查核 AI 產生的統計分析結果？八道驗證閘門與實用清單",
+    "date": "2026-08-14",
+    "category": "data-analysis",
+    "tags": ["AI 統計", "統計查核", "模型診斷", "效果量", "可重現分析"],
+    "description": "不以流暢文字判斷統計正確性；逐層檢查研究設計、資料完整性、程式、模型假設、效果解釋、樣本數、AI 限制與引用證據。"
+  },
+  {
     "id": "fitness-hrv-cognitive-performance",
     "title": "體適能較好，注意力就更穩嗎？從 HRV 看認知作業中的心身調節",
     "date": "2026-08-12",
