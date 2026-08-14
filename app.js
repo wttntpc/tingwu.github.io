@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260814-1';
+const SITE_VERSION = '20260814-3';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -769,15 +769,26 @@ function initConflictDemo() {
   });
 }
 
-function updateArticleOutline(version) {
+function updateArticleOutline(version, postId) {
   const outline = document.querySelector('.article-outline');
   const content = document.querySelector(`[data-version-content="${version}"]`);
   if (!outline || !content) return;
   const headings = [...content.querySelectorAll('h2')];
   const label = lang === 'zh' ? '本篇章節' : 'In this article';
-  headings.forEach((heading, index) => { heading.id = `article-${version}-section-${index + 1}`; });
+  document.querySelectorAll('[data-version-content] h2[id^="article-section-"]').forEach(heading => heading.removeAttribute('id'));
+  headings.forEach((heading, index) => { heading.id = `article-section-${index + 1}`; });
   outline.hidden = headings.length === 0;
-  outline.innerHTML = headings.length ? `<span>${label}</span><div>${headings.map((heading, index) => `<a href="#${heading.id}"><b>${String(index + 1).padStart(2, '0')}</b>${escapeHtml(heading.textContent.trim())}</a>`).join('')}</div>` : '';
+  outline.innerHTML = headings.length ? `<span>${label}</span><div>${headings.map((heading, index) => `<a href="${window.ArticleNavigation.sectionHref(postId, index + 1)}" data-article-section="${index + 1}"><b>${String(index + 1).padStart(2, '0')}</b>${escapeHtml(heading.textContent.trim())}</a>`).join('')}</div>` : '';
+  outline.onclick = event => {
+    const link = event.target.closest('[data-article-section]');
+    if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    const sectionIndex = Number(link.dataset.articleSection);
+    const target = document.querySelector(`#article-section-${sectionIndex}`);
+    if (!target) return;
+    history.replaceState(null, '', link.getAttribute('href'));
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 }
 
 function initCardSortDemo() {
@@ -1368,7 +1379,7 @@ function initFilterDemo() {
   render();
 }
 
-async function renderPost(id) {
+async function renderPost(id, requestedSectionIndex = null) {
   const [posts, response] = await Promise.all([getPosts(), fetchSiteFile(`posts/${id}.md`)]);
   const meta = posts.find(post => post.id === id);
   const versions = parseArticleVersions(await response.text());
@@ -1384,9 +1395,12 @@ async function renderPost(id) {
     localStorage.setItem('tingting-article-version', version);
     document.querySelectorAll('.version-toggle button').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.version === version)));
     document.querySelectorAll('[data-version-content]').forEach(content => { content.hidden = content.dataset.versionContent !== version; });
-    updateArticleOutline(version);
+    updateArticleOutline(version, id);
+    const currentRoute = window.ArticleNavigation.parsePostPath(location.hash.slice(1));
+    if (currentRoute?.sectionIndex) document.querySelector(`#article-section-${currentRoute.sectionIndex}`)?.scrollIntoView({ block: 'start' });
   }));
-  updateArticleOutline(selectedVersion);
+  updateArticleOutline(selectedVersion, id);
+  if (requestedSectionIndex) requestAnimationFrame(() => document.querySelector(`#article-section-${requestedSectionIndex}`)?.scrollIntoView({ block: 'start' }));
   document.querySelectorAll('.markdown-body img').forEach(image => {
     image.loading = 'lazy';
     image.decoding = 'async';
@@ -1418,7 +1432,11 @@ async function router() {
     else if (path === '/about' || path.startsWith('/about/')) await renderAbout(path.split('/')[2] || '');
     else if (path === '/publications') await renderPublications();
     else if (path === '/blog' || path.startsWith('/blog/')) await renderBlog(path.split('/')[2] || 'all');
-    else if (path.startsWith('/post/')) await renderPost(path.split('/')[2]);
+    else if (path.startsWith('/post/')) {
+      const postRoute = window.ArticleNavigation.parsePostPath(path);
+      if (postRoute) await renderPost(postRoute.postId, postRoute.sectionIndex);
+      else app.innerHTML = `<div class="error-state"><h1>${t()?.notFound || 'Page Not Found'}</h1></div>`;
+    }
     else app.innerHTML = `<div class="error-state"><h1>${t()?.notFound || 'Page Not Found'}</h1></div>`;
   } catch (error) {
     console.error('Router error:', error);
