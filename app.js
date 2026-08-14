@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260814-6';
+const SITE_VERSION = '20260814-7';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -52,15 +52,15 @@ const copy = {
   zh: {
     nav: [['首頁', '/'], ['關於', '/about'], ['學術發表', '/publications'], ['文章', '/blog']],
     footer: '探索身體活動如何改變大腦與心智。',
-    heroLead: '我是吳亭葶，一位認知神經科學博士生與運動防護員。我研究身體活動、執行功能與腦神經震盪之間的關係，並運用資料與 AI 把複雜問題變得清楚。',
+    heroLead: '我是吳亭葶，現為國立中央大學認知神經科學博士生，也是具證照的運動防護員。我的研究關注身體活動、情緒與老化如何影響認知及腦—身體調節，並結合運動處方設計、腦波（EEG）、心率變異度（HRV）與 AI 資料分析，探索促進認知功能與健康老化的可行方法。',
     profileRole: '認知神經科學博士生 · 國立中央大學',
-    profilePillars: '運動科學 × 認知神經科學 × AI 資料分析',
+    profilePillars: '運動與健康老化 × 認知神經科學 × 生理訊號與資料分析',
     fullProfile: '完整學經歷 →',
     selectedAreas: '研究主軸',
     focuses: [
-      ['運動與情緒和認知功能', '研究身體活動如何影響情緒與認知功能。'],
-      ['認知神經科學', '運用 EEG 與行為測量，探索執行功能、神經可塑性及運動後的認知變化。'],
-      ['AI 與資料分析', '使用 Python、Matlab 與統計工具，建立透明、有效率且可重現的研究流程。']
+      ['運動、情緒與健康老化', '探討身體活動與運動處方如何影響情緒、執行功能及健康老化。'],
+      ['腦波與 HRV 分析', '運用 EEG、HRV 與行為測量，理解認知功能及腦—身體調節。'],
+      ['AI 與可重現資料分析', '使用 Python、Matlab 與統計工具，建立透明、有效率且可重現的研究流程。']
     ],
     featuredTitle: '精選論文',
     allPublications: '查看完整學術發表 →',
@@ -123,15 +123,15 @@ const copy = {
   en: {
     nav: [['Home', '/'], ['About', '/about'], ['Publications', '/publications'], ['Writing', '/blog']],
     footer: 'Exploring how physical activity shapes the mind.',
-    heroLead: 'I am Ting-Ting Wu, a Ph.D. student in the Institute of Cognitive Neuroscience and a certified athletic trainer. I study physical activity, executive function, and brain oscillations and use data and AI to make complex questions clearer.',
-    profileRole: 'Ph.D. Student in Institute of Cognitive Neuroscience · National Central University',
-    profilePillars: 'Kinesiology × Cognitive Neuroscience × AI & Data',
+    heroLead: 'I am Ting-Ting Wu, a Ph.D. student in Cognitive Neuroscience at National Central University and a certified athletic trainer. My research examines how physical activity, emotion, and aging influence cognition and brain–body regulation. I integrate exercise prescription design, electroencephalography (EEG), heart rate variability (HRV), and AI-assisted data analysis to explore practical approaches for supporting cognitive function and healthy aging.',
+    profileRole: 'Ph.D. Student in Cognitive Neuroscience · National Central University',
+    profilePillars: 'Exercise & Healthy Aging × Cognitive Neuroscience × Biosignal & Data Analysis',
     fullProfile: 'Full profile →',
     selectedAreas: 'Research pillars',
     focuses: [
-      ['Cognitive neuroscience', 'Using EEG and behavioral measures to study executive function, neuroplasticity, and post-exercise cognitive change.'],
-      ['Kinesiology & Physical activity', 'Studying how resistance exercise, aerobic activity, and daily movement support brain health in older adults.'],
-      ['AI & data analysis', 'Using Python, Matlab, and statistical tools to build transparent, efficient, reproducible research workflows.']
+      ['Exercise, emotion & healthy aging', 'Examining how physical activity and exercise prescription influence emotion, executive function, and healthy aging.'],
+      ['EEG & HRV analysis', 'Using EEG, HRV, and behavioral measures to understand cognition and brain–body regulation.'],
+      ['AI & reproducible data analysis', 'Using Python, Matlab, and statistical tools to build transparent, efficient, and reproducible research workflows.']
     ],
     featuredTitle: 'Selected publications',
     allPublications: 'View all publications →',
