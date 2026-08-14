@@ -1,5 +1,13 @@
 [
   {
+    "id": "fft-wavelet-eeg-time-frequency",
+    "title": "FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖",
+    "date": "2026-08-14",
+    "category": "research-methods",
+    "tags": ["EEG", "FFT", "Welch PSD", "Morlet wavelet", "時間頻率分析"],
+    "description": "從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。"
+  },
+  {
     "id": "data-types-tidy-research-data",
     "title": "資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？",
     "date": "2026-08-14",
@@ -177,11 +185,11 @@
   },
   {
     "id": "hhsa-nonlinear-eeg",
-    "title": "非線性腦波分析入門：從線性方法看不到的大腦動態，到 Holo-Hilbert Spectral Analysis",
-    "date": "2026-08-04",
+    "title": "從 EMD、瞬時頻率到 HHSA：如何看見腦波的振幅調變？",
+    "date": "2026-08-14",
     "category": "research-methods",
-    "tags": ["EEG", "HHSA", "非線性分析"],
-    "description": "傳統頻譜分析只看單一頻段強弱，卻可能漏掉頻段之間的跨頻耦合。介紹 HHSA 方法定位，及其在運動科學研究中的應用缺口。"
+    "tags": ["EEG", "HHSA", "EMD", "瞬時頻率", "跨頻耦合"],
+    "description": "從非平穩與非線性的差異、EMD 與 IMF，到 HHSA 的 carrier × AM frequency 表徵，完整說明分析流程、應用邊界與可重現研究要點。"
   },
   {
     "id": "cardsort-cognitive-flexibility-task",

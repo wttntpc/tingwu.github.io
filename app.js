@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260814-10';
+const SITE_VERSION = '20260814-12';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -273,6 +273,7 @@ function closeMenu() {
 }
 
 const POSTS_DATA = [
+  { "id": "fft-wavelet-eeg-time-frequency", "title": "FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖", "date": "2026-08-14", "category": "research-methods", "tags": ["EEG", "FFT", "Welch PSD", "Morlet wavelet", "時間頻率分析"], "description": "從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。" },
   { "id": "data-types-tidy-research-data", "title": "資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？", "date": "2026-08-14", "category": "data-analysis", "tags": ["資料整理", "Tidy Data", "資料字典", "可重現研究"], "description": "從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。" },
   { "id": "research-data-visualization", "title": "不要只畫平均數：研究資料視覺化的選圖與判讀原則", "date": "2026-08-14", "category": "data-analysis", "tags": ["資料視覺化", "原始資料", "信賴區間", "重複量測"], "description": "依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。" },
   { "id": "p-value-hypothesis-testing", "title": "P 值不是假設為真的機率：從假設檢定到正確研究解讀", "date": "2026-08-14", "category": "data-analysis", "tags": ["P 值", "假設檢定", "統計顯著", "研究解讀"], "description": "釐清 p 值的條件機率定義、顯著與不顯著的常見誤解，以及如何結合效果估計、信賴區間與研究設計報告結果。" },
@@ -291,7 +292,7 @@ const POSTS_DATA = [
   { "id": "hermes-telegram-academic-brief", "title": "讓 Hermes 每天把學術文章送到手機：免費模型、Telegram 與排程", "date": "2026-08-05", "category": "ai-tools", "tags": ["Hermes", "Telegram", "自動排程", "AI Agent"], "description": "從 Hermes 架構、Session、Memory 與 Skills，到模型選擇、Telegram 安全設定及每天 8 點的 cronjob，完整建立可查核的學術文獻推送。" },
   { "id": "ai-tools-skills-research-workflow", "title": "把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流", "date": "2026-08-03", "category": "ai-tools", "tags": ["AI Skills", "GitHub", "Gemini Notebook", "研究工作流"], "description": "用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。" },
   { "id": "ai-academic-skills-paper-screening-grants", "title": "文獻篩選到計畫書撰寫：把 AI-academic-skills 拆成找、評、寫三步驟", "date": "2026-08-05", "category": "ai-tools", "tags": ["AI Skills", "文獻評讀", "計畫書撰寫", "GRADE", "Zotero", "NotebookLM"], "description": "文獻篩選與計畫書撰寫是研究工作中最花時間的兩段流程。整理 AI-academic-skills 中的 litpilot、paper-review、paper-digest 與 research-grants，並加上把既有 Zotero 收藏與 NotebookLM 綜整一起納入評讀的串接流程。" },
-  { "id": "hhsa-nonlinear-eeg", "title": "非線性腦波分析入門：從線性方法看不到的大腦動態，到 Holo-Hilbert Spectral Analysis", "date": "2026-08-04", "category": "research-methods", "tags": ["EEG", "HHSA", "非線性分析"], "description": "傳統頻譜分析只看單一頻段強弱，卻可能漏掉頻段之間的跨頻耦合。介紹 HHSA 方法定位，及其在運動科學研究中的應用缺口。" },
+  { "id": "hhsa-nonlinear-eeg", "title": "從 EMD、瞬時頻率到 HHSA：如何看見腦波的振幅調變？", "date": "2026-08-14", "category": "research-methods", "tags": ["EEG", "HHSA", "EMD", "瞬時頻率", "跨頻耦合"], "description": "從非平穩與非線性的差異、EMD 與 IMF，到 HHSA 的 carrier × AM frequency 表徵，完整說明分析流程、應用邊界與可重現研究要點。" },
   { "id": "cardsort-cognitive-flexibility-task", "title": "規則悄悄換了，你多快發現？認識圖卡分類作業與認知彈性", "date": "2026-08-05", "category": "research-methods", "tags": ["認知作業", "執行功能", "認知彈性"], "description": "圖卡分類作業用雙重規則系統測量認知彈性：切換代價與難度負荷兩個指標，分別代表規則轉換與選項增加的認知成本。" },
   { "id": "conflict-inhibitory-control-task", "title": "當直覺是錯的，你需要多久踩剎車？認識方向感作業與抑制控制", "date": "2026-08-05", "category": "research-methods", "tags": ["認知作業", "執行功能", "抑制控制"], "description": "方向感作業用一致／不一致箭頭測量抑制控制：從一致性效果到 Delta Plot、Gratton Effect，拆解抑制歷程的動態變化。" },
   { "id": "pathend-spatial-working-memory-task", "title": "記住位置還不夠，要在腦中走一遍：認識路徑終點 II 與空間工作記憶", "date": "2026-08-05", "category": "research-methods", "tags": ["認知作業", "工作記憶", "空間認知"], "description": "路徑終點 II 作業要求玩家記住箭頭位置與方向，並在腦中模擬沿路徑行走，同時涉及空間工作記憶與抗干擾能力。" },
@@ -1311,6 +1312,196 @@ function initCfcDemo() {
   draw(Number(slider.value));
 }
 
+function initTimeFrequencyDemos() {
+  const fs = 128;
+  const sampleCount = 384;
+  const duration = sampleCount / fs;
+  const waveletFrequencies = Array.from({ length: 19 }, (_, index) => 4 + index * 2);
+
+  function taperedBurst(t, start, end, frequency) {
+    if (t < start || t > end) return 0;
+    const phase = (t - start) / (end - start);
+    const envelope = 0.5 - 0.5 * Math.cos(2 * Math.PI * phase);
+    return envelope * Math.sin(2 * Math.PI * frequency * t);
+  }
+
+  function createSignal(mode) {
+    return Array.from({ length: sampleCount }, (_, index) => {
+      const t = index / fs;
+      const deterministicNoise = 0.045 * Math.sin(2 * Math.PI * 31 * t + 0.7) + 0.025 * Math.sin(2 * Math.PI * 43 * t + 1.9);
+      if (mode === 'bursts') return taperedBurst(t, 0.35, 1.15, 10) + 0.85 * taperedBurst(t, 1.65, 2.5, 26) + deterministicNoise;
+      if (mode === 'chirp') {
+        const startFrequency = 5;
+        const rate = 25 / duration;
+        return Math.sin(2 * Math.PI * (startFrequency * t + 0.5 * rate * t * t)) + deterministicNoise;
+      }
+      return Math.sin(2 * Math.PI * 10 * t) + deterministicNoise;
+    });
+  }
+
+  function dftPower(signal) {
+    const maxBin = Math.floor(40 * sampleCount / fs);
+    return Array.from({ length: maxBin + 1 }, (_, bin) => {
+      let real = 0;
+      let imaginary = 0;
+      for (let n = 0; n < sampleCount; n++) {
+        const angle = 2 * Math.PI * bin * n / sampleCount;
+        real += signal[n] * Math.cos(angle);
+        imaginary -= signal[n] * Math.sin(angle);
+      }
+      return { frequency: bin * fs / sampleCount, power: (real * real + imaginary * imaginary) / (sampleCount * sampleCount) };
+    });
+  }
+
+  function morletPower(signal, cycles) {
+    return waveletFrequencies.map(frequency => {
+      const sigmaSeconds = cycles / (2 * Math.PI * frequency);
+      const halfWidth = Math.min(Math.ceil(3 * sigmaSeconds * fs), sampleCount - 1);
+      return signal.map((_, center) => {
+        let real = 0;
+        let imaginary = 0;
+        let weightSum = 0;
+        const start = Math.max(0, center - halfWidth);
+        const end = Math.min(sampleCount - 1, center + halfWidth);
+        for (let index = start; index <= end; index++) {
+          const tau = (index - center) / fs;
+          const gaussian = Math.exp(-(tau * tau) / (2 * sigmaSeconds * sigmaSeconds));
+          const angle = 2 * Math.PI * frequency * tau;
+          real += signal[index] * gaussian * Math.cos(angle);
+          imaginary -= signal[index] * gaussian * Math.sin(angle);
+          weightSum += gaussian;
+        }
+        return (real * real + imaginary * imaginary) / Math.max(weightSum * weightSum, Number.EPSILON);
+      });
+    });
+  }
+
+  function plotFrame(canvas, xLabel, yLabel) {
+    const ctx = canvas.getContext('2d');
+    const styles = getComputedStyle(document.documentElement);
+    const colors = {
+      background: styles.getPropertyValue('--theme').trim() || '#fffdf7',
+      grid: styles.getPropertyValue('--tertiary').trim() || '#d6d0c2',
+      text: styles.getPropertyValue('--secondary').trim() || '#5d6670',
+      accent: styles.getPropertyValue('--accent').trim() || '#17395f'
+    };
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = colors.background;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = '12px sans-serif';
+    ctx.fillStyle = colors.text;
+    ctx.fillText(xLabel, canvas.width - 42, canvas.height - 7);
+    ctx.save();
+    ctx.translate(12, 55);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText(yLabel, 0, 0);
+    ctx.restore();
+    return { ctx, colors, left: 42, right: canvas.width - 12, top: 12, bottom: canvas.height - 28 };
+  }
+
+  function drawTime(canvas, signal) {
+    const frame = plotFrame(canvas, '秒', '振幅');
+    const { ctx, colors, left, right, top, bottom } = frame;
+    ctx.strokeStyle = colors.grid;
+    ctx.beginPath(); ctx.moveTo(left, (top + bottom) / 2); ctx.lineTo(right, (top + bottom) / 2); ctx.stroke();
+    ctx.strokeStyle = colors.accent;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    signal.forEach((value, index) => {
+      const x = left + index / (sampleCount - 1) * (right - left);
+      const y = (top + bottom) / 2 - value * (bottom - top) * 0.36;
+      if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    ctx.fillStyle = colors.text;
+    [0, 1, 2, 3].forEach(second => ctx.fillText(String(second), left + second / duration * (right - left) - 3, bottom + 16));
+  }
+
+  function drawFft(canvas, spectrum) {
+    const frame = plotFrame(canvas, 'Hz', '相對功率');
+    const { ctx, colors, left, right, top, bottom } = frame;
+    const maximum = Math.max(...spectrum.map(point => point.power), Number.EPSILON);
+    ctx.strokeStyle = colors.grid;
+    ctx.beginPath(); ctx.moveTo(left, bottom); ctx.lineTo(right, bottom); ctx.stroke();
+    ctx.strokeStyle = colors.accent;
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    spectrum.forEach((point, index) => {
+      const x = left + point.frequency / 40 * (right - left);
+      const y = bottom - point.power / maximum * (bottom - top);
+      if (index === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    ctx.fillStyle = colors.text;
+    [0, 10, 20, 30, 40].forEach(frequency => ctx.fillText(String(frequency), left + frequency / 40 * (right - left) - 6, bottom + 16));
+  }
+
+  function heatColor(value) {
+    const clipped = Math.max(0, Math.min(1, value));
+    const low = [244, 240, 228];
+    const middle = [63, 126, 177];
+    const high = [10, 38, 70];
+    const from = clipped < 0.55 ? low : middle;
+    const to = clipped < 0.55 ? middle : high;
+    const amount = clipped < 0.55 ? clipped / 0.55 : (clipped - 0.55) / 0.45;
+    return `rgb(${from.map((channel, index) => Math.round(channel + (to[index] - channel) * amount)).join(',')})`;
+  }
+
+  function drawWavelet(canvas, matrix) {
+    const frame = plotFrame(canvas, '秒', 'Hz');
+    const { ctx, colors, left, right, top, bottom } = frame;
+    const maximum = Math.max(...matrix.flat(), Number.EPSILON);
+    const cellWidth = (right - left) / sampleCount;
+    const cellHeight = (bottom - top) / waveletFrequencies.length;
+    matrix.forEach((row, rowIndex) => row.forEach((power, timeIndex) => {
+      const compressed = Math.sqrt(power / maximum);
+      ctx.fillStyle = heatColor(compressed);
+      const x = left + timeIndex * cellWidth;
+      const y = bottom - (rowIndex + 1) * cellHeight;
+      ctx.fillRect(x, y, Math.ceil(cellWidth) + 0.25, Math.ceil(cellHeight) + 0.25);
+    }));
+    ctx.fillStyle = colors.text;
+    [0, 1, 2, 3].forEach(second => ctx.fillText(String(second), left + second / duration * (right - left) - 3, bottom + 16));
+    [4, 10, 20, 30, 40].forEach(frequency => ctx.fillText(String(frequency), 17, bottom - (frequency - 4) / 36 * (bottom - top) + 4));
+  }
+
+  document.querySelectorAll('[data-time-frequency-demo]').forEach(demo => {
+    const cycleSlider = demo.querySelector('[data-cycle-slider]');
+    const cycleValue = demo.querySelector('[data-cycle-value]');
+    const note = demo.querySelector('[data-tf-note]');
+    let mode = 'steady';
+    let animationFrame = null;
+    const notes = {
+      steady: 'FFT 會在 10 Hz 顯示集中峰值；小波圖則顯示它持續整段時間。',
+      bursts: 'FFT 同時顯示約 10 與 26 Hz，卻不告訴你先後順序；小波圖能把兩段 burst 定位在不同時間。',
+      chirp: 'FFT 把 5–30 Hz 展成寬廣頻帶；小波圖則能追蹤頻率隨時間逐漸升高。'
+    };
+
+    function render() {
+      const cycles = Number(cycleSlider.value);
+      const signal = createSignal(mode);
+      cycleValue.value = String(cycles);
+      drawTime(demo.querySelector('[data-time-plot]'), signal);
+      drawFft(demo.querySelector('[data-fft-plot]'), dftPower(signal));
+      drawWavelet(demo.querySelector('[data-wavelet-plot]'), morletPower(signal, cycles));
+      note.textContent = `${notes[mode]} 目前使用 ${cycles} cycles；數值越大，頻率方向通常更集中、時間方向更模糊。`;
+    }
+
+    function scheduleRender() {
+      if (animationFrame !== null) cancelAnimationFrame(animationFrame);
+      animationFrame = requestAnimationFrame(() => { animationFrame = null; render(); });
+    }
+
+    demo.querySelectorAll('[data-signal]').forEach(button => button.addEventListener('click', () => {
+      mode = button.dataset.signal;
+      demo.querySelectorAll('[data-signal]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      scheduleRender();
+    }));
+    cycleSlider.addEventListener('input', scheduleRender);
+    render();
+  });
+}
+
 function initFilterDemo() {
   const demo = document.querySelector('#filterDemo');
   if (!demo) return;
@@ -1428,6 +1619,7 @@ async function renderPost(id) {
   initBbiDemo();
   initPoincareDemos();
   initCfcDemo();
+  initTimeFrequencyDemos();
   initFilterDemo();
 }
 
