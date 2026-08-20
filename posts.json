@@ -1,5 +1,13 @@
 [
   {
+    "id": "at-emt-1-course-radar",
+    "title": "自製進修課程雷達：自動化追蹤 EMT-1 與運動傷害防護課程",
+    "date": "2026-08-20",
+    "category": "ai-tools",
+    "tags": ["AI 應用", "Python 爬蟲", "運動傷害防護", "EMT-1", "Supabase", "Vercel"],
+    "description": "為了解決救護人員與防護員尋找繼續教育課程的痛點，我獨立開發了一套自動化爬蟲與雲端資料庫系統，並部署上線為即時彙整的進修時數雷達網頁。"
+  },
+  {
     "id": "fft-wavelet-eeg-time-frequency",
     "title": "FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖",
     "date": "2026-08-14",

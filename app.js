@@ -376,7 +376,7 @@ async function renderHome() {
         <p class="profile-role">${c.profileRole}</p>
         <p class="profile-pillars">${c.profilePillars}</p>
         <p class="profile-intro">${c.heroLead}</p>
-        <div class="profile-links"><a href="#/about">${c.fullProfile}</a><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div>
+        <div class="profile-links"><a href="#/about">${c.fullProfile}</a><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a><a href="https://at-emt-1-course-radar.vercel.app/" target="_blank" rel="noopener noreferrer">${lang === 'zh' ? '進修課程雷達 ↗' : 'Course Radar ↗'}</a></div>
       </div>
     </section>
     <nav class="home-overview" aria-label="${lang === 'zh' ? '研究與內容概覽' : 'Research and content overview'}">
