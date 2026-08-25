@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260825-18';
+const SITE_VERSION = '20260825-19';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -50,7 +50,7 @@ function renderMermaidNodes(selector = '.mermaid') {
 
 const copy = {
   zh: {
-    nav: [['首頁', '/'], ['關於', '/about'], ['學習地圖', '/learning'], ['學術發表', '/publications'], ['文章', '/blog']],
+    nav: [['首頁', '/'], ['關於', '/about'], ['學術發表', '/publications'], ['文章', '/blog'], ['學習地圖', '/learning']],
     footer: '探索身體活動如何改變大腦與心智。',
     disclaimerLink: '網站聲明',
     disclaimerNote: '本站為個人學術與知識分享網站，部分內容由 AI 協作整理，可能仍有疏漏；不構成醫療、法律或其他專業建議，重要決策請核對原始與官方來源。',
@@ -139,7 +139,7 @@ const copy = {
     notFound: '找不到這個頁面。'
   },
   en: {
-    nav: [['Home', '/'], ['About', '/about'], ['Learning map', '/learning'], ['Publications', '/publications'], ['Writing', '/blog']],
+    nav: [['Home', '/'], ['About', '/about'], ['Publications', '/publications'], ['Writing', '/blog'], ['Learning map', '/learning']],
     footer: 'Exploring how physical activity shapes the mind.',
     disclaimerLink: 'Website statement',
     disclaimerNote: 'This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.',
