@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260825-14';
+const SITE_VERSION = '20260825-15';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -52,6 +52,11 @@ const copy = {
   zh: {
     nav: [['首頁', '/'], ['關於', '/about'], ['學術發表', '/publications'], ['文章', '/blog']],
     footer: '探索身體活動如何改變大腦與心智。',
+    disclaimerLink: '網站聲明',
+    disclaimerNote: '本站為個人學術與知識分享網站，部分內容由 AI 協作整理，可能仍有疏漏；不構成醫療、法律或其他專業建議，重要決策請核對原始與官方來源。',
+    disclaimerTitle: '網站聲明與使用說明',
+    disclaimerLead: '關於本站性質、AI 協作、資訊查核、專業建議、著作權、隱私與責任限制。',
+    disclaimerUpdated: '最後更新：2026 年 8 月 25 日',
     heroLead: '我是吳亭葶，現為國立中央大學認知神經科學博士生，也是具證照的運動防護員。我的研究關注身體活動、情緒與老化如何影響認知及腦—身體調節，並結合運動處方設計、腦波（EEG）、心率變異度（HRV）與 AI 資料分析，探索促進認知功能與健康老化的可行方法。',
     profileRole: '認知神經科學博士生 · 國立中央大學',
     profilePillars: '運動與健康老化 × 認知神經科學 × 生理訊號與資料分析',
@@ -136,6 +141,11 @@ const copy = {
   en: {
     nav: [['Home', '/'], ['About', '/about'], ['Publications', '/publications'], ['Writing', '/blog']],
     footer: 'Exploring how physical activity shapes the mind.',
+    disclaimerLink: 'Website statement',
+    disclaimerNote: 'This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.',
+    disclaimerTitle: 'Website Statement & Terms of Use',
+    disclaimerLead: 'How this site handles AI-assisted work, verification, professional advice, copyright, privacy, and limitations of responsibility.',
+    disclaimerUpdated: 'Last updated: August 25, 2026',
     heroLead: 'I am Ting-Ting Wu, a Ph.D. student in Cognitive Neuroscience at National Central University and a certified athletic trainer. My research examines how physical activity, emotion, and aging influence cognition and brain–body regulation. I integrate exercise prescription design, electroencephalography (EEG), heart rate variability (HRV), and AI-assisted data analysis to explore practical approaches for supporting cognitive function and healthy aging.',
     profileRole: 'Ph.D. Student in Cognitive Neuroscience · National Central University',
     profilePillars: 'Exercise & Healthy Aging × Cognitive Neuroscience × Biosignal & Data Analysis',
@@ -241,6 +251,14 @@ function updateChrome() {
   document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
   const footerTagline = document.querySelector('#footer-tagline');
   if (footerTagline && c && c.footer) footerTagline.textContent = c.footer;
+  const footerDisclaimerLink = document.querySelector('#footer-disclaimer-link');
+  if (footerDisclaimerLink && c?.disclaimerLink) {
+    footerDisclaimerLink.textContent = c.disclaimerLink;
+    if (path === '/disclaimer') footerDisclaimerLink.setAttribute('aria-current', 'page');
+    else footerDisclaimerLink.removeAttribute('aria-current');
+  }
+  const footerDisclaimerNote = document.querySelector('#footer-disclaimer-note');
+  if (footerDisclaimerNote && c?.disclaimerNote) footerDisclaimerNote.textContent = c.disclaimerNote;
 }
 
 function updateThemeChrome() {
@@ -1624,6 +1642,13 @@ async function renderPost(id) {
   initFilterDemo();
 }
 
+async function renderDisclaimer() {
+  const c = t();
+  const response = await fetchSiteFile(`pages/disclaimer.${lang}.md`);
+  const source = await response.text();
+  app.innerHTML = `<article class="page-shell disclaimer-page"><header class="post-header"><div class="section-kicker">Website policy</div><h1>${c.disclaimerTitle}</h1><p>${c.disclaimerLead}</p><small>${c.disclaimerUpdated}</small></header><div class="markdown-body disclaimer-content">${safeMarkdownParse(source)}</div></article>`;
+}
+
 async function router() {
   if (!app) return;
   closeMenu();
@@ -1636,6 +1661,7 @@ async function router() {
     else if (path === '/publications') await renderPublications();
     else if (path === '/blog' || path.startsWith('/blog/')) await renderBlog(path.split('/')[2] || 'all');
     else if (path.startsWith('/post/')) await renderPost(path.split('/')[2]);
+    else if (path === '/disclaimer') await renderDisclaimer();
     else app.innerHTML = `<div class="error-state"><h1>${t()?.notFound || 'Page Not Found'}</h1></div>`;
   } catch (error) {
     console.error('Router error:', error);
