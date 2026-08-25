@@ -26,6 +26,10 @@
 **💡 給你的實用小指引**：
 下一次當你覺得焦慮、心累、整個人喘不過氣時，別再躺在沙發上滑手機了。穿上跑鞋、出門去慢跑 30 分鐘吧！這不僅能幫你甩掉體脂肪、降低 BMI，更是在實實地為你的大腦與心臟注入滿滿的「抗壓原動力」！
 
+## 參考文獻 (APA 7th)
+
+* Wang, Z., Jing, R., & Zhang, R. (2025). The impact of sports activities on the cardiac autonomic nervous system changes in college students and medical imaging analysis. *Journal of Radiation Research and Applied Sciences, 18*(2), 101376. https://doi.org/10.1016/j.jrras.2025.101376
+
 ---
 
 <!-- PROFESSIONAL -->
@@ -69,3 +73,7 @@
 
 ### 6. 學術結論與臨床處方建議
 本研究有力證明，**相較於 HIIT 運動，為期 2 個月的系統性馬拉松慢跑干預能更有效地優化青年大學生的身體組成，並顯著逆轉自律神經功能紊亂（特別是增強心臟迷走神經調控與應變抗壓儲備）**。因此，在預防醫學、亞健康評估及青年體適能干預策略中，應推薦以規律的中等強度長距離有氧慢跑作為一線運動干預處方。
+
+## 參考文獻 (APA 7th)
+
+* Wang, Z., Jing, R., & Zhang, R. (2025). The impact of sports activities on the cardiac autonomic nervous system changes in college students and medical imaging analysis. *Journal of Radiation Research and Applied Sciences, 18*(2), 101376. https://doi.org/10.1016/j.jrras.2025.101376
