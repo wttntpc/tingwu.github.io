@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🌲 宜蘭歡聚度假 App (亭葶、亭葳、賈賽、霈琪、靖妤、采娟)</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <!-- Canvas Confetti for celebrations -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen pb-24 md:pb-12">
+  <div id="app" class="max-w-md mx-auto md:max-w-4xl min-h-screen flex flex-col bg-white shadow-2xl relative">
+    
+    <!-- Top Header -->
+    <header class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 text-white p-5 sticky top-0 z-40 shadow-lg">
+      <div class="flex items-center justify-between">
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="bg-emerald-800/80 text-emerald-200 text-xs px-2.5 py-0.5 rounded-full font-medium">6人專屬遊</span>
+            <span class="text-xs text-emerald-100"><i class="fa-regular fa-calendar-days mr-1"></i>9/24(四)夜 ~ 9/26(六)</span>
+          </div>
+          <h1 class="text-xl md:text-2xl font-black tracking-tight mt-1 flex items-center gap-2">
+            🌲 宜蘭歡聚度假 App
+          </h1>
+          <p class="text-[11px] text-emerald-100 mt-0.5 flex items-center gap-1">
+            <i class="fa-solid fa-users"></i> 亭葶・亭葳・賈賽・霈琪・靖妤・采娟
+          </p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <!-- Share / QR Code Button -->
+          <button @click="showShareModal = true" class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition" title="手機分享網址與QR碼">
+            <i class="fa-solid fa-qrcode text-white text-base"></i>
+          </button>
+          <button @click="showInfoModal = true" class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition" title="使用說明">
+            <i class="fa-solid fa-circle-question text-white text-base"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Navigation Tabs (Desktop & Tablet) -->
+      <nav class="mt-4 flex space-x-2 overflow-x-auto hide-scrollbar text-xs md:text-sm">
+        <button 
+          v-for="tab in tabs" 
+          :key="tab.id"
+          @click="currentTab = tab.id"
+          :class="currentTab === tab.id ? 'bg-white text-emerald-800 font-bold shadow-md' : 'bg-emerald-700/60 text-emerald-100 hover:bg-emerald-700'"
+          class="px-3.5 py-1.5 rounded-full transition flex items-center space-x-1.5 whitespace-nowrap"
+        >
+          <i :class="tab.icon"></i>
+          <span>{{ tab.name }}</span>
+          <span v-if="tab.badge" class="bg-amber-400 text-slate-900 text-[10px] px-1.5 py-0.2 rounded-full font-bold ml-1">{{ tab.badge }}</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 p-4 md:p-6 space-y-6">
+
+      <!-- ========================================== -->
+      <!-- TAB 1: 🗺️ 行程導航 (Itinerary) -->
+      <!-- ========================================== -->
+      <section v-show="currentTab === 'itinerary'" class="space-y-4">
+        <!-- 3 Days Selector (9/24, 9/25, 9/26) -->
+        <div class="grid grid-cols-3 gap-1.5 bg-slate-200 p-1 rounded-2xl text-xs">
+          <button 
+            @click="selectedDay = 0"
+            :class="selectedDay === 0 ? 'bg-white text-emerald-700 font-bold shadow-sm' : 'text-slate-600 hover:text-slate-900'"
+            class="py-2.5 rounded-xl transition text-center flex flex-col items-center justify-center"
+          >
+            <span class="text-[10px] text-slate-400 font-normal">9/24(四)</span>
+            <span class="font-bold flex items-center gap-1"><i class="fa-solid fa-moon text-indigo-500 text-[11px]"></i> 前夜入住</span>
+          </button>
+          <button 
+            @click="selectedDay = 1"
+            :class="selectedDay === 1 ? 'bg-white text-emerald-700 font-bold shadow-sm' : 'text-slate-600 hover:text-slate-900'"
+            class="py-2.5 rounded-xl transition text-center flex flex-col items-center justify-center"
+          >
+            <span class="text-[10px] text-slate-400 font-normal">9/25(五)</span>
+            <span class="font-bold flex items-center gap-1"><i class="fa-solid fa-fire text-amber-500 text-[11px]"></i> Day 1 烤肉</span>
+          </button>
+          <button 
+            @click="selectedDay = 2"
+            :class="selectedDay === 2 ? 'bg-white text-emerald-700 font-bold shadow-sm' : 'text-slate-600 hover:text-slate-900'"
+            class="py-2.5 rounded-xl transition text-center flex flex-col items-center justify-center"
+          >
+            <span class="text-[10px] text-slate-400 font-normal">9/26(六)</span>
+            <span class="font-bold flex items-center gap-1"><i class="fa-solid fa-mountain text-emerald-600 text-[11px]"></i> Day 2 太平山</span>
+          </button>
+        </div>
+
+        <!-- Day Header Banner -->
+        <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-3.5 flex items-center justify-between text-xs md:text-sm">
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-flag-checkered text-emerald-600 text-base"></i>
+            <div>
+              <span class="font-bold text-emerald-900">{{ dayTitle(selectedDay) }}</span>
+              <p class="text-emerald-700 text-[11px]">點擊卡片右上「導航」按鈕直接開啟 Google Maps</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-emerald-800 font-bold text-sm">{{ completedCount(selectedDay) }}/{{ currentDaySchedule.length }}</span>
+            <span class="text-emerald-600 block text-[10px]">已完成</span>
+          </div>
+        </div>
+
+        <!-- Timeline Items List -->
+        <div class="relative border-l-2 border-emerald-200 ml-4 md:ml-6 space-y-6 py-2">
+          <div 
+            v-for="(item, index) in currentDaySchedule" 
+            :key="item.id"
+            class="relative pl-6 group"
+          >
+            <!-- Timeline Dot / Checkbox -->
+            <button 
+              @click="toggleComplete(item)"
+              :class="item.completed ? 'bg-emerald-600 text-white' : 'bg-white border-2 border-emerald-500 text-emerald-600'"
+              class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full flex items-center justify-center shadow-md transition hover:scale-110 z-10"
+            >
+              <i v-if="item.completed" class="fa-solid fa-check text-xs"></i>
+              <span v-else class="text-xs font-bold">{{ index + 1 }}</span>
+            </button>
+
+            <!-- Card Content -->
+            <div 
+              :class="item.completed ? 'bg-slate-50 border-slate-200 opacity-80' : 'bg-white border-slate-200 hover:border-emerald-300'"
+              class="border rounded-2xl p-4 shadow-sm transition space-y-3"
+            >
+              <!-- Card Header -->
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-0.5 rounded-md font-mono font-semibold">
+                      <i class="fa-regular fa-clock mr-1 text-slate-500"></i>{{ item.time }}
+                    </span>
+                    <span :class="item.tagClass" class="text-[11px] px-2 py-0.5 rounded-md font-medium">
+                      {{ item.tag }}
+                    </span>
+                  </div>
+                  <h3 :class="item.completed ? 'line-through text-slate-500' : 'text-slate-900'" class="text-base font-bold mt-1.5">
+                    {{ item.title }}
+                  </h3>
+                </div>
+
+                <!-- Navigation & Action Buttons -->
+                <div class="flex items-center space-x-1.5">
+                  <a 
+                    v-if="item.mapUrl" 
+                    :href="item.mapUrl" 
+                    target="_blank" 
+                    class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs px-2.5 py-1.5 rounded-lg flex items-center gap-1 shadow-sm transition active:scale-95"
+                    title="Google Maps 導航"
+                  >
+                    <i class="fa-solid fa-location-arrow"></i>
+                    <span class="hidden sm:inline">導航</span>
+                  </a>
+                  <a 
+                    v-if="item.phone" 
+                    :href="'tel:' + item.phone" 
+                    class="bg-blue-50 text-blue-700 hover:bg-blue-100 text-xs px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition"
+                    title="撥打電話"
+                  >
+                    <i class="fa-solid fa-phone"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Location Details -->
+              <p v-if="item.location" class="text-xs text-slate-500 flex items-center gap-1.5">
+                <i class="fa-solid fa-map-pin text-rose-500"></i>
+                <span>{{ item.location }}</span>
+              </p>
+
+              <!-- Description & Highlights -->
+              <div class="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-xl space-y-1">
+                <p>{{ item.desc }}</p>
+                <div v-if="item.tips" class="text-emerald-700 font-medium pt-1 border-t border-slate-200/60 flex items-start gap-1">
+                  <i class="fa-solid fa-circle-info mt-0.5 text-emerald-600"></i>
+                  <span>{{ item.tips }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 2: 🚗 車況與天氣 (Traffic & Weather) -->
+      <!-- ========================================== -->
+      <section v-show="currentTab === 'traffic'" class="space-y-5">
+        
+        <!-- Live Traffic Dashboard -->
+        <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-3xl p-5 shadow-xl space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="p-2 bg-emerald-500/20 text-emerald-400 rounded-xl">
+                <i class="fa-solid fa-car-tunnel text-lg"></i>
+              </span>
+              <div>
+                <h3 class="font-bold text-base">國3土城 ⇄ 國5雪隧即時路況</h3>
+                <p class="text-xs text-slate-400">出發與返程前即時掌握車況</p>
+              </div>
+            </div>
+            <span class="bg-emerald-500/20 text-emerald-300 text-xs px-2.5 py-1 rounded-full flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              即時連線
+            </span>
+          </div>
+
+          <!-- Quick Actions Grid -->
+          <div class="grid grid-cols-2 gap-2.5 pt-2">
+            <a 
+              href="https://1968.freeway.gov.tw/" 
+              target="_blank" 
+              class="bg-slate-800/90 hover:bg-slate-700 p-3 rounded-2xl border border-slate-700 flex flex-col justify-between transition group"
+            >
+              <div class="flex items-center justify-between text-slate-400 text-xs">
+                <span>高公局 1968</span>
+                <i class="fa-solid fa-arrow-up-right-from-square group-hover:text-emerald-400 transition"></i>
+              </div>
+              <p class="text-sm font-bold text-white mt-2">即時路況/車速</p>
+            </a>
+            
+            <a 
+              href="https://thbap.thb.gov.tw/Cctv/Index" 
+              target="_blank" 
+              class="bg-slate-800/90 hover:bg-slate-700 p-3 rounded-2xl border border-slate-700 flex flex-col justify-between transition group"
+            >
+              <div class="flex items-center justify-between text-slate-400 text-xs">
+                <span>公路局 CCTV</span>
+                <i class="fa-solid fa-video group-hover:text-emerald-400 transition"></i>
+              </div>
+              <p class="text-sm font-bold text-white mt-2">雪隧即時影像</p>
+            </a>
+          </div>
+
+          <!-- Route Highlights -->
+          <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-3.5 text-xs text-slate-300 space-y-2">
+            <div class="flex items-center gap-1.5 font-bold text-emerald-300">
+              <i class="fa-solid fa-route"></i>
+              <span>行車路線關鍵轉乘：</span>
+            </div>
+            <p>• <b>去程 (9/24夜)</b>：土城國中 ➔ 國3土城交流道 ➔ 南港系統轉國5 ➔ 羅東/蘇澳交流道 ➔ 冬山小茄苳宿Villa (約 50~65 分鐘)。</p>
+            <p>• <b>回程 (9/26傍晚)</b>：宜蘭各交流道 ➔ 國5雪隧 ➔ 南港系統轉國3南下 ➔ 國3土城交流道 ➔ 新北市土城國中。</p>
+          </div>
+        </div>
+
+        <!-- Taipingshan Mountain Road & Safety -->
+        <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
+          <div class="flex items-center space-x-2">
+            <span class="p-2 bg-emerald-100 text-emerald-700 rounded-xl">
+              <i class="fa-solid fa-tree text-base"></i>
+            </span>
+            <div>
+              <h3 class="font-bold text-base text-slate-900">太平山山區行車小叮嚀 (9/26)</h3>
+              <p class="text-xs text-slate-500">海拔 2,000 公尺高山行車提醒</p>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 text-xs text-slate-600">
+            <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-xl">
+              <i class="fa-solid fa-gas-pump text-amber-500 mt-0.5 text-sm"></i>
+              <div>
+                <span class="font-bold text-slate-800">最後加油站：</span>
+                <p>山上無加油站！請在台7線「大同中油加油站」或三星市區加滿油再上山。</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-xl">
+              <i class="fa-solid fa-smog text-indigo-500 mt-0.5 text-sm"></i>
+              <div>
+                <span class="font-bold text-slate-800">午後起霧與溫差：</span>
+                <p>午後 13:00 起容易起濃霧，請開啟大燈並減速慢行。山頂氣溫約比平地低 8~10°C，需備薄外套。</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2 bg-slate-50 p-3 rounded-xl">
+              <i class="fa-solid fa-ticket text-rose-500 mt-0.5 text-sm"></i>
+              <div>
+                <span class="font-bold text-slate-800">官方即時資訊：</span>
+                <div class="mt-1">
+                  <a href="https://tps.forest.gov.tw/" target="_blank" class="text-emerald-600 font-bold underline inline-flex items-center gap-1">
+                    太平山官網即時公告 ➜
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weather Quick Check -->
+        <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
+          <h3 class="font-bold text-base text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-cloud-sun-rain text-cyan-500"></i>
+            各區即時天氣查詢
+          </h3>
+          <div class="grid grid-cols-3 gap-2 text-center text-xs">
+            <a href="https://www.cwa.gov.tw/V8/C/W/County/County.html?CID=10002" target="_blank" class="p-3 bg-slate-50 hover:bg-emerald-50 rounded-2xl border border-slate-200 transition">
+              <span class="font-bold text-slate-800 block">冬山鄉</span>
+              <span class="text-[11px] text-slate-500">小茄苳宿Villa</span>
+            </a>
+            <a href="https://www.cwa.gov.tw/V8/C/W/County/County.html?CID=10002" target="_blank" class="p-3 bg-slate-50 hover:bg-emerald-50 rounded-2xl border border-slate-200 transition">
+              <span class="font-bold text-slate-800 block">蘇澳鎮</span>
+              <span class="text-[11px] text-slate-500">南方澳蝦餅</span>
+            </a>
+            <a href="https://www.cwa.gov.tw/V8/C/W/County/County.html?CID=10002" target="_blank" class="p-3 bg-slate-50 hover:bg-emerald-50 rounded-2xl border border-slate-200 transition">
+              <span class="font-bold text-slate-800 block">大同鄉</span>
+              <span class="text-[11px] text-slate-500">太平山高山</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 3: 💰 6人智能分帳記帳 (AA Splitter) -->
+      <!-- ========================================== -->
+      <section v-show="currentTab === 'accounting'" class="space-y-5">
+        
+        <!-- Total Expense Card -->
+        <div class="bg-gradient-to-br from-emerald-600 to-teal-800 text-white rounded-3xl p-5 shadow-xl space-y-3">
+          <div class="flex items-center justify-between text-xs text-emerald-100">
+            <span>6 人總開銷統計</span>
+            <span class="bg-white/20 px-2 py-0.5 rounded-full font-mono">{{ expenses.length }} 筆支出</span>
+          </div>
+          <div class="flex items-baseline justify-between">
+            <div>
+              <span class="text-xs text-emerald-200 block">總計支出</span>
+              <span class="text-3xl font-black font-mono">NT$ {{ totalExpense.toLocaleString() }}</span>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-emerald-200 block">每人平均</span>
+              <span class="text-xl font-bold font-mono">NT$ {{ averageExpense.toLocaleString() }}</span>
+            </div>
+          </div>
+
+          <!-- Quick Member Editor Trigger -->
+          <div class="pt-2 border-t border-emerald-500/40 flex items-center justify-between text-xs">
+            <span class="text-emerald-100">成員：{{ members.join('、') }}</span>
+            <button @click="showMemberModal = true" class="text-emerald-200 hover:text-white underline">
+              <i class="fa-solid fa-user-pen mr-1"></i>改名字
+            </button>
+          </div>
+        </div>
+
+        <!-- Add Expense Button -->
+        <button 
+          @click="openAddExpenseModal" 
+          class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 rounded-2xl font-bold shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition active:scale-[0.98]"
+        >
+          <i class="fa-solid fa-plus-circle text-lg"></i>
+          <span>新增一筆支出</span>
+        </button>
+
+        <!-- Quick Settlement Summary Box -->
+        <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-base text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-calculator text-emerald-600"></i>
+              <span>智慧結算中心 (誰該給誰多少錢)</span>
+            </h3>
+            <button 
+              @click="copyLineSettlement" 
+              class="bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs px-3 py-1.5 rounded-xl font-bold flex items-center gap-1 transition"
+            >
+              <i class="fa-brands fa-line text-emerald-600 text-sm"></i>
+              <span>複製 LINE 明細</span>
+            </button>
+          </div>
+
+          <!-- Transfers Breakdown -->
+          <div v-if="settlementTransfers.length > 0" class="space-y-2">
+            <div 
+              v-for="(transfer, idx) in settlementTransfers" 
+              :key="idx"
+              class="p-3 bg-emerald-50/70 border border-emerald-200/80 rounded-2xl flex items-center justify-between text-xs md:text-sm"
+            >
+              <div class="flex items-center space-x-2">
+                <span class="font-bold text-slate-800 bg-white px-2 py-0.5 rounded-md border border-slate-200">{{ transfer.from }}</span>
+                <span class="text-emerald-700"><i class="fa-solid fa-arrow-right"></i> 應轉給</span>
+                <span class="font-bold text-emerald-900 bg-white px-2 py-0.5 rounded-md border border-emerald-200">{{ transfer.to }}</span>
+              </div>
+              <span class="font-mono font-bold text-emerald-700 text-sm">NT$ {{ transfer.amount.toLocaleString() }}</span>
+            </div>
+          </div>
+          <div v-else class="text-center py-4 text-xs text-slate-400">
+            目前金額已平衡或尚無支出紀錄
+          </div>
+
+          <!-- Individual Balances -->
+          <div class="pt-3 border-t border-slate-100">
+            <details class="text-xs">
+              <summary class="cursor-pointer font-semibold text-slate-600 hover:text-slate-900 select-none">
+                查看 6 人個人收支明細 ▾
+              </summary>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-3">
+                <div 
+                  v-for="(bal, person) in memberBalances" 
+                  :key="person"
+                  class="p-2.5 bg-slate-50 rounded-xl border border-slate-100 space-y-0.5"
+                >
+                  <span class="font-bold text-slate-800 block">{{ person }}</span>
+                  <div class="text-[11px] text-slate-500">已代墊: NT$ {{ bal.paid.toLocaleString() }}</div>
+                  <div class="text-[11px] text-slate-500">應分攤: NT$ {{ bal.shouldPay.toLocaleString() }}</div>
+                  <div :class="bal.net >= 0 ? 'text-emerald-600 font-bold' : 'text-rose-600 font-bold'">
+                    {{ bal.net >= 0 ? '應收回 +' + bal.net.toLocaleString() : '應補付 -' + Math.abs(bal.net).toLocaleString() }}
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Expenses List -->
+        <div class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-base text-slate-900">支出明細紀錄</h3>
+            <button v-if="expenses.length > 0" @click="clearAllExpenses" class="text-xs text-rose-500 hover:text-rose-700">
+              清空紀錄
+            </button>
+          </div>
+
+          <div v-if="expenses.length === 0" class="text-center py-8 text-slate-400 text-xs">
+            <i class="fa-solid fa-receipt text-3xl mb-2 block text-slate-300"></i>
+            尚無任何支出，點擊上方按鈕開始記帳吧！
+          </div>
+
+          <div v-else class="divide-y divide-slate-100">
+            <div 
+              v-for="exp in expenses" 
+              :key="exp.id"
+              class="py-3 flex items-start justify-between text-xs space-y-1"
+            >
+              <div class="space-y-0.5">
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-slate-900 text-sm">{{ exp.title }}</span>
+                  <span class="bg-slate-100 text-slate-600 text-[10px] px-2 py-0.5 rounded">{{ exp.category }}</span>
+                </div>
+                <p class="text-slate-500">
+                  由 <b class="text-emerald-700">{{ exp.payer }}</b> 先代墊 ｜ {{ exp.participants.length }}人分攤
+                </p>
+                <p class="text-[11px] text-slate-400">
+                  分攤者: {{ exp.participants.join(', ') }}
+                </p>
+              </div>
+
+              <div class="text-right space-y-1">
+                <span class="font-mono font-bold text-slate-900 text-sm block">NT$ {{ exp.amount.toLocaleString() }}</span>
+                <button @click="deleteExpense(exp.id)" class="text-slate-400 hover:text-rose-500 text-xs">
+                  <i class="fa-regular fa-trash-can"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 4: 🎲 房內同樂 (Party Games) -->
+      <!-- ========================================== -->
+      <section v-show="currentTab === 'games'" class="space-y-5">
+        
+        <!-- Game Subtabs -->
+        <div class="grid grid-cols-4 gap-1.5 bg-slate-200 p-1 rounded-2xl text-xs font-semibold text-center">
+          <button 
+            @click="gameMode = 'wheel'"
+            :class="gameMode === 'wheel' ? 'bg-white text-emerald-700 shadow-sm' : 'text-slate-600'"
+            class="py-2 rounded-xl transition"
+          >
+            🎯 抽籤轉盤
+          </button>
+          <button 
+            @click="gameMode = 'dice'"
+            :class="gameMode === 'dice' ? 'bg-white text-emerald-700 shadow-sm' : 'text-slate-600'"
+            class="py-2 rounded-xl transition"
+          >
+            🎲 擲骰子
+          </button>
+          <button 
+            @click="gameMode = 'truth'"
+            :class="gameMode === 'truth' ? 'bg-white text-emerald-700 shadow-sm' : 'text-slate-600'"
+            class="py-2 rounded-xl transition"
+          >
+            🤫 真心話
+          </button>
+          <button 
+            @click="gameMode = 'ktv'"
+            :class="gameMode === 'ktv' ? 'bg-white text-emerald-700 shadow-sm' : 'text-slate-600'"
+            class="py-2 rounded-xl transition"
+          >
+            🎤 KTV主題
+          </button>
+        </div>
+
+        <!-- 1. Wheel of Fortune -->
+        <div v-show="gameMode === 'wheel'" class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4 text-center">
+          <div>
+            <h3 class="font-bold text-base text-slate-900">🎯 命運轉盤（誰去拿外送 / 誰洗碗 / 誰烤肉）</h3>
+            <p class="text-xs text-slate-500 mt-0.5">點擊開始旋轉，由命運決定！</p>
+          </div>
+
+          <div class="relative w-64 h-64 mx-auto my-2">
+            <canvas id="wheelCanvas" width="256" height="256" class="w-full h-full rounded-full shadow-md"></canvas>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 -mt-2 w-0 h-0 border-x-8 border-x-transparent border-t-[16px] border-t-rose-600 z-20"></div>
+          </div>
+
+          <div v-if="wheelResult" class="p-3 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-900 font-bold text-sm">
+            🎉 抽中結果：【{{ wheelResult }}】
+          </div>
+
+          <div class="flex items-center justify-center gap-2">
+            <button 
+              @click="spinWheel" 
+              :disabled="isSpinning"
+              class="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-bold px-8 py-3 rounded-2xl shadow-md transition"
+            >
+              {{ isSpinning ? '轉盤旋轉中...' : '開始旋轉！' }}
+            </button>
+            <button @click="showWheelOptions = !showWheelOptions" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-3 rounded-2xl text-xs">
+              <i class="fa-solid fa-sliders"></i>
+            </button>
+          </div>
+
+          <!-- Wheel Options Editor -->
+          <div v-show="showWheelOptions" class="text-left bg-slate-50 p-4 rounded-2xl space-y-3 text-xs">
+            <span class="font-bold text-slate-800">編輯轉盤選項（逗號分隔）：</span>
+            <input 
+              v-model="wheelOptionsInput" 
+              @change="updateWheelOptions"
+              class="w-full p-2.5 border rounded-xl bg-white text-xs" 
+              placeholder="選項1, 選項2, 選項3"
+            >
+            <div class="flex gap-2">
+              <button @click="setWheelToMembers" class="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-lg">設為6位成員名字</button>
+              <button @click="setWheelToPunishments" class="bg-amber-100 text-amber-800 px-2.5 py-1 rounded-lg">設為派對懲罰</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Dice Roller -->
+        <div v-show="gameMode === 'dice'" class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4 text-center">
+          <div>
+            <h3 class="font-bold text-base text-slate-900">🎲 派對擲骰子（吹牛 / 比大小）</h3>
+            <p class="text-xs text-slate-500 mt-0.5">可自由選擇 1 ~ 6 顆骰子</p>
+          </div>
+
+          <div class="flex justify-center items-center gap-2 text-xs">
+            <span class="text-slate-600 font-medium">骰子數量：</span>
+            <button 
+              v-for="num in [1, 2, 3, 4, 5, 6]" 
+              :key="num"
+              @click="diceCount = num; rollDice()"
+              :class="diceCount === num ? 'bg-emerald-600 text-white font-bold' : 'bg-slate-100 text-slate-700'"
+              class="w-7 h-7 rounded-lg transition"
+            >
+              {{ num }}
+            </button>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-center gap-3 py-6 min-h-[100px]">
+            <div 
+              v-for="(die, idx) in diceValues" 
+              :key="idx"
+              class="w-14 h-14 bg-gradient-to-br from-white to-slate-100 border-2 border-slate-300 rounded-2xl shadow-md flex items-center justify-center text-2xl font-bold text-slate-800 font-mono transition transform hover:scale-105"
+            >
+              <i :class="'fa-solid fa-dice-' + ['one','two','three','four','five','six'][die - 1] + ' text-emerald-600 text-3xl'"></i>
+            </div>
+          </div>
+
+          <div class="text-xs text-slate-500">
+            總點數：<span class="text-lg font-bold text-emerald-700 font-mono">{{ diceTotal }}</span> 點
+          </div>
+
+          <button 
+            @click="rollDice" 
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3 rounded-2xl shadow-md transition active:scale-95"
+          >
+            <i class="fa-solid fa-dice mr-1"></i> 擲骰子！
+          </button>
+        </div>
+
+        <!-- 3. Truth or Dare -->
+        <div v-show="gameMode === 'truth'" class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4 text-center">
+          <div>
+            <h3 class="font-bold text-base text-slate-900">🤫 真心話大冒險 題目庫</h3>
+            <p class="text-xs text-slate-500 mt-0.5">聚會喝酒、客廳暢聊破冰必備</p>
+          </div>
+
+          <div class="flex justify-center gap-3 text-xs">
+            <button 
+              @click="truthType = 'truth'; getNextTruth()"
+              :class="truthType === 'truth' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-700'"
+              class="px-4 py-2 rounded-xl font-bold transition"
+            >
+              💙 真心話
+            </button>
+            <button 
+              @click="truthType = 'dare'; getNextTruth()"
+              :class="truthType === 'dare' ? 'bg-rose-600 text-white' : 'bg-slate-100 text-slate-700'"
+              class="px-4 py-2 rounded-xl font-bold transition"
+            >
+              🔥 大冒險
+            </button>
+          </div>
+
+          <div class="p-6 bg-slate-50 border border-slate-200 rounded-2xl min-h-[110px] flex items-center justify-center">
+            <p class="text-sm font-bold text-slate-800 leading-relaxed">{{ currentTruthText }}</p>
+          </div>
+
+          <button 
+            @click="getNextTruth" 
+            class="bg-slate-800 hover:bg-slate-900 text-white font-bold px-6 py-2.5 rounded-2xl text-xs shadow-md transition"
+          >
+            換一題 ➔
+          </button>
+        </div>
+
+        <!-- 4. KTV Challenge Themes -->
+        <div v-show="gameMode === 'ktv'" class="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-4 text-center">
+          <div>
+            <h3 class="font-bold text-base text-slate-900">🎤 KTV 歌王爭霸主題輪盤</h3>
+            <p class="text-xs text-slate-500 mt-0.5">包棟唱歌不冷場，隨機抽取PK主題！</p>
+          </div>
+
+          <div class="p-6 bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200 rounded-2xl min-h-[110px] flex flex-col items-center justify-center space-y-1">
+            <span class="text-xs text-purple-600 font-semibold uppercase tracking-wider">本輪PK主題</span>
+            <p class="text-base font-black text-purple-900">{{ currentKtvTheme.title }}</p>
+            <p class="text-xs text-purple-700">{{ currentKtvTheme.desc }}</p>
+          </div>
+
+          <button 
+            @click="getRandomKtvTheme" 
+            class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-6 py-2.5 rounded-2xl text-xs shadow-md transition"
+          >
+            隨機抽下一組主題 ➔
+          </button>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 5: 🛒 採買與行前清單 (Checklist) -->
+      <!-- ========================================== -->
+      <section v-show="currentTab === 'checklist'" class="space-y-5">
+        
+        <!-- Checklist Progress -->
+        <div class="bg-emerald-50 border border-emerald-200 rounded-3xl p-4 flex items-center justify-between text-xs">
+          <div>
+            <span class="font-bold text-emerald-900 block">採買與備品清單進度</span>
+            <span class="text-emerald-700">已準備 {{ checkedCount }}/{{ checklist.length }} 項</span>
+          </div>
+          <div class="w-24 bg-emerald-200 h-2.5 rounded-full overflow-hidden">
+            <div class="bg-emerald-600 h-full transition-all duration-300" :style="{ width: (checkedCount / checklist.length * 100) + '%' }"></div>
+          </div>
+        </div>
+
+        <!-- Checklist Categories -->
+        <div v-for="cat in checklistCategories" :key="cat" class="bg-white border border-slate-200 rounded-3xl p-4 shadow-sm space-y-2.5">
+          <h3 class="font-bold text-xs uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+            <i class="fa-solid fa-tag text-emerald-600"></i>
+            <span>{{ cat }}</span>
+          </h3>
+
+          <div class="space-y-1.5">
+            <label 
+              v-for="item in itemsByCategory(cat)" 
+              :key="item.id"
+              class="flex items-center space-x-3 p-2 rounded-xl hover:bg-slate-50 cursor-pointer transition text-xs select-none"
+            >
+              <input 
+                type="checkbox" 
+                v-model="item.checked" 
+                @change="saveChecklist"
+                class="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300"
+              >
+              <span :class="item.checked ? 'line-through text-slate-400' : 'text-slate-800 font-medium'">
+                {{ item.text }}
+              </span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar (Mobile Friendly) -->
+    <footer class="fixed bottom-0 left-0 right-0 max-w-md mx-auto md:max-w-4xl bg-white/95 backdrop-blur-md border-t border-slate-200 flex justify-around p-2 z-40 shadow-2xl">
+      <button 
+        v-for="tab in tabs" 
+        :key="tab.id"
+        @click="currentTab = tab.id"
+        :class="currentTab === tab.id ? 'text-emerald-700 font-bold' : 'text-slate-400 hover:text-slate-600'"
+        class="flex-1 flex flex-col items-center justify-center py-1 text-[11px] transition"
+      >
+        <i :class="tab.icon" class="text-base mb-0.5"></i>
+        <span>{{ tab.name }}</span>
+      </button>
+    </footer>
+
+    <!-- Add Expense Modal -->
+    <div v-if="showAddModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center z-50 p-4">
+      <div class="bg-white w-full max-w-md rounded-3xl p-5 space-y-4 shadow-2xl animate-fade-in max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between border-b pb-3">
+          <h3 class="font-bold text-base text-slate-900">新增支出項目</h3>
+          <button @click="showAddModal = false" class="text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <!-- Quick Preset Chips -->
+          <div>
+            <span class="text-slate-500 block mb-1.5 font-medium">常用快捷標籤：</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button 
+                v-for="preset in expensePresets" 
+                :key="preset.name"
+                @click="applyPreset(preset)"
+                class="bg-slate-100 hover:bg-emerald-100 hover:text-emerald-800 text-slate-700 px-2.5 py-1 rounded-lg transition"
+              >
+                {{ preset.name }}
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="font-medium text-slate-700 block mb-1">支出名稱</label>
+            <input v-model="newExpense.title" type="text" class="w-full p-2.5 border rounded-xl text-xs" placeholder="例如：喜互惠烤肉食材、南方澳蝦餅">
+          </div>
+
+          <div>
+            <label class="font-medium text-slate-700 block mb-1">金額 (NT$)</label>
+            <input v-model.number="newExpense.amount" type="number" class="w-full p-2.5 border rounded-xl text-xs font-mono font-bold" placeholder="0">
+          </div>
+
+          <div>
+            <label class="font-medium text-slate-700 block mb-1">誰先付錢 / 代墊？</label>
+            <select v-model="newExpense.payer" class="w-full p-2.5 border rounded-xl text-xs bg-white">
+              <option v-for="m in members" :key="m" :value="m">{{ m }}</option>
+            </select>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="font-medium text-slate-700">由誰分攤？</label>
+              <button @click="selectAllParticipants" class="text-emerald-600 text-[11px] underline">全選 6 人</button>
+            </div>
+            <div class="grid grid-cols-3 gap-2">
+              <label 
+                v-for="m in members" 
+                :key="m"
+                :class="newExpense.participants.includes(m) ? 'bg-emerald-50 border-emerald-500 text-emerald-800 font-bold' : 'bg-slate-50 border-slate-200 text-slate-600'"
+                class="p-2 border rounded-xl text-center cursor-pointer transition flex items-center justify-center gap-1"
+              >
+                <input type="checkbox" :value="m" v-model="newExpense.participants" class="hidden">
+                <span>{{ m }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-2 pt-2">
+          <button @click="showAddModal = false" class="flex-1 py-2.5 bg-slate-100 text-slate-700 rounded-xl font-bold text-xs">取消</button>
+          <button @click="saveNewExpense" class="flex-1 py-2.5 bg-emerald-600 text-white rounded-xl font-bold text-xs shadow-md">儲存支出</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Members Modal -->
+    <div v-if="showMemberModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div class="bg-white w-full max-w-sm rounded-3xl p-5 space-y-4 shadow-2xl">
+        <div class="flex items-center justify-between border-b pb-3">
+          <h3 class="font-bold text-base text-slate-900">設定 6 位成員名字</h3>
+          <button @click="showMemberModal = false" class="text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        <div class="space-y-2 text-xs">
+          <div v-for="(m, idx) in tempMembers" :key="idx" class="flex items-center space-x-2">
+            <span class="w-12 text-slate-400 font-mono text-center">#{{ idx + 1 }}</span>
+            <input v-model="tempMembers[idx]" type="text" class="flex-1 p-2 border rounded-xl text-xs font-semibold">
+          </div>
+        </div>
+        <button @click="saveMembers" class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold text-xs shadow-md">
+          確認儲存
+        </button>
+      </div>
+    </div>
+
+    <!-- Share & QR Code Modal -->
+    <div v-if="showShareModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div class="bg-white w-full max-w-sm rounded-3xl p-5 space-y-4 shadow-2xl text-center">
+        <div class="flex items-center justify-between border-b pb-2">
+          <h3 class="font-bold text-base text-slate-900">📱 手機直接看＆分享</h3>
+          <button @click="showShareModal = false" class="text-slate-400 hover:text-slate-600">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+
+        <div class="space-y-3">
+          <!-- QR Code Preview -->
+          <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 inline-block shadow-inner">
+            <img :src="qrCodeUrl" alt="QR Code" class="w-44 h-44 mx-auto rounded-xl shadow-sm">
+          </div>
+          <p class="text-xs text-slate-500">掃描 QR Code 或複製網址傳到 LINE 群組</p>
+
+          <!-- Web URL Copy Box -->
+          <div class="p-2.5 bg-slate-100 rounded-xl text-xs font-mono text-slate-700 break-all select-all border border-slate-200">
+            {{ shareUrl }}
+          </div>
+
+          <button 
+            @click="copyAppUrl" 
+            class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs shadow-md flex items-center justify-center gap-1.5 transition active:scale-95"
+          >
+            <i class="fa-solid fa-copy"></i>
+            <span>一鍵複製網址發到 LINE 群組</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info / Help Modal -->
+    <div v-if="showInfoModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div class="bg-white w-full max-w-sm rounded-3xl p-5 space-y-4 shadow-2xl text-xs">
+        <div class="flex items-center justify-between border-b pb-3">
+          <h3 class="font-bold text-base text-slate-900">關於本旅遊 App</h3>
+          <button @click="showInfoModal = false" class="text-slate-400">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+        <div class="space-y-2 text-slate-600 leading-relaxed">
+          <p>🌲 <b>9/24(四)夜 ~ 9/26(六) 宜蘭 6 人專屬度假隨身 App！</b></p>
+          <p>👥 <b>成員</b>：亭葶、亭葳、賈賽、霈琪、靖妤、采娟</p>
+          <ul class="list-disc pl-4 space-y-1">
+            <li><b>9/24 夜</b>：土城國中出發 ➜ 提前入住小茄苳宿Villa。</li>
+            <li><b>9/25 Day 1</b>：南方澳無名蝦餅 ➜ 超市採買 ➜ 三星朋友家烤肉 ➜ Villa開趴。</li>
+            <li><b>9/26 Day 2</b>：太平山見晴步道 ➜ 蹦蹦車 ➜ 鳩之澤地熱 ➜ 返抵土城國中。</li>
+            <li><b>功能</b>：一鍵導航、路況查詢、6人精簡分帳、轉盤、骰子、KTVPK。</li>
+          </ul>
+        </div>
+        <button @click="showInfoModal = false" class="w-full py-2 bg-slate-900 text-white rounded-xl font-bold">
+          關閉
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- App Script Logic -->
+  <script>
+    const { createApp, ref, computed, onMounted, watch } = Vue;
+
+    createApp({
+      setup() {
+        const currentTab = ref('itinerary');
+        const selectedDay = ref(0); // 0: 9/24, 1: 9/25, 2: 9/26
+        const gameMode = ref('wheel');
+        const showAddModal = ref(false);
+        const showMemberModal = ref(false);
+        const showInfoModal = ref(false);
+        const showShareModal = ref(false);
+
+        const tabs = [
+          { id: 'itinerary', name: '行程導航', icon: 'fa-solid fa-route' },
+          { id: 'traffic', name: '車況天氣', icon: 'fa-solid fa-car' },
+          { id: 'accounting', name: '6人分帳', icon: 'fa-solid fa-wallet' },
+          { id: 'games', name: '房內同樂', icon: 'fa-solid fa-gamepad' },
+          { id: 'checklist', name: '採買清單', icon: 'fa-solid fa-clipboard-check' },
+        ];
+
+        // 6 Members: 亭葶、亭葳、賈賽、霈琪、靖妤、采娟
+        const defaultMembers = ['亭葶', '亭葳', '賈賽', '霈琪', '靖妤', '采娟'];
+        const savedMembers = localStorage.getItem('yilan_members_v3');
+        const members = ref(savedMembers ? JSON.parse(savedMembers) : defaultMembers);
+        const tempMembers = ref([...members.value]);
+
+        const saveMembers = () => {
+          members.value = [...tempMembers.value];
+          localStorage.setItem('yilan_members_v3', JSON.stringify(members.value));
+          setWheelToMembers();
+          showMemberModal.value = false;
+        };
+
+        // Live Share URL & QR Code
+        const shareUrl = computed(() => {
+          if (window.location.protocol.startsWith('http')) {
+            return window.location.href.split('#')[0];
+          }
+          return 'https://wttntpc.github.io/tingwu.github.io/yilan/';
+        });
+
+        const qrCodeUrl = computed(() => {
+          return `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(shareUrl.value)}`;
+        });
+
+        const copyAppUrl = () => {
+          const text = `🌲 我們的宜蘭 3 天 2 夜專屬隨身旅遊 App 來囉！\n📱 包含行程導航、車況、6人記帳分帳、烤肉清單與聚會遊戲：\n👉 ${shareUrl.value}`;
+          navigator.clipboard.writeText(text).then(() => {
+            alert('已成功複製專屬網站連結！直接貼到 LINE 群組即可！');
+          }).catch(() => {
+            prompt('請複製以下連結：', shareUrl.value);
+          });
+        };
+
+        // Full Itinerary: Day 0 (9/24), Day 1 (9/25), Day 2 (9/26)
+        const itinerary = ref(JSON.parse(localStorage.getItem('yilan_itinerary_v3') || JSON.stringify([
+          // Day 0: 9/24 (Night in)
+          {
+            id: 101,
+            day: 0,
+            time: '19:30 - 20:00',
+            title: '新北市土城國中 集合出發',
+            tag: '集合出發',
+            tagClass: 'bg-indigo-100 text-indigo-800',
+            location: '新北市土城區永寧路50號 (近國3土城交流道)',
+            mapUrl: 'https://maps.google.com/?q=新北市立土城國民中學',
+            phone: '',
+            desc: '全員於土城國中集合，上國道3號土城交流道轉國道5號雪隧直奔宜蘭！',
+            tips: '夜間雪隧車況極佳順暢，約 50~60 分鐘即可抵達宜蘭冬山。',
+            completed: false
+          },
+          {
+            id: 102,
+            day: 0,
+            time: '20:45 - 21:15',
+            title: '小茄苳宿Villa 提前入住 Check-in',
+            tag: '包棟入住',
+            tagClass: 'bg-purple-100 text-purple-800',
+            location: '宜蘭縣冬山鄉三奇村三順路45巷7號',
+            mapUrl: 'https://www.google.com/maps?q=269%E5%AE%9C%E8%98%AD%E7%B8%A3%E5%86%AC%E5%B1%B1%E9%84%89%E4%B8%89%E5%A5%87%E6%9D%91%E4%B8%89%E9%A0%86%E8%B7%AF45%E5%B7%B77%E8%99%9F%E5%B0%8F%E8%8C%84%E8%8B%B3%E5%AE%BFVilla',
+            phone: '039501580',
+            desc: '提早一晚入住包棟民宿，卸下行李，分配房間。',
+            tips: '民宿位於三奇美徑旁，環境清幽！',
+            completed: false
+          },
+          {
+            id: 103,
+            day: 0,
+            time: '21:15 - 深夜',
+            title: '冬山/羅東宵夜 ＆ Villa 放鬆開唱',
+            tag: '宵夜小酌',
+            tagClass: 'bg-amber-100 text-amber-800',
+            location: '小茄苳宿Villa 客廳',
+            mapUrl: '',
+            phone: '',
+            desc: '順路買冬山鹽酥雞與手搖飲，在 Villa 客廳聽音樂、小酌暢聊、試唱 KTV，享受包棟首夜！',
+            tips: '今晚睡飽飽，明天精神滿滿展開行程！',
+            completed: false
+          },
+
+          // Day 1: 9/25
+          {
+            id: 201,
+            day: 1,
+            time: '10:30 - 11:15',
+            title: 'Villa 悠閒出發 ➜ 前往南方澳',
+            tag: '悠閒出發',
+            tagClass: 'bg-slate-100 text-slate-800',
+            location: '冬山小茄苳宿Villa',
+            mapUrl: '',
+            phone: '',
+            desc: '在三奇美徑田園綠意中悠閒起床吃早餐，免除台北早起趕路的辛勞！',
+            tips: '冬山至南方澳車程約 20 分鐘。',
+            completed: false
+          },
+          {
+            id: 202,
+            day: 1,
+            time: '11:15 - 13:30',
+            title: '南方澳海港美食 ＆ 無名蝦餅',
+            tag: '必吃美食',
+            tagClass: 'bg-amber-100 text-amber-800',
+            location: '宜蘭縣蘇澳鎮江夏路65之5號',
+            mapUrl: 'https://maps.google.com/?q=宜蘭縣蘇澳鎮江夏路65之5號',
+            phone: '0911895318',
+            desc: '必吃現炸地瓜籤鮮蝦餅、阿芬鮮魚湯、廖榮川米糕。吃飽可到情人灣或豆腐岬吹海風散步！',
+            tips: '蝦餅 11:00~12:00 開賣，外酥內甜超銷魂！',
+            completed: false
+          },
+          {
+            id: 203,
+            day: 1,
+            time: '14:00 - 15:00',
+            title: '烤肉食材 ＆ 零食酒水大採買',
+            tag: '重點採買',
+            tagClass: 'bg-blue-100 text-blue-800',
+            location: '喜互惠生鮮超市 (羅東光榮店) / 全聯',
+            mapUrl: 'https://maps.google.com/?q=喜互惠生鮮超市羅東光榮店',
+            phone: '',
+            desc: '6人分食材組與酒水器具組，快速採買肉片、海鮮、蔬菜、木炭、大包冰塊與啤酒飲料。',
+            tips: '喜互惠是宜蘭生鮮霸主，肉品醬料耗材一應俱全！',
+            completed: false
+          },
+          {
+            id: 204,
+            day: 1,
+            time: '15:30 - 20:00',
+            title: '三星朋友家 烤肉歡聚派對 🔥',
+            tag: '好友聚會',
+            tagClass: 'bg-rose-100 text-rose-800',
+            location: '宜蘭縣三星鄉集慶村（三星鄉公所附近）',
+            mapUrl: 'https://maps.app.goo.gl/DtFYnvFUkDUAKMTDA',
+            phone: '',
+            desc: '抵達朋友家熱鬧開烤、敘舊暢飲、打卡拍照，一路狂歡至約 20:00 收拾完畢。',
+            tips: '車程自喜互惠至三星約 20 分鐘。',
+            completed: false
+          },
+          {
+            id: 205,
+            day: 1,
+            time: '20:30 - 深夜',
+            title: '回小茄苳宿Villa 6人包棟狂歡夜 🎤🀄',
+            tag: '包棟狂歡',
+            tagClass: 'bg-purple-100 text-purple-800',
+            location: '小茄苳宿Villa',
+            mapUrl: 'https://www.google.com/maps?q=269%E5%AE%9C%E8%98%AD%E7%B8%A3%E5%86%AC%E5%B1%B1%E9%84%89%E4%B8%89%E5%A5%87%E6%9D%91%E4%B8%89%E9%A0%86%E8%B7%AF45%E5%B7%B77%E8%99%9F%E5%B0%8F%E8%8C%84%E8%8B%B3%E5%AE%BFVilla',
+            phone: '039501580',
+            desc: '專屬客廳 KTV 歡唱 PK、摸八圈麻將大賽、派對桌遊、真心話大冒險！',
+            tips: '包棟獨棟，不用擔心打擾鄰居！',
+            completed: false
+          },
+
+          // Day 2: 9/26
+          {
+            id: 301,
+            day: 2,
+            time: '08:00 - 08:30',
+            title: 'Villa 退房出發 ➜ 太平山',
+            tag: '退房整裝',
+            tagClass: 'bg-slate-100 text-slate-800',
+            location: '小茄苳宿Villa',
+            mapUrl: '',
+            phone: '',
+            desc: '整理行李、退房準時出發前往太平山（早出發光線好、避開午後起霧）。',
+            tips: '山頂氣溫較低，記得帶薄防風外套！',
+            completed: false
+          },
+          {
+            id: 302,
+            day: 2,
+            time: '10:00 - 11:30',
+            title: '見晴懷古步道（全球最美28條步道）',
+            tag: '高山絕景',
+            tagClass: 'bg-emerald-100 text-emerald-800',
+            location: '太平山國家森林遊樂區內 (專一線23K)',
+            mapUrl: 'https://maps.google.com/?q=見晴懷古步道',
+            phone: '',
+            desc: '全長 900 公尺平緩好走。青苔舊鐵道、巨木與雲海翻騰，拍照超級仙！',
+            tips: '路面平坦無階梯，適合 6 人慢步漫遊。',
+            completed: false
+          },
+          {
+            id: 303,
+            day: 2,
+            time: '11:45 - 13:45',
+            title: '太平山莊 ＆ 蹦蹦車 / 原始林（午餐）',
+            tag: '景點＆午餐',
+            tagClass: 'bg-emerald-100 text-emerald-800',
+            location: '太平山莊 (專一線25.5K)',
+            mapUrl: 'https://maps.google.com/?q=太平山莊',
+            phone: '',
+            desc: '漫步紫葉槭階梯與原始林步道，搭乘懷舊蹦蹦車往返茂興，並在太平山莊享用熱騰騰午餐。',
+            tips: '蹦蹦車票採現場排隊購票（全票$180）。',
+            completed: false
+          },
+          {
+            id: 304,
+            day: 2,
+            time: '14:15 - 15:45',
+            title: '鳩之澤溫泉 — 地熱煮蛋 ＆ 舒壓泡湯',
+            tag: '地熱體驗',
+            tagClass: 'bg-teal-100 text-teal-800',
+            location: '太平山國家森林遊樂區 (專一線4.3K)',
+            mapUrl: 'https://maps.google.com/?q=鳩之澤溫泉',
+            phone: '',
+            desc: '租竹簍在地熱槽煮滑嫩溫泉蛋、超甜水果玉米！可自費體驗露天溫泉SPA洗去一身疲憊。',
+            tips: '溫泉蛋約煮 6~8 分鐘最嫩口！',
+            completed: false
+          },
+          {
+            id: 305,
+            day: 2,
+            time: '16:30 - 17:30',
+            title: '三星蔥油餅 ＆ 宜蘭在地伴手禮',
+            tag: '伴手禮',
+            tagClass: 'bg-amber-100 text-amber-800',
+            location: '三星鄉 / 羅東市區',
+            mapUrl: 'https://maps.google.com/?q=味珍香卜肉店',
+            phone: '',
+            desc: '順路買三星蔥油餅、阿萬之家煙燻鴨賞、奕順軒奶凍捲。',
+            tips: '可視國5車況在宜蘭享用晚餐再上高速公路。',
+            completed: false
+          },
+          {
+            id: 306,
+            day: 2,
+            time: '17:30 - 19:30',
+            title: '返抵新北市立土城國中 滿載歸賦',
+            tag: '平安返抵',
+            tagClass: 'bg-indigo-100 text-indigo-800',
+            location: '新北市土城區永寧路50號',
+            mapUrl: 'https://maps.google.com/?q=新北市立土城國民中學',
+            phone: '',
+            desc: '經國5雪隧轉國3南下，下國3土城交流道返抵土城國中，圓滿結束精彩旅程！',
+            tips: '辛苦駕駛！平安回到溫暖的家。',
+            completed: false
+          }
+        ])));
+
+        const currentDaySchedule = computed(() => {
+          return itinerary.value.filter(item => item.day === selectedDay.value);
+        });
+
+        const dayTitle = (day) => {
+          if (day === 0) return '9/24(四) 前夜：土城出發 ➜ 提前入住小茄苳宿Villa';
+          if (day === 1) return '9/25(五) Day 1：南方澳海鮮蝦餅 ➜ 烤肉大採買 ➜ 三星烤肉趴 ➜ Villa同樂';
+          return '9/26(六) Day 2：太平山見晴步道 ➜ 鳩之澤地熱 ➜ 伴手禮 ➜ 返回土城國中';
+        };
+
+        const completedCount = (day) => {
+          return itinerary.value.filter(i => i.day === day && i.completed).length;
+        };
+
+        const toggleComplete = (item) => {
+          item.completed = !item.completed;
+          localStorage.setItem('yilan_itinerary_v3', JSON.stringify(itinerary.value));
+          if (item.completed) {
+            confetti({ particleCount: 30, spread: 60, origin: { y: 0.8 } });
+          }
+        };
+
+        // Accounting / Expense Splitter
+        const expenses = ref(JSON.parse(localStorage.getItem('yilan_expenses_v3') || '[]'));
+        const newExpense = ref({
+          title: '',
+          amount: null,
+          category: '烤肉食材',
+          payer: members.value[0] || '亭葶',
+          participants: [...members.value]
+        });
+
+        const expensePresets = [
+          { name: '喜互惠烤肉食材', cat: '烤肉採買' },
+          { name: '南方澳蝦餅鮮魚湯', cat: '美食餐飲' },
+          { name: '小茄苳宿Villa住宿費', cat: '住宿費用' },
+          { name: '太平山門票/停車費', cat: '門票景點' },
+          { name: '太平山蹦蹦車票', cat: '門票景點' },
+          { name: '鳩之澤溫泉蛋/玉米', cat: '美食體驗' },
+          { name: '土城-宜蘭油資/過路費', cat: '交通費用' },
+          { name: '9/24&9/25 宵夜飲料', cat: '宵夜點心' },
+        ];
+
+        const openAddExpenseModal = () => {
+          newExpense.value = {
+            title: '',
+            amount: null,
+            category: '烤肉採買',
+            payer: members.value[0],
+            participants: [...members.value]
+          };
+          showAddModal.value = true;
+        };
+
+        const applyPreset = (preset) => {
+          newExpense.value.title = preset.name;
+          newExpense.value.category = preset.cat;
+        };
+
+        const selectAllParticipants = () => {
+          newExpense.value.participants = [...members.value];
+        };
+
+        const saveNewExpense = () => {
+          if (!newExpense.value.title || !newExpense.value.amount || newExpense.value.amount <= 0) {
+            alert('請填寫完整的支出名稱與大於 0 的金額！');
+            return;
+          }
+          if (newExpense.value.participants.length === 0) {
+            alert('請至少選擇一位分攤人！');
+            return;
+          }
+
+          expenses.value.unshift({
+            id: Date.now(),
+            ...newExpense.value
+          });
+
+          localStorage.setItem('yilan_expenses_v3', JSON.stringify(expenses.value));
+          showAddModal.value = false;
+          confetti({ particleCount: 40, spread: 70, origin: { y: 0.6 } });
+        };
+
+        const deleteExpense = (id) => {
+          if (confirm('確定要刪除這筆支出嗎？')) {
+            expenses.value = expenses.value.filter(e => e.id !== id);
+            localStorage.setItem('yilan_expenses_v3', JSON.stringify(expenses.value));
+          }
+        };
+
+        const clearAllExpenses = () => {
+          if (confirm('確定要清空所有記帳紀錄嗎？此動作無法復原！')) {
+            expenses.value = [];
+            localStorage.setItem('yilan_expenses_v3', JSON.stringify([]));
+          }
+        };
+
+        const totalExpense = computed(() => {
+          return expenses.value.reduce((sum, e) => sum + (Number(e.amount) || 0), 0);
+        });
+
+        const averageExpense = computed(() => {
+          return members.value.length > 0 ? Math.round(totalExpense.value / members.value.length) : 0;
+        });
+
+        // Smart Settlement Calculation
+        const memberBalances = computed(() => {
+          const balances = {};
+          members.value.forEach(m => {
+            balances[m] = { paid: 0, shouldPay: 0, net: 0 };
+          });
+
+          expenses.value.forEach(exp => {
+            const amt = Number(exp.amount) || 0;
+            if (balances[exp.payer]) {
+              balances[exp.payer].paid += amt;
+            }
+            const partCount = exp.participants.length;
+            if (partCount > 0) {
+              const perPerson = amt / partCount;
+              exp.participants.forEach(p => {
+                if (balances[p]) {
+                  balances[p].shouldPay += perPerson;
+                }
+              });
+            }
+          });
+
+          members.value.forEach(m => {
+            balances[m].paid = Math.round(balances[m].paid);
+            balances[m].shouldPay = Math.round(balances[m].shouldPay);
+            balances[m].net = balances[m].paid - balances[m].shouldPay;
+          });
+
+          return balances;
+        });
+
+        // Minimize Transactions Settlement Algorithm
+        const settlementTransfers = computed(() => {
+          const debtors = [];
+          const creditors = [];
+
+          members.value.forEach(m => {
+            const net = memberBalances.value[m].net;
+            if (net < -1) {
+              debtors.push({ name: m, amount: -net });
+            } else if (net > 1) {
+              creditors.push({ name: m, amount: net });
+            }
+          });
+
+          const transfers = [];
+          let dIdx = 0;
+          let cIdx = 0;
+
+          while (dIdx < debtors.length && cIdx < creditors.length) {
+            const debtor = debtors[dIdx];
+            const creditor = creditors[cIdx];
+            const settleAmt = Math.min(debtor.amount, creditor.amount);
+
+            if (settleAmt > 0) {
+              transfers.push({
+                from: debtor.name,
+                to: creditor.name,
+                amount: Math.round(settleAmt)
+              });
+            }
+
+            debtor.amount -= settleAmt;
+            creditor.amount -= settleAmt;
+
+            if (debtor.amount <= 1) dIdx++;
+            if (creditor.amount <= 1) cIdx++;
+          }
+
+          return transfers;
+        });
+
+        const copyLineSettlement = () => {
+          let text = `🌲【宜蘭3天2夜(9/24~9/26) 6人記帳結算】🌲\n\n`;
+          text += `💰 總計總支出：NT$ ${totalExpense.value.toLocaleString()}\n`;
+          text += `👥 每人平均：NT$ ${averageExpense.value.toLocaleString()}\n\n`;
+          text += `📊 最終轉帳清單（誰給誰）：\n`;
+          if (settlementTransfers.value.length === 0) {
+            text += `✅ 目前金額已平衡或無欠款！\n`;
+          } else {
+            settlementTransfers.value.forEach((t, i) => {
+              text += `${i + 1}. 【${t.from}】應轉給 ➔【${t.to}】 NT$ ${t.amount.toLocaleString()} 元\n`;
+            });
+          }
+          text += `\n📝 支出明細：\n`;
+          expenses.value.forEach((e, i) => {
+            text += `• ${e.title}：$${e.amount} (${e.payer}付 / ${e.participants.length}人分)\n`;
+          });
+
+          navigator.clipboard.writeText(text).then(() => {
+            alert('已成功複製 LINE 格式結算文字！直接貼到朋友群組即可！');
+          }).catch(() => {
+            prompt('請複製以下文字：', text);
+          });
+        };
+
+        // Checklist
+        const defaultChecklist = [
+          { id: 1, cat: '🥩 9/25 烤肉食材', text: '五花肉片 / 梅花肉片 (約600g)', checked: false },
+          { id: 2, cat: '🥩 9/25 烤肉食材', text: '牛小排 / 牛五花肉片 (約500g)', checked: false },
+          { id: 3, cat: '🥩 9/25 烤肉食材', text: '大草蝦 / 鮮白蝦 1 盒', checked: false },
+          { id: 4, cat: '🥩 9/25 烤肉食材', text: '甜不辣 / 黑輪 / 香腸', checked: false },
+          { id: 5, cat: '🥩 9/25 烤肉食材', text: '帶殼水果玉米筍 / 鮮香菇 / 青椒', checked: false },
+          { id: 6, cat: '🥩 9/25 烤肉食材', text: '厚片吐司 / 生菜 (包肉用)', checked: false },
+          { id: 7, cat: '🧂 器具與耗材', text: '木炭 2 包 / 烤網 2 片 / 火種噴槍', checked: false },
+          { id: 8, cat: '🧂 器具與耗材', text: '烤肉醬 / 玫瑰鹽 / 烤肉刷 2 支', checked: false },
+          { id: 9, cat: '🧂 器具與耗材', text: '免洗碗盤 / 筷子 / 濕紙巾 / 垃圾袋', checked: false },
+          { id: 10, cat: '🍻 酒水與冰塊', text: '大包食用冰塊 2 包 (冰鎮必備)', checked: false },
+          { id: 11, cat: '🍻 酒水與冰塊', text: '罐裝啤酒 / 水果氣泡酒 (12~18罐)', checked: false },
+          { id: 12, cat: '🍻 酒水與冰塊', text: '無糖茶飲 / 可樂汽水 / 大瓶水', checked: false },
+          { id: 13, cat: '🎒 行李與太平山備品', text: '防風保暖薄外套 (太平山海拔2000m溫差大)', checked: false },
+          { id: 14, cat: '🎒 行李與太平山備品', text: '好走的運動布鞋 / 健走鞋', checked: false },
+          { id: 15, cat: '🎒 行李與太平山備品', text: '9/24~9/26 換洗衣物 / 盥洗用品 / 行動電源', checked: false },
+        ];
+
+        const checklist = ref(JSON.parse(localStorage.getItem('yilan_checklist_v3') || JSON.stringify(defaultChecklist)));
+
+        const checklistCategories = computed(() => {
+          return [...new Set(checklist.value.map(i => i.cat))];
+        });
+
+        const itemsByCategory = (cat) => {
+          return checklist.value.filter(i => i.cat === cat);
+        };
+
+        const checkedCount = computed(() => {
+          return checklist.value.filter(i => i.checked).length;
+        });
+
+        const saveChecklist = () => {
+          localStorage.setItem('yilan_checklist_v3', JSON.stringify(checklist.value));
+        };
+
+        // Games Logic (Wheel, Dice, Truth, KTV)
+        const isSpinning = ref(false);
+        const wheelResult = ref('');
+        const showWheelOptions = ref(false);
+        const wheelOptions = ref([...members.value]);
+        const wheelOptionsInput = ref(wheelOptions.value.join(', '));
+
+        const updateWheelOptions = () => {
+          wheelOptions.value = wheelOptionsInput.value.split(',').map(s => s.trim()).filter(s => s.length > 0);
+          drawWheel();
+        };
+
+        const setWheelToMembers = () => {
+          wheelOptions.value = [...members.value];
+          wheelOptionsInput.value = wheelOptions.value.join(', ');
+          drawWheel();
+        };
+
+        const setWheelToPunishments = () => {
+          wheelOptions.value = ['喝一口特調', '去拿外送', '洗烤肉盤子', '大冒險懲罰', '明天幫大家拍美照', '請大家一杯飲料'];
+          wheelOptionsInput.value = wheelOptions.value.join(', ');
+          drawWheel();
+        };
+
+        let startAngle = 0;
+        const colors = ['#10b981', '#3b82f6', '#f59e0b', '#ec4899', '#8b5cf6', '#06b6d4', '#f97316', '#14b8a6'];
+
+        const drawWheel = () => {
+          const canvas = document.getElementById('wheelCanvas');
+          if (!canvas) return;
+          const ctx = canvas.getContext('2d');
+          const numOptions = wheelOptions.value.length;
+          const arc = Math.PI * 2 / numOptions;
+
+          ctx.clearRect(0, 0, 256, 256);
+
+          for (let i = 0; i < numOptions; i++) {
+            const angle = startAngle + i * arc;
+            ctx.fillStyle = colors[i % colors.length];
+            ctx.beginPath();
+            ctx.arc(128, 128, 120, angle, angle + arc, false);
+            ctx.lineTo(128, 128);
+            ctx.fill();
+
+            // Text
+            ctx.save();
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 12px sans-serif';
+            ctx.translate(128 + Math.cos(angle + arc / 2) * 80, 128 + Math.sin(angle + arc / 2) * 80);
+            ctx.rotate(angle + arc / 2 + Math.PI / 2);
+            const text = wheelOptions.value[i];
+            ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
+            ctx.restore();
+          }
+
+          // Center Hub
+          ctx.beginPath();
+          ctx.arc(128, 128, 24, 0, Math.PI * 2);
+          ctx.fillStyle = '#ffffff';
+          ctx.fill();
+          ctx.lineWidth = 3;
+          ctx.strokeStyle = '#0f172a';
+          ctx.stroke();
+        };
+
+        const spinWheel = () => {
+          if (isSpinning.value || wheelOptions.value.length === 0) return;
+          isSpinning.value = true;
+          wheelResult.value = '';
+
+          const spinAngle = Math.PI * 2 * (5 + Math.random() * 5);
+          const duration = 3500;
+          const startTime = performance.now();
+          const initialAngle = startAngle;
+
+          const animate = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            startAngle = initialAngle + spinAngle * easeOut;
+            drawWheel();
+
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              isSpinning.value = false;
+              const numOptions = wheelOptions.value.length;
+              const arc = Math.PI * 2 / numOptions;
+              const normalizedAngle = (Math.PI * 1.5 - startAngle) % (Math.PI * 2);
+              const positiveAngle = (normalizedAngle + Math.PI * 2) % (Math.PI * 2);
+              const index = Math.floor(positiveAngle / arc) % numOptions;
+              wheelResult.value = wheelOptions.value[index];
+              confetti({ particleCount: 50, spread: 80, origin: { y: 0.7 } });
+            }
+          };
+
+          requestAnimationFrame(animate);
+        };
+
+        // Dice
+        const diceCount = ref(3);
+        const diceValues = ref([6, 6, 6]);
+        const diceTotal = computed(() => diceValues.value.reduce((a, b) => a + b, 0));
+
+        const rollDice = () => {
+          const newVals = [];
+          for (let i = 0; i < diceCount.value; i++) {
+            newVals.push(Math.floor(Math.random() * 6) + 1);
+          }
+          diceValues.value = newVals;
+        };
+
+        // Truth or Dare Data
+        const truthType = ref('truth');
+        const truthList = [
+          '在座 6 人中，如果流落荒島你最想跟誰一起？為什麼？',
+          '講出自己做過最荒謬或最丟臉的一件事。',
+          '如果可以跟在場某個人交換人生一天，你想選誰？',
+          '你最近一次偷偷哭是什麼時候、為什麼？',
+          '手機相簿裡最不敢給別人看的照片是什麼內容？',
+          '你做過最叛逆的一件事是什麼？',
+          '在座誰的第一印象跟現在反差最大？',
+        ];
+        const dareList = [
+          '模仿在場某位朋友生氣或平時的口頭禪，讓大家猜是誰！',
+          '去陽台或門口用超深情的聲音大喊：「宜蘭我愛你！」',
+          '讓右邊的朋友幫你用眼線筆/眉筆在臉上畫一個愛心！',
+          '用性感氣音唱一段周杰倫的歌 30 秒。',
+          '喝一杯由大家特調的神秘飲料（無毒安全）。',
+          '擺出 3 個超模走秀姿勢讓大家拍照做成表情包！',
+          '公主抱現場一位朋友堅持 10 秒鐘。',
+        ];
+        const currentTruthText = ref(truthList[0]);
+
+        const getNextTruth = () => {
+          const list = truthType.value === 'truth' ? truthList : dareList;
+          const randomIdx = Math.floor(Math.random() * list.length);
+          currentTruthText.value = list[randomIdx];
+        };
+
+        // KTV Themes
+        const ktvThemes = [
+          { title: '📻 2000~2010 華語回憶殺', desc: '限點周杰倫、蔡依林、S.H.E、孫燕姿、五月天金曲' },
+          { title: '👫 經典男女對唱神曲', desc: '限點《屋頂》、《珊瑚海》、《廣島之戀》、《千年之戀》' },
+          { title: '🔥 抖音/洗腦熱門神曲', desc: '限點近三年最洗腦的熱門歌，考驗大家跟風程度！' },
+          { title: '🎸 搖滾撕裂高音大挑戰', desc: '挑戰信樂團、告五人、動力火車、張雨生神曲！' },
+          { title: '🌊 台語道地傳唱金曲', desc: '點播茄子蛋、伍佰、江蕙經典台語歌，全場大合唱！' },
+          { title: '💔 心碎痛哭失戀情歌', desc: '誰唱得最深情催淚，全場評審給出最高分！' },
+        ];
+        const currentKtvTheme = ref(ktvThemes[0]);
+
+        const getRandomKtvTheme = () => {
+          const randomIdx = Math.floor(Math.random() * ktvThemes.length);
+          currentKtvTheme.value = ktvThemes[randomIdx];
+          confetti({ particleCount: 25, spread: 50, origin: { y: 0.7 } });
+        };
+
+        onMounted(() => {
+          setTimeout(() => {
+            drawWheel();
+          }, 300);
+        });
+
+        watch(gameMode, (newVal) => {
+          if (newVal === 'wheel') {
+            setTimeout(() => drawWheel(), 100);
+          }
+        });
+
+        return {
+          currentTab,
+          selectedDay,
+          tabs,
+          members,
+          tempMembers,
+          saveMembers,
+          shareUrl,
+          qrCodeUrl,
+          copyAppUrl,
+          itinerary,
+          currentDaySchedule,
+          dayTitle,
+          completedCount,
+          toggleComplete,
+          expenses,
+          newExpense,
+          expensePresets,
+          showAddModal,
+          showMemberModal,
+          showInfoModal,
+          showShareModal,
+          openAddExpenseModal,
+          applyPreset,
+          selectAllParticipants,
+          saveNewExpense,
+          deleteExpense,
+          clearAllExpenses,
+          totalExpense,
+          averageExpense,
+          memberBalances,
+          settlementTransfers,
+          copyLineSettlement,
+          checklist,
+          checklistCategories,
+          itemsByCategory,
+          checkedCount,
+          saveChecklist,
+          gameMode,
+          isSpinning,
+          wheelResult,
+          showWheelOptions,
+          wheelOptions,
+          wheelOptionsInput,
+          updateWheelOptions,
+          setWheelToMembers,
+          setWheelToPunishments,
+          spinWheel,
+          diceCount,
+          diceValues,
+          diceTotal,
+          rollDice,
+          truthType,
+          currentTruthText,
+          getNextTruth,
+          currentKtvTheme,
+          getRandomKtvTheme
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
