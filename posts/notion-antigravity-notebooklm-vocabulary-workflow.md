@@ -36,6 +36,11 @@ flowchart LR
 
 「來源」很重要。相同單字在論文、商務郵件與多益題目裡可能有不同用法；留下原句，之後才知道 AI 的解釋是否符合當時情境。
 
+<figure class="article-figure">
+  <img src="assets/notion-vocabulary-gallery-redacted.png" alt="Notion TOEIC 單字資料庫的畫廊檢視，顯示 enact、liable、reluctant 與 mandatory 等單字卡；帳號與私人側欄已遮蔽" loading="lazy">
+  <figcaption>實際的 Notion 單字庫畫廊：每張卡片可快速比較字義、搭配詞、例句與學習狀態。公開版已遮蔽帳號及私人側欄。</figcaption>
+</figure>
+
 ## 實作流程
 
 ### 1. 先快速收集，不要中斷閱讀
@@ -52,6 +57,16 @@ flowchart LR
 
 **成功長這樣：** 原本只有一個詞的卡片，已經有可追溯來源、例句及搭配詞，而且既有人工內容沒有被覆蓋。
 
+<figure class="article-figure">
+  <img src="assets/notion-vocabulary-card-overview.png" alt="Notion 單字卡 enact 的頁面總覽，包含封面、詞性、學習狀態、例句與發音欄位" loading="lazy">
+  <figcaption>單字卡總覽：資料庫欄位先保留核心資訊，避免讀者一打開就被過多內容淹沒。</figcaption>
+</figure>
+
+<figure class="article-figure">
+  <img src="assets/notion-vocabulary-card-details.png" alt="Notion 單字卡 enact 的補充內容，包含核心字義、高頻例句、搭配詞及同義詞" loading="lazy">
+  <figcaption>同一張卡片的補充區塊：AI 草稿把例句、collocations 與同義詞整理成容易人工查核的結構。</figcaption>
+</figure>
+
 ### 3. 人工確認後，再建立複習指南
 
 確認字義、例句與搭配詞後，把狀態改成「複習中」。Antigravity 再把這批單字輸出成結構固定的 Markdown：每個詞只保留發音提示、核心意思、搭配詞、原句與一個自我測驗問題。
@@ -65,6 +80,11 @@ flowchart LR
 NotebookLM 的音訊是 AI 生成內容，仍可能不準確或出現音訊錯誤。因此，重要字義仍要回到原始來源或可信字典核對。
 
 **成功長這樣：** 音訊確實使用這批單字、能指出常見混淆點，而且沒有加入來源中不存在的新規則。
+
+<figure class="article-figure">
+  <img src="assets/notebooklm-vocabulary-audio-overview-redacted.png" alt="NotebookLM 中的 TOEIC 不熟單字複習筆記本，左側為來源，中間為來源摘要，右側顯示已產生的 Audio Overview；個人頭像已遮蔽" loading="lazy">
+  <figcaption>NotebookLM 成品：左側是經確認後匯入的單字指南，右側已產生 Audio Overview。公開版已遮蔽個人頭像。</figcaption>
+</figure>
 
 ### 5. 聽完後一定要「想答案」
 
@@ -122,6 +142,11 @@ flowchart TD
 
 代理人可以寫入草稿欄位，但只有使用者能把狀態改成 `verified`。NotebookLM 只接收已確認的匯出版本，避免錯誤經過多個生成步驟後被放大。
 
+<figure class="article-figure">
+  <img src="assets/notion-vocabulary-gallery-redacted.png" alt="Notion 單字資料庫的 Gallery view，呈現多張包含字義、搭配詞、例句與狀態的卡片；個人資訊已遮蔽" loading="lazy">
+  <figcaption>Notion 作為 system of record 的實際介面。畫廊適合快速巡覽；正式處理仍應依結構化屬性與狀態查詢，不依賴畫面文字。</figcaption>
+</figure>
+
 ## 3. 建議的資料模型
 
 | 欄位 | 型別 | 說明 |
@@ -167,6 +192,16 @@ captured → enriched → needs_review → verified → reviewing → mastered
 
 回寫前至少檢查必要鍵、欄位型別、字串長度、例句是否包含目標詞，以及輸出是否與原始語境衝突。若需要精確發音、詞源或考試頻率，還應串接有授權且可追溯的字典或題庫，而不是只依賴生成模型。
 
+<figure class="article-figure">
+  <img src="assets/notion-vocabulary-card-overview.png" alt="Notion 單字卡 enact 的屬性區域，包含釋義、補充、詞性、狀態及例句" loading="lazy">
+  <figcaption>屬性層保存可查詢資料；正文區則承載較長的教學內容。兩者分開可避免 API 批次處理與人工閱讀互相干擾。</figcaption>
+</figure>
+
+<figure class="article-figure">
+  <img src="assets/notion-vocabulary-card-details.png" alt="Notion 單字卡正文中結構化的核心字義、例句、搭配詞與同義詞" loading="lazy">
+  <figcaption>結構化草稿的實際呈現。這些內容仍需通過來源、語境與字典查核，才能由 draft 狀態轉為 verified。</figcaption>
+</figure>
+
 ## 6. Notion API 實作注意事項
 
 Notion API 以 bearer token 驗證。token 應放在環境變數或秘密管理服務，禁止硬編碼或提交到 GitHub。Connection 只分享至必要頁面，並遵循最小權限原則。
@@ -180,6 +215,11 @@ Notion API 使用日期式版本標頭；實作時應依[官方版本文件](htt
 NotebookLM 可以依匯入來源建立 Audio Overview，並設定語言、長度與聚焦提示；但官方提醒，AI 音訊仍可能不準確或出現音訊錯誤。生成後應抽查是否混淆詞性、虛構規則、使用來源外資訊，或暴露不應出現在音訊中的內容。
 
 若透過 CLI、MCP 或瀏覽器自動化操作 NotebookLM，應把它視為可替換的 adapter。工具介面改變時，只調整整合層，不影響 Notion schema 與已確認資料。
+
+<figure class="article-figure">
+  <img src="assets/notebooklm-vocabulary-audio-overview-redacted.png" alt="NotebookLM 工作區顯示單字來源、摘要與已生成的 Audio Overview；使用者頭像已遮蔽" loading="lazy">
+  <figcaption>NotebookLM 整合層的實際成品：來源、對話與 Audio Overview 位於同一筆記本。截圖只表示生成成功，不代表內容已通過正確性驗證。</figcaption>
+</figure>
 
 ## 8. 隱私與安全
 
