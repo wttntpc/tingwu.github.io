@@ -1,5 +1,13 @@
 [
   {
+    "id": "marathon-hiit-autonomic-remodeling",
+    "title": "從「減重」到「心臟調頻」：馬拉松長跑與 HIIT 對自律神經的重塑奇蹟",
+    "date": "2026-08-25",
+    "category": "popular-science",
+    "tags": ["自律神經", "馬拉松長跑", "HIIT", "心率變異度 (HRV)", "運動適應"],
+    "description": "介紹 Wang et al. (2025) 的最新運動介入研究：為期兩個月的馬拉松慢跑與 HIIT，如何顯著調降青年族群的體重與 BMI，並對心臟副交感迷走神經活性（RMSSD、pNN50）進行深度的適應性重塑。"
+  },
+  {
     "id": "notion-antigravity-notebooklm-vocabulary-workflow",
     "title": "從 Notion 單字庫到 Podcast：可查核的 Antigravity × NotebookLM 單字工作流",
     "date": "2026-08-25",
