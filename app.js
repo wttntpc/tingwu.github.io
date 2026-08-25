@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260825-17';
+const SITE_VERSION = '20260825-18';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -107,7 +107,6 @@ const copy = {
     blogVersionIntro: '每篇文章都提供「簡單白話版」與「專業版」，可依閱讀需求自由切換。',
     categories: [
       ['all', '全部文章'],
-      ['learning-foundations', '專業學習'],
       ['popular-science', '學術科普'],
       ['research-methods', '研究方法'],
       ['data-analysis', '數據分析'],
@@ -197,7 +196,6 @@ const copy = {
     blogVersionIntro: 'Every article includes a plain-language and a professional version for different reading needs.',
     categories: [
       ['all', 'All writing'],
-      ['learning-foundations', 'Professional learning'],
       ['popular-science', 'Science for everyone'],
       ['research-methods', 'Research methods'],
       ['data-analysis', 'Data analysis'],
@@ -378,7 +376,7 @@ function postRow(post) {
 }
 
 async function renderHome() {
-  const allPosts = newestFirst((await getPosts()).filter(post => post.id !== 'publications'));
+  const allPosts = newestFirst((await getPosts()).filter(post => post.id !== 'publications' && post.category !== 'learning-foundations'));
   const posts = allPosts.slice(0, 2);
   const c = t();
   const overview = lang === 'zh' ? [
@@ -502,6 +500,13 @@ const learningMapContent = {
     eyebrow: 'Professional learning map',
     title: '專業學習地圖',
     lead: '以「腦—身體—運動—量測—分析」串起六條專業主線，讓學習、複習與研究深化都能回到同一張地圖。',
+    guideTitle: '一份會持續成長的學習規劃',
+    guideText: '目前先建立六條主線與 100–500 的共同進程，作為專業知識累積的基本架構。後續會依實際學習、研究需求與資料查核結果，陸續新增及更新相關文章。',
+    guidePoints: [
+      ['學習背景', '先建立術語、解剖生理、核心理論與量測原理，避免只記分析步驟。'],
+      ['定期複習', '用無提示回憶、概念圖與案例重新整理舊知，找出尚未連結的概念。'],
+      ['持續深化', '逐步加入原始研究、方法批判、資料分析與跨領域整合，讓知識能真正支持研究。']
+    ],
     routeLabel: '共同進程',
     levels: [
       ['100', '基礎', '建立術語、結構與核心概念'],
@@ -537,6 +542,13 @@ const learningMapContent = {
     eyebrow: 'Professional learning map',
     title: 'Professional learning map',
     lead: 'Six connected tracks link brain, body, exercise, measurement, and analysis into one system for learning, review, and research development.',
+    guideTitle: 'A learning plan designed to keep growing',
+    guideText: 'The current version establishes six tracks and a shared 100–500 progression. New and revised articles will be added gradually as learning continues, research needs emerge, and sources are verified.',
+    guidePoints: [
+      ['Build foundations', 'Establish terminology, anatomy and physiology, core theories, and measurement principles before memorizing analysis steps.'],
+      ['Review regularly', 'Use retrieval, concept maps, and cases to reorganize prior knowledge and expose missing links.'],
+      ['Deepen progressively', 'Add primary studies, methodological critique, data analysis, and cross-disciplinary integration to support research.']
+    ],
     routeLabel: 'Shared progression',
     levels: [
       ['100', 'Foundations', 'Build terminology, structures, and core concepts'],
@@ -574,6 +586,7 @@ function renderLearningMap() {
   const content = learningMapContent[lang] || learningMapContent.zh;
   app.innerHTML = `<div class="page-shell learning-map-page">
     <header class="learning-map-hero"><p class="eyebrow">${content.eyebrow}</p><h1>${content.title}</h1><p>${content.lead}</p></header>
+    <section class="learning-map-guide" aria-labelledby="learning-map-guide-title"><div><p class="eyebrow">Living curriculum</p><h2 id="learning-map-guide-title">${content.guideTitle}</h2><p>${content.guideText}</p></div><ol>${content.guidePoints.map((point, index) => `<li><span>0${index + 1}</span><div><strong>${point[0]}</strong><p>${point[1]}</p></div></li>`).join('')}</ol></section>
     <section class="learning-levels" aria-labelledby="learning-levels-title"><header><span>00</span><div><p>${content.routeLabel}</p><h2 id="learning-levels-title">100 → 500</h2></div></header><ol>${content.levels.map(level => `<li><strong>${level[0]}</strong><div><b>${level[1]}</b><span>${level[2]}</span></div></li>`).join('')}</ol></section>
     <section class="learning-tracks" aria-labelledby="learning-tracks-title"><header><p class="eyebrow">Curriculum</p><h2 id="learning-tracks-title">${content.trackLabel}</h2><p>${content.trackLead}</p></header><div class="learning-track-grid">${content.tracks.map(track => `<a href="#/post/${track[4]}" class="learning-map-card"><span>${track[0]}</span><div><small>${track[2]}</small><h3>${track[1]}</h3><p>${track[3]}</p><b>${content.open} <i aria-hidden="true">→</i></b></div></a>`).join('')}</div></section>
     <section class="learning-methods" aria-labelledby="learning-methods-title"><h2 id="learning-methods-title">${content.methodTitle}</h2><div>${content.methods.map((method, index) => `<article><span>0${index + 1}</span><h3>${method[0]}</h3><p>${method[1]}</p></article>`).join('')}</div></section>
@@ -622,7 +635,7 @@ function renderDataAnalysisGuide(posts) {
 }
 
 async function renderBlog(requestedCategory = 'all') {
-  const posts = newestFirst((await getPosts()).filter(post => post.id !== 'publications'));
+  const posts = newestFirst((await getPosts()).filter(post => post.id !== 'publications' && post.category !== 'learning-foundations'));
   const c = t();
   const activeCategory = c.categories.some(item => item[0] === requestedCategory) ? requestedCategory : 'all';
   const visiblePosts = activeCategory === 'all' ? posts : posts.filter(post => post.category === activeCategory);
