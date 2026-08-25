@@ -107,6 +107,7 @@ const copy = {
     blogVersionIntro: '每篇文章都提供「簡單白話版」與「專業版」，可依閱讀需求自由切換。',
     categories: [
       ['all', '全部文章'],
+      ['learning-foundations', '專業學習'],
       ['popular-science', '學術科普'],
       ['research-methods', '研究方法'],
       ['data-analysis', '數據分析'],
@@ -196,6 +197,7 @@ const copy = {
     blogVersionIntro: 'Every article includes a plain-language and a professional version for different reading needs.',
     categories: [
       ['all', 'All writing'],
+      ['learning-foundations', 'Professional learning'],
       ['popular-science', 'Science for everyone'],
       ['research-methods', 'Research methods'],
       ['data-analysis', 'Data analysis'],
@@ -291,6 +293,12 @@ function closeMenu() {
 }
 
 const POSTS_DATA = [
+  { "id": "cognitive-neuroscience-learning-map", "title": "認知神經科學學習地圖：從大腦、認知到情緒", "date": "2026-08-25", "category": "learning-foundations", "tags": ["認知神經科學", "大腦", "認知", "情緒", "學習地圖"], "description": "以神經系統基礎、認知功能、情緒機制、研究方法與整合推論五層，建立可學習、複習與深化的認知神經科學路徑。" },
+  { "id": "exercise-physiology-learning-map", "title": "運動生理學學習地圖：從急性反應到運動處方", "date": "2026-08-25", "category": "learning-foundations", "tags": ["運動生理學", "能量系統", "心肺適能", "運動處方", "學習地圖"], "description": "由能量代謝、神經肌肉與心肺反應，逐步進入訓練適應、測量與個別化運動處方。" },
+  { "id": "human-anatomy-learning-map", "title": "人體解剖學學習地圖：用結構理解動作與生理", "date": "2026-08-25", "category": "learning-foundations", "tags": ["人體解剖學", "肌肉骨骼", "神經系統", "心血管", "學習地圖"], "description": "從解剖方位、組織與器官系統出發，把肌肉骨骼、神經與心肺結構連回動作、傷害與生理量測。" },
+  { "id": "athletic-training-learning-map", "title": "運動傷害防護學習地圖：從風險辨識到重返運動", "date": "2026-08-25", "category": "learning-foundations", "tags": ["運動傷害防護", "臨床評估", "急性照護", "復健", "重返運動"], "description": "整理預防、臨床評估、急性照護、治療介入、復健與重返運動的循證學習路徑。" },
+  { "id": "eeg-learning-map", "title": "EEG 學習地圖：從神經生理、設備到可重現分析", "date": "2026-08-25", "category": "learning-foundations", "tags": ["EEG", "腦波設備", "訊號處理", "品質控制", "學習地圖"], "description": "把腦電生理、電極與放大器、實驗設計、前處理、時頻分析及品質控制連成完整路徑。" },
+  { "id": "hrv-learning-map", "title": "HRV 學習地圖：從自律神經、感測設備到指標解讀", "date": "2026-08-25", "category": "learning-foundations", "tags": ["HRV", "自律神經", "ECG", "PPG", "非線性分析"], "description": "從心臟與自律神經生理、ECG／PPG 量測，到 BBI 清理、時域、頻域、非線性指標及研究解讀。" },
   { "id": "notion-antigravity-notebooklm-vocabulary-workflow", "title": "從 Notion 單字庫到 Podcast：可查核的 Antigravity × NotebookLM 單字工作流", "date": "2026-08-25", "category": "ai-tools", "tags": ["AI 工作流", "Notion", "Antigravity", "NotebookLM", "多益學習", "Podcast", "知識管理"], "description": "用 Notion 收集可追溯的單字與語境，讓 Antigravity 產生待確認草稿，再把已查核內容匯入 NotebookLM 製作 Audio Overview；同時說明資料結構、安全、人工驗證與學習成效評估。" },
   { "id": "fft-wavelet-eeg-time-frequency", "title": "FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖", "date": "2026-08-14", "category": "research-methods", "tags": ["EEG", "FFT", "Welch PSD", "Morlet wavelet", "時間頻率分析"], "description": "從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。" },
   { "id": "data-types-tidy-research-data", "title": "資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？", "date": "2026-08-14", "category": "data-analysis", "tags": ["資料整理", "Tidy Data", "資料字典", "可重現研究"], "description": "從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。" },

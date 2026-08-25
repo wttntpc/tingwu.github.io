@@ -1,5 +1,53 @@
 [
   {
+    "id": "cognitive-neuroscience-learning-map",
+    "title": "認知神經科學學習地圖：從大腦、認知到情緒",
+    "date": "2026-08-25",
+    "category": "learning-foundations",
+    "tags": ["認知神經科學", "大腦", "認知", "情緒", "學習地圖"],
+    "description": "以神經系統基礎、認知功能、情緒機制、研究方法與整合推論五層，建立可學習、複習與深化的認知神經科學路徑。"
+  },
+  {
+    "id": "exercise-physiology-learning-map",
+    "title": "運動生理學學習地圖：從急性反應到運動處方",
+    "date": "2026-08-25",
+    "category": "learning-foundations",
+    "tags": ["運動生理學", "能量系統", "心肺適能", "運動處方", "學習地圖"],
+    "description": "由能量代謝、神經肌肉與心肺反應，逐步進入訓練適應、測量與個別化運動處方。"
+  },
+  {
+    "id": "human-anatomy-learning-map",
+    "title": "人體解剖學學習地圖：用結構理解動作與生理",
+    "date": "2026-08-25",
+    "category": "learning-foundations",
+    "tags": ["人體解剖學", "肌肉骨骼", "神經系統", "心血管", "學習地圖"],
+    "description": "從解剖方位、組織與器官系統出發，把肌肉骨骼、神經與心肺結構連回動作、傷害與生理量測。"
+  },
+  {
+    "id": "athletic-training-learning-map",
+    "title": "運動傷害防護學習地圖：從風險辨識到重返運動",
+    "date": "2026-08-25",
+    "category": "learning-foundations",
+    "tags": ["運動傷害防護", "臨床評估", "急性照護", "復健", "重返運動"],
+    "description": "整理預防、臨床評估、急性照護、治療介入、復健與重返運動的循證學習路徑。"
+  },
+  {
+    "id": "eeg-learning-map",
+    "title": "EEG 學習地圖：從神經生理、設備到可重現分析",
+    "date": "2026-08-25",
+    "category": "learning-foundations",
+    "tags": ["EEG", "腦波設備", "訊號處理", "品質控制", "學習地圖"],
+    "description": "把腦電生理、電極與放大器、實驗設計、前處理、時頻分析及品質控制連成完整路徑。"
+  },
+  {
+    "id": "hrv-learning-map",
+    "title": "HRV 學習地圖：從自律神經、感測設備到指標解讀",
+    "date": "2026-08-25",
+    "category": "learning-foundations",
+    "tags": ["HRV", "自律神經", "ECG", "PPG", "非線性分析"],
+    "description": "從心臟與自律神經生理、ECG／PPG 量測，到 BBI 清理、時域、頻域、非線性指標及研究解讀。"
+  },
+  {
     "id": "marathon-hiit-autonomic-remodeling",
     "title": "從「減重」到「心臟調頻」：馬拉松長跑與 HIIT 對自律神經的重塑奇蹟",
     "date": "2026-08-25",
