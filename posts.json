@@ -1,11 +1,11 @@
 [
   {
     "id": "notion-antigravity-notebooklm-vocabulary-workflow",
-    "title": "從 Notion 單字庫到 Podcast：用 Antigravity 與 Gemini Notebook 打造多益聽覺學習流",
+    "title": "從 Notion 單字庫到 Podcast：可查核的 Antigravity × NotebookLM 單字工作流",
     "date": "2026-08-25",
     "category": "ai-tools",
-    "tags": ["AI 工作流", "Notion", "Antigravity", "Gemini Notebook", "NotebookLM", "多益學習", "Podcast", "認知神經科學"],
-    "description": "記錄平時隨手將不熟悉的單字記進 Notion 後，如何透過 Antigravity 自動查榜多益商務例句、常考搭配詞與意象封面，並一鍵匯入 Gemini Notebook (NotebookLM) 產出雙人對談 Podcast，用聽的隨身複習單字與商務用法。"
+    "tags": ["AI 工作流", "Notion", "Antigravity", "NotebookLM", "多益學習", "Podcast", "知識管理"],
+    "description": "用 Notion 收集可追溯的單字與語境，讓 Antigravity 產生待確認草稿，再把已查核內容匯入 NotebookLM 製作 Audio Overview；同時說明資料結構、安全、人工驗證與學習成效評估。"
   },
   {
     "id": "at-emt-1-course-radar",

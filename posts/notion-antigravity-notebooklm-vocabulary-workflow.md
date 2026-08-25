@@ -1,238 +1,215 @@
 <!-- SIMPLE -->
 
-平常閱讀英文文獻、工作郵件或準備多益（TOEIC）時，遇到生疏的單字，我習慣隨手記進 Notion。但傳統的單字卡有個常見痛點：單純抄下單字與中文翻譯，缺乏商務情境與常考搭配詞，看久了容易疲乏，而且在通勤、走路或運動時很難拿著螢幕複習。
+如果你把英文單字記進 Notion，卻很少回頭複習，問題通常不是「不夠努力」，而是記錄、整理與複習分散在不同地方。我把它們串成一條工作流：**Notion 負責收集，Antigravity 負責整理，NotebookLM 負責把內容轉成可以用聽的複習材料。**
 
-為了解決這個問題，我用 **Google Antigravity** 串接了 **Notion** 與 **Gemini Notebook（原 NotebookLM）**，打造了一套自動化學習流：
+> **一句話版本**：看到生字先丟進 Notion；讓 AI 補上例句與搭配詞；人工確認後匯入 NotebookLM，生成 Audio Overview，最後再用小測驗確認自己真的記得。
 
-> **核心流程**：
-> 1. **隨手記錄**：在 Notion 隨手丟入不熟悉的單字（標記為「不熟」）。
-> 2. **AI 自動擴充**：Antigravity 自動查詢多益高頻商務例句、常考介系詞、同義字，並配上「一眼秒懂」的具象記憶封面。
-> 3. **轉化 Podcast**：Antigravity 自動將單字庫整理並匯入 Gemini Notebook，生成生動的雙人對談 Podcast 音檔，讓我戴上耳機用聽的複習！
+## 三個工具各自負責什麼？
+
+| 工具 | 在流程中的角色 | 不建議交給它的事 |
+|---|---|---|
+| **Notion** | 保存單字、例句、來源與學習進度 | 自動判斷內容一定正確 |
+| **Antigravity** | 找出待整理單字、產生草稿、回寫欄位與匯出複習稿 | 未經確認就大量覆蓋筆記 |
+| **NotebookLM** | 依上傳來源生成 Audio Overview 等複習材料 | 取代字典、教師或主動測驗 |
 
 ```mermaid
 flowchart LR
-    A[Notion 單字庫<br>隨手丟入不熟單字] -->|Antigravity 自動偵測| B[Antigravity 智能補全<br>多益考點/例句/意象封面]
-    B -->|一鍵匯出解析指南| C[Gemini Notebook<br>NotebookLM 知識庫]
-    C -->|生成 Audio Overview| D[🎧 雙人對談 Podcast<br>通勤/運動隨身聽]
+    A[閱讀時遇到生字] --> B[Notion 收集箱]
+    B --> C[Antigravity 補上草稿]
+    C --> D{人工確認}
+    D -->|通過| E[匯出複習指南]
+    D -->|需修正| C
+    E --> F[NotebookLM Audio Overview]
+    F --> G[主動回想與小測驗]
+    G --> H[更新學習進度]
 ```
 
----
+## 開始前，只要準備五個欄位
 
-## 為什麼傳統單字筆記總是背了又忘？
-
-在認知心理學中，單純重複看著「單字＝中文解釋」屬於低層次的淺層編碼（Shallow Encoding），大腦很難建立長期的檢索路徑。多益考試考的往往不是罕見單字，而是**商務情境中的固定搭配與介系詞**：
-
-* 看到 `liable`，要能立刻反應出 `be liable for + N`（負賠償責任）與 `be liable to + V`（很有可能會…）的文法差異。
-* 看到 `elaborate`，多益常考動詞搭配 `elaborate on a plan`（詳細說明企劃），以及形容詞 `elaborate security system`（精密的保全系統）。
-* 看到 `compliance`，必須直覺聯想到介系詞 `in compliance with regulations`（符合法規標準）。
-
-如果每次查單字都要手動去查例句、找考點、貼圖，維護單字庫的摩擦力（Friction）極高；而當單字庫累積到數十個時，缺乏聲音輸入又會限制複習的場景。
-
----
-
-## 自動化三步驟：我的多益單字學習工作流
-
-### 第一步：Notion 收集箱（零負擔隨手記）
-
-我在 Notion 建立了一個簡潔的單字資料庫，包含「名稱、詞性、解釋、例句、補充、學習進度、封面」等欄位。
-
-當我在讀論文或做題時遇到生字（例如 `unforeseen`、`reimbursement`、`unanimous`），我只需要在 Notion 敲入單字名稱，並將學習進度設為「不熟」，其他欄位完全留白也沒關係。
-
----
-
-### 第二步：Antigravity 智能擴充（考點、例句與圖像記憶）
-
-當我喚醒 **Antigravity** 時，它會透過 Notion API 自動掃描資料庫中所有標記為「不熟」或尚未補齊的單字卡，並自動完成以下四件事：
-
-1. **多益高頻精簡例句**：挑選最符合商務、人事、物流、會議或合約情境的例句，句型短小精幹，好讀好記。
-2. **核心考點與搭配詞（Collocations）**：抓出多益 Part 5 最愛考的介系詞（如 `signify a change`、`resign from`）、Part 7 常考同義字替換（如 `complimentary = free`、`prosper = thrive`）與詞性家族。
-3. **超直覺視覺記憶封面（Visual Mnemonic）**：為每個單字配置一張一眼就能聯想到字義的高清意象圖，在 Notion Gallery 畫廊模式下形成強大的視覺刺激：
-   * `reluctant`（不情願的）：柴犬死命拔河抗拒散步的經典表情。
-   * `mandatory`（強制的）：工地必須佩戴的黃色工程安全帽。
-   * `audit`（審計查帳）：手持放大鏡逐筆審視財務報表。
-   * `unanimous`（全體一致的）：會議室全員舉手贊成。
-4. **內頁排版美化**：在頁面中建立音標 Callout、分層標題與重點列表，點開就像一張精緻的教學卡片。
-
----
-
-### 第三步：Gemini Notebook 生成 Podcast（聽覺沉浸複習）
-
-這是整個工作流中最令人驚豔的環節。當我想複習這批不熟的單字時，Antigravity 會執行：
-
-1. 自動將 Notion 中的單字庫抽取成結構化的《多益核心單字精選解析指南》Markdown 文件。
-2. 透過指令自動在 Gemini Notebook（NotebookLM）中建立專屬筆記本並上傳來源。
-3. 發起 **Audio Overview（深度雙人對談 Podcast）** 生成，並設定繁體中文導聆提示詞。
-
-幾分鐘後，Gemini Notebook 就會產生一段 5～10 分鐘的專屬 Podcast。兩位 AI 主持人會像廣播節目一樣，以自然幽默的語氣互相討論：
-
-> *「你知道很多考生在多益看到 `complimentary` 都會以為是讚美嗎？其實在飯店與商務情境中，它最常代表的是『免費贈送』，像是 `complimentary breakfast` 免費早餐！」*  
-> *「沒錯！而且還要特別注意介系詞，比如 `elaborate on` 一定要接 on……」*
-
-戴上耳機，原本死板的單字表立刻變成了生動有趣的對話。
-
----
-
-## 多模態學習的效果：視覺、文字與聽覺的加乘
-
-這套工作流完美結合了認知神經科學中的**多模態編碼（Multimodal Encoding）**原則：
-
-| 維度 | 工具與形式 | 對大腦的記憶效益 |
+| 欄位 | 範例 | 用途 |
 |---|---|---|
-| **視覺圖像** | Notion Gallery 意象封面 | 快速活化視覺皮質，透過具象畫面直接錨定單字語意 |
-| **語境文字** | 多益精簡例句與 Collocations | 建立情境連結，掌握字詞在句子與文法中的實際用法 |
-| **聽覺對話** | Gemini Notebook 雙人 Podcast | 利用對話語音與情節記憶，在通勤零碎時間進行無痛間隔複習 |
+| 單字／片語 | `in compliance with` | 要學習的內容 |
+| 中文意思 | 符合、遵照 | 經人工確認的核心釋義 |
+| 例句與搭配詞 | comply with regulations | 放進真實語境理解 |
+| 來源 | 論文、郵件或題目連結 | 回頭確認原始用法 |
+| 狀態 | 待補充／待確認／複習中／已掌握 | 告訴系統下一步要做什麼 |
 
-不用花時間手動排版，也不用自己到處查字典，所有的繁瑣工作都交由 AI 完成，讓我能把 100% 的心力專注在單字吸收與聽力練習上！
+「來源」很重要。相同單字在論文、商務郵件與多益題目裡可能有不同用法；留下原句，之後才知道 AI 的解釋是否符合當時情境。
 
----
+## 實作流程
 
-<!-- DETAILED -->
+### 1. 先快速收集，不要中斷閱讀
 
-# 從 Notion 單字庫到 Podcast：用 Antigravity 與 Gemini Notebook 打造多益聽覺學習流
+閱讀時只記下單字、原句與來源，狀態設為「待補充」。不要為了把卡片做漂亮而中斷正在讀的內容。
 
-> **架構定位**：本文記錄一套結合個人知識庫（Notion）、程式化代理人（Google Antigravity）與限定來源音訊生成引擎（Gemini Notebook / NotebookLM）的多模態語言學習工作流，實現單字捕獲、語意擴充、圖像錨定與音訊生成的自動化閉環。
+**成功長這樣：** 即使其他欄位仍空白，你已經能從來源找回這個詞出現的完整情境。
 
----
+### 2. 讓 Antigravity 產生「待確認草稿」
 
-## 一、系統設計目標與痛點分析
+代理人可以補上詞性、繁體中文核心釋義、短例句、常見搭配詞、介系詞，以及容易混淆的詞。適合圖像化時，再加上一個簡單的記憶意象。
 
-在第二語言習得（Second Language Acquisition）與標準化英語測驗（如 TOEIC）的準備過程中，學習者常面臨三大瓶頸：
+例如 `liable` 不只要寫「負有責任的」，還要區分 `be liable for + 名詞` 與 `be liable to + 原形動詞`。不過，AI 產出的內容應先標成「待確認」，不能直接當成標準答案。
 
-1. **紀錄摩擦力與內容不完整性**：隨手記下的單字往往只有詞面本身，缺乏商務搭配詞（Collocations）、文法介系詞約束（Prepositional Constraints）與同義詞家族（Synonym Sets）。
-2. **缺乏多模態刺激**：純文字表格難以觸發雙重編碼理論（Dual Coding Theory, Paivio, 1986）所強調的「視覺意象＋語言表徵」雙重記憶優勢。
-3. **複習場景受限**：文字單字卡強烈依賴螢幕閱讀，無法利用通勤、運動、散步等「眼手忙碌但聽覺閒置」的零碎時間進行間隔重複（Spaced Retrieval）。
+**成功長這樣：** 原本只有一個詞的卡片，已經有可追溯來源、例句及搭配詞，而且既有人工內容沒有被覆蓋。
 
-本架構旨在建立「**低摩擦輸入 ➔ 語意與視覺自動擴充 ➔ 聽覺音訊自動生成**」的端到端管道。
+### 3. 人工確認後，再建立複習指南
 
----
+確認字義、例句與搭配詞後，把狀態改成「複習中」。Antigravity 再把這批單字輸出成結構固定的 Markdown：每個詞只保留發音提示、核心意思、搭配詞、原句與一個自我測驗問題。
 
-## 二、端到端架構與資料流
+**成功長這樣：** 只要閱讀這份 Markdown，不開 Notion 也能完整複習；每一筆內容都能追溯到原始來源。
 
-系統由三個核心層級構成：**資料層（Notion Database）**、**協調與代理層（Google Antigravity）**與**音訊合成層（Gemini Notebook）**。
+### 4. 上傳 NotebookLM，生成 Audio Overview
+
+把確認過的複習指南加入 NotebookLM，在 Studio 中選擇 Audio Overview，指定繁體中文以及希望聚焦的內容，例如：「請比較容易混淆的搭配詞，先留幾秒讓聽者回答，再說明正確用法。」
+
+NotebookLM 的音訊是 AI 生成內容，仍可能不準確或出現音訊錯誤。因此，重要字義仍要回到原始來源或可信字典核對。
+
+**成功長這樣：** 音訊確實使用這批單字、能指出常見混淆點，而且沒有加入來源中不存在的新規則。
+
+### 5. 聽完後一定要「想答案」
+
+Podcast 適合增加接觸次數，也方便在通勤或運動時複習，但被動聆聽不等於記住。比較好的做法是：
+
+1. 聽到單字後先暫停，自己說出意思或搭配詞；
+2. 回到 Notion 做一個簡短測驗；
+3. 答錯就保留在「複習中」，連續答對後再改成「已掌握」；
+4. 一段時間後再次抽查，而不是只看一次。
+
+## 最容易忽略的三件事
+
+1. **不要把密鑰寫進筆記或程式碼。** Notion token 應放在環境變數或安全的憑證管理工具中。
+2. **不要讓 AI 無條件覆蓋資料。** 只補空欄位或另存草稿，並保留最後修改時間。
+3. **不要上傳敏感內容。** 工作郵件、未公開研究資料與個資要先去識別化，再決定是否送往外部服務。
+
+## 總結
+
+這套工作流真正節省的不是「背單字的時間」，而是整理資料的重複工作。Notion 保存可追溯的學習紀錄，Antigravity 處理格式化與搬運，NotebookLM 增加一種聽覺複習方式；最後是否學會，仍取決於人工查核、主動回想與重複測驗。
+
+### 官方說明
+
+- [Notion API Authentication](https://developers.notion.com/reference/authentication)
+- [NotebookLM：建立 Audio Overview](https://support.google.com/notebooklm/answer/16212820?hl=zh-Hant)
+- [NotebookLM：加入與管理來源](https://support.google.com/notebooklm/answer/16215270?hl=zh-Hant)
+
+<!-- PROFESSIONAL -->
+
+# 從單字資料庫到 Audio Overview：可稽核的 Notion × Antigravity × NotebookLM 工作流
+
+> **系統定位**：Notion 是單一資料來源（system of record），Antigravity 是工作流協調與內容草稿層，NotebookLM 是限定來源的衍生內容層。任何 AI 產出都必須經驗證，且不得直接覆蓋已確認資料。
+
+## 1. 設計目標
+
+這套系統要解決的不是單純「自動產生單字卡」，而是四個可操作的問題：降低收集成本、保留來源追溯、將重複格式轉換交給代理人，以及把確認過的內容轉成音訊，同時保留人工品質控制與學習成效測量。
+
+## 2. 系統架構與信任邊界
 
 ```mermaid
-graph TD
-    subgraph Layer1 [1. 資料儲存層：Notion Database]
-        N1[單字名稱 Title] --> N2[學習進度 Status: 不熟]
-        N3[屬性欄位: 詞性 / 解釋 / 例句 / 補充 / 封面]
+flowchart TD
+    subgraph N[Notion：權威資料層]
+      N1[原詞與原句] --> N2[來源與狀態] --> N3[已確認內容]
     end
-
-    subgraph Layer2 [2. 代理與擴充層：Google Antigravity]
-        A1[掃描不熟單字 Scan Unfamiliar Words]
-        A2[多益商務例句與考點生成]
-        A3[高辨識度意象封面解析]
-        A4[Notion API 批次回寫與區塊排版]
-        A5[編排結構化 Markdown 指南]
+    subgraph A[Antigravity：不可信草稿與協調層]
+      A1[查詢待處理項目] --> A2[產生結構化草稿] --> A3[驗證與批次回寫]
     end
-
-    subgraph Layer3 [3. 音訊合成層：Gemini Notebook / NotebookLM]
-        G1[建立專屬筆記本 Create Notebook]
-        G2[上傳單字考點 Markdown 來源]
-        G3[設定導聆 Prompt & 語系]
-        G4[Deep Dive Audio Overview 生成]
-        G5[🎧 Podcast 隨身音訊串流]
+    subgraph L[NotebookLM：衍生內容層]
+      L1[匯入確認過的來源] --> L2[生成 Audio Overview]
     end
-
-    Layer1 -->|Notion API 查詢| Layer2
-    Layer2 -->|Notion API 回寫| Layer1
-    Layer2 -->|nlm CLI / MCP| Layer3
+    N -->|最小權限讀取| A
+    A -->|僅回寫草稿欄位| N
+    N -->|只匯出已確認項目| L
+    L -->|人工抽查| N
 ```
 
----
+代理人可以寫入草稿欄位，但只有使用者能把狀態改成 `verified`。NotebookLM 只接收已確認的匯出版本，避免錯誤經過多個生成步驟後被放大。
 
-## 三、模組運作機制與技術細節
+## 3. 建議的資料模型
 
-### 1. Notion 資料庫 Schema 設計
+| 欄位 | 型別 | 說明 |
+|---|---|---|
+| `term` | title | 單字或片語 |
+| `source_sentence` | rich text | 原始句子，不由 AI 改寫 |
+| `source_url` | URL | 來源；敏感資料可用內部識別碼 |
+| `context` | select | academic／business／TOEIC／general |
+| `draft_meaning` | rich text | AI 草稿，不視為已確認內容 |
+| `verified_meaning` | rich text | 人工確認後的核心釋義 |
+| `collocations` | rich text | 固定搭配、介系詞與詞性變化 |
+| `status` | status | captured／enriched／needs_review／verified／reviewing／mastered |
+| `review_due` | date | 下一次主動回想日期 |
+| `source_hash` | rich text | 判斷輸入是否改變，避免重複處理 |
+| `agent_updated_at` | date | 代理人最後更新時間，便於稽核 |
 
-Notion 單字資料庫定義了以下關鍵屬性：
+若流程仍在試驗階段，`term + source_sentence` 可作為暫時去重鍵；正式批次流程則建議使用 page ID 與內容雜湊，避免同字異義被錯誤合併。
 
-* `名稱` (`title`)：英文單字或片語（如 `elaborate`、`in compliance with`）。
-* `詞性` (`multi_select`)：動詞、名詞、形容詞、副詞或片語。
-* `解釋` (`rich_text`)：精確繁體中文核心釋義。
-* `例句` (`rich_text`)：符合多益 Part 5/6/7 商務情境之精簡例句。
-* `補充` (`rich_text`)：包含必考搭配詞、介系詞考點、同義詞替換與衍生字家族。
-* `學習進度` (`status`)：`不熟`（待複習）／`已掌握`（熟悉）。
-* `cover` (`external` / `file`)：單字意象封面圖片 URL。
+## 4. 狀態機與冪等更新
 
-### 2. Antigravity 智能補全與排版規範
-
-Antigravity 透過 Node.js 腳本與 Notion REST API（Version: `2022-06-28`）進行雙向互動：
-
-#### A. 多益核心考點生成規範
-* **動詞考點**：強調及物／不及物用法與受詞搭配（例如 `tackle a challenge`、`pose a threat to`）。
-* **形容詞考點**：強調固定介系詞連用（例如 `be compliant with`、`be liable for` vs. `be liable to`）。
-* **商務同義詞替換**：針對多益閱讀 Part 7 題目特徵提供精確同義字（例如 `complimentary = free = courtesy`）。
-
-#### B. 直覺視覺意象（Visual Mnemonic）配對
-為避免抽象插圖帶來的辨識干擾，封面挑選嚴格遵循「**具象性與強語意關聯**」原則：
-
-| 單字 | 核心釋義 | 意象封面設計 | 認知錨定邏輯 |
-|---|---|---|---|
-| `unanimous` | 全體一致的 | 會議室全員舉手贊成表決 | 具體動作代表「無異議通過」 |
-| `reluctant` | 不情願的 | 柴犬死命向後拔河抗拒出門 | 鮮明表情與肢體直接映射「抗拒勉強」 |
-| `mandatory` | 強制性的 | 工地顯眼之黃色工程安全帽 | 法律與安全規則中的「強制佩戴要求」 |
-| `inventory` | 庫存／存貨 | 挑高物流倉庫中整齊排列的貨架紙箱 | 一眼直覺辨識「倉儲存貨清單」 |
-| `unforeseen` | 無法預見的 | 晴朗天空中突然劈下的劇烈閃電 | 「晴天霹靂」直覺傳達突發不可抗力狀況 |
-| `reimbursement` | 費用報銷 | 發票收據、計算機與核銷現金 | 商務差旅報帳與款項退還場景 |
-
-#### C. 保留既有自訂內容（Idempotency & Respecting User Edits）
-代理人在執行批次更新時，會先行檢查原始屬性。若使用者已自行上傳特定封面（如 S3 上傳圖檔）或自訂筆記，腳本會自動保留原樣，僅針對缺漏欄位進行安全補齊。
-
----
-
-## 四、NotebookLM 音訊生成整合
-
-### 1. 指南文件編排（Source Preparation）
-Antigravity 從 Notion 篩選出所有標記為 `不熟` 的單字項目，依字母排序編排為結構化 Markdown 來源文件：
-
-```markdown
-# 🎧 多益高頻核心單字精選複習指南（Notion 不熟單字庫特輯）
-
-### 1. **elaborate** [動詞]
-- **中文釋義**：詳細說明
-- **多益核心考點與搭配詞**：
-  🔹 【多益必考搭配】elaborate on + [plan/proposal]（詳細說明…）
-  🔹 【常見商務搭配】elaborate design / system（精密設計／系統）
-  🔹 【高頻同義字】(v.) explain in detail, expand on | (adj.) detailed, intricate
-- **實用例句**：
-  > The manager asked him to elaborate on the marketing plan.
-  > （經理請他進一步說明行銷企劃。）
+```text
+captured → enriched → needs_review → verified → reviewing → mastered
+                    ↘ rejected
 ```
 
-### 2. CLI 與 MCP 自動化管道
-透過 `notebooklm-mcp-cli` 工具鏈，Antigravity 可在背景執行以下指令序列：
+每次執行應符合冪等性（idempotency）：相同輸入重跑不建立重複頁面，也不改寫人工確認欄位。建議只查詢待處理項目、將 AI 結果寫入 `draft_*`、更新前檢查 `last_edited_time`，並保存成功、跳過、失敗與重試紀錄。單筆失敗不應中止整批，也不能留下半完成狀態。
 
-```bash
-# 1. 建立專屬筆記本
-nlm notebook create "TOEIC 不熟單字複習 Podcast" --json
+## 5. 內容產生契約
 
-# 2. 上傳考點來源文件
-nlm source add <notebook_id> --file "toeic_unfamiliar_vocabulary_guide.md" --title "Notion 不熟單字考點解析指南" --wait
+不要要求代理人直接產生自由格式長文。先定義結構化輸出，驗證後再轉成 Notion 欄位：
 
-# 3. 發起 Audio Overview 生成
-nlm audio create <notebook_id> \
-  --format deep_dive \
-  --language zh-TW \
-  --focus "深入解析這份多益高頻單字指南，逐一討論每個單字的發音、中文意思、多益常考搭配詞與例句，用生動對話幫助聽眾透過聽覺高效複習" \
-  --confirm
+```json
+{
+  "term": "compliance",
+  "part_of_speech": ["noun"],
+  "meaning_zh_tw": "遵守；符合",
+  "collocations": ["in compliance with", "regulatory compliance"],
+  "example": "The procedure is in compliance with the regulations.",
+  "review_question": "compliance 最常與哪個介系詞搭配？",
+  "needs_human_review": true
+}
 ```
 
----
+回寫前至少檢查必要鍵、欄位型別、字串長度、例句是否包含目標詞，以及輸出是否與原始語境衝突。若需要精確發音、詞源或考試頻率，還應串接有授權且可追溯的字典或題庫，而不是只依賴生成模型。
 
-## 五、學習效益與認知機制評估
+## 6. Notion API 實作注意事項
 
-從認知心理學與學習科學（Learning Sciences）視角分析，此工作流具備以下優勢：
+Notion API 以 bearer token 驗證。token 應放在環境變數或秘密管理服務，禁止硬編碼或提交到 GitHub。Connection 只分享至必要頁面，並遵循最小權限原則。
 
-1. **雙重編碼效應（Dual-Coding Effect）**：Notion Gallery 上的具象視覺符號刺激右腦意象系統，文字例句與 Collocations 刺激左腦語言系統，形成強固的雙向神經迴路。
-2. **語境化學習（Contextualized Learning）**：擺脫孤立字根背誦，聚焦於多益真實商務情境（合約、物流、人事會議），強化知識在測驗中的情境提取能力。
-3. **無痛間隔檢索（Effortless Spaced Retrieval）**：Podcast 格式將高密度單字轉化為富有語調起伏與主持人互動的對話情節，大幅降低反覆複習的認知疲勞，使學習得以無縫融入零碎時間。
+Notion API 使用日期式版本標頭；實作時應依[官方版本文件](https://developers.notion.com/reference/versioning)選擇與 SDK 相容的版本，並在升級前用測試資料庫驗證 schema 與回寫行為，不把可能過期的版本號永久寫死在教學文章中。
 
----
+## 7. 匯出與 NotebookLM 整合
 
-## 六、總結與未來延伸
+匯出器只選取 `verified` 或 `reviewing` 項目。每個詞固定包含來源語境、人工確認釋義、搭配詞、例句、混淆詞與一道主動回想題。
 
-透過 **Notion（資料底層）+ Antigravity（智能協調）+ Gemini Notebook（音訊引擎）** 的三方協同，我們不僅打通了文字筆記與多媒體音訊的藩籬，更展示了自主 AI 代理人在個人化知識管理與自我學習系統中的實踐潛力。
+NotebookLM 可以依匯入來源建立 Audio Overview，並設定語言、長度與聚焦提示；但官方提醒，AI 音訊仍可能不準確或出現音訊錯誤。生成後應抽查是否混淆詞性、虛構規則、使用來源外資訊，或暴露不應出現在音訊中的內容。
 
-未來此流程可進一步擴展至：
-* 自動從學術論文 PDF 抽取專業術語並產出期刊俱樂部（Journal Club）導聆音訊。
-* 結合複習答對率自動更新 Notion `學習進度` 狀態，動態生成每週錯題特輯 Podcast。
+若透過 CLI、MCP 或瀏覽器自動化操作 NotebookLM，應把它視為可替換的 adapter。工具介面改變時，只調整整合層，不影響 Notion schema 與已確認資料。
+
+## 8. 隱私與安全
+
+1. Notion token、Notebook 識別碼與存取憑證不得出現在提示詞、日誌或公開 repo。
+2. 工作郵件、學生資料或未公開研究內容應先去識別化；必要時完全不要送往第三方服務。
+3. 日誌只記錄 page ID、狀態與錯誤類型，不記完整敏感句子。
+4. 測試與正式資料庫分離；批次回寫先使用少量測試頁面。
+5. 為人工確認欄位保留修改歷史與回復方式。
+
+## 9. 如何評估工作流是否真的有效？
+
+| 層級 | 指標範例 | 要回答的問題 |
+|---|---|---|
+| 系統 | 每筆處理時間、失敗率、重複率、人工修正率 | 自動化是否可靠？ |
+| 內容 | 錯誤字義率、無來源陳述率、搭配詞通過率 | 產出是否可信？ |
+| 學習 | 延遲回想正確率、保留率、到期項目完成率 | 使用者是否真的記得？ |
+
+最簡單的個人測試可以比較兩組單字：一組只閱讀文字卡，另一組加上 Audio Overview，但兩組使用相同的主動回想排程；一週後比較正確率。這比單憑新鮮感判斷更有意義。
+
+## 10. 方法限制與延伸
+
+Audio Overview 是複習介面，不是間隔重複系統；Notion 是資料庫，也不會自動形成有效測驗。完整閉環仍需加入到期排程、作答紀錄與依表現調整的複習規則。
+
+後續可以延伸為：從論文擷取術語但保留 DOI 與原句；依錯誤類型建立不同複習批次；將作答結果回寫 Notion 並計算下次複習日期；以及為不同來源建立獨立資料權限與匯出規則。
+
+## 官方文件
+
+- [Notion API：Authentication](https://developers.notion.com/reference/authentication)
+- [Notion API：Versioning](https://developers.notion.com/reference/versioning)
+- [NotebookLM：Generate Audio Overview](https://support.google.com/notebooklm/answer/16212820)
+- [NotebookLM：Add or discover new sources](https://support.google.com/notebooklm/answer/16215270)
+
+> **版本與證據說明（2026-08-25）**：本文描述的是可重用的工作流設計，不保證特定第三方 CLI 或 MCP 指令永久相容。實際串接前請以官方文件與目前安裝版本為準。

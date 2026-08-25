@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260814-12';
+const SITE_VERSION = '20260825-13';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -273,6 +273,7 @@ function closeMenu() {
 }
 
 const POSTS_DATA = [
+  { "id": "notion-antigravity-notebooklm-vocabulary-workflow", "title": "從 Notion 單字庫到 Podcast：可查核的 Antigravity × NotebookLM 單字工作流", "date": "2026-08-25", "category": "ai-tools", "tags": ["AI 工作流", "Notion", "Antigravity", "NotebookLM", "多益學習", "Podcast", "知識管理"], "description": "用 Notion 收集可追溯的單字與語境，讓 Antigravity 產生待確認草稿，再把已查核內容匯入 NotebookLM 製作 Audio Overview；同時說明資料結構、安全、人工驗證與學習成效評估。" },
   { "id": "fft-wavelet-eeg-time-frequency", "title": "FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖", "date": "2026-08-14", "category": "research-methods", "tags": ["EEG", "FFT", "Welch PSD", "Morlet wavelet", "時間頻率分析"], "description": "從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。" },
   { "id": "data-types-tidy-research-data", "title": "資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？", "date": "2026-08-14", "category": "data-analysis", "tags": ["資料整理", "Tidy Data", "資料字典", "可重現研究"], "description": "從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。" },
   { "id": "research-data-visualization", "title": "不要只畫平均數：研究資料視覺化的選圖與判讀原則", "date": "2026-08-14", "category": "data-analysis", "tags": ["資料視覺化", "原始資料", "信賴區間", "重複量測"], "description": "依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。" },
