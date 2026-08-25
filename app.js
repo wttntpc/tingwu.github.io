@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260825-16';
+const SITE_VERSION = '20260825-17';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -50,7 +50,7 @@ function renderMermaidNodes(selector = '.mermaid') {
 
 const copy = {
   zh: {
-    nav: [['首頁', '/'], ['關於', '/about'], ['學術發表', '/publications'], ['文章', '/blog']],
+    nav: [['首頁', '/'], ['關於', '/about'], ['學習地圖', '/learning'], ['學術發表', '/publications'], ['文章', '/blog']],
     footer: '探索身體活動如何改變大腦與心智。',
     disclaimerLink: '網站聲明',
     disclaimerNote: '本站為個人學術與知識分享網站，部分內容由 AI 協作整理，可能仍有疏漏；不構成醫療、法律或其他專業建議，重要決策請核對原始與官方來源。',
@@ -140,7 +140,7 @@ const copy = {
     notFound: '找不到這個頁面。'
   },
   en: {
-    nav: [['Home', '/'], ['About', '/about'], ['Publications', '/publications'], ['Writing', '/blog']],
+    nav: [['Home', '/'], ['About', '/about'], ['Learning map', '/learning'], ['Publications', '/publications'], ['Writing', '/blog']],
     footer: 'Exploring how physical activity shapes the mind.',
     disclaimerLink: 'Website statement',
     disclaimerNote: 'This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.',
@@ -385,12 +385,12 @@ async function renderHome() {
     ['研究主軸', c.focuses.length, '查看專長', '#/about/skills'],
     ['公開文章', allPosts.length, '瀏覽文章', '#/blog'],
     ['精選發表', c.featuredPublications.length, '查看發表', '#/publications'],
-    ['閱讀模式', 2, '白話／專業', '#/blog']
+    ['學習主線', 6, '開始學習', '#/learning']
   ] : [
     ['Research areas', c.focuses.length, 'View expertise', '#/about/skills'],
     ['Public articles', allPosts.length, 'Browse articles', '#/blog'],
     ['Selected works', c.featuredPublications.length, 'View publications', '#/publications'],
-    ['Reading modes', 2, 'Simple / professional', '#/blog']
+    ['Learning tracks', 6, 'Start learning', '#/learning']
   ];
   app.innerHTML = `<div class="page-shell home-shell">
     <section class="profile-hero">
@@ -495,6 +495,91 @@ async function renderAbout(section = '') {
   if (section) {
     requestAnimationFrame(() => document.querySelector(`#about-${CSS.escape(section)}`)?.scrollIntoView());
   }
+}
+
+const learningMapContent = {
+  zh: {
+    eyebrow: 'Professional learning map',
+    title: '專業學習地圖',
+    lead: '以「腦—身體—運動—量測—分析」串起六條專業主線，讓學習、複習與研究深化都能回到同一張地圖。',
+    routeLabel: '共同進程',
+    levels: [
+      ['100', '基礎', '建立術語、結構與核心概念'],
+      ['200', '機制', '說明系統如何運作與彼此影響'],
+      ['300', '量測', '理解設備、實驗與資料來源'],
+      ['400', '分析', '完成品質控制、模型與解讀'],
+      ['500', '整合', '連結研究問題、證據與應用']
+    ],
+    trackLabel: '六條學習主線',
+    trackLead: '第一次可由 01 開始；若正在處理特定研究，也可直接進入 EEG、HRV 或運動生理學。',
+    open: '開啟學習路徑',
+    tracks: [
+      ['01', '認知神經科學', '大腦、認知與情緒', '由神經系統基礎進入注意、記憶、執行功能、情緒與多方法推論。', 'cognitive-neuroscience-learning-map'],
+      ['02', '運動生理學', '急性反應與慢性適應', '連結能量代謝、神經肌肉、心肺調節、體適能測量與運動處方。', 'exercise-physiology-learning-map'],
+      ['03', '人體解剖學', '結構、功能與身體地圖', '建立肌肉骨骼、神經與心肺系統的三維關係，支撐動作及量測理解。', 'human-anatomy-learning-map'],
+      ['04', '運動傷害防護', '預防、評估與重返運動', '從風險辨識與急性照護，到復健、負荷管理及共享決策。', 'athletic-training-learning-map'],
+      ['05', 'EEG 腦波', '生理、設備與分析', '理解訊號生成、硬體與事件同步，再進入前處理、時頻分析及可重現 QC。', 'eeg-learning-map'],
+      ['06', 'HRV', '自律神經、設備與指標', '從 ECG／PPG 與 BBI 品質控制，進入時域、頻域、非線性指標與研究解讀。', 'hrv-learning-map']
+    ],
+    methodTitle: '三種使用方式',
+    methods: [
+      ['學習', '依 100 → 500 建立新知；每次都回答定義、機制、量測與限制。'],
+      ['複習', '用無提示回憶、概念圖與案例題找出真正不熟的連結。'],
+      ['深化', '比較理論、批判方法、重現分析，並把問題轉成可檢驗的研究設計。']
+    ],
+    bridgeTitle: '跨主線方法：研究設計與資料分析',
+    bridgeText: '統計推論、資料視覺化、可重現流程與 AI 查核不屬於單一主題，而是六條主線共同使用的方法層。',
+    bridgeLink: '前往數據分析學習地圖 →',
+    sourceTitle: '下一階段：把您的資料放進正確位置',
+    sourceText: 'NotebookLM、Zotero、原文書與課程資料會用來深化個別章節，而不是整批公開。每份素材先記錄來源、版本、章節與使用權限；私人筆記及受著作權保護的全文預設不放入 GitHub。'
+  },
+  en: {
+    eyebrow: 'Professional learning map',
+    title: 'Professional learning map',
+    lead: 'Six connected tracks link brain, body, exercise, measurement, and analysis into one system for learning, review, and research development.',
+    routeLabel: 'Shared progression',
+    levels: [
+      ['100', 'Foundations', 'Build terminology, structures, and core concepts'],
+      ['200', 'Mechanisms', 'Explain how systems work and interact'],
+      ['300', 'Measurement', 'Understand instruments, experiments, and data'],
+      ['400', 'Analysis', 'Perform quality control, modeling, and interpretation'],
+      ['500', 'Integration', 'Connect research questions, evidence, and practice']
+    ],
+    trackLabel: 'Six learning tracks',
+    trackLead: 'Start with Track 01 for a broad foundation, or enter EEG, HRV, or exercise physiology when a project requires it.',
+    open: 'Open learning path',
+    tracks: [
+      ['01', 'Cognitive neuroscience', 'Brain, cognition, and emotion', 'Move from neural foundations to attention, memory, executive function, emotion, and multimethod inference.', 'cognitive-neuroscience-learning-map'],
+      ['02', 'Exercise physiology', 'Acute responses and adaptation', 'Connect bioenergetics, neuromuscular and cardiorespiratory regulation, fitness testing, and prescription.', 'exercise-physiology-learning-map'],
+      ['03', 'Human anatomy', 'Structure, function, and body maps', 'Build spatial relationships across musculoskeletal, neural, and cardiopulmonary systems.', 'human-anatomy-learning-map'],
+      ['04', 'Athletic training', 'Prevention, assessment, and return to sport', 'Follow the continuum from risk recognition and acute care to rehabilitation and shared decisions.', 'athletic-training-learning-map'],
+      ['05', 'EEG', 'Physiology, equipment, and analysis', 'Understand signal generation, hardware, synchronization, preprocessing, time–frequency analysis, and QC.', 'eeg-learning-map'],
+      ['06', 'HRV', 'Autonomic physiology, devices, and metrics', 'Move from ECG/PPG and interval QC to time, frequency, nonlinear metrics, and defensible interpretation.', 'hrv-learning-map']
+    ],
+    methodTitle: 'Three ways to use the map',
+    methods: [
+      ['Learn', 'Follow 100 → 500 and ask about definition, mechanism, measurement, and limitations.'],
+      ['Review', 'Use retrieval, concept maps, and cases to expose weak links.'],
+      ['Deepen', 'Compare theories, critique methods, reproduce analyses, and design testable studies.']
+    ],
+    bridgeTitle: 'Cross-track methods: research design and data analysis',
+    bridgeText: 'Statistical inference, visualization, reproducibility, and AI verification form a shared methods layer across all six tracks.',
+    bridgeLink: 'Open the data analysis learning map →',
+    sourceTitle: 'Next phase: place your sources where they belong',
+    sourceText: 'NotebookLM, Zotero, textbooks, and course materials can deepen individual chapters without being published in bulk. Each source will retain its origin, edition, section, and permission status; private notes and copyrighted full text stay out of GitHub by default.'
+  }
+};
+
+function renderLearningMap() {
+  const content = learningMapContent[lang] || learningMapContent.zh;
+  app.innerHTML = `<div class="page-shell learning-map-page">
+    <header class="learning-map-hero"><p class="eyebrow">${content.eyebrow}</p><h1>${content.title}</h1><p>${content.lead}</p></header>
+    <section class="learning-levels" aria-labelledby="learning-levels-title"><header><span>00</span><div><p>${content.routeLabel}</p><h2 id="learning-levels-title">100 → 500</h2></div></header><ol>${content.levels.map(level => `<li><strong>${level[0]}</strong><div><b>${level[1]}</b><span>${level[2]}</span></div></li>`).join('')}</ol></section>
+    <section class="learning-tracks" aria-labelledby="learning-tracks-title"><header><p class="eyebrow">Curriculum</p><h2 id="learning-tracks-title">${content.trackLabel}</h2><p>${content.trackLead}</p></header><div class="learning-track-grid">${content.tracks.map(track => `<a href="#/post/${track[4]}" class="learning-map-card"><span>${track[0]}</span><div><small>${track[2]}</small><h3>${track[1]}</h3><p>${track[3]}</p><b>${content.open} <i aria-hidden="true">→</i></b></div></a>`).join('')}</div></section>
+    <section class="learning-methods" aria-labelledby="learning-methods-title"><h2 id="learning-methods-title">${content.methodTitle}</h2><div>${content.methods.map((method, index) => `<article><span>0${index + 1}</span><h3>${method[0]}</h3><p>${method[1]}</p></article>`).join('')}</div></section>
+    <section class="learning-bridge"><div><p class="eyebrow">Shared methods</p><h2>${content.bridgeTitle}</h2><p>${content.bridgeText}</p></div><a href="#/blog/data-analysis">${content.bridgeLink}</a></section>
+    <aside class="learning-source-note"><h2>${content.sourceTitle}</h2><p>${content.sourceText}</p></aside>
+  </div>`;
 }
 
 async function renderPublications() {
@@ -1666,6 +1751,7 @@ async function router() {
   try {
     if (path === '/') await renderHome();
     else if (path === '/about' || path.startsWith('/about/')) await renderAbout(path.split('/')[2] || '');
+    else if (path === '/learning') renderLearningMap();
     else if (path === '/publications') await renderPublications();
     else if (path === '/blog' || path.startsWith('/blog/')) await renderBlog(path.split('/')[2] || 'all');
     else if (path.startsWith('/post/')) await renderPost(path.split('/')[2]);
