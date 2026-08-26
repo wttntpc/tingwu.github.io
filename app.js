@@ -291,6 +291,7 @@ function closeMenu() {
 }
 
 const POSTS_DATA = [
+  { "id": "hrv-bbi-rri-ibi-nni", "title": "從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？", "date": "2026-08-26", "category": "learning-foundations", "tags": ["HRV", "BBI", "RRI", "NNI", "PPG", "ECG"], "description": "HRV 每日學習第一篇：從 ECG R peak、腕式 PPG 脈搏波與品質控制，分清 IBI、BBI、RRI、PPI 與 NNI。" },
   { "id": "cognitive-neuroscience-learning-map", "title": "認知神經科學學習地圖：從大腦、認知到情緒", "date": "2026-08-25", "category": "learning-foundations", "tags": ["認知神經科學", "大腦", "認知", "情緒", "學習地圖"], "description": "以神經系統基礎、認知功能、情緒機制、研究方法與整合推論五層，建立可學習、複習與深化的認知神經科學路徑。" },
   { "id": "exercise-physiology-learning-map", "title": "運動生理學學習地圖：從急性反應到運動處方", "date": "2026-08-25", "category": "learning-foundations", "tags": ["運動生理學", "能量系統", "心肺適能", "運動處方", "學習地圖"], "description": "由能量代謝、神經肌肉與心肺反應，逐步進入訓練適應、測量與個別化運動處方。" },
   { "id": "human-anatomy-learning-map", "title": "人體解剖學學習地圖：用結構理解動作與生理", "date": "2026-08-25", "category": "learning-foundations", "tags": ["人體解剖學", "肌肉骨骼", "神經系統", "心血管", "學習地圖"], "description": "從解剖方位、組織與器官系統出發，把肌肉骨骼、神經與心肺結構連回動作、傷害與生理量測。" },
