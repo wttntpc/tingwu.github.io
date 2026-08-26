@@ -1,5 +1,13 @@
 [
   {
+    "id": "hrv-dvc-preprocessing-imputation",
+    "title": "訊號失真與數據缺損的救星：DVC 自適應高斯填補法如何拯救你的心率變異度（HRV）",
+    "date": "2026-08-26",
+    "category": "data-analysis",
+    "tags": ["HRV", "自律神經", "DVC 演算法", "穿戴式裝置", "數據插補", "訊號前處理"],
+    "description": "介紹 Benchekroun et al. (2022) 發表於 Sensors 期刊的動態 HRV 預處理方法（DVC）。探討智慧手錶/手環在運動與日常中產生連續斷訊與偽峰時，如何透過自適應高斯採樣還原心臟天然波動特徵，提高壓力預測與自律神經評估的精準度。"
+  },
+  {
     "id": "cognitive-neuroscience-learning-map",
     "title": "認知神經科學學習地圖：從大腦、認知到情緒",
     "date": "2026-08-25",
