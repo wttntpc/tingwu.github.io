@@ -19,14 +19,18 @@ HRV（心率變異度）描述相鄰心搏間隔隨時間的變化，不是單�
 
 ## 每日學習進度
 
+0. [全景導讀：從手錶 PPG 到 HRV](#/post/garmin-raw-data-hrv)（先瀏覽，完成基礎後再讀一次）
 1. [從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？](#/post/hrv-bbi-rri-ibi-nni)（2026-08-26）
+2. [方法學專題：Garmin 可以取代 ECG 嗎？](#/post/garmin-ecg-validation-study-design)（研究設計與一致性分析）
 
 <!-- PROFESSIONAL -->
 # HRV 學習地圖：從自律神經、感測設備到指標解讀
 
 ## 每日學習進度
 
+0. [全景導讀：從手錶 PPG 到 HRV](#/post/garmin-raw-data-hrv)（先瀏覽，完成基礎後再讀一次）
 1. [從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？](#/post/hrv-bbi-rri-ibi-nni)（2026-08-26）
+2. [方法學專題：Garmin 可以取代 ECG 嗎？](#/post/garmin-ecg-validation-study-design)（研究設計與一致性分析）
 
 ## 量測鏈
 

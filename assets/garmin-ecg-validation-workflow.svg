@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" role="img" aria-labelledby="title desc">
+  <title id="title">Garmin 與 ECG 方法比較研究流程</title>
+  <desc id="desc">由研究用途、同步量測、資料品質、三層比較到依用途判定是否可接受的研究流程圖</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#274565"/>
+    </marker>
+    <style>
+      .title{font:700 34px Georgia,'Noto Serif TC',serif;fill:#142c47}.sub{font:18px Arial,'Noto Sans TC',sans-serif;fill:#536476}.head{font:700 19px Arial,'Noto Sans TC',sans-serif;fill:#142c47}.body{font:16px Arial,'Noto Sans TC',sans-serif;fill:#3f5162}.step{font:700 15px Arial,'Noto Sans TC',sans-serif;fill:#fbf8ef}.box{fill:#fbf8ef;stroke:#9dacb8;stroke-width:2}.accent{fill:#274565}.line{stroke:#274565;stroke-width:3;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1200" height="660" rx="24" fill="#f4f0e5"/>
+  <text x="70" y="66" class="title">驗證不是問「準不準」，而是問「在什麼用途下，誤差可不可以接受？」</text>
+  <text x="70" y="101" class="sub">同一位受試者、同一段時間，同步比較 Garmin PPG 與 ECG 參考訊號</text>
+
+  <g transform="translate(70 145)">
+    <rect class="box" width="200" height="145" rx="14"/>
+    <rect class="accent" width="200" height="38" rx="14"/><rect class="accent" y="24" width="200" height="14"/>
+    <text x="16" y="26" class="step">01　先定義用途</text>
+    <text x="16" y="69" class="head">趨勢？研究？臨床？</text>
+    <text x="16" y="99" class="body">預先定義主要指標</text>
+    <text x="16" y="124" class="body">與可接受誤差</text>
+  </g>
+  <path class="line" d="M280 217H330"/>
+  <g transform="translate(340 145)">
+    <rect class="box" width="240" height="145" rx="14"/>
+    <rect class="accent" width="240" height="38" rx="14"/><rect class="accent" y="24" width="240" height="14"/>
+    <text x="16" y="26" class="step">02　真正同步量測</text>
+    <text x="16" y="69" class="head">Garmin PPG ＋ ECG</text>
+    <text x="16" y="99" class="body">共同事件標記與時鐘</text>
+    <text x="16" y="124" class="body">固定姿勢、呼吸與情境</text>
+  </g>
+  <path class="line" d="M590 217H640"/>
+  <g transform="translate(650 145)">
+    <rect class="box" width="210" height="145" rx="14"/>
+    <rect class="accent" width="210" height="38" rx="14"/><rect class="accent" y="24" width="210" height="14"/>
+    <text x="16" y="26" class="step">03　平行品質控制</text>
+    <text x="16" y="69" class="head">波形、峰值、缺口</text>
+    <text x="16" y="99" class="body">保留原始與清理版本</text>
+    <text x="16" y="124" class="body">報告有效資料比例</text>
+  </g>
+  <path class="line" d="M870 217H920"/>
+  <g transform="translate(930 145)">
+    <rect class="box" width="200" height="145" rx="14"/>
+    <rect class="accent" width="200" height="38" rx="14"/><rect class="accent" y="24" width="200" height="14"/>
+    <text x="16" y="26" class="step">04　分層判定</text>
+    <text x="16" y="69" class="head">每項指標各自結論</text>
+    <text x="16" y="99" class="body">靜息不外推運動</text>
+    <text x="16" y="124" class="body">一型號不代表全品牌</text>
+  </g>
+
+  <text x="70" y="356" class="head">三個不同的驗證層級</text>
+  <g transform="translate(70 385)">
+    <rect class="box" width="330" height="155" rx="14"/>
+    <text x="22" y="39" class="head">A　心率層級</text>
+    <text x="22" y="74" class="body">每秒或每個視窗的 bpm</text>
+    <text x="22" y="105" class="body">適合運動強度監測問題</text>
+    <text x="22" y="133" class="body">不能直接證明 HRV 有效</text>
+  </g>
+  <g transform="translate(435 385)">
+    <rect class="box" width="330" height="155" rx="14"/>
+    <text x="22" y="39" class="head">B　逐拍間隔層級</text>
+    <text x="22" y="74" class="body">PPG-BBI 與 ECG-RRI 配對</text>
+    <text x="22" y="105" class="body">檢查漏拍、多拍與時間延遲</text>
+    <text x="22" y="133" class="body">是 HRV 驗證的重要中介層</text>
+  </g>
+  <g transform="translate(800 385)">
+    <rect class="box" width="330" height="155" rx="14"/>
+    <text x="22" y="39" class="head">C　HRV 指標層級</text>
+    <text x="22" y="74" class="body">RMSSD、SDNN、頻域、非線性</text>
+    <text x="22" y="105" class="body">相關＋偏差＋一致性界限</text>
+    <text x="22" y="133" class="body">每個指標必須分別判定</text>
+  </g>
+  <rect x="70" y="579" width="1060" height="44" rx="22" fill="#dfe7ec"/>
+  <text x="600" y="607" text-anchor="middle" class="head">最終結論：在預先指定的族群 × 情境 × 指標 × 用途中，是否達到可接受界線</text>
+</svg>
