@@ -1,5 +1,13 @@
 [
   {
+    "id": "vibe-coding-cybersecurity-basics",
+    "title": "從 What'Sub 事件看 Vibe Coding 的資安第一課：功能會動，不代表可以上線",
+    "date": "2026-09-04",
+    "category": "ai-tools",
+    "tags": ["Vibe Coding", "資訊安全", "AI 寫程式", "WhatSub", "AI 工具與工作流", "軟體工程"],
+    "description": "解析 Gary Chen 的非技術人員資安教學影片：從 What'Sub 爆紅引發的資安風波出發，盤點 AI 輔助開發（Vibe Coding）上線前必須回答的 5 個核心問題，並提供非工程背景也能落實的「四步驟安全修補法」。"
+  },
+  {
     "id": "garmin-ecg-validation-study-design",
     "title": "Garmin 可以取代 ECG 嗎？從穿戴式裝置驗證學會研究設計與一致性分析",
     "date": "2026-09-03",
