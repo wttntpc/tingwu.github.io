@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 860" role="img" aria-labelledby="title desc">
+  <title id="title">Garmin、Portable ECG 與 BIOPAC 的 HRV 分析學習流程</title>
+  <desc id="desc">三種設備經由共同時間窗、心搏間隔品質控制、敏感度分析與分層解讀，形成可查核的 HRV 分析流程。</desc>
+  <defs>
+    <style>
+      .bg{fill:#f8f3e8}.ink{fill:#102a43}.muted{fill:#526579}.navy{fill:#173d63}.teal{fill:#2f766f}.gold{fill:#b6822c}.paper{fill:#fffdf7;stroke:#d7cdbc;stroke-width:2}.line{stroke:#8a9aaa;stroke-width:3;fill:none}.dash{stroke:#8a9aaa;stroke-width:3;stroke-dasharray:8 8;fill:none}.title{font-family:'DFKai-SB';font-size:38px;font-weight:700}.h{font-family:'DFKai-SB';font-size:23px;font-weight:700}.body{font-family:'DFKai-SB';font-size:18px;font-weight:500}.small{font-family:'DFKai-SB';font-size:15px;font-weight:500}.white{fill:#fffdf7}.num{font-family:Georgia,serif;font-size:18px;font-weight:700;fill:#fffdf7}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a9aaa"/></marker>
+  </defs>
+  <rect class="bg" width="1440" height="860" rx="30"/>
+  <text x="70" y="70" class="title ink">從三種設備到可解釋的 HRV</text>
+  <text x="70" y="105" class="body muted">同時量測不是終點；共同時間窗、可追蹤 QC 與分層推論才是核心。</text>
+
+  <rect x="70" y="150" width="380" height="160" rx="18" class="paper"/>
+  <circle cx="112" cy="190" r="23" class="navy"/><text x="106" y="197" class="num">1</text>
+  <text x="150" y="197" class="h ink">Garmin Forerunner 255</text>
+  <text x="95" y="238" class="body muted">腕式 PPG → 裝置輸出的 BBI</text>
+  <text x="95" y="271" class="small muted">可見：BBI、寫入時間戳｜不可見：原始 PPG 與演算法</text>
+
+  <rect x="530" y="150" width="380" height="160" rx="18" class="paper"/>
+  <circle cx="572" cy="190" r="23" class="teal"/><text x="566" y="197" class="num">2</text>
+  <text x="610" y="197" class="h ink">Portable ECG</text>
+  <text x="555" y="238" class="body muted">Lead II 波形 → R peaks → RRI</text>
+  <text x="555" y="271" class="small muted">保留原始波形，可逐拍檢查候選峰與錯誤</text>
+
+  <rect x="990" y="150" width="380" height="160" rx="18" class="paper"/>
+  <circle cx="1032" cy="190" r="23" class="gold"/><text x="1026" y="197" class="num">3</text>
+  <text x="1070" y="197" class="h ink">BIOPAC ECG</text>
+  <text x="1015" y="238" class="body muted">Lead II、1000 Hz → R peaks → RRI</text>
+  <text x="1015" y="271" class="small muted">研究級參考訊號，但仍需對時、找峰與人工複核</text>
+
+  <path d="M260 310 V365 H720" class="line"/><path d="M720 310 V365" class="line"/><path d="M1180 310 V365 H720" class="line"/>
+  <path d="M720 365 V405" class="line" marker-end="url(#arrow)"/>
+  <rect x="395" y="420" width="650" height="96" rx="18" class="navy"/>
+  <text x="470" y="458" class="h white">共同分析窗：每個情境開始後 20–320 秒</text>
+  <text x="487" y="490" class="body white">睜眼前｜閉眼前｜100 bpm 原地踏步｜睜眼後｜閉眼後</text>
+
+  <path d="M720 516 V558" class="line" marker-end="url(#arrow)"/>
+  <rect x="70" y="575" width="400" height="150" rx="18" class="paper"/>
+  <text x="95" y="615" class="h ink">A｜逐拍品質控制</text>
+  <text x="95" y="652" class="body muted">生理範圍 300–1500 ms</text>
+  <text x="95" y="683" class="body muted">相對前 5 拍中位數變化 ≥20%</text>
+  <text x="95" y="714" class="small muted">Garmin 另檢查 timestamp gap &gt;1.5 s</text>
+
+  <rect x="520" y="575" width="400" height="150" rx="18" class="paper"/>
+  <text x="545" y="615" class="h ink">B｜敏感度分析</text>
+  <text x="545" y="652" class="body muted">1. 全部保留　2. 刪除旗標</text>
+  <text x="545" y="683" class="body muted">3. 刪除後線性插補</text>
+  <text x="545" y="714" class="small muted">若結論隨處理方式翻轉，就不能稱為穩健</text>
+
+  <rect x="970" y="575" width="400" height="150" rx="18" class="paper"/>
+  <text x="995" y="615" class="h ink">C｜分層指標與推論</text>
+  <text x="995" y="652" class="body muted">HR／Mean NN → SDNN／RMSSD</text>
+  <text x="995" y="683" class="body muted">LF／HF → SD1／SD2</text>
+  <text x="995" y="714" class="small muted">平均值接近，不代表逐拍與 HRV 可互換</text>
+
+  <path d="M470 650 H510" class="dash" marker-end="url(#arrow)"/><path d="M920 650 H960" class="dash" marker-end="url(#arrow)"/>
+  <rect x="250" y="775" width="940" height="54" rx="27" fill="#e7dfcf"/>
+  <text x="330" y="810" class="body ink">目前定位：兩人先導資料 → 驗證流程與找問題；不是品牌效度的最終結論</text>
+</svg>
