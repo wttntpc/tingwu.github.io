@@ -32,6 +32,14 @@
     "description": "規劃中醫人體觀、運動傷害、情緒與認知、美顏科學及研究判讀五條跨領域文章路線，並建立論文圖片授權、證據分級與安全說明規則。"
   },
   {
+    "id": "kampo-extracts-renal-function-propensity-study",
+    "title": "漢方藥可能保護腎功能嗎？從九年觀察研究讀懂 eGFR 與傾向分數配對",
+    "date": "2026-09-24",
+    "category": "popular-science",
+    "tags": ["Kampo", "漢方", "腎功能", "CKD", "eGFR", "傾向分數"],
+    "description": "解析長期日本漢方萃取製劑與腎功能變化的配對觀察研究，說明 eGFR slope、傾向分數、主要結果及無法直接推論因果的原因。"
+  },
+  {
     "id": "hrv-bbi-rri-ibi-nni",
     "title": "從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？",
     "date": "2026-08-26",
