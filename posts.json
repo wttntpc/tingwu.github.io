@@ -24,6 +24,14 @@
     "description": "從Garmin與ECG同步量測出發，分清心率、逐拍間隔與HRV三層驗證，學會研究設計、品質控制、Bland–Altman與一致性推論。"
   },
   {
+    "id": "traditional-medicine-modern-body-science-series",
+    "title": "傳統醫學與現代身體科學：跨領域科普系列",
+    "date": "2026-09-24",
+    "category": "popular-science",
+    "tags": ["中醫", "跨領域研究", "運動傷害", "認知科學", "美顏科學", "循證醫學"],
+    "description": "規劃中醫人體觀、運動傷害、情緒與認知、美顏科學及研究判讀五條跨領域文章路線，並建立論文圖片授權、證據分級與安全說明規則。"
+  },
+  {
     "id": "hrv-bbi-rri-ibi-nni",
     "title": "從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？",
     "date": "2026-08-26",
