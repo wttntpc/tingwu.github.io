@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260924-04';
+const SITE_VERSION = '20260924-05';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -387,12 +387,12 @@ async function renderHome() {
     ['研究主軸', c.focuses.length, '查看專長', '#/about/skills'],
     ['公開文章', allPosts.length, '瀏覽文章', '#/blog'],
     ['精選發表', c.featuredPublications.length, '查看發表', '#/publications'],
-    ['學習主線', 6, '開始學習', '#/learning']
+    ['學習路徑', 7, '開始學習', '#/learning']
   ] : [
     ['Research areas', c.focuses.length, 'View expertise', '#/about/skills'],
     ['Public articles', allPosts.length, 'Browse articles', '#/blog'],
     ['Selected works', c.featuredPublications.length, 'View publications', '#/publications'],
-    ['Learning tracks', 6, 'Start learning', '#/learning']
+    ['Learning paths', 7, 'Start learning', '#/learning']
   ];
   app.innerHTML = `<div class="page-shell home-shell">
     <section class="profile-hero">
@@ -405,12 +405,20 @@ async function renderHome() {
         <p class="profile-role">${c.profileRole}</p>
         <p class="profile-pillars">${c.profilePillars}</p>
         <p class="profile-intro">${c.heroLead}</p>
-        <div class="profile-links"><a href="#/about">${c.fullProfile}</a><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a><a href="https://at-emt-1-course-radar.vercel.app/" target="_blank" rel="noopener noreferrer">${lang === 'zh' ? '進修課程雷達 ↗' : 'Course Radar ↗'}</a></div>
+        <div class="profile-links"><a href="#/about">${c.fullProfile}</a><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div>
       </div>
     </section>
     <nav class="home-overview" aria-label="${lang === 'zh' ? '研究與內容概覽' : 'Research and content overview'}">
       ${overview.map((item, index) => `<a href="${item[3]}" class="overview-item${index === 1 ? ' overview-item-primary' : ''}"><span>${item[0]}</span><strong>${item[1]}</strong><small>${item[2]} →</small></a>`).join('')}
     </nav>
+    <section class="home-projects" aria-labelledby="home-projects-title">
+      <header class="home-projects-heading"><p>${lang === 'zh' ? '實作專案 · 01' : 'Built project · 01'}</p><h2 id="home-projects-title">${lang === 'zh' ? '研究工具與專案' : 'Research tools & projects'}</h2></header>
+      <div class="home-project-row">
+        <div class="home-project-title"><span>${lang === 'zh' ? '課程資訊工具' : 'Course information tool'}</span><h3>${lang === 'zh' ? '進修課程雷達' : 'Continuing Education Course Radar'}</h3></div>
+        <div class="home-project-copy"><p>${lang === 'zh' ? '整合運動防護與緊急救護相關進修資訊，協助快速搜尋、篩選與追蹤課程。' : 'A searchable course tracker for continuing education in athletic training and emergency medical care.'}</p><ul aria-label="${lang === 'zh' ? '專案技術' : 'Project technologies'}"><li>Vercel</li><li>Supabase</li><li>${lang === 'zh' ? '資料整理' : 'Data curation'}</li></ul></div>
+        <div class="home-project-actions"><a class="project-action-primary" href="https://at-emt-1-course-radar.vercel.app/" target="_blank" rel="noopener noreferrer">${lang === 'zh' ? '開啟工具 ↗' : 'Open tool ↗'}</a><a href="#/post/at-emt-1-course-radar">${lang === 'zh' ? '閱讀開發紀錄 →' : 'Read build notes →'}</a></div>
+      </div>
+    </section>
     <div class="home-editorial-grid">
       <section class="home-block research-section"><h2>${c.selectedAreas}</h2><div class="pillar-grid">${c.focuses.map(item => `<a class="pillar-card" href="#/about/skills"><b>${item[0]}</b><span>${item[1]}</span></a>`).join('')}</div></section>
       <section class="home-block featured-publications"><div class="block-heading"><h2>${c.featuredTitle}</h2><a href="#/publications">${c.allPublications}</a></div><div class="publication-preview-list">${c.featuredPublications.map(item => `<a href="#/publications" class="publication-preview"><span>${item[0]}</span><div><b>${item[1]}</b><small>${item[2]}</small></div></a>`).join('')}</div></section>
@@ -503,9 +511,9 @@ const learningMapContent = {
   zh: {
     eyebrow: 'Professional learning map',
     title: '專業學習地圖',
-    lead: '以「腦—身體—運動—量測—分析」串起六條專業主線，讓學習、複習與研究深化都能回到同一張地圖。',
+    lead: '以「腦—身體—運動—量測—分析」串起六條核心主線與一項跨領域專題，讓學習、複習與研究深化都能回到同一張地圖。',
     guideTitle: '一份會持續成長的學習規劃',
-    guideText: '目前先建立六條主線與 100–500 的共同進程，作為專業知識累積的基本架構。後續會依實際學習、研究需求與資料查核結果，陸續新增及更新相關文章。',
+    guideText: '目前建立六條核心主線、一項跨領域專題與 100–500 的共同進程，作為專業知識累積的基本架構。後續會依實際學習、研究需求與資料查核結果，陸續新增及更新相關文章。',
     guidePoints: [
       ['學習背景', '先建立術語、解剖生理、核心理論與量測原理，避免只記分析步驟。'],
       ['定期複習', '用無提示回憶、概念圖與案例重新整理舊知，找出尚未連結的概念。'],
@@ -519,8 +527,8 @@ const learningMapContent = {
       ['400', '分析', '完成品質控制、模型與解讀'],
       ['500', '整合', '連結研究問題、證據與應用']
     ],
-    trackLabel: '六條學習主線',
-    trackLead: '第一次可由 01 開始；若正在處理特定研究，也可直接進入 EEG、HRV 或運動生理學。',
+    trackLabel: '六條核心主線＋一項跨領域專題',
+    trackLead: '第一次可由 01 開始；若正在處理特定研究，也可直接進入 EEG、HRV、運動生理學或跨領域專題。',
     open: '開啟學習路徑',
     tracks: [
       ['01', '認知神經科學', '大腦、認知與情緒', '由神經系統基礎進入注意、記憶、執行功能、情緒與多方法推論。', 'cognitive-neuroscience-learning-map'],
@@ -528,7 +536,8 @@ const learningMapContent = {
       ['03', '人體解剖學', '結構、功能與身體地圖', '建立肌肉骨骼、神經與心肺系統的三維關係，支撐動作及量測理解。', 'human-anatomy-learning-map'],
       ['04', '運動傷害防護', '預防、評估與重返運動', '從風險辨識與急性照護，到復健、負荷管理及共享決策。', 'athletic-training-learning-map'],
       ['05', 'EEG 腦波', '生理、設備與分析', '理解訊號生成、硬體與事件同步，再進入前處理、時頻分析及可重現 QC。', 'eeg-learning-map'],
-      ['06', 'HRV', '自律神經、設備與指標', '從 ECG／PPG 與 BBI 品質控制，進入時域、頻域、非線性指標與研究解讀。', 'hrv-learning-map']
+      ['06', 'HRV', '自律神經、設備與指標', '從 ECG／PPG 與 BBI 品質控制，進入時域、頻域、非線性指標與研究解讀。', 'hrv-learning-map'],
+      ['07', '傳統醫學與現代身體科學', '跨領域專題', '從中醫人體觀出發，連結解剖、運動傷害、認知情緒、美顏科學與循證研究判讀。', 'traditional-medicine-modern-body-science-series']
     ],
     methodTitle: '三種使用方式',
     methods: [
@@ -537,7 +546,7 @@ const learningMapContent = {
       ['深化', '比較理論、批判方法、重現分析，並把問題轉成可檢驗的研究設計。']
     ],
     bridgeTitle: '跨主線方法：研究設計與資料分析',
-    bridgeText: '統計推論、資料視覺化、可重現流程與 AI 查核不屬於單一主題，而是六條主線共同使用的方法層。',
+    bridgeText: '統計推論、資料視覺化、可重現流程與 AI 查核不屬於單一主題，而是六條核心主線與跨領域專題共同使用的方法層。',
     bridgeLink: '前往數據分析學習地圖 →',
     sourceTitle: '下一階段：把您的資料放進正確位置',
     sourceText: 'NotebookLM、Zotero、原文書與課程資料會用來深化個別章節，而不是整批公開。每份素材先記錄來源、版本、章節與使用權限；私人筆記及受著作權保護的全文預設不放入 GitHub。'
@@ -545,9 +554,9 @@ const learningMapContent = {
   en: {
     eyebrow: 'Professional learning map',
     title: 'Professional learning map',
-    lead: 'Six connected tracks link brain, body, exercise, measurement, and analysis into one system for learning, review, and research development.',
+    lead: 'Six foundational tracks and one interdisciplinary topic link brain, body, exercise, measurement, and analysis into one system for learning, review, and research development.',
     guideTitle: 'A learning plan designed to keep growing',
-    guideText: 'The current version establishes six tracks and a shared 100–500 progression. New and revised articles will be added gradually as learning continues, research needs emerge, and sources are verified.',
+    guideText: 'The current version establishes six core tracks, one interdisciplinary topic, and a shared 100–500 progression. New and revised articles will be added gradually as learning continues, research needs emerge, and sources are verified.',
     guidePoints: [
       ['Build foundations', 'Establish terminology, anatomy and physiology, core theories, and measurement principles before memorizing analysis steps.'],
       ['Review regularly', 'Use retrieval, concept maps, and cases to reorganize prior knowledge and expose missing links.'],
@@ -561,8 +570,8 @@ const learningMapContent = {
       ['400', 'Analysis', 'Perform quality control, modeling, and interpretation'],
       ['500', 'Integration', 'Connect research questions, evidence, and practice']
     ],
-    trackLabel: 'Six learning tracks',
-    trackLead: 'Start with Track 01 for a broad foundation, or enter EEG, HRV, or exercise physiology when a project requires it.',
+    trackLabel: 'Six core tracks + one interdisciplinary topic',
+    trackLead: 'Start with Track 01 for a broad foundation, or enter EEG, HRV, exercise physiology, or the interdisciplinary topic when a project requires it.',
     open: 'Open learning path',
     tracks: [
       ['01', 'Cognitive neuroscience', 'Brain, cognition, and emotion', 'Move from neural foundations to attention, memory, executive function, emotion, and multimethod inference.', 'cognitive-neuroscience-learning-map'],
@@ -570,7 +579,8 @@ const learningMapContent = {
       ['03', 'Human anatomy', 'Structure, function, and body maps', 'Build spatial relationships across musculoskeletal, neural, and cardiopulmonary systems.', 'human-anatomy-learning-map'],
       ['04', 'Athletic training', 'Prevention, assessment, and return to sport', 'Follow the continuum from risk recognition and acute care to rehabilitation and shared decisions.', 'athletic-training-learning-map'],
       ['05', 'EEG', 'Physiology, equipment, and analysis', 'Understand signal generation, hardware, synchronization, preprocessing, time–frequency analysis, and QC.', 'eeg-learning-map'],
-      ['06', 'HRV', 'Autonomic physiology, devices, and metrics', 'Move from ECG/PPG and interval QC to time, frequency, nonlinear metrics, and defensible interpretation.', 'hrv-learning-map']
+      ['06', 'HRV', 'Autonomic physiology, devices, and metrics', 'Move from ECG/PPG and interval QC to time, frequency, nonlinear metrics, and defensible interpretation.', 'hrv-learning-map'],
+      ['07', 'Traditional medicine and modern body science', 'Interdisciplinary topic', 'Connect traditional body concepts with anatomy, sports injury, cognition and emotion, aesthetic science, and evidence appraisal.', 'traditional-medicine-modern-body-science-series']
     ],
     methodTitle: 'Three ways to use the map',
     methods: [
@@ -579,7 +589,7 @@ const learningMapContent = {
       ['Deepen', 'Compare theories, critique methods, reproduce analyses, and design testable studies.']
     ],
     bridgeTitle: 'Cross-track methods: research design and data analysis',
-    bridgeText: 'Statistical inference, visualization, reproducibility, and AI verification form a shared methods layer across all six tracks.',
+    bridgeText: 'Statistical inference, visualization, reproducibility, and AI verification form a shared methods layer across the six core tracks and the interdisciplinary topic.',
     bridgeLink: 'Open the data analysis learning map →',
     sourceTitle: 'Next phase: place your sources where they belong',
     sourceText: 'NotebookLM, Zotero, textbooks, and course materials can deepen individual chapters without being published in bulk. Each source will retain its origin, edition, section, and permission status; private notes and copyrighted full text stay out of GitHub by default.'
