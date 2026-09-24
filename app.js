@@ -57,13 +57,13 @@ const copy = {
     disclaimerTitle: '網站聲明與使用說明',
     disclaimerLead: '關於本站性質、AI 協作、資訊查核、專業建議、著作權、隱私與責任限制。',
     disclaimerUpdated: '最後更新：2026 年 8 月 25 日',
-    heroLead: '我是吳亭葶，現為國立中央大學認知神經科學博士生，也是具證照的運動防護員。我的研究關注身體活動、情緒與老化如何影響認知及腦—身體調節，並結合運動處方設計、腦波（EEG）、心率變異度（HRV）與 AI 資料分析，探索促進認知功能與健康老化的可行方法。',
+    heroLead: '我是吳亭葶，現為國立中央大學認知神經科學博士生，也是具證照的運動防護員。我的研究關注身體活動、運動處方與心肺適能如何影響情緒、認知及腦—身體調節，並結合腦波（EEG）、心率變異度（HRV）與 AI 資料分析，探索促進心理健康、認知功能與健康老化的可行方法。',
     profileRole: '認知神經科學博士生 · 國立中央大學',
     profilePillars: '運動與健康老化 × 認知神經科學 × 生理訊號與資料分析',
     fullProfile: '完整學經歷 →',
     selectedAreas: '研究主軸',
     focuses: [
-      ['運動、情緒與健康老化', '探討身體活動與運動處方如何影響情緒、執行功能及健康老化。'],
+      ['運動、情緒與健康老化', '探討身體活動、運動處方與心肺適能如何影響情緒、執行功能及健康老化。'],
       ['腦波與 HRV 分析', '運用 EEG、HRV 與行為測量，理解認知功能及腦—身體調節。'],
       ['AI 與可重現資料分析', '使用 Python、Matlab 與統計工具，建立透明、有效率且可重現的研究流程。']
     ],
@@ -77,7 +77,7 @@ const copy = {
     latestTitle: '最近的文章',
     allPosts: '查看所有文章 →',
     introTitle: '關於我',
-    introText: '你好，我是吳亭葶。我目前就讀國立中央大學認知神經科學研究所博士班，也具備台灣運動防護員證照。我的研究關心身體活動如何改變執行功能、情緒與大腦健康。',
+    introText: '你好，我是吳亭葶。我目前就讀國立中央大學認知神經科學研究所博士班，也具備台灣運動防護員證照。我的研究關心身體活動、運動處方與心肺適能如何影響情緒、執行功能與大腦健康。',
     journeyTitle: '學歷與經歷',
     journey: [
       ['2025—至今', '國立中央大學・認知神經科學研究所博士班', '研究方向：運動、執行功能與認知神經科學'],
@@ -146,13 +146,13 @@ const copy = {
     disclaimerTitle: 'Website Statement & Terms of Use',
     disclaimerLead: 'How this site handles AI-assisted work, verification, professional advice, copyright, privacy, and limitations of responsibility.',
     disclaimerUpdated: 'Last updated: August 25, 2026',
-    heroLead: 'I am Ting-Ting Wu, a Ph.D. student in Cognitive Neuroscience at National Central University and a certified athletic trainer. My research examines how physical activity, emotion, and aging influence cognition and brain–body regulation. I integrate exercise prescription design, electroencephalography (EEG), heart rate variability (HRV), and AI-assisted data analysis to explore practical approaches for supporting cognitive function and healthy aging.',
+    heroLead: 'I am Ting-Ting Wu, a Ph.D. student in Cognitive Neuroscience at National Central University and a certified athletic trainer. My research examines how physical activity, exercise prescription, and cardiorespiratory fitness influence emotion, cognition, and brain–body regulation. I integrate electroencephalography (EEG), heart rate variability (HRV), and AI-assisted data analysis to explore practical approaches for supporting emotional well-being, cognitive function, and healthy aging.',
     profileRole: 'Ph.D. Student in Cognitive Neuroscience · National Central University',
     profilePillars: 'Exercise & Healthy Aging × Cognitive Neuroscience × Biosignal & Data Analysis',
     fullProfile: 'Full profile →',
     selectedAreas: 'Research pillars',
     focuses: [
-      ['Exercise, emotion & healthy aging', 'Examining how physical activity and exercise prescription influence emotion, executive function, and healthy aging.'],
+      ['Exercise, emotion & healthy aging', 'Examining how physical activity, exercise prescription, and cardiorespiratory fitness influence emotion, executive function, and healthy aging.'],
       ['EEG & HRV analysis', 'Using EEG, HRV, and behavioral measures to understand cognition and brain–body regulation.'],
       ['AI & reproducible data analysis', 'Using Python, Matlab, and statistical tools to build transparent, efficient, and reproducible research workflows.']
     ],
@@ -166,7 +166,7 @@ const copy = {
     latestTitle: 'Latest writing',
     allPosts: 'See all writing →',
     introTitle: 'Profile',
-    introText: 'I am Ting-Ting Wu, a Ph.D. student at the Institute of Cognitive Neuroscience, National Central University, and a certified athletic trainer. My research examines how physical activity shapes executive function, emotion, and brain health, with a particular focus on older adults.',
+    introText: 'I am Ting-Ting Wu, a Ph.D. student at the Institute of Cognitive Neuroscience, National Central University, and a certified athletic trainer. My research examines how physical activity, exercise prescription, and cardiorespiratory fitness shape emotion, executive function, and brain health, with a particular focus on older adults.',
     journeyTitle: 'Education & experience',
     journey: [
       ['2025—Present', 'Ph.D., Institute of Cognitive Neuroscience, NCU', 'Exercise, executive function, and cognitive neuroscience'],
@@ -420,25 +420,25 @@ async function renderHome() {
 
 const researchFramework = {
   zh: {
-    ariaLabel: '吳亭葶的研究框架：從運動與身體活動，經由腦與自律神經機制，連結至認知、情緒與健康老化。',
+    ariaLabel: '吳亭葶的研究框架：從身體活動、運動處方與心肺適能，經由腦與自律神經機制，連結至情緒、認知與健康老化。',
     questionLabel: '核心研究問題',
-    question: '身體活動與運動處方，如何透過腦—身體機制促進認知功能、情緒健康與健康老化？',
+    question: '身體活動、運動處方與心肺適能，如何透過腦—身體機制影響情緒、認知功能與健康老化？',
     stages: [
       { number: '01', eyebrow: '輸入與介入', title: '運動與身體狀態', items: ['身體活動與久坐行為', '有氧／阻力運動處方', '心肺適能與體組成'] },
-      { number: '02', eyebrow: '機制與測量', title: '腦—身體調節', items: ['腦波與神經動態（EEG／HHSA）', '自律神經調節（HRV）', '情緒與心理健康'] },
-      { number: '03', eyebrow: '研究結果', title: '認知與健康老化', items: ['執行功能與認知表現', '腦健康與神經可塑性', '健康老化與生活功能'] }
+      { number: '02', eyebrow: '機制與測量', title: '腦—身體調節', items: ['腦波與神經動態（EEG／HHSA）', '自律神經調節（HRV）', '情緒狀態與認知行為量測'] },
+      { number: '03', eyebrow: '研究結果', title: '情緒、認知與健康老化', items: ['情緒反應與心理健康', '執行功能與認知表現', '腦健康、健康老化與生活功能'] }
     ],
     methodsLabel: '貫穿全流程的方法學',
     methods: ['行為作業與生理訊號', '統計建模與資料視覺化', '可重現研究流程', 'AI 輔助研究工作流']
   },
   en: {
-    ariaLabel: 'Ting-Ting Wu’s research framework: linking exercise and physical activity to cognition, emotion, and healthy aging through brain and autonomic mechanisms.',
+    ariaLabel: 'Ting-Ting Wu’s research framework: linking physical activity, exercise prescription, and cardiorespiratory fitness to emotion, cognition, and healthy aging through brain and autonomic mechanisms.',
     questionLabel: 'Core research question',
-    question: 'How can physical activity and exercise prescription support cognition, emotional well-being, and healthy aging through brain–body mechanisms?',
+    question: 'How do physical activity, exercise prescription, and cardiorespiratory fitness influence emotion, cognition, and healthy aging through brain–body mechanisms?',
     stages: [
       { number: '01', eyebrow: 'Exposure & intervention', title: 'Exercise and physical state', items: ['Physical activity and sedentary behavior', 'Aerobic and resistance exercise prescription', 'Cardiorespiratory fitness and body composition'] },
-      { number: '02', eyebrow: 'Mechanisms & measures', title: 'Brain–body regulation', items: ['Brain activity and neural dynamics (EEG / HHSA)', 'Autonomic regulation (HRV)', 'Emotion and mental health'] },
-      { number: '03', eyebrow: 'Research outcomes', title: 'Cognition and healthy aging', items: ['Executive function and cognitive performance', 'Brain health and neuroplasticity', 'Healthy aging and everyday function'] }
+      { number: '02', eyebrow: 'Mechanisms & measures', title: 'Brain–body regulation', items: ['Brain activity and neural dynamics (EEG / HHSA)', 'Autonomic regulation (HRV)', 'Emotion and cognitive-behavioral measures'] },
+      { number: '03', eyebrow: 'Research outcomes', title: 'Emotion, cognition, and healthy aging', items: ['Emotional responses and mental health', 'Executive function and cognitive performance', 'Brain health, healthy aging, and everyday function'] }
     ],
     methodsLabel: 'Methods supporting the full research cycle',
     methods: ['Behavioral tasks and biosignals', 'Statistical modeling and visualization', 'Reproducible research workflows', 'AI-assisted research workflows']
@@ -465,12 +465,12 @@ async function renderAbout(section = '') {
   const labels = lang === 'zh' ? {
     home: '首頁', title: '關於我', meta: '吳亭葶 Ting-Ting Wu', language: '語言：English', toc: '目錄',
     role: '認知神經科學博士生 / 運動防護員 / 研究者', education: '學經歷', expertise: '專長領域', honors: '榮譽', contact: '聯繫',
-    bio2: '我的研究主題是運動科學與認知神經科學的交界，關注身體活動如何影響執行功能、情緒及大腦功能。除了實驗研究，我也持續探索 AI 與可重現資料分析如何改善研究工作流程。',
+    bio2: '我的研究主題位於運動科學與認知神經科學的交界，關注身體活動、運動處方與心肺適能如何影響情緒、執行功能及大腦健康。除了實驗研究，我也持續探索 AI 與可重現資料分析如何改善研究工作流程。',
     framework: '研究框架', frameworkCaveat: '示意圖，簡化呈現研究變項間的關係，非統計模型或因果推論結果。'
   } : {
     home: 'Home', title: 'About', meta: 'Ting-Ting Wu', language: 'Language: 中文', toc: 'Table of contents',
     role: 'Ph.D. Student in Cognitive Neuroscience / Athletic Trainer / Researcher', education: 'Education & experience', expertise: 'Expertise', honors: 'Honors', contact: 'Contact',
-    bio2: 'My work sits at the intersection of exercise science and cognitive neuroscience. I study how exercise intensity, physical activity, and sedentary behavior shape executive function, emotion, and healthy aging, while exploring reproducible data analysis and AI-enabled research workflows.',
+    bio2: 'My work sits at the intersection of exercise science and cognitive neuroscience. I study how exercise intensity, physical activity, sedentary behavior, and cardiorespiratory fitness shape emotion, executive function, brain health, and healthy aging, while exploring reproducible data analysis and AI-enabled research workflows.',
     framework: 'Research framework', frameworkCaveat: 'Simplified schematic of how these variables relate — not a statistical model or a causal claim.'
   };
   const tocItems = [[c.introTitle, 'intro'], [labels.framework, 'framework'], [labels.education, 'journey'], [labels.expertise, 'skills'], [labels.honors, 'awards'], [labels.contact, 'contact']];
