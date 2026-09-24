@@ -11,6 +11,20 @@
 4. **400 應用**：觸診、動作分析、常見傷害機制，以及 EEG／ECG／PPG 電極與感測位置。
 5. **500 整合**：從研究問題反推需要的解剖層級、量測位置與可能混淆因子。
 
+## 延伸閱讀：從平面圖譜走向立體身體觀
+
+| 資源 | 適合用來學什麼 | 閱讀時要注意什麼 |
+|---|---|---|
+| [《身體的立體結構網絡：一個結構治療科醫師的筆記》](https://www.books.com.tw/products/0010874057) | 跟著林兩傳醫師的臨床觀察，練習把皮膚、筋膜、肌肉與骨骼想成彼此連續的立體網絡；適合在已具備基本解剖知識後閱讀。 | 這是作者的臨床經驗與理論整理，不等同於解剖學教科書或臨床指引。遇到新的名詞、連線與治療推論，應再以標準圖譜及研究文獻核對。 |
+| [*Anatomy Trains: Les méridiens myofasciaux en thérapie manuelle et du mouvement*](https://www.elsevier-masson.fr/anatomy-trains-9782294775031.html) | 以「筋膜經線」觀察跨關節、跨區域的組織連續性，並把局部肌肉放回全身姿勢與動作模式中理解；書籍另有線上圖像與影音補充。 | 把經線當成觀察與提出假設的地圖，而不是已被完整證實的獨立解剖構造，也不能只憑經線圖直接下診斷或決定治療。 |
+
+### 建議的使用順序
+
+1. 先用解剖圖譜確認骨骼、關節、肌肉起止點、神經支配與標準名稱。
+2. 再用兩本書練習觀察三維連續性，畫出作者提出的組織連線。
+3. 把「看得到的解剖連續性」、「可能的力傳遞」與「臨床效果」分開記錄，不把三者直接畫上等號。
+4. 最後回到同儕審查研究查證。現有系統性回顧支持部分筋膜鏈具有組織連續性與力傳遞的可能性，但人體活體研究仍有限、方法差異也大，因此解讀宜保持審慎。
+
 ## 最有效的複習方式
 
 每個結構回答四題：在哪裡？與誰相鄰？做什麼？受傷或量測錯誤時會出現什麼現象？搭配空白圖回憶、模型定位與動作示範，比單純重讀更能建立空間關係。
@@ -29,6 +43,18 @@
 | 心肺 | 心臟傳導、血流、肺泡通氣與氣體交換 | VO₂、ECG、PPG 與運動反應 |
 | 表面與影像 | 觸診、電極位置、切面與影像方向 | 設備配置與資料解讀 |
 
+## 補充路徑：立體結構網絡與筋膜連續性
+
+傳統區域解剖提供可重複辨認的名稱、邊界與空間關係；立體結構網絡與筋膜鏈模型則可協助提出跨區域的動作與力傳遞假設。兩者不應互相取代，而應依下列順序整合：
+
+1. **建立基準**：先以標準解剖圖譜掌握組織層次、附著點、神經血管與關節運動。
+2. **閱讀臨床觀點**：以林兩傳的[《身體的立體結構網絡》](https://www.books.com.tw/products/0010874057)理解作者如何由臨床觸診與治療經驗建構皮連線、筋連線及骨連線；這些內容應視為作者的觀察模型，而非已完成驗證的解剖分類。
+3. **閱讀筋膜鏈模型**：以 Myers 的 [*Anatomy Trains* 法文第二版](https://www.elsevier-masson.fr/anatomy-trains-9782294775031.html)比較各條 myofascial meridian 所提出的連續路徑，並連到姿勢與動作分析。出版社提供的版本資料顯示，本版包含動作應用、筋膜綱要與線上影音補充。
+4. **拆開三層證據**：分別詢問（a）組織是否在解剖上連續、（b）張力是否能在活體中傳遞，以及（c）依此模型介入是否真的改善臨床結果。某一層得到支持，不能自動證明另外兩層。
+5. **回到研究設計**：記錄研究對象、組織路徑、負荷方式、量測工具與效應大小。系統性回顧顯示部分鏈段存在解剖連續性及力傳遞證據，但研究異質性、解剖變異與人體活體證據不足，仍限制了普遍化的臨床推論。
+
+> **證據定位**：筋膜是確實存在且具有力學功能的結締組織；「筋膜經線」則是用來整理連續路徑的模型。適合用於教學、觀察與形成研究假設，不宜單獨作為診斷或療效保證。
+
 ## 檢核標準
 
 能在無標示圖上定位、能以三維關係說明相鄰結構、能由功能推估損傷表現，並能說明研究量測實際取樣的是哪個組織或生理現象。正常解剖變異應被記錄為變異，而不是自動當成異常。
@@ -36,4 +62,8 @@
 ## 起始來源（APA 7th）
 
 - Betts, J. G., Young, K. A., Wise, J. A., et al. (2022). *Anatomy and physiology 2e*. OpenStax. https://openstax.org/books/anatomy-and-physiology-2e/pages/1-introduction
+- 林兩傳（2020）。《身體的立體結構網絡：一個結構治療科醫師的筆記》。晨星。https://www.books.com.tw/products/0010874057
+- Krause, F., Wilke, J., Vogt, L., & Banzer, W. (2016). Intermuscular force transmission along myofascial chains: A systematic review. *Journal of Anatomy, 228*(6), 910–918. https://doi.org/10.1111/joa.12464
+- Myers, T. W. (2023). *Anatomy Trains: Les méridiens myofasciaux en thérapie manuelle et du mouvement* (2e éd.). Elsevier Masson. https://www.elsevier-masson.fr/anatomy-trains-9782294775031.html
 - Purves, D., Augustine, G. J., Fitzpatrick, D., et al. (Eds.). (2001). *Neuroscience* (2nd ed.). Sinauer Associates. https://www.ncbi.nlm.nih.gov/books/NBK10799/
+- Wilke, J., Krause, F., Vogt, L., & Banzer, W. (2016). What is evidence-based about myofascial chains: A systematic review. *Archives of Physical Medicine and Rehabilitation, 97*(3), 454–461. https://doi.org/10.1016/j.apmr.2015.07.023
