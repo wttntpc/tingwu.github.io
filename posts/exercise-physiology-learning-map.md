@@ -17,6 +17,10 @@
 
 > 運動處方不是只套用百分比。測量方法、疾病風險、用藥、環境與個別反應都會影響強度判定，涉及臨床情境時應依專業評估與正式指引。
 
+## 個人興趣延伸閱讀
+
+- [走進山林，身體和情緒會發生什麼？戶外健行的多層次效益 →](#/post/outdoor-hiking-health-mind-review)：把運動強度、自然暴露、情緒與社會互動拆開理解，並辨認健行研究的證據限制。
+
 <!-- PROFESSIONAL -->
 # 運動生理學學習地圖：從急性反應到運動處方
 
@@ -41,3 +45,7 @@
 - Egan, B., & Sharples, A. P. (2023). Molecular responses to acute exercise and their relevance for adaptations in skeletal muscle to exercise training. *Physiological Reviews, 103*(3), 2057–2170. https://doi.org/10.1152/physrev.00054.2021
 - Iellamo, F. (2024). Acute responses and chronic adaptations to exercise in humans: A look from the autonomic nervous system window. *The Journal of Sports Medicine and Physical Fitness, 64*(2), 137–150. https://doi.org/10.23736/S0022-4707.23.15353-9
 - American College of Sports Medicine. (n.d.). *ACSM certified clinical exercise physiologist requirements*. https://acsm.org/acsm-cep-requirements/
+
+## 個人興趣延伸閱讀
+
+- [戶外健行如何連結身體、情緒與社會健康？整合性綜述的證據邊界 →](#/post/outdoor-hiking-health-mind-review)：適合作為運動劑量、自然暴露、HRV、情緒與公共衛生交會處的研究問題地圖。

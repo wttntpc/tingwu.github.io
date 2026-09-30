@@ -24,6 +24,14 @@
     "description": "從Garmin與ECG同步量測出發，分清心率、逐拍間隔與HRV三層驗證，學會研究設計、品質控制、Bland–Altman與一致性推論。"
   },
   {
+    "id": "outdoor-hiking-health-mind-review",
+    "title": "走進山林，身體和情緒會發生什麼？戶外健行的多層次效益",
+    "date": "2026-09-30",
+    "category": "popular-science",
+    "tags": ["個人興趣", "戶外健行", "自然暴露", "運動與情緒", "公共衛生"],
+    "description": "從整合性綜述理解健行如何同時結合運動、自然與社會刺激，整理心肺、情緒與社區效益，也辨認健行和一般步行不能混為一談的證據限制。"
+  },
+  {
     "id": "traditional-medicine-modern-body-science-series",
     "title": "傳統醫學與現代身體科學：跨領域科普系列",
     "date": "2026-09-24",
