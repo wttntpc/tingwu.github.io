@@ -14,20 +14,10 @@
 2. **自然暴露**：綠地、聲音、景觀、空氣與較少的都市刺激。
 3. **社會情境**：獨自行走、結伴或參加社區團體，可能帶來不同的互動經驗。
 
-<pre class="mermaid">
-flowchart LR
-    A[戶外健行] --> B[運動刺激]
-    A --> C[自然環境]
-    A --> D[社會互動]
-    B --> E[心肺與代謝]
-    B --> F[肌力、平衡與功能]
-    C --> G[壓力與注意恢復]
-    D --> H[歸屬感與社會支持]
-    E --> I[整體健康結果]
-    F --> I
-    G --> I
-    H --> I
-</pre>
+<figure class="article-figure">
+  <img src="assets/figures/hiking-three-pathways-zh.svg" alt="戶外健行同時透過運動刺激、自然環境與社會互動三條路徑影響身體、情緒、認知及社會健康的中文示意圖" loading="lazy">
+  <figcaption>圖 1｜戶外健行是運動、自然與社會情境的複合暴露。本站依研究架構重新繪製；箭頭代表待驗證的可能路徑，不等於已證實的因果關係。</figcaption>
+</figure>
 
 這三條路徑會同時發生，所以看到健行後心情或生理指標改變時，不容易判斷究竟是「運動」「自然」還是「和別人一起活動」所造成。
 
@@ -64,6 +54,11 @@ flowchart LR
 結伴健行會創造共同目標、互相協助與共享經驗，可能增加支持感和歸屬感。但獨自健行與團體健行未必有相同效果，研究時應分開記錄。
 
 文章整理的自然步行統合分析顯示，走入自然環境前後，憂鬱症狀的標準化效果量約為 −0.39，焦慮約為 −0.43；與控制條件相比，憂鬱症狀的差異約為 −0.23。負值代表症狀較少，但效果量不是「減少幾分」，也不能取代臨床診斷或治療效果的評估。
+
+<figure class="article-figure">
+  <a href="https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2025.1700325/full#F1" target="_blank" rel="noopener noreferrer"><img src="assets/figures/outdoor-hiking-paper-figure-1.webp" alt="Peng 等人整理的戶外健行生理、心理效益與可能機制圖，包含心血管、代謝免疫、情緒壓力與認知創造力" loading="lazy"></a>
+  <figcaption>圖 2｜原論文整理的戶外健行健康效益與可能機制。來源：Peng et al. (2026), Figure 1，<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>；點圖可回到<a href="https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2025.1700325/full#F1" target="_blank" rel="noopener noreferrer">原始論文</a>。圖中機制是綜述提出的解釋路徑，不代表每一條都已有直接因果驗證。</figcaption>
+</figure>
 
 ## 對認知與大腦能說到哪裡？
 
@@ -165,6 +160,11 @@ Peng 等人（2026）以整合性綜述結合 umbrella-style evidence synthesis 
 
 因此，「健行有效嗎」不是單一可回答的問題。更精確的問題應是：在特定族群、劑量、地形、自然暴露與社會條件下，哪一項結果改變多少？
 
+<figure class="article-figure">
+  <img src="assets/figures/hiking-three-pathways-zh.svg" alt="戶外健行複合暴露的研究架構，將運動劑量、自然環境與社會互動分開呈現" loading="lazy">
+  <figcaption>圖 1｜研究上不應只記錄「有無健行」，而要分別量測運動劑量、自然環境及社會情境。本站依綜述概念重新繪製。</figcaption>
+</figure>
+
 ## 量化結果：可以當方向，不宜直接當健行處方
 
 下表重述綜述表格中較具代表性且內部一致的結果：
@@ -199,6 +199,11 @@ Attention Restoration Theory、Stress Reduction Theory 與 biophilia hypothesis 
 ### 社會與經濟路徑
 
 團體活動可增加社會支持，步道與觀光可帶動地方消費；但 GDP、就業與社會凝聚的路徑多依賴區域案例、投入產出模型與理論合成。作者也承認，這一層的縱向研究與跨區域可比性不足。
+
+<figure class="article-figure">
+  <a href="https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2025.1700325/full#F1" target="_blank" rel="noopener noreferrer"><img src="assets/figures/outdoor-hiking-paper-figure-1.webp" alt="原論文 Figure 1，以資訊圖呈現健行的生理與心理效益及其可能機制" loading="lazy"></a>
+  <figcaption>圖 2｜原論文的概念總覽。來源：Peng et al. (2026), Figure 1，<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>。本圖適合用來快速定位假說；正式推論仍需回到各項結果所依據的原始研究。</figcaption>
+</figure>
 
 ## 方法學與報告限制
 

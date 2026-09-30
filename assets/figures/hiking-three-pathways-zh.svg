@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">戶外健行的三條作用路徑</title>
+  <desc id="desc">戶外健行同時包含運動刺激、自然環境與社會互動，分別連結心肺代謝、壓力注意恢復與社會支持，最後共同影響整體身心健康。</desc>
+  <defs>
+    <pattern id="paper" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#d8d1c2" opacity="0.38"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#355d7c"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#183552" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="720" rx="18" fill="#f7f4eb"/>
+  <rect width="1200" height="720" rx="18" fill="url(#paper)"/>
+
+  <text x="600" y="62" text-anchor="middle" fill="#183552" font-family="Noto Serif TC, PMingLiU, serif" font-size="31" font-weight="700">戶外健行不是單一刺激</text>
+  <text x="600" y="96" text-anchor="middle" fill="#5e6b75" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="17">運動、自然與社會情境同時發生，研究時必須分開量測</text>
+
+  <rect x="420" y="125" width="360" height="78" rx="12" fill="#183552" filter="url(#shadow)"/>
+  <text x="600" y="158" text-anchor="middle" fill="#f7f4eb" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="15" letter-spacing="3">複合暴露</text>
+  <text x="600" y="187" text-anchor="middle" fill="#ffffff" font-family="Noto Serif TC, PMingLiU, serif" font-size="25" font-weight="700">戶外健行</text>
+
+  <path d="M600 203 C600 225 210 220 210 258" fill="none" stroke="#355d7c" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M600 203 L600 258" fill="none" stroke="#355d7c" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M600 203 C600 225 990 220 990 258" fill="none" stroke="#355d7c" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="55" y="272" width="310" height="260" rx="14" fill="#fffdfa" stroke="#cfb86d" stroke-width="2"/>
+    <rect x="445" y="272" width="310" height="260" rx="14" fill="#fffdfa" stroke="#70956e" stroke-width="2"/>
+    <rect x="835" y="272" width="310" height="260" rx="14" fill="#fffdfa" stroke="#7893aa" stroke-width="2"/>
+  </g>
+
+  <circle cx="210" cy="322" r="28" fill="#f1dfaa"/>
+  <path d="M195 325 h10 l7-17 10 32 8-15 h12" fill="none" stroke="#183552" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="210" y="374" text-anchor="middle" fill="#183552" font-family="Noto Serif TC, PMingLiU, serif" font-size="24" font-weight="700">運動刺激</text>
+  <text x="210" y="408" text-anchor="middle" fill="#4c5b66" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="17">時間・速度・坡度・負重</text>
+  <line x1="105" y1="430" x2="315" y2="430" stroke="#e4dccd"/>
+  <text x="210" y="464" text-anchor="middle" fill="#183552" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="18" font-weight="700">心肺與代謝</text>
+  <text x="210" y="492" text-anchor="middle" fill="#5e6b75" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="16">肌力・平衡・功能能力</text>
+
+  <circle cx="600" cy="322" r="28" fill="#dbe9d8"/>
+  <path d="M600 302 C580 316 582 337 600 343 C618 337 620 316 600 302 Z M600 312 V342" fill="none" stroke="#183552" stroke-width="4" stroke-linecap="round"/>
+  <text x="600" y="374" text-anchor="middle" fill="#183552" font-family="Noto Serif TC, PMingLiU, serif" font-size="24" font-weight="700">自然環境</text>
+  <text x="600" y="408" text-anchor="middle" fill="#4c5b66" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="17">綠量・聲景・空氣・景觀</text>
+  <line x1="495" y1="430" x2="705" y2="430" stroke="#e4dccd"/>
+  <text x="600" y="464" text-anchor="middle" fill="#183552" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="18" font-weight="700">壓力與注意恢復</text>
+  <text x="600" y="492" text-anchor="middle" fill="#5e6b75" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="16">情緒・自律神經・認知</text>
+
+  <circle cx="990" cy="322" r="28" fill="#dbe4ec"/>
+  <circle cx="980" cy="315" r="7" fill="none" stroke="#183552" stroke-width="3"/>
+  <circle cx="1001" cy="315" r="7" fill="none" stroke="#183552" stroke-width="3"/>
+  <path d="M968 337 C972 325 988 325 992 337 M989 337 C993 325 1009 325 1013 337" fill="none" stroke="#183552" stroke-width="3" stroke-linecap="round"/>
+  <text x="990" y="374" text-anchor="middle" fill="#183552" font-family="Noto Serif TC, PMingLiU, serif" font-size="24" font-weight="700">社會互動</text>
+  <text x="990" y="408" text-anchor="middle" fill="#4c5b66" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="17">獨行・結伴・社區參與</text>
+  <line x1="885" y1="430" x2="1095" y2="430" stroke="#e4dccd"/>
+  <text x="990" y="464" text-anchor="middle" fill="#183552" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="18" font-weight="700">支持感與歸屬感</text>
+  <text x="990" y="492" text-anchor="middle" fill="#5e6b75" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="16">安全感・依從性・凝聚力</text>
+
+  <path d="M210 532 C210 565 455 554 510 582" fill="none" stroke="#355d7c" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M600 532 L600 575" fill="none" stroke="#355d7c" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <path d="M990 532 C990 565 745 554 690 582" fill="none" stroke="#355d7c" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <rect x="400" y="586" width="400" height="66" rx="12" fill="#e8edf1" stroke="#7893aa"/>
+  <text x="600" y="613" text-anchor="middle" fill="#183552" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="14" letter-spacing="2">共同影響</text>
+  <text x="600" y="640" text-anchor="middle" fill="#183552" font-family="Noto Serif TC, PMingLiU, serif" font-size="23" font-weight="700">身體・情緒・認知・社會健康</text>
+
+  <rect x="55" y="675" width="1090" height="28" rx="6" fill="#efe9dd"/>
+  <text x="600" y="695" text-anchor="middle" fill="#5e6b75" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="14">閱讀提醒：可能機制不等於已證實的因果路徑；研究需控制活動劑量、環境與社會情境。</text>
+</svg>
