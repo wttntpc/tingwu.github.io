@@ -37,7 +37,7 @@
 - 最大攝氧量與六分鐘步行距離增加，反映心肺或功能能力可能提升。
 - 上下坡、地形變化與較長活動時間，可能同時訓練肌力、平衡與耐力。
 
-文章引用的一篇步行團體統合分析，報告收縮壓平均下降約 3.72 mmHg、舒張壓下降約 3.14 mmHg、VO₂max 增加約 2.66 mL/kg/min，六分鐘步行距離增加約 79.6 公尺。這些數值提供「步行介入可能有效」的量化線索，但原始證據不是全部來自山區健行，因此不能把它們當作任何登山行程都會產生的保證效果。
+[Hanson 與 Jones（2015）](https://doi.org/10.1136/bjsports-2014-094157)針對戶外步行團體進行系統性回顧與統合分析，納入 42 篇研究、共 1,843 位參與者；結果顯示收縮壓平均下降約 3.72 mmHg、舒張壓下降約 3.14 mmHg、VO₂max 增加約 2.66 mL/kg/min，六分鐘步行距離增加約 79.6 公尺。這些數值提供「戶外團體步行可能有效」的量化線索，但原始證據不是全部來自山區健行，因此不能把它們當作任何登山行程都會產生的保證效果。
 
 ## 為什麼心情可能變好？
 
@@ -118,6 +118,8 @@
 
 ## 參考文獻（APA 7th）
 
+Hanson, S., & Jones, A. (2015). Is there evidence that walking groups have health benefits? A systematic review and meta-analysis. *British Journal of Sports Medicine, 49*(11), 710–715. https://doi.org/10.1136/bjsports-2014-094157
+
 Peng, T., Zhang, Z., Zhang, J., Liang, W., & Tang, X. (2026). An integrative review of the physical, mental, and socioeconomic benefits of outdoor hiking. *Frontiers in Public Health, 13*, Article 1700325. https://doi.org/10.3389/fpubh.2025.1700325
 
 ---
@@ -172,10 +174,10 @@ Peng 等人（2026）以整合性綜述結合 umbrella-style evidence synthesis 
 | 證據來源與暴露 | 結果 | 綜述所列效果 | 解讀限制 |
 |---|---|---:|---|
 | Oja et al.（2018）步行介入 | VO₂max | SMD 0.528（95% CI 0.391–0.664） | 一般步行 RCT，不等於山區健行 |
-| Hanson & Jones（2015）步行團體 | 收縮壓 | −3.72 mmHg（95% CI −5.28 至 −2.17） | 團體步行，活動與社會效果並存 |
-| Hanson & Jones（2015）步行團體 | 舒張壓 | −3.14 mmHg（95% CI −4.15 至 −2.13） | 同上 |
-| Hanson & Jones（2015）步行團體 | VO₂max | +2.66 mL/kg/min（95% CI 1.67–3.65） | 族群與方案異質 |
-| Hanson & Jones（2015）步行團體 | 六分鐘步行距離 | +79.6 m（95% CI 53.37–105.84） | 功能性結果，非登山表現 |
+| [Hanson & Jones（2015）](https://doi.org/10.1136/bjsports-2014-094157)戶外步行團體 | 收縮壓 | −3.72 mmHg（95% CI −5.28 至 −2.17） | 42 篇研究、1,843 人；活動與社會效果並存 |
+| [Hanson & Jones（2015）](https://doi.org/10.1136/bjsports-2014-094157)戶外步行團體 | 舒張壓 | −3.14 mmHg（95% CI −4.15 至 −2.13） | 同一統合分析 |
+| [Hanson & Jones（2015）](https://doi.org/10.1136/bjsports-2014-094157)戶外步行團體 | VO₂max | +2.66 mL/kg/min（95% CI 1.67–3.65） | 族群與方案異質 |
+| [Hanson & Jones（2015）](https://doi.org/10.1136/bjsports-2014-094157)戶外步行團體 | 六分鐘步行距離 | +79.6 m（95% CI 53.37–105.84） | 功能性結果，非登山表現 |
 | Grassini（2022）自然步行前後 | 憂鬱症狀 | SMD −0.39（95% CI −0.61 至 −0.18） | pre–post 易受時間與期待效應影響 |
 | Grassini（2022）自然步行前後 | 焦慮症狀 | SMD −0.43（95% CI −0.69 至 −0.17） | 同上 |
 | Grassini（2022）自然步行 vs. 控制 | 憂鬱症狀 | SMD −0.23（95% CI −0.34 至 −0.12） | 效果較小；控制條件很重要 |
@@ -245,6 +247,8 @@ Attention Restoration Theory、Stress Reduction Theory 與 biophilia hypothesis 
 戶外健行是運動、環境與社會情境的複合暴露。現有證據對規律步行、自然活動與部分身心結果大致呈正向，但針對真正健行的獨立效果、最佳劑量及長期因果證據仍有限。這篇綜述最適合用來產生研究問題與建立跨領域架構，而不是把所有正向關聯直接轉成「登山能治療疾病」的結論。
 
 ## 參考文獻（APA 7th）
+
+Hanson, S., & Jones, A. (2015). Is there evidence that walking groups have health benefits? A systematic review and meta-analysis. *British Journal of Sports Medicine, 49*(11), 710–715. https://doi.org/10.1136/bjsports-2014-094157
 
 Peng, T., Zhang, Z., Zhang, J., Liang, W., & Tang, X. (2026). An integrative review of the physical, mental, and socioeconomic benefits of outdoor hiking. *Frontiers in Public Health, 13*, Article 1700325. https://doi.org/10.3389/fpubh.2025.1700325
 
