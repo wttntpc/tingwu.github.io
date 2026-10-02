@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20260930-03';
+const SITE_VERSION = '20261002-01';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -426,6 +426,25 @@ async function renderHome() {
       <section class="home-block featured-publications"><div class="block-heading"><h2>${c.featuredTitle}</h2><a href="#/publications">${c.allPublications}</a></div><div class="publication-preview-list">${c.featuredPublications.map(item => `<a href="#/publications" class="publication-preview"><span>${item[0]}</span><div><b>${item[1]}</b><small>${item[2]}</small></div></a>`).join('')}</div></section>
     </div>
     <section class="home-block latest-section"><div class="block-heading"><h2>${c.latestTitle}</h2><a href="#/blog">${c.allPosts}</a></div><div class="post-list">${posts.map(postRow).join('')}</div></section>
+    <section class="home-interests" aria-labelledby="home-interests-title">
+      <header class="home-interests-heading">
+        <div><p class="home-interests-label">${lang === 'zh' ? '個人興趣 · 數位實作' : 'Personal interests · digital experiments'}</p><h2 id="home-interests-title">${lang === 'zh' ? '旅行規劃與生活工具' : 'Travel planning & everyday tools'}</h2></div>
+        <p class="home-interests-intro">${lang === 'zh' ? '研究之外，我也把旅行需求整理成可操作的網頁工具。這些作品記錄我如何運用 AI 協作、資訊架構與互動設計解決生活中的實際問題。' : 'Beyond research, I turn travel needs into practical web tools. These projects document how I use AI collaboration, information architecture, and interaction design to solve everyday problems.'}</p>
+      </header>
+      <div class="interest-project-grid">
+        <article class="interest-project-card">
+          <span class="interest-project-index" aria-hidden="true">01</span>
+          <div class="interest-project-content"><span>${lang === 'zh' ? '山林旅行規劃' : 'Mountain travel planning'}</span><h3>${lang === 'zh' ? '阿里山大眾運輸登山攻略' : 'Alishan Public-Transit Hiking Guide'}</h3><p>${lang === 'zh' ? '把交通班次、步道路線、裝備、住宿與預算整理成可操作的旅行工具。' : 'An interactive guide bringing together transit, trails, equipment, lodging, and budgeting.'}</p><ul aria-label="${lang === 'zh' ? '作品標籤' : 'Project tags'}"><li>${lang === 'zh' ? '戶外健行' : 'Hiking'}</li><li>${lang === 'zh' ? '旅行規劃' : 'Trip planning'}</li><li>${lang === 'zh' ? '互動網站' : 'Interactive web'}</li></ul></div>
+          <a href="https://alishangogo.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="${lang === 'zh' ? '開啟阿里山大眾運輸登山攻略（另開新視窗）' : 'Open the Alishan hiking guide in a new window'}">${lang === 'zh' ? '開啟作品 ↗' : 'Open project ↗'}</a>
+        </article>
+        <article class="interest-project-card">
+          <span class="interest-project-index" aria-hidden="true">02</span>
+          <div class="interest-project-content"><span>${lang === 'zh' ? '團體旅行規劃' : 'Group travel planning'}</span><h3>${lang === 'zh' ? '宜蘭慢活漫遊隨身 App' : 'Yilan Slow-Travel Companion'}</h3><p>${lang === 'zh' ? '將多人行程、交通導航、分帳、採買與旅途活動集中在同一個隨身介面。' : 'A pocket companion combining group itineraries, navigation, expense splitting, shopping, and activities.'}</p><ul aria-label="${lang === 'zh' ? '作品標籤' : 'Project tags'}"><li>${lang === 'zh' ? '團體旅行' : 'Group travel'}</li><li>${lang === 'zh' ? '生活工具' : 'Everyday tool'}</li><li>${lang === 'zh' ? 'AI 協作' : 'AI-assisted'}</li></ul></div>
+          <a href="https://yilan87.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="${lang === 'zh' ? '開啟宜蘭慢活漫遊隨身 App（另開新視窗）' : 'Open the Yilan travel companion in a new window'}">${lang === 'zh' ? '開啟作品 ↗' : 'Open project ↗'}</a>
+        </article>
+      </div>
+      <p class="home-interest-note"><strong>${lang === 'zh' ? '使用提醒：' : 'Note: '}</strong>${lang === 'zh' ? '以上為個人興趣與實驗性專案，不屬於學術成果。交通、票價、天氣、營業與住宿資訊可能變動，行前請以官方來源為準。' : 'These are personal, experimental projects rather than academic outputs. Transit, fares, weather, business hours, and lodging information may change; please verify details with official sources before travelling.'}</p>
+    </section>
   </div>`;
 }
 

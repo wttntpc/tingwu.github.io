@@ -108,6 +108,25 @@ button { font: inherit; }
 .home-project-actions .project-action-primary { border-color: var(--accent); color: var(--paper); background: var(--accent); }
 .home-project-actions .project-action-primary:hover { background: color-mix(in srgb, var(--accent) 88%, var(--primary)); }
 
+.home-interests { margin-top: 4.75rem; padding-top: 3.25rem; border-top: 1px solid var(--tertiary); animation: editorial-rise .38s .16s ease-out both; }
+.home-interests-heading { display: grid; grid-template-columns: minmax(15rem, .85fr) minmax(0, 1.15fr); gap: clamp(2rem, 6vw, 5rem); align-items: end; margin-bottom: 1.5rem; }
+.home-interests-label { margin: 0 0 .45rem; color: var(--accent); font-size: .66rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.home-interests-heading h2 { margin: 0; font-family: var(--font-display); font-size: 1.25rem; letter-spacing: .02em; }
+.home-interests-intro { max-width: 42rem; margin: 0; color: var(--secondary); font-size: .8rem; line-height: 1.75; }
+.interest-project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--tertiary); border-bottom: 1px solid var(--tertiary); }
+.interest-project-card { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); grid-template-rows: 1fr auto; gap: 1.15rem .9rem; padding: 1.6rem 1.45rem 1.45rem; }
+.interest-project-card + .interest-project-card { border-left: 1px solid var(--tertiary); }
+.interest-project-index { color: var(--accent); font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: .67rem; font-variant-numeric: tabular-nums; letter-spacing: .08em; }
+.interest-project-content > span { display: block; margin-bottom: .38rem; color: var(--secondary); font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; }
+.interest-project-content h3 { margin: 0; font-family: var(--font-display); font-size: 1rem; line-height: 1.55; }
+.interest-project-content p { margin: .7rem 0 0; color: var(--content); font-size: .77rem; line-height: 1.75; text-wrap: pretty; }
+.interest-project-content ul { display: flex; flex-wrap: wrap; gap: .35rem; margin: .9rem 0 0; padding: 0; list-style: none; }
+.interest-project-content li { padding: .18rem .42rem; border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--tertiary)); border-radius: 3px; color: var(--secondary); background: var(--paper); font-size: .62rem; line-height: 1.4; }
+.interest-project-card > a { grid-column: 2; width: max-content; min-height: 44px; display: inline-flex; align-items: center; padding: .4rem 0; color: var(--accent); font-size: .72rem; font-weight: 600; text-underline-offset: .24em; }
+.interest-project-card > a:hover { color: var(--primary); }
+.home-interest-note { margin: 1rem 0 0; padding: .8rem 1rem; border-left: 3px solid var(--accent); color: var(--secondary); background: color-mix(in srgb, var(--accent-soft) 25%, transparent); font-size: .7rem; line-height: 1.7; }
+.home-interest-note strong { color: var(--primary); }
+
 .home-editorial-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr); gap: clamp(2.5rem, 6vw, 5rem); padding: 4.5rem 0 5rem; border-bottom: 1px solid var(--tertiary); animation: editorial-rise .38s .06s ease-out both; }
 .home-editorial-grid .home-block { margin-top: 0; }
 .home-block { margin-top: 4.5rem; }
@@ -599,6 +618,10 @@ button { font: inherit; }
   .home-editorial-grid { grid-template-columns: 1fr; gap: 3.5rem; padding: 3.5rem 0 4rem; }
   .latest-section .post-list { grid-template-columns: 1fr; }
   .latest-section .post-card { min-height: 0; border-right: 0; }
+  .home-interests { margin-top: 3.75rem; padding-top: 2.75rem; }
+  .home-interests-heading, .interest-project-grid { grid-template-columns: 1fr; }
+  .home-interests-heading { gap: .75rem; }
+  .interest-project-card + .interest-project-card { border-top: 1px solid var(--tertiary); border-left: 0; }
   .blog-page { width: min(calc(100% - 28px), var(--home-width)); }
   .blog-grid { grid-template-columns: 1fr; }
   .blog-card:nth-child(even):not(.blog-card-featured) { border-right: 0; }
