@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261002-01';
+const SITE_VERSION = '20261002-02';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -50,7 +50,7 @@ function renderMermaidNodes(selector = '.mermaid') {
 
 const copy = {
   zh: {
-    nav: [['首頁', '/'], ['關於', '/about'], ['學術發表', '/publications'], ['文章', '/blog'], ['學習地圖', '/learning']],
+    nav: [['首頁', '/'], ['關於', '/about'], ['學術發表', '/publications'], ['文章', '/blog'], ['學習地圖', '/learning'], ['興趣與作品', '/interests']],
     footer: '探索身體活動如何改變大腦與心智。',
     disclaimerLink: '網站聲明',
     disclaimerNote: '本站為個人學術與知識分享網站，部分內容由 AI 協作整理，可能仍有疏漏；不構成醫療、法律或其他專業建議，重要決策請核對原始與官方來源。',
@@ -139,7 +139,7 @@ const copy = {
     notFound: '找不到這個頁面。'
   },
   en: {
-    nav: [['Home', '/'], ['About', '/about'], ['Publications', '/publications'], ['Writing', '/blog'], ['Learning map', '/learning']],
+    nav: [['Home', '/'], ['About', '/about'], ['Publications', '/publications'], ['Writing', '/blog'], ['Learning map', '/learning'], ['Interests & projects', '/interests']],
     footer: 'Exploring how physical activity shapes the mind.',
     disclaimerLink: 'Website statement',
     disclaimerNote: 'This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.',
@@ -381,6 +381,89 @@ function postRow(post) {
   </a>`;
 }
 
+const interestPageContent = {
+  zh: {
+    eyebrow: 'Personal interests & digital work',
+    title: '興趣與作品',
+    lead: '研究之外，我也把旅行、戶外活動與生活需求整理成可使用的數位工具，並把有趣的問題延伸為可查核的科普內容。',
+    scopeTitle: '與學術成果分開，但保留同樣的查核標準',
+    scopeText: '這裡收錄個人興趣、AI 協作原型與生活實作；它們不是期刊論文或正式研究成果，但仍重視來源、資訊時效、隱私與使用限制。',
+    projectsTitle: '旅行規劃工具',
+    projectsLead: '把分散的交通、行程與共同決策資訊，整理成旅途中能直接使用的介面。',
+    openProject: '開啟作品 ↗',
+    allProjects: '查看全部興趣與作品 →',
+    projects: [
+      { category: '山林旅行規劃', title: '阿里山大眾運輸登山攻略', description: '整合交通班次、步道路線、裝備、住宿與預算，協助以大眾運輸規劃山林行程。', tags: ['戶外健行', '旅行規劃', '互動網站'], href: 'https://alishangogo.netlify.app/' },
+      { category: '團體旅行規劃', title: '宜蘭慢活漫遊隨身 App', description: '將多人行程、交通導航、分帳、採買與旅途活動集中在同一個隨身介面。', tags: ['團體旅行', '生活工具', 'AI 協作'], href: 'https://yilan87.netlify.app/' }
+    ],
+    readingLabel: '戶外與生活興趣',
+    readingTitle: '把旅行經驗延伸為可查核的知識',
+    readingText: '除了規劃行程，我也會從研究文獻理解戶外活動可能帶來的身體、情緒與社會效益，並清楚區分直接證據、合理推論與尚未確定之處。',
+    readingLink: '閱讀健行科普文章 →',
+    principlesTitle: '數位實作原則',
+    principles: [
+      ['從真實需求開始', '先處理交通、分工、預算或資訊查找等具體問題，再決定需要哪些功能。'],
+      ['AI 協作但保留判斷', '使用 AI 加速整理與原型製作，內容結構、取捨與公開範圍仍由我確認。'],
+      ['查核、時效與隱私', '公開前移除不必要的個人資訊；會變動的資料則提醒讀者回到官方來源確認。']
+    ],
+    noteTitle: '使用提醒',
+    noteText: '以上為個人興趣與實驗性專案，不屬於學術成果。交通、票價、天氣、營業與住宿資訊可能變動，行前請以官方來源為準。'
+  },
+  en: {
+    eyebrow: 'Personal interests & digital work',
+    title: 'Interests & projects',
+    lead: 'Beyond research, I turn travel, outdoor activities, and everyday needs into usable digital tools, then develop interesting questions into evidence-aware public writing.',
+    scopeTitle: 'Separate from academic output, with the same care for verification',
+    scopeText: 'This page collects personal interests, AI-assisted prototypes, and practical experiments. They are not peer-reviewed research outputs, but sources, freshness, privacy, and limitations still matter.',
+    projectsTitle: 'Travel planning tools',
+    projectsLead: 'Interfaces that turn scattered transport, itinerary, and group-decision information into something usable during a trip.',
+    openProject: 'Open project ↗',
+    allProjects: 'View all interests & projects →',
+    projects: [
+      { category: 'Mountain travel planning', title: 'Alishan Public-Transit Hiking Guide', description: 'Combines transit, trails, equipment, lodging, and budgeting for planning a mountain trip without a car.', tags: ['Hiking', 'Trip planning', 'Interactive web'], href: 'https://alishangogo.netlify.app/' },
+      { category: 'Group travel planning', title: 'Yilan Slow-Travel Companion', description: 'Brings group itineraries, navigation, expense splitting, shopping, and activities into one pocket interface.', tags: ['Group travel', 'Everyday tool', 'AI-assisted'], href: 'https://yilan87.netlify.app/' }
+    ],
+    readingLabel: 'Outdoor & everyday interests',
+    readingTitle: 'Turning travel experiences into verifiable knowledge',
+    readingText: 'Alongside trip planning, I use research literature to examine the physical, emotional, and social effects of outdoor activity while separating direct evidence, reasonable inference, and uncertainty.',
+    readingLink: 'Read the hiking science article →',
+    principlesTitle: 'Principles for digital experiments',
+    principles: [
+      ['Start with a real need', 'Address concrete problems such as transport, coordination, budgeting, or finding information before choosing features.'],
+      ['Use AI, retain judgment', 'AI accelerates synthesis and prototyping, while I remain responsible for structure, trade-offs, and what becomes public.'],
+      ['Verify, date, and protect', 'Remove unnecessary personal information before publishing and direct readers to official sources for changing details.']
+    ],
+    noteTitle: 'Important note',
+    noteText: 'These are personal, experimental projects rather than academic outputs. Transit, fares, weather, business hours, and lodging information may change; verify details with official sources before travelling.'
+  }
+};
+
+function renderHomeInterestPreview() {
+  const content = interestPageContent[lang] || interestPageContent.zh;
+  return `<section class="home-interests" aria-labelledby="home-interests-title">
+    <header class="home-interests-heading">
+      <div><p class="home-interests-label">${content.eyebrow}</p><h2 id="home-interests-title">${content.title}</h2></div>
+      <div><p class="home-interests-intro">${content.lead}</p><a class="home-interests-all" href="#/interests">${content.allProjects}</a></div>
+    </header>
+    <div class="home-interest-preview-list">${content.projects.map((project, index) => `<a href="${project.href}" target="_blank" rel="noopener noreferrer" aria-label="${project.title}${lang === 'zh' ? '（另開新視窗）' : ' (opens in a new window)'}"><span>0${index + 1}</span><div><small>${project.category}</small><strong>${project.title}</strong></div><i aria-hidden="true">↗</i></a>`).join('')}</div>
+  </section>`;
+}
+
+function renderInterests() {
+  const content = interestPageContent[lang] || interestPageContent.zh;
+  app.innerHTML = `<div class="page-shell interests-page">
+    <header class="interests-hero"><p class="eyebrow">${content.eyebrow}</p><h1>${content.title}</h1><p>${content.lead}</p></header>
+    <section class="interests-scope" aria-labelledby="interests-scope-title"><span aria-hidden="true">00</span><div><h2 id="interests-scope-title">${content.scopeTitle}</h2><p>${content.scopeText}</p></div></section>
+    <section class="interests-projects" aria-labelledby="interests-projects-title">
+      <header class="interests-section-heading"><p class="eyebrow">Digital projects</p><h2 id="interests-projects-title">${content.projectsTitle}</h2><p>${content.projectsLead}</p></header>
+      <div class="interests-project-list">${content.projects.map((project, index) => `<article class="interests-project-row"><span class="interests-project-index" aria-hidden="true">0${index + 1}</span><div class="interests-project-title"><small>${project.category}</small><h3>${project.title}</h3></div><div class="interests-project-copy"><p>${project.description}</p><ul aria-label="${lang === 'zh' ? '作品標籤' : 'Project tags'}">${project.tags.map(tag => `<li>${tag}</li>`).join('')}</ul></div><a href="${project.href}" target="_blank" rel="noopener noreferrer" aria-label="${content.openProject.replace(' ↗', '')}${lang === 'zh' ? '：' : ': '}${project.title}${lang === 'zh' ? '（另開新視窗）' : ' (opens in a new window)'}">${content.openProject}</a></article>`).join('')}</div>
+    </section>
+    <section class="interests-feature" aria-labelledby="interests-reading-title"><span class="interests-feature-index" aria-hidden="true">03</span><div><p class="interests-feature-label">${content.readingLabel}</p><h2 id="interests-reading-title">${content.readingTitle}</h2><p>${content.readingText}</p><a href="#/post/outdoor-hiking-health-mind-review">${content.readingLink}</a></div></section>
+    <section class="interests-principles" aria-labelledby="interests-principles-title"><h2 id="interests-principles-title">${content.principlesTitle}</h2><div>${content.principles.map((principle, index) => `<article><span>0${index + 1}</span><h3>${principle[0]}</h3><p>${principle[1]}</p></article>`).join('')}</div></section>
+    <aside class="interests-note"><h2>${content.noteTitle}</h2><p>${content.noteText}</p></aside>
+  </div>`;
+}
+
 async function renderHome() {
   const allPosts = newestFirst((await getPosts()).filter(post => post.id !== 'publications' && post.category !== 'learning-foundations'));
   const posts = allPosts.slice(0, 2);
@@ -426,25 +509,7 @@ async function renderHome() {
       <section class="home-block featured-publications"><div class="block-heading"><h2>${c.featuredTitle}</h2><a href="#/publications">${c.allPublications}</a></div><div class="publication-preview-list">${c.featuredPublications.map(item => `<a href="#/publications" class="publication-preview"><span>${item[0]}</span><div><b>${item[1]}</b><small>${item[2]}</small></div></a>`).join('')}</div></section>
     </div>
     <section class="home-block latest-section"><div class="block-heading"><h2>${c.latestTitle}</h2><a href="#/blog">${c.allPosts}</a></div><div class="post-list">${posts.map(postRow).join('')}</div></section>
-    <section class="home-interests" aria-labelledby="home-interests-title">
-      <header class="home-interests-heading">
-        <div><p class="home-interests-label">${lang === 'zh' ? '個人興趣 · 數位實作' : 'Personal interests · digital experiments'}</p><h2 id="home-interests-title">${lang === 'zh' ? '旅行規劃與生活工具' : 'Travel planning & everyday tools'}</h2></div>
-        <p class="home-interests-intro">${lang === 'zh' ? '研究之外，我也把旅行需求整理成可操作的網頁工具。這些作品記錄我如何運用 AI 協作、資訊架構與互動設計解決生活中的實際問題。' : 'Beyond research, I turn travel needs into practical web tools. These projects document how I use AI collaboration, information architecture, and interaction design to solve everyday problems.'}</p>
-      </header>
-      <div class="interest-project-grid">
-        <article class="interest-project-card">
-          <span class="interest-project-index" aria-hidden="true">01</span>
-          <div class="interest-project-content"><span>${lang === 'zh' ? '山林旅行規劃' : 'Mountain travel planning'}</span><h3>${lang === 'zh' ? '阿里山大眾運輸登山攻略' : 'Alishan Public-Transit Hiking Guide'}</h3><p>${lang === 'zh' ? '把交通班次、步道路線、裝備、住宿與預算整理成可操作的旅行工具。' : 'An interactive guide bringing together transit, trails, equipment, lodging, and budgeting.'}</p><ul aria-label="${lang === 'zh' ? '作品標籤' : 'Project tags'}"><li>${lang === 'zh' ? '戶外健行' : 'Hiking'}</li><li>${lang === 'zh' ? '旅行規劃' : 'Trip planning'}</li><li>${lang === 'zh' ? '互動網站' : 'Interactive web'}</li></ul></div>
-          <a href="https://alishangogo.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="${lang === 'zh' ? '開啟阿里山大眾運輸登山攻略（另開新視窗）' : 'Open the Alishan hiking guide in a new window'}">${lang === 'zh' ? '開啟作品 ↗' : 'Open project ↗'}</a>
-        </article>
-        <article class="interest-project-card">
-          <span class="interest-project-index" aria-hidden="true">02</span>
-          <div class="interest-project-content"><span>${lang === 'zh' ? '團體旅行規劃' : 'Group travel planning'}</span><h3>${lang === 'zh' ? '宜蘭慢活漫遊隨身 App' : 'Yilan Slow-Travel Companion'}</h3><p>${lang === 'zh' ? '將多人行程、交通導航、分帳、採買與旅途活動集中在同一個隨身介面。' : 'A pocket companion combining group itineraries, navigation, expense splitting, shopping, and activities.'}</p><ul aria-label="${lang === 'zh' ? '作品標籤' : 'Project tags'}"><li>${lang === 'zh' ? '團體旅行' : 'Group travel'}</li><li>${lang === 'zh' ? '生活工具' : 'Everyday tool'}</li><li>${lang === 'zh' ? 'AI 協作' : 'AI-assisted'}</li></ul></div>
-          <a href="https://yilan87.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="${lang === 'zh' ? '開啟宜蘭慢活漫遊隨身 App（另開新視窗）' : 'Open the Yilan travel companion in a new window'}">${lang === 'zh' ? '開啟作品 ↗' : 'Open project ↗'}</a>
-        </article>
-      </div>
-      <p class="home-interest-note"><strong>${lang === 'zh' ? '使用提醒：' : 'Note: '}</strong>${lang === 'zh' ? '以上為個人興趣與實驗性專案，不屬於學術成果。交通、票價、天氣、營業與住宿資訊可能變動，行前請以官方來源為準。' : 'These are personal, experimental projects rather than academic outputs. Transit, fares, weather, business hours, and lodging information may change; please verify details with official sources before travelling.'}</p>
-    </section>
+    ${renderHomeInterestPreview()}
   </div>`;
 }
 
@@ -1800,6 +1865,7 @@ async function router() {
     if (path === '/') await renderHome();
     else if (path === '/about' || path.startsWith('/about/')) await renderAbout(path.split('/')[2] || '');
     else if (path === '/learning') renderLearningMap();
+    else if (path === '/interests') renderInterests();
     else if (path === '/publications') await renderPublications();
     else if (path === '/blog' || path.startsWith('/blog/')) await renderBlog(path.split('/')[2] || 'all');
     else if (path.startsWith('/post/')) await renderPost(path.split('/')[2]);
