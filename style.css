@@ -151,6 +151,7 @@ button { font: inherit; }
 .interests-feature p:not(.interests-feature-label) { max-width: 48rem; margin: .7rem 0 .3rem; color: var(--secondary); font-size: .8rem; line-height: 1.8; }
 .interests-feature a { min-height: 44px; display: inline-flex; align-items: center; color: var(--accent); font-size: .74rem; font-weight: 700; text-decoration: none; }
 .interests-feature a:hover { text-decoration: underline; text-underline-offset: .25em; }
+.interests-feature-tradition { margin-top: 1rem; }
 .interests-principles { padding: 4.5rem 0; }
 .interests-principles > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 1.25rem; border-top: 1px solid var(--tertiary); border-bottom: 1px solid var(--tertiary); }
 .interests-principles article { padding: 1.4rem; border-right: 1px solid var(--tertiary); }

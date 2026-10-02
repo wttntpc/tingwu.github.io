@@ -385,7 +385,7 @@ const interestPageContent = {
   zh: {
     eyebrow: 'Personal interests & digital work',
     title: '興趣與作品',
-    lead: '研究之外，我也把旅行、戶外活動與生活需求整理成可使用的數位工具，並把有趣的問題延伸為可查核的科普內容。',
+    lead: '研究之外，我也把旅行、戶外活動、傳統醫學與身體文化等興趣，整理成可使用的數位工具與可查核的科普內容。',
     scopeTitle: '與學術成果分開，但保留同樣的查核標準',
     scopeText: '這裡收錄個人興趣、AI 協作原型與生活實作；它們不是期刊論文或正式研究成果，但仍重視來源、資訊時效、隱私與使用限制。',
     projectsTitle: '旅行規劃工具',
@@ -400,6 +400,10 @@ const interestPageContent = {
     readingTitle: '把旅行經驗延伸為可查核的知識',
     readingText: '除了規劃行程，我也會從研究文獻理解戶外活動可能帶來的身體、情緒與社會效益，並清楚區分直接證據、合理推論與尚未確定之處。',
     readingLink: '閱讀健行科普文章 →',
+    traditionLabel: '傳統醫學與身體文化',
+    traditionTitle: '從個人興趣出發，練習跨領域與循證判讀',
+    traditionText: '我以對傳統醫學有興趣的研究生身分，探索中醫人體觀與解剖、運動傷害、認知情緒及美顏科學之間的研究問題；內容著重文獻來源、證據層級與安全界線，不取代專業醫療建議。',
+    traditionLink: '查看傳統醫學跨領域系列 →',
     principlesTitle: '數位實作原則',
     principles: [
       ['從真實需求開始', '先處理交通、分工、預算或資訊查找等具體問題，再決定需要哪些功能。'],
@@ -412,7 +416,7 @@ const interestPageContent = {
   en: {
     eyebrow: 'Personal interests & digital work',
     title: 'Interests & projects',
-    lead: 'Beyond research, I turn travel, outdoor activities, and everyday needs into usable digital tools, then develop interesting questions into evidence-aware public writing.',
+    lead: 'Beyond research, I turn interests in travel, outdoor activity, traditional medicine, and body culture into usable digital tools and evidence-aware public writing.',
     scopeTitle: 'Separate from academic output, with the same care for verification',
     scopeText: 'This page collects personal interests, AI-assisted prototypes, and practical experiments. They are not peer-reviewed research outputs, but sources, freshness, privacy, and limitations still matter.',
     projectsTitle: 'Travel planning tools',
@@ -427,6 +431,10 @@ const interestPageContent = {
     readingTitle: 'Turning travel experiences into verifiable knowledge',
     readingText: 'Alongside trip planning, I use research literature to examine the physical, emotional, and social effects of outdoor activity while separating direct evidence, reasonable inference, and uncertainty.',
     readingLink: 'Read the hiking science article →',
+    traditionLabel: 'Traditional medicine & body culture',
+    traditionTitle: 'Using a personal interest to practise interdisciplinary evidence appraisal',
+    traditionText: 'As a graduate student interested in traditional medicine, I explore research questions linking traditional views of the body with anatomy, sports injury, cognition and emotion, and aesthetic science. The series foregrounds sources, levels of evidence, and safety boundaries rather than replacing professional medical advice.',
+    traditionLink: 'Explore the interdisciplinary series →',
     principlesTitle: 'Principles for digital experiments',
     principles: [
       ['Start with a real need', 'Address concrete problems such as transport, coordination, budgeting, or finding information before choosing features.'],
@@ -459,6 +467,7 @@ function renderInterests() {
       <div class="interests-project-list">${content.projects.map((project, index) => `<article class="interests-project-row"><span class="interests-project-index" aria-hidden="true">0${index + 1}</span><div class="interests-project-title"><small>${project.category}</small><h3>${project.title}</h3></div><div class="interests-project-copy"><p>${project.description}</p><ul aria-label="${lang === 'zh' ? '作品標籤' : 'Project tags'}">${project.tags.map(tag => `<li>${tag}</li>`).join('')}</ul></div><a href="${project.href}" target="_blank" rel="noopener noreferrer" aria-label="${content.openProject.replace(' ↗', '')}${lang === 'zh' ? '：' : ': '}${project.title}${lang === 'zh' ? '（另開新視窗）' : ' (opens in a new window)'}">${content.openProject}</a></article>`).join('')}</div>
     </section>
     <section class="interests-feature" aria-labelledby="interests-reading-title"><span class="interests-feature-index" aria-hidden="true">03</span><div><p class="interests-feature-label">${content.readingLabel}</p><h2 id="interests-reading-title">${content.readingTitle}</h2><p>${content.readingText}</p><a href="#/post/outdoor-hiking-health-mind-review">${content.readingLink}</a></div></section>
+    <section class="interests-feature interests-feature-tradition" aria-labelledby="interests-tradition-title"><span class="interests-feature-index" aria-hidden="true">04</span><div><p class="interests-feature-label">${content.traditionLabel}</p><h2 id="interests-tradition-title">${content.traditionTitle}</h2><p>${content.traditionText}</p><a href="#/post/traditional-medicine-modern-body-science-series">${content.traditionLink}</a></div></section>
     <section class="interests-principles" aria-labelledby="interests-principles-title"><h2 id="interests-principles-title">${content.principlesTitle}</h2><div>${content.principles.map((principle, index) => `<article><span>0${index + 1}</span><h3>${principle[0]}</h3><p>${principle[1]}</p></article>`).join('')}</div></section>
     <aside class="interests-note"><h2>${content.noteTitle}</h2><p>${content.noteText}</p></aside>
   </div>`;
@@ -472,12 +481,12 @@ async function renderHome() {
     ['研究主軸', c.focuses.length, '查看專長', '#/about/skills'],
     ['公開文章', allPosts.length, '瀏覽文章', '#/blog'],
     ['精選發表', c.featuredPublications.length, '查看發表', '#/publications'],
-    ['學習路徑', 7, '開始學習', '#/learning']
+    ['學習路徑', 6, '開始學習', '#/learning']
   ] : [
     ['Research areas', c.focuses.length, 'View expertise', '#/about/skills'],
     ['Public articles', allPosts.length, 'Browse articles', '#/blog'],
     ['Selected works', c.featuredPublications.length, 'View publications', '#/publications'],
-    ['Learning paths', 7, 'Start learning', '#/learning']
+    ['Learning paths', 6, 'Start learning', '#/learning']
   ];
   app.innerHTML = `<div class="page-shell home-shell">
     <section class="profile-hero">
@@ -597,9 +606,9 @@ const learningMapContent = {
   zh: {
     eyebrow: 'Professional learning map',
     title: '專業學習地圖',
-    lead: '以「腦—身體—運動—量測—分析」串起六條核心主線與一項跨領域專題，讓學習、複習與研究深化都能回到同一張地圖。',
+    lead: '以「腦—身體—運動—量測—分析」串起六條核心主線，讓學習、複習與研究深化都能回到同一張地圖。',
     guideTitle: '一份會持續成長的學習規劃',
-    guideText: '目前建立六條核心主線、一項跨領域專題與 100–500 的共同進程，作為專業知識累積的基本架構。後續會依實際學習、研究需求與資料查核結果，陸續新增及更新相關文章。',
+    guideText: '目前建立六條核心主線與 100–500 的共同進程，作為專業知識累積的基本架構。後續會依實際學習、研究需求與資料查核結果，陸續新增及更新相關文章。個人興趣與跨領域科普則收錄於「興趣與作品」。',
     guidePoints: [
       ['學習背景', '先建立術語、解剖生理、核心理論與量測原理，避免只記分析步驟。'],
       ['定期複習', '用無提示回憶、概念圖與案例重新整理舊知，找出尚未連結的概念。'],
@@ -613,8 +622,8 @@ const learningMapContent = {
       ['400', '分析', '完成品質控制、模型與解讀'],
       ['500', '整合', '連結研究問題、證據與應用']
     ],
-    trackLabel: '六條核心主線＋一項跨領域專題',
-    trackLead: '第一次可由 01 開始；若正在處理特定研究，也可直接進入 EEG、HRV、運動生理學或跨領域專題。',
+    trackLabel: '六條核心主線',
+    trackLead: '第一次可由 01 開始；若正在處理特定研究，也可直接進入 EEG、HRV 或運動生理學。',
     open: '開啟學習路徑',
     tracks: [
       ['01', '認知神經科學', '大腦、認知與情緒', '由神經系統基礎進入注意、記憶、執行功能、情緒與多方法推論。', 'cognitive-neuroscience-learning-map'],
@@ -622,8 +631,7 @@ const learningMapContent = {
       ['03', '人體解剖學', '結構、功能與身體地圖', '建立肌肉骨骼、神經與心肺系統的三維關係，支撐動作及量測理解。', 'human-anatomy-learning-map'],
       ['04', '運動傷害防護', '預防、評估與重返運動', '從風險辨識與急性照護，到復健、負荷管理及共享決策。', 'athletic-training-learning-map'],
       ['05', 'EEG 腦波', '生理、設備與分析', '理解訊號生成、硬體與事件同步，再進入前處理、時頻分析及可重現 QC。', 'eeg-learning-map'],
-      ['06', 'HRV', '自律神經、設備與指標', '從 ECG／PPG 與 BBI 品質控制，進入時域、頻域、非線性指標與研究解讀。', 'hrv-learning-map'],
-      ['07', '傳統醫學與現代身體科學', '跨領域專題', '從中醫人體觀出發，連結解剖、運動傷害、認知情緒、美顏科學與循證研究判讀。', 'traditional-medicine-modern-body-science-series']
+      ['06', 'HRV', '自律神經、設備與指標', '從 ECG／PPG 與 BBI 品質控制，進入時域、頻域、非線性指標與研究解讀。', 'hrv-learning-map']
     ],
     methodTitle: '三種使用方式',
     methods: [
@@ -632,7 +640,7 @@ const learningMapContent = {
       ['深化', '比較理論、批判方法、重現分析，並把問題轉成可檢驗的研究設計。']
     ],
     bridgeTitle: '跨主線方法：研究設計與資料分析',
-    bridgeText: '統計推論、資料視覺化、可重現流程與 AI 查核不屬於單一主題，而是六條核心主線與跨領域專題共同使用的方法層。',
+    bridgeText: '統計推論、資料視覺化、可重現流程與 AI 查核不屬於單一主題，而是六條核心主線共同使用的方法層。',
     bridgeLink: '前往數據分析學習地圖 →',
     sourceTitle: '下一階段：把您的資料放進正確位置',
     sourceText: 'NotebookLM、Zotero、原文書與課程資料會用來深化個別章節，而不是整批公開。每份素材先記錄來源、版本、章節與使用權限；私人筆記及受著作權保護的全文預設不放入 GitHub。'
@@ -640,9 +648,9 @@ const learningMapContent = {
   en: {
     eyebrow: 'Professional learning map',
     title: 'Professional learning map',
-    lead: 'Six foundational tracks and one interdisciplinary topic link brain, body, exercise, measurement, and analysis into one system for learning, review, and research development.',
+    lead: 'Six foundational tracks link brain, body, exercise, measurement, and analysis into one system for learning, review, and research development.',
     guideTitle: 'A learning plan designed to keep growing',
-    guideText: 'The current version establishes six core tracks, one interdisciplinary topic, and a shared 100–500 progression. New and revised articles will be added gradually as learning continues, research needs emerge, and sources are verified.',
+    guideText: 'The current version establishes six core tracks and a shared 100–500 progression. New and revised articles will be added as learning continues, research needs emerge, and sources are verified. Personal interests and interdisciplinary public writing now live under Interests & projects.',
     guidePoints: [
       ['Build foundations', 'Establish terminology, anatomy and physiology, core theories, and measurement principles before memorizing analysis steps.'],
       ['Review regularly', 'Use retrieval, concept maps, and cases to reorganize prior knowledge and expose missing links.'],
@@ -656,8 +664,8 @@ const learningMapContent = {
       ['400', 'Analysis', 'Perform quality control, modeling, and interpretation'],
       ['500', 'Integration', 'Connect research questions, evidence, and practice']
     ],
-    trackLabel: 'Six core tracks + one interdisciplinary topic',
-    trackLead: 'Start with Track 01 for a broad foundation, or enter EEG, HRV, exercise physiology, or the interdisciplinary topic when a project requires it.',
+    trackLabel: 'Six core tracks',
+    trackLead: 'Start with Track 01 for a broad foundation, or enter EEG, HRV, or exercise physiology when a project requires it.',
     open: 'Open learning path',
     tracks: [
       ['01', 'Cognitive neuroscience', 'Brain, cognition, and emotion', 'Move from neural foundations to attention, memory, executive function, emotion, and multimethod inference.', 'cognitive-neuroscience-learning-map'],
@@ -665,8 +673,7 @@ const learningMapContent = {
       ['03', 'Human anatomy', 'Structure, function, and body maps', 'Build spatial relationships across musculoskeletal, neural, and cardiopulmonary systems.', 'human-anatomy-learning-map'],
       ['04', 'Athletic training', 'Prevention, assessment, and return to sport', 'Follow the continuum from risk recognition and acute care to rehabilitation and shared decisions.', 'athletic-training-learning-map'],
       ['05', 'EEG', 'Physiology, equipment, and analysis', 'Understand signal generation, hardware, synchronization, preprocessing, time–frequency analysis, and QC.', 'eeg-learning-map'],
-      ['06', 'HRV', 'Autonomic physiology, devices, and metrics', 'Move from ECG/PPG and interval QC to time, frequency, nonlinear metrics, and defensible interpretation.', 'hrv-learning-map'],
-      ['07', 'Traditional medicine and modern body science', 'Interdisciplinary topic', 'Connect traditional body concepts with anatomy, sports injury, cognition and emotion, aesthetic science, and evidence appraisal.', 'traditional-medicine-modern-body-science-series']
+      ['06', 'HRV', 'Autonomic physiology, devices, and metrics', 'Move from ECG/PPG and interval QC to time, frequency, nonlinear metrics, and defensible interpretation.', 'hrv-learning-map']
     ],
     methodTitle: 'Three ways to use the map',
     methods: [
@@ -675,7 +682,7 @@ const learningMapContent = {
       ['Deepen', 'Compare theories, critique methods, reproduce analyses, and design testable studies.']
     ],
     bridgeTitle: 'Cross-track methods: research design and data analysis',
-    bridgeText: 'Statistical inference, visualization, reproducibility, and AI verification form a shared methods layer across the six core tracks and the interdisciplinary topic.',
+    bridgeText: 'Statistical inference, visualization, reproducibility, and AI verification form a shared methods layer across the six core tracks.',
     bridgeLink: 'Open the data analysis learning map →',
     sourceTitle: 'Next phase: place your sources where they belong',
     sourceText: 'NotebookLM, Zotero, textbooks, and course materials can deepen individual chapters without being published in bulk. Each source will retain its origin, edition, section, and permission status; private notes and copyrighted full text stay out of GitHub by default.'
