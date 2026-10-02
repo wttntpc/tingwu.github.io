@@ -17,11 +17,11 @@
   },
   {
     "id": "garmin-ecg-validation-study-design",
-    "title": "Garmin 可以取代 ECG 嗎？從穿戴式裝置驗證學會研究設計與一致性分析",
+    "title": "Garmin 可以取代 ECG 嗎？從公開證據到兩人三設備先導實驗",
     "date": "2026-09-03",
     "category": "research-methods",
     "tags": ["Garmin", "ECG", "PPG", "HRV", "效度研究", "Bland–Altman"],
-    "description": "從Garmin與ECG同步量測出發，分清心率、逐拍間隔與HRV三層驗證，學會研究設計、品質控制、Bland–Altman與一致性推論。"
+    "description": "整合Garmin公開驗證研究與兩人三設備先導結果，分層解讀靜息Mean HR、Mean NN、SDNN、RMSSD及動作QC，並建立正式方法比較研究路徑。"
   },
   {
     "id": "outdoor-hiking-health-mind-review",

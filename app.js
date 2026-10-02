@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261002-02';
+const SITE_VERSION = '20261002-04';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -292,7 +292,7 @@ function closeMenu() {
 
 const POSTS_DATA = [
   { "id": "hrv-three-device-analysis-practice", "title": "從 BBI／RRI 到可比較的 HRV：我的 Garmin、Portable ECG 與 BIOPAC 分析實作", "date": "2026-09-23", "category": "data-analysis", "tags": ["HRV", "Garmin", "Portable ECG", "BIOPAC", "品質控制", "敏感度分析"], "description": "以兩人三設備先導專案為例，拆解共同時間窗、R peak、BBI／RRI 品質控制、HRV 指標、敏感度分析與重複量測一致性限制。" },
-  { "id": "garmin-ecg-validation-study-design", "title": "Garmin 可以取代 ECG 嗎？從穿戴式裝置驗證學會研究設計與一致性分析", "date": "2026-09-03", "category": "research-methods", "tags": ["Garmin", "ECG", "PPG", "HRV", "效度研究", "Bland–Altman"], "description": "從Garmin與ECG同步量測出發，分清心率、逐拍間隔與HRV三層驗證，學會研究設計、品質控制、Bland–Altman與一致性推論。" },
+  { "id": "garmin-ecg-validation-study-design", "title": "Garmin 可以取代 ECG 嗎？從公開證據到兩人三設備先導實驗", "date": "2026-09-03", "category": "research-methods", "tags": ["Garmin", "ECG", "PPG", "HRV", "效度研究", "Bland–Altman"], "description": "整合Garmin公開驗證研究與兩人三設備先導結果，分層解讀靜息Mean HR、Mean NN、SDNN、RMSSD及動作QC，並建立正式方法比較研究路徑。" },
   { "id": "outdoor-hiking-health-mind-review", "title": "走進山林，身體和情緒會發生什麼？戶外健行的多層次效益", "date": "2026-09-30", "category": "popular-science", "tags": ["個人興趣", "戶外健行", "自然暴露", "運動與情緒", "公共衛生"], "description": "從整合性綜述理解健行如何同時結合運動、自然與社會刺激，整理心肺、情緒與社區效益，也辨認健行和一般步行不能混為一談的證據限制。" },
   { "id": "traditional-medicine-modern-body-science-series", "title": "傳統醫學與現代身體科學：跨領域科普系列", "date": "2026-09-24", "category": "popular-science", "tags": ["中醫", "跨領域研究", "運動傷害", "認知科學", "美顏科學", "循證醫學"], "description": "規劃中醫人體觀、運動傷害、情緒與認知、美顏科學及研究判讀五條跨領域文章路線，並建立論文圖片授權、證據分級與安全說明規則。" },
   { "id": "kampo-extracts-renal-function-propensity-study", "title": "漢方藥可能保護腎功能嗎？從九年觀察研究讀懂 eGFR 與傾向分數配對", "date": "2026-09-24", "category": "popular-science", "tags": ["Kampo", "漢方", "腎功能", "CKD", "eGFR", "傾向分數"], "description": "解析長期日本漢方萃取製劑與腎功能變化的配對觀察研究，說明 eGFR slope、傾向分數、主要結果及無法直接推論因果的原因。" },
