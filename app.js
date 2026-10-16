@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261016-01';
+const SITE_VERSION = '20261016-03';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -121,14 +121,15 @@ const copy = {
     noSearchResults: '找不到符合條件的文章，請嘗試其他關鍵字。',
     dataGuideEyebrow: 'Learning path',
     dataGuideTitle: '數據分析學習地圖',
-    dataGuideDesc: '第一次閱讀建議依照 01—04 前進；已有基礎者可直接選擇需要的主題。',
+    dataGuideDesc: '第一次閱讀建議依照 01—05 前進；已有基礎者可直接選擇需要的主題。',
     dataGuideCount: count => `目前收錄 ${count} 篇數據分析文章`,
     dataGuideStart: '從完整分析流程開始 →',
     dataGuideTracks: [
       ['資料與流程', '先理解研究問題、資料結構與可重現分析。'],
       ['探索與視覺化', '先看見分布、個體差異與研究設計，再選擇摘要方式。'],
       ['統計推論', '正確解讀 p 值、效果量、信賴區間與樣本數。'],
-      ['工具與生理訊號', '把原則落實到 Python pipeline、PPG 與 HRV 分析。']
+      ['工具與生理訊號', '把原則落實到 Python pipeline、PPG 與 HRV 分析。'],
+      ['貝氏統計與因果推論', '以每週課程筆記累積因果問題、識別假設與貝氏估計的學習脈絡。']
     ],
     dataAllArticles: '全部數據分析文章',
     dataAllArticlesDesc: '可使用搜尋欄查找統計名詞、方法或研究應用。',
@@ -210,14 +211,15 @@ const copy = {
     noSearchResults: 'No matching articles. Try a different keyword.',
     dataGuideEyebrow: 'Learning path',
     dataGuideTitle: 'Data analysis learning map',
-    dataGuideDesc: 'New readers can follow stages 01—04; experienced readers can jump directly to the topic they need.',
+    dataGuideDesc: 'New readers can follow stages 01—05; experienced readers can jump directly to the topic they need.',
     dataGuideCount: count => `${count} data analysis articles`,
     dataGuideStart: 'Start with the complete analysis workflow →',
     dataGuideTracks: [
       ['Data & workflow', 'Begin with research questions, data structure, and reproducible analysis.'],
       ['Exploration & visualization', 'Inspect distributions, individual differences, and study design before summarizing.'],
       ['Statistical inference', 'Interpret p values, effect sizes, confidence intervals, and sample size correctly.'],
-      ['Tools & biosignals', 'Apply the principles to Python pipelines, PPG, and HRV analysis.']
+      ['Tools & biosignals', 'Apply the principles to Python pipelines, PPG, and HRV analysis.'],
+      ['Bayesian statistics & causal inference', 'Build a weekly learning path from causal questions and identification assumptions to Bayesian estimation.']
     ],
     dataAllArticles: 'All data analysis articles',
     dataAllArticlesDesc: 'Search for a statistical term, method, or research application.',
@@ -291,6 +293,10 @@ function closeMenu() {
 }
 
 const POSTS_DATA = [
+  { "id": "bayesian-causal-inference-week-05", "title": "貝氏因果推論學習筆記 05：隨機化不只是抽籤——從估計目標到區組設計", "date": "2026-10-16", "category": "data-analysis", "tags": ["因果推論", "隨機化", "Estimand", "Neyman推論", "區組設計", "學習筆記"], "description": "從 Perfect Doctor、邊際與聯合分布、CRE 與 Bernoulli 隨機化，理解 estimand、estimator、Horvitz–Thompson 加權與區組設計。" },
+  { "id": "bayesian-causal-inference-week-04", "title": "貝氏因果推論學習筆記 04：只靠隨機分派，如何得到精確 p 值？", "date": "2026-10-13", "category": "data-analysis", "tags": ["因果推論", "Fisher隨機化檢定", "Sharp Null", "置換檢定", "研究設計", "學習筆記"], "description": "從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。" },
+  { "id": "bayesian-causal-inference-week-02", "title": "貝氏因果推論學習筆記 02：沒有隨機實驗，傾向分數能幫上什麼忙？", "date": "2026-09-22", "category": "data-analysis", "tags": ["因果推論", "傾向分數", "觀察性研究", "有限母體", "超母體", "學習筆記"], "description": "從觀察性資料的混淆問題出發，理解傾向分數、交換性與重疊性，並區分有限母體和超母體推論回答的不同問題。" },
+  { "id": "bayesian-causal-inference-week-01", "title": "貝氏因果推論學習筆記 01：兩組平均數不同，為什麼還不等於因果效果？", "date": "2026-09-15", "category": "data-analysis", "tags": ["貝氏統計", "因果推論", "潛在結果", "隨機分派", "DAG", "學習筆記"], "description": "從 TMS 例子理解潛在結果、反事實、隨機分派、混淆與因果識別，並釐清 Bayesian 建模之前必須先回答的研究問題。" },
   { "id": "hrv-three-device-analysis-practice", "title": "從 BBI／RRI 到可比較的 HRV：我的 Garmin、Portable ECG 與 BIOPAC 分析實作", "date": "2026-09-23", "category": "data-analysis", "tags": ["HRV", "Garmin", "Portable ECG", "BIOPAC", "品質控制", "敏感度分析"], "description": "以兩人三設備先導專案為例，拆解共同時間窗、R peak、BBI／RRI 品質控制、HRV 指標、敏感度分析與重複量測一致性限制。" },
   { "id": "garmin-ecg-validation-study-design", "title": "Garmin 可以取代 ECG 嗎？從公開證據到兩人三設備先導實驗", "date": "2026-09-03", "category": "research-methods", "tags": ["Garmin", "ECG", "PPG", "HRV", "效度研究", "Bland–Altman"], "description": "整合Garmin公開驗證研究與兩人三設備先導結果，分層解讀靜息Mean HR、Mean NN、SDNN、RMSSD及動作QC，並建立正式方法比較研究路徑。" },
   { "id": "outdoor-hiking-health-mind-review", "title": "走進山林，身體和情緒會發生什麼？戶外健行的多層次效益", "date": "2026-09-30", "category": "popular-science", "tags": ["個人興趣", "戶外健行", "自然暴露", "運動與情緒", "公共衛生"], "description": "從整合性綜述理解健行如何同時結合運動、自然與社會刺激，整理心肺、情緒與社區效益，也辨認健行和一般步行不能混為一談的證據限制。" },
@@ -645,7 +651,8 @@ const learningMapContent = {
     ],
     bridgeTitle: '跨主線方法：研究設計與資料分析',
     bridgeText: '統計推論、資料視覺化、可重現流程與 AI 查核不屬於單一主題，而是六條核心主線共同使用的方法層。',
-    bridgeLink: '前往數據分析學習地圖 →',
+    bridgeLink: '開啟統計學習地圖 →',
+    dataLink: '瀏覽全部數據分析文章 →',
     sourceTitle: '下一階段：把您的資料放進正確位置',
     sourceText: 'NotebookLM、Zotero、原文書與課程資料會用來深化個別章節，而不是整批公開。每份素材先記錄來源、版本、章節與使用權限；私人筆記及受著作權保護的全文預設不放入 GitHub。'
   },
@@ -687,7 +694,8 @@ const learningMapContent = {
     ],
     bridgeTitle: 'Cross-track methods: research design and data analysis',
     bridgeText: 'Statistical inference, visualization, reproducibility, and AI verification form a shared methods layer across the six core tracks.',
-    bridgeLink: 'Open the data analysis learning map →',
+    bridgeLink: 'Open the statistics learning map →',
+    dataLink: 'Browse all data analysis articles →',
     sourceTitle: 'Next phase: place your sources where they belong',
     sourceText: 'NotebookLM, Zotero, textbooks, and course materials can deepen individual chapters without being published in bulk. Each source will retain its origin, edition, section, and permission status; private notes and copyrighted full text stay out of GitHub by default.'
   }
@@ -701,8 +709,80 @@ function renderLearningMap() {
     <section class="learning-levels" aria-labelledby="learning-levels-title"><header><span>00</span><div><p>${content.routeLabel}</p><h2 id="learning-levels-title">100 → 500</h2></div></header><ol>${content.levels.map(level => `<li><strong>${level[0]}</strong><div><b>${level[1]}</b><span>${level[2]}</span></div></li>`).join('')}</ol></section>
     <section class="learning-tracks" aria-labelledby="learning-tracks-title"><header><p class="eyebrow">Curriculum</p><h2 id="learning-tracks-title">${content.trackLabel}</h2><p>${content.trackLead}</p></header><div class="learning-track-grid">${content.tracks.map(track => `<a href="#/post/${track[4]}" class="learning-map-card"><span>${track[0]}</span><div><small>${track[2]}</small><h3>${track[1]}</h3><p>${track[3]}</p><b>${content.open} <i aria-hidden="true">→</i></b></div></a>`).join('')}</div></section>
     <section class="learning-methods" aria-labelledby="learning-methods-title"><h2 id="learning-methods-title">${content.methodTitle}</h2><div>${content.methods.map((method, index) => `<article><span>0${index + 1}</span><h3>${method[0]}</h3><p>${method[1]}</p></article>`).join('')}</div></section>
-    <section class="learning-bridge"><div><p class="eyebrow">Shared methods</p><h2>${content.bridgeTitle}</h2><p>${content.bridgeText}</p></div><a href="#/blog/data-analysis">${content.bridgeLink}</a></section>
+    <section class="learning-bridge"><div><p class="eyebrow">Shared methods</p><h2>${content.bridgeTitle}</h2><p>${content.bridgeText}</p></div><div class="learning-bridge-actions"><a href="#/learning/statistics">${content.bridgeLink}</a><a href="#/blog/data-analysis">${content.dataLink}</a></div></section>
     <aside class="learning-source-note"><h2>${content.sourceTitle}</h2><p>${content.sourceText}</p></aside>
+  </div>`;
+}
+
+const statisticsLearningMapContent = {
+  zh: {
+    eyebrow: 'Statistics learning map',
+    title: '統計與因果推論學習地圖',
+    lead: '以每週課程問題為主線，把因果思考、研究設計、估計與不確定性逐步連起來。這不是整理講義，而是記錄我如何理解、查核並應用統計概念。',
+    guideTitle: '每週固定的整理方法',
+    guide: [
+      ['課前定位', '記下本週想回答的科學問題、estimand 與不理解的術語。'],
+      ['課後重建', '不看講義先重述核心概念，再回到原始教材修正。'],
+      ['雙層寫作', '以白話版建立直覺，專業版保留符號、假設與方法限制。'],
+      ['研究轉譯', '把方法連回運動、EEG、HRV 或認知神經科學的研究問題。']
+    ],
+    timelineTitle: '課程週記',
+    timelineLead: '只發布具有可查核來源的週次；若錄音或講義尚未能檢索，先保留位置，不用推測補齊。',
+    open: '閱讀本週筆記',
+    pending: '來源待補',
+    weeks: [
+      ['01', '2026/09/15', '因果思考與潛在結果', '從相關與因果的差異，進入反事實、隨機分派及識別假設。', 'bayesian-causal-inference-week-01', 'published'],
+      ['02', '2026/09/22', '傾向分數與推論範圍', '理解觀察性資料如何處理已測量混淆，並區分有限母體與超母體。', 'bayesian-causal-inference-week-02', 'published'],
+      ['03', '2026/09/29', '本週內容等待來源補充', 'NotebookLM 目前無法檢索三段錄音的逐字內容；取得講義或筆記後再整理。', '', 'pending'],
+      ['04', '2026/10/13', 'Fisher 隨機化檢定', '從嚴格虛無假設建立隨機化分配、精確 p 值與蒙地卡羅近似。', 'bayesian-causal-inference-week-04', 'published'],
+      ['05', '2026/10/16', '估計目標、隨機化機制與區組', '區分 estimand 與 estimator，並理解不等機率指派、HT 加權及區組設計。', 'bayesian-causal-inference-week-05', 'published']
+    ],
+    sourceTitle: '資料來源與更新原則',
+    sourceText: '目前依據國立中央大學 NS5141 課程講義、課堂錄音、作業與 Peng Ding 的因果推論教材整理。NotebookLM 用於限定來源檢索；文章內容仍以原始教材查核，課程資料不整批公開。',
+    notebook: '開啟私人 NotebookLM 資料庫 ↗'
+  },
+  en: {
+    eyebrow: 'Statistics learning map',
+    title: 'Statistics and causal inference learning map',
+    lead: 'A weekly course-driven path connecting causal questions, research design, estimation, and uncertainty. These notes document interpretation and verification rather than reproduce course materials.',
+    guideTitle: 'A repeatable weekly workflow',
+    guide: [
+      ['Frame', 'Write down the scientific question, estimand, and unfamiliar terms before class.'],
+      ['Reconstruct', 'Explain the core ideas from memory, then correct them against the original sources.'],
+      ['Write twice', 'Use a plain-language version for intuition and a professional version for notation and assumptions.'],
+      ['Translate', 'Connect each method to exercise, EEG, HRV, or cognitive-neuroscience research.']
+    ],
+    timelineTitle: 'Weekly course notes',
+    timelineLead: 'Only weeks supported by retrievable sources are published; missing materials remain visibly pending rather than being inferred.',
+    open: 'Read this note',
+    pending: 'Sources pending',
+    weeks: [
+      ['01', '2026/09/15', 'Causal thinking and potential outcomes', 'From association versus causation to counterfactuals, randomization, and identification assumptions.', 'bayesian-causal-inference-week-01', 'published'],
+      ['02', '2026/09/22', 'Propensity scores and scope of inference', 'Address measured confounding in observational data and distinguish finite from superpopulation inference.', 'bayesian-causal-inference-week-02', 'published'],
+      ['03', '2026/09/29', 'Awaiting source material', 'The three recordings currently have no retrievable transcript; the note will follow once slides or notes are available.', '', 'pending'],
+      ['04', '2026/10/13', 'Fisher randomization inference', 'Build exact p values and Monte Carlo approximations from the sharp null and assignment mechanism.', 'bayesian-causal-inference-week-04', 'published'],
+      ['05', '2026/10/16', 'Estimands, assignment, and blocking', 'Separate estimands from estimators and connect unequal assignment, HT weighting, and blocked designs.', 'bayesian-causal-inference-week-05', 'published']
+    ],
+    sourceTitle: 'Sources and update policy',
+    sourceText: 'The map draws on NCU NS5141 slides, class recordings, assignments, and Peng Ding’s causal-inference text. NotebookLM supports source-bounded retrieval; original materials remain the authority and are not republished in bulk.',
+    notebook: 'Open the private NotebookLM collection ↗'
+  }
+};
+
+function renderStatisticsLearningMap() {
+  const content = statisticsLearningMapContent[lang] || statisticsLearningMapContent.zh;
+  const weeks = content.weeks.map(week => {
+    const action = week[5] === 'published'
+      ? `<a href="#/post/${week[4]}">${content.open} <span aria-hidden="true">→</span></a>`
+      : `<span class="statistics-week-pending">${content.pending}</span>`;
+    return `<li class="statistics-week statistics-week-${week[5]}"><div class="statistics-week-index"><span>${week[0]}</span><time>${week[1]}</time></div><div><h2>${week[2]}</h2><p>${week[3]}</p>${action}</div></li>`;
+  }).join('');
+  app.innerHTML = `<div class="page-shell learning-map-page statistics-map-page">
+    <a class="back-link" href="#/learning">${lang === 'zh' ? '← 返回專業學習地圖' : '← Back to the professional learning map'}</a>
+    <header class="learning-map-hero"><p class="eyebrow">${content.eyebrow}</p><h1>${content.title}</h1><p>${content.lead}</p></header>
+    <section class="statistics-study-method" aria-labelledby="statistics-method-title"><h2 id="statistics-method-title">${content.guideTitle}</h2><ol>${content.guide.map((item, index) => `<li><span>0${index + 1}</span><div><strong>${item[0]}</strong><p>${item[1]}</p></div></li>`).join('')}</ol></section>
+    <section class="statistics-timeline" aria-labelledby="statistics-timeline-title"><header><p class="eyebrow">Weekly notes</p><h2 id="statistics-timeline-title">${content.timelineTitle}</h2><p>${content.timelineLead}</p></header><ol>${weeks}</ol></section>
+    <aside class="learning-source-note"><h2>${content.sourceTitle}</h2><p>${content.sourceText}</p><a href="https://notebook.google.com/notebook/2178d476-8149-4a30-a80b-76b9b1ef7cd6" target="_blank" rel="noopener noreferrer">${content.notebook}</a></aside>
   </div>`;
 }
 
@@ -728,7 +808,8 @@ function renderDataAnalysisGuide(posts) {
     ['data-analysis-workflow', 'data-types-tidy-research-data'],
     ['research-data-visualization'],
     ['p-value-hypothesis-testing', 'effect-size-confidence-interval-sample-size', 'post-hoc-power-confidence-interval'],
-    ['python-statistics-pipeline', 'audit-ai-statistical-analysis-results', 'garmin-raw-data-hrv']
+    ['python-statistics-pipeline', 'audit-ai-statistical-analysis-results', 'garmin-raw-data-hrv'],
+    ['bayesian-causal-inference-week-01', 'bayesian-causal-inference-week-02', 'bayesian-causal-inference-week-04', 'bayesian-causal-inference-week-05']
   ];
   const tracks = c.dataGuideTracks.map(([title, description], index) => {
     const links = trackPostIds[index]
@@ -1877,6 +1958,7 @@ async function router() {
     if (path === '/') await renderHome();
     else if (path === '/about' || path.startsWith('/about/')) await renderAbout(path.split('/')[2] || '');
     else if (path === '/learning') renderLearningMap();
+    else if (path === '/learning/statistics') renderStatisticsLearningMap();
     else if (path === '/lab') window.InteractiveLab.renderLab(app, lang);
     else if (path === '/lab/posner') window.InteractiveLab.renderPosner(app, lang);
     else if (path === '/interests') renderInterests();

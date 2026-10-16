@@ -28,3 +28,27 @@ test('Posner introduction explains local-only data handling and exposes a start 
   assert.match(markup, /有效提示/);
   assert.match(markup, /無效提示/);
 });
+
+test('Posner introduction teaches the task before asking for a prediction', () => {
+  const markup = buildPosnerIntroMarkup('zh');
+  const guideIndex = markup.indexOf('實驗怎麼進行');
+  const scenariosIndex = markup.indexOf('先看三種情境');
+  const predictionIndex = markup.indexOf('看完情境後，再做預測');
+
+  assert.ok(guideIndex >= 0);
+  assert.ok(scenariosIndex > guideIndex);
+  assert.ok(predictionIndex > scenariosIndex);
+  assert.match(markup, /眼睛盯著中央凝視點/);
+  assert.match(markup, /電腦.*方向鍵/);
+  assert.match(markup, /手機.*手指/);
+  assert.match(markup, /箭頭向左.*圓點出現在左側/s);
+  assert.match(markup, /箭頭向左.*圓點出現在右側/s);
+});
+
+test('English Posner introduction includes fixation and device-specific controls', () => {
+  const markup = buildPosnerIntroMarkup('en');
+
+  assert.match(markup, /Keep your eyes on the central fixation point/);
+  assert.match(markup, /computer.*arrow key/i);
+  assert.match(markup, /phone.*tap/i);
+});

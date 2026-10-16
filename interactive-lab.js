@@ -38,8 +38,16 @@
   const posnerCopy = {
     zh: {
       back: '← 返回互動實驗室', eyebrow: 'Attention experiment · 01', title: '箭頭會把注意力帶走嗎？',
-      lead: '中央箭頭通常會提示目標可能出現的位置。請保持注視中央，看到左右任一側出現圓點後，盡快按下相同方向的方向鍵。',
-      predict: '開始前，先做一個預測', question: '哪一種提示下，你認為自己的反應會最快？',
+      lead: '這個作業測量「提示把注意力帶到某處後，我們多快找到目標」。先理解每一步與三種情境，再進行預測和練習。',
+      guideTitle: '實驗怎麼進行', guideLead: '每一次試次都依照相同順序進行。真正需要作答的是圓點出現的位置，不是箭頭方向。',
+      guideSteps: [['1', '固定注視', '眼睛盯著中央凝視點「＋」，整個試次都不要追著箭頭或圓點移動。'], ['2', '看見提示', '中央會短暫出現箭頭；這只是提示，先不要按鍵或點選。'], ['3', '辨認目標', '圓點出現在左側或右側時，盡快回應它的位置。'], ['4', '依裝置作答', '電腦請按鍵盤 ←／→ 方向鍵；手機或平板請用手指點下方對應的左／右按鈕。']],
+      scenariosTitle: '先看三種情境', scenariosLead: '假設箭頭朝左：圓點接著出現在哪裡，決定這次屬於哪一種提示。',
+      scenarios: [
+        ['有效提示', '←', '● ·', '箭頭向左，圓點出現在左側；提示的位置正確。'],
+        ['無效提示', '←', '· ●', '箭頭向左，圓點出現在右側；注意力需要從左側重新轉向右側。'],
+        ['中性提示', '↔', '● ·', '雙向箭頭不偏向任何一側；圓點可出現在左側或右側。']
+      ],
+      predict: '看完情境後，再做預測', question: '根據上面的情境，哪一種提示下，你認為自己的反應會最快？',
       choices: [['valid', '有效提示：箭頭與目標同方向'], ['same', '三種情況差不多'], ['invalid', '無效提示：箭頭與目標反方向']],
       valid: '有效提示', invalid: '無效提示', neutral: '中性提示',
       definitions: [['有效提示', '箭頭與圓點出現在同一側。'], ['無效提示', '箭頭先把注意力帶到另一側。'], ['中性提示', '雙向箭頭不提供位置資訊。']],
@@ -58,8 +66,16 @@
     },
     en: {
       back: '← Back to the interactive lab', eyebrow: 'Attention experiment · 01', title: 'Can an arrow pull your attention?',
-      lead: 'The central arrow usually predicts where the target will appear. Keep looking at the center. When a dot appears on either side, press the matching arrow key as quickly as you can.',
-      predict: 'Make a prediction first', question: 'Which cue condition do you expect to produce your fastest responses?',
+      lead: 'This task measures how quickly we find a target after a cue directs attention. Learn the sequence and three situations before predicting and practising.',
+      guideTitle: 'How the experiment works', guideLead: 'Every trial follows the same sequence. Respond to the dot location, not to the arrow direction.',
+      guideSteps: [['1', 'Fixate', 'Keep your eyes on the central fixation point “+” throughout the trial; do not follow the arrow or dot with your eyes.'], ['2', 'See the cue', 'An arrow briefly appears at the center. It is only a cue, so do not respond yet.'], ['3', 'Find the target', 'When a dot appears on the left or right, respond to its location as quickly as possible.'], ['4', 'Use your device', 'On a computer, press the ← or → arrow key. On a phone or tablet, tap the matching left or right button with your finger.']],
+      scenariosTitle: 'See the three situations first', scenariosLead: 'Suppose the arrow points left. Where the dot appears next determines the cue condition.',
+      scenarios: [
+        ['Valid cue', '←', '● ·', 'The arrow points left and the dot appears on the left: the cue correctly predicts the location.'],
+        ['Invalid cue', '←', '· ●', 'The arrow points left but the dot appears on the right: attention must be redirected.'],
+        ['Neutral cue', '↔', '● ·', 'The double arrow favors neither side; the dot can appear on either side.']
+      ],
+      predict: 'Now make a prediction', question: 'Based on the situations above, which cue condition should produce your fastest responses?',
       choices: [['valid', 'Valid cue: arrow and target match'], ['same', 'All three will be similar'], ['invalid', 'Invalid cue: arrow and target differ']],
       valid: 'Valid cue', invalid: 'Invalid cue', neutral: 'Neutral cue',
       definitions: [['Valid cue', 'The arrow and dot appear on the same side.'], ['Invalid cue', 'The arrow first draws attention to the other side.'], ['Neutral cue', 'A double arrow provides no location information.']],
@@ -88,8 +104,9 @@
   function buildPosnerIntroMarkup(lang = 'zh') {
     const c = posnerCopy[lang] || posnerCopy.zh;
     return `<div class="page-shell experiment-page"><a class="back-link" href="#/lab">${c.back}</a><header class="experiment-header"><p class="eyebrow">${c.eyebrow}</p><h1>${c.title}</h1><p>${c.lead}</p></header>
-      <section class="experiment-prediction" aria-labelledby="prediction-title"><p class="section-kicker">${c.predict}</p><h2 id="prediction-title">${c.question}</h2><div class="prediction-options">${c.choices.map(choice => `<label><input type="radio" name="posner-prediction" value="${choice[0]}"><span>${choice[1]}</span></label>`).join('')}</div></section>
-      <section class="cue-definitions" aria-label="${lang === 'zh' ? '三種提示條件' : 'Three cue conditions'}">${c.definitions.map((item, index) => `<article><span>0${index + 1}</span><h2>${item[0]}</h2><p>${item[1]}</p></article>`).join('')}</section>
+      <section class="posner-guide" aria-labelledby="posner-guide-title"><p class="section-kicker">01 · ${c.guideTitle}</p><h2 id="posner-guide-title">${c.guideLead}</h2><ol>${c.guideSteps.map(step => `<li><span>${step[0]}</span><div><strong>${step[1]}</strong><p>${step[2]}</p></div></li>`).join('')}</ol></section>
+      <section class="posner-scenarios" aria-labelledby="posner-scenarios-title"><p class="section-kicker">02 · ${c.scenariosTitle}</p><h2 id="posner-scenarios-title">${c.scenariosLead}</h2><div class="posner-scenario-grid">${c.scenarios.map((item, index) => `<article><span>0${index + 1}</span><h3>${item[0]}</h3><div class="posner-scenario-sequence" aria-hidden="true"><b>＋</b><i>→</i><b>${item[1]}</b><i>→</i><b>${item[2]}</b></div><p>${item[3]}</p></article>`).join('')}</div></section>
+      <section class="experiment-prediction" aria-labelledby="prediction-title"><p class="section-kicker">03 · ${c.predict}</p><h2 id="prediction-title">${c.question}</h2><div class="prediction-options">${c.choices.map(choice => `<label><input type="radio" name="posner-prediction" value="${choice[0]}"><span>${choice[1]}</span></label>`).join('')}</div></section>
       <aside class="experiment-privacy"><strong>${lang === 'zh' ? '資料隱私' : 'Data privacy'}</strong><p>${c.privacy}</p></aside>
       <button class="experiment-primary" type="button" data-posner-start>${c.start}</button></div>`;
   }
@@ -172,7 +189,7 @@
     }
 
     function renderTaskShell() {
-      container.innerHTML = `<div class="page-shell experiment-page experiment-running"><a class="back-link" href="#/lab">${c.back}</a><header class="task-status"><div><p class="eyebrow">${phase === 'practice' ? c.practice : c.formal}</p><h1>${c.title}</h1></div><p><span>${c.progress}</span> <strong data-posner-progress>0 / ${trials.length}</strong></p></header><div class="posner-stage" data-posner-stage aria-live="polite"><span class="posner-fixation" aria-hidden="true">+</span></div><div class="posner-response-controls" aria-label="${lang === 'zh' ? '反應按鍵' : 'Response keys'}"><button type="button" data-posner-response="ArrowLeft" disabled>${c.left}</button><button type="button" data-posner-response="ArrowRight" disabled>${c.right}</button></div><p class="task-hint">${lang === 'zh' ? '鍵盤：←／→　觸控：使用上方按鈕' : 'Keyboard: ← / → · Touch: use the buttons above'}</p></div>`;
+      container.innerHTML = `<div class="page-shell experiment-page experiment-running"><a class="back-link" href="#/lab">${c.back}</a><header class="task-status"><div><p class="eyebrow">${phase === 'practice' ? c.practice : c.formal}</p><h1>${c.title}</h1></div><p><span>${c.progress}</span> <strong data-posner-progress>0 / ${trials.length}</strong></p></header><p class="task-fixation-reminder">${lang === 'zh' ? '請持續盯著中央「＋」；箭頭出現時先不要作答，看到圓點才回應。' : 'Keep looking at the central “+”. Do not respond to the arrow; respond only when the dot appears.'}</p><div class="posner-stage" data-posner-stage aria-live="polite"><span class="posner-fixation" aria-hidden="true">+</span></div><div class="posner-response-controls" aria-label="${lang === 'zh' ? '反應按鍵' : 'Response keys'}"><button type="button" data-posner-response="ArrowLeft" disabled>${c.left}</button><button type="button" data-posner-response="ArrowRight" disabled>${c.right}</button></div><p class="task-hint">${lang === 'zh' ? '電腦：按鍵盤 ←／→ 方向鍵　手機／平板：用手指點上方左／右按鈕' : 'Computer: press ← / → arrow keys · Phone/tablet: tap the left/right buttons above'}</p></div>`;
     }
 
     function showFormalTransition() {

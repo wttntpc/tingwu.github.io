@@ -145,6 +145,21 @@ button { font: inherit; }
 
 .experiment-page { width: min(calc(100% - 40px), 880px); padding: 3.5rem 0 6rem; }
 .experiment-header { max-width: 50rem; margin-top: 1.4rem; padding-bottom: 2.75rem; }
+.posner-guide, .posner-scenarios { margin-bottom: 2rem; }
+.posner-guide > h2, .posner-scenarios > h2 { max-width: 46rem; margin: .35rem 0 1rem; font-family: var(--font-display); font-size: 1.16rem; line-height: 1.55; }
+.posner-guide ol { margin: 0; padding: 0; border-top: 1px solid var(--tertiary); list-style: none; }
+.posner-guide li { display: grid; grid-template-columns: 2.35rem minmax(0, 1fr); gap: .8rem; padding: 1rem .2rem; border-bottom: 1px solid var(--tertiary); }
+.posner-guide li > span, .posner-scenario-grid article > span { color: var(--accent); font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: .68rem; letter-spacing: .08em; }
+.posner-guide strong { display: block; margin-bottom: .18rem; color: var(--primary); font-size: .78rem; }
+.posner-guide p { margin: 0; color: var(--secondary); font-size: .74rem; line-height: 1.75; }
+.posner-scenario-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--tertiary); border-bottom: 1px solid var(--tertiary); }
+.posner-scenario-grid article { min-width: 0; padding: 1.2rem; border-right: 1px solid var(--tertiary); }
+.posner-scenario-grid article:last-child { border-right: 0; }
+.posner-scenario-grid h3 { margin: .45rem 0 .65rem; font-family: var(--font-display); font-size: .95rem; }
+.posner-scenario-grid p { margin: .75rem 0 0; color: var(--secondary); font-size: .72rem; line-height: 1.7; }
+.posner-scenario-sequence { min-height: 58px; display: flex; gap: .45rem; align-items: center; justify-content: center; padding: .55rem; border: 1px solid var(--tertiary); background: color-mix(in srgb, var(--accent-soft) 24%, var(--paper)); }
+.posner-scenario-sequence b { min-width: 2.4rem; color: var(--primary); font-size: 1.12rem; text-align: center; white-space: pre; }
+.posner-scenario-sequence i { color: var(--secondary); font-size: .68rem; font-style: normal; }
 .experiment-prediction { padding: 1.5rem; border: 1px solid var(--tertiary); border-left: 4px solid var(--accent); background: var(--paper); }
 .experiment-prediction h2 { margin: .25rem 0 1rem; font-family: var(--font-display); font-size: 1.2rem; line-height: 1.5; }
 .prediction-options { display: grid; gap: .55rem; }
@@ -170,6 +185,7 @@ button { font: inherit; }
 .task-status > p { margin: 0; text-align: right; }
 .task-status > p span { display: block; color: var(--secondary); font-size: .66rem; }
 .task-status > p strong { font-variant-numeric: tabular-nums; font-size: .78rem; }
+.task-fixation-reminder { margin: 0 0 .75rem; padding: .7rem .85rem; border-left: 3px solid var(--accent); color: var(--secondary); background: color-mix(in srgb, var(--accent-soft) 28%, transparent); font-size: .72rem; line-height: 1.7; }
 .posner-stage { position: relative; min-height: 340px; display: grid; place-items: center; overflow: hidden; border: 1px solid var(--tertiary); background: var(--paper); user-select: none; }
 .posner-stage::before { position: absolute; top: 50%; right: 8%; left: 8%; border-top: 1px dashed color-mix(in srgb, var(--tertiary) 72%, transparent); content: ""; }
 .posner-fixation, .posner-cue { position: relative; z-index: 1; color: var(--primary); font-size: 2rem; line-height: 1; }
@@ -406,9 +422,37 @@ button { font: inherit; }
 .learning-bridge { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: end; padding: 1.6rem; border: 1px solid var(--tertiary); border-left: 4px solid var(--accent); background: var(--paper); }
 .learning-bridge p:last-child { max-width: 44rem; margin: .6rem 0 0; color: var(--secondary); font-size: .78rem; line-height: 1.75; }
 .learning-bridge a { min-height: 44px; display: inline-flex; align-items: center; color: var(--accent); font-size: .75rem; font-weight: 700; text-decoration: none; }
+.learning-bridge-actions { display: grid; justify-items: end; gap: .15rem; }
+.learning-bridge-actions a:last-child { color: var(--secondary); font-weight: 500; }
 .learning-source-note { margin-top: 2.5rem; padding: 1.4rem 1.5rem; border-top: 1px solid var(--tertiary); border-bottom: 1px solid var(--tertiary); }
 .learning-source-note h2 { font-size: 1.05rem; }
 .learning-source-note p { margin: .6rem 0 0; color: var(--secondary); font-size: .76rem; line-height: 1.8; }
+.learning-source-note a { min-height: 44px; display: inline-flex; align-items: center; color: var(--accent); font-size: .72rem; font-weight: 700; text-underline-offset: .22em; }
+
+/* Statistics learning map */
+.statistics-map-page .back-link { margin-bottom: 2.2rem; }
+.statistics-study-method { display: grid; grid-template-columns: minmax(14rem, .55fr) minmax(0, 1.45fr); gap: clamp(2rem, 5vw, 4rem); padding: 1.5rem; border-top: 3px solid var(--accent); border-bottom: 1px solid var(--tertiary); background: var(--paper); }
+.statistics-study-method > h2, .statistics-timeline > header h2 { margin: 0; font-family: var(--font-display); font-size: clamp(1.35rem, 3vw, 1.8rem); line-height: 1.45; }
+.statistics-study-method ol, .statistics-timeline ol { margin: 0; padding: 0; list-style: none; }
+.statistics-study-method li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: .75rem; padding: .7rem 0; border-bottom: 1px solid var(--tertiary); }
+.statistics-study-method li:first-child { padding-top: 0; }
+.statistics-study-method li:last-child { padding-bottom: 0; border-bottom: 0; }
+.statistics-study-method li > span, .statistics-week-index > span { color: var(--accent); font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: .67rem; font-weight: 700; letter-spacing: .08em; }
+.statistics-study-method strong { display: block; font-size: .76rem; }
+.statistics-study-method p { margin: .25rem 0 0; color: var(--secondary); font-size: .7rem; line-height: 1.7; }
+.statistics-timeline { padding: 4.5rem 0 2rem; }
+.statistics-timeline > header { max-width: 48rem; margin-bottom: 1.5rem; }
+.statistics-timeline > header > p:last-child { margin: .65rem 0 0; color: var(--secondary); font-size: .78rem; line-height: 1.8; }
+.statistics-timeline ol { border-top: 1px solid var(--tertiary); }
+.statistics-week { display: grid; grid-template-columns: minmax(8rem, .28fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); padding: 1.5rem 0; border-bottom: 1px solid var(--tertiary); }
+.statistics-week-index { display: grid; align-content: start; grid-template-columns: 2rem minmax(0, 1fr); gap: .65rem; }
+.statistics-week-index time { color: var(--secondary); font-size: .68rem; font-variant-numeric: tabular-nums; }
+.statistics-week h2 { margin: 0; font-family: var(--font-display); font-size: 1.1rem; }
+.statistics-week p { max-width: 48rem; margin: .45rem 0 .65rem; color: var(--secondary); font-size: .75rem; line-height: 1.75; }
+.statistics-week a { min-height: 44px; display: inline-flex; align-items: center; gap: .45rem; color: var(--accent); font-size: .72rem; font-weight: 700; text-decoration: none; }
+.statistics-week a:hover { text-decoration: underline; text-underline-offset: .22em; }
+.statistics-week-pending { display: inline-flex; padding: .28rem .48rem; border: 1px solid var(--tertiary); color: var(--secondary); background: color-mix(in srgb, var(--entry) 65%, transparent); font-size: .66rem; }
+.statistics-week-pending h2 { color: var(--secondary); }
 
 .category-filter { display: flex; flex-wrap: wrap; gap: .55rem; margin: .5rem 0 1.25rem; }
 .category-filter a { min-height: 44px; display: inline-flex; align-items: center; gap: .45rem; padding: .52rem .78rem; border: 1px solid var(--tertiary); border-radius: 999px; color: var(--secondary); background: var(--paper); text-decoration: none; font-size: .76rem; }
@@ -425,6 +469,7 @@ button { font: inherit; }
 .learning-track { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: .85rem; padding: 1.3rem 1.15rem 1.3rem 0; border-bottom: 1px solid var(--tertiary); }
 .learning-track:nth-child(odd) { padding-right: 1.35rem; border-right: 1px solid var(--tertiary); }
 .learning-track:nth-child(even) { padding-left: 1.35rem; }
+.learning-track:last-child:nth-child(odd) { grid-column: 1 / -1; padding-right: 0; border-right: 0; }
 .learning-track-number { color: var(--accent); font-family: var(--font-display); font-size: 1.15rem; line-height: 1.35; }
 .learning-track h3 { margin: 0 0 .35rem; color: var(--primary); font-size: .9rem; }
 .learning-track p { margin: 0 0 .7rem; color: var(--secondary); font-size: .75rem; line-height: 1.7; }
@@ -739,6 +784,9 @@ button { font: inherit; }
   .learning-methods article { border-right: 0; border-bottom: 1px solid var(--tertiary); }
   .learning-methods article:last-child { border-bottom: 0; }
   .learning-bridge { grid-template-columns: 1fr; gap: .75rem; align-items: start; }
+  .learning-bridge-actions { justify-items: start; }
+  .statistics-study-method { grid-template-columns: 1fr; }
+  .statistics-week { grid-template-columns: 1fr; gap: .75rem; }
   .poincare-grid { grid-template-columns: 1fr; }
   .version-bar { position: static; align-items: stretch; flex-direction: column; }
   .version-bar p { text-align: left; }
@@ -759,9 +807,9 @@ button { font: inherit; }
   .home-project-actions a { flex: 1 1 10rem; }
   .home-lab-preview, .lab-feature { grid-template-columns: 1fr; }
   .home-lab-visual { min-height: 150px; }
-  .lab-method, .cue-definitions { grid-template-columns: 1fr; }
-  .lab-method article, .cue-definitions article { border-right: 0; border-bottom: 1px solid var(--tertiary); }
-  .lab-method article:last-child, .cue-definitions article:last-child { border-bottom: 0; }
+  .lab-method, .cue-definitions, .posner-scenario-grid { grid-template-columns: 1fr; }
+  .lab-method article, .cue-definitions article, .posner-scenario-grid article { border-right: 0; border-bottom: 1px solid var(--tertiary); }
+  .lab-method article:last-child, .cue-definitions article:last-child, .posner-scenario-grid article:last-child { border-bottom: 0; }
   .lab-cue-preview { min-height: 190px; }
   .result-summary { grid-template-columns: 1fr; gap: 1rem; }
   .home-editorial-grid { grid-template-columns: 1fr; gap: 3.5rem; padding: 3.5rem 0 4rem; }
