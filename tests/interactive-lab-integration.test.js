@@ -1,0 +1,35 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const root = path.join(__dirname, '..');
+
+test('site loads Posner logic and lab UI before the main application', () => {
+  const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const logicIndex = html.indexOf('posner-task.js');
+  const uiIndex = html.indexOf('interactive-lab.js');
+  const appIndex = html.indexOf('app.js');
+
+  assert.ok(logicIndex >= 0);
+  assert.ok(uiIndex > logicIndex);
+  assert.ok(appIndex > uiIndex);
+});
+
+test('main router exposes the lab landing page and Posner experiment', () => {
+  const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
+
+  assert.match(app, /\['互動實驗', '\/lab'\]/);
+  assert.match(app, /path === '\/lab'/);
+  assert.match(app, /path === '\/lab\/posner'/);
+  assert.match(app, /InteractiveLab\?\.cleanup/);
+});
+
+test('interactive experiment styles include responsive and reduced-motion rules', () => {
+  const css = fs.readFileSync(path.join(root, 'style.css'), 'utf8');
+
+  assert.match(css, /\.experiment-page/);
+  assert.match(css, /\.posner-stage/);
+  assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.lab-method/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
+});

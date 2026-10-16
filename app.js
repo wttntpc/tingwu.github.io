@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261007-01';
+const SITE_VERSION = '20261016-01';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -50,7 +50,7 @@ function renderMermaidNodes(selector = '.mermaid') {
 
 const copy = {
   zh: {
-    nav: [['首頁', '/'], ['關於', '/about'], ['學術發表', '/publications'], ['文章', '/blog'], ['學習地圖', '/learning'], ['興趣與作品', '/interests']],
+    nav: [['首頁', '/'], ['關於', '/about'], ['學術發表', '/publications'], ['文章', '/blog'], ['學習地圖', '/learning'], ['互動實驗', '/lab'], ['興趣與作品', '/interests']],
     footer: '探索身體活動如何改變大腦與心智。',
     disclaimerLink: '網站聲明',
     disclaimerNote: '本站為個人學術與知識分享網站，部分內容由 AI 協作整理，可能仍有疏漏；不構成醫療、法律或其他專業建議，重要決策請核對原始與官方來源。',
@@ -139,7 +139,7 @@ const copy = {
     notFound: '找不到這個頁面。'
   },
   en: {
-    nav: [['Home', '/'], ['About', '/about'], ['Publications', '/publications'], ['Writing', '/blog'], ['Learning map', '/learning'], ['Interests & projects', '/interests']],
+    nav: [['Home', '/'], ['About', '/about'], ['Publications', '/publications'], ['Writing', '/blog'], ['Learning map', '/learning'], ['Interactive lab', '/lab'], ['Interests & projects', '/interests']],
     footer: 'Exploring how physical activity shapes the mind.',
     disclaimerLink: 'Website statement',
     disclaimerNote: 'This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.',
@@ -512,6 +512,10 @@ async function renderHome() {
         <div class="home-project-copy"><p>${lang === 'zh' ? '整合運動防護與緊急救護相關進修資訊，協助快速搜尋、篩選與追蹤課程。' : 'A searchable course tracker for continuing education in athletic training and emergency medical care.'}</p><ul aria-label="${lang === 'zh' ? '專案技術' : 'Project technologies'}"><li>Vercel</li><li>Supabase</li><li>${lang === 'zh' ? '資料整理' : 'Data curation'}</li></ul></div>
         <div class="home-project-actions"><a class="project-action-primary" href="https://at-emt-1-course-radar.vercel.app/" target="_blank" rel="noopener noreferrer">${lang === 'zh' ? '開啟工具 ↗' : 'Open tool ↗'}</a><a href="#/post/at-emt-1-course-radar">${lang === 'zh' ? '閱讀開發紀錄 →' : 'Read build notes →'}</a></div>
       </div>
+    </section>
+    <section class="home-lab-preview" aria-labelledby="home-lab-title">
+      <div class="home-lab-copy"><p>${lang === 'zh' ? 'Interactive experiments · 01' : 'Interactive experiments · 01'}</p><h2 id="home-lab-title">${lang === 'zh' ? '用自己的反應時間理解腦與行為' : 'Understand brain and behavior through your own response times'}</h2><p>${lang === 'zh' ? '先預測、親自作答、查看結果，再理解注意力如何被線索引導。第一個 Posner 空間提示作業已開放體驗。' : 'Predict, respond, inspect your result, and learn how cues guide attention. The first Posner spatial cueing task is ready to try.'}</p><a href="#/lab">${lang === 'zh' ? '進入互動實驗室 →' : 'Enter the interactive lab →'}</a></div>
+      <div class="home-lab-visual" aria-hidden="true"><span>←</span><i>+</i><b>●</b></div>
     </section>
     <div class="home-editorial-grid">
       <section class="home-block research-section"><h2>${c.selectedAreas}</h2><div class="pillar-grid">${c.focuses.map(item => `<a class="pillar-card" href="#/about/skills"><b>${item[0]}</b><span>${item[1]}</span></a>`).join('')}</div></section>
@@ -1864,6 +1868,7 @@ async function renderDisclaimer() {
 
 async function router() {
   if (!app) return;
+  window.InteractiveLab?.cleanup();
   closeMenu();
   updateChrome();
   app.innerHTML = '<div class="loading">Loading<span>…</span></div>';
@@ -1872,6 +1877,8 @@ async function router() {
     if (path === '/') await renderHome();
     else if (path === '/about' || path.startsWith('/about/')) await renderAbout(path.split('/')[2] || '');
     else if (path === '/learning') renderLearningMap();
+    else if (path === '/lab') window.InteractiveLab.renderLab(app, lang);
+    else if (path === '/lab/posner') window.InteractiveLab.renderPosner(app, lang);
     else if (path === '/interests') renderInterests();
     else if (path === '/publications') await renderPublications();
     else if (path === '/blog' || path.startsWith('/blog/')) await renderBlog(path.split('/')[2] || 'all');
