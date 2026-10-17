@@ -13,6 +13,13 @@ test('professional learning map links to a dedicated statistics learning map', (
   assert.match(app, /function renderStatisticsLearningMap\(\)/);
 });
 
+test('statistics is the seventh core learning track with Bayesian causal inference beneath it', () => {
+  assert.match(app, /trackLabel: '七條核心主線'/);
+  assert.match(app, /\['07', '統計分析', '貝氏統計與因果推論'/);
+  assert.match(app, /\['07', 'Statistics', 'Bayesian statistics and causal inference'/);
+  assert.match(app, /track\[4\]\.startsWith\('\/'\)/);
+});
+
 test('statistics map lists each source-supported weekly note in chronological order', () => {
   assert.match(app, /2026\/09\/15/);
   assert.match(app, /2026\/09\/22/);

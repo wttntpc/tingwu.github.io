@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261017-07';
+const SITE_VERSION = '20261017-08';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -605,9 +605,9 @@ const learningMapContent = {
   zh: {
     eyebrow: 'Professional learning map',
     title: '專業學習地圖',
-    lead: '以「腦—身體—運動—量測—分析」串起六條核心主線，讓學習、複習與研究深化都能回到同一張地圖。',
+    lead: '以「腦—身體—運動—量測—統計」串起七條核心主線，讓學習、複習與研究深化都能回到同一張地圖。',
     guideTitle: '一份會持續成長的學習規劃',
-    guideText: '目前建立六條核心主線與 100–500 的共同進程，作為專業知識累積的基本架構。後續會依實際學習、研究需求與資料查核結果，陸續新增及更新相關文章。個人興趣與跨領域科普則收錄於「興趣與作品」。',
+    guideText: '目前建立七條核心主線與 100–500 的共同進程，作為專業知識累積的基本架構。後續會依實際學習、研究需求與資料查核結果，陸續新增及更新相關文章。',
     guidePoints: [
       ['學習背景', '先建立術語、解剖生理、核心理論與量測原理，避免只記分析步驟。'],
       ['定期複習', '用無提示回憶、概念圖與案例重新整理舊知，找出尚未連結的概念。'],
@@ -621,8 +621,8 @@ const learningMapContent = {
       ['400', '分析', '完成品質控制、模型與解讀'],
       ['500', '整合', '連結研究問題、證據與應用']
     ],
-    trackLabel: '六條核心主線',
-    trackLead: '第一次可由 01 開始；若正在處理特定研究，也可直接進入 EEG、HRV 或運動生理學。',
+    trackLabel: '七條核心主線',
+    trackLead: '第一次可由 01 開始；若正在處理特定研究，也可直接進入 EEG、HRV、運動生理學或統計分析。',
     open: '開啟學習路徑',
     tracks: [
       ['01', '認知神經科學', '大腦、認知與情緒', '由神經系統基礎進入注意、記憶、執行功能、情緒與多方法推論。', 'cognitive-neuroscience-learning-map'],
@@ -630,7 +630,8 @@ const learningMapContent = {
       ['03', '人體解剖學', '結構、功能與身體地圖', '建立肌肉骨骼、神經與心肺系統的三維關係，支撐動作及量測理解。', 'human-anatomy-learning-map'],
       ['04', '運動傷害防護', '預防、評估與重返運動', '從風險辨識與急性照護，到復健、負荷管理及共享決策。', 'athletic-training-learning-map'],
       ['05', 'EEG 腦波', '生理、設備與分析', '理解訊號生成、硬體與事件同步，再進入前處理、時頻分析及可重現 QC。', 'eeg-learning-map'],
-      ['06', 'HRV', '自律神經、設備與指標', '從 ECG／PPG 與 BBI 品質控制，進入時域、頻域、非線性指標與研究解讀。', 'hrv-learning-map']
+      ['06', 'HRV', '自律神經、設備與指標', '從 ECG／PPG 與 BBI 品質控制，進入時域、頻域、非線性指標與研究解讀。', 'hrv-learning-map'],
+      ['07', '統計分析', '貝氏統計與因果推論', '從因果問題、潛在結果與識別假設出發，逐步學習研究設計、貝氏估計、不確定性與模型查核。', '/learning/statistics']
     ],
     methodTitle: '三種使用方式',
     methods: [
@@ -638,8 +639,8 @@ const learningMapContent = {
       ['複習', '用無提示回憶、概念圖與案例題找出真正不熟的連結。'],
       ['深化', '比較理論、批判方法、重現分析，並把問題轉成可檢驗的研究設計。']
     ],
-    bridgeTitle: '跨主線方法：研究設計與資料分析',
-    bridgeText: '統計推論、資料視覺化、可重現流程與 AI 查核不屬於單一主題，而是六條核心主線共同使用的方法層。',
+    bridgeTitle: '第七條主線與共同方法',
+    bridgeText: '統計分析已成為獨立的第七條主線；其中的貝氏統計與因果推論，也會與前六條專業主線共享研究設計、資料視覺化、可重現流程及 AI 查核方法。',
     bridgeLink: '開啟統計學習地圖 →',
     dataLink: '瀏覽全部數據分析文章 →',
     sourceTitle: '下一階段：把您的資料放進正確位置',
@@ -648,9 +649,9 @@ const learningMapContent = {
   en: {
     eyebrow: 'Professional learning map',
     title: 'Professional learning map',
-    lead: 'Six foundational tracks link brain, body, exercise, measurement, and analysis into one system for learning, review, and research development.',
+    lead: 'Seven foundational tracks link brain, body, exercise, measurement, and statistics into one system for learning, review, and research development.',
     guideTitle: 'A learning plan designed to keep growing',
-    guideText: 'The current version establishes six core tracks and a shared 100–500 progression. New and revised articles will be added as learning continues, research needs emerge, and sources are verified. Personal interests and interdisciplinary public writing now live under Interests & projects.',
+    guideText: 'The current version establishes seven core tracks and a shared 100–500 progression. New and revised articles will be added as learning continues, research needs emerge, and sources are verified.',
     guidePoints: [
       ['Build foundations', 'Establish terminology, anatomy and physiology, core theories, and measurement principles before memorizing analysis steps.'],
       ['Review regularly', 'Use retrieval, concept maps, and cases to reorganize prior knowledge and expose missing links.'],
@@ -664,8 +665,8 @@ const learningMapContent = {
       ['400', 'Analysis', 'Perform quality control, modeling, and interpretation'],
       ['500', 'Integration', 'Connect research questions, evidence, and practice']
     ],
-    trackLabel: 'Six core tracks',
-    trackLead: 'Start with Track 01 for a broad foundation, or enter EEG, HRV, or exercise physiology when a project requires it.',
+    trackLabel: 'Seven core tracks',
+    trackLead: 'Start with Track 01 for a broad foundation, or enter EEG, HRV, exercise physiology, or statistics when a project requires it.',
     open: 'Open learning path',
     tracks: [
       ['01', 'Cognitive neuroscience', 'Brain, cognition, and emotion', 'Move from neural foundations to attention, memory, executive function, emotion, and multimethod inference.', 'cognitive-neuroscience-learning-map'],
@@ -673,7 +674,8 @@ const learningMapContent = {
       ['03', 'Human anatomy', 'Structure, function, and body maps', 'Build spatial relationships across musculoskeletal, neural, and cardiopulmonary systems.', 'human-anatomy-learning-map'],
       ['04', 'Athletic training', 'Prevention, assessment, and return to sport', 'Follow the continuum from risk recognition and acute care to rehabilitation and shared decisions.', 'athletic-training-learning-map'],
       ['05', 'EEG', 'Physiology, equipment, and analysis', 'Understand signal generation, hardware, synchronization, preprocessing, time–frequency analysis, and QC.', 'eeg-learning-map'],
-      ['06', 'HRV', 'Autonomic physiology, devices, and metrics', 'Move from ECG/PPG and interval QC to time, frequency, nonlinear metrics, and defensible interpretation.', 'hrv-learning-map']
+      ['06', 'HRV', 'Autonomic physiology, devices, and metrics', 'Move from ECG/PPG and interval QC to time, frequency, nonlinear metrics, and defensible interpretation.', 'hrv-learning-map'],
+      ['07', 'Statistics', 'Bayesian statistics and causal inference', 'Start from causal questions, potential outcomes, and identification assumptions, then build toward study design, Bayesian estimation, uncertainty, and model checking.', '/learning/statistics']
     ],
     methodTitle: 'Three ways to use the map',
     methods: [
@@ -681,8 +683,8 @@ const learningMapContent = {
       ['Review', 'Use retrieval, concept maps, and cases to expose weak links.'],
       ['Deepen', 'Compare theories, critique methods, reproduce analyses, and design testable studies.']
     ],
-    bridgeTitle: 'Cross-track methods: research design and data analysis',
-    bridgeText: 'Statistical inference, visualization, reproducibility, and AI verification form a shared methods layer across the six core tracks.',
+    bridgeTitle: 'Track 07 and shared research methods',
+    bridgeText: 'Statistics is now an independent seventh track. Its Bayesian and causal-inference pathway also supplies study design, visualization, reproducibility, and AI-verification methods used across the first six tracks.',
     bridgeLink: 'Open the statistics learning map →',
     dataLink: 'Browse all data analysis articles →',
     sourceTitle: 'Next phase: place your sources where they belong',
@@ -692,11 +694,12 @@ const learningMapContent = {
 
 function renderLearningMap() {
   const content = learningMapContent[lang] || learningMapContent.zh;
+  const trackHref = track => track[4].startsWith('/') ? `#${track[4]}` : `#/post/${track[4]}`;
   app.innerHTML = `<div class="page-shell learning-map-page">
     <header class="learning-map-hero"><p class="eyebrow">${content.eyebrow}</p><h1>${content.title}</h1><p>${content.lead}</p></header>
     <section class="learning-map-guide" aria-labelledby="learning-map-guide-title"><div><p class="eyebrow">Living curriculum</p><h2 id="learning-map-guide-title">${content.guideTitle}</h2><p>${content.guideText}</p></div><ol>${content.guidePoints.map((point, index) => `<li><span>0${index + 1}</span><div><strong>${point[0]}</strong><p>${point[1]}</p></div></li>`).join('')}</ol></section>
     <section class="learning-levels" aria-labelledby="learning-levels-title"><header><span>00</span><div><p>${content.routeLabel}</p><h2 id="learning-levels-title">100 → 500</h2></div></header><ol>${content.levels.map(level => `<li><strong>${level[0]}</strong><div><b>${level[1]}</b><span>${level[2]}</span></div></li>`).join('')}</ol></section>
-    <section class="learning-tracks" aria-labelledby="learning-tracks-title"><header><p class="eyebrow">Curriculum</p><h2 id="learning-tracks-title">${content.trackLabel}</h2><p>${content.trackLead}</p></header><div class="learning-track-grid">${content.tracks.map(track => `<a href="#/post/${track[4]}" class="learning-map-card"><span>${track[0]}</span><div><small>${track[2]}</small><h3>${track[1]}</h3><p>${track[3]}</p><b>${content.open} <i aria-hidden="true">→</i></b></div></a>`).join('')}</div></section>
+    <section class="learning-tracks" aria-labelledby="learning-tracks-title"><header><p class="eyebrow">Curriculum</p><h2 id="learning-tracks-title">${content.trackLabel}</h2><p>${content.trackLead}</p></header><div class="learning-track-grid">${content.tracks.map(track => `<a href="${trackHref(track)}" class="learning-map-card"><span>${track[0]}</span><div><small>${track[2]}</small><h3>${track[1]}</h3><p>${track[3]}</p><b>${content.open} <i aria-hidden="true">→</i></b></div></a>`).join('')}</div></section>
     <section class="learning-methods" aria-labelledby="learning-methods-title"><h2 id="learning-methods-title">${content.methodTitle}</h2><div>${content.methods.map((method, index) => `<article><span>0${index + 1}</span><h3>${method[0]}</h3><p>${method[1]}</p></article>`).join('')}</div></section>
     <section class="learning-bridge"><div><p class="eyebrow">Shared methods</p><h2>${content.bridgeTitle}</h2><p>${content.bridgeText}</p></div><div class="learning-bridge-actions"><a href="#/learning/statistics">${content.bridgeLink}</a><a href="#/blog/data-analysis">${content.dataLink}</a></div></section>
     <aside class="learning-source-note"><h2>${content.sourceTitle}</h2><p>${content.sourceText}</p></aside>
