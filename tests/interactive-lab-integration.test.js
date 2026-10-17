@@ -47,3 +47,10 @@ test('interactive experiment styles include responsive and reduced-motion rules'
   assert.match(css, /@media \(max-width: 720px\)[\s\S]*\.lab-method/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)/);
 });
+
+test('Posner detection instructions do not describe a left-right accuracy judgment', () => {
+  const source = fs.readFileSync(path.join(root, 'interactive-lab.js'), 'utf8');
+
+  assert.doesNotMatch(source, /兼顧速度與正確率/);
+  assert.doesNotMatch(source, /balance speed with accuracy/i);
+});

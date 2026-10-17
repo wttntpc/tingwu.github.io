@@ -57,16 +57,21 @@
       definitions: [['有效提示', '箭頭與圓點出現在同一側。'], ['無效提示', '箭頭先把注意力帶到另一側。'], ['中性提示', '雙向箭頭不提供位置資訊。']],
       privacy: '本實驗只在你的瀏覽器中計算；反應資料不會上傳、儲存或加入研究資料庫。',
       start: '開始 6 次練習', practice: '練習', formal: '正式測驗', ready: '準備好進入正式測驗',
-      formalIntro: '接下來共 32 次。請保持看著中央十字，並兼顧速度與正確率。', formalStart: '開始正式測驗',
+      formalIntro: '接下來共 32 次。請持續看著中央十字；不必判斷左右，只要看到圓點就立即反應。', formalStart: '開始正式測驗',
       progress: '進度', left: '← 左', right: '右 →', correct: '正確', incorrect: '方向不符', timeout: '這次沒有收到反應',
       resultTitle: '你的這次結果', resultLead: '以下只描述這一次、這台裝置上的表現，不代表固定能力。',
-      median: '正確反應時間中位數', accuracy: '正確率', cueCost: '注意力重新定向成本',
+      median: '反應時間中位數', cueCost: '注意力重新定向成本',
       cueFormula: '無效提示 RT − 有效提示 RT', excluded: '未納入 RT 比較的試次', retry: '再做一次',
       interpretationPositive: '這次無效提示較慢，符合注意力先被帶往錯誤位置、之後需要重新定向的典型模式。',
       interpretationOther: '這次沒有出現典型的正向差值。試次數、裝置延遲、疲勞與自然波動都可能影響個人結果。',
       predictionLabels: { valid: '有效提示最快', same: '三種差不多', invalid: '無效提示最快', unsure: '未選擇' },
-      limitsTitle: '如何正確解讀', limits: ['比較條件差異，比單看左邊或右邊的 RT 更有意義。', '錯誤反應及過快／過慢反應不納入 RT 中位數，但仍會反映在正確率。', '手機、鍵盤、瀏覽器與螢幕更新率會造成延遲，因此不宜跨裝置比較。'],
-      source: '閱讀經典研究：Posner、Snyder 與 Davidson（1980）'
+      limitsTitle: '如何正確解讀', limits: ['這是單鍵目標偵測作業，重點是三種提示條件的反應時間差異，不是左右位置判斷題。', '沒有反應，以及過快／過慢的反應不納入 RT 中位數；排除數量會另外列出。', '手機、鍵盤、瀏覽器與螢幕更新率會造成延遲，因此不宜跨裝置比較。'],
+      scienceKicker: '小小科普｜這個實驗有趣在哪裡？', scienceTitle: '眼睛維持不動，注意力仍然可以先移到別處',
+      covertTitle: '隱性注意力（covert attention）', covertText: '眼睛仍看著中央十字，但心理上的選擇已移到箭頭提示的周邊位置。這正是本作業主要想呈現的現象。',
+      overtTitle: '外顯注意力（overt attention）', overtText: '轉動眼睛或頭部，把目標移到中央視野。這種方向改變通常看得見，也可以用眼動儀記錄。',
+      eyeNote: '眼睛移動不等於注意力本身：凝視位置只能告訴我們眼睛朝哪裡，不能完整代表心智正在選擇什麼。兩者經常合作，例如眼球跳視前常先把注意力移向下一個目標，但它們可以被實驗分開研究。',
+      designNote: '中央箭頭是具有方向意義的符號提示。若無效提示使反應較慢，代表大腦可能先依箭頭分配注意力，之後才重新轉向真正出現圓點的位置；這是「提示效果」，不是箭頭把眼睛拉走。',
+      source: '經典 Posner 空間提示研究', attentionReview: '視覺注意力回顧：Carrasco（2011）'
     },
     en: {
       back: '← Back to the interactive lab', eyebrow: 'Attention experiment · 01', title: 'Can an arrow pull your attention?',
@@ -85,15 +90,20 @@
       definitions: [['Valid cue', 'The arrow and dot appear on the same side.'], ['Invalid cue', 'The arrow first draws attention to the other side.'], ['Neutral cue', 'A double arrow provides no location information.']],
       privacy: 'All calculations stay in this browser. Responses are not uploaded, stored, or added to a research database.',
       start: 'Start 6 practice trials', practice: 'Practice', formal: 'Test', ready: 'Ready for the test',
-      formalIntro: 'There are 32 test trials. Keep looking at the central cross and balance speed with accuracy.', formalStart: 'Start the test',
+      formalIntro: 'There are 32 test trials. Keep looking at the central cross; do not judge left versus right—respond as soon as the dot appears.', formalStart: 'Start the test',
       progress: 'Progress', left: '← Left', right: 'Right →', correct: 'Correct', incorrect: 'Wrong direction', timeout: 'No response recorded',
       resultTitle: 'Your result this time', resultLead: 'This describes one session on one device; it is not a measure of fixed ability.',
-      median: 'Median correct RT', accuracy: 'Accuracy', cueCost: 'Reorienting cost', cueFormula: 'Invalid RT − valid RT', excluded: 'Trials excluded from RT comparison', retry: 'Try again',
+      median: 'Median response time', cueCost: 'Reorienting cost', cueFormula: 'Invalid RT − valid RT', excluded: 'Trials excluded from RT comparison', retry: 'Try again',
       interpretationPositive: 'Invalid cues were slower this time, matching the typical pattern in which attention must be redirected from the wrong location.',
       interpretationOther: 'A typical positive difference did not appear this time. Trial count, device latency, fatigue, and ordinary variation can all affect an individual session.',
       predictionLabels: { valid: 'Valid cues fastest', same: 'All three similar', invalid: 'Invalid cues fastest', unsure: 'No prediction selected' },
-      limitsTitle: 'How to interpret this responsibly', limits: ['Condition differences are more informative than raw left-versus-right RTs.', 'Incorrect, implausibly fast, and very slow trials are excluded from median RT but remain reflected in accuracy.', 'Phones, keyboards, browsers, and refresh rates add latency, so avoid comparisons across devices.'],
-      source: 'Read the classic study: Posner, Snyder, and Davidson (1980)'
+      limitsTitle: 'How to interpret this responsibly', limits: ['This is a one-key target-detection task. The main outcome is the reaction-time difference among cue conditions, not a left-right identification score.', 'Missed responses and implausibly fast or slow responses are excluded from median RT; the excluded count is reported separately.', 'Phones, keyboards, browsers, and refresh rates add latency, so avoid comparisons across devices.'],
+      scienceKicker: 'A short explainer | Why is this design interesting?', scienceTitle: 'Attention can move while the eyes remain still',
+      covertTitle: 'Covert attention', covertText: 'The eyes stay on the central cross while mental selection shifts toward the peripheral location indicated by the arrow. This is the phenomenon the task is designed to demonstrate.',
+      overtTitle: 'Overt attention', overtText: 'The eyes or head turn so the target reaches central vision. This change is visible and can be recorded with eye tracking.',
+      eyeNote: 'Eye movement is not attention itself: gaze position tells us where the eyes point, not everything the mind is selecting. The systems often cooperate—for example, covert attention commonly moves to a future target before a saccade—but experiments can dissociate them.',
+      designNote: 'The central arrow is a symbolic directional cue. Slower responses after invalid cues suggest attention may first have followed the arrow and then reoriented to the dot. This is a cueing effect, not evidence that the arrow physically pulled the eyes.',
+      source: 'Classic Posner spatial-cueing study', attentionReview: 'Visual-attention review: Carrasco (2011)'
     }
   };
 
@@ -119,6 +129,23 @@
   function buildPosnerTaskShellMarkup(lang = 'zh', phase = 'practice', trialCount = 0) {
     const c = posnerCopy[lang] || posnerCopy.zh;
     return `<div class="page-shell experiment-page experiment-running"><a class="back-link" href="#/lab">${c.back}</a><header class="task-status"><div><p class="eyebrow">${phase === 'practice' ? c.practice : c.formal}</p><h1>${c.title}</h1></div><p><span>${c.progress}</span> <strong data-posner-progress>0 / ${trialCount}</strong></p></header><p class="task-fixation-reminder">${lang === 'zh' ? '請持續盯著中央「＋」；箭頭出現時先不要作答，看到圓點才按下反應鍵。' : 'Keep looking at the central “+”. Do not respond to the arrow; press the response key only when the dot appears.'}</p><div class="posner-stage" data-posner-stage aria-live="polite"><span class="posner-fixation" aria-hidden="true">+</span></div><div class="posner-response-controls" aria-label="${lang === 'zh' ? '單一反應鍵' : 'Single response key'}"><button type="button" data-posner-response="Space" disabled>${lang === 'zh' ? '看到圓點，立即反應' : 'Respond when the dot appears'}</button></div><p class="task-hint">${lang === 'zh' ? '電腦：按空白鍵　手機／平板：用手指點上方反應按鈕' : 'Computer: press Space · Phone/tablet: tap the response button above'}</p></div>`;
+  }
+
+  function formatPosnerRt(value) {
+    return value === null || value === undefined ? '—' : `${Math.round(value)} ms`;
+  }
+
+  function buildPosnerResultsMarkup(lang = 'zh', summary, prediction = 'unsure') {
+    const c = posnerCopy[lang] || posnerCopy.zh;
+    const rows = ['valid', 'neutral', 'invalid'].map(condition => `<tr><th scope="row">${c[condition]} RT</th><td>${formatPosnerRt(summary.conditions[condition].medianRt)}</td></tr>`).join('');
+    const interpretation = summary.cueingCost !== null && summary.cueingCost > 0 ? c.interpretationPositive : c.interpretationOther;
+    return `<div class="page-shell experiment-page"><a class="back-link" href="#/lab">${c.back}</a><header class="result-header"><p class="eyebrow">Result</p><h1>${c.resultTitle}</h1><p>${c.resultLead}</p></header>
+      <section class="result-summary" aria-labelledby="cue-cost-title"><div><span>${c.cueCost}</span><strong id="cue-cost-title">${formatPosnerRt(summary.cueingCost)}</strong><small>${c.cueFormula}</small></div><p>${interpretation}</p></section>
+      <div class="result-table-wrap"><table><thead><tr><th>${lang === 'zh' ? '提示條件' : 'Cue condition'}</th><th>${c.median}</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <dl class="result-notes"><div><dt>${lang === 'zh' ? '你的預測' : 'Your prediction'}</dt><dd>${c.predictionLabels[prediction] || c.predictionLabels.unsure}</dd></div><div><dt>${c.excluded}</dt><dd>${summary.excludedCount} / ${summary.totalCount}</dd></div></dl>
+      <section class="result-limits"><h2>${c.limitsTitle}</h2><ul>${c.limits.map(item => `<li>${item}</li>`).join('')}</ul></section>
+      <section class="result-science" aria-labelledby="posner-science-title"><p class="section-kicker">${c.scienceKicker}</p><h2 id="posner-science-title">${c.scienceTitle}</h2><div class="attention-contrast"><article><h3>${c.covertTitle}</h3><p>${c.covertText}</p></article><article><h3>${c.overtTitle}</h3><p>${c.overtText}</p></article></div><p><strong>${lang === 'zh' ? '關鍵差別：' : 'Key distinction: '}</strong>${c.eyeNote}</p><p>${c.designNote}</p><div class="result-sources"><a href="https://pubmed.ncbi.nlm.nih.gov/7381367/" target="_blank" rel="noopener noreferrer">${c.source} ↗</a><a href="https://pubmed.ncbi.nlm.nih.gov/21549742/" target="_blank" rel="noopener noreferrer">${c.attentionReview} ↗</a></div></section>
+      <button class="experiment-primary" type="button" data-posner-retry>${c.retry}</button></div>`;
   }
 
   function clearTimers() {
@@ -206,19 +233,9 @@
       container.innerHTML = `<div class="page-shell experiment-page"><a class="back-link" href="#/lab">${c.back}</a><section class="experiment-transition"><p class="eyebrow">${c.ready}</p><h1>${c.title}</h1><p>${c.formalIntro}</p><button class="experiment-primary" type="button" data-posner-formal>${c.formalStart}</button></section></div>`;
     }
 
-    function formatRt(value) {
-      return value === null ? '—' : `${Math.round(value)} ms`;
-    }
-
-    function formatAccuracy(value) {
-      return value === null ? '—' : `${Math.round(value * 100)}%`;
-    }
-
     function showResults() {
       const summary = window.PosnerTask.summarizePosnerTrials(results);
-      const rows = ['valid', 'neutral', 'invalid'].map(condition => `<tr><th scope="row">${c[condition]}</th><td>${formatRt(summary.conditions[condition].medianRt)}</td><td>${formatAccuracy(summary.conditions[condition].accuracy)}</td></tr>`).join('');
-      const interpretation = summary.cueingCost !== null && summary.cueingCost > 0 ? c.interpretationPositive : c.interpretationOther;
-      container.innerHTML = `<div class="page-shell experiment-page"><a class="back-link" href="#/lab">${c.back}</a><header class="result-header"><p class="eyebrow">Result</p><h1>${c.resultTitle}</h1><p>${c.resultLead}</p></header><section class="result-summary" aria-labelledby="cue-cost-title"><div><span>${c.cueCost}</span><strong id="cue-cost-title">${formatRt(summary.cueingCost)}</strong><small>${c.cueFormula}</small></div><p>${interpretation}</p></section><div class="result-table-wrap"><table><thead><tr><th>${lang === 'zh' ? '提示條件' : 'Cue condition'}</th><th>${c.median}</th><th>${c.accuracy}</th></tr></thead><tbody>${rows}</tbody></table></div><dl class="result-notes"><div><dt>${lang === 'zh' ? '你的預測' : 'Your prediction'}</dt><dd>${c.predictionLabels[prediction]}</dd></div><div><dt>${c.excluded}</dt><dd>${summary.excludedCount} / ${summary.totalCount}</dd></div></dl><section class="result-limits"><h2>${c.limitsTitle}</h2><ul>${c.limits.map(item => `<li>${item}</li>`).join('')}</ul><a href="https://pubmed.ncbi.nlm.nih.gov/7381367/" target="_blank" rel="noopener noreferrer">${c.source} ↗</a></section><button class="experiment-primary" type="button" data-posner-retry>${c.retry}</button></div>`;
+      container.innerHTML = buildPosnerResultsMarkup(lang, summary, prediction);
     }
 
     function nextTrial() {
@@ -273,5 +290,5 @@
     };
   }
 
-  return { buildLabMarkup, buildPosnerIntroMarkup, buildPosnerTaskShellMarkup, renderLab, renderPosner, cleanup };
+  return { buildLabMarkup, buildPosnerIntroMarkup, buildPosnerTaskShellMarkup, buildPosnerResultsMarkup, renderLab, renderPosner, cleanup };
 });

@@ -3,7 +3,8 @@ const assert = require('node:assert/strict');
 const {
   buildLabMarkup,
   buildPosnerIntroMarkup,
-  buildPosnerTaskShellMarkup
+  buildPosnerTaskShellMarkup,
+  buildPosnerResultsMarkup
 } = require('../interactive-lab.js');
 const {
   buildEmotionGoNoGoIntroMarkup,
@@ -99,4 +100,25 @@ test('Posner task uses one shared response button instead of left and right choi
   assert.match(markup, /data-posner-response="Space"/);
   assert.match(markup, /空白鍵/);
   assert.match(markup, /看到圓點/);
+});
+
+test('Posner results focus on reaction time and explain covert versus overt attention', () => {
+  const markup = buildPosnerResultsMarkup('zh', {
+    conditions: {
+      valid: { medianRt: 280, accuracy: 1 },
+      neutral: { medianRt: 300, accuracy: 1 },
+      invalid: { medianRt: 340, accuracy: 1 }
+    },
+    cueingCost: 60,
+    excludedCount: 1,
+    totalCount: 32
+  }, 'valid');
+
+  assert.doesNotMatch(markup, /正確率/);
+  assert.match(markup, /小小科普/);
+  assert.match(markup, /隱性注意力/);
+  assert.match(markup, /外顯注意力/);
+  assert.match(markup, /眼睛.*不等於.*注意力/s);
+  assert.match(markup, /有效提示 RT.*中性提示 RT.*無效提示 RT/s);
+  assert.match(markup, /pubmed\.ncbi\.nlm\.nih\.gov\/21549742/);
 });
