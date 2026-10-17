@@ -13,11 +13,11 @@ test('professional learning map links to a dedicated statistics learning map', (
   assert.match(app, /function renderStatisticsLearningMap\(\)/);
 });
 
-test('statistics map separates published weekly notes from missing source material', () => {
+test('statistics map lists each source-supported weekly note in chronological order', () => {
   assert.match(app, /2026\/09\/15/);
   assert.match(app, /2026\/09\/22/);
   assert.match(app, /2026\/09\/29/);
-  assert.match(app, /來源待補/);
+  assert.match(app, /二元結果、潛在結果與因果圖/);
   assert.match(app, /2026\/10\/13/);
   assert.match(app, /2026\/10\/16/);
 });
@@ -26,6 +26,7 @@ test('each source-supported class week has a discoverable article', () => {
   const expected = [
     'bayesian-causal-inference-week-01',
     'bayesian-causal-inference-week-02',
+    'bayesian-causal-inference-week-03',
     'bayesian-causal-inference-week-04',
     'bayesian-causal-inference-week-05'
   ];

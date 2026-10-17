@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261017-03';
+const SITE_VERSION = '20261017-04';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -295,6 +295,7 @@ function closeMenu() {
 const POSTS_DATA = [
   { "id": "bayesian-causal-inference-week-05", "title": "貝氏因果推論學習筆記 05：隨機化不只是抽籤——從估計目標到區組設計", "date": "2026-10-16", "category": "data-analysis", "tags": ["因果推論", "隨機化", "Estimand", "Neyman推論", "區組設計", "學習筆記"], "description": "從 Perfect Doctor、邊際與聯合分布、CRE 與 Bernoulli 隨機化，理解 estimand、estimator、Horvitz–Thompson 加權與區組設計。" },
   { "id": "bayesian-causal-inference-week-04", "title": "貝氏因果推論學習筆記 04：只靠隨機分派，如何得到精確 p 值？", "date": "2026-10-13", "category": "data-analysis", "tags": ["因果推論", "Fisher隨機化檢定", "Sharp Null", "置換檢定", "研究設計", "學習筆記"], "description": "從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。" },
+  { "id": "bayesian-causal-inference-week-03", "title": "貝氏因果推論學習筆記 03：從風險差到因果圖——哪些變數該控制？", "date": "2026-09-29", "category": "data-analysis", "tags": ["因果推論", "二元結果", "SUTVA", "DAG", "混淆變數", "學習筆記"], "description": "從 RD、RR、OR 與 Fisher 精確檢定，進入潛在結果、SUTVA、混淆變數、對撞變數、中介與工具變數，理解控制變數必須依因果結構決定。" },
   { "id": "bayesian-causal-inference-week-02", "title": "貝氏因果推論學習筆記 02：沒有隨機實驗，傾向分數能幫上什麼忙？", "date": "2026-09-22", "category": "data-analysis", "tags": ["因果推論", "傾向分數", "觀察性研究", "有限母體", "超母體", "學習筆記"], "description": "從觀察性資料的混淆問題出發，理解傾向分數、交換性與重疊性，並區分有限母體和超母體推論回答的不同問題。" },
   { "id": "bayesian-causal-inference-week-01", "title": "貝氏因果推論學習筆記 01：兩組平均數不同，為什麼還不等於因果效果？", "date": "2026-09-15", "category": "data-analysis", "tags": ["貝氏統計", "因果推論", "潛在結果", "隨機分派", "DAG", "學習筆記"], "description": "從 TMS 例子理解潛在結果、反事實、隨機分派、混淆與因果識別，並釐清 Bayesian 建模之前必須先回答的研究問題。" },
   { "id": "hrv-three-device-analysis-practice", "title": "從 BBI／RRI 到可比較的 HRV：我的 Garmin、Portable ECG 與 BIOPAC 分析實作", "date": "2026-09-23", "category": "data-analysis", "tags": ["HRV", "Garmin", "Portable ECG", "BIOPAC", "品質控制", "敏感度分析"], "description": "以兩人三設備先導專案為例，拆解共同時間窗、R peak、BBI／RRI 品質控制、HRV 指標、敏感度分析與重複量測一致性限制。" },
@@ -721,7 +722,7 @@ const statisticsLearningMapContent = {
     weeks: [
       ['01', '2026/09/15', '因果思考與潛在結果', '從相關與因果的差異，進入反事實、隨機分派及識別假設。', 'bayesian-causal-inference-week-01', 'published'],
       ['02', '2026/09/22', '傾向分數與推論範圍', '理解觀察性資料如何處理已測量混淆，並區分有限母體與超母體。', 'bayesian-causal-inference-week-02', 'published'],
-      ['03', '2026/09/29', '本週內容等待來源補充', 'NotebookLM 目前無法檢索三段錄音的逐字內容；取得講義或筆記後再整理。', '', 'pending'],
+      ['03', '2026/09/29', '二元結果、潛在結果與因果圖', '從 RD、RR、OR 進入 SUTVA，並分辨混淆、對撞、中介與工具變數。', 'bayesian-causal-inference-week-03', 'published'],
       ['04', '2026/10/13', 'Fisher 隨機化檢定', '從嚴格虛無假設建立隨機化分配、精確 p 值與蒙地卡羅近似。', 'bayesian-causal-inference-week-04', 'published'],
       ['05', '2026/10/16', '估計目標、隨機化機制與區組', '區分 estimand 與 estimator，並理解不等機率指派、HT 加權及區組設計。', 'bayesian-causal-inference-week-05', 'published']
     ],
@@ -747,7 +748,7 @@ const statisticsLearningMapContent = {
     weeks: [
       ['01', '2026/09/15', 'Causal thinking and potential outcomes', 'From association versus causation to counterfactuals, randomization, and identification assumptions.', 'bayesian-causal-inference-week-01', 'published'],
       ['02', '2026/09/22', 'Propensity scores and scope of inference', 'Address measured confounding in observational data and distinguish finite from superpopulation inference.', 'bayesian-causal-inference-week-02', 'published'],
-      ['03', '2026/09/29', 'Awaiting source material', 'The three recordings currently have no retrievable transcript; the note will follow once slides or notes are available.', '', 'pending'],
+      ['03', '2026/09/29', 'Binary outcomes, potential outcomes, and DAGs', 'Move from RD, RR, and OR to SUTVA and distinguish confounders, colliders, mediators, and instruments.', 'bayesian-causal-inference-week-03', 'published'],
       ['04', '2026/10/13', 'Fisher randomization inference', 'Build exact p values and Monte Carlo approximations from the sharp null and assignment mechanism.', 'bayesian-causal-inference-week-04', 'published'],
       ['05', '2026/10/16', 'Estimands, assignment, and blocking', 'Separate estimands from estimators and connect unequal assignment, HT weighting, and blocked designs.', 'bayesian-causal-inference-week-05', 'published']
     ],
@@ -797,7 +798,7 @@ function renderDataAnalysisGuide(posts) {
     ['research-data-visualization'],
     ['p-value-hypothesis-testing', 'effect-size-confidence-interval-sample-size', 'post-hoc-power-confidence-interval'],
     ['python-statistics-pipeline', 'audit-ai-statistical-analysis-results', 'garmin-raw-data-hrv'],
-    ['bayesian-causal-inference-week-01', 'bayesian-causal-inference-week-02', 'bayesian-causal-inference-week-04', 'bayesian-causal-inference-week-05']
+    ['bayesian-causal-inference-week-01', 'bayesian-causal-inference-week-02', 'bayesian-causal-inference-week-03', 'bayesian-causal-inference-week-04', 'bayesian-causal-inference-week-05']
   ];
   const tracks = c.dataGuideTracks.map(([title, description], index) => {
     const links = trackPostIds[index]

@@ -16,6 +16,14 @@
     "description": "從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。"
   },
   {
+    "id": "bayesian-causal-inference-week-03",
+    "title": "貝氏因果推論學習筆記 03：從風險差到因果圖——哪些變數該控制？",
+    "date": "2026-09-29",
+    "category": "data-analysis",
+    "tags": ["因果推論", "二元結果", "SUTVA", "DAG", "混淆變數", "學習筆記"],
+    "description": "從 RD、RR、OR 與 Fisher 精確檢定，進入潛在結果、SUTVA、混淆變數、對撞變數、中介與工具變數，理解控制變數必須依因果結構決定。"
+  },
+  {
     "id": "bayesian-causal-inference-week-02",
     "title": "貝氏因果推論學習筆記 02：沒有隨機實驗，傾向分數能幫上什麼忙？",
     "date": "2026-09-22",

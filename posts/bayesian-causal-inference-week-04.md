@@ -4,7 +4,7 @@
 > **每週課程紀錄｜2026/10/13**
 > 這週進入 Fisher 隨機化檢定：不先假設結果服從常態分布，而是回到實驗「原本如何隨機分派」。
 
-[回到統計學習地圖](#/learning/statistics) · [上一篇：傾向分數](#/post/bayesian-causal-inference-week-02)
+[回到統計學習地圖](#/learning/statistics) · [上一篇：二元結果、SUTVA 與因果圖](#/post/bayesian-causal-inference-week-03)
 
 ## 把實驗重新洗牌
 
