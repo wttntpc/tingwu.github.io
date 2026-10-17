@@ -5,6 +5,10 @@ const {
   buildPosnerIntroMarkup,
   buildPosnerTaskShellMarkup
 } = require('../interactive-lab.js');
+const {
+  buildEmotionGoNoGoIntroMarkup,
+  buildEmotionGoNoGoTaskShellMarkup
+} = require('../emotion-gonogo-ui.js');
 
 test('lab landing page introduces the interactive learning flow in Chinese', () => {
   const markup = buildLabMarkup('zh');
@@ -12,6 +16,39 @@ test('lab landing page introduces the interactive learning flow in Chinese', () 
   assert.match(markup, /腦與身體互動實驗室/);
   assert.match(markup, /先預測/);
   assert.match(markup, /#\/lab\/posner/);
+  assert.match(markup, /#\/lab\/emotion-gonogo/);
+});
+
+test('emotion Go/No-Go introduction teaches both reversed mappings before prediction', () => {
+  const markup = buildEmotionGoNoGoIntroMarkup('zh');
+  const guideIndex = markup.indexOf('實驗怎麼進行');
+  const mappingsIndex = markup.indexOf('兩個規則區塊');
+  const predictionIndex = markup.indexOf('理解規則後，再做預測');
+
+  assert.ok(guideIndex >= 0);
+  assert.ok(mappingsIndex > guideIndex);
+  assert.ok(predictionIndex > mappingsIndex);
+  assert.match(markup, /快樂臉.*GO.*悲傷臉.*NO-GO/s);
+  assert.match(markup, /悲傷臉.*GO.*快樂臉.*NO-GO/s);
+  assert.match(markup, /空白鍵/);
+  assert.match(markup, /手機.*按鈕/);
+  assert.match(markup, /不會上傳/);
+  assert.match(markup, /data-emotion-start/);
+});
+
+test('emotion Go/No-Go task exposes one response button and explains that No-Go means no action', () => {
+  const markup = buildEmotionGoNoGoTaskShellMarkup('zh', {
+    phase: 'practice',
+    trialCount: 6,
+    goEmotion: 'happy',
+    noGoEmotion: 'sad'
+  });
+  const responseButtons = markup.match(/data-emotion-response=/g) || [];
+
+  assert.equal(responseButtons.length, 1);
+  assert.match(markup, /data-emotion-response="Space"/);
+  assert.match(markup, /悲傷臉.*不要按/);
+  assert.doesNotMatch(markup, /臉臉/);
 });
 
 test('lab landing page has an English version', () => {

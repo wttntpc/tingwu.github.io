@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261017-04';
+const SITE_VERSION = '20261017-05';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -1939,6 +1939,7 @@ async function renderDisclaimer() {
 async function router() {
   if (!app) return;
   window.InteractiveLab?.cleanup();
+  window.EmotionGoNoGoUI?.cleanup();
   closeMenu();
   updateChrome();
   app.innerHTML = '<div class="loading">Loading<span>…</span></div>';
@@ -1950,6 +1951,7 @@ async function router() {
     else if (path === '/learning/statistics') renderStatisticsLearningMap();
     else if (path === '/lab') window.InteractiveLab.renderLab(app, lang);
     else if (path === '/lab/posner') window.InteractiveLab.renderPosner(app, lang);
+    else if (path === '/lab/emotion-gonogo') window.EmotionGoNoGoUI.renderEmotionGoNoGo(app, lang);
     else if (path === '/interests') renderInterests();
     else if (path === '/publications') await renderPublications();
     else if (path === '/blog' || path.startsWith('/blog/')) await renderBlog(path.split('/')[2] || 'all');

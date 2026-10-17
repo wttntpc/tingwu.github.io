@@ -17,8 +17,10 @@
       taskName: 'Posner 空間提示作業',
       taskDesc: '比較有效、無效與中性提示下的反應時間，親手觀察注意力重新定向的成本。約需 2–3 分鐘，建議使用實體鍵盤。',
       open: '開始實驗 →',
+      task2Label: '第二個互動實驗', task2Title: '情緒會影響「忍住不按」嗎？', task2Name: '情緒臉孔 Go／No-Go',
+      task2Desc: '用互換規則比較快樂與悲傷示意臉下的反應速度及抑制正確率。約需 4–5 分鐘，電腦與手機皆可操作。',
       coming: '接下來',
-      future: ['情緒臉孔 Go／No-Go：情緒與抑制控制', '三分鐘活動挑戰：運動前後的反應時間與心情']
+      future: ['三分鐘活動挑戰：運動前後的反應時間與心情']
     },
     en: {
       eyebrow: 'Interactive experiments',
@@ -30,8 +32,10 @@
       taskName: 'Posner spatial cueing task',
       taskDesc: 'Compare response times after valid, invalid, and neutral cues to experience the cost of reorienting attention. Allow 2–3 minutes and use a physical keyboard if possible.',
       open: 'Start experiment →',
+      task2Label: 'Second interactive experiment', task2Title: 'Does emotion change your ability to withhold a response?', task2Name: 'Emotional face Go/No-Go',
+      task2Desc: 'Use reversed rules to compare response speed and inhibitory accuracy for happy and sad schematic faces. Allow 4–5 minutes; works on computers and phones.',
       coming: 'Coming next',
-      future: ['Emotional face Go/No-Go: emotion and inhibitory control', 'Three-minute movement challenge: response time and mood before and after activity']
+      future: ['Three-minute movement challenge: response time and mood before and after activity']
     }
   };
 
@@ -98,6 +102,7 @@
     return `<div class="page-shell lab-page"><header class="lab-hero"><p class="eyebrow">${c.eyebrow}</p><h1>${c.title}</h1><p>${c.lead}</p></header>
       <section class="lab-method" aria-label="${lang === 'zh' ? '互動學習步驟' : 'Interactive learning steps'}">${c.steps.map(step => `<article><span>${step[0]}</span><h2>${step[1]}</h2><p>${step[2]}</p></article>`).join('')}</section>
       <section class="lab-feature" aria-labelledby="lab-feature-title"><div><p>${c.taskLabel}</p><h2 id="lab-feature-title">${c.taskTitle}</h2><strong>${c.taskName}</strong><p>${c.taskDesc}</p><a href="#/lab/posner">${c.open}</a></div><div class="lab-cue-preview" aria-hidden="true"><span>←</span><i>+</i><b>●</b></div></section>
+      <section class="lab-feature lab-feature-emotion" aria-labelledby="lab-emotion-title"><div><p>${c.task2Label}</p><h2 id="lab-emotion-title">${c.task2Title}</h2><strong>${c.task2Name}</strong><p>${c.task2Desc}</p><a href="#/lab/emotion-gonogo">${c.open}</a></div><div class="lab-emotion-preview" aria-hidden="true"><span class="emotion-face emotion-face-happy"><i></i><b></b><em></em></span><span class="emotion-face emotion-face-sad"><i></i><b></b><em></em></span></div></section>
       <section class="lab-coming"><p class="eyebrow">${c.coming}</p><ol>${c.future.map(item => `<li>${item}</li>`).join('')}</ol></section></div>`;
   }
 
