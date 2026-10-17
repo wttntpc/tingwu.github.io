@@ -25,6 +25,15 @@ test('main router exposes the lab landing page and Posner experiment', () => {
   assert.match(app, /InteractiveLab\?\.cleanup/);
 });
 
+test('primary navigation omits the interests and projects entry', () => {
+  const app = fs.readFileSync(path.join(root, 'app.js'), 'utf8');
+  const chineseNav = app.match(/nav: \[\['首頁'[\s\S]*?\]\],/)?.[0] || '';
+  const englishNav = app.match(/nav: \[\['Home'[\s\S]*?\]\],/)?.[0] || '';
+
+  assert.doesNotMatch(chineseNav, /興趣與作品|\/interests/);
+  assert.doesNotMatch(englishNav, /Interests & projects|\/interests/);
+});
+
 test('interactive experiment styles include responsive and reduced-motion rules', () => {
   const css = fs.readFileSync(path.join(root, 'style.css'), 'utf8');
 
