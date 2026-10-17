@@ -8,7 +8,8 @@ const {
 } = require('../interactive-lab.js');
 const {
   buildEmotionGoNoGoIntroMarkup,
-  buildEmotionGoNoGoTaskShellMarkup
+  buildEmotionGoNoGoTaskShellMarkup,
+  buildEmotionResultsMarkup
 } = require('../emotion-gonogo-ui.js');
 
 test('lab landing page introduces the interactive learning flow in Chinese', () => {
@@ -18,38 +19,66 @@ test('lab landing page introduces the interactive learning flow in Chinese', () 
   assert.match(markup, /先預測/);
   assert.match(markup, /#\/lab\/posner/);
   assert.match(markup, /#\/lab\/emotion-gonogo/);
+  assert.match(markup, /Mirabella.*2023/);
+  assert.match(markup, /憤怒.*快樂/s);
+  assert.doesNotMatch(markup, /悲傷/);
 });
 
-test('emotion Go/No-Go introduction teaches both reversed mappings before prediction', () => {
+test('gait-initiation adaptation teaches task relevance before prediction', () => {
   const markup = buildEmotionGoNoGoIntroMarkup('zh');
   const guideIndex = markup.indexOf('實驗怎麼進行');
-  const mappingsIndex = markup.indexOf('兩個規則區塊');
+  const mappingsIndex = markup.indexOf('兩種任務規則');
   const predictionIndex = markup.indexOf('理解規則後，再做預測');
 
   assert.ok(guideIndex >= 0);
   assert.ok(mappingsIndex > guideIndex);
   assert.ok(predictionIndex > mappingsIndex);
-  assert.match(markup, /快樂臉.*GO.*悲傷臉.*NO-GO/s);
-  assert.match(markup, /悲傷臉.*GO.*快樂臉.*NO-GO/s);
+  assert.match(markup, /憤怒.*快樂.*GO.*中性.*NO-GO/s);
+  assert.match(markup, /人物組別.*忽略表情/s);
+  assert.match(markup, /Mirabella.*2023/);
+  assert.match(markup, /步態啟動/);
+  assert.match(markup, /概念重現/);
   assert.match(markup, /空白鍵/);
   assert.match(markup, /手機.*按鈕/);
   assert.match(markup, /不會上傳/);
   assert.match(markup, /data-emotion-start/);
 });
 
-test('emotion Go/No-Go task exposes one response button and explains that No-Go means no action', () => {
+test('gait-initiation adaptation exposes one safe response button instead of asking users to step', () => {
   const markup = buildEmotionGoNoGoTaskShellMarkup('zh', {
     phase: 'practice',
-    trialCount: 6,
-    goEmotion: 'happy',
-    noGoEmotion: 'sad'
+    trialCount: 9,
+    rule: 'emotion',
+    goIdentity: 'a',
+    noGoIdentity: 'b'
   });
   const responseButtons = markup.match(/data-emotion-response=/g) || [];
 
   assert.equal(responseButtons.length, 1);
   assert.match(markup, /data-emotion-response="Space"/);
-  assert.match(markup, /悲傷臉.*不要按/);
+  assert.match(markup, /中性臉.*不要按/);
+  assert.match(markup, /不要真的向前踏步/);
   assert.doesNotMatch(markup, /臉臉/);
+});
+
+test('results distinguish the browser adaptation from the published gait findings', () => {
+  const condition = (goMedianRt, omissionRate = 0) => ({ goMedianRt, omissionRate, commissionRate: null });
+  const markup = buildEmotionResultsMarkup('zh', {
+    tasks: {
+      emotion: { angry: condition(410, .1), happy: condition(350), neutral: condition(null) },
+      identity: { angry: condition(365), happy: condition(360), neutral: condition(355) }
+    },
+    relevantRtDifference: 60,
+    irrelevantRtDifference: 5,
+    taskRelevanceInteraction: 55,
+    excludedRtCount: 0
+  }, 'relevant');
+
+  assert.match(markup, /687 vs 622 ms/);
+  assert.match(markup, /628 vs 619 ms/);
+  assert.match(markup, /步態啟動/);
+  assert.match(markup, /pubmed\.ncbi\.nlm\.nih\.gov\/35588387/);
+  assert.match(markup, /doi\.org\/10\.1037\/emo0001112/);
 });
 
 test('lab landing page has an English version', () => {
