@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261017-01';
+const SITE_VERSION = '20261017-02';
 
 let lang = localStorage.getItem('tingting-language') || 'zh';
 if (lang !== 'zh' && lang !== 'en') lang = 'zh';
@@ -452,17 +452,6 @@ const interestPageContent = {
   }
 };
 
-function renderHomeInterestPreview() {
-  const content = interestPageContent[lang] || interestPageContent.zh;
-  return `<section class="home-interests" aria-labelledby="home-interests-title">
-    <header class="home-interests-heading">
-      <div><p class="home-interests-label">${content.eyebrow}</p><h2 id="home-interests-title">${content.title}</h2></div>
-      <div><p class="home-interests-intro">${content.lead}</p><a class="home-interests-all" href="#/interests">${content.allProjects}</a></div>
-    </header>
-    <div class="home-interest-preview-list">${content.projects.map((project, index) => `<a href="${project.href}" target="_blank" rel="noopener noreferrer" aria-label="${project.title}${lang === 'zh' ? '（另開新視窗）' : ' (opens in a new window)'}"><span>0${index + 1}</span><div><small>${project.category}</small><strong>${project.title}</strong></div><i aria-hidden="true">↗</i></a>`).join('')}</div>
-  </section>`;
-}
-
 function renderInterests() {
   const content = interestPageContent[lang] || interestPageContent.zh;
   app.innerHTML = `<div class="page-shell interests-page">
@@ -528,7 +517,6 @@ async function renderHome() {
       <section class="home-block featured-publications"><div class="block-heading"><h2>${c.featuredTitle}</h2><a href="#/publications">${c.allPublications}</a></div><div class="publication-preview-list">${c.featuredPublications.map(item => `<a href="#/publications" class="publication-preview"><span>${item[0]}</span><div><b>${item[1]}</b><small>${item[2]}</small></div></a>`).join('')}</div></section>
     </div>
     <section class="home-block latest-section"><div class="block-heading"><h2>${c.latestTitle}</h2><a href="#/blog">${c.allPosts}</a></div><div class="post-list">${posts.map(postRow).join('')}</div></section>
-    ${renderHomeInterestPreview()}
   </div>`;
 }
 

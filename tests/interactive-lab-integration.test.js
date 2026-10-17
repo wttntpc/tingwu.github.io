@@ -32,6 +32,7 @@ test('primary navigation omits the interests and projects entry', () => {
 
   assert.doesNotMatch(chineseNav, /興趣與作品|\/interests/);
   assert.doesNotMatch(englishNav, /Interests & projects|\/interests/);
+  assert.doesNotMatch(app, /renderHomeInterestPreview/);
 });
 
 test('interactive experiment styles include responsive and reduced-motion rules', () => {
