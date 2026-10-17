@@ -28,6 +28,12 @@ test('valid and invalid cues point to the expected locations', () => {
   }
 });
 
+test('all Posner detection trials use one shared response key', () => {
+  const trials = createPosnerTrials({ valid: 2, invalid: 2, neutral: 2 }, () => 0.25);
+
+  assert.deepEqual([...new Set(trials.map(trial => trial.correctKey))], ['Space']);
+});
+
 test('trial generation rejects odd condition counts that cannot balance sides', () => {
   assert.throws(
     () => createPosnerTrials({ valid: 3, invalid: 2, neutral: 2 }),

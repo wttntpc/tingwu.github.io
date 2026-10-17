@@ -39,8 +39,8 @@
     zh: {
       back: '← 返回互動實驗室', eyebrow: 'Attention experiment · 01', title: '箭頭會把注意力帶走嗎？',
       lead: '這個作業測量「提示把注意力帶到某處後，我們多快找到目標」。先理解每一步與三種情境，再進行預測和練習。',
-      guideTitle: '實驗怎麼進行', guideLead: '每一次試次都依照相同順序進行。真正需要作答的是圓點出現的位置，不是箭頭方向。',
-      guideSteps: [['1', '固定注視', '眼睛盯著中央凝視點「＋」，整個試次都不要追著箭頭或圓點移動。'], ['2', '看見提示', '中央會短暫出現箭頭；這只是提示，先不要按鍵或點選。'], ['3', '辨認目標', '圓點出現在左側或右側時，盡快回應它的位置。'], ['4', '依裝置作答', '電腦請按鍵盤 ←／→ 方向鍵；手機或平板請用手指點下方對應的左／右按鈕。']],
+      guideTitle: '實驗怎麼進行', guideLead: '每一次試次都依照相同順序進行。真正需要反應的是圓點出現的時刻，不必判斷圓點在左邊或右邊。',
+      guideSteps: [['1', '固定注視', '眼睛盯著中央凝視點「＋」，整個試次都不要追著箭頭或圓點移動。'], ['2', '看見提示', '中央會短暫出現箭頭；這只是提示，先不要按鍵或點選。'], ['3', '偵測目標', '不論圓點出現在左側或右側，只要看到圓點就立即反應。'], ['4', '使用同一個反應鍵', '電腦請按空白鍵；手機或平板請用手指點下方單一反應按鈕。']],
       scenariosTitle: '先看三種情境', scenariosLead: '假設箭頭朝左：圓點接著出現在哪裡，決定這次屬於哪一種提示。',
       scenarios: [
         ['有效提示', '←', '● ·', '箭頭向左，圓點出現在左側；提示的位置正確。'],
@@ -67,8 +67,8 @@
     en: {
       back: '← Back to the interactive lab', eyebrow: 'Attention experiment · 01', title: 'Can an arrow pull your attention?',
       lead: 'This task measures how quickly we find a target after a cue directs attention. Learn the sequence and three situations before predicting and practising.',
-      guideTitle: 'How the experiment works', guideLead: 'Every trial follows the same sequence. Respond to the dot location, not to the arrow direction.',
-      guideSteps: [['1', 'Fixate', 'Keep your eyes on the central fixation point “+” throughout the trial; do not follow the arrow or dot with your eyes.'], ['2', 'See the cue', 'An arrow briefly appears at the center. It is only a cue, so do not respond yet.'], ['3', 'Find the target', 'When a dot appears on the left or right, respond to its location as quickly as possible.'], ['4', 'Use your device', 'On a computer, press the ← or → arrow key. On a phone or tablet, tap the matching left or right button with your finger.']],
+      guideTitle: 'How the experiment works', guideLead: 'Every trial follows the same sequence. Respond when the dot appears; you do not need to identify whether it is on the left or right.',
+      guideSteps: [['1', 'Fixate', 'Keep your eyes on the central fixation point “+” throughout the trial; do not follow the arrow or dot with your eyes.'], ['2', 'See the cue', 'An arrow briefly appears at the center. It is only a cue, so do not respond yet.'], ['3', 'Detect the target', 'Whether the dot appears on the left or right, respond as soon as you see it.'], ['4', 'Use one response key', 'On a computer, press the Space key. On a phone or tablet, tap the single response button with your finger.']],
       scenariosTitle: 'See the three situations first', scenariosLead: 'Suppose the arrow points left. Where the dot appears next determines the cue condition.',
       scenarios: [
         ['Valid cue', '←', '● ·', 'The arrow points left and the dot appears on the left: the cue correctly predicts the location.'],
@@ -109,6 +109,11 @@
       <section class="experiment-prediction" aria-labelledby="prediction-title"><p class="section-kicker">03 · ${c.predict}</p><h2 id="prediction-title">${c.question}</h2><div class="prediction-options">${c.choices.map(choice => `<label><input type="radio" name="posner-prediction" value="${choice[0]}"><span>${choice[1]}</span></label>`).join('')}</div></section>
       <aside class="experiment-privacy"><strong>${lang === 'zh' ? '資料隱私' : 'Data privacy'}</strong><p>${c.privacy}</p></aside>
       <button class="experiment-primary" type="button" data-posner-start>${c.start}</button></div>`;
+  }
+
+  function buildPosnerTaskShellMarkup(lang = 'zh', phase = 'practice', trialCount = 0) {
+    const c = posnerCopy[lang] || posnerCopy.zh;
+    return `<div class="page-shell experiment-page experiment-running"><a class="back-link" href="#/lab">${c.back}</a><header class="task-status"><div><p class="eyebrow">${phase === 'practice' ? c.practice : c.formal}</p><h1>${c.title}</h1></div><p><span>${c.progress}</span> <strong data-posner-progress>0 / ${trialCount}</strong></p></header><p class="task-fixation-reminder">${lang === 'zh' ? '請持續盯著中央「＋」；箭頭出現時先不要作答，看到圓點才按下反應鍵。' : 'Keep looking at the central “+”. Do not respond to the arrow; press the response key only when the dot appears.'}</p><div class="posner-stage" data-posner-stage aria-live="polite"><span class="posner-fixation" aria-hidden="true">+</span></div><div class="posner-response-controls" aria-label="${lang === 'zh' ? '單一反應鍵' : 'Single response key'}"><button type="button" data-posner-response="Space" disabled>${lang === 'zh' ? '看到圓點，立即反應' : 'Respond when the dot appears'}</button></div><p class="task-hint">${lang === 'zh' ? '電腦：按空白鍵　手機／平板：用手指點上方反應按鈕' : 'Computer: press Space · Phone/tablet: tap the response button above'}</p></div>`;
   }
 
   function clearTimers() {
@@ -189,7 +194,7 @@
     }
 
     function renderTaskShell() {
-      container.innerHTML = `<div class="page-shell experiment-page experiment-running"><a class="back-link" href="#/lab">${c.back}</a><header class="task-status"><div><p class="eyebrow">${phase === 'practice' ? c.practice : c.formal}</p><h1>${c.title}</h1></div><p><span>${c.progress}</span> <strong data-posner-progress>0 / ${trials.length}</strong></p></header><p class="task-fixation-reminder">${lang === 'zh' ? '請持續盯著中央「＋」；箭頭出現時先不要作答，看到圓點才回應。' : 'Keep looking at the central “+”. Do not respond to the arrow; respond only when the dot appears.'}</p><div class="posner-stage" data-posner-stage aria-live="polite"><span class="posner-fixation" aria-hidden="true">+</span></div><div class="posner-response-controls" aria-label="${lang === 'zh' ? '反應按鍵' : 'Response keys'}"><button type="button" data-posner-response="ArrowLeft" disabled>${c.left}</button><button type="button" data-posner-response="ArrowRight" disabled>${c.right}</button></div><p class="task-hint">${lang === 'zh' ? '電腦：按鍵盤 ←／→ 方向鍵　手機／平板：用手指點上方左／右按鈕' : 'Computer: press ← / → arrow keys · Phone/tablet: tap the left/right buttons above'}</p></div>`;
+      container.innerHTML = buildPosnerTaskShellMarkup(lang, phase, trials.length);
     }
 
     function showFormalTransition() {
@@ -248,9 +253,9 @@
     }
 
     function onKeydown(event) {
-      if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && activeTrial) {
+      if ((event.code === 'Space' || event.key === ' ' || event.key === 'Spacebar') && activeTrial) {
         event.preventDefault();
-        finishTrial(event.key);
+        finishTrial('Space');
       }
     }
 
@@ -263,5 +268,5 @@
     };
   }
 
-  return { buildLabMarkup, buildPosnerIntroMarkup, renderLab, renderPosner, cleanup };
+  return { buildLabMarkup, buildPosnerIntroMarkup, buildPosnerTaskShellMarkup, renderLab, renderPosner, cleanup };
 });

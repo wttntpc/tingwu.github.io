@@ -35,7 +35,7 @@
           condition,
           cueSide,
           targetSide,
-          correctKey: targetSide === 'left' ? 'ArrowLeft' : 'ArrowRight',
+          correctKey: 'Space',
           correct: false,
           rt: null
         });

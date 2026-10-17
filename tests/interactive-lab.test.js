@@ -2,7 +2,8 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const {
   buildLabMarkup,
-  buildPosnerIntroMarkup
+  buildPosnerIntroMarkup,
+  buildPosnerTaskShellMarkup
 } = require('../interactive-lab.js');
 
 test('lab landing page introduces the interactive learning flow in Chinese', () => {
@@ -39,7 +40,7 @@ test('Posner introduction teaches the task before asking for a prediction', () =
   assert.ok(scenariosIndex > guideIndex);
   assert.ok(predictionIndex > scenariosIndex);
   assert.match(markup, /眼睛盯著中央凝視點/);
-  assert.match(markup, /電腦.*方向鍵/);
+  assert.match(markup, /電腦.*空白鍵/);
   assert.match(markup, /手機.*手指/);
   assert.match(markup, /箭頭向左.*圓點出現在左側/s);
   assert.match(markup, /箭頭向左.*圓點出現在右側/s);
@@ -49,6 +50,16 @@ test('English Posner introduction includes fixation and device-specific controls
   const markup = buildPosnerIntroMarkup('en');
 
   assert.match(markup, /Keep your eyes on the central fixation point/);
-  assert.match(markup, /computer.*arrow key/i);
+  assert.match(markup, /computer.*Space key/i);
   assert.match(markup, /phone.*tap/i);
+});
+
+test('Posner task uses one shared response button instead of left and right choices', () => {
+  const markup = buildPosnerTaskShellMarkup('zh', 'practice', 6);
+  const responseButtons = markup.match(/data-posner-response=/g) || [];
+
+  assert.equal(responseButtons.length, 1);
+  assert.match(markup, /data-posner-response="Space"/);
+  assert.match(markup, /空白鍵/);
+  assert.match(markup, /看到圓點/);
 });

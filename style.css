@@ -196,7 +196,7 @@ button { font: inherit; }
 .trial-feedback { position: relative; z-index: 1; margin: 0; font-weight: 700; }
 .trial-feedback.is-correct { color: #2f6d4f; }
 .trial-feedback.is-incorrect { color: #9a4038; }
-.posner-response-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin-top: .85rem; }
+.posner-response-controls { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; margin-top: .85rem; }
 .posner-response-controls button { min-height: 52px; border: 1px solid var(--tertiary); border-radius: 3px; background: var(--paper); color: var(--primary); cursor: pointer; font-weight: 700; }
 .posner-response-controls button:not(:disabled):hover { border-color: var(--accent); background: var(--accent-soft); }
 .posner-response-controls button:disabled { cursor: default; opacity: .45; }
