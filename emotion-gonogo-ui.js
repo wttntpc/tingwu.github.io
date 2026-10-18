@@ -18,16 +18,16 @@
       choices: [['relevant', '只有情緒判斷時會變慢'], ['automatic', '兩種任務都會變慢'], ['same', '兩種表情可能差不多']],
       evidenceLabel: '研究依據', evidence: 'Mirabella 等人以 20 名大學生、動作捕捉與每種任務 180 次試驗研究真正的向前踏步。網站版只保留任務邏輯。',
       privacy: '所有反應只在你的瀏覽器中計算，不會上傳、儲存或加入研究資料庫。',
-      caveat: '臉孔由 AI 生成，人物並不存在，且未經正式效度驗證；僅供科普互動示範。這是使用按鍵與短試次的概念重現，不是原研究的步態測量、正式複製研究或心理評估。原研究的對照作業是判斷性別；網站改用 A／B 人物組別，避免以外觀推測性別。',
+      caveat: '臉孔由 AI 生成，人物並不存在，且未經正式效度驗證；僅供科普互動示範。這是使用按鍵與短試次的概念重現，不是原研究的步態測量、正式複製研究或心理評估。原研究的對照作業是判斷性別；網站改用四位人物的臉孔記憶分組，避免以外觀推測性別。',
       start: '查看第一個任務規則', practice: '練習', formal: '正式測驗', progress: '進度',
-      blockTitle: '先記住這個任務的規則', blockLead: '每個任務先做 9 次練習，再做 18 次測驗；GO 與 NO-GO 比例維持約 2：1。',
+      blockTitle: '先記住這個任務的規則', blockLead: '每個任務先做 12 次練習，再做 18 次測驗；GO 與 NO-GO 比例維持約 2：1。',
       emotionTask: '情緒判斷｜情緒與目標相關', identityTask: '人物判斷｜情緒與目標無關',
       go: 'GO｜按下反應鍵', nogo: 'NO-GO｜不要按', beginPractice: '開始這個任務的練習',
       practiceDone: '練習完成', formalIntro: '接下來進入短版測驗。請依目前規則，在 GO 出現時儘快反應；NO-GO 則完全不要按。', formalStart: '開始短版測驗',
       emotionReminder: '憤怒臉、快樂臉：按／點；中性臉：不要按。',
-      identityReminder: (go, nogo) => `人物 ${go.toUpperCase()}：按／點；人物 ${nogo.toUpperCase()}：不要按，並忽略表情。`,
+      identityReminder: '只根據剛才記住的臉孔分組判斷：指定臉孔按／點，其他臉孔不要按；忽略表情。',
       response: 'GO 出現時，立即反應', correct: '正確', commission: '這是 NO-GO，應該忍住不按', omission: '這是 GO，需要按下反應鍵',
-      happy: '快樂臉', angry: '憤怒臉', neutral: '中性臉', identity: identity => `人物 ${identity.toUpperCase()}`,
+      happy: '快樂臉', angry: '憤怒臉', neutral: '中性臉', face: 'AI 合成臉孔', rememberFace: '請記住這張臉',
       resultTitle: '你的任務相關性結果', resultLead: '比較同一組表情在兩種任務中的差異；單次短版結果不代表固定能力，也不能視為原研究的重現。',
       relevantDiff: '情緒相關：憤怒 RT − 快樂 RT', irrelevantDiff: '情緒無關：憤怒 RT − 快樂 RT', interaction: '兩個差值之差',
       task: '任務', emotion: '表情', goRt: 'GO 中位反應時間', omission: 'GO 漏答率',
@@ -49,16 +49,16 @@
       choices: [['relevant', 'Only during emotion judgments'], ['automatic', 'During both tasks'], ['same', 'The expressions may be similar']],
       evidenceLabel: 'Evidence base', evidence: 'Mirabella et al. studied real forward steps in 20 university students using motion capture and 180 trials per task. This browser version preserves only the task logic.',
       privacy: 'All responses are calculated in this browser and are not uploaded, stored, or added to a research database.',
-      caveat: 'The AI-generated faces do not depict real people and are not formally validated research stimuli; they are used only for this educational demonstration. This keypress task with few trials is not gait measurement, a formal replication, or a psychological assessment. The published control task used gender judgments; this site substitutes A/B person groups to avoid inferring gender from appearance.',
+      caveat: 'The AI-generated faces do not depict real people and are not formally validated research stimuli; they are used only for this educational demonstration. This keypress task with few trials is not gait measurement, a formal replication, or a psychological assessment. The published control task used gender judgments; this site instead groups four memorized faces to avoid inferring gender from appearance.',
       start: 'See the first task rule', practice: 'Practice', formal: 'Test', progress: 'Progress',
-      blockTitle: 'Remember this task rule', blockLead: 'Each task starts with 9 practice trials followed by 18 test trials; the GO/NO-GO ratio is approximately 2:1.',
+      blockTitle: 'Remember this task rule', blockLead: 'Each task starts with 12 practice trials followed by 18 test trials; the GO/NO-GO ratio is approximately 2:1.',
       emotionTask: 'Emotion judgment | emotion relevant', identityTask: 'Person judgment | emotion irrelevant',
       go: 'GO | respond', nogo: 'NO-GO | withhold', beginPractice: 'Start this task practice',
       practiceDone: 'Practice complete', formalIntro: 'The short test begins next. Respond quickly to GO and make no response to NO-GO.', formalStart: 'Start short test',
       emotionReminder: 'Angry and happy: press/tap; neutral: do not respond.',
-      identityReminder: (go, nogo) => `Person ${go.toUpperCase()}: press/tap; person ${nogo.toUpperCase()}: do not respond; ignore expression.`,
+      identityReminder: 'Use only the face groups you just memorized: respond to the assigned faces, withhold for the others, and ignore expression.',
       response: 'Respond immediately for GO', correct: 'Correct', commission: 'This was NO-GO: withhold the response', omission: 'This was GO: press the response key',
-      happy: 'Happy face', angry: 'Angry face', neutral: 'Neutral face', identity: identity => `Person ${identity.toUpperCase()}`,
+      happy: 'Happy face', angry: 'Angry face', neutral: 'Neutral face', face: 'AI-generated face', rememberFace: 'Memorize this face',
       resultTitle: 'Your task-relevance result', resultLead: 'Compare the same expressions across task rules. One short browser session is not a fixed ability or a replication of the original study.',
       relevantDiff: 'Emotion relevant: angry RT − happy RT', irrelevantDiff: 'Emotion irrelevant: angry RT − happy RT', interaction: 'Difference of differences',
       task: 'Task', emotion: 'Expression', goRt: 'Median GO RT', omission: 'GO omission rate',
@@ -81,14 +81,23 @@
       happy: 'assets/emotion-faces/identity-b-happy.webp',
       angry: 'assets/emotion-faces/identity-b-angry.webp',
       neutral: 'assets/emotion-faces/identity-b-neutral.webp'
+    },
+    c: {
+      happy: 'assets/emotion-faces/identity-c-happy.webp',
+      angry: 'assets/emotion-faces/identity-c-angry.webp',
+      neutral: 'assets/emotion-faces/identity-c-neutral.webp'
+    },
+    d: {
+      happy: 'assets/emotion-faces/identity-d-happy.webp',
+      angry: 'assets/emotion-faces/identity-d-angry.webp',
+      neutral: 'assets/emotion-faces/identity-d-neutral.webp'
     }
   };
 
   function faceMarkup(emotion, identity, label, decorative = false) {
     const source = faceAssets[identity]?.[emotion] || faceAssets.a.neutral;
-    const badge = identity ? `<small>${identity.toUpperCase()}</small>` : '';
     const alt = decorative ? '' : label;
-    return `<span class="emotion-face emotion-face-${emotion}"${decorative ? ' aria-hidden="true"' : ''}><img src="${source}" alt="${alt}" width="512" height="512" decoding="async">${badge}</span>`;
+    return `<span class="emotion-face emotion-face-${emotion}"${decorative ? ' aria-hidden="true"' : ''}><img src="${source}" alt="${alt}" width="512" height="512" decoding="async"></span>`;
   }
 
   function preloadEmotionFaces() {
@@ -112,7 +121,7 @@
 
   function reminderFor(c, options) {
     return options.rule === 'identity'
-      ? c.identityReminder(options.goIdentity || 'a', options.noGoIdentity || 'b')
+      ? c.identityReminder
       : c.emotionReminder;
   }
 
@@ -181,7 +190,7 @@
     function showFace(trial) {
       const stage = container.querySelector('[data-emotion-stage]');
       if (!stage) return;
-      stage.innerHTML = faceMarkup(trial.emotion, trial.identity, `${c.identity(trial.identity)}，${c[trial.emotion]}`);
+      stage.innerHTML = faceMarkup(trial.emotion, trial.identity, `${c.face}，${c[trial.emotion]}`);
       activeTrial = trial;
       targetOnset = performance.now();
       setResponseDisabled(false);
@@ -199,13 +208,14 @@
       if (block.rule === 'emotion') {
         return `<article>${faceMarkup('angry', 'a', c.angry)}<strong>${c.angry}</strong><span>${c.go}</span></article><article>${faceMarkup('happy', 'b', c.happy)}<strong>${c.happy}</strong><span>${c.go}</span></article><article>${faceMarkup('neutral', 'a', c.neutral)}<strong>${c.neutral}</strong><span>${c.nogo}</span></article>`;
       }
-      return `<article>${faceMarkup('happy', block.goIdentity, c.identity(block.goIdentity))}<strong>${c.identity(block.goIdentity)}</strong><span>${c.go}</span></article><article>${faceMarkup('angry', block.noGoIdentity, c.identity(block.noGoIdentity))}<strong>${c.identity(block.noGoIdentity)}</strong><span>${c.nogo}</span></article>`;
+      return [...block.goIdentities.map(identity => ({ identity, response: c.go })), ...block.noGoIdentities.map(identity => ({ identity, response: c.nogo }))]
+        .map(item => `<article>${faceMarkup('neutral', item.identity, c.face)}<strong>${c.rememberFace}</strong><span>${item.response}</span></article>`).join('');
     }
 
     function showBlockIntro() {
       const block = activeBlock();
       const taskName = block.rule === 'emotion' ? c.emotionTask : c.identityTask;
-      container.innerHTML = `<div class="page-shell experiment-page"><a class="back-link" href="#/lab">${c.back}</a><section class="experiment-transition emotion-block-intro"><p class="eyebrow">Task ${blockIndex + 1} / 2</p><h1>${c.blockTitle}</h1><p><strong>${taskName}</strong></p><p>${c.blockLead}</p><div class="emotion-rule-pair ${block.rule === 'emotion' ? 'has-three' : ''}">${ruleCards(block)}</div><button class="experiment-primary" type="button" data-emotion-block-start>${c.beginPractice}</button></section></div>`;
+      container.innerHTML = `<div class="page-shell experiment-page"><a class="back-link" href="#/lab">${c.back}</a><section class="experiment-transition emotion-block-intro"><p class="eyebrow">Task ${blockIndex + 1} / 2</p><h1>${c.blockTitle}</h1><p><strong>${taskName}</strong></p><p>${c.blockLead}</p><div class="emotion-rule-pair ${block.rule === 'emotion' ? 'has-three' : 'has-four'}">${ruleCards(block)}</div><button class="experiment-primary" type="button" data-emotion-block-start>${c.beginPractice}</button></section></div>`;
     }
 
     function showFormalTransition() {
@@ -232,13 +242,13 @@
     function start(nextPhase) {
       phase = nextPhase;
       index = 0;
-      trials = window.EmotionGoNoGoTask.createEmotionGoNoGoTrials(activeBlock(), nextPhase === 'practice' ? { go: 6, nogo: 3 } : { go: 12, nogo: 6 });
+      trials = window.EmotionGoNoGoTask.createEmotionGoNoGoTrials(activeBlock(), nextPhase === 'practice' ? { go: 8, nogo: 4 } : { go: 12, nogo: 6 });
       container.innerHTML = buildEmotionGoNoGoTaskShellMarkup(lang, {
         phase,
         trialCount: trials.length,
         rule: activeBlock().rule,
-        goIdentity: activeBlock().goIdentity,
-        noGoIdentity: activeBlock().noGoIdentity
+        goIdentities: activeBlock().goIdentities,
+        noGoIdentities: activeBlock().noGoIdentities
       });
       later(nextTrial, 650);
     }

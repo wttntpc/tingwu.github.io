@@ -4,7 +4,7 @@
   else root.EmotionGoNoGoTask = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function createEmotionGoNoGoTaskApi() {
   const EMOTIONS = ['happy', 'angry', 'neutral'];
-  const IDENTITIES = ['a', 'b'];
+  const IDENTITIES = ['a', 'b', 'c', 'd'];
 
   function shuffle(items, random) {
     const result = items.slice();
@@ -16,8 +16,7 @@
   }
 
   function createEmotionBlocks(random = Math.random) {
-    const goIdentity = random() < 0.5 ? 'a' : 'b';
-    const noGoIdentity = goIdentity === 'a' ? 'b' : 'a';
+    const identityOrder = shuffle(IDENTITIES, random);
     return shuffle([
       {
         blockId: 'emotion-relevant',
@@ -28,8 +27,8 @@
       {
         blockId: 'identity-relevant',
         rule: 'identity',
-        goIdentity,
-        noGoIdentity
+        goIdentities: identityOrder.slice(0, 2),
+        noGoIdentities: identityOrder.slice(2)
       }
     ], random);
   }
@@ -72,15 +71,19 @@
         for (let i = 0; i < noGoEach; i++) trials.push(createTrial(block, emotion, IDENTITIES[i % IDENTITIES.length], 'nogo'));
       });
     } else {
-      if (!IDENTITIES.includes(block.goIdentity) || !IDENTITIES.includes(block.noGoIdentity) || block.goIdentity === block.noGoIdentity) {
-        throw new Error('identity block must define different valid go and no-go identities');
+      const assigned = [...(block.goIdentities || []), ...(block.noGoIdentities || [])];
+      if (block.goIdentities?.length !== 2 || block.noGoIdentities?.length !== 2 || new Set(assigned).size !== IDENTITIES.length || assigned.some(identity => !IDENTITIES.includes(identity))) {
+        throw new Error('identity block must divide all four identities into two non-overlapping groups');
       }
-      const goEach = distributeCount(counts.go, EMOTIONS, 'go');
-      const noGoEach = distributeCount(counts.nogo, EMOTIONS, 'nogo');
-      EMOTIONS.forEach(emotion => {
-        for (let i = 0; i < goEach; i++) trials.push(createTrial(block, emotion, block.goIdentity, 'go'));
-        for (let i = 0; i < noGoEach; i++) trials.push(createTrial(block, emotion, block.noGoIdentity, 'nogo'));
-      });
+      const addIdentityTrials = (total, identities, action) => {
+        const combinations = EMOTIONS.flatMap(emotion => identities.map(identity => ({ emotion, identity })));
+        for (let i = 0; i < total; i++) {
+          const combination = combinations[i % combinations.length];
+          trials.push(createTrial(block, combination.emotion, combination.identity, action));
+        }
+      };
+      addIdentityTrials(counts.go, block.goIdentities, 'go');
+      addIdentityTrials(counts.nogo, block.noGoIdentities, 'nogo');
     }
     return shuffle(trials, random);
   }

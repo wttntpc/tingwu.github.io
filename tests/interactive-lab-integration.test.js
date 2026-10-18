@@ -52,7 +52,7 @@ test('emotion experiment uses the complete locally hosted synthetic face set', (
   const emotionUi = fs.readFileSync(path.join(root, 'emotion-gonogo-ui.js'), 'utf8');
   const labUi = fs.readFileSync(path.join(root, 'interactive-lab.js'), 'utf8');
 
-  for (const identity of ['a', 'b']) {
+  for (const identity of ['a', 'b', 'c', 'd']) {
     for (const emotion of ['happy', 'angry', 'neutral']) {
       const asset = `assets/emotion-faces/identity-${identity}-${emotion}.webp`;
       assert.match(emotionUi, new RegExp(asset.replaceAll('/', '\\/')));
@@ -61,6 +61,8 @@ test('emotion experiment uses the complete locally hosted synthetic face set', (
   assert.match(emotionUi, /<img/);
   assert.match(labUi, /assets\/emotion-faces\/identity-a-happy\.webp/);
   assert.match(labUi, /assets\/emotion-faces\/identity-b-angry\.webp/);
+  assert.doesNotMatch(emotionUi, /<small>\$\{identity\.toUpperCase\(\)\}<\/small>/);
+  assert.doesNotMatch(fs.readFileSync(path.join(root, 'style.css'), 'utf8'), /\.emotion-face small/);
 });
 
 test('Posner detection instructions do not describe a left-right accuracy judgment', () => {

@@ -56,13 +56,27 @@ test('emotion experiment discloses that faces are synthetic and not validated re
   assert.match(enMarkup, /not formally validated/);
 });
 
+test('person task teaches face groups without exposing A/B identity shortcuts', () => {
+  const markup = buildEmotionGoNoGoTaskShellMarkup('zh', {
+    phase: 'practice',
+    trialCount: 12,
+    rule: 'identity',
+    goIdentities: ['a', 'b'],
+    noGoIdentities: ['c', 'd']
+  });
+
+  assert.match(markup, /只根據剛才記住的臉孔分組/);
+  assert.doesNotMatch(markup, /人物\s*[A-D]/);
+  assert.doesNotMatch(markup, /<small>[A-D]<\/small>/);
+});
+
 test('gait-initiation adaptation exposes one safe response button instead of asking users to step', () => {
   const markup = buildEmotionGoNoGoTaskShellMarkup('zh', {
     phase: 'practice',
     trialCount: 9,
     rule: 'emotion',
-    goIdentity: 'a',
-    noGoIdentity: 'b'
+    goIdentities: ['a', 'b'],
+    noGoIdentities: ['c', 'd']
   });
   const responseButtons = markup.match(/data-emotion-response=/g) || [];
 

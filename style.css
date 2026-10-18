@@ -214,7 +214,6 @@ button { font: inherit; }
 .emotion-stage { min-height: 340px; display: grid; place-items: center; border: 1px solid var(--tertiary); background: var(--paper); user-select: none; }
 .emotion-face { position: relative; width: 168px; aspect-ratio: 1; display: block; overflow: visible; border: 1px solid var(--tertiary); border-radius: 2px; background: var(--paper); }
 .emotion-face img { width: 100%; height: 100%; display: block; border-radius: 1px; object-fit: cover; }
-.emotion-face small { position: absolute; top: -8px; right: -8px; z-index: 1; display: grid; width: 26px; height: 26px; place-items: center; border: 1px solid var(--accent); border-radius: 50%; background: var(--paper); color: var(--accent); font: 700 .64rem ui-monospace, "SFMono-Regular", Consolas, monospace; }
 .emotion-response-controls { display: grid; margin-top: .85rem; }
 .emotion-response-controls button { min-height: 52px; border: 1px solid var(--tertiary); border-radius: 3px; background: var(--paper); color: var(--primary); cursor: pointer; font-weight: 700; }
 .emotion-response-controls button:not(:disabled):hover { border-color: var(--accent); background: var(--accent-soft); }
@@ -222,6 +221,7 @@ button { font: inherit; }
 .emotion-block-intro { max-width: 48rem; }
 .emotion-rule-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 1.25rem; border: 1px solid var(--tertiary); }
 .emotion-rule-pair.has-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.emotion-rule-pair.has-four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .emotion-rule-pair article { display: grid; justify-items: center; gap: .55rem; padding: 1.35rem; text-align: center; }
 .emotion-rule-pair article + article { border-left: 1px solid var(--tertiary); }
 .emotion-rule-pair .emotion-face { width: min(100%, 132px); }
@@ -923,7 +923,7 @@ button { font: inherit; }
   .task-status { align-items: start; }
   .result-notes { grid-template-columns: 1fr; }
   .result-notes > div + div { border-top: 1px solid var(--tertiary); border-left: 0; }
-  .emotion-rule-pair, .emotion-rule-pair.has-three, .emotion-result-differences, .paper-result-grid { grid-template-columns: 1fr; }
+  .emotion-rule-pair, .emotion-rule-pair.has-three, .emotion-rule-pair.has-four, .emotion-result-differences, .paper-result-grid { grid-template-columns: 1fr; }
   .emotion-rule-pair article + article, .emotion-result-differences > div + div, .paper-result-grid article + article { border-top: 1px solid var(--tertiary); border-left: 0; }
 }
 

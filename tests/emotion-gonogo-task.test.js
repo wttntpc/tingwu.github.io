@@ -15,8 +15,13 @@ test('blocks compare task-relevant emotion rules with task-irrelevant identity r
   const identityBlock = blocks.find(block => block.rule === 'identity');
   assert.deepEqual(emotionBlock.goEmotions, ['happy', 'angry']);
   assert.deepEqual(emotionBlock.noGoEmotions, ['neutral']);
-  assert.ok(['a', 'b'].includes(identityBlock.goIdentity));
-  assert.notEqual(identityBlock.goIdentity, identityBlock.noGoIdentity);
+  assert.equal(identityBlock.goIdentities.length, 2);
+  assert.equal(identityBlock.noGoIdentities.length, 2);
+  assert.deepEqual(
+    new Set([...identityBlock.goIdentities, ...identityBlock.noGoIdentities]),
+    new Set(['a', 'b', 'c', 'd'])
+  );
+  assert.ok(identityBlock.goIdentities.every(identity => !identityBlock.noGoIdentities.includes(identity)));
 });
 
 test('each block keeps the original two-to-one Go/No-Go ratio with one response key', () => {
@@ -41,6 +46,7 @@ test('emotion relevance determines the response rule, not the displayed expressi
   assert.ok(emotionTrials.filter(trial => trial.emotion === 'neutral').every(trial => trial.action === 'nogo'));
   assert.ok(identityTrials.some(trial => trial.emotion === 'angry' && trial.action === 'go'));
   assert.ok(identityTrials.some(trial => trial.emotion === 'angry' && trial.action === 'nogo'));
+  assert.deepEqual(new Set(identityTrials.map(trial => trial.identity)), new Set(['a', 'b', 'c', 'd']));
 });
 
 test('summary compares angry and happy Go responses separately in both tasks', () => {
