@@ -44,6 +44,18 @@ test('gait-initiation adaptation teaches task relevance before prediction', () =
   assert.match(markup, /data-emotion-start/);
 });
 
+test('emotion experiment discloses that faces are synthetic and not validated research stimuli', () => {
+  const zhMarkup = buildEmotionGoNoGoIntroMarkup('zh');
+  const enMarkup = buildEmotionGoNoGoIntroMarkup('en');
+
+  assert.match(zhMarkup, /AI 生成/);
+  assert.match(zhMarkup, /人物並不存在/);
+  assert.match(zhMarkup, /未經正式效度驗證/);
+  assert.match(enMarkup, /AI-generated/);
+  assert.match(enMarkup, /do not depict real people/);
+  assert.match(enMarkup, /not formally validated/);
+});
+
 test('gait-initiation adaptation exposes one safe response button instead of asking users to step', () => {
   const markup = buildEmotionGoNoGoTaskShellMarkup('zh', {
     phase: 'practice',

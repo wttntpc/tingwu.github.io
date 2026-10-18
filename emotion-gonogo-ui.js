@@ -10,7 +10,7 @@
     zh: {
       back: '← 返回互動實驗室', eyebrow: 'Emotion × action · 02', title: '情緒會自動改變動作嗎？',
       lead: '這個互動示範改編自 Mirabella 等人（2023）的向前步態啟動研究。真正的問題不是「哪張臉比較可怕」，而是：只有當情緒與目前任務有關時，表情才會改變動作準備嗎？',
-      guideTitle: '實驗怎麼進行', guideLead: '你會看到相同的快樂、憤怒與中性示意臉，但在兩個區塊中使用不同判斷規則。',
+      guideTitle: '實驗怎麼進行', guideLead: '你會看到相同虛構人物的快樂、憤怒與中性 AI 合成臉孔，並在兩個區塊中使用不同判斷規則。',
       guideSteps: [['1', '固定注視', '每次先看中央「＋」，臉孔出現前不要預先反應。'], ['2', '記住當前規則', '第一種規則要判斷表情；另一種規則只看人物組別並忽略表情。'], ['3', '模擬向前踏步', '電腦請按空白鍵，手機或平板請點畫面下方的單一按鈕代表 GO。基於安全，請不要真的向前踏步。'], ['4', '遇到 NO-GO 忍住', '不要按任何鍵，也不要點按鈕；等待下一個試次。']],
       mappingsTitle: '兩種任務規則', mappingsLead: '關鍵操弄是「情緒是否與作業目標相關」，而不是把某種情緒永遠設成 NO-GO。',
       mappings: [['情緒判斷｜情緒相關', '憤怒臉、快樂臉：GO', '中性臉：NO-GO'], ['人物判斷｜情緒無關', '指定人物組別：GO', '另一組：NO-GO；忽略表情']],
@@ -18,7 +18,7 @@
       choices: [['relevant', '只有情緒判斷時會變慢'], ['automatic', '兩種任務都會變慢'], ['same', '兩種表情可能差不多']],
       evidenceLabel: '研究依據', evidence: 'Mirabella 等人以 20 名大學生、動作捕捉與每種任務 180 次試驗研究真正的向前踏步。網站版只保留任務邏輯。',
       privacy: '所有反應只在你的瀏覽器中計算，不會上傳、儲存或加入研究資料庫。',
-      caveat: '這是使用自製示意臉、按鍵與短試次的概念重現，不是原研究的步態測量、正式複製研究或心理評估。原研究的對照作業是判斷性別；網站改用 A／B 人物組別，避免以簡筆臉推測性別。',
+      caveat: '臉孔由 AI 生成，人物並不存在，且未經正式效度驗證；僅供科普互動示範。這是使用按鍵與短試次的概念重現，不是原研究的步態測量、正式複製研究或心理評估。原研究的對照作業是判斷性別；網站改用 A／B 人物組別，避免以外觀推測性別。',
       start: '查看第一個任務規則', practice: '練習', formal: '正式測驗', progress: '進度',
       blockTitle: '先記住這個任務的規則', blockLead: '每個任務先做 9 次練習，再做 18 次測驗；GO 與 NO-GO 比例維持約 2：1。',
       emotionTask: '情緒判斷｜情緒與目標相關', identityTask: '人物判斷｜情緒與目標無關',
@@ -33,7 +33,7 @@
       task: '任務', emotion: '表情', goRt: 'GO 中位反應時間', omission: 'GO 漏答率',
       predictionLabels: { relevant: '只有情緒判斷時變慢', automatic: '兩種任務都變慢', same: '兩種表情差不多', unsure: '未選擇' },
       excluded: '排除的極端 GO RT', retry: '再做一次', limitsTitle: '如何解讀你的結果',
-      limits: ['若情緒相關區塊的「憤怒 − 快樂」差值較大，方向上較接近原研究的任務相關性效應。', '短版只有少量試次，示意臉也不是原研究的 Pictures of Facial Affect 照片；沒有出現差異不代表研究結論錯誤。', '按鍵反應不是步態啟動。原研究以動作捕捉測量腳跟開始移動的時間，兩者不可直接比較。'],
+      limits: ['若情緒相關區塊的「憤怒 − 快樂」差值較大，方向上較接近原研究的任務相關性效應。', '短版只有少量試次；AI 合成臉孔未經情緒效價、喚醒度或辨識率的正式前測，也不是原研究的 Pictures of Facial Affect 照片。', '按鍵反應不是步態啟動。原研究以動作捕捉測量腳跟開始移動的時間，兩者不可直接比較。'],
       paperTitle: '原研究發現了什麼？', paperLead: '20 名大學生的群體平均顯示：憤怒表情只有在必須判斷情緒時才拖慢向前步態啟動。',
       paperEmotion: '情緒判斷', paperIdentity: '性別判斷', paperConclusion: '這支持「情緒效果取決於當下目標與有意識評估」，而不是任何情緒臉都會自動改變動作。',
       source: 'Mirabella 等人（2023）原始研究', doi: 'DOI：10.1037/emo0001112'
@@ -41,7 +41,7 @@
     en: {
       back: '← Back to the interactive lab', eyebrow: 'Emotion × action · 02', title: 'Does emotion automatically change action?',
       lead: 'This interactive demonstration adapts Mirabella et al. (2023), a forward gait-initiation study. The key question is whether facial expressions alter action preparation only when emotion is relevant to the current goal.',
-      guideTitle: 'How the experiment works', guideLead: 'The same happy, angry, and neutral schematic faces appear under two different task rules.',
+      guideTitle: 'How the experiment works', guideLead: 'AI-generated happy, angry, and neutral faces of the same fictional people appear under two different task rules.',
       guideSteps: [['1', 'Fixate', 'Watch the central “+” and do not respond before a face appears.'], ['2', 'Remember the rule', 'One task requires expression judgments; the other uses person group while emotion must be ignored.'], ['3', 'Simulate a forward step', 'Space or the single button represents GO. For safety, do not physically step forward.'], ['4', 'Withhold for NO-GO', 'Do not press or tap anything; wait for the next trial.']],
       mappingsTitle: 'Two task rules', mappingsLead: 'The manipulation is whether emotion is relevant to the goal—not whether one emotion is permanently assigned to NO-GO.',
       mappings: [['Emotion task | relevant', 'Angry and happy: GO', 'Neutral: NO-GO'], ['Person task | irrelevant', 'Assigned person group: GO', 'Other group: NO-GO; ignore expression']],
@@ -49,7 +49,7 @@
       choices: [['relevant', 'Only during emotion judgments'], ['automatic', 'During both tasks'], ['same', 'The expressions may be similar']],
       evidenceLabel: 'Evidence base', evidence: 'Mirabella et al. studied real forward steps in 20 university students using motion capture and 180 trials per task. This browser version preserves only the task logic.',
       privacy: 'All responses are calculated in this browser and are not uploaded, stored, or added to a research database.',
-      caveat: 'This is a conceptual adaptation using original schematic faces, keypresses, and few trials—not gait measurement, a formal replication, or a psychological assessment. The published control task used gender judgments; this site substitutes A/B person groups to avoid inferring gender from schematic faces.',
+      caveat: 'The AI-generated faces do not depict real people and are not formally validated research stimuli; they are used only for this educational demonstration. This keypress task with few trials is not gait measurement, a formal replication, or a psychological assessment. The published control task used gender judgments; this site substitutes A/B person groups to avoid inferring gender from appearance.',
       start: 'See the first task rule', practice: 'Practice', formal: 'Test', progress: 'Progress',
       blockTitle: 'Remember this task rule', blockLead: 'Each task starts with 9 practice trials followed by 18 test trials; the GO/NO-GO ratio is approximately 2:1.',
       emotionTask: 'Emotion judgment | emotion relevant', identityTask: 'Person judgment | emotion irrelevant',
@@ -64,16 +64,39 @@
       task: 'Task', emotion: 'Expression', goRt: 'Median GO RT', omission: 'GO omission rate',
       predictionLabels: { relevant: 'Slower only for emotion judgments', automatic: 'Slower in both tasks', same: 'Expressions similar', unsure: 'No prediction selected' },
       excluded: 'Extreme GO RTs excluded', retry: 'Try again', limitsTitle: 'How to interpret your result',
-      limits: ['A larger angry-minus-happy difference in the emotion task points in the direction of the published task-relevance effect.', 'This short version has few trials and does not use the original Pictures of Facial Affect stimuli; no difference here does not overturn the study.', 'A keypress is not gait initiation. The original study used motion capture to detect heel movement onset, so the values are not directly comparable.'],
+      limits: ['A larger angry-minus-happy difference in the emotion task points in the direction of the published task-relevance effect.', 'This short version has few trials. Its synthetic faces have not received formal valence, arousal, or recognition-rate pretesting and are not the original Pictures of Facial Affect stimuli.', 'A keypress is not gait initiation. The original study used motion capture to detect heel movement onset, so the values are not directly comparable.'],
       paperTitle: 'What did the original study find?', paperLead: 'Group means from 20 university students showed that angry expressions delayed forward gait initiation only when expression had to be judged.',
       paperEmotion: 'Emotion task', paperIdentity: 'Gender task', paperConclusion: 'The findings support an effect that depends on current goals and conscious appraisal, rather than an automatic motor effect of every emotional face.',
       source: 'Mirabella et al. (2023) original study', doi: 'DOI: 10.1037/emo0001112'
     }
   };
 
+  const faceAssets = {
+    a: {
+      happy: 'assets/emotion-faces/identity-a-happy.webp',
+      angry: 'assets/emotion-faces/identity-a-angry.webp',
+      neutral: 'assets/emotion-faces/identity-a-neutral.webp'
+    },
+    b: {
+      happy: 'assets/emotion-faces/identity-b-happy.webp',
+      angry: 'assets/emotion-faces/identity-b-angry.webp',
+      neutral: 'assets/emotion-faces/identity-b-neutral.webp'
+    }
+  };
+
   function faceMarkup(emotion, identity, label, decorative = false) {
+    const source = faceAssets[identity]?.[emotion] || faceAssets.a.neutral;
     const badge = identity ? `<small>${identity.toUpperCase()}</small>` : '';
-    return `<span class="emotion-face emotion-face-${emotion}" ${decorative ? 'aria-hidden="true"' : `role="img" aria-label="${label}"`}>${badge}<i></i><b></b><em></em></span>`;
+    const alt = decorative ? '' : label;
+    return `<span class="emotion-face emotion-face-${emotion}"${decorative ? ' aria-hidden="true"' : ''}><img src="${source}" alt="${alt}" width="512" height="512" decoding="async">${badge}</span>`;
+  }
+
+  function preloadEmotionFaces() {
+    if (typeof Image === 'undefined') return;
+    Object.values(faceAssets).flatMap(Object.values).forEach(source => {
+      const image = new Image();
+      image.src = source;
+    });
   }
 
   function buildEmotionGoNoGoIntroMarkup(lang = 'zh') {
@@ -122,6 +145,7 @@
 
   function renderEmotionGoNoGo(container, lang = 'zh') {
     cleanup();
+    preloadEmotionFaces();
     const c = copy[lang] || copy.zh;
     container.innerHTML = buildEmotionGoNoGoIntroMarkup(lang);
     let prediction = 'unsure';

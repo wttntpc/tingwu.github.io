@@ -139,7 +139,8 @@ button { font: inherit; }
 .lab-feature a:hover { text-decoration: underline; text-underline-offset: .25em; }
 .lab-cue-preview { min-height: 230px; }
 .lab-feature-emotion { padding-top: 4rem; }
-.lab-emotion-preview { min-height: 230px; display: flex; gap: 2rem; align-items: center; justify-content: center; border: 1px solid var(--tertiary); background: var(--paper); }
+.lab-emotion-preview { min-height: 230px; display: flex; gap: 1rem; align-items: center; justify-content: center; padding: 1.25rem; border: 1px solid var(--tertiary); background: var(--paper); }
+.lab-emotion-preview .emotion-face { width: min(42%, 168px); }
 .lab-coming { padding: 3.5rem 0 0; }
 .lab-coming ol { margin: 0; padding: 0; border-top: 1px solid var(--tertiary); list-style: none; counter-reset: future-task; }
 .lab-coming li { counter-increment: future-task; display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 1rem; padding: 1.15rem .2rem; border-bottom: 1px solid var(--tertiary); color: var(--secondary); font-size: .8rem; }
@@ -211,17 +212,8 @@ button { font: inherit; }
 .emotion-mappings h3 { margin: .4rem 0 .55rem; font-family: var(--font-display); font-size: .95rem; }
 .emotion-mappings p { margin: 0; color: var(--secondary); font-size: .74rem; line-height: 1.8; }
 .emotion-stage { min-height: 340px; display: grid; place-items: center; border: 1px solid var(--tertiary); background: var(--paper); user-select: none; }
-.emotion-face { position: relative; width: 112px; aspect-ratio: 1; display: block; border: 3px solid var(--accent); border-radius: 50%; background: color-mix(in srgb, var(--accent-soft) 38%, var(--paper)); }
-.emotion-face i, .emotion-face b { position: absolute; top: 33%; width: 9px; height: 12px; border-radius: 50%; background: var(--primary); }
-.emotion-face i { left: 28%; }
-.emotion-face b { right: 28%; }
-.emotion-face em { position: absolute; left: 50%; width: 42px; height: 22px; transform: translateX(-50%); }
-.emotion-face-happy em { bottom: 19%; border-bottom: 4px solid var(--primary); border-radius: 0 0 50% 50%; }
-.emotion-face-angry::before, .emotion-face-angry::after { content: ''; position: absolute; top: 23%; width: 27px; border-top: 3px solid var(--primary); }
-.emotion-face-angry::before { left: 18%; transform: rotate(18deg); }
-.emotion-face-angry::after { right: 18%; transform: rotate(-18deg); }
-.emotion-face-angry em { bottom: 12%; border-top: 4px solid var(--primary); border-radius: 50% 50% 0 0; }
-.emotion-face-neutral em { bottom: 24%; height: 0; border-top: 4px solid var(--primary); }
+.emotion-face { position: relative; width: 168px; aspect-ratio: 1; display: block; overflow: visible; border: 1px solid var(--tertiary); border-radius: 2px; background: var(--paper); }
+.emotion-face img { width: 100%; height: 100%; display: block; border-radius: 1px; object-fit: cover; }
 .emotion-face small { position: absolute; top: -8px; right: -8px; z-index: 1; display: grid; width: 26px; height: 26px; place-items: center; border: 1px solid var(--accent); border-radius: 50%; background: var(--paper); color: var(--accent); font: 700 .64rem ui-monospace, "SFMono-Regular", Consolas, monospace; }
 .emotion-response-controls { display: grid; margin-top: .85rem; }
 .emotion-response-controls button { min-height: 52px; border: 1px solid var(--tertiary); border-radius: 3px; background: var(--paper); color: var(--primary); cursor: pointer; font-weight: 700; }
@@ -232,7 +224,7 @@ button { font: inherit; }
 .emotion-rule-pair.has-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .emotion-rule-pair article { display: grid; justify-items: center; gap: .55rem; padding: 1.35rem; text-align: center; }
 .emotion-rule-pair article + article { border-left: 1px solid var(--tertiary); }
-.emotion-rule-pair .emotion-face { width: 84px; }
+.emotion-rule-pair .emotion-face { width: min(100%, 132px); }
 .emotion-rule-pair strong { font-family: var(--font-display); font-size: .9rem; }
 .emotion-rule-pair span { color: var(--secondary); font-size: .72rem; }
 .emotion-result-differences { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 3px solid var(--accent); background: var(--paper); }
