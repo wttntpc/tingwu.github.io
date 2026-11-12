@@ -947,16 +947,13 @@ button { font: inherit; }
 
 /* Research agenda (About page and home preview) */
 .research-agenda { display: grid; gap: 1.6rem; }
-.agenda-status { margin: 0; padding: .7rem .9rem; border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; background: var(--entry); color: var(--secondary); font-size: .8rem; line-height: 1.7; }
 .agenda-block h3 { margin: 0 0 .7rem; color: var(--accent); font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .agenda-purpose { margin: 0; font-family: var(--font-display); font-size: 1.12rem; line-height: 1.8; }
-.agenda-areas, .agenda-questions { margin: 0; padding: 0; list-style: none; display: grid; gap: .75rem; }
+.agenda-areas { margin: 0; padding: 0; list-style: none; display: grid; gap: .75rem; }
 .agenda-areas li { display: grid; grid-template-columns: 2.2rem 1fr; gap: .6rem; padding: .85rem 1rem; border: 1px solid var(--tertiary); border-radius: 4px; background: var(--paper); }
 .agenda-areas li > span { color: var(--accent); font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: .72rem; letter-spacing: .08em; padding-top: .2rem; }
 .agenda-areas b { display: block; margin-bottom: .2rem; }
-.agenda-areas p, .agenda-questions p { margin: 0; line-height: 1.75; }
-.agenda-questions li { display: grid; grid-template-columns: 6rem 1fr; gap: .8rem; align-items: start; padding: .7rem 0; border-bottom: 1px solid var(--tertiary); }
-.agenda-tier { display: inline-block; justify-self: start; padding: .15rem .5rem; border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--tertiary)); border-radius: 3px; background: var(--accent-soft); color: var(--accent); font-size: .66rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.agenda-areas p { margin: 0; line-height: 1.75; }
 .agenda-ahead { margin: 0; padding-left: 1.2rem; display: grid; gap: .4rem; line-height: 1.75; }
 .home-agenda { display: grid; grid-template-columns: minmax(12rem, .7fr) minmax(0, 1.6fr); gap: clamp(1.5rem, 4vw, 3.5rem); padding: 2.4rem 0; border-bottom: 1px solid var(--tertiary); }
 .home-agenda-heading p { margin: 0 0 .4rem; color: var(--accent); font-size: .66rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
@@ -969,5 +966,4 @@ button { font: inherit; }
 .article-language-note { margin: .8rem 0 0; padding: .55rem .8rem; border-left: 3px solid var(--tertiary); background: var(--entry); color: var(--secondary); font-size: .78rem; }
 @media (max-width: 720px) {
   .home-agenda { grid-template-columns: 1fr; padding: 1.8rem 0; }
-  .agenda-questions li { grid-template-columns: 1fr; gap: .35rem; }
-}
+  }

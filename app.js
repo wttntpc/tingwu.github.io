@@ -542,80 +542,53 @@ async function renderHome() {
 
 const researchAgenda = {
   zh: {
-    eyebrow: 'Research agenda',
-    title: '研究目的、領域與問題',
-    statusNote: '這是規劃中的博士論文研究，實驗設計仍在發展，尚未收集資料；以下內容不代表任何研究結果。',
-    purposeLabel: '研究目的',
-    purpose: '我的博士研究想回答：單次有氧運動如何改變人們詮釋與調節情緒的方式，以及哪些人獲益較多。目標是讓運動處方從「運動對心情有益」進一步走向「什麼劑量、對什麼人、透過哪些腦—身體機制產生作用」，使處方可以被檢驗，而不只是被建議。',
+    eyebrow: 'Research interests',
+    title: '研究興趣與方向',
+    purposeLabel: '研究方向',
+    purpose: '我關心運動如何影響情緒與認知，以及背後的腦—身體機制。我的研究結合運動科學與認知神經科學，並以腦波（EEG）、心率變異度（HRV）、行為作業與體適能評估等多模態方式，探討運動不只「有沒有效」，而是「如何發生」以及「對誰最有幫助」。',
     areasLabel: '研究領域',
     areas: [
-      ['單次運動與情緒詮釋', '以漸變臉孔判斷作業，檢驗一次運動後，模糊表情是否更常被判為「快樂」。'],
-      ['情緒情境下的行動控制', '以選擇性停止訊號作業，檢驗運動後停止反應時間（SSRT）是否縮短，以及是否因臉孔情緒（快樂或悲傷）而不同。'],
-      ['個別差異', '心肺適能（VO₂peak）、日常身體活動量與靜息心率變異度（HRV），是否決定誰從運動獲益較多。'],
-      ['腦—身體恢復', '恢復期 HRV、情緒改變與腦電（EEG／ERP）指標，是否與行為變化同步，以及效果在運動後能維持多久。']
+      ['運動、情緒與認知', '運動如何影響情緒處理、執行功能與心理健康，涵蓋年輕成人到高齡者。'],
+      ['腦—身體機制', '結合腦活動（EEG）與自律神經調節（HRV），理解身體與大腦如何回應運動並從中恢復。'],
+      ['多模態測量', '整合生理訊號、行為作業與問卷，並檢視穿戴式裝置在研究中的測量品質。'],
+      ['個別差異與運動處方', '為什麼每個人對運動的反應不同，以及研究成果如何支持個人化運動處方與健康老化。']
     ],
-    questionsLabel: '核心研究問題',
+    questionsLabel: '我想回答的問題',
     questions: [
-      ['主要', '單次中等強度有氧運動後，模糊臉孔是否比靜坐對照後更常被判為快樂？'],
-      ['次要', '運動後的停止訊號反應時間（SSRT）是否比靜坐對照後更短？'],
-      ['探索', '運動對抑制控制的影響，是否因臉孔的情緒而不同？'],
-      ['探索', '心肺適能、日常身體活動量與靜息 HRV，是否調節上述效果？'],
-      ['探索', '恢復期 HRV、情緒改變與事件相關電位，是否與作業表現的改變有關？'],
-      ['探索', '在特質層次，體適能、身體活動量與靜息 HRV，是否與認知表現及情緒作業的基準表現有關？']
+      '運動如何改變我們處理與調節情緒的方式？',
+      '哪些腦與身體訊號（例如 EEG、HRV）能反映這些改變？',
+      '哪些人從哪種運動獲益最多，原因為何？'
     ],
-    designLabel: '研究取徑',
-    design: '採受試者內交叉設計：第一次訪視進行體適能與基準評估，其後兩次訪視（順序平衡）比較有氧運動與時間相同的靜坐對照；在介入前後收集行為作業、腦電、HRV 與情緒問卷。我希望在資料收集前先訂定分析計畫，並公開可重現的分析程式。',
-    aheadLabel: '延伸方向',
-    ahead: [
-      '從單次到訓練：一次運動的反應，是否能預測數月訓練的獲益。',
-      '從年輕成人到高齡者，延續我先前在高齡者運動與執行功能上的研究。',
-      '從實驗室到場域：驗證穿戴式心率量測，使恢復狀態能在實驗室之外被追蹤。'
-    ],
-    homeLink: '閱讀完整研究規劃 →'
+    homeLink: '閱讀更多研究方向 →'
   },
   en: {
-    eyebrow: 'Research agenda',
-    title: 'Research purpose, areas, and questions',
-    statusNote: 'This is planned doctoral research. The design is still under development and no data have been collected; nothing below reports findings.',
-    purposeLabel: 'Purpose',
-    purpose: 'My doctoral work asks how a single bout of aerobic exercise changes the way people interpret and regulate emotion, and who benefits most. The aim is to move exercise prescription from “exercise is good for mood” toward specifying which dose, for which person, engages which brain–body mechanism, so that prescriptions can be tested rather than merely recommended.',
+    eyebrow: 'Research interests',
+    title: 'Research interests & direction',
+    purposeLabel: 'Direction',
+    purpose: 'I am interested in how exercise shapes emotion and cognition, and in the brain–body mechanisms behind it. My work brings together exercise science and cognitive neuroscience and uses multimodal measures—EEG, heart rate variability (HRV), behavioral tasks, and fitness assessment—to ask not only whether exercise helps, but how, and for whom.',
     areasLabel: 'Research areas',
     areas: [
-      ['Acute exercise and emotional interpretation', 'Using a morphed-face judgment task, whether a single session makes ambiguous expressions more likely to be judged as “happy”.'],
-      ['Action control in emotional contexts', 'Using a selective stop-signal task, whether stop-signal reaction time (SSRT) becomes shorter after exercise, and whether this depends on the emotion shown (happy or sad faces).'],
-      ['Individual differences', 'Whether cardiorespiratory fitness (VO₂peak), habitual physical activity, and resting heart rate variability (HRV) determine who benefits more.'],
-      ['Brain–body recovery', 'Whether recovery-period HRV, mood change, and EEG/ERP indices track the behavioral change, and how long the effect lasts after exercise ends.']
+      ['Exercise, emotion & cognition', 'How exercise influences emotional processing, executive function, and mental health, from young adults to older adults.'],
+      ['Brain–body mechanisms', 'Linking brain activity (EEG) with autonomic regulation (HRV) to understand how the body and brain respond to, and recover from, exercise.'],
+      ['Multimodal measurement', 'Combining physiological signals, behavioral tasks, and questionnaires, and examining how well wearable devices measure them.'],
+      ['Individual differences & prescription', 'Why people respond differently to exercise, and how findings can inform individualized exercise prescription and healthy aging.']
     ],
-    questionsLabel: 'Guiding questions',
+    questionsLabel: 'Questions I care about',
     questions: [
-      ['Primary', 'After a single session of moderate-intensity aerobic exercise, are ambiguous faces judged as happy more often than after seated rest?'],
-      ['Secondary', 'Is stop-signal reaction time (SSRT) shorter after exercise than after seated rest?'],
-      ['Exploratory', 'Does the effect on inhibitory control differ by the emotion of the face?'],
-      ['Exploratory', 'Do cardiorespiratory fitness, habitual physical activity, and resting HRV moderate these effects?'],
-      ['Exploratory', 'Are recovery-period HRV, mood change, and event-related potentials related to the change in task performance?'],
-      ['Exploratory', 'At the trait level, are fitness, physical activity, and resting HRV related to cognitive performance and to baseline performance on the emotion tasks?']
+      'How does exercise change the way we process and regulate emotion?',
+      'Which brain and body signals (for example EEG and HRV) reflect these changes?',
+      'Who benefits most from which kind of exercise, and why?'
     ],
-    designLabel: 'Approach',
-    design: 'A within-subject crossover design: one visit for fitness and baseline assessment, then two counterbalanced visits comparing aerobic exercise with a time-matched period of seated rest. Behavioral tasks, EEG, HRV, and mood questionnaires are collected before and after the intervention. I aim to specify the analysis plan before data collection and to share reproducible analysis code.',
-    aheadLabel: 'Looking ahead',
-    ahead: [
-      'From single sessions to training: whether the response to one session predicts the benefit of months of training.',
-      'From young adults to older adults, building on my earlier work on exercise and executive function in later life.',
-      'From laboratory to field: validating wearable heart-rate measures so that recovery can be tracked outside the laboratory.'
-    ],
-    homeLink: 'Read the full research agenda →'
+    homeLink: 'Read more about my research interests →'
   }
 };
 
 function renderResearchAgenda() {
   const a = researchAgenda[lang] || researchAgenda.en;
   return `<div class="research-agenda">
-    <p class="agenda-status">${a.statusNote}</p>
     <section class="agenda-block"><h3>${a.purposeLabel}</h3><p class="agenda-purpose">${a.purpose}</p></section>
     <section class="agenda-block"><h3>${a.areasLabel}</h3><ol class="agenda-areas">${a.areas.map((area, index) => `<li><span aria-hidden="true">0${index + 1}</span><div><b>${area[0]}</b><p>${area[1]}</p></div></li>`).join('')}</ol></section>
-    <section class="agenda-block"><h3>${a.questionsLabel}</h3><ol class="agenda-questions">${a.questions.map((question, index) => `<li><span class="agenda-tier">${question[0]}</span><p><b>RQ${index + 1}.</b> ${question[1]}</p></li>`).join('')}</ol></section>
-    <section class="agenda-block"><h3>${a.designLabel}</h3><p>${a.design}</p></section>
-    <section class="agenda-block"><h3>${a.aheadLabel}</h3><ul class="agenda-ahead">${a.ahead.map(item => `<li>${item}</li>`).join('')}</ul></section>
+    <section class="agenda-block"><h3>${a.questionsLabel}</h3><ul class="agenda-ahead">${a.questions.map(question => `<li>${question}</li>`).join('')}</ul></section>
   </div>`;
 }
 
@@ -679,12 +652,12 @@ async function renderAbout(section = '') {
     home: '首頁', title: '關於我', meta: '吳亭葶 Ting-Ting Wu', language: '語言：English', toc: '目錄',
     role: '認知神經科學博士生 / 運動防護員 / 研究者', education: '學經歷', expertise: '專長領域', honors: '榮譽', contact: '聯繫',
     bio2: '我的研究位於運動科學與認知神經科學的交界，關注運動如何改變情緒與認知的神經生理機制。我運用生理訊號、行為作業、AI 與可重現資料分析，建立可檢驗且具實務應用潛力的研究流程。',
-    framework: '研究框架', agenda: '研究目的與問題', frameworkCaveat: '示意圖，簡化呈現研究變項間的關係，非統計模型或因果推論結果。'
+    framework: '研究框架', agenda: '研究興趣與方向', frameworkCaveat: '示意圖，簡化呈現研究變項間的關係，非統計模型或因果推論結果。'
   } : {
     home: 'Home', title: 'About', meta: 'Ting-Ting Wu', language: 'Language: 中文', toc: 'Table of contents',
     role: 'Ph.D. Student in Cognitive Neuroscience / Athletic Trainer / Researcher', education: 'Education & experience', expertise: 'Expertise', honors: 'Honors', contact: 'Contact',
     bio2: 'My work sits at the intersection of exercise science and cognitive neuroscience, and focuses on the neurophysiological mechanisms through which exercise changes emotion and cognition. I use biosignals, behavioral tasks, AI, and reproducible data analysis to build testable research workflows with practical relevance.',
-    framework: 'Research framework', agenda: 'Research purpose & questions', frameworkCaveat: 'Simplified schematic of how these variables relate — not a statistical model or a causal claim.'
+    framework: 'Research framework', agenda: 'Research interests & direction', frameworkCaveat: 'Simplified schematic of how these variables relate — not a statistical model or a causal claim.'
   };
   const tocItems = [[c.introTitle, 'intro'], [labels.agenda, 'agenda'], [labels.framework, 'framework'], [labels.education, 'journey'], [labels.expertise, 'skills'], [labels.honors, 'awards'], [labels.contact, 'contact']];
 

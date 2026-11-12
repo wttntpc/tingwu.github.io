@@ -35,14 +35,13 @@ test('English publications page exists and keeps every DOI of the Chinese page',
   for (const doi of new Set(dois)) assert.ok(en.includes(doi), `missing DOI in English page: ${doi}`);
 });
 
-test('research agenda is bilingual, flagged as planned work, and linked from the About page and home', () => {
-  assert.match(app, /const researchAgenda = \{/);
-  assert.match(app, /planned doctoral research/i);
-  assert.match(app, /規劃中的博士論文研究/);
+test('research interests are bilingual, broad, and linked from the About page and home', () => {
+  assert.match(app, /const researchAgenda = {/);
   assert.match(app, /id="about-agenda"/);
-  assert.match(app, /\[labels\.agenda, 'agenda'\]/);
-  assert.match(app, /renderHomeAgenda\(\)/);
-  const block = app.match(/const researchAgenda = \{[\s\S]*?\nfunction renderResearchAgenda/)[0];
-  assert.equal((block.match(/\['(Primary|Secondary|Exploratory)'/g) || []).length, 6);
-  assert.equal((block.match(/\['(主要|次要|探索)'/g) || []).length, 6);
+  assert.match(app, /renderHomeAgenda()/);
+  const start = app.indexOf('const researchAgenda = {');
+  const end = app.indexOf('function renderResearchAgenda');
+  assert.ok(start >= 0 && end > start);
+  const block = app.slice(start, end);
+  assert.doesNotMatch(block, /RQ[0-9]|crossover|SSRT|VO₂peak|visit/i, 'public page must not expose study-specific design details');
 });
