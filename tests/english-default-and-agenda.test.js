@@ -79,3 +79,14 @@ test('English copy avoids British spellings and gendered pronouns for the author
     assert.doesNotMatch(text, /\bwithin her ability\b/);
   }
 });
+
+test('site icons exist as PNG/ICO for iOS, search engines and link cards, not only SVG', () => {
+  for (const file of ['apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'favicon.ico', 'favicon.svg']) {
+    assert.ok(fs.statSync(path.join(root, file)).size > 500, `${file} missing or empty`);
+  }
+  for (const page of ['index.html', '404.html']) {
+    const text = fs.readFileSync(path.join(root, page), 'utf8');
+    assert.match(text, /rel="apple-touch-icon" href="apple-touch-icon\.png"/);
+    assert.match(text, /href="favicon\.ico"/);
+  }
+});
