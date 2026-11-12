@@ -58,8 +58,10 @@ const copy = {
     disclaimerTitle: '網站聲明與使用說明',
     disclaimerLead: '關於本站性質、AI 協作、資訊查核、專業建議、著作權、隱私與責任限制。',
     disclaimerUpdated: '最後更新：2026 年 8 月 25 日',
-    heroLead: '我是吳亭葶，現為國立中央大學認知神經科學博士生，也是具證照的運動防護員。我的長期研究目標，是發展具認知神經科學與運動生理學基礎的運動處方，並檢驗其改善情緒健康與認知功能的效果及神經生理機制。我結合腦波（EEG）、心率變異度（HRV）、心肺適能評估、行為作業與 AI 輔助的可重現資料分析，理解運動相關的腦—身體調節，並建立可檢驗且具實務應用潛力的介入設計。',
+    heroLead: '我是吳亭葶，認知神經科學博士生，也是具證照的運動防護員。我研究運動如何影響情緒與認知，並結合腦波（EEG）、心率變異度（HRV）、行為作業與可重現的資料分析。',
     profileRole: '認知神經科學博士生 · 國立中央大學',
+    heroTagline: '探索運動如何透過大腦與身體，影響情緒與認知。',
+    contact: '聯絡我',
     profilePillars: '運動處方 × 認知神經科學 × 生理訊號與資料分析',
     fullProfile: '完整學經歷 →',
     selectedAreas: '研究主軸',
@@ -148,8 +150,10 @@ const copy = {
     disclaimerTitle: 'Website Statement & Terms of Use',
     disclaimerLead: 'How this site handles AI-assisted work, verification, professional advice, copyright, privacy, and limitations of responsibility.',
     disclaimerUpdated: 'Last updated: August 25, 2026',
-    heroLead: 'I am Ting-Ting Wu, a Ph.D. student in Cognitive Neuroscience at National Central University and a certified athletic trainer. My long-term research goal is to develop exercise prescriptions grounded in cognitive neuroscience and exercise physiology, and to test whether and how they can improve emotional well-being and cognitive function. I integrate electroencephalography (EEG), heart rate variability (HRV), cardiorespiratory fitness assessment, behavioral tasks, and AI-assisted reproducible data analysis to clarify exercise-related brain–body regulation and inform testable, practice-oriented interventions.',
+    heroLead: 'I am a Ph.D. student in Cognitive Neuroscience and a certified athletic trainer. I study how exercise shapes emotion and cognition, combining EEG, heart rate variability (HRV), behavioral tasks, and reproducible data analysis.',
     profileRole: 'Ph.D. Student in Cognitive Neuroscience · National Central University',
+    heroTagline: 'How exercise shapes emotion and cognition, through the brain and the body.',
+    contact: 'Contact me',
     profilePillars: 'Exercise Prescription × Cognitive Neuroscience × Biosignal & Data Analysis',
     fullProfile: 'Full profile →',
     selectedAreas: 'Research pillars',
@@ -511,15 +515,20 @@ async function renderHome() {
       <div class="profile-id">
         <h1>${lang === 'zh' ? '吳亭葶' : 'Ting-Ting Wu'} <span>${lang === 'zh' ? 'Ting-Ting Wu' : '吳亭葶'}</span></h1>
         <p class="profile-role">${c.profileRole}</p>
-        <p class="profile-pillars">${c.profilePillars}</p>
+        <p class="profile-tagline">${c.heroTagline}</p>
         <p class="profile-intro">${c.heroLead}</p>
-        <div class="profile-links"><a href="#/about">${c.fullProfile}</a><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div>
+        <div class="profile-links"><a class="profile-contact" href="mailto:tingwu.new@gmail.com">${c.contact}</a><a href="#/about">${c.fullProfile}</a><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div>
       </div>
     </section>
     <nav class="home-overview" aria-label="${lang === 'zh' ? '研究與內容概覽' : 'Research and content overview'}">
       ${overview.map((item, index) => `<a href="${item[3]}" class="overview-item${index === 1 ? ' overview-item-primary' : ''}"><span>${item[0]}</span><strong>${item[1]}</strong><small>${item[2]} →</small></a>`).join('')}
     </nav>
     ${renderHomeAgenda()}
+    <div class="home-editorial-grid">
+      <section class="home-block research-section"><h2>${c.selectedAreas}</h2><div class="pillar-grid">${c.focuses.map(item => `<a class="pillar-card" href="#/about/skills"><b>${item[0]}</b><span>${item[1]}</span></a>`).join('')}</div></section>
+      <section class="home-block featured-publications"><div class="block-heading"><h2>${c.featuredTitle}</h2><a href="#/publications">${c.allPublications}</a></div><div class="publication-preview-list">${c.featuredPublications.map(item => `<a href="#/publications" class="publication-preview"><span>${item[0]}</span><div><b>${item[1]}</b><small>${item[2]}</small></div></a>`).join('')}</div></section>
+    </div>
+    <section class="home-block latest-section"><div class="block-heading"><h2>${c.latestTitle}</h2><a href="#/blog">${c.allPosts}</a></div><div class="post-list">${posts.map(postRow).join('')}</div></section>
     <section class="home-projects" aria-labelledby="home-projects-title">
       <header class="home-projects-heading"><p>${lang === 'zh' ? '實作專案 · 01' : 'Built project · 01'}</p><h2 id="home-projects-title">${lang === 'zh' ? '研究工具與專案' : 'Research tools & projects'}</h2></header>
       <div class="home-project-row">
@@ -532,11 +541,6 @@ async function renderHome() {
       <div class="home-lab-copy"><p>${lang === 'zh' ? 'Interactive experiments · 01' : 'Interactive experiments · 01'}</p><h2 id="home-lab-title">${lang === 'zh' ? '用自己的反應時間理解腦與行為' : 'Understand brain and behavior through your own response times'}</h2><p>${lang === 'zh' ? '先預測、親自作答、查看結果，再理解注意力如何被線索引導。第一個 Posner 空間提示作業已開放體驗。' : 'Predict, respond, inspect your result, and learn how cues guide attention. The first Posner spatial cueing task is ready to try.'}</p><a href="#/lab">${lang === 'zh' ? '進入互動實驗室 →' : 'Enter the interactive lab →'}</a></div>
       <div class="home-lab-visual" aria-hidden="true"><span>←</span><i>+</i><b>●</b></div>
     </section>
-    <div class="home-editorial-grid">
-      <section class="home-block research-section"><h2>${c.selectedAreas}</h2><div class="pillar-grid">${c.focuses.map(item => `<a class="pillar-card" href="#/about/skills"><b>${item[0]}</b><span>${item[1]}</span></a>`).join('')}</div></section>
-      <section class="home-block featured-publications"><div class="block-heading"><h2>${c.featuredTitle}</h2><a href="#/publications">${c.allPublications}</a></div><div class="publication-preview-list">${c.featuredPublications.map(item => `<a href="#/publications" class="publication-preview"><span>${item[0]}</span><div><b>${item[1]}</b><small>${item[2]}</small></div></a>`).join('')}</div></section>
-    </div>
-    <section class="home-block latest-section"><div class="block-heading"><h2>${c.latestTitle}</h2><a href="#/blog">${c.allPosts}</a></div><div class="post-list">${posts.map(postRow).join('')}</div></section>
   </div>`;
 }
 

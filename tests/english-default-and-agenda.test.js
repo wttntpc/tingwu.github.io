@@ -45,3 +45,22 @@ test('research interests are bilingual, broad, and linked from the About page an
   const block = app.slice(start, end);
   assert.doesNotMatch(block, /RQ[0-9]|crossover|SSRT|VO₂peak|visit/i, 'public page must not expose study-specific design details');
 });
+
+test('home puts research and publications before tools, and the hero offers a contact action', () => {
+  const home = app.slice(app.indexOf('async function renderHome()'), app.indexOf('const researchAgenda'));
+  const order = ['renderHomeAgenda', 'home-editorial-grid', 'latest-section', 'home-projects', 'home-lab-preview'].map(key => home.indexOf(key));
+  assert.ok(order.every(i => i >= 0), 'all home blocks present');
+  assert.deepEqual([...order].sort((a, b) => a - b), order, 'blocks appear in research-first order');
+  assert.match(home, /profile-contact/);
+  assert.match(app, /heroTagline/);
+});
+
+test('publications are grouped by theme with first-author and language badges, no unpublished work added', () => {
+  for (const file of ['publications.md', 'publications.en.md']) {
+    const text = fs.readFileSync(path.join(root, 'posts', file), 'utf8');
+    assert.equal((text.match(/<li>/g) || []).length - (text.match(/<li><strong>20/g) || []).length >= 0, true);
+    assert.equal((text.match(/class="pub-badge pub-badge-first"/g) || []).length, 2);
+    assert.equal((text.match(/<ol class="publication-list">/g) || []).length, 4);
+    assert.doesNotMatch(text, /under review|in preparation|審查中|準備中/i);
+  }
+});

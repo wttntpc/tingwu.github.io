@@ -967,3 +967,12 @@ button { font: inherit; }
 @media (max-width: 720px) {
   .home-agenda { grid-template-columns: 1fr; padding: 1.8rem 0; }
   }
+
+/* Home hero and publications additions */
+.profile-tagline { max-width: 40rem; margin: .9rem 0 0; color: var(--primary); font-family: var(--font-display); font-size: 1.28rem; line-height: 1.55; }
+.profile-links .profile-contact { padding: 0 1rem; border: 1px solid var(--accent); border-radius: 3px; background: var(--accent); color: var(--paper); }
+.profile-links .profile-contact:hover { text-decoration: none; background: color-mix(in srgb, var(--accent) 88%, var(--primary)); }
+.publication-summary { margin: -1rem 0 2rem; color: var(--secondary); font-size: .84rem; font-weight: 600; }
+.pub-badge { display: inline-block; margin-left: .3rem; padding: .02rem .4rem; border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--tertiary)); border-radius: 3px; color: var(--secondary); background: var(--paper); font-size: .62rem; font-weight: 700; letter-spacing: .04em; vertical-align: .08em; white-space: nowrap; }
+.pub-badge-first { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.publications-page h3 { margin: 2.2rem 0 .8rem; color: var(--accent); font-family: var(--font-display); font-size: 1.05rem; }
