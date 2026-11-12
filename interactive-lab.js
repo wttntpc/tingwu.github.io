@@ -75,7 +75,7 @@
     },
     en: {
       back: '← Back to the interactive lab', eyebrow: 'Attention experiment · 01', title: 'Can an arrow pull your attention?',
-      lead: 'This task measures how quickly we find a target after a cue directs attention. Learn the sequence and three situations before predicting and practising.',
+      lead: 'This task measures how quickly we find a target after a cue directs attention. Learn the sequence and three situations before predicting and practicing.',
       guideTitle: 'How the experiment works', guideLead: 'Every trial follows the same sequence. Respond when the dot appears; you do not need to identify whether it is on the left or right.',
       guideSteps: [['1', 'Fixate', 'Keep your eyes on the central fixation point “+” throughout the trial; do not follow the arrow or dot with your eyes.'], ['2', 'See the cue', 'An arrow briefly appears at the center. It is only a cue, so do not respond yet.'], ['3', 'Detect the target', 'Whether the dot appears on the left or right, respond as soon as you see it.'], ['4', 'Use one response key', 'On a computer, press the Space key. On a phone or tablet, tap the single response button with your finger.']],
       scenariosTitle: 'See the three situations first', scenariosLead: 'Suppose the arrow points left. Where the dot appears next determines the cue condition.',

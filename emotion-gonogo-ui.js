@@ -30,7 +30,7 @@
       happy: '快樂臉', angry: '憤怒臉', neutral: '中性臉', face: 'AI 合成臉孔', rememberFace: '請記住這張臉',
       resultTitle: '你的任務相關性結果', resultLead: '比較同一組表情在兩種任務中的差異；單次短版結果不代表固定能力，也不能視為原研究的重現。',
       relevantDiff: '情緒相關：憤怒 RT − 快樂 RT', irrelevantDiff: '情緒無關：憤怒 RT − 快樂 RT', interaction: '兩個差值之差',
-      task: '任務', emotion: '表情', goRt: 'GO 中位反應時間', omission: 'GO 漏答率',
+      task: '任務', emotion: '表情', goRt: 'GO 中位反應時間', omissionRate: 'GO 漏答率',
       predictionLabels: { relevant: '只有情緒判斷時變慢', automatic: '兩種任務都變慢', same: '兩種表情差不多', unsure: '未選擇' },
       excluded: '排除的極端 GO RT', retry: '再做一次', limitsTitle: '如何解讀你的結果',
       limits: ['若情緒相關區塊的「憤怒 − 快樂」差值較大，方向上較接近原研究的任務相關性效應。', '短版只有少量試次；AI 合成臉孔未經情緒效價、喚醒度或辨識率的正式前測，也不是原研究的 Pictures of Facial Affect 照片。', '按鍵反應不是步態啟動。原研究以動作捕捉測量腳跟開始移動的時間，兩者不可直接比較。'],
@@ -42,7 +42,7 @@
       back: '← Back to the interactive lab', eyebrow: 'Emotion × action · 02', title: 'Does emotion automatically change action?',
       lead: 'This interactive demonstration adapts Mirabella et al. (2023), a forward gait-initiation study. The key question is whether facial expressions alter action preparation only when emotion is relevant to the current goal.',
       guideTitle: 'How the experiment works', guideLead: 'AI-generated happy, angry, and neutral faces of the same fictional people appear under two different task rules.',
-      guideSteps: [['1', 'Fixate', 'Watch the central “+” and do not respond before a face appears.'], ['2', 'Remember the rule', 'One task requires expression judgments; the other uses person group while emotion must be ignored.'], ['3', 'Simulate a forward step', 'Space or the single button represents GO. For safety, do not physically step forward.'], ['4', 'Withhold for NO-GO', 'Do not press or tap anything; wait for the next trial.']],
+      guideSteps: [['1', 'Fixate', 'Watch the central “+” and do not respond before a face appears.'], ['2', 'Remember the rule', 'One task asks you to judge expressions; the other asks about person group, and the expression must be ignored.'], ['3', 'Simulate a forward step', 'Space or the single button represents GO. For safety, do not physically step forward.'], ['4', 'Withhold on NO-GO', 'Do not press or tap anything; wait for the next trial.']],
       mappingsTitle: 'Two task rules', mappingsLead: 'The manipulation is whether emotion is relevant to the goal—not whether one emotion is permanently assigned to NO-GO.',
       mappings: [['Emotion task | relevant', 'Angry and happy: GO', 'Neutral: NO-GO'], ['Person task | irrelevant', 'Assigned person group: GO', 'Other group: NO-GO; ignore expression']],
       predict: 'Predict after learning the rules', question: 'When will angry faces slow responses relative to happy faces?',
@@ -61,7 +61,7 @@
       happy: 'Happy face', angry: 'Angry face', neutral: 'Neutral face', face: 'AI-generated face', rememberFace: 'Memorize this face',
       resultTitle: 'Your task-relevance result', resultLead: 'Compare the same expressions across task rules. One short browser session is not a fixed ability or a replication of the original study.',
       relevantDiff: 'Emotion relevant: angry RT − happy RT', irrelevantDiff: 'Emotion irrelevant: angry RT − happy RT', interaction: 'Difference of differences',
-      task: 'Task', emotion: 'Expression', goRt: 'Median GO RT', omission: 'GO omission rate',
+      task: 'Task', emotion: 'Expression', goRt: 'Median GO RT', omissionRate: 'GO omission rate',
       predictionLabels: { relevant: 'Slower only for emotion judgments', automatic: 'Slower in both tasks', same: 'Expressions similar', unsure: 'No prediction selected' },
       excluded: 'Extreme GO RTs excluded', retry: 'Try again', limitsTitle: 'How to interpret your result',
       limits: ['A larger angry-minus-happy difference in the emotion task points in the direction of the published task-relevance effect.', 'This short version has few trials. Its synthetic faces have not received formal valence, arousal, or recognition-rate pretesting and are not the original Pictures of Facial Affect stimuli.', 'A keypress is not gait initiation. The original study used motion capture to detect heel movement onset, so the values are not directly comparable.'],
@@ -141,7 +141,7 @@
     ].map(([rule, emotion]) => `<tr><th scope="row">${rule === 'emotion' ? c.paperEmotion : c.paperIdentity}</th><td>${c[emotion]}</td><td>${formatRt(summary.tasks[rule][emotion].goMedianRt)}</td><td>${formatRate(summary.tasks[rule][emotion].omissionRate)}</td></tr>`).join('');
     return `<div class="page-shell experiment-page"><a class="back-link" href="#/lab">${c.back}</a><header class="result-header"><p class="eyebrow">Result</p><h1>${c.resultTitle}</h1><p>${c.resultLead}</p></header>
       <section class="emotion-result-differences"><div><span>${c.relevantDiff}</span><strong>${formatRt(summary.relevantRtDifference)}</strong></div><div><span>${c.irrelevantDiff}</span><strong>${formatRt(summary.irrelevantRtDifference)}</strong></div><div><span>${c.interaction}</span><strong>${formatRt(summary.taskRelevanceInteraction)}</strong></div></section>
-      <div class="result-table-wrap"><table><thead><tr><th>${c.task}</th><th>${c.emotion}</th><th>${c.goRt}</th><th>${c.omission}</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <div class="result-table-wrap"><table><thead><tr><th>${c.task}</th><th>${c.emotion}</th><th>${c.goRt}</th><th>${c.omissionRate}</th></tr></thead><tbody>${rows}</tbody></table></div>
       <dl class="result-notes"><div><dt>${lang === 'zh' ? '你的預測' : 'Your prediction'}</dt><dd>${c.predictionLabels[prediction] || c.predictionLabels.unsure}</dd></div><div><dt>${c.excluded}</dt><dd>${summary.excludedRtCount}</dd></div></dl>
       <section class="result-limits"><h2>${c.limitsTitle}</h2><ul>${c.limits.map(item => `<li>${item}</li>`).join('')}</ul></section>
       <section class="result-science gait-paper-result" aria-labelledby="gait-paper-title"><p class="section-kicker">Mirabella et al. · Emotion · 2023</p><h2 id="gait-paper-title">${c.paperTitle}</h2><p>${c.paperLead}</p><div class="paper-result-grid"><article><span>${c.paperEmotion}</span><strong>687 vs 622 ms</strong><p>${lang === 'zh' ? '憤怒 vs 快樂；平均慢 65 ms' : 'Angry vs happy; 65 ms slower on average'}</p><small>${lang === 'zh' ? '漏答：2.15% vs 0.25%' : 'Omissions: 2.15% vs 0.25%'}</small></article><article><span>${c.paperIdentity}</span><strong>628 vs 619 ms</strong><p>${lang === 'zh' ? '憤怒 vs 快樂；未出現顯著差異' : 'Angry vs happy; no significant difference'}</p><small>${lang === 'zh' ? '中性臉平均 621 ms' : 'Neutral faces averaged 621 ms'}</small></article></div><p>${c.paperConclusion}</p><div class="result-sources"><a href="https://pubmed.ncbi.nlm.nih.gov/35588387/" target="_blank" rel="noopener noreferrer">${c.source} ↗</a><a href="https://doi.org/10.1037/emo0001112" target="_blank" rel="noopener noreferrer">${c.doi} ↗</a></div></section>

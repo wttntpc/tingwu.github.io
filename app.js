@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261112-01';
+const SITE_VERSION = '20261112-02';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -175,11 +175,11 @@ const copy = {
     introText: 'I am Ting-Ting Wu, a Ph.D. student at the Institute of Cognitive Neuroscience, National Central University, and a certified athletic trainer. My long-term research goal is to develop exercise prescriptions grounded in cognitive neuroscience and exercise physiology, and to test their effects on emotional well-being and cognitive function.',
     journeyTitle: 'Education & experience',
     journey: [
-      ['2025—Present', 'Ph.D., Institute of Cognitive Neuroscience, NCU', 'Exercise, executive function, and cognitive neuroscience'],
-      ['2023—2025', 'M.S., Department of Kinesiology, NTHU', 'Exercise psychology, cognition, and healthy aging'],
-      ['2019—2023', 'B.S., Department of Sports Medicine, CMU', 'Sports medicine and athletic training'],
-      ['2024—2026', 'Editorial Assistant, Journal of Sports Performance', 'Academic publishing and editorial support'],
-      ['2022—2025', 'Research & Teaching Assistant', 'Research projects and university teaching']
+      ['2025–present', 'Ph.D., Institute of Cognitive Neuroscience, NCU', 'Exercise, executive function, and cognitive neuroscience'],
+      ['2023–2025', 'M.S., Department of Kinesiology, NTHU', 'Exercise psychology, cognition, and healthy aging'],
+      ['2019–2023', 'B.S., Department of Sports Medicine, CMU', 'Sports medicine and athletic training'],
+      ['2024–2026', 'Editorial Assistant, Journal of Sports Performance', 'Academic publishing and editorial support'],
+      ['2022–2025', 'Research & Teaching Assistant', 'Research projects and university teaching']
     ],
     skillGroups: [
       ['Research areas', ['Cognitive neuroscience', 'Exercise & healthy aging', 'Executive function', 'Mental health']],
@@ -199,7 +199,7 @@ const copy = {
     blogEyebrow: 'Writing',
     blogTitle: 'Research notes & ideas',
     blogDesc: 'Observations on cognitive neuroscience, exercise and health, data analysis, and AI-enabled research.',
-    blogVersionIntro: 'Every article includes a plain-language and a professional version for different reading needs.',
+    blogVersionIntro: 'Every article includes a plain-language version and a professional version for different reading needs.',
     categories: [
       ['all', 'All writing'],
       ['popular-science', 'Science for everyone'],
@@ -216,7 +216,7 @@ const copy = {
     noSearchResults: 'No matching articles. Try a different keyword.',
     dataGuideEyebrow: 'Learning path',
     dataGuideTitle: 'Data analysis learning map',
-    dataGuideDesc: 'New readers can follow stages 01—05; experienced readers can jump directly to the topic they need.',
+    dataGuideDesc: 'New readers can follow stages 01–05; experienced readers can jump directly to the topic they need.',
     dataGuideCount: count => `${count} data analysis articles`,
     dataGuideStart: 'Start with the complete analysis workflow →',
     dataGuideTracks: [
@@ -461,7 +461,7 @@ const interestPageContent = {
     readingText: 'Alongside trip planning, I use research literature to examine the physical, emotional, and social effects of outdoor activity while separating direct evidence, reasonable inference, and uncertainty.',
     readingLink: 'Read the hiking science article →',
     traditionLabel: 'Traditional medicine & body culture',
-    traditionTitle: 'Using a personal interest to practise interdisciplinary evidence appraisal',
+    traditionTitle: 'Using a personal interest to practice interdisciplinary evidence appraisal',
     traditionText: 'As a graduate student interested in traditional medicine, I explore research questions linking traditional views of the body with anatomy, sports injury, cognition and emotion, and aesthetic science. The series foregrounds sources, levels of evidence, and safety boundaries rather than replacing professional medical advice.',
     traditionLink: 'Explore the interdisciplinary series →',
     principlesTitle: 'Principles for digital experiments',
@@ -775,7 +775,7 @@ const learningMapContent = {
     bridgeText: 'Statistics is now an independent seventh track. Its Bayesian and causal-inference pathway also supplies study design, visualization, reproducibility, and AI-verification methods used across the first six tracks.',
     bridgeLink: 'Open the statistics learning map →',
     dataLink: 'Browse all data analysis articles →',
-    sourceTitle: 'Next phase: place your sources where they belong',
+    sourceTitle: 'Next phase: connecting sources to the chapters they support',
     sourceText: 'NotebookLM, Zotero, textbooks, and course materials can deepen individual chapters without being published in bulk. Each source will retain its origin, edition, section, and permission status; private notes and copyrighted full text stay out of GitHub by default.'
   }
 };

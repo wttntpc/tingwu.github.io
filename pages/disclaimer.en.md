@@ -6,7 +6,7 @@ This is Ting-Ting Wu's personal academic and knowledge-sharing website. It prese
 
 ## 2. AI-assisted work and human review
 
-Generative AI and other automated tools may assist with drafting, translation, code, figures, image processing, information organization, and website production. The author uses these tools for preliminary structure, language editing, programming support, and visualization, and reviews or revises outputs within her ability. This process does not guarantee that every item is complete, current, or error-free.
+Generative AI and other automated tools may assist with drafting, translation, code, figures, image processing, information organization, and website production. The author uses these tools for preliminary structure, language editing, programming support, and visualization, and reviews or revises outputs within the author's ability. This process does not guarantee that every item is complete, current, or error-free.
 
 AI systems may produce incorrect citations, oversimplifications, outdated information, unsupported inferences, or text that does not match the original context. AI assistance must not be interpreted as endorsement by the AI provider, the author's institution, or the authors of cited works.
 

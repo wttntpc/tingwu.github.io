@@ -64,3 +64,18 @@ test('publications are grouped by theme with first-author and language badges, n
     assert.doesNotMatch(text, /under review|in preparation|審查中|準備中/i);
   }
 });
+
+test('Go/No-Go copy has no duplicated keys that overwrite feedback text', () => {
+  const ui = fs.readFileSync(path.join(root, 'emotion-gonogo-ui.js'), 'utf8');
+  assert.equal((ui.match(/\bomission:/g) || []).length, 2, 'one omission feedback string per language');
+  assert.equal((ui.match(/\bomissionRate:/g) || []).length, 2, 'one omission-rate label per language');
+});
+
+test('English copy avoids British spellings and gendered pronouns for the author', () => {
+  const files = ['app.js', 'interactive-lab.js', 'emotion-gonogo-ui.js'].map(f => fs.readFileSync(path.join(root, f), 'utf8'));
+  files.push(fs.readFileSync(path.join(root, 'pages', 'disclaimer.en.md'), 'utf8'));
+  for (const text of files) {
+    assert.doesNotMatch(text, /\bpractis(e|ed|ing)\b/);
+    assert.doesNotMatch(text, /\bwithin her ability\b/);
+  }
+});
