@@ -5,7 +5,9 @@
     "date": "2026-10-16",
     "category": "data-analysis",
     "tags": ["因果推論", "隨機化", "Estimand", "Neyman推論", "區組設計", "學習筆記"],
-    "description": "從 Perfect Doctor、邊際與聯合分布、CRE 與 Bernoulli 隨機化，理解 estimand、estimator、Horvitz–Thompson 加權與區組設計。"
+    "description": "從 Perfect Doctor、邊際與聯合分布、CRE 與 Bernoulli 隨機化，理解 estimand、estimator、Horvitz–Thompson 加權與區組設計。",
+    "titleEn": "Bayesian Causal Inference Notes 05: Randomization Is More Than a Coin Flip—From Estimands to Block Designs",
+    "descriptionEn": "From the Perfect Doctor example, marginal versus joint distributions, and completely randomized versus Bernoulli designs to estimands, estimators, Horvitz–Thompson weighting, and blocked designs."
   },
   {
     "id": "bayesian-causal-inference-week-04",
@@ -13,7 +15,9 @@
     "date": "2026-10-13",
     "category": "data-analysis",
     "tags": ["因果推論", "Fisher隨機化檢定", "Sharp Null", "置換檢定", "研究設計", "學習筆記"],
-    "description": "從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。"
+    "description": "從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。",
+    "titleEn": "Bayesian Causal Inference Notes 04: How Can Random Assignment Alone Give an Exact p Value?",
+    "descriptionEn": "Fisher's sharp null, the randomization distribution, and Monte Carlo approximation: how to run an exact test that does not rely on normality, and why choosing the test statistic after seeing the data is risky."
   },
   {
     "id": "bayesian-causal-inference-week-03",
@@ -21,7 +25,9 @@
     "date": "2026-09-29",
     "category": "data-analysis",
     "tags": ["因果推論", "二元結果", "SUTVA", "DAG", "混淆變數", "學習筆記"],
-    "description": "從 RD、RR、OR 與 Fisher 精確檢定，進入潛在結果、SUTVA、混淆變數、對撞變數、中介與工具變數，理解控制變數必須依因果結構決定。"
+    "description": "從 RD、RR、OR 與 Fisher 精確檢定，進入潛在結果、SUTVA、混淆變數、對撞變數、中介與工具變數，理解控制變數必須依因果結構決定。",
+    "titleEn": "Bayesian Causal Inference Notes 03: From Risk Difference to Causal Graphs—Which Variables Should You Control?",
+    "descriptionEn": "From RD, RR, OR, and Fisher's exact test to potential outcomes, SUTVA, confounders, colliders, mediators, and instruments, and why covariate adjustment must follow the causal structure."
   },
   {
     "id": "bayesian-causal-inference-week-02",
@@ -29,7 +35,9 @@
     "date": "2026-09-22",
     "category": "data-analysis",
     "tags": ["因果推論", "傾向分數", "觀察性研究", "有限母體", "超母體", "學習筆記"],
-    "description": "從觀察性資料的混淆問題出發，理解傾向分數、交換性與重疊性，並區分有限母體和超母體推論回答的不同問題。"
+    "description": "從觀察性資料的混淆問題出發，理解傾向分數、交換性與重疊性，並區分有限母體和超母體推論回答的不同問題。",
+    "titleEn": "Bayesian Causal Inference Notes 02: Without a Randomized Experiment, What Can Propensity Scores Do?",
+    "descriptionEn": "Starting from confounding in observational data: propensity scores, exchangeability, and overlap, and how finite-population and super-population inference answer different questions."
   },
   {
     "id": "bayesian-causal-inference-week-01",
@@ -37,7 +45,9 @@
     "date": "2026-09-15",
     "category": "data-analysis",
     "tags": ["貝氏統計", "因果推論", "潛在結果", "隨機分派", "DAG", "學習筆記"],
-    "description": "從 TMS 例子理解潛在結果、反事實、隨機分派、混淆與因果識別，並釐清 Bayesian 建模之前必須先回答的研究問題。"
+    "description": "從 TMS 例子理解潛在結果、反事實、隨機分派、混淆與因果識別，並釐清 Bayesian 建模之前必須先回答的研究問題。",
+    "titleEn": "Bayesian Causal Inference Notes 01: Two Group Means Differ—Why Is That Still Not a Causal Effect?",
+    "descriptionEn": "Using a TMS example to understand potential outcomes, counterfactuals, random assignment, confounding, and causal identification, and the research questions that must be answered before any Bayesian modeling."
   },
   {
     "id": "hrv-three-device-analysis-practice",
@@ -45,7 +55,9 @@
     "date": "2026-09-23",
     "category": "data-analysis",
     "tags": ["HRV", "Garmin", "Portable ECG", "BIOPAC", "品質控制", "敏感度分析"],
-    "description": "以兩人三設備先導專案為例，拆解共同時間窗、R peak、BBI／RRI 品質控制、HRV 指標、敏感度分析與重複量測一致性限制。"
+    "description": "以兩人三設備先導專案為例，拆解共同時間窗、R peak、BBI／RRI 品質控制、HRV 指標、敏感度分析與重複量測一致性限制。",
+    "titleEn": "From BBI/RRI to Comparable HRV: Analyzing Garmin, Portable ECG, and BIOPAC Data",
+    "descriptionEn": "A two-person, three-device pilot used to walk through shared time windows, R-peak detection, BBI/RRI quality control, HRV indices, sensitivity analysis, and the limits of repeated-measures agreement."
   },
   {
     "id": "vibe-coding-cybersecurity-basics",
@@ -53,7 +65,9 @@
     "date": "2026-09-04",
     "category": "ai-tools",
     "tags": ["Vibe Coding", "資訊安全", "AI 寫程式", "WhatSub", "AI 工具與工作流", "軟體工程"],
-    "description": "解析 Gary Chen 的非技術人員資安教學影片：從 What'Sub 爆紅引發的資安風波出發，盤點 AI 輔助開發（Vibe Coding）上線前必須回答的 5 個核心問題，並提供非工程背景也能落實的「四步驟安全修補法」。"
+    "description": "解析 Gary Chen 的非技術人員資安教學影片：從 What'Sub 爆紅引發的資安風波出發，盤點 AI 輔助開發（Vibe Coding）上線前必須回答的 5 個核心問題，並提供非工程背景也能落實的「四步驟安全修補法」。",
+    "titleEn": "A First Security Lesson from the What'Sub Incident: Working Code Is Not Ready for Production",
+    "descriptionEn": "Based on a security tutorial for non-engineers: five questions to answer before shipping AI-assisted (vibe-coded) software, plus a practical four-step hardening routine that does not require an engineering background."
   },
   {
     "id": "garmin-ecg-validation-study-design",
@@ -61,7 +75,9 @@
     "date": "2026-09-03",
     "category": "research-methods",
     "tags": ["Garmin", "ECG", "PPG", "HRV", "效度研究", "Bland–Altman"],
-    "description": "整合Garmin公開驗證研究與兩人三設備先導結果，分層解讀靜息Mean HR、Mean NN、SDNN、RMSSD及動作QC，並建立正式方法比較研究路徑。"
+    "description": "整合Garmin公開驗證研究與兩人三設備先導結果，分層解讀靜息Mean HR、Mean NN、SDNN、RMSSD及動作QC，並建立正式方法比較研究路徑。",
+    "titleEn": "Can a Garmin Watch Replace ECG? From Published Evidence to a Two-Person, Three-Device Pilot",
+    "descriptionEn": "Combines published Garmin validation studies with pilot results, interprets resting mean HR, mean NN, SDNN, RMSSD, and motion QC by tier, and outlines a formal method-comparison study."
   },
   {
     "id": "outdoor-hiking-health-mind-review",
@@ -69,7 +85,9 @@
     "date": "2026-09-30",
     "category": "popular-science",
     "tags": ["個人興趣", "戶外健行", "自然暴露", "運動與情緒", "公共衛生"],
-    "description": "從整合性綜述理解健行如何同時結合運動、自然與社會刺激，整理心肺、情緒與社區效益，也辨認健行和一般步行不能混為一談的證據限制。"
+    "description": "從整合性綜述理解健行如何同時結合運動、自然與社會刺激，整理心肺、情緒與社區效益，也辨認健行和一般步行不能混為一談的證據限制。",
+    "titleEn": "What Happens to Body and Mood When You Walk into the Mountains? The Layered Benefits of Hiking",
+    "descriptionEn": "An integrative review of how hiking combines exercise, nature, and social stimulation; cardiorespiratory, emotional, and community benefits; and why hiking evidence cannot simply be equated with ordinary walking."
   },
   {
     "id": "traditional-medicine-modern-body-science-series",
@@ -77,7 +95,9 @@
     "date": "2026-09-24",
     "category": "popular-science",
     "tags": ["中醫", "跨領域研究", "運動傷害", "認知科學", "美顏科學", "循證醫學"],
-    "description": "規劃中醫人體觀、運動傷害、情緒與認知、美顏科學及研究判讀五條跨領域文章路線，並建立論文圖片授權、證據分級與安全說明規則。"
+    "description": "規劃中醫人體觀、運動傷害、情緒與認知、美顏科學及研究判讀五條跨領域文章路線，並建立論文圖片授權、證據分級與安全說明規則。",
+    "titleEn": "Traditional Medicine and Modern Body Science: An Interdisciplinary Series",
+    "descriptionEn": "A plan for five article tracks—traditional views of the body, sports injury, emotion and cognition, aesthetic science, and reading research critically—with rules for figure licensing, evidence grading, and safety statements."
   },
   {
     "id": "kampo-extracts-renal-function-propensity-study",
@@ -85,7 +105,9 @@
     "date": "2026-09-24",
     "category": "popular-science",
     "tags": ["Kampo", "漢方", "腎功能", "CKD", "eGFR", "傾向分數"],
-    "description": "解析長期日本漢方萃取製劑與腎功能變化的配對觀察研究，說明 eGFR slope、傾向分數、主要結果及無法直接推論因果的原因。"
+    "description": "解析長期日本漢方萃取製劑與腎功能變化的配對觀察研究，說明 eGFR slope、傾向分數、主要結果及無法直接推論因果的原因。",
+    "titleEn": "Could Kampo Extracts Protect Kidney Function? Reading eGFR and Propensity-Score Matching in a Nine-Year Observational Study",
+    "descriptionEn": "Unpacks a matched observational study of long-term Japanese Kampo extract use and kidney function: eGFR slope, propensity scores, the main results, and why causation cannot be inferred directly."
   },
   {
     "id": "hrv-bbi-rri-ibi-nni",
@@ -93,7 +115,9 @@
     "date": "2026-08-26",
     "category": "learning-foundations",
     "tags": ["HRV", "BBI", "RRI", "NNI", "PPG", "ECG"],
-    "description": "HRV 每日學習第一篇：從 ECG R peak、腕式 PPG 脈搏波與品質控制，分清 IBI、BBI、RRI、PPI 與 NNI。"
+    "description": "HRV 每日學習第一篇：從 ECG R peak、腕式 PPG 脈搏波與品質控制，分清 IBI、BBI、RRI、PPI 與 NNI。",
+    "titleEn": "Starting from a Single Heartbeat: What Are the Differences Among BBI, RRI, IBI, and NNI?",
+    "descriptionEn": "The first daily HRV lesson: telling IBI, BBI, RRI, PPI, and NNI apart, from ECG R peaks and wrist PPG pulse waves to quality control."
   },
   {
     "id": "hrv-dvc-preprocessing-imputation",
@@ -101,7 +125,9 @@
     "date": "2026-08-26",
     "category": "data-analysis",
     "tags": ["HRV", "自律神經", "DVC 演算法", "穿戴式裝置", "數據插補", "訊號前處理"],
-    "description": "介紹 Benchekroun et al. (2022) 發表於 Sensors 期刊的動態 HRV 預處理方法（DVC）。探討智慧手錶/手環在運動與日常中產生連續斷訊與偽峰時，如何透過自適應高斯採樣還原心臟天然波動特徵，提高壓力預測與自律神經評估的精準度。"
+    "description": "介紹 Benchekroun et al. (2022) 發表於 Sensors 期刊的動態 HRV 預處理方法（DVC）。探討智慧手錶/手環在運動與日常中產生連續斷訊與偽峰時，如何透過自適應高斯採樣還原心臟天然波動特徵，提高壓力預測與自律神經評估的精準度。",
+    "titleEn": "Rescuing Corrupted and Missing Signals: How DVC Adaptive Gaussian Imputation Protects Heart Rate Variability (HRV)",
+    "descriptionEn": "Introduces the dynamic HRV preprocessing method (DVC) of Benchekroun et al. (2022, Sensors): how adaptive Gaussian sampling restores natural cardiac variability when smartwatches lose signal or produce artifact peaks during exercise and daily life."
   },
   {
     "id": "cognitive-neuroscience-learning-map",
@@ -109,7 +135,9 @@
     "date": "2026-08-25",
     "category": "learning-foundations",
     "tags": ["認知神經科學", "大腦", "認知", "情緒", "學習地圖"],
-    "description": "以神經系統基礎、認知功能、情緒機制、研究方法與整合推論五層，建立可學習、複習與深化的認知神經科學路徑。"
+    "description": "以神經系統基礎、認知功能、情緒機制、研究方法與整合推論五層，建立可學習、複習與深化的認知神經科學路徑。",
+    "titleEn": "Cognitive Neuroscience Learning Map: From the Brain to Cognition and Emotion",
+    "descriptionEn": "A five-layer path—neural foundations, cognitive functions, emotion mechanisms, research methods, and integrative inference—designed for learning, review, and deepening."
   },
   {
     "id": "exercise-physiology-learning-map",
@@ -117,7 +145,9 @@
     "date": "2026-08-25",
     "category": "learning-foundations",
     "tags": ["運動生理學", "能量系統", "心肺適能", "運動處方", "學習地圖"],
-    "description": "由能量代謝、神經肌肉與心肺反應，逐步進入訓練適應、測量與個別化運動處方。"
+    "description": "由能量代謝、神經肌肉與心肺反應，逐步進入訓練適應、測量與個別化運動處方。",
+    "titleEn": "Exercise Physiology Learning Map: From Acute Responses to Exercise Prescription",
+    "descriptionEn": "From energy metabolism and neuromuscular and cardiorespiratory responses to training adaptation, measurement, and individualized exercise prescription."
   },
   {
     "id": "human-anatomy-learning-map",
@@ -125,7 +155,9 @@
     "date": "2026-08-25",
     "category": "learning-foundations",
     "tags": ["人體解剖學", "肌肉骨骼", "神經系統", "心血管", "學習地圖"],
-    "description": "從解剖方位、組織與器官系統出發，把肌肉骨骼、神經與心肺結構連回動作、傷害與生理量測。"
+    "description": "從解剖方位、組織與器官系統出發，把肌肉骨骼、神經與心肺結構連回動作、傷害與生理量測。",
+    "titleEn": "Human Anatomy Learning Map: Understanding Movement and Physiology Through Structure",
+    "descriptionEn": "From anatomical position, tissues, and organ systems, connecting musculoskeletal, nervous, and cardiopulmonary structures to movement, injury, and physiological measurement."
   },
   {
     "id": "athletic-training-learning-map",
@@ -133,7 +165,9 @@
     "date": "2026-08-25",
     "category": "learning-foundations",
     "tags": ["運動傷害防護", "臨床評估", "急性照護", "復健", "重返運動"],
-    "description": "整理預防、臨床評估、急性照護、治療介入、復健與重返運動的循證學習路徑。"
+    "description": "整理預防、臨床評估、急性照護、治療介入、復健與重返運動的循證學習路徑。",
+    "titleEn": "Athletic Training Learning Map: From Risk Identification to Return to Sport",
+    "descriptionEn": "An evidence-based path through prevention, clinical assessment, acute care, treatment, rehabilitation, and return to sport."
   },
   {
     "id": "eeg-learning-map",
@@ -141,7 +175,9 @@
     "date": "2026-08-25",
     "category": "learning-foundations",
     "tags": ["EEG", "腦波設備", "訊號處理", "品質控制", "學習地圖"],
-    "description": "把腦電生理、電極與放大器、實驗設計、前處理、時頻分析及品質控制連成完整路徑。"
+    "description": "把腦電生理、電極與放大器、實驗設計、前處理、時頻分析及品質控制連成完整路徑。",
+    "titleEn": "EEG Learning Map: From Neurophysiology and Equipment to Reproducible Analysis",
+    "descriptionEn": "Links brain electrophysiology, electrodes and amplifiers, experimental design, preprocessing, time-frequency analysis, and quality control into one path."
   },
   {
     "id": "hrv-learning-map",
@@ -149,7 +185,9 @@
     "date": "2026-08-25",
     "category": "learning-foundations",
     "tags": ["HRV", "自律神經", "ECG", "PPG", "非線性分析"],
-    "description": "從心臟與自律神經生理、ECG／PPG 量測，到 BBI 清理、時域、頻域、非線性指標及研究解讀。"
+    "description": "從心臟與自律神經生理、ECG／PPG 量測，到 BBI 清理、時域、頻域、非線性指標及研究解讀。",
+    "titleEn": "HRV Learning Map: From the Autonomic Nervous System and Sensors to Interpreting Indices",
+    "descriptionEn": "From cardiac and autonomic physiology and ECG/PPG measurement to BBI cleaning, time-domain, frequency-domain, and nonlinear indices, and research interpretation."
   },
   {
     "id": "marathon-hiit-autonomic-remodeling",
@@ -157,7 +195,9 @@
     "date": "2026-08-25",
     "category": "popular-science",
     "tags": ["自律神經", "馬拉松長跑", "HIIT", "心率變異度 (HRV)", "運動適應"],
-    "description": "介紹 Wang et al. (2025) 的最新運動介入研究：為期兩個月的馬拉松慢跑與 HIIT，如何顯著調降青年族群的體重與 BMI，並對心臟副交感迷走神經活性（RMSSD、pNN50）進行深度的適應性重塑。"
+    "description": "介紹 Wang et al. (2025) 的最新運動介入研究：為期兩個月的馬拉松慢跑與 HIIT，如何顯著調降青年族群的體重與 BMI，並對心臟副交感迷走神經活性（RMSSD、pNN50）進行深度的適應性重塑。",
+    "titleEn": "Beyond Weight Loss: How Marathon Running and HIIT Retune the Autonomic Nervous System",
+    "descriptionEn": "Summarizes Wang et al. (2025): a two-month marathon-running and HIIT intervention in young adults that reduced body weight and BMI and remodeled cardiac parasympathetic (vagal) activity (RMSSD, pNN50)."
   },
   {
     "id": "notion-antigravity-notebooklm-vocabulary-workflow",
@@ -165,7 +205,9 @@
     "date": "2026-08-25",
     "category": "ai-tools",
     "tags": ["AI 工作流", "Notion", "Antigravity", "NotebookLM", "多益學習", "Podcast", "知識管理"],
-    "description": "用 Notion 收集可追溯的單字與語境，讓 Antigravity 產生待確認草稿，再把已查核內容匯入 NotebookLM 製作 Audio Overview；同時說明資料結構、安全、人工驗證與學習成效評估。"
+    "description": "用 Notion 收集可追溯的單字與語境，讓 Antigravity 產生待確認草稿，再把已查核內容匯入 NotebookLM 製作 Audio Overview；同時說明資料結構、安全、人工驗證與學習成效評估。",
+    "titleEn": "From a Notion Word Bank to a Podcast: A Verifiable Antigravity × NotebookLM Vocabulary Workflow",
+    "descriptionEn": "Collect traceable words and contexts in Notion, let Antigravity draft items for review, then import verified content into NotebookLM for an Audio Overview—covering data structure, safety, human verification, and learning evaluation."
   },
   {
     "id": "at-emt-1-course-radar",
@@ -173,7 +215,9 @@
     "date": "2026-08-25",
     "category": "ai-tools",
     "tags": ["AI 應用", "Python 爬蟲", "運動傷害防護", "EMT-1", "Supabase", "Vercel"],
-    "description": "從分散的 AT、EMT-1 公開課程，到 Python 清洗、Supabase 資料與權限管理、Vercel 靜態部署及 fallback 快照，完整拆解進修課程雷達的功能、架構、安全與資料品質。"
+    "description": "從分散的 AT、EMT-1 公開課程，到 Python 清洗、Supabase 資料與權限管理、Vercel 靜態部署及 fallback 快照，完整拆解進修課程雷達的功能、架構、安全與資料品質。",
+    "titleEn": "Building a Continuing-Education Course Radar for EMT-1 and Athletic Training",
+    "descriptionEn": "From scattered public AT and EMT-1 listings to Python cleaning, Supabase data and access control, static Vercel deployment, and fallback snapshots: the tool's features, architecture, security, and data quality."
   },
   {
     "id": "fft-wavelet-eeg-time-frequency",
@@ -181,7 +225,9 @@
     "date": "2026-08-14",
     "category": "research-methods",
     "tags": ["EEG", "FFT", "Welch PSD", "Morlet wavelet", "時間頻率分析"],
-    "description": "從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。"
+    "description": "從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。",
+    "titleEn": "FFT and Wavelets: From a Whole-Signal Spectrum to an EEG Time–Frequency Map",
+    "descriptionEn": "Sampling, the Nyquist limit, frequency resolution, and spectral leakage; STFT, Morlet cycles, baselines, and edge effects; with an interactive tool comparing FFT and wavelet results."
   },
   {
     "id": "data-types-tidy-research-data",
@@ -189,7 +235,9 @@
     "date": "2026-08-14",
     "category": "data-analysis",
     "tags": ["資料整理", "Tidy Data", "資料字典", "可重現研究"],
-    "description": "從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。"
+    "description": "從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。",
+    "titleEn": "Data Types and Tidy Data: Organizing Research Data into an Analyzable Format",
+    "descriptionEn": "From measurement scales, units of observation, and long versus wide formats to data dictionaries, missing values, and validation rules, so that research data can be understood correctly and reproduced."
   },
   {
     "id": "research-data-visualization",
@@ -197,7 +245,9 @@
     "date": "2026-08-14",
     "category": "data-analysis",
     "tags": ["資料視覺化", "原始資料", "信賴區間", "重複量測"],
-    "description": "依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。"
+    "description": "依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。",
+    "titleEn": "Don't Plot Only the Means: Choosing and Reading Research Figures",
+    "descriptionEn": "Choose figures by data type and study design, distinguish SD, SE, and CI correctly, and use raw points, paired lines, and distributions to reveal what bar charts hide."
   },
   {
     "id": "p-value-hypothesis-testing",
@@ -205,7 +255,9 @@
     "date": "2026-08-14",
     "category": "data-analysis",
     "tags": ["P 值", "假設檢定", "統計顯著", "研究解讀"],
-    "description": "釐清 p 值的條件機率定義、顯著與不顯著的常見誤解，以及如何結合效果估計、信賴區間與研究設計報告結果。"
+    "description": "釐清 p 值的條件機率定義、顯著與不顯著的常見誤解，以及如何結合效果估計、信賴區間與研究設計報告結果。",
+    "titleEn": "A p Value Is Not the Probability That the Hypothesis Is True: From Hypothesis Testing to Sound Interpretation",
+    "descriptionEn": "Clarifies the conditional-probability definition of p, common misreadings of significant and nonsignificant results, and how to report findings together with effect estimates, confidence intervals, and study design."
   },
   {
     "id": "effect-size-confidence-interval-sample-size",
@@ -213,7 +265,9 @@
     "date": "2026-08-14",
     "category": "data-analysis",
     "tags": ["效果量", "信賴區間", "樣本數", "統計檢定力"],
-    "description": "把原始與標準化效果、區間精確度、SESOI、power 與 precision-based planning 放進同一套研究規劃與結果判讀框架。"
+    "description": "把原始與標準化效果、區間精確度、SESOI、power 與 precision-based planning 放進同一套研究規劃與結果判讀框架。",
+    "titleEn": "Effect Size, Confidence Intervals, and Sample Size: How Big Is the Result, and How Certain Are We?",
+    "descriptionEn": "Places raw and standardized effects, interval precision, SESOI, power, and precision-based planning in one framework for study planning and interpretation."
   },
   {
     "id": "multi-ai-research-team-workflow",
@@ -221,7 +275,9 @@
     "date": "2026-08-14",
     "category": "ai-tools",
     "tags": ["AI 工作流", "多代理協作", "Claude", "Codex", "Hermes"],
-    "description": "把四套 AI 工具安排成研究內容、程式實作、視覺驗證與長期排程的協作團隊，並建立避免檔案衝突、責任擴散與自動化偏誤的規則。"
+    "description": "把四套 AI 工具安排成研究內容、程式實作、視覺驗證與長期排程的協作團隊，並建立避免檔案衝突、責任擴散與自動化偏誤的規則。",
+    "titleEn": "Claude, Codex, Antigravity, and Hermes: How My AI Research Team Divides the Work",
+    "descriptionEn": "Four AI tools arranged as a team for research content, code, visual verification, and scheduled tasks, with rules that prevent file conflicts, diffusion of responsibility, and automation bias."
   },
   {
     "id": "research-knowledge-stack-zotero-hackmd-notebooklm-github",
@@ -229,7 +285,9 @@
     "date": "2026-08-14",
     "category": "ai-tools",
     "tags": ["知識管理", "Zotero", "HackMD", "NotebookLM", "GitHub"],
-    "description": "以單一事實來源與 FAIR 原則安排文獻、研究筆記、限定來源綜整、程式及版本，讓研究材料能互相連結又不產生多份衝突副本。"
+    "description": "以單一事實來源與 FAIR 原則安排文獻、研究筆記、限定來源綜整、程式及版本，讓研究材料能互相連結又不產生多份衝突副本。",
+    "titleEn": "Zotero, HackMD, NotebookLM, and GitHub: Where Should Research Material Live?",
+    "descriptionEn": "Using a single source of truth and the FAIR principles to organize references, notes, source-limited synthesis, code, and versions so that materials link to each other without conflicting copies."
   },
   {
     "id": "ai-assisted-reproducible-research-workflow",
@@ -237,7 +295,9 @@
     "date": "2026-08-14",
     "category": "research-methods",
     "tags": ["AI 研究", "可重現研究", "資料分析", "研究設計", "版本控制"],
-    "description": "從 estimand、分析計畫、原始資料保護與品質檢查，到模型診斷、效果估計、敏感度分析及可重現發布，說明 AI 可以參與與不能代替的判斷。"
+    "description": "從 estimand、分析計畫、原始資料保護與品質檢查，到模型診斷、效果估計、敏感度分析及可重現發布，說明 AI 可以參與與不能代替的判斷。",
+    "titleEn": "From Research Question to Reproducible Analysis: My AI-Assisted Research Workflow",
+    "descriptionEn": "From estimand, analysis plan, raw-data protection, and quality checks to model diagnostics, effect estimation, sensitivity analysis, and reproducible release—what AI can contribute and which judgments it cannot replace."
   },
   {
     "id": "audit-ai-statistical-analysis-results",
@@ -245,7 +305,9 @@
     "date": "2026-08-14",
     "category": "data-analysis",
     "tags": ["AI 統計", "統計查核", "模型診斷", "效果量", "可重現分析"],
-    "description": "不以流暢文字判斷統計正確性；逐層檢查研究設計、資料完整性、程式、模型假設、效果解釋、樣本數、AI 限制與引用證據。"
+    "description": "不以流暢文字判斷統計正確性；逐層檢查研究設計、資料完整性、程式、模型假設、效果解釋、樣本數、AI 限制與引用證據。",
+    "titleEn": "How to Audit AI-Generated Statistical Results: Eight Verification Gates and a Practical Checklist",
+    "descriptionEn": "Fluent text is not evidence of correct statistics. Check design, data integrity, code, model assumptions, effect interpretation, sample size, AI limitations, and cited evidence layer by layer."
   },
   {
     "id": "fitness-hrv-cognitive-performance",
@@ -253,7 +315,9 @@
     "date": "2026-08-12",
     "category": "popular-science",
     "tags": ["心肺適能", "HRV", "持續注意", "認知功能", "研究解讀"],
-    "description": "解讀一項比較高、低體適能年輕男性的研究：較高體適能與持續注意反應及較穩定的 HRV 有關，但不是所有認知能力都較好。"
+    "description": "解讀一項比較高、低體適能年輕男性的研究：較高體適能與持續注意反應及較穩定的 HRV 有關，但不是所有認知能力都較好。",
+    "titleEn": "Does Better Fitness Mean Steadier Attention? Brain–Body Regulation in Cognitive Tasks, Seen Through HRV",
+    "descriptionEn": "Interprets a study comparing young men with higher and lower fitness: higher fitness was associated with sustained-attention responses and steadier HRV, but not with better performance on every cognitive measure."
   },
   {
     "id": "open-source-research-statistics-skills",
@@ -261,7 +325,9 @@
     "date": "2026-08-11",
     "category": "ai-tools",
     "tags": ["開源軟體", "AI Skills", "文獻研究", "統計分析", "研究工作流"],
-    "description": "盤點具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權的學術研究與統計 Skills，說明用途、適用階段與再利用注意事項。"
+    "description": "盤點具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權的學術研究與統計 Skills，說明用途、適用階段與再利用注意事項。",
+    "titleEn": "Choosing Open-Source Research Skills: A Toolkit for Literature, Statistics, and Scientific Writing",
+    "descriptionEn": "A survey of academic and statistics skills with clear MIT, BSD-3-Clause, or Apache-2.0 licenses, explaining their uses, suitable research stages, and reuse considerations."
   },
   {
     "id": "ten-design-skills-academic-website",
@@ -269,7 +335,9 @@
     "date": "2026-08-11",
     "category": "ai-tools",
     "tags": ["AI Skills", "網站設計", "學術研究", "工具評估"],
-    "description": "比較十套熱門前端設計 Skills，辨認哪些適合研究視覺化、個人學術網站與長文呈現，以及為什麼安裝越多不一定越好。"
+    "description": "比較十套熱門前端設計 Skills，辨認哪些適合研究視覺化、個人學術網站與長文呈現，以及為什麼安裝越多不一定越好。",
+    "titleEn": "Do You Need All Ten Front-End Design Skills? A Selection Guide for Academic Research and Personal Websites",
+    "descriptionEn": "Compares ten popular front-end design skills, identifies which suit research visualization, personal academic sites, and long-form pages, and explains why installing more is not always better."
   },
   {
     "id": "research-update-1",
@@ -277,7 +345,9 @@
     "date": "2026-07-28",
     "category": "popular-science",
     "tags": ["運動", "大腦健康", "執行功能"],
-    "description": "整理身體活動、認知功能、情緒調節與神經可塑性之間的重要連結。"
+    "description": "整理身體活動、認知功能、情緒調節與神經可塑性之間的重要連結。",
+    "titleEn": "How Does Physical Activity Affect Brain Health?",
+    "descriptionEn": "An overview of key links among physical activity, cognitive function, emotion regulation, and neuroplasticity."
   },
   {
     "id": "first-ai-code",
@@ -285,7 +355,9 @@
     "date": "2026-08-01",
     "category": "ai-tools",
     "tags": ["AI", "Python", "研究工作流"],
-    "description": "分享我如何將 AI 導入資料分析、程式除錯與網站開發的日常工作流程。"
+    "description": "分享我如何將 AI 導入資料分析、程式除錯與網站開發的日常工作流程。",
+    "titleEn": "My First Experience with AI Code",
+    "descriptionEn": "How I bring AI into everyday data analysis, debugging, and website development."
   },
   {
     "id": "python-statistics-pipeline",
@@ -293,7 +365,9 @@
     "date": "2026-08-03",
     "category": "data-analysis",
     "tags": ["Python", "統計分析", "可重現研究"],
-    "description": "統計分析不只是執行檢定；從研究設計、資料驗證到效果量與報告，每一步都需要留下判斷依據。"
+    "description": "統計分析不只是執行檢定；從研究設計、資料驗證到效果量與報告，每一步都需要留下判斷依據。",
+    "titleEn": "From Study Design to Report: Core Principles of a Python Statistics Pipeline",
+    "descriptionEn": "Statistical analysis is more than running tests. From study design and data validation to effect sizes and reporting, every step should leave a record of the judgment behind it."
   },
   {
     "id": "post-hoc-power-confidence-interval",
@@ -301,7 +375,9 @@
     "date": "2026-08-06",
     "category": "data-analysis",
     "tags": ["統計分析", "Statistical Power", "信賴區間", "MCID", "等效性檢定"],
-    "description": "Observed post-hoc power 常只是 p 值的回音；改用效果量、信賴區間、重要效果門檻與敏感度分析，才能分辨接近零與結果不精確。"
+    "description": "Observed post-hoc power 常只是 p 值的回音；改用效果量、信賴區間、重要效果門檻與敏感度分析，才能分辨接近零與結果不精確。",
+    "titleEn": "Should You Compute Post-hoc Power After a Nonsignificant Result? Reading Results Through Confidence Intervals",
+    "descriptionEn": "Observed post-hoc power is often just an echo of the p value. Effect sizes, confidence intervals, smallest effects of interest, and sensitivity analysis distinguish a near-zero effect from an imprecise estimate."
   },
   {
     "id": "data-analysis-workflow",
@@ -309,7 +385,9 @@
     "date": "2026-08-06",
     "category": "data-analysis",
     "tags": ["數據分析", "研究設計", "統計推論", "可重現研究"],
-    "description": "數據分析不只是選檢定與計算 p 值；從問題定義、資料清理、探索、模型診斷到效果估計，整理一套能被檢查與重現的完整流程。"
+    "description": "數據分析不只是選檢定與計算 p 值；從問題定義、資料清理、探索、模型診斷到效果估計，整理一套能被檢查與重現的完整流程。",
+    "titleEn": "How Does Data Become a Conclusion? An Analysis Workflow from Research Question to Reproducible Report",
+    "descriptionEn": "Data analysis is more than choosing a test and computing p. A complete, checkable, and reproducible workflow from question definition, data cleaning, and exploration to model diagnostics and effect estimation."
   },
   {
     "id": "eeg-preprocessing-principles",
@@ -317,7 +395,9 @@
     "date": "2026-08-03",
     "category": "research-methods",
     "tags": ["EEG", "EEGLAB", "訊號處理"],
-    "description": "從原始腦電訊號到可分析資料，整理濾波、重參考、壞道、ICA 與品質紀錄的完整思路。"
+    "description": "從原始腦電訊號到可分析資料，整理濾波、重參考、壞道、ICA 與品質紀錄的完整思路。",
+    "titleEn": "EEG Preprocessing Is Not Pressing a Button: Eight Steps and Quality Checks",
+    "descriptionEn": "From raw EEG to analyzable data: the reasoning behind filtering, re-referencing, bad channels, ICA, and quality records."
   },
   {
     "id": "teleportation-reaction-time-task",
@@ -325,7 +405,9 @@
     "date": "2026-08-03",
     "category": "research-methods",
     "tags": ["認知作業", "反應時間", "資料品質"],
-    "description": "用一個簡單的點擊作業，理解大腦開始反應與身體完成動作其實是兩段不同的歷程。"
+    "description": "用一個簡單的點擊作業，理解大腦開始反應與身體完成動作其實是兩段不同的歷程。",
+    "titleEn": "Reaction Time Versus Movement Time: Understanding the Teleportation Cognitive Task",
+    "descriptionEn": "A simple click task shows that when the brain begins to respond and when the body finishes the movement are two different processes."
   },
   {
     "id": "garmin-raw-data-hrv",
@@ -333,7 +415,9 @@
     "date": "2026-08-05",
     "category": "data-analysis",
     "tags": ["Garmin", "HRV", "PPG", "Poincaré plot", "生理訊號"],
-    "description": "完整理解 BBI、ECG 與腕式 PPG 的量測原理，以及時域、頻域、Poincaré plot、entropy、DFA 與 RQA 等 HRV 指標的限制。"
+    "description": "完整理解 BBI、ECG 與腕式 PPG 的量測原理，以及時域、頻域、Poincaré plot、entropy、DFA 與 RQA 等 HRV 指標的限制。",
+    "titleEn": "From Wrist PPG to HRV: Sympathetic and Parasympathetic Activity and the Poincaré Plot",
+    "descriptionEn": "How BBI, ECG, and wrist PPG measure heartbeats, and the limits of time-domain, frequency-domain, Poincaré, entropy, DFA, and RQA indices of HRV."
   },
   {
     "id": "hermes-telegram-academic-brief",
@@ -341,7 +425,9 @@
     "date": "2026-08-05",
     "category": "ai-tools",
     "tags": ["Hermes", "Telegram", "自動排程", "AI Agent"],
-    "description": "從 Hermes 架構、Session、Memory 與 Skills，到模型選擇、Telegram 安全設定及每天 8 點的 cronjob，完整建立可查核的學術文獻推送。"
+    "description": "從 Hermes 架構、Session、Memory 與 Skills，到模型選擇、Telegram 安全設定及每天 8 點的 cronjob，完整建立可查核的學術文獻推送。",
+    "titleEn": "Delivering Daily Scholarly Articles to Your Phone with Hermes: Free Models, Telegram, and Scheduling",
+    "descriptionEn": "From Hermes architecture, sessions, memory, and skills to model choice, Telegram safety settings, and an 8 a.m. cron job: a complete, verifiable literature-push setup."
   },
   {
     "id": "ai-tools-skills-research-workflow",
@@ -349,7 +435,9 @@
     "date": "2026-08-03",
     "category": "ai-tools",
     "tags": ["AI Skills", "GitHub", "Gemini Notebook", "研究工作流"],
-    "description": "用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。"
+    "description": "用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。",
+    "titleEn": "Turning AI Tool Connections into Reusable Skills: My GitHub Research Workflow",
+    "descriptionEn": "Using AI-tools-skills to connect Gemini Notebook, GitHub, Zotero, and HackMD, then extending it into a complete academic research skill workflow."
   },
   {
     "id": "ai-academic-skills-paper-screening-grants",
@@ -357,7 +445,9 @@
     "date": "2026-08-05",
     "category": "ai-tools",
     "tags": ["AI Skills", "文獻評讀", "計畫書撰寫", "GRADE", "Zotero", "NotebookLM"],
-    "description": "文獻篩選與計畫書撰寫是研究工作中最花時間的兩段流程。整理 AI-academic-skills 中的 litpilot、paper-review、paper-digest 與 research-grants，並加上把既有 Zotero 收藏與 NotebookLM 綜整一起納入評讀的串接流程。"
+    "description": "文獻篩選與計畫書撰寫是研究工作中最花時間的兩段流程。整理 AI-academic-skills 中的 litpilot、paper-review、paper-digest 與 research-grants，並加上把既有 Zotero 收藏與 NotebookLM 綜整一起納入評讀的串接流程。",
+    "titleEn": "From Literature Screening to Grant Writing: AI-academic-skills in Three Steps—Find, Appraise, Write",
+    "descriptionEn": "Literature screening and proposal writing are the two most time-consuming stages of research. This post organizes litpilot, paper-review, paper-digest, and research-grants, and adds a workflow that appraises an existing Zotero collection together with a NotebookLM synthesis."
   },
   {
     "id": "hhsa-nonlinear-eeg",
@@ -365,7 +455,9 @@
     "date": "2026-08-14",
     "category": "research-methods",
     "tags": ["EEG", "HHSA", "EMD", "瞬時頻率", "跨頻耦合"],
-    "description": "從非平穩與非線性的差異、EMD 與 IMF，到 HHSA 的 carrier × AM frequency 表徵，完整說明分析流程、應用邊界與可重現研究要點。"
+    "description": "從非平穩與非線性的差異、EMD 與 IMF，到 HHSA 的 carrier × AM frequency 表徵，完整說明分析流程、應用邊界與可重現研究要點。",
+    "titleEn": "From EMD and Instantaneous Frequency to HHSA: How Can We See Amplitude Modulation in Brain Waves?",
+    "descriptionEn": "From nonstationary versus nonlinear signals, EMD, and IMFs to the carrier × AM-frequency representation of HHSA: the analysis workflow, application boundaries, and reproducibility points."
   },
   {
     "id": "cardsort-cognitive-flexibility-task",
@@ -373,7 +465,9 @@
     "date": "2026-08-05",
     "category": "research-methods",
     "tags": ["認知作業", "執行功能", "認知彈性"],
-    "description": "圖卡分類作業用雙重規則系統測量認知彈性：切換代價與難度負荷兩個指標，分別代表規則轉換與選項增加的認知成本。"
+    "description": "圖卡分類作業用雙重規則系統測量認知彈性：切換代價與難度負荷兩個指標，分別代表規則轉換與選項增加的認知成本。",
+    "titleEn": "The Rule Quietly Changed—How Fast Do You Notice? The Card-Sorting Task and Cognitive Flexibility",
+    "descriptionEn": "The card-sorting task uses a dual-rule system to measure cognitive flexibility with two indices, switch cost and difficulty load, reflecting the cost of changing rules and of adding options."
   },
   {
     "id": "conflict-inhibitory-control-task",
@@ -381,7 +475,9 @@
     "date": "2026-08-05",
     "category": "research-methods",
     "tags": ["認知作業", "執行功能", "抑制控制"],
-    "description": "方向感作業用一致／不一致箭頭測量抑制控制：從一致性效果到 Delta Plot、Gratton Effect，拆解抑制歷程的動態變化。"
+    "description": "方向感作業用一致／不一致箭頭測量抑制控制：從一致性效果到 Delta Plot、Gratton Effect，拆解抑制歷程的動態變化。",
+    "titleEn": "When Your Instinct Is Wrong, How Long Do You Need to Brake? The Direction Task and Inhibitory Control",
+    "descriptionEn": "The direction task uses congruent and incongruent arrows to measure inhibitory control, from the congruency effect to delta plots and the Gratton effect, showing how inhibition changes dynamically."
   },
   {
     "id": "pathend-spatial-working-memory-task",
@@ -389,7 +485,9 @@
     "date": "2026-08-05",
     "category": "research-methods",
     "tags": ["認知作業", "工作記憶", "空間認知"],
-    "description": "路徑終點 II 作業要求玩家記住箭頭位置與方向，並在腦中模擬沿路徑行走，同時涉及空間工作記憶與抗干擾能力。"
+    "description": "路徑終點 II 作業要求玩家記住箭頭位置與方向，並在腦中模擬沿路徑行走，同時涉及空間工作記憶與抗干擾能力。",
+    "titleEn": "Remembering Locations Is Not Enough—You Must Walk Through Them in Your Head: PathEnd II and Spatial Working Memory",
+    "descriptionEn": "PathEnd II asks players to remember arrow positions and directions and mentally simulate walking along the path, engaging spatial working memory and resistance to interference."
   },
   {
     "id": "seqclick-working-memory-span-task",
@@ -397,6 +495,8 @@
     "date": "2026-08-05",
     "category": "research-methods",
     "tags": ["認知作業", "工作記憶", "Corsi測驗"],
-    "description": "順向點擊作業是 Corsi 積木敲擊測驗的數位化版本，測量視覺空間工作記憶廣度，並拆解出校正動作時間後的純記憶處理指標。"
+    "description": "順向點擊作業是 Corsi 積木敲擊測驗的數位化版本，測量視覺空間工作記憶廣度，並拆解出校正動作時間後的純記憶處理指標。",
+    "titleEn": "Remembering Content Is Not Enough—You Must Remember Order: The Forward Click Task and Working Memory Span",
+    "descriptionEn": "The forward click task is a digital version of the Corsi block-tapping test that measures visuospatial working memory span and extracts a pure memory index after correcting for movement time."
   }
 ]

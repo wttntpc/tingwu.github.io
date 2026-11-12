@@ -5,10 +5,11 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261018-02';
+const SITE_VERSION = '20261112-01';
 
-let lang = localStorage.getItem('tingting-language') || 'zh';
-if (lang !== 'zh' && lang !== 'en') lang = 'zh';
+let lang = 'en';
+try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
+if (lang !== 'zh' && lang !== 'en') lang = 'en';
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, char => ({
@@ -293,48 +294,56 @@ function closeMenu() {
 }
 
 const POSTS_DATA = [
-  { "id": "bayesian-causal-inference-week-05", "title": "貝氏因果推論學習筆記 05：隨機化不只是抽籤——從估計目標到區組設計", "date": "2026-10-16", "category": "data-analysis", "tags": ["因果推論", "隨機化", "Estimand", "Neyman推論", "區組設計", "學習筆記"], "description": "從 Perfect Doctor、邊際與聯合分布、CRE 與 Bernoulli 隨機化，理解 estimand、estimator、Horvitz–Thompson 加權與區組設計。" },
-  { "id": "bayesian-causal-inference-week-04", "title": "貝氏因果推論學習筆記 04：只靠隨機分派，如何得到精確 p 值？", "date": "2026-10-13", "category": "data-analysis", "tags": ["因果推論", "Fisher隨機化檢定", "Sharp Null", "置換檢定", "研究設計", "學習筆記"], "description": "從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。" },
-  { "id": "bayesian-causal-inference-week-03", "title": "貝氏因果推論學習筆記 03：從風險差到因果圖——哪些變數該控制？", "date": "2026-09-29", "category": "data-analysis", "tags": ["因果推論", "二元結果", "SUTVA", "DAG", "混淆變數", "學習筆記"], "description": "從 RD、RR、OR 與 Fisher 精確檢定，進入潛在結果、SUTVA、混淆變數、對撞變數、中介與工具變數，理解控制變數必須依因果結構決定。" },
-  { "id": "bayesian-causal-inference-week-02", "title": "貝氏因果推論學習筆記 02：沒有隨機實驗，傾向分數能幫上什麼忙？", "date": "2026-09-22", "category": "data-analysis", "tags": ["因果推論", "傾向分數", "觀察性研究", "有限母體", "超母體", "學習筆記"], "description": "從觀察性資料的混淆問題出發，理解傾向分數、交換性與重疊性，並區分有限母體和超母體推論回答的不同問題。" },
-  { "id": "bayesian-causal-inference-week-01", "title": "貝氏因果推論學習筆記 01：兩組平均數不同，為什麼還不等於因果效果？", "date": "2026-09-15", "category": "data-analysis", "tags": ["貝氏統計", "因果推論", "潛在結果", "隨機分派", "DAG", "學習筆記"], "description": "從 TMS 例子理解潛在結果、反事實、隨機分派、混淆與因果識別，並釐清 Bayesian 建模之前必須先回答的研究問題。" },
-  { "id": "hrv-three-device-analysis-practice", "title": "從 BBI／RRI 到可比較的 HRV：我的 Garmin、Portable ECG 與 BIOPAC 分析實作", "date": "2026-09-23", "category": "data-analysis", "tags": ["HRV", "Garmin", "Portable ECG", "BIOPAC", "品質控制", "敏感度分析"], "description": "以兩人三設備先導專案為例，拆解共同時間窗、R peak、BBI／RRI 品質控制、HRV 指標、敏感度分析與重複量測一致性限制。" },
-  { "id": "garmin-ecg-validation-study-design", "title": "Garmin 可以取代 ECG 嗎？從公開證據到兩人三設備先導實驗", "date": "2026-09-03", "category": "research-methods", "tags": ["Garmin", "ECG", "PPG", "HRV", "效度研究", "Bland–Altman"], "description": "整合Garmin公開驗證研究與兩人三設備先導結果，分層解讀靜息Mean HR、Mean NN、SDNN、RMSSD及動作QC，並建立正式方法比較研究路徑。" },
-  { "id": "outdoor-hiking-health-mind-review", "title": "走進山林，身體和情緒會發生什麼？戶外健行的多層次效益", "date": "2026-09-30", "category": "popular-science", "tags": ["個人興趣", "戶外健行", "自然暴露", "運動與情緒", "公共衛生"], "description": "從整合性綜述理解健行如何同時結合運動、自然與社會刺激，整理心肺、情緒與社區效益，也辨認健行和一般步行不能混為一談的證據限制。" },
-  { "id": "traditional-medicine-modern-body-science-series", "title": "傳統醫學與現代身體科學：跨領域科普系列", "date": "2026-09-24", "category": "popular-science", "tags": ["中醫", "跨領域研究", "運動傷害", "認知科學", "美顏科學", "循證醫學"], "description": "規劃中醫人體觀、運動傷害、情緒與認知、美顏科學及研究判讀五條跨領域文章路線，並建立論文圖片授權、證據分級與安全說明規則。" },
-  { "id": "kampo-extracts-renal-function-propensity-study", "title": "漢方藥可能保護腎功能嗎？從九年觀察研究讀懂 eGFR 與傾向分數配對", "date": "2026-09-24", "category": "popular-science", "tags": ["Kampo", "漢方", "腎功能", "CKD", "eGFR", "傾向分數"], "description": "解析長期日本漢方萃取製劑與腎功能變化的配對觀察研究，說明 eGFR slope、傾向分數、主要結果及無法直接推論因果的原因。" },
-  { "id": "hrv-bbi-rri-ibi-nni", "title": "從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？", "date": "2026-08-26", "category": "learning-foundations", "tags": ["HRV", "BBI", "RRI", "NNI", "PPG", "ECG"], "description": "HRV 每日學習第一篇：從 ECG R peak、腕式 PPG 脈搏波與品質控制，分清 IBI、BBI、RRI、PPI 與 NNI。" },
-  { "id": "cognitive-neuroscience-learning-map", "title": "認知神經科學學習地圖：從大腦、認知到情緒", "date": "2026-08-25", "category": "learning-foundations", "tags": ["認知神經科學", "大腦", "認知", "情緒", "學習地圖"], "description": "以神經系統基礎、認知功能、情緒機制、研究方法與整合推論五層，建立可學習、複習與深化的認知神經科學路徑。" },
-  { "id": "exercise-physiology-learning-map", "title": "運動生理學學習地圖：從急性反應到運動處方", "date": "2026-08-25", "category": "learning-foundations", "tags": ["運動生理學", "能量系統", "心肺適能", "運動處方", "學習地圖"], "description": "由能量代謝、神經肌肉與心肺反應，逐步進入訓練適應、測量與個別化運動處方。" },
-  { "id": "human-anatomy-learning-map", "title": "人體解剖學學習地圖：用結構理解動作與生理", "date": "2026-08-25", "category": "learning-foundations", "tags": ["人體解剖學", "肌肉骨骼", "神經系統", "心血管", "學習地圖"], "description": "從解剖方位、組織與器官系統出發，把肌肉骨骼、神經與心肺結構連回動作、傷害與生理量測。" },
-  { "id": "athletic-training-learning-map", "title": "運動傷害防護學習地圖：從風險辨識到重返運動", "date": "2026-08-25", "category": "learning-foundations", "tags": ["運動傷害防護", "臨床評估", "急性照護", "復健", "重返運動"], "description": "整理預防、臨床評估、急性照護、治療介入、復健與重返運動的循證學習路徑。" },
-  { "id": "eeg-learning-map", "title": "EEG 學習地圖：從神經生理、設備到可重現分析", "date": "2026-08-25", "category": "learning-foundations", "tags": ["EEG", "腦波設備", "訊號處理", "品質控制", "學習地圖"], "description": "把腦電生理、電極與放大器、實驗設計、前處理、時頻分析及品質控制連成完整路徑。" },
-  { "id": "hrv-learning-map", "title": "HRV 學習地圖：從自律神經、感測設備到指標解讀", "date": "2026-08-25", "category": "learning-foundations", "tags": ["HRV", "自律神經", "ECG", "PPG", "非線性分析"], "description": "從心臟與自律神經生理、ECG／PPG 量測，到 BBI 清理、時域、頻域、非線性指標及研究解讀。" },
-  { "id": "notion-antigravity-notebooklm-vocabulary-workflow", "title": "從 Notion 單字庫到 Podcast：可查核的 Antigravity × NotebookLM 單字工作流", "date": "2026-08-25", "category": "ai-tools", "tags": ["AI 工作流", "Notion", "Antigravity", "NotebookLM", "多益學習", "Podcast", "知識管理"], "description": "用 Notion 收集可追溯的單字與語境，讓 Antigravity 產生待確認草稿，再把已查核內容匯入 NotebookLM 製作 Audio Overview；同時說明資料結構、安全、人工驗證與學習成效評估。" },
-  { "id": "fft-wavelet-eeg-time-frequency", "title": "FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖", "date": "2026-08-14", "category": "research-methods", "tags": ["EEG", "FFT", "Welch PSD", "Morlet wavelet", "時間頻率分析"], "description": "從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。" },
-  { "id": "data-types-tidy-research-data", "title": "資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？", "date": "2026-08-14", "category": "data-analysis", "tags": ["資料整理", "Tidy Data", "資料字典", "可重現研究"], "description": "從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。" },
-  { "id": "research-data-visualization", "title": "不要只畫平均數：研究資料視覺化的選圖與判讀原則", "date": "2026-08-14", "category": "data-analysis", "tags": ["資料視覺化", "原始資料", "信賴區間", "重複量測"], "description": "依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。" },
-  { "id": "p-value-hypothesis-testing", "title": "P 值不是假設為真的機率：從假設檢定到正確研究解讀", "date": "2026-08-14", "category": "data-analysis", "tags": ["P 值", "假設檢定", "統計顯著", "研究解讀"], "description": "釐清 p 值的條件機率定義、顯著與不顯著的常見誤解，以及如何結合效果估計、信賴區間與研究設計報告結果。" },
-  { "id": "effect-size-confidence-interval-sample-size", "title": "效果量、信賴區間與樣本數：研究結果有多大、又有多確定？", "date": "2026-08-14", "category": "data-analysis", "tags": ["效果量", "信賴區間", "樣本數", "統計檢定力"], "description": "把原始與標準化效果、區間精確度、SESOI、power 與 precision-based planning 放進同一套研究規劃與結果判讀框架。" },
-  { "id": "fitness-hrv-cognitive-performance", "title": "體適能較好，注意力就更穩嗎？從 HRV 看認知作業中的心身調節", "date": "2026-08-12", "category": "popular-science", "tags": ["心肺適能", "HRV", "持續注意", "認知功能", "研究解讀"], "description": "解讀一項比較高、低體適能年輕男性的研究：較高體適能與持續注意反應及較穩定的 HRV 有關，但不是所有認知能力都較好。" },
-  { "id": "open-source-research-statistics-skills", "title": "開源研究 Skills 怎麼選？文獻、統計與研究寫作工具箱", "date": "2026-08-11", "category": "ai-tools", "tags": ["開源軟體", "AI Skills", "文獻研究", "統計分析", "研究工作流"], "description": "盤點具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權的學術研究與統計 Skills，說明用途、適用階段與再利用注意事項。" },
-  { "id": "ten-design-skills-academic-website", "title": "十套前端設計 Skills 都要裝嗎？以學術研究與個人網站為例的選擇指南", "date": "2026-08-11", "category": "ai-tools", "tags": ["AI Skills", "網站設計", "學術研究", "工具評估"], "description": "比較十套熱門前端設計 Skills，辨認哪些適合研究視覺化、個人學術網站與長文呈現，以及為什麼安裝越多不一定越好。" },
-  { "id": "research-update-1", "title": "身體活動如何影響大腦健康？", "date": "2026-07-28", "category": "popular-science", "tags": ["運動", "大腦健康", "執行功能"], "description": "整理身體活動、認知功能、情緒調節與神經可塑性之間的重要連結。" },
-  { "id": "first-ai-code", "title": "第一次的 AI Code 分享", "date": "2026-08-01", "category": "ai-tools", "tags": ["AI", "Python", "研究工作流"], "description": "分享我如何將 AI 導入資料分析、程式除錯與網站開發的日常工作流程。" },
-  { "id": "python-statistics-pipeline", "title": "從研究設計到報告：Python 統計分析 Pipeline 的核心原則", "date": "2026-08-03", "category": "data-analysis", "tags": ["Python", "統計分析", "可重現研究"], "description": "統計分析不只是執行檢定；從研究設計、資料驗證到效果量與報告，每一步都需要留下判斷依據。" },
-  { "id": "post-hoc-power-confidence-interval", "title": "統計不顯著後，要算 Post-hoc Power 嗎？從信賴區間看懂研究結果", "date": "2026-08-06", "category": "data-analysis", "tags": ["統計分析", "Statistical Power", "信賴區間", "MCID", "等效性檢定"], "description": "Observed post-hoc power 常只是 p 值的回音；改用效果量、信賴區間、重要效果門檻與敏感度分析，才能分辨接近零與結果不精確。" },
-  { "id": "data-analysis-workflow", "title": "數據如何變成結論？從研究問題到可重現報告的分析流程", "date": "2026-08-06", "category": "data-analysis", "tags": ["數據分析", "研究設計", "統計推論", "可重現研究"], "description": "數據分析不只是選檢定與計算 p 值；從問題定義、資料清理、探索、模型診斷到效果估計，整理一套能被檢查與重現的完整流程。" },
-  { "id": "eeg-preprocessing-principles", "title": "EEG 前處理不是按下按鈕：八個步驟與品質檢查", "date": "2026-08-03", "category": "research-methods", "tags": ["EEG", "EEGLAB", "訊號處理"], "description": "從原始腦電訊號到可分析資料，整理濾波、重參考、壞道、ICA 與品質紀錄的完整思路。" },
-  { "id": "teleportation-reaction-time-task", "title": "反應時間與移動時間有何不同？認識瞬間移動認知作業", "date": "2026-08-03", "category": "research-methods", "tags": ["認知作業", "反應時間", "資料品質"], "description": "用一個簡單的點擊作業，理解大腦開始反應與身體完成動作其實是兩段不同的歷程。" },
-  { "id": "garmin-raw-data-hrv", "title": "從手錶 PPG 到 HRV：交感、副交感與 Poincaré plot", "date": "2026-08-05", "category": "data-analysis", "tags": ["Garmin", "HRV", "PPG", "Poincaré plot", "生理訊號"], "description": "完整理解 BBI、ECG 與腕式 PPG 的量測原理，以及時域、頻域、Poincaré plot、entropy、DFA 與 RQA 等 HRV 指標的限制。" },
-  { "id": "hermes-telegram-academic-brief", "title": "讓 Hermes 每天把學術文章送到手機：免費模型、Telegram 與排程", "date": "2026-08-05", "category": "ai-tools", "tags": ["Hermes", "Telegram", "自動排程", "AI Agent"], "description": "從 Hermes 架構、Session、Memory 與 Skills，到模型選擇、Telegram 安全設定及每天 8 點的 cronjob，完整建立可查核的學術文獻推送。" },
-  { "id": "ai-tools-skills-research-workflow", "title": "把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流", "date": "2026-08-03", "category": "ai-tools", "tags": ["AI Skills", "GitHub", "Gemini Notebook", "研究工作流"], "description": "用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。" },
-  { "id": "ai-academic-skills-paper-screening-grants", "title": "文獻篩選到計畫書撰寫：把 AI-academic-skills 拆成找、評、寫三步驟", "date": "2026-08-05", "category": "ai-tools", "tags": ["AI Skills", "文獻評讀", "計畫書撰寫", "GRADE", "Zotero", "NotebookLM"], "description": "文獻篩選與計畫書撰寫是研究工作中最花時間的兩段流程。整理 AI-academic-skills 中的 litpilot、paper-review、paper-digest 與 research-grants，並加上把既有 Zotero 收藏與 NotebookLM 綜整一起納入評讀的串接流程。" },
-  { "id": "hhsa-nonlinear-eeg", "title": "從 EMD、瞬時頻率到 HHSA：如何看見腦波的振幅調變？", "date": "2026-08-14", "category": "research-methods", "tags": ["EEG", "HHSA", "EMD", "瞬時頻率", "跨頻耦合"], "description": "從非平穩與非線性的差異、EMD 與 IMF，到 HHSA 的 carrier × AM frequency 表徵，完整說明分析流程、應用邊界與可重現研究要點。" },
-  { "id": "cardsort-cognitive-flexibility-task", "title": "規則悄悄換了，你多快發現？認識圖卡分類作業與認知彈性", "date": "2026-08-05", "category": "research-methods", "tags": ["認知作業", "執行功能", "認知彈性"], "description": "圖卡分類作業用雙重規則系統測量認知彈性：切換代價與難度負荷兩個指標，分別代表規則轉換與選項增加的認知成本。" },
-  { "id": "conflict-inhibitory-control-task", "title": "當直覺是錯的，你需要多久踩剎車？認識方向感作業與抑制控制", "date": "2026-08-05", "category": "research-methods", "tags": ["認知作業", "執行功能", "抑制控制"], "description": "方向感作業用一致／不一致箭頭測量抑制控制：從一致性效果到 Delta Plot、Gratton Effect，拆解抑制歷程的動態變化。" },
-  { "id": "pathend-spatial-working-memory-task", "title": "記住位置還不夠，要在腦中走一遍：認識路徑終點 II 與空間工作記憶", "date": "2026-08-05", "category": "research-methods", "tags": ["認知作業", "工作記憶", "空間認知"], "description": "路徑終點 II 作業要求玩家記住箭頭位置與方向，並在腦中模擬沿路徑行走，同時涉及空間工作記憶與抗干擾能力。" },
-  { "id": "seqclick-working-memory-span-task", "title": "記住內容不夠，還要記住順序：認識順向點擊作業與工作記憶廣度", "date": "2026-08-05", "category": "research-methods", "tags": ["認知作業", "工作記憶", "Corsi測驗"], "description": "順向點擊作業是 Corsi 積木敲擊測驗的數位化版本，測量視覺空間工作記憶廣度，並拆解出校正動作時間後的純記憶處理指標。" }
+  {"id": "bayesian-causal-inference-week-05", "title": "貝氏因果推論學習筆記 05：隨機化不只是抽籤——從估計目標到區組設計", "date": "2026-10-16", "category": "data-analysis", "tags": ["因果推論", "隨機化", "Estimand", "Neyman推論", "區組設計", "學習筆記"], "description": "從 Perfect Doctor、邊際與聯合分布、CRE 與 Bernoulli 隨機化，理解 estimand、estimator、Horvitz–Thompson 加權與區組設計。", "titleEn": "Bayesian Causal Inference Notes 05: Randomization Is More Than a Coin Flip—From Estimands to Block Designs", "descriptionEn": "From the Perfect Doctor example, marginal versus joint distributions, and completely randomized versus Bernoulli designs to estimands, estimators, Horvitz–Thompson weighting, and blocked designs."},
+  {"id": "bayesian-causal-inference-week-04", "title": "貝氏因果推論學習筆記 04：只靠隨機分派，如何得到精確 p 值？", "date": "2026-10-13", "category": "data-analysis", "tags": ["因果推論", "Fisher隨機化檢定", "Sharp Null", "置換檢定", "研究設計", "學習筆記"], "description": "從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。", "titleEn": "Bayesian Causal Inference Notes 04: How Can Random Assignment Alone Give an Exact p Value?", "descriptionEn": "Fisher's sharp null, the randomization distribution, and Monte Carlo approximation: how to run an exact test that does not rely on normality, and why choosing the test statistic after seeing the data is risky."},
+  {"id": "bayesian-causal-inference-week-03", "title": "貝氏因果推論學習筆記 03：從風險差到因果圖——哪些變數該控制？", "date": "2026-09-29", "category": "data-analysis", "tags": ["因果推論", "二元結果", "SUTVA", "DAG", "混淆變數", "學習筆記"], "description": "從 RD、RR、OR 與 Fisher 精確檢定，進入潛在結果、SUTVA、混淆變數、對撞變數、中介與工具變數，理解控制變數必須依因果結構決定。", "titleEn": "Bayesian Causal Inference Notes 03: From Risk Difference to Causal Graphs—Which Variables Should You Control?", "descriptionEn": "From RD, RR, OR, and Fisher's exact test to potential outcomes, SUTVA, confounders, colliders, mediators, and instruments, and why covariate adjustment must follow the causal structure."},
+  {"id": "bayesian-causal-inference-week-02", "title": "貝氏因果推論學習筆記 02：沒有隨機實驗，傾向分數能幫上什麼忙？", "date": "2026-09-22", "category": "data-analysis", "tags": ["因果推論", "傾向分數", "觀察性研究", "有限母體", "超母體", "學習筆記"], "description": "從觀察性資料的混淆問題出發，理解傾向分數、交換性與重疊性，並區分有限母體和超母體推論回答的不同問題。", "titleEn": "Bayesian Causal Inference Notes 02: Without a Randomized Experiment, What Can Propensity Scores Do?", "descriptionEn": "Starting from confounding in observational data: propensity scores, exchangeability, and overlap, and how finite-population and super-population inference answer different questions."},
+  {"id": "bayesian-causal-inference-week-01", "title": "貝氏因果推論學習筆記 01：兩組平均數不同，為什麼還不等於因果效果？", "date": "2026-09-15", "category": "data-analysis", "tags": ["貝氏統計", "因果推論", "潛在結果", "隨機分派", "DAG", "學習筆記"], "description": "從 TMS 例子理解潛在結果、反事實、隨機分派、混淆與因果識別，並釐清 Bayesian 建模之前必須先回答的研究問題。", "titleEn": "Bayesian Causal Inference Notes 01: Two Group Means Differ—Why Is That Still Not a Causal Effect?", "descriptionEn": "Using a TMS example to understand potential outcomes, counterfactuals, random assignment, confounding, and causal identification, and the research questions that must be answered before any Bayesian modeling."},
+  {"id": "hrv-three-device-analysis-practice", "title": "從 BBI／RRI 到可比較的 HRV：我的 Garmin、Portable ECG 與 BIOPAC 分析實作", "date": "2026-09-23", "category": "data-analysis", "tags": ["HRV", "Garmin", "Portable ECG", "BIOPAC", "品質控制", "敏感度分析"], "description": "以兩人三設備先導專案為例，拆解共同時間窗、R peak、BBI／RRI 品質控制、HRV 指標、敏感度分析與重複量測一致性限制。", "titleEn": "From BBI/RRI to Comparable HRV: Analyzing Garmin, Portable ECG, and BIOPAC Data", "descriptionEn": "A two-person, three-device pilot used to walk through shared time windows, R-peak detection, BBI/RRI quality control, HRV indices, sensitivity analysis, and the limits of repeated-measures agreement."},
+  {"id": "vibe-coding-cybersecurity-basics", "title": "從 What'Sub 事件看 Vibe Coding 的資安第一課：功能會動，不代表可以上線", "date": "2026-09-04", "category": "ai-tools", "tags": ["Vibe Coding", "資訊安全", "AI 寫程式", "WhatSub", "AI 工具與工作流", "軟體工程"], "description": "解析 Gary Chen 的非技術人員資安教學影片：從 What'Sub 爆紅引發的資安風波出發，盤點 AI 輔助開發（Vibe Coding）上線前必須回答的 5 個核心問題，並提供非工程背景也能落實的「四步驟安全修補法」。", "titleEn": "A First Security Lesson from the What'Sub Incident: Working Code Is Not Ready for Production", "descriptionEn": "Based on a security tutorial for non-engineers: five questions to answer before shipping AI-assisted (vibe-coded) software, plus a practical four-step hardening routine that does not require an engineering background."},
+  {"id": "garmin-ecg-validation-study-design", "title": "Garmin 可以取代 ECG 嗎？從公開證據到兩人三設備先導實驗", "date": "2026-09-03", "category": "research-methods", "tags": ["Garmin", "ECG", "PPG", "HRV", "效度研究", "Bland–Altman"], "description": "整合Garmin公開驗證研究與兩人三設備先導結果，分層解讀靜息Mean HR、Mean NN、SDNN、RMSSD及動作QC，並建立正式方法比較研究路徑。", "titleEn": "Can a Garmin Watch Replace ECG? From Published Evidence to a Two-Person, Three-Device Pilot", "descriptionEn": "Combines published Garmin validation studies with pilot results, interprets resting mean HR, mean NN, SDNN, RMSSD, and motion QC by tier, and outlines a formal method-comparison study."},
+  {"id": "outdoor-hiking-health-mind-review", "title": "走進山林，身體和情緒會發生什麼？戶外健行的多層次效益", "date": "2026-09-30", "category": "popular-science", "tags": ["個人興趣", "戶外健行", "自然暴露", "運動與情緒", "公共衛生"], "description": "從整合性綜述理解健行如何同時結合運動、自然與社會刺激，整理心肺、情緒與社區效益，也辨認健行和一般步行不能混為一談的證據限制。", "titleEn": "What Happens to Body and Mood When You Walk into the Mountains? The Layered Benefits of Hiking", "descriptionEn": "An integrative review of how hiking combines exercise, nature, and social stimulation; cardiorespiratory, emotional, and community benefits; and why hiking evidence cannot simply be equated with ordinary walking."},
+  {"id": "traditional-medicine-modern-body-science-series", "title": "傳統醫學與現代身體科學：跨領域科普系列", "date": "2026-09-24", "category": "popular-science", "tags": ["中醫", "跨領域研究", "運動傷害", "認知科學", "美顏科學", "循證醫學"], "description": "規劃中醫人體觀、運動傷害、情緒與認知、美顏科學及研究判讀五條跨領域文章路線，並建立論文圖片授權、證據分級與安全說明規則。", "titleEn": "Traditional Medicine and Modern Body Science: An Interdisciplinary Series", "descriptionEn": "A plan for five article tracks—traditional views of the body, sports injury, emotion and cognition, aesthetic science, and reading research critically—with rules for figure licensing, evidence grading, and safety statements."},
+  {"id": "kampo-extracts-renal-function-propensity-study", "title": "漢方藥可能保護腎功能嗎？從九年觀察研究讀懂 eGFR 與傾向分數配對", "date": "2026-09-24", "category": "popular-science", "tags": ["Kampo", "漢方", "腎功能", "CKD", "eGFR", "傾向分數"], "description": "解析長期日本漢方萃取製劑與腎功能變化的配對觀察研究，說明 eGFR slope、傾向分數、主要結果及無法直接推論因果的原因。", "titleEn": "Could Kampo Extracts Protect Kidney Function? Reading eGFR and Propensity-Score Matching in a Nine-Year Observational Study", "descriptionEn": "Unpacks a matched observational study of long-term Japanese Kampo extract use and kidney function: eGFR slope, propensity scores, the main results, and why causation cannot be inferred directly."},
+  {"id": "hrv-bbi-rri-ibi-nni", "title": "從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？", "date": "2026-08-26", "category": "learning-foundations", "tags": ["HRV", "BBI", "RRI", "NNI", "PPG", "ECG"], "description": "HRV 每日學習第一篇：從 ECG R peak、腕式 PPG 脈搏波與品質控制，分清 IBI、BBI、RRI、PPI 與 NNI。", "titleEn": "Starting from a Single Heartbeat: What Are the Differences Among BBI, RRI, IBI, and NNI?", "descriptionEn": "The first daily HRV lesson: telling IBI, BBI, RRI, PPI, and NNI apart, from ECG R peaks and wrist PPG pulse waves to quality control."},
+  {"id": "hrv-dvc-preprocessing-imputation", "title": "訊號失真與數據缺損的救星：DVC 自適應高斯填補法如何拯救你的心率變異度（HRV）", "date": "2026-08-26", "category": "data-analysis", "tags": ["HRV", "自律神經", "DVC 演算法", "穿戴式裝置", "數據插補", "訊號前處理"], "description": "介紹 Benchekroun et al. (2022) 發表於 Sensors 期刊的動態 HRV 預處理方法（DVC）。探討智慧手錶/手環在運動與日常中產生連續斷訊與偽峰時，如何透過自適應高斯採樣還原心臟天然波動特徵，提高壓力預測與自律神經評估的精準度。", "titleEn": "Rescuing Corrupted and Missing Signals: How DVC Adaptive Gaussian Imputation Protects Heart Rate Variability (HRV)", "descriptionEn": "Introduces the dynamic HRV preprocessing method (DVC) of Benchekroun et al. (2022, Sensors): how adaptive Gaussian sampling restores natural cardiac variability when smartwatches lose signal or produce artifact peaks during exercise and daily life."},
+  {"id": "cognitive-neuroscience-learning-map", "title": "認知神經科學學習地圖：從大腦、認知到情緒", "date": "2026-08-25", "category": "learning-foundations", "tags": ["認知神經科學", "大腦", "認知", "情緒", "學習地圖"], "description": "以神經系統基礎、認知功能、情緒機制、研究方法與整合推論五層，建立可學習、複習與深化的認知神經科學路徑。", "titleEn": "Cognitive Neuroscience Learning Map: From the Brain to Cognition and Emotion", "descriptionEn": "A five-layer path—neural foundations, cognitive functions, emotion mechanisms, research methods, and integrative inference—designed for learning, review, and deepening."},
+  {"id": "exercise-physiology-learning-map", "title": "運動生理學學習地圖：從急性反應到運動處方", "date": "2026-08-25", "category": "learning-foundations", "tags": ["運動生理學", "能量系統", "心肺適能", "運動處方", "學習地圖"], "description": "由能量代謝、神經肌肉與心肺反應，逐步進入訓練適應、測量與個別化運動處方。", "titleEn": "Exercise Physiology Learning Map: From Acute Responses to Exercise Prescription", "descriptionEn": "From energy metabolism and neuromuscular and cardiorespiratory responses to training adaptation, measurement, and individualized exercise prescription."},
+  {"id": "human-anatomy-learning-map", "title": "人體解剖學學習地圖：用結構理解動作與生理", "date": "2026-08-25", "category": "learning-foundations", "tags": ["人體解剖學", "肌肉骨骼", "神經系統", "心血管", "學習地圖"], "description": "從解剖方位、組織與器官系統出發，把肌肉骨骼、神經與心肺結構連回動作、傷害與生理量測。", "titleEn": "Human Anatomy Learning Map: Understanding Movement and Physiology Through Structure", "descriptionEn": "From anatomical position, tissues, and organ systems, connecting musculoskeletal, nervous, and cardiopulmonary structures to movement, injury, and physiological measurement."},
+  {"id": "athletic-training-learning-map", "title": "運動傷害防護學習地圖：從風險辨識到重返運動", "date": "2026-08-25", "category": "learning-foundations", "tags": ["運動傷害防護", "臨床評估", "急性照護", "復健", "重返運動"], "description": "整理預防、臨床評估、急性照護、治療介入、復健與重返運動的循證學習路徑。", "titleEn": "Athletic Training Learning Map: From Risk Identification to Return to Sport", "descriptionEn": "An evidence-based path through prevention, clinical assessment, acute care, treatment, rehabilitation, and return to sport."},
+  {"id": "eeg-learning-map", "title": "EEG 學習地圖：從神經生理、設備到可重現分析", "date": "2026-08-25", "category": "learning-foundations", "tags": ["EEG", "腦波設備", "訊號處理", "品質控制", "學習地圖"], "description": "把腦電生理、電極與放大器、實驗設計、前處理、時頻分析及品質控制連成完整路徑。", "titleEn": "EEG Learning Map: From Neurophysiology and Equipment to Reproducible Analysis", "descriptionEn": "Links brain electrophysiology, electrodes and amplifiers, experimental design, preprocessing, time-frequency analysis, and quality control into one path."},
+  {"id": "hrv-learning-map", "title": "HRV 學習地圖：從自律神經、感測設備到指標解讀", "date": "2026-08-25", "category": "learning-foundations", "tags": ["HRV", "自律神經", "ECG", "PPG", "非線性分析"], "description": "從心臟與自律神經生理、ECG／PPG 量測，到 BBI 清理、時域、頻域、非線性指標及研究解讀。", "titleEn": "HRV Learning Map: From the Autonomic Nervous System and Sensors to Interpreting Indices", "descriptionEn": "From cardiac and autonomic physiology and ECG/PPG measurement to BBI cleaning, time-domain, frequency-domain, and nonlinear indices, and research interpretation."},
+  {"id": "marathon-hiit-autonomic-remodeling", "title": "從「減重」到「心臟調頻」：馬拉松長跑與 HIIT 對自律神經的重塑奇蹟", "date": "2026-08-25", "category": "popular-science", "tags": ["自律神經", "馬拉松長跑", "HIIT", "心率變異度 (HRV)", "運動適應"], "description": "介紹 Wang et al. (2025) 的最新運動介入研究：為期兩個月的馬拉松慢跑與 HIIT，如何顯著調降青年族群的體重與 BMI，並對心臟副交感迷走神經活性（RMSSD、pNN50）進行深度的適應性重塑。", "titleEn": "Beyond Weight Loss: How Marathon Running and HIIT Retune the Autonomic Nervous System", "descriptionEn": "Summarizes Wang et al. (2025): a two-month marathon-running and HIIT intervention in young adults that reduced body weight and BMI and remodeled cardiac parasympathetic (vagal) activity (RMSSD, pNN50)."},
+  {"id": "notion-antigravity-notebooklm-vocabulary-workflow", "title": "從 Notion 單字庫到 Podcast：可查核的 Antigravity × NotebookLM 單字工作流", "date": "2026-08-25", "category": "ai-tools", "tags": ["AI 工作流", "Notion", "Antigravity", "NotebookLM", "多益學習", "Podcast", "知識管理"], "description": "用 Notion 收集可追溯的單字與語境，讓 Antigravity 產生待確認草稿，再把已查核內容匯入 NotebookLM 製作 Audio Overview；同時說明資料結構、安全、人工驗證與學習成效評估。", "titleEn": "From a Notion Word Bank to a Podcast: A Verifiable Antigravity × NotebookLM Vocabulary Workflow", "descriptionEn": "Collect traceable words and contexts in Notion, let Antigravity draft items for review, then import verified content into NotebookLM for an Audio Overview—covering data structure, safety, human verification, and learning evaluation."},
+  {"id": "at-emt-1-course-radar", "title": "自製進修課程雷達：自動化追蹤 EMT-1 與運動傷害防護課程", "date": "2026-08-25", "category": "ai-tools", "tags": ["AI 應用", "Python 爬蟲", "運動傷害防護", "EMT-1", "Supabase", "Vercel"], "description": "從分散的 AT、EMT-1 公開課程，到 Python 清洗、Supabase 資料與權限管理、Vercel 靜態部署及 fallback 快照，完整拆解進修課程雷達的功能、架構、安全與資料品質。", "titleEn": "Building a Continuing-Education Course Radar for EMT-1 and Athletic Training", "descriptionEn": "From scattered public AT and EMT-1 listings to Python cleaning, Supabase data and access control, static Vercel deployment, and fallback snapshots: the tool's features, architecture, security, and data quality."},
+  {"id": "fft-wavelet-eeg-time-frequency", "title": "FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖", "date": "2026-08-14", "category": "research-methods", "tags": ["EEG", "FFT", "Welch PSD", "Morlet wavelet", "時間頻率分析"], "description": "從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。", "titleEn": "FFT and Wavelets: From a Whole-Signal Spectrum to an EEG Time–Frequency Map", "descriptionEn": "Sampling, the Nyquist limit, frequency resolution, and spectral leakage; STFT, Morlet cycles, baselines, and edge effects; with an interactive tool comparing FFT and wavelet results."},
+  {"id": "data-types-tidy-research-data", "title": "資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？", "date": "2026-08-14", "category": "data-analysis", "tags": ["資料整理", "Tidy Data", "資料字典", "可重現研究"], "description": "從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。", "titleEn": "Data Types and Tidy Data: Organizing Research Data into an Analyzable Format", "descriptionEn": "From measurement scales, units of observation, and long versus wide formats to data dictionaries, missing values, and validation rules, so that research data can be understood correctly and reproduced."},
+  {"id": "research-data-visualization", "title": "不要只畫平均數：研究資料視覺化的選圖與判讀原則", "date": "2026-08-14", "category": "data-analysis", "tags": ["資料視覺化", "原始資料", "信賴區間", "重複量測"], "description": "依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。", "titleEn": "Don't Plot Only the Means: Choosing and Reading Research Figures", "descriptionEn": "Choose figures by data type and study design, distinguish SD, SE, and CI correctly, and use raw points, paired lines, and distributions to reveal what bar charts hide."},
+  {"id": "p-value-hypothesis-testing", "title": "P 值不是假設為真的機率：從假設檢定到正確研究解讀", "date": "2026-08-14", "category": "data-analysis", "tags": ["P 值", "假設檢定", "統計顯著", "研究解讀"], "description": "釐清 p 值的條件機率定義、顯著與不顯著的常見誤解，以及如何結合效果估計、信賴區間與研究設計報告結果。", "titleEn": "A p Value Is Not the Probability That the Hypothesis Is True: From Hypothesis Testing to Sound Interpretation", "descriptionEn": "Clarifies the conditional-probability definition of p, common misreadings of significant and nonsignificant results, and how to report findings together with effect estimates, confidence intervals, and study design."},
+  {"id": "effect-size-confidence-interval-sample-size", "title": "效果量、信賴區間與樣本數：研究結果有多大、又有多確定？", "date": "2026-08-14", "category": "data-analysis", "tags": ["效果量", "信賴區間", "樣本數", "統計檢定力"], "description": "把原始與標準化效果、區間精確度、SESOI、power 與 precision-based planning 放進同一套研究規劃與結果判讀框架。", "titleEn": "Effect Size, Confidence Intervals, and Sample Size: How Big Is the Result, and How Certain Are We?", "descriptionEn": "Places raw and standardized effects, interval precision, SESOI, power, and precision-based planning in one framework for study planning and interpretation."},
+  {"id": "multi-ai-research-team-workflow", "title": "Claude、Codex、Antigravity、Hermes：我的 AI 研究團隊如何分工", "date": "2026-08-14", "category": "ai-tools", "tags": ["AI 工作流", "多代理協作", "Claude", "Codex", "Hermes"], "description": "把四套 AI 工具安排成研究內容、程式實作、視覺驗證與長期排程的協作團隊，並建立避免檔案衝突、責任擴散與自動化偏誤的規則。", "titleEn": "Claude, Codex, Antigravity, and Hermes: How My AI Research Team Divides the Work", "descriptionEn": "Four AI tools arranged as a team for research content, code, visual verification, and scheduled tasks, with rules that prevent file conflicts, diffusion of responsibility, and automation bias."},
+  {"id": "research-knowledge-stack-zotero-hackmd-notebooklm-github", "title": "Zotero、HackMD、NotebookLM 與 GitHub：研究資料到底該放哪裡？", "date": "2026-08-14", "category": "ai-tools", "tags": ["知識管理", "Zotero", "HackMD", "NotebookLM", "GitHub"], "description": "以單一事實來源與 FAIR 原則安排文獻、研究筆記、限定來源綜整、程式及版本，讓研究材料能互相連結又不產生多份衝突副本。", "titleEn": "Zotero, HackMD, NotebookLM, and GitHub: Where Should Research Material Live?", "descriptionEn": "Using a single source of truth and the FAIR principles to organize references, notes, source-limited synthesis, code, and versions so that materials link to each other without conflicting copies."},
+  {"id": "ai-assisted-reproducible-research-workflow", "title": "從研究問題到可重現分析：我的 AI 輔助研究完整流程", "date": "2026-08-14", "category": "research-methods", "tags": ["AI 研究", "可重現研究", "資料分析", "研究設計", "版本控制"], "description": "從 estimand、分析計畫、原始資料保護與品質檢查，到模型診斷、效果估計、敏感度分析及可重現發布，說明 AI 可以參與與不能代替的判斷。", "titleEn": "From Research Question to Reproducible Analysis: My AI-Assisted Research Workflow", "descriptionEn": "From estimand, analysis plan, raw-data protection, and quality checks to model diagnostics, effect estimation, sensitivity analysis, and reproducible release—what AI can contribute and which judgments it cannot replace."},
+  {"id": "audit-ai-statistical-analysis-results", "title": "如何查核 AI 產生的統計分析結果？八道驗證閘門與實用清單", "date": "2026-08-14", "category": "data-analysis", "tags": ["AI 統計", "統計查核", "模型診斷", "效果量", "可重現分析"], "description": "不以流暢文字判斷統計正確性；逐層檢查研究設計、資料完整性、程式、模型假設、效果解釋、樣本數、AI 限制與引用證據。", "titleEn": "How to Audit AI-Generated Statistical Results: Eight Verification Gates and a Practical Checklist", "descriptionEn": "Fluent text is not evidence of correct statistics. Check design, data integrity, code, model assumptions, effect interpretation, sample size, AI limitations, and cited evidence layer by layer."},
+  {"id": "fitness-hrv-cognitive-performance", "title": "體適能較好，注意力就更穩嗎？從 HRV 看認知作業中的心身調節", "date": "2026-08-12", "category": "popular-science", "tags": ["心肺適能", "HRV", "持續注意", "認知功能", "研究解讀"], "description": "解讀一項比較高、低體適能年輕男性的研究：較高體適能與持續注意反應及較穩定的 HRV 有關，但不是所有認知能力都較好。", "titleEn": "Does Better Fitness Mean Steadier Attention? Brain–Body Regulation in Cognitive Tasks, Seen Through HRV", "descriptionEn": "Interprets a study comparing young men with higher and lower fitness: higher fitness was associated with sustained-attention responses and steadier HRV, but not with better performance on every cognitive measure."},
+  {"id": "open-source-research-statistics-skills", "title": "開源研究 Skills 怎麼選？文獻、統計與研究寫作工具箱", "date": "2026-08-11", "category": "ai-tools", "tags": ["開源軟體", "AI Skills", "文獻研究", "統計分析", "研究工作流"], "description": "盤點具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權的學術研究與統計 Skills，說明用途、適用階段與再利用注意事項。", "titleEn": "Choosing Open-Source Research Skills: A Toolkit for Literature, Statistics, and Scientific Writing", "descriptionEn": "A survey of academic and statistics skills with clear MIT, BSD-3-Clause, or Apache-2.0 licenses, explaining their uses, suitable research stages, and reuse considerations."},
+  {"id": "ten-design-skills-academic-website", "title": "十套前端設計 Skills 都要裝嗎？以學術研究與個人網站為例的選擇指南", "date": "2026-08-11", "category": "ai-tools", "tags": ["AI Skills", "網站設計", "學術研究", "工具評估"], "description": "比較十套熱門前端設計 Skills，辨認哪些適合研究視覺化、個人學術網站與長文呈現，以及為什麼安裝越多不一定越好。", "titleEn": "Do You Need All Ten Front-End Design Skills? A Selection Guide for Academic Research and Personal Websites", "descriptionEn": "Compares ten popular front-end design skills, identifies which suit research visualization, personal academic sites, and long-form pages, and explains why installing more is not always better."},
+  {"id": "research-update-1", "title": "身體活動如何影響大腦健康？", "date": "2026-07-28", "category": "popular-science", "tags": ["運動", "大腦健康", "執行功能"], "description": "整理身體活動、認知功能、情緒調節與神經可塑性之間的重要連結。", "titleEn": "How Does Physical Activity Affect Brain Health?", "descriptionEn": "An overview of key links among physical activity, cognitive function, emotion regulation, and neuroplasticity."},
+  {"id": "first-ai-code", "title": "第一次的 AI Code 分享", "date": "2026-08-01", "category": "ai-tools", "tags": ["AI", "Python", "研究工作流"], "description": "分享我如何將 AI 導入資料分析、程式除錯與網站開發的日常工作流程。", "titleEn": "My First Experience with AI Code", "descriptionEn": "How I bring AI into everyday data analysis, debugging, and website development."},
+  {"id": "python-statistics-pipeline", "title": "從研究設計到報告：Python 統計分析 Pipeline 的核心原則", "date": "2026-08-03", "category": "data-analysis", "tags": ["Python", "統計分析", "可重現研究"], "description": "統計分析不只是執行檢定；從研究設計、資料驗證到效果量與報告，每一步都需要留下判斷依據。", "titleEn": "From Study Design to Report: Core Principles of a Python Statistics Pipeline", "descriptionEn": "Statistical analysis is more than running tests. From study design and data validation to effect sizes and reporting, every step should leave a record of the judgment behind it."},
+  {"id": "post-hoc-power-confidence-interval", "title": "統計不顯著後，要算 Post-hoc Power 嗎？從信賴區間看懂研究結果", "date": "2026-08-06", "category": "data-analysis", "tags": ["統計分析", "Statistical Power", "信賴區間", "MCID", "等效性檢定"], "description": "Observed post-hoc power 常只是 p 值的回音；改用效果量、信賴區間、重要效果門檻與敏感度分析，才能分辨接近零與結果不精確。", "titleEn": "Should You Compute Post-hoc Power After a Nonsignificant Result? Reading Results Through Confidence Intervals", "descriptionEn": "Observed post-hoc power is often just an echo of the p value. Effect sizes, confidence intervals, smallest effects of interest, and sensitivity analysis distinguish a near-zero effect from an imprecise estimate."},
+  {"id": "data-analysis-workflow", "title": "數據如何變成結論？從研究問題到可重現報告的分析流程", "date": "2026-08-06", "category": "data-analysis", "tags": ["數據分析", "研究設計", "統計推論", "可重現研究"], "description": "數據分析不只是選檢定與計算 p 值；從問題定義、資料清理、探索、模型診斷到效果估計，整理一套能被檢查與重現的完整流程。", "titleEn": "How Does Data Become a Conclusion? An Analysis Workflow from Research Question to Reproducible Report", "descriptionEn": "Data analysis is more than choosing a test and computing p. A complete, checkable, and reproducible workflow from question definition, data cleaning, and exploration to model diagnostics and effect estimation."},
+  {"id": "eeg-preprocessing-principles", "title": "EEG 前處理不是按下按鈕：八個步驟與品質檢查", "date": "2026-08-03", "category": "research-methods", "tags": ["EEG", "EEGLAB", "訊號處理"], "description": "從原始腦電訊號到可分析資料，整理濾波、重參考、壞道、ICA 與品質紀錄的完整思路。", "titleEn": "EEG Preprocessing Is Not Pressing a Button: Eight Steps and Quality Checks", "descriptionEn": "From raw EEG to analyzable data: the reasoning behind filtering, re-referencing, bad channels, ICA, and quality records."},
+  {"id": "teleportation-reaction-time-task", "title": "反應時間與移動時間有何不同？認識瞬間移動認知作業", "date": "2026-08-03", "category": "research-methods", "tags": ["認知作業", "反應時間", "資料品質"], "description": "用一個簡單的點擊作業，理解大腦開始反應與身體完成動作其實是兩段不同的歷程。", "titleEn": "Reaction Time Versus Movement Time: Understanding the Teleportation Cognitive Task", "descriptionEn": "A simple click task shows that when the brain begins to respond and when the body finishes the movement are two different processes."},
+  {"id": "garmin-raw-data-hrv", "title": "從手錶 PPG 到 HRV：交感、副交感與 Poincaré plot", "date": "2026-08-05", "category": "data-analysis", "tags": ["Garmin", "HRV", "PPG", "Poincaré plot", "生理訊號"], "description": "完整理解 BBI、ECG 與腕式 PPG 的量測原理，以及時域、頻域、Poincaré plot、entropy、DFA 與 RQA 等 HRV 指標的限制。", "titleEn": "From Wrist PPG to HRV: Sympathetic and Parasympathetic Activity and the Poincaré Plot", "descriptionEn": "How BBI, ECG, and wrist PPG measure heartbeats, and the limits of time-domain, frequency-domain, Poincaré, entropy, DFA, and RQA indices of HRV."},
+  {"id": "hermes-telegram-academic-brief", "title": "讓 Hermes 每天把學術文章送到手機：免費模型、Telegram 與排程", "date": "2026-08-05", "category": "ai-tools", "tags": ["Hermes", "Telegram", "自動排程", "AI Agent"], "description": "從 Hermes 架構、Session、Memory 與 Skills，到模型選擇、Telegram 安全設定及每天 8 點的 cronjob，完整建立可查核的學術文獻推送。", "titleEn": "Delivering Daily Scholarly Articles to Your Phone with Hermes: Free Models, Telegram, and Scheduling", "descriptionEn": "From Hermes architecture, sessions, memory, and skills to model choice, Telegram safety settings, and an 8 a.m. cron job: a complete, verifiable literature-push setup."},
+  {"id": "ai-tools-skills-research-workflow", "title": "把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流", "date": "2026-08-03", "category": "ai-tools", "tags": ["AI Skills", "GitHub", "Gemini Notebook", "研究工作流"], "description": "用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。", "titleEn": "Turning AI Tool Connections into Reusable Skills: My GitHub Research Workflow", "descriptionEn": "Using AI-tools-skills to connect Gemini Notebook, GitHub, Zotero, and HackMD, then extending it into a complete academic research skill workflow."},
+  {"id": "ai-academic-skills-paper-screening-grants", "title": "文獻篩選到計畫書撰寫：把 AI-academic-skills 拆成找、評、寫三步驟", "date": "2026-08-05", "category": "ai-tools", "tags": ["AI Skills", "文獻評讀", "計畫書撰寫", "GRADE", "Zotero", "NotebookLM"], "description": "文獻篩選與計畫書撰寫是研究工作中最花時間的兩段流程。整理 AI-academic-skills 中的 litpilot、paper-review、paper-digest 與 research-grants，並加上把既有 Zotero 收藏與 NotebookLM 綜整一起納入評讀的串接流程。", "titleEn": "From Literature Screening to Grant Writing: AI-academic-skills in Three Steps—Find, Appraise, Write", "descriptionEn": "Literature screening and proposal writing are the two most time-consuming stages of research. This post organizes litpilot, paper-review, paper-digest, and research-grants, and adds a workflow that appraises an existing Zotero collection together with a NotebookLM synthesis."},
+  {"id": "hhsa-nonlinear-eeg", "title": "從 EMD、瞬時頻率到 HHSA：如何看見腦波的振幅調變？", "date": "2026-08-14", "category": "research-methods", "tags": ["EEG", "HHSA", "EMD", "瞬時頻率", "跨頻耦合"], "description": "從非平穩與非線性的差異、EMD 與 IMF，到 HHSA 的 carrier × AM frequency 表徵，完整說明分析流程、應用邊界與可重現研究要點。", "titleEn": "From EMD and Instantaneous Frequency to HHSA: How Can We See Amplitude Modulation in Brain Waves?", "descriptionEn": "From nonstationary versus nonlinear signals, EMD, and IMFs to the carrier × AM-frequency representation of HHSA: the analysis workflow, application boundaries, and reproducibility points."},
+  {"id": "cardsort-cognitive-flexibility-task", "title": "規則悄悄換了，你多快發現？認識圖卡分類作業與認知彈性", "date": "2026-08-05", "category": "research-methods", "tags": ["認知作業", "執行功能", "認知彈性"], "description": "圖卡分類作業用雙重規則系統測量認知彈性：切換代價與難度負荷兩個指標，分別代表規則轉換與選項增加的認知成本。", "titleEn": "The Rule Quietly Changed—How Fast Do You Notice? The Card-Sorting Task and Cognitive Flexibility", "descriptionEn": "The card-sorting task uses a dual-rule system to measure cognitive flexibility with two indices, switch cost and difficulty load, reflecting the cost of changing rules and of adding options."},
+  {"id": "conflict-inhibitory-control-task", "title": "當直覺是錯的，你需要多久踩剎車？認識方向感作業與抑制控制", "date": "2026-08-05", "category": "research-methods", "tags": ["認知作業", "執行功能", "抑制控制"], "description": "方向感作業用一致／不一致箭頭測量抑制控制：從一致性效果到 Delta Plot、Gratton Effect，拆解抑制歷程的動態變化。", "titleEn": "When Your Instinct Is Wrong, How Long Do You Need to Brake? The Direction Task and Inhibitory Control", "descriptionEn": "The direction task uses congruent and incongruent arrows to measure inhibitory control, from the congruency effect to delta plots and the Gratton effect, showing how inhibition changes dynamically."},
+  {"id": "pathend-spatial-working-memory-task", "title": "記住位置還不夠，要在腦中走一遍：認識路徑終點 II 與空間工作記憶", "date": "2026-08-05", "category": "research-methods", "tags": ["認知作業", "工作記憶", "空間認知"], "description": "路徑終點 II 作業要求玩家記住箭頭位置與方向，並在腦中模擬沿路徑行走，同時涉及空間工作記憶與抗干擾能力。", "titleEn": "Remembering Locations Is Not Enough—You Must Walk Through Them in Your Head: PathEnd II and Spatial Working Memory", "descriptionEn": "PathEnd II asks players to remember arrow positions and directions and mentally simulate walking along the path, engaging spatial working memory and resistance to interference."},
+  {"id": "seqclick-working-memory-span-task", "title": "記住內容不夠，還要記住順序：認識順向點擊作業與工作記憶廣度", "date": "2026-08-05", "category": "research-methods", "tags": ["認知作業", "工作記憶", "Corsi測驗"], "description": "順向點擊作業是 Corsi 積木敲擊測驗的數位化版本，測量視覺空間工作記憶廣度，並拆解出校正動作時間後的純記憶處理指標。", "titleEn": "Remembering Content Is Not Enough—You Must Remember Order: The Forward Click Task and Working Memory Span", "descriptionEn": "The forward click task is a digital version of the Corsi block-tapping test that measures visuospatial working memory span and extracts a pure memory index after correcting for movement time."}
 ];
 
 let cachedPosts = null;
@@ -375,15 +384,24 @@ function categoryLabel(category) {
   return t().categories.find(item => item[0] === category)?.[1] || category;
 }
 
+function postTitle(post) {
+  return (lang === 'en' && post.titleEn) || post.title || '';
+}
+
+function postDescription(post) {
+  return (lang === 'en' && post.descriptionEn) || post.description || '';
+}
+
 function tagList(post) {
+  if (lang === 'en' && !Array.isArray(post.tagsEn)) return '';
   if (!Array.isArray(post.tags) || post.tags.length === 0) return '';
-  return `<div class="tag-list" aria-label="${lang === 'zh' ? '文章標籤' : 'Article tags'}">${post.tags.map(tag => `<span>${tag}</span>`).join('')}</div>`;
+  return `<div class="tag-list" aria-label="${lang === 'zh' ? '文章標籤' : 'Article tags'}">${(lang === 'en' ? post.tagsEn : post.tags).map(tag => `<span>${tag}</span>`).join('')}</div>`;
 }
 
 function postRow(post) {
   return `<a class="post-card" href="#/post/${post.id}">
     <div class="post-meta">${categoryLabel(post.category)}<br>${post.date}</div>
-    <div><h3>${post.title}</h3><p>${post.description}</p></div>
+    <div><h3>${postTitle(post)}</h3><p>${postDescription(post)}</p></div>
     <span class="post-arrow" aria-hidden="true">→</span>
   </a>`;
 }
@@ -477,12 +495,12 @@ async function renderHome() {
     ['研究主軸', c.focuses.length, '查看專長', '#/about/skills'],
     ['公開文章', allPosts.length, '瀏覽文章', '#/blog'],
     ['精選發表', c.featuredPublications.length, '查看發表', '#/publications'],
-    ['學習路徑', 6, '開始學習', '#/learning']
+    ['學習路徑', 7, '開始學習', '#/learning']
   ] : [
     ['Research areas', c.focuses.length, 'View expertise', '#/about/skills'],
     ['Public articles', allPosts.length, 'Browse articles', '#/blog'],
     ['Selected works', c.featuredPublications.length, 'View publications', '#/publications'],
-    ['Learning paths', 6, 'Start learning', '#/learning']
+    ['Learning paths', 7, 'Start learning', '#/learning']
   ];
   app.innerHTML = `<div class="page-shell home-shell">
     <section class="profile-hero">
@@ -501,6 +519,7 @@ async function renderHome() {
     <nav class="home-overview" aria-label="${lang === 'zh' ? '研究與內容概覽' : 'Research and content overview'}">
       ${overview.map((item, index) => `<a href="${item[3]}" class="overview-item${index === 1 ? ' overview-item-primary' : ''}"><span>${item[0]}</span><strong>${item[1]}</strong><small>${item[2]} →</small></a>`).join('')}
     </nav>
+    ${renderHomeAgenda()}
     <section class="home-projects" aria-labelledby="home-projects-title">
       <header class="home-projects-heading"><p>${lang === 'zh' ? '實作專案 · 01' : 'Built project · 01'}</p><h2 id="home-projects-title">${lang === 'zh' ? '研究工具與專案' : 'Research tools & projects'}</h2></header>
       <div class="home-project-row">
@@ -519,6 +538,97 @@ async function renderHome() {
     </div>
     <section class="home-block latest-section"><div class="block-heading"><h2>${c.latestTitle}</h2><a href="#/blog">${c.allPosts}</a></div><div class="post-list">${posts.map(postRow).join('')}</div></section>
   </div>`;
+}
+
+const researchAgenda = {
+  zh: {
+    eyebrow: 'Research agenda',
+    title: '研究目的、領域與問題',
+    statusNote: '這是規劃中的博士論文研究，實驗設計仍在發展，尚未收集資料；以下內容不代表任何研究結果。',
+    purposeLabel: '研究目的',
+    purpose: '我的博士研究想回答：單次有氧運動如何改變人們詮釋與調節情緒的方式，以及哪些人獲益較多。目標是讓運動處方從「運動對心情有益」進一步走向「什麼劑量、對什麼人、透過哪些腦—身體機制產生作用」，使處方可以被檢驗，而不只是被建議。',
+    areasLabel: '研究領域',
+    areas: [
+      ['單次運動與情緒詮釋', '以漸變臉孔判斷作業，檢驗一次運動後，模糊表情是否更常被判為「快樂」。'],
+      ['情緒情境下的行動控制', '以選擇性停止訊號作業，檢驗運動後停止反應時間（SSRT）是否縮短，以及是否因臉孔情緒（快樂或悲傷）而不同。'],
+      ['個別差異', '心肺適能（VO₂peak）、日常身體活動量與靜息心率變異度（HRV），是否決定誰從運動獲益較多。'],
+      ['腦—身體恢復', '恢復期 HRV、情緒改變與腦電（EEG／ERP）指標，是否與行為變化同步，以及效果在運動後能維持多久。']
+    ],
+    questionsLabel: '核心研究問題',
+    questions: [
+      ['主要', '單次中等強度有氧運動後，模糊臉孔是否比靜坐對照後更常被判為快樂？'],
+      ['次要', '運動後的停止訊號反應時間（SSRT）是否比靜坐對照後更短？'],
+      ['探索', '運動對抑制控制的影響，是否因臉孔的情緒而不同？'],
+      ['探索', '心肺適能、日常身體活動量與靜息 HRV，是否調節上述效果？'],
+      ['探索', '恢復期 HRV、情緒改變與事件相關電位，是否與作業表現的改變有關？'],
+      ['探索', '在特質層次，體適能、身體活動量與靜息 HRV，是否與認知表現及情緒作業的基準表現有關？']
+    ],
+    designLabel: '研究取徑',
+    design: '採受試者內交叉設計：第一次訪視進行體適能與基準評估，其後兩次訪視（順序平衡）比較有氧運動與時間相同的靜坐對照；在介入前後收集行為作業、腦電、HRV 與情緒問卷。我希望在資料收集前先訂定分析計畫，並公開可重現的分析程式。',
+    aheadLabel: '延伸方向',
+    ahead: [
+      '從單次到訓練：一次運動的反應，是否能預測數月訓練的獲益。',
+      '從年輕成人到高齡者，延續我先前在高齡者運動與執行功能上的研究。',
+      '從實驗室到場域：驗證穿戴式心率量測，使恢復狀態能在實驗室之外被追蹤。'
+    ],
+    homeLink: '閱讀完整研究規劃 →'
+  },
+  en: {
+    eyebrow: 'Research agenda',
+    title: 'Research purpose, areas, and questions',
+    statusNote: 'This is planned doctoral research. The design is still under development and no data have been collected; nothing below reports findings.',
+    purposeLabel: 'Purpose',
+    purpose: 'My doctoral work asks how a single bout of aerobic exercise changes the way people interpret and regulate emotion, and who benefits most. The aim is to move exercise prescription from “exercise is good for mood” toward specifying which dose, for which person, engages which brain–body mechanism, so that prescriptions can be tested rather than merely recommended.',
+    areasLabel: 'Research areas',
+    areas: [
+      ['Acute exercise and emotional interpretation', 'Using a morphed-face judgment task, whether a single session makes ambiguous expressions more likely to be judged as “happy”.'],
+      ['Action control in emotional contexts', 'Using a selective stop-signal task, whether stop-signal reaction time (SSRT) becomes shorter after exercise, and whether this depends on the emotion shown (happy or sad faces).'],
+      ['Individual differences', 'Whether cardiorespiratory fitness (VO₂peak), habitual physical activity, and resting heart rate variability (HRV) determine who benefits more.'],
+      ['Brain–body recovery', 'Whether recovery-period HRV, mood change, and EEG/ERP indices track the behavioral change, and how long the effect lasts after exercise ends.']
+    ],
+    questionsLabel: 'Guiding questions',
+    questions: [
+      ['Primary', 'After a single session of moderate-intensity aerobic exercise, are ambiguous faces judged as happy more often than after seated rest?'],
+      ['Secondary', 'Is stop-signal reaction time (SSRT) shorter after exercise than after seated rest?'],
+      ['Exploratory', 'Does the effect on inhibitory control differ by the emotion of the face?'],
+      ['Exploratory', 'Do cardiorespiratory fitness, habitual physical activity, and resting HRV moderate these effects?'],
+      ['Exploratory', 'Are recovery-period HRV, mood change, and event-related potentials related to the change in task performance?'],
+      ['Exploratory', 'At the trait level, are fitness, physical activity, and resting HRV related to cognitive performance and to baseline performance on the emotion tasks?']
+    ],
+    designLabel: 'Approach',
+    design: 'A within-subject crossover design: one visit for fitness and baseline assessment, then two counterbalanced visits comparing aerobic exercise with a time-matched period of seated rest. Behavioral tasks, EEG, HRV, and mood questionnaires are collected before and after the intervention. I aim to specify the analysis plan before data collection and to share reproducible analysis code.',
+    aheadLabel: 'Looking ahead',
+    ahead: [
+      'From single sessions to training: whether the response to one session predicts the benefit of months of training.',
+      'From young adults to older adults, building on my earlier work on exercise and executive function in later life.',
+      'From laboratory to field: validating wearable heart-rate measures so that recovery can be tracked outside the laboratory.'
+    ],
+    homeLink: 'Read the full research agenda →'
+  }
+};
+
+function renderResearchAgenda() {
+  const a = researchAgenda[lang] || researchAgenda.en;
+  return `<div class="research-agenda">
+    <p class="agenda-status">${a.statusNote}</p>
+    <section class="agenda-block"><h3>${a.purposeLabel}</h3><p class="agenda-purpose">${a.purpose}</p></section>
+    <section class="agenda-block"><h3>${a.areasLabel}</h3><ol class="agenda-areas">${a.areas.map((area, index) => `<li><span aria-hidden="true">0${index + 1}</span><div><b>${area[0]}</b><p>${area[1]}</p></div></li>`).join('')}</ol></section>
+    <section class="agenda-block"><h3>${a.questionsLabel}</h3><ol class="agenda-questions">${a.questions.map((question, index) => `<li><span class="agenda-tier">${question[0]}</span><p><b>RQ${index + 1}.</b> ${question[1]}</p></li>`).join('')}</ol></section>
+    <section class="agenda-block"><h3>${a.designLabel}</h3><p>${a.design}</p></section>
+    <section class="agenda-block"><h3>${a.aheadLabel}</h3><ul class="agenda-ahead">${a.ahead.map(item => `<li>${item}</li>`).join('')}</ul></section>
+  </div>`;
+}
+
+function renderHomeAgenda() {
+  const a = researchAgenda[lang] || researchAgenda.en;
+  return `<section class="home-agenda" aria-labelledby="home-agenda-title">
+    <header class="home-agenda-heading"><p>${a.eyebrow}</p><h2 id="home-agenda-title">${a.title}</h2></header>
+    <div class="home-agenda-body">
+      <p class="home-agenda-purpose">${a.purpose}</p>
+      <ul class="home-agenda-areas">${a.areas.map(area => `<li><b>${area[0]}</b></li>`).join('')}</ul>
+      <a href="#/about/agenda">${a.homeLink}</a>
+    </div>
+  </section>`;
 }
 
 const researchFramework = {
@@ -568,15 +678,15 @@ async function renderAbout(section = '') {
   const labels = lang === 'zh' ? {
     home: '首頁', title: '關於我', meta: '吳亭葶 Ting-Ting Wu', language: '語言：English', toc: '目錄',
     role: '認知神經科學博士生 / 運動防護員 / 研究者', education: '學經歷', expertise: '專長領域', honors: '榮譽', contact: '聯繫',
-    bio2: '我的研究位於運動科學與認知神經科學的交界。長期目標是發展具認知神經科學與運動生理學基礎的運動處方，並檢驗其改善情緒健康與認知功能的效果及神經生理機制。我也持續運用生理訊號、行為作業、AI 與可重現資料分析，建立可檢驗且具實務應用潛力的研究流程。',
-    framework: '研究框架', frameworkCaveat: '示意圖，簡化呈現研究變項間的關係，非統計模型或因果推論結果。'
+    bio2: '我的研究位於運動科學與認知神經科學的交界，關注運動如何改變情緒與認知的神經生理機制。我運用生理訊號、行為作業、AI 與可重現資料分析，建立可檢驗且具實務應用潛力的研究流程。',
+    framework: '研究框架', agenda: '研究目的與問題', frameworkCaveat: '示意圖，簡化呈現研究變項間的關係，非統計模型或因果推論結果。'
   } : {
     home: 'Home', title: 'About', meta: 'Ting-Ting Wu', language: 'Language: 中文', toc: 'Table of contents',
     role: 'Ph.D. Student in Cognitive Neuroscience / Athletic Trainer / Researcher', education: 'Education & experience', expertise: 'Expertise', honors: 'Honors', contact: 'Contact',
-    bio2: 'My work sits at the intersection of exercise science and cognitive neuroscience. My long-term goal is to develop exercise prescriptions grounded in cognitive neuroscience and exercise physiology, and to test their effects and neurophysiological mechanisms in emotional well-being and cognitive function. I use biosignals, behavioral tasks, AI, and reproducible data analysis to build testable research workflows with practical relevance.',
-    framework: 'Research framework', frameworkCaveat: 'Simplified schematic of how these variables relate — not a statistical model or a causal claim.'
+    bio2: 'My work sits at the intersection of exercise science and cognitive neuroscience, and focuses on the neurophysiological mechanisms through which exercise changes emotion and cognition. I use biosignals, behavioral tasks, AI, and reproducible data analysis to build testable research workflows with practical relevance.',
+    framework: 'Research framework', agenda: 'Research purpose & questions', frameworkCaveat: 'Simplified schematic of how these variables relate — not a statistical model or a causal claim.'
   };
-  const tocItems = [[c.introTitle, 'intro'], [labels.framework, 'framework'], [labels.education, 'journey'], [labels.expertise, 'skills'], [labels.honors, 'awards'], [labels.contact, 'contact']];
+  const tocItems = [[c.introTitle, 'intro'], [labels.agenda, 'agenda'], [labels.framework, 'framework'], [labels.education, 'journey'], [labels.expertise, 'skills'], [labels.honors, 'awards'], [labels.contact, 'contact']];
 
   app.innerHTML = `<div class="page-shell about-page"><article class="about-article">
     <header class="post-header">
@@ -588,11 +698,12 @@ async function renderAbout(section = '') {
     <div class="about-content">
       <p class="about-avatar"><span role="img" aria-label="${lang === 'zh' ? '個人照片待更新' : 'Profile photo coming soon'}"><b aria-hidden="true">TW</b></span></p>
       <section id="about-intro" class="about-section"><h2>${lang === 'zh' ? '吳亭葶 Ting-Ting Wu' : 'Ting-Ting Wu 吳亭葶'}</h2><blockquote><strong>${labels.role}</strong></blockquote><p>${c.introText}</p><p>${labels.bio2}</p></section>
+      <section id="about-agenda" class="about-section"><h2>${labels.agenda}</h2>${renderResearchAgenda()}</section>
       <section id="about-framework" class="about-section"><h2>${labels.framework}</h2>${renderResearchFramework()}<p class="demo-caveat">⚠️ ${labels.frameworkCaveat}</p></section>
       <section id="about-journey" class="about-section"><h2>${labels.education}</h2><ul class="plain-list">${c.journey.map(item => `<li><strong>${item[0]}</strong>　${item[1]}<br><span>${item[2]}</span></li>`).join('')}</ul></section>
-      <section id="about-skills" class="about-section"><h2>${labels.expertise}</h2><ul class="expertise-list">${c.focuses.map(item => `<li><strong>${item[0]}</strong>：${item[1]}</li>`).join('')}</ul><div class="about-skill-groups">${c.skillGroups.slice(1).map(group => `<div><h3>${group[0]}</h3><p>${group[1].join('、')}</p></div>`).join('')}</div></section>
+      <section id="about-skills" class="about-section"><h2>${labels.expertise}</h2><ul class="expertise-list">${c.focuses.map(item => `<li><strong>${item[0]}</strong>${lang === 'zh' ? '：' : ': '}${item[1]}</li>`).join('')}</ul><div class="about-skill-groups">${c.skillGroups.slice(1).map(group => `<div><h3>${group[0]}</h3><p>${group[1].join(lang === 'zh' ? '、' : ', ')}</p></div>`).join('')}</div></section>
       <section id="about-awards" class="about-section"><h2>${labels.honors}</h2><ul class="plain-list">${c.awards.map(item => `<li><strong>${item[0]}</strong>　${item[1]}</li>`).join('')}</ul></section>
-      <section id="about-contact" class="about-section"><h2>${labels.contact}</h2><ul><li>Email：<a href="mailto:tingwu.new@gmail.com">tingwu.new@gmail.com</a></li><li><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID</a></li><li><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar</a></li><li><a href="https://github.com/wttntpc" target="_blank" rel="noopener noreferrer">GitHub</a></li></ul></section>
+      <section id="about-contact" class="about-section"><h2>${labels.contact}</h2><ul><li>Email${lang === 'zh' ? '：' : ': '}<a href="mailto:tingwu.new@gmail.com">tingwu.new@gmail.com</a></li><li><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID</a></li><li><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar</a></li><li><a href="https://github.com/wttntpc" target="_blank" rel="noopener noreferrer">GitHub</a></li></ul></section>
     </div>
   </article></div>`;
   document.querySelector('.inline-language').addEventListener('click', () => langToggle.click());
@@ -779,7 +890,11 @@ function renderStatisticsLearningMap() {
 }
 
 async function renderPublications() {
-  const response = await fetchSiteFile('posts/publications.md');
+  let response;
+  if (lang === 'en') {
+    try { response = await fetchSiteFile('posts/publications.en.md'); } catch (e) { response = null; }
+  }
+  if (!response) response = await fetchSiteFile('posts/publications.md');
   const content = safeMarkdownParse(await response.text());
   const labels = lang === 'zh' ? {
     home: '首頁', title: '學術發表', description: '期刊論文與國內外研討會發表紀錄。'
@@ -788,7 +903,7 @@ async function renderPublications() {
   };
   app.innerHTML = `<div class="page-shell publications-page"><article>
     <header class="post-header"><div class="breadcrumbs"><a href="#/">${labels.home}</a></div><h1>${labels.title}</h1><p>${labels.description}</p></header>
-    <div class="publication-links"><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div>
+    <div class="publication-links"><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=${lang === 'zh' ? 'zh-TW' : 'en'}" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div>
     <div class="markdown-body">${content}</div>
   </article></div>`;
 }
@@ -807,7 +922,7 @@ function renderDataAnalysisGuide(posts) {
     const links = trackPostIds[index]
       .map(id => postById.get(id))
       .filter(Boolean)
-      .map(post => `<li><a href="#/post/${post.id}">${post.title}<span aria-hidden="true">→</span></a></li>`)
+      .map(post => `<li><a href="#/post/${post.id}">${postTitle(post)}<span aria-hidden="true">→</span></a></li>`)
       .join('');
     return `<li class="learning-track"><div class="learning-track-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</div><div><h3>${title}</h3><p>${description}</p><ul>${links}</ul></div></li>`;
   }).join('');
@@ -823,7 +938,7 @@ async function renderBlog(requestedCategory = 'all') {
   const c = t();
   const activeCategory = c.categories.some(item => item[0] === requestedCategory) ? requestedCategory : 'all';
   const visiblePosts = activeCategory === 'all' ? posts : posts.filter(post => post.category === activeCategory);
-  const renderCards = items => items.map((post, index) => `<a class="blog-card${index === 0 ? ' blog-card-featured' : ''}" href="#/post/${post.id}">${index === 0 ? `<span class="featured-label">${lang === 'zh' ? '最新文章' : 'Latest article'}</span>` : ''}<div class="post-meta">${categoryLabel(post.category)} · ${post.date}</div><h2>${post.title}</h2><p>${post.description}</p>${tagList(post)}<span class="version-badge">${c.simpleVersion} · ${c.professionalVersion}</span></a>`).join('');
+  const renderCards = items => items.map((post, index) => `<a class="blog-card${index === 0 ? ' blog-card-featured' : ''}" href="#/post/${post.id}">${index === 0 ? `<span class="featured-label">${lang === 'zh' ? '最新文章' : 'Latest article'}</span>` : ''}<div class="post-meta">${categoryLabel(post.category)} · ${post.date}</div><h2>${postTitle(post)}</h2><p>${postDescription(post)}</p>${tagList(post)}<span class="version-badge">${c.simpleVersion} · ${c.professionalVersion}</span></a>`).join('');
   const dataGuide = activeCategory === 'data-analysis' ? renderDataAnalysisGuide(visiblePosts) : '';
   const articleListHeading = activeCategory === 'data-analysis' ? `<header class="article-list-heading"><h2>${c.dataAllArticles}</h2><p>${c.dataAllArticlesDesc}</p></header>` : '';
   const searchControls = `<div class="article-search"><label for="article-search-input">${c.searchLabel}</label><div class="article-search-control"><span aria-hidden="true">⌕</span><input id="article-search-input" name="article-search" type="search" inputmode="search" autocomplete="off" spellcheck="false" placeholder="${c.searchPlaceholder}"><button id="article-search-clear" type="button" hidden>${c.clearSearch}</button></div><p id="article-search-status" role="status" aria-live="polite"></p></div>`;
@@ -841,7 +956,7 @@ async function renderBlog(requestedCategory = 'all') {
   const updateSearch = () => {
     const query = searchInput.value.trim().toLocaleLowerCase(lang === 'zh' ? 'zh-Hant' : 'en');
     const matches = query ? visiblePosts.filter(post => {
-      const searchable = [post.title, post.description, categoryLabel(post.category), ...(post.tags || [])].join(' ').toLocaleLowerCase(lang === 'zh' ? 'zh-Hant' : 'en');
+      const searchable = [post.title, post.description, post.titleEn, post.descriptionEn, categoryLabel(post.category), ...(post.tags || [])].join(' ').toLocaleLowerCase(lang === 'zh' ? 'zh-Hant' : 'en');
       return searchable.includes(query);
     }) : visiblePosts;
     clearButton.hidden = query.length === 0;
@@ -1901,7 +2016,7 @@ async function renderPost(id) {
   const versions = parseArticleVersions(await response.text());
   const selectedVersion = localStorage.getItem('tingting-article-version') === 'professional' ? 'professional' : 'simple';
   const c = t();
-  app.innerHTML = `<article class="article-shell"><a class="back-link" href="#/blog">${c.back}</a><header class="article-header"><div class="post-meta">${meta ? `${categoryLabel(meta.category)} · ${meta.date}` : ''}</div><h1>${meta?.title || ''}</h1>${meta?.description ? `<p>${meta.description}</p>` : ''}${meta ? tagList(meta) : ''}</header>
+  app.innerHTML = `<article class="article-shell"><a class="back-link" href="#/blog">${c.back}</a><header class="article-header"><div class="post-meta">${meta ? `${categoryLabel(meta.category)} · ${meta.date}` : ''}</div><h1>${meta ? postTitle(meta) : ''}</h1>${meta && postDescription(meta) ? `<p>${postDescription(meta)}</p>` : ''}${meta ? tagList(meta) : ''}${lang === 'en' ? '<p class="article-language-note">The full text of this article is currently written in Chinese. The title and summary above are provided in English.</p>' : ''}</header>
     <div class="version-bar"><div class="version-toggle" role="group" aria-label="${lang === 'zh' ? '文章版本切換' : 'Article version'}"><button type="button" data-version="simple" aria-pressed="${selectedVersion === 'simple'}">${c.simpleVersion}</button><button type="button" data-version="professional" aria-pressed="${selectedVersion === 'professional'}">${c.professionalVersion}</button></div><p>${c.versionHint}</p></div>
     <div class="article-version markdown-body" data-version-content="simple" ${selectedVersion !== 'simple' ? 'hidden' : ''}>${safeMarkdownParse(versions.simple)}</div>
     <div class="article-version markdown-body" data-version-content="professional" ${selectedVersion !== 'professional' ? 'hidden' : ''}>${safeMarkdownParse(versions.professional)}</div></article>`;
