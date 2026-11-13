@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261112-02';
+const SITE_VERSION = '20261113-01';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -51,7 +51,7 @@ function renderMermaidNodes(selector = '.mermaid') {
 
 const copy = {
   zh: {
-    nav: [['首頁', '/'], ['關於', '/about'], ['學術發表', '/publications'], ['文章', '/blog'], ['學習地圖', '/learning'], ['互動實驗', '/lab']],
+    nav: [['首頁', '/'], ['關於', '/about'], ['研究', '/research'], ['學術發表', '/publications'], ['文章', '/blog'], ['學習地圖', '/learning'], ['互動實驗', '/lab']],
     footer: '探索身體活動如何改變大腦與心智。',
     disclaimerLink: '網站聲明',
     disclaimerNote: '本站為個人學術與知識分享網站，部分內容由 AI 協作整理，可能仍有疏漏；不構成醫療、法律或其他專業建議，重要決策請核對原始與官方來源。',
@@ -143,7 +143,7 @@ const copy = {
     notFound: '找不到這個頁面。'
   },
   en: {
-    nav: [['Home', '/'], ['About', '/about'], ['Publications', '/publications'], ['Writing', '/blog'], ['Learning map', '/learning'], ['Interactive lab', '/lab']],
+    nav: [['Home', '/'], ['About', '/about'], ['Research', '/research'], ['Publications', '/publications'], ['Writing', '/blog'], ['Learning map', '/learning'], ['Interactive lab', '/lab']],
     footer: 'Exploring how physical activity shapes the mind.',
     disclaimerLink: 'Website statement',
     disclaimerNote: 'This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.',
@@ -587,6 +587,51 @@ const researchAgenda = {
   }
 };
 
+const researchPageContent = {
+  zh: {
+    eyebrow: 'Research',
+    title: '研究',
+    lead: '這裡整理我的研究興趣、已發表的成果，以及能讓你親手體驗相關研究方法的互動示範。',
+    pubLabel: '學術發表', pubSummary: '期刊論文 9 篇（第一作者 2 篇）· 研討會發表 14 場 · 最佳發表獎 3 項', pubLink: '查看完整發表列表 →',
+    demoLabel: '親手試試研究方法', demoLead: '這些互動示範改編自文獻中的經典作業，資料只留在你的瀏覽器，不是研究作業，也不做任何評估。',
+    demos: [
+      ['posner', '注意力：Posner 空間提示作業', '提示是否有效，會如何改變你的反應時間？'],
+      ['emotion-gonogo', '情緒與動作：情緒臉孔 Go/No-Go', '情緒與任務目標相關時，表情才會改變反應嗎？'],
+      ['face-judgment', '情緒知覺：表情判斷曲線', '模糊的臉，你會看成開心還是難過？'],
+      ['stop-signal', '抑制控制：停止訊號作業', '看到「停」的訊號時，你還煞得住嗎？']
+    ],
+    demoOpen: '開始 →',
+    learnLabel: '想先補背景？', learnText: '依目標選一條讀書路線，從認知神經科學、運動生理、HRV、EEG 到統計，一步一步建立研究所需的基礎。', learnLink: '前往學習地圖與讀書路線 →'
+  },
+  en: {
+    eyebrow: 'Research',
+    title: 'Research',
+    lead: 'My research interests, published work, and interactive demonstrations that let you try the methods yourself.',
+    pubLabel: 'Publications', pubSummary: '9 journal articles (2 as first author) · 14 conference presentations · 3 best-presentation awards', pubLink: 'See the full publication list →',
+    demoLabel: 'Try the methods yourself', demoLead: 'These demonstrations adapt classic tasks from the literature. Data stay in your browser; they are not research tasks and make no assessment of you.',
+    demos: [
+      ['posner', 'Attention: Posner spatial cueing task', 'How does a valid or invalid cue change your reaction time?'],
+      ['emotion-gonogo', 'Emotion and action: emotional-face Go/No-Go', 'Do expressions change responses only when emotion is relevant to the goal?'],
+      ['face-judgment', 'Emotion perception: facial-expression judgment curve', 'Do you read an ambiguous face as happy or sad?'],
+      ['stop-signal', 'Inhibitory control: stop-signal task', 'Can you still stop when the “stop” signal appears?']
+    ],
+    demoOpen: 'Start →',
+    learnLabel: 'Need the background first?', learnText: 'Pick a reading route by goal, from cognitive neuroscience, exercise physiology, HRV, and EEG to statistics, and build the foundations research needs step by step.', learnLink: 'Go to the learning map and reading routes →'
+  }
+};
+
+function renderResearch() {
+  const c = researchPageContent[lang] || researchPageContent.en;
+  app.innerHTML = `<div class="page-shell research-page">
+    <header class="interests-hero"><p class="eyebrow">${c.eyebrow}</p><h1>${c.title}</h1><p>${c.lead}</p></header>
+    ${renderResearchAgenda()}
+    <section class="research-section" aria-labelledby="research-pubs-title"><h2 id="research-pubs-title">${c.pubLabel}</h2><p>${c.pubSummary}</p><a href="#/publications">${c.pubLink}</a></section>
+    <section class="research-section" aria-labelledby="research-demos-title"><h2 id="research-demos-title">${c.demoLabel}</h2><p>${c.demoLead}</p><div class="research-demo-grid">${c.demos.map(demo => `<a class="research-demo" href="#/lab/${demo[0]}"><strong>${demo[1]}</strong><span>${demo[2]}</span><em>${c.demoOpen}</em></a>`).join('')}</div></section>
+    <section class="research-section" aria-labelledby="research-learn-title"><h2 id="research-learn-title">${c.learnLabel}</h2><p>${c.learnText}</p><a href="#/learning">${c.learnLink}</a></section>
+  </div>`;
+}
+
+
 function renderResearchAgenda() {
   const a = researchAgenda[lang] || researchAgenda.en;
   return `<div class="research-agenda">
@@ -603,7 +648,7 @@ function renderHomeAgenda() {
     <div class="home-agenda-body">
       <p class="home-agenda-purpose">${a.purpose}</p>
       <ul class="home-agenda-areas">${a.areas.map(area => `<li><b>${area[0]}</b></li>`).join('')}</ul>
-      <a href="#/about/agenda">${a.homeLink}</a>
+      <a href="#/research">${a.homeLink}</a>
     </div>
   </section>`;
 }
@@ -780,6 +825,81 @@ const learningMapContent = {
   }
 };
 
+const learningRoutes = {
+  zh: {
+    label: '讀書路線',
+    title: '依目標選一條路線',
+    lead: '七條主線不需要一次讀完。選一個你現在最需要的目標，照順序走；每完成一步就勾選，進度只存在這台裝置的瀏覽器。',
+    pace: '建議節奏：每步約 1–2 週，每週先做一次無提示回憶，再讀新內容。可依自己的背景調整，這不是標準課程。',
+    progress: '已完成', stepWord: '步', integrate: '整合', open: '開啟',
+    items: [
+      { id: 'emotion-exercise', title: '運動、情緒與認知神經科學入門', goal: '想理解「運動如何影響情緒與認知」這類跨領域研究的人',
+        steps: [['01', '100–200', '先建立注意、執行功能與情緒的基本語言'], ['02', '100–200', '理解單次運動帶來的生理變化與測量方式'], ['06', '100–300', '學習用心率變異性觀察自律神經，並了解資料品質問題'], ['05', '100–300', '理解腦電訊號從哪裡來，以及它的限制'], ['07', '300–400', '把效果量、不確定性與研究設計放進結果解讀'], [null, '500', '用一篇原始研究，從問題、設計、量測到推論走一遍']] },
+      { id: 'signals', title: '多模態生理訊號分析', goal: '要開始處理 HRV、EEG 等訊號資料的人',
+        steps: [['03', '100', '先認識神經與心臟的結構，才看得懂訊號從哪裡來'], ['06', '100–400', '由 ECG／PPG 到 BBI 清理、指標計算與解讀'], ['05', '100–400', '由電極、前處理到時頻分析與品質控制'], ['07', '300–400', '用統計檢查資料與模型，量化不確定性'], [null, '500', '把兩種訊號放在同一個研究問題下比較']] },
+      { id: 'foundation', title: '從零開始的身體與腦基礎', goal: '剛進入運動科學或想補齊背景的人',
+        steps: [['03', '100–200', '用結構理解動作與生理'], ['02', '100–200', '了解身體在運動時如何回應'], ['01', '100', '認識大腦與認知功能的基本概念'], ['04', '100', '了解傷害預防與風險辨識，建立安全與證據的觀念']] }
+    ]
+  },
+  en: {
+    label: 'Reading routes',
+    title: 'Pick a route by goal',
+    lead: 'You do not need to read all seven tracks at once. Choose the goal you need most now and follow the steps in order, ticking each one as you finish. Progress is stored only in this browser on this device.',
+    pace: 'Suggested pace: about 1–2 weeks per step, starting each week with an unaided recall before new reading. Adjust to your background; this is not a standard curriculum.',
+    progress: 'Completed', stepWord: 'steps', integrate: 'Integration', open: 'Open',
+    items: [
+      { id: 'emotion-exercise', title: 'Exercise, emotion, and cognitive neuroscience: an introduction', goal: 'For anyone who wants to understand cross-disciplinary research on how exercise affects emotion and cognition',
+        steps: [['01', '100–200', 'Build a working vocabulary for attention, executive function, and emotion'], ['02', '100–200', 'Understand the physiological changes after a single bout of exercise and how they are measured'], ['06', '100–300', 'Use heart rate variability to look at autonomic function, and learn about data quality'], ['05', '100–300', 'Understand where EEG signals come from and what limits them'], ['07', '300–400', 'Bring effect sizes, uncertainty, and study design into how results are interpreted'], [null, '500', 'Walk through one primary study from question to design, measurement, and inference']] },
+      { id: 'signals', title: 'Multimodal physiological signal analysis', goal: 'For anyone starting to work with HRV, EEG, or similar signal data',
+        steps: [['03', '100', 'Learn the structure of the nervous system and heart first, so you know where signals come from'], ['06', '100–400', 'From ECG/PPG through BBI cleaning to computing and interpreting indices'], ['05', '100–400', 'From electrodes and preprocessing to time-frequency analysis and quality control'], ['07', '300–400', 'Use statistics to check data and models and to quantify uncertainty'], [null, '500', 'Compare the two signals under one research question']] },
+      { id: 'foundation', title: 'Body and brain foundations from scratch', goal: 'For newcomers to exercise science, or anyone filling gaps in background',
+        steps: [['03', '100–200', 'Understand movement and physiology through structure'], ['02', '100–200', 'See how the body responds to exercise'], ['01', '100', 'Meet the basic concepts of the brain and cognition'], ['04', '100', 'Learn injury prevention and risk identification, and build a sense of safety and evidence']] }
+    ]
+  }
+};
+
+function loadRouteProgress() {
+  try { return JSON.parse(localStorage.getItem('tingting-route-progress') || '{}') || {}; } catch (error) { return {}; }
+}
+
+function saveRouteProgress(progress) {
+  try { localStorage.setItem('tingting-route-progress', JSON.stringify(progress)); } catch (error) { /* storage unavailable: progress simply stays for this visit */ }
+}
+
+function renderLearningRoutes(content) {
+  const routes = learningRoutes[lang] || learningRoutes.zh;
+  const progress = loadRouteProgress();
+  const trackFor = code => content.tracks.find(track => track[0] === code);
+  const href = track => track[4].startsWith('/') ? `#${track[4]}` : `#/post/${track[4]}`;
+  const route = item => {
+    const done = new Set(Array.isArray(progress[item.id]) ? progress[item.id] : []);
+    const steps = item.steps.map((step, index) => {
+      const track = step[0] ? trackFor(step[0]) : null;
+      const name = track ? `${track[0]} ${track[1]}` : routes.integrate;
+      const link = track ? `<a href="${href(track)}">${routes.open} →</a>` : '';
+      return `<li><label><input type="checkbox" data-route="${item.id}" data-step="${index}"${done.has(index) ? ' checked' : ''}><span class="route-step-body"><span class="route-step-head"><strong>${name}</strong><em>${step[1]}</em></span><span class="route-step-why">${step[2]}</span></span></label>${link}</li>`;
+    }).join('');
+    return `<article class="learning-route" data-route-card="${item.id}"><header><h3>${item.title}</h3><p>${item.goal}</p><p class="route-progress" data-route-progress="${item.id}" aria-live="polite">${routes.progress} ${Math.min(done.size, item.steps.length)} / ${item.steps.length}</p></header><ol>${steps}</ol></article>`;
+  };
+  return `<section class="learning-routes" aria-labelledby="learning-routes-title"><header><p class="eyebrow">${routes.label}</p><h2 id="learning-routes-title">${routes.title}</h2><p>${routes.lead}</p><p class="route-pace">${routes.pace}</p></header><div class="learning-route-grid">${routes.items.map(route).join('')}</div></section>`;
+}
+
+function bindLearningRoutes() {
+  const routes = learningRoutes[lang] || learningRoutes.zh;
+  app.querySelectorAll('input[data-route]').forEach(box => box.addEventListener('change', () => {
+    const progress = loadRouteProgress();
+    const id = box.dataset.route;
+    const set = new Set(Array.isArray(progress[id]) ? progress[id] : []);
+    if (box.checked) set.add(Number(box.dataset.step)); else set.delete(Number(box.dataset.step));
+    progress[id] = [...set].sort((a, b) => a - b);
+    saveRouteProgress(progress);
+    const item = routes.items.find(entry => entry.id === id);
+    const label = app.querySelector(`[data-route-progress="${id}"]`);
+    if (label && item) label.textContent = `${routes.progress} ${set.size} / ${item.steps.length}`;
+  }));
+}
+
+
 function renderLearningMap() {
   const content = learningMapContent[lang] || learningMapContent.zh;
   const trackHref = track => track[4].startsWith('/') ? `#${track[4]}` : `#/post/${track[4]}`;
@@ -787,11 +907,13 @@ function renderLearningMap() {
     <header class="learning-map-hero"><p class="eyebrow">${content.eyebrow}</p><h1>${content.title}</h1><p>${content.lead}</p></header>
     <section class="learning-map-guide" aria-labelledby="learning-map-guide-title"><div><p class="eyebrow">Living curriculum</p><h2 id="learning-map-guide-title">${content.guideTitle}</h2><p>${content.guideText}</p></div><ol>${content.guidePoints.map((point, index) => `<li><span>0${index + 1}</span><div><strong>${point[0]}</strong><p>${point[1]}</p></div></li>`).join('')}</ol></section>
     <section class="learning-levels" aria-labelledby="learning-levels-title"><header><span>00</span><div><p>${content.routeLabel}</p><h2 id="learning-levels-title">100 → 500</h2></div></header><ol>${content.levels.map(level => `<li><strong>${level[0]}</strong><div><b>${level[1]}</b><span>${level[2]}</span></div></li>`).join('')}</ol></section>
+    ${renderLearningRoutes(content)}
     <section class="learning-tracks" aria-labelledby="learning-tracks-title"><header><p class="eyebrow">Curriculum</p><h2 id="learning-tracks-title">${content.trackLabel}</h2><p>${content.trackLead}</p></header><div class="learning-track-grid">${content.tracks.map(track => `<a href="${trackHref(track)}" class="learning-map-card"><span>${track[0]}</span><div><small>${track[2]}</small><h3>${track[1]}</h3><p>${track[3]}</p><b>${content.open} <i aria-hidden="true">→</i></b></div></a>`).join('')}</div></section>
     <section class="learning-methods" aria-labelledby="learning-methods-title"><h2 id="learning-methods-title">${content.methodTitle}</h2><div>${content.methods.map((method, index) => `<article><span>0${index + 1}</span><h3>${method[0]}</h3><p>${method[1]}</p></article>`).join('')}</div></section>
     <section class="learning-bridge"><div><p class="eyebrow">Shared methods</p><h2>${content.bridgeTitle}</h2><p>${content.bridgeText}</p></div><div class="learning-bridge-actions"><a href="#/learning/statistics">${content.bridgeLink}</a><a href="#/blog/data-analysis">${content.dataLink}</a></div></section>
     <aside class="learning-source-note"><h2>${content.sourceTitle}</h2><p>${content.sourceText}</p></aside>
   </div>`;
+  bindLearningRoutes();
 }
 
 const statisticsLearningMapContent = {
@@ -2035,6 +2157,7 @@ async function router() {
   if (!app) return;
   window.InteractiveLab?.cleanup();
   window.EmotionGoNoGoUI?.cleanup();
+  window.LabGamesUI?.cleanup();
   closeMenu();
   updateChrome();
   app.innerHTML = '<div class="loading">Loading<span>…</span></div>';
@@ -2042,11 +2165,14 @@ async function router() {
   try {
     if (path === '/') await renderHome();
     else if (path === '/about' || path.startsWith('/about/')) await renderAbout(path.split('/')[2] || '');
+    else if (path === '/research') renderResearch();
     else if (path === '/learning') renderLearningMap();
     else if (path === '/learning/statistics') renderStatisticsLearningMap();
     else if (path === '/lab') window.InteractiveLab.renderLab(app, lang);
     else if (path === '/lab/posner') window.InteractiveLab.renderPosner(app, lang);
     else if (path === '/lab/emotion-gonogo') window.EmotionGoNoGoUI.renderEmotionGoNoGo(app, lang);
+    else if (path === '/lab/face-judgment') window.LabGamesUI.renderFaceJudgment(app, lang);
+    else if (path === '/lab/stop-signal') window.LabGamesUI.renderStopSignal(app, lang);
     else if (path === '/interests') renderInterests();
     else if (path === '/publications') await renderPublications();
     else if (path === '/blog' || path.startsWith('/blog/')) await renderBlog(path.split('/')[2] || 'all');
