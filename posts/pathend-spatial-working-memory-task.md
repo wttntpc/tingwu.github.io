@@ -22,11 +22,11 @@
 
 <!-- PROFESSIONAL -->
 
-路徑終點 II 作業（Path Endpoint II Task）是 CIPH 認知評估套件中用於測量**空間工作記憶（Spatial Working Memory）**的作業，同時涉及心像操作（mental simulation）與執行功能之規劃歷程。
+路徑終點 II 作業（Path Endpoint II Task）是 CIPH 認知評估套件中用於測量<strong>空間工作記憶（Spatial Working Memory）</strong>的作業，同時涉及心像操作（mental simulation）與執行功能之規劃歷程。
 
 ## 理論框架
 
-空間工作記憶為暫時保存並操弄視覺空間資訊的能力，是 Baddeley 多成分工作記憶模型中**視覺空間扣描板（visuospatial sketchpad）**之典型測量方式（Baddeley, 2003）。本作業額外要求玩家在腦中「模擬」沿路徑行走的歷程，而非單純提取靜態影像，因此同時涉及動態心像操作；整合多個箭號空間關係並規劃出連貫路徑，則屬於較高階的執行功能歷程。
+空間工作記憶為暫時保存並操弄視覺空間資訊的能力，是 Baddeley 多成分工作記憶模型中<strong>視覺空間扣描板（visuospatial sketchpad）</strong>之典型測量方式（Baddeley, 2003）。本作業額外要求玩家在腦中「模擬」沿路徑行走的歷程，而非單純提取靜態影像，因此同時涉及動態心像操作；整合多個箭號空間關係並規劃出連貫路徑，則屬於較高階的執行功能歷程。
 
 **重要設計細節**：`ArrowNum`（箭號數量／SetSize）反映的是**記憶編碼負荷**（需要記住的總項目數），而非路徑本身的實際長度——正確路徑不一定包含畫面上出現的所有箭號，部分箭號為無效干擾提示。這使本作業之負荷效應同時混合了工作記憶容量與抗干擾（distractor filtering）兩種歷程，解讀正確率隨 SetSize 下降之趨勢時應留意此點，若需分離兩者，須額外記錄路徑實際使用之箭號數。
 

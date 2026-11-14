@@ -38,7 +38,7 @@
 
 很多朋友會問：「我又不是資工系畢業，我也看不懂幾千行的 Python 或 JavaScript，我怎麼知道有沒有漏洞？知道了又怎麼修？」
 
-Gary Chen 在影片中示範了一套非常接地氣的修補心法，結合了現代的**靜態代碼安全掃描工具（如 Codex Security Plugin 等）**與你身邊的 AI 助手：
+Gary Chen 在影片中示範了一套非常接地氣的修補心法，結合了現代的<strong>靜態代碼安全掃描工具（如 Codex Security Plugin 等）</strong>與你身邊的 AI 助手：
 
 ```
 [ 步驟 1：掃描與報警 ] ➔ 執行自動化安全工具，匯出漏洞報告
@@ -62,7 +62,7 @@ Gary Chen 在影片中示範了一套非常接地氣的修補心法，結合了�
 
 ## 💡 結語：AI 降低了開發門檻，但拉高了「責任意識」
 
-「Vibe Coding」是這個時代送給非技術人員最棒的禮物，它讓創意與產品可以在幾天內落地。但當你的作品開始有真實用戶註冊、開始儲存別人的個資或資料時，你就已經不再只是個「玩 AI 的創作者」，而是一位**「資料受託人」**。
+「Vibe Coding」是這個時代送給非技術人員最棒的禮物，它讓創意與產品可以在幾天內落地。但當你的作品開始有真實用戶註冊、開始儲存別人的個資或資料時，你就已經不再只是個「玩 AI 的創作者」，而是一位<strong>「資料受託人」</strong>。
 
 把這五個問題當成你的上線 Check-list，讓你的產品不僅「酷炫好用」，更能成為讓人安心信任的強韌系統。
 
@@ -74,9 +74,9 @@ Gary Chen 在影片中示範了一套非常接地氣的修補心法，結合了�
 
 <!-- PROFESSIONAL -->
 
-在以大型語言模型（LLM）為核心的「Vibe Coding」與 Agentic Engineering 範式轉移中，軟體生產力的邊際成本正快速歸零。然而，伴隨程式碼自動生成普及而來的，是顯著的**「認知失諧與架構安全赤字（Architectural Security Deficit）」**。
+在以大型語言模型（LLM）為核心的「Vibe Coding」與 Agentic Engineering 範式轉移中，軟體生產力的邊際成本正快速歸零。然而，伴隨程式碼自動生成普及而來的，是顯著的<strong>「認知失諧與架構安全赤字（Architectural Security Deficit）」</strong>。
 
-本篇專案筆記深入探討 YouTube 創作者 Gary Chen 所剖析的非工程背景開發者資安盲區，以實際發生的 **What'Sub 工具事件** 為個案研究，將影片中提出的啟發式觀念提升為系統化的軟體工程**威脅建模（Threat Modeling）**與**縱深防禦（Defense-in-Depth）**實務。
+本篇專案筆記深入探討 YouTube 創作者 Gary Chen 所剖析的非工程背景開發者資安盲區，以實際發生的 **What'Sub 工具事件** 為個案研究，將影片中提出的啟發式觀念提升為系統化的軟體工程<strong>威脅建模（Threat Modeling）</strong>與<strong>縱深防禦（Defense-in-Depth）</strong>實務。
 
 ---
 

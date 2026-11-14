@@ -19,7 +19,7 @@
 4. 執行 `hermes gateway`，在 Telegram 測試回覆，並於該聊天室傳送 `/sethome`。
 5. 建立 `daily-science-brief`，再用 `hermes cron run daily-science-brief` 立即驗收，不要等到隔天。
 
-> ⚠️ **最容易漏掉的一件事：執行 Hermes 的電腦必須開機、連網，而且 gateway 必須持續運作。**若無法讓個人電腦常駐，可改用 always-on 小主機／伺服器；否則就接受任務只會在電腦開機且 gateway 正常時執行。
+> ⚠️ <strong>最容易漏掉的一件事：執行 Hermes 的電腦必須開機、連網，而且 gateway 必須持續運作。</strong>若無法讓個人電腦常駐，可改用 always-on 小主機／伺服器；否則就接受任務只會在電腦開機且 gateway 正常時執行。
 
 ## 先用白話理解：Hermes 到底是什麼？
 

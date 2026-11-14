@@ -28,7 +28,7 @@
 
 <!-- PROFESSIONAL -->
 
-順向點擊作業（Sequence Clicking Task）是 CIPH 認知評估套件中用於測量**視覺空間工作記憶廣度（Visuospatial Working Memory Span）**的作業，為 Corsi Block-Tapping Test 之數位化改編版本。
+順向點擊作業（Sequence Clicking Task）是 CIPH 認知評估套件中用於測量<strong>視覺空間工作記憶廣度（Visuospatial Working Memory Span）</strong>的作業，為 Corsi Block-Tapping Test 之數位化改編版本。
 
 <div id="corsiDemo" class="corsi-demo">
   <div class="corsi-status" aria-live="polite">準備好測試你的工作記憶了嗎？</div>

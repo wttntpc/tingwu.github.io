@@ -115,4 +115,4 @@ Fisher sharp null 要求所有 unit-level effects 為零；Neyman weak null 通�
 - Ding, P. (2024). *A first course in causal inference*. Chapman and Hall/CRC. [https://arxiv.org/abs/2305.18793](https://arxiv.org/abs/2305.18793)
 - Wu, J., & Ding, P. (2021). Randomization tests for weak null hypotheses in randomized experiments. *Journal of the American Statistical Association, 116*(536), 1898–1913. [https://arxiv.org/abs/1809.07419](https://arxiv.org/abs/1809.07419)
 
-> **範圍聲明：**本文為課程學習紀錄。FRT 的有效性取決於正確的 assignment mechanism；不能把一般置換操作一律稱為設計型隨機化推論。
+> <strong>範圍聲明：</strong>本文為課程學習紀錄。FRT 的有效性取決於正確的 assignment mechanism；不能把一般置換操作一律稱為設計型隨機化推論。

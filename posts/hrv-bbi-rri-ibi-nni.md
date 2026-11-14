@@ -43,7 +43,7 @@
 
 反過來，若心率是 `60 bpm`，一個心搏週期約為 `1,000 ms`。若心率是 `100 bpm`，則約為 `600 ms`。
 
-> **別忘了：**偵測到 `N` 個 R peaks，只會形成 `N − 1` 個 RRI。心率與間隔是倒數關係，因此「先平均每拍心率」和「先平均間隔再換算」不一定得到完全相同的數值。
+> <strong>別忘了：</strong>偵測到 `N` 個 R peaks，只會形成 `N − 1` 個 RRI。心率與間隔是倒數關係，因此「先平均每拍心率」和「先平均間隔再換算」不一定得到完全相同的數值。
 
 ## 為什麼 PPG 間隔不能直接叫 RRI？
 
@@ -113,7 +113,7 @@ ECG 記錄的是心臟電氣活動；R peak 是心室去極化相關的明顯特
 - Shaffer, F., & Ginsberg, J. P. (2017). An overview of heart rate variability metrics and norms. *Frontiers in Public Health, 5*, Article 258. https://doi.org/10.3389/fpubh.2017.00258
 - Task Force of the European Society of Cardiology and the North American Society of Pacing and Electrophysiology. (1996). Heart rate variability: Standards of measurement, physiological interpretation and clinical use. *Circulation, 93*(5), 1043–1065. https://doi.org/10.1161/01.CIR.93.5.1043
 
-> **資料與查核說明：**本文先以作者的 HRV NotebookLM 資料庫定位跨來源內容，再回到方法指引與來源書目整理。NotebookLM 是檢索工具，不是證據本身；本文為持續更新的學習筆記，重要研究決策仍應核對原始全文與設備文件。
+> <strong>資料與查核說明：</strong>本文先以作者的 HRV NotebookLM 資料庫定位跨來源內容，再回到方法指引與來源書目整理。NotebookLM 是檢索工具，不是證據本身；本文為持續更新的學習筆記，重要研究決策仍應核對原始全文與設備文件。
 
 <!-- PROFESSIONAL -->
 # 從量測事件到可分析的 NN interval：BBI、RRI、IBI 與 NNI

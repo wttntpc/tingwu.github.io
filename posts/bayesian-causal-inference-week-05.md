@@ -130,4 +130,4 @@ Bayesian analysis 可以對未知潛在結果、參數與 treatment-effect heter
 - Chang, M.-C. (2026, October 16). *Randomization mechanisms, Neymanian inference, and blocking* [Course lecture and recordings]. National Central University.
 - Ding, P. (2024). *A first course in causal inference*. Chapman and Hall/CRC. [https://arxiv.org/abs/2305.18793](https://arxiv.org/abs/2305.18793)
 
-> **範圍聲明：**本文為設計型因果推論的學習紀錄。實際分析須依研究方案、assignment log、缺失機制與 estimand 選擇相符的方法。
+> <strong>範圍聲明：</strong>本文為設計型因果推論的學習紀錄。實際分析須依研究方案、assignment log、缺失機制與 estimand 選擇相符的方法。

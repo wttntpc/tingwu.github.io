@@ -227,4 +227,4 @@ Prior 與 likelihood 可以幫助估計，卻不能自行修復不明確的 trea
 - Chang, M.-C. (2026). *Two-sample testing through potential outcomes & observational study tools* [Course supplement]. National Central University.
 - Ding, P. (2024). *A first course in causal inference*. Chapman and Hall/CRC. [https://arxiv.org/abs/2305.18793](https://arxiv.org/abs/2305.18793)
 
-> **範圍聲明：**本文為學習紀錄，內容經個人理解重新組織，不是教師講義或錄音的完整重製。尚未回到正式出版品逐條驗證的歷史與文獻資訊，只作課程脈絡提示；研究或引用時應查閱原始來源。
+> <strong>範圍聲明：</strong>本文為學習紀錄，內容經個人理解重新組織，不是教師講義或錄音的完整重製。尚未回到正式出版品逐條驗證的歷史與文獻資訊，只作課程脈絡提示；研究或引用時應查閱原始來源。

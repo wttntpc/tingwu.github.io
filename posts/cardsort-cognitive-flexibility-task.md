@@ -32,7 +32,7 @@
 
 <!-- PROFESSIONAL -->
 
-圖卡分類作業（Card Sort Task）是 CIPH 認知評估套件中用於測量**認知彈性／集組轉換（Cognitive Flexibility / Set-Shifting）**與**抽象推理／規則推導（Abstract Reasoning / Rule Inference）**的作業，設計理念類似威斯康辛卡片分類測驗（Wisconsin Card Sorting Test, WCST）之精簡數位化版本。
+圖卡分類作業（Card Sort Task）是 CIPH 認知評估套件中用於測量<strong>認知彈性／集組轉換（Cognitive Flexibility / Set-Shifting）</strong>與<strong>抽象推理／規則推導（Abstract Reasoning / Rule Inference）</strong>的作業，設計理念類似威斯康辛卡片分類測驗（Wisconsin Card Sorting Test, WCST）之精簡數位化版本。
 
 <div class="cardsort-demo">
   <div class="cs-status" aria-live="polite">準備好測試你的認知彈性了嗎？</div>

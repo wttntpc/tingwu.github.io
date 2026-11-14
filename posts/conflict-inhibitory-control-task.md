@@ -1,6 +1,6 @@
 <!-- SIMPLE -->
 
-畫面每次會出現一支指向上、下、左或右的箭頭。**藍色箭頭要往箭頭指的方向滑；紅色箭頭則要往完全相反的方向滑。**兩種條件各占一半並隨機出現，玩家必須先辨認顏色規則，再決定動作方向。
+畫面每次會出現一支指向上、下、左或右的箭頭。<strong>藍色箭頭要往箭頭指的方向滑；紅色箭頭則要往完全相反的方向滑。</strong>兩種條件各占一半並隨機出現，玩家必須先辨認顏色規則，再決定動作方向。
 
 <div class="conflict-demo">
   <p class="conflict-rule"><span class="condition-swatch condition-blue"></span>藍色：同方向　<span class="condition-swatch condition-red"></span>紅色：反方向</p>
@@ -31,7 +31,7 @@
 
 <!-- PROFESSIONAL -->
 
-方向感作業（Conflict Task）是 CIPH 認知評估套件中用於測量**抑制控制（Inhibitory Control）**的核心作業，屬於經典認知衝突典範（如 Simon task）之變體。
+方向感作業（Conflict Task）是 CIPH 認知評估套件中用於測量<strong>抑制控制（Inhibitory Control）</strong>的核心作業，屬於經典認知衝突典範（如 Simon task）之變體。
 
 <div class="conflict-demo">
   <p class="conflict-rule"><span class="condition-swatch condition-blue"></span>藍色：同方向　<span class="condition-swatch condition-red"></span>紅色：反方向</p>
@@ -45,7 +45,7 @@
 
 ## 理論框架
 
-理論基礎為**「激活—抑制」雙歷程模型（Activation-Suppression Dual-Process Model）**：反應之產生來自兩條競爭路徑——由刺激自動快速激活的**直接路徑**，與需要有意識決策、主動抑制錯誤反應的**刻意路徑**。這種自上而下的抑制並非瞬間發生，而是一個需要時間投入、對抗自動反應路徑的主動控制歷程（Ridderinkhof, 2002）。依 Diamond（2013）之執行功能框架，抑制控制包含反應抑制（Response Inhibition）與干擾控制（Interference Control）兩個次成分；依本作業的設計說明，主要測量的是**反應抑制**。
+理論基礎為<strong>「激活—抑制」雙歷程模型（Activation-Suppression Dual-Process Model）</strong>：反應之產生來自兩條競爭路徑——由刺激自動快速激活的**直接路徑**，與需要有意識決策、主動抑制錯誤反應的**刻意路徑**。這種自上而下的抑制並非瞬間發生，而是一個需要時間投入、對抗自動反應路徑的主動控制歷程（Ridderinkhof, 2002）。依 Diamond（2013）之執行功能框架，抑制控制包含反應抑制（Response Inhibition）與干擾控制（Interference Control）兩個次成分；依本作業的設計說明，主要測量的是**反應抑制**。
 
 ## 作業設計與核心指標
 

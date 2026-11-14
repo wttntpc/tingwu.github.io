@@ -166,7 +166,7 @@ Garmin和ECG應在同一人、同一時段記錄。研究需要保存共同開�
 
 ## 今天應該帶走的結論
 
-Garmin 不是單純的「準」或「不準」。公開研究與我們的先導資料都顯示：**平均心率、Mean NN、SDNN與RMSSD必須逐層判斷；靜息結果不能外推到動作；保留個人趨勢不等於數值可與ECG互換。**目前Forerunner 255在兩人的靜息窗口中能貼近ECG的平均速度，但RMSSD呈現約5.3 ms正偏差與約30% MAPE；動作窗口則仍有同步、偽影與QC問題。因此現階段最合理的結論是「流程已找出可用與失敗的層次」，而不是「Garmin已經通過驗證」。
+Garmin 不是單純的「準」或「不準」。公開研究與我們的先導資料都顯示：<strong>平均心率、Mean NN、SDNN與RMSSD必須逐層判斷；靜息結果不能外推到動作；保留個人趨勢不等於數值可與ECG互換。</strong>目前Forerunner 255在兩人的靜息窗口中能貼近ECG的平均速度，但RMSSD呈現約5.3 ms正偏差與約30% MAPE；動作窗口則仍有同步、偽影與QC問題。因此現階段最合理的結論是「流程已找出可用與失敗的層次」，而不是「Garmin已經通過驗證」。
 
 ## 核心參考文獻（APA 7th）
 
@@ -178,7 +178,7 @@ Garmin 不是單純的「準」或「不準」。公開研究與我們的先導�
 - Theurl, F., Schreinlechner, M., Sappler, N., Toifl, M., Dolejsi, T., Hofer, F., Massmann, C., Steinbring, C., Komarek, S., Mölgg, K., Dejakum, B., Böhme, C., Kirchmair, R., Reinstadler, S., & Bauer, A. (2023). Smartwatch-derived heart rate variability: A head-to-head comparison with the gold standard in cardiovascular disease. *European Heart Journal – Digital Health, 4*(3), 155–164. https://doi.org/10.1093/ehjdh/ztad022
 - Williams, K., Jamieson, A., Chaturvedi, N., Hughes, A., & Orini, M. (2023). Validation of wearable derived heart rate variability and oxygen saturation from Garmin's Health Snapshot. *Computing in Cardiology, 50*, 1–4. https://doi.org/10.22489/CinC.2023.237
 
-> **資料與查核說明：**公開研究均回到論文或正式學術紀錄核對；NotebookLM只作為檢索介面。先導結果來自本機專案的彙總CSV與QC敏感度輸出，網站不公開原始生理訊號、逐拍資料或個別結果。本文不代表醫療建議，也不能把兩人的探索性結果或特定型號研究外推至所有Garmin裝置。
+> <strong>資料與查核說明：</strong>公開研究均回到論文或正式學術紀錄核對；NotebookLM只作為檢索介面。先導結果來自本機專案的彙總CSV與QC敏感度輸出，網站不公開原始生理訊號、逐拍資料或個別結果。本文不代表醫療建議，也不能把兩人的探索性結果或特定型號研究外推至所有Garmin裝置。
 
 <!-- PROFESSIONAL -->
 # Garmin–ECG 方法比較：公開文獻、兩人先導結果與正式驗證路徑
@@ -380,4 +380,4 @@ Bland–Altman圖以 <i>m<sub>i</sub></i> 為橫軸、<i>d<sub>i</sub></i> 為�
 - Theurl, F., Schreinlechner, M., Sappler, N., Toifl, M., Dolejsi, T., Hofer, F., Massmann, C., Steinbring, C., Komarek, S., Mölgg, K., Dejakum, B., Böhme, C., Kirchmair, R., Reinstadler, S., & Bauer, A. (2023). Smartwatch-derived heart rate variability: A head-to-head comparison with the gold standard in cardiovascular disease. *European Heart Journal – Digital Health, 4*(3), 155–164. https://doi.org/10.1093/ehjdh/ztad022
 - Williams, K., Jamieson, A., Chaturvedi, N., Hughes, A., & Orini, M. (2023). Validation of wearable derived heart rate variability and oxygen saturation from Garmin's Health Snapshot. *Computing in Cardiology, 50*, 1–4. https://doi.org/10.22489/CinC.2023.237
 
-> **資料與查核說明：**本文以作者指定的HRV NotebookLM資料庫定位研究，再回到論文或正式學術紀錄核對設計、設備、樣本、分析與主要數值；NotebookLM是檢索介面，不是證據本身。先導結果來自本機專案的彙總CSV與QC敏感度輸出，網站不公開原始生理訊號、逐拍資料或個別結果。本文不代表醫療建議，也不能把兩人的探索性結果或特定型號研究外推至所有Garmin裝置。
+> <strong>資料與查核說明：</strong>本文以作者指定的HRV NotebookLM資料庫定位研究，再回到論文或正式學術紀錄核對設計、設備、樣本、分析與主要數值；NotebookLM是檢索介面，不是證據本身。先導結果來自本機專案的彙總CSV與QC敏感度輸出，網站不公開原始生理訊號、逐拍資料或個別結果。本文不代表醫療建議，也不能把兩人的探索性結果或特定型號研究外推至所有Garmin裝置。

@@ -126,4 +126,4 @@ Bayesian model 可以對 outcome model、propensity model 或缺失潛在結果�
 - Ding, P. (2024). *A first course in causal inference*. Chapman and Hall/CRC. [https://arxiv.org/abs/2305.18793](https://arxiv.org/abs/2305.18793)
 - Rosenbaum, P. R., & Rubin, D. B. (1983). The central role of the propensity score in observational studies for causal effects. *Biometrika, 70*(1), 41–55. [https://doi.org/10.1093/biomet/70.1.41](https://doi.org/10.1093/biomet/70.1.41)
 
-> **範圍聲明：**本文是個人學習紀錄，不是課堂教材的替代品。傾向分數方法不能排除未量測混淆，也不應單憑模型輸出宣稱因果。
+> <strong>範圍聲明：</strong>本文是個人學習紀錄，不是課堂教材的替代品。傾向分數方法不能排除未量測混淆，也不應單憑模型輸出宣稱因果。
