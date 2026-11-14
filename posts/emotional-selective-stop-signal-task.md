@@ -1,83 +1,117 @@
 <!-- SIMPLE -->
+# 停止訊號作業的來龍去脈：從延遲訊號到賽跑模型
 
-這個作業要你做兩件事：**判斷臉上是開心還是難過，並按鍵回答；但如果臉被框上紅色外框，就不要按**。有時候外框是綠色，綠色代表「照常作答」，不用停。
+日常生活中，「停下來」常常來得很突然：開車時前方的人突然煞車，或是話說到一半發現不該說。認知科學想問的是：**一個已經開始準備的動作，還來不來得及被取消？取消它需要多久**？停止訊號作業（stop-signal task）就是為了回答這個問題而發展出來的。
 
-[→ 到互動實驗室試試看](#/lab/stop-signal)（約 7–8 分鐘，結束後會看到你的停止速度）
+延伸閱讀：[互動實驗室](#/lab/stop-signal)。
 
-## 為什麼要設計「紅框」和「綠框」
+## 「停止」和「不做」不一樣
 
-日常生活中，「停下來」常常來得很突然：開車時前面的人突然煞車、說到一半發現不該說。停止訊號作業（stop-signal task）把這種情境搬進實驗室：
+如果規則是「看到 X 就不要按」，你從一開始就不會準備動作，這比較像「選擇不做」。停止訊號作業關心的是另一件事：**動作已經在準備了，才出現要你停下來的訊號**。這時大腦要在動作送出之前把它攔住，所以更適合用來研究「抑制」。
 
-- **多數題目**：看到臉，判斷情緒，按鍵。
-- **少數題目**：臉出現後，過一小段時間才冒出**紅框**——這時要把已經準備好的按鍵動作停下來。
+## 它是怎麼來的
 
-重點是「過一小段時間」。紅框來得越晚，越難停住；來得越早，越容易停住。實驗程式會一直微調這段時間，讓你大約有一半的機會停得住——這樣才能估計你「大概需要多久才能把動作煞住」。
+- **1960 年代的早期做法**：Lappin 與 Eriksen（1966）讓受試者對視覺刺激做反應，但偶爾在刺激之後延遲一小段時間，再給一個訊號要求停止。這個「延遲訊號」的做法，就是後來停止訊號作業的雛形。
+- **1980 年代的理論**：Logan 與 Cowan（1984）提出一個理論，把「能不能停下來」寫成一場賽跑，並說明怎麼從資料估計「停下來需要多久」。同年 Logan、Cowan 與 Davis（1984）再把這個模型與估計方法整理成可以實際使用的程序。
+- **之後的發展**：這個作業成為研究抑制控制最常用的方法之一（Verbruggen & Logan, 2008）；2019 年，多位研究者合寫了共識指南，說明怎麼設計、怎麼分析、怎麼報告（Verbruggen et al., 2019）。
 
-## 那綠框是做什麼的？
+## 核心想法：一場賽跑
 
-只看紅框有一個問題：畫面上突然多了一個框，本身就會讓人分心、反應變慢。這和「想停下來」是兩回事。
+想像大腦裡同時有兩位選手：
 
-所以我們另外加入**綠框**：框出現了，但你照常按鍵就好。把「有紅框要停」和「有綠框要繼續」比較，就能把「被框嚇到」的成本，和「真的在抑制動作」的成本分開看。
+- **「Go」選手**：看到刺激後準備按鍵，從刺激出現開始跑。
+- **「Stop」選手**：只有在停止訊號出現後才起跑。
 
-## 為什麼要用表情當作業內容
+誰先跑到終點，就決定結果：Go 先到，動作就送出去（停止失敗）；Stop 先到，動作就被攔下來（停止成功）。
 
-你按鍵回答的內容，本身就是表情。這讓我們可以問：**看到開心的臉，和看到難過的臉，停止的速度會不會不同？**
+停止訊號出現得越晚，Stop 選手越吃虧，越難停住；出現得越早，越容易停住。
 
-網站上的示範版**只是讓你體驗這個作業長什麼樣子**，題數遠少於正式實驗，不能回答這個問題，也不是任何診斷或能力評估。
+## 「停止速度」為什麼要用估計的
 
-## 讀結果時請記得
+停止成功時，**沒有按鍵，也就沒有任何反應時間可以記錄**。所以沒辦法像平常一樣直接量到「停下來花了多久」。研究者的做法是：用 Go 反應時間的分布、停止訊號出現的時間，以及「有多少次沒停住」，反推 Stop 選手大概需要多久，這個估計值稱為**停止訊號反應時間**（SSRT）。
 
-- 結果頁的「停止速度」是估計值，**越短代表停得越快**；只做一輪的數字會有很大的隨機誤差。
-- 如果你在紅框題幾乎都停住了、或幾乎都沒停住，程式不會給你停止速度，因為這種情況下估計不可靠。
-- 作業中的臉是 AI 生成的虛構人物，介於難過、中性、開心的各個步驟是影像混合，並非經過評分的情緒強度。
+## SSRT 越短，代表什麼？
+
+數值越短，代表停止歷程越快完成。但它是**模型估計值**，不是直接量到的，而且需要滿足一些前提，才能被信任。它不是診斷工具，也不是一個人固定的「能力分數」。
+
+## 後來的延伸
+
+研究者在這個基本架構上，又問了更多問題：
+
+- **只停止其中一部分動作**：例如同時準備兩個動作，只需要停止其中一個（Aron & Verbruggen, 2008）。這是「選擇性停止」的研究方向。
+- **加入對照條件，區分「停止」與「注意到訊號」**：有研究在停止訊號作業中加入「繼續」條件，用來區分注意力被新訊號吸引，與運動抑制本身（Nguyen et al., 2021）。
+- **使用情緒刺激**：研究情緒刺激是否影響抑制（Verbruggen & De Houwer, 2007）。
+
+這些延伸版本各自回答不同的問題，不能把它們的結果混在一起解讀。
+
+## 讀停止訊號研究時要問的問題
+
+1. 他們測的是整體的停止，還是選擇性的停止？
+2. 有沒有包含對照條件，來控制訊號本身的影響？
+3. 每個條件有多少次停止試驗？試驗太少，估計會不穩定。
+4. SSRT 的前提有沒有被檢查？
 
 <!-- PROFESSIONAL -->
+# 停止訊號作業的背景：從延遲訊號、賽跑模型到 SSRT 的估計
 
-情緒選擇性停止訊號作業（emotional selective stop-signal task）以停止訊號典範測量**行動抑制（response inhibition）**，並讓 Go 反應的內容本身是情緒表情判斷。互動實驗室中的版本是示範用的精簡實作。
+## 歷史與理論脈絡
 
-[互動實驗室：停止訊號作業](#/lab/stop-signal)
+停止訊號典範的前身是 Lappin 與 Eriksen（1966）在視覺反應時間作業中，於刺激之後延遲呈現訊號以要求停止反應的做法。Logan 與 Cowan（1984）提出「控制行為」（act of control）的理論，將行動抑制形式化為 Go 歷程與 Stop 歷程之間的**賽跑模型（race model）**，並導出估計 Stop 歷程時間的方法；Logan 等人（1984）進一步說明了簡單與選擇反應時間作業下的模型與估計程序。Verbruggen 與 Logan（2008）整理了此典範在認知與神經科學中的應用；Verbruggen 等人（2019）則提出涵蓋設計、分析與報告的共識指南。
 
-## 作業結構
+## 賽跑模型與其假設
 
-- **Go 試驗**：呈現臉孔，受試者依表情（開心／難過）按對應按鍵。
-- **Stop 試驗**：臉孔出現後，在可變的停止訊號延遲（stop-signal delay, SSD）之後加上**紅框**，要求抑制已啟動的反應。
-- **Continue 試驗**：以相同時間點加上**綠框**，但要求照常反應。
+在 Stop 試驗中，Go 歷程於刺激出現時啟動，Stop 歷程於停止訊號延遲（stop-signal delay, SSD）之後啟動。若 Go 歷程先完成，則反應被送出（失敗停止）；若 Stop 歷程先完成，則反應被抑制（成功停止）。
 
-Continue 條件的概念來自在停止訊號作業中加入「繼續 Go」（continue go）條件，用來區分注意力被新刺激捕獲與運動抑制本身（Nguyen et al., 2021）。本作業使用同樣的邏輯：Continue 相對於 Go 的額外反應時間，代表視覺訊號出現本身的成本，可作為與 Stop 試驗比較的對照。紅框與綠框的顏色固定，不在受試者間平衡；Stop 與 Continue 在作業中對應不同的外框顏色，這是設計上的限制。
+模型的估計仰賴**獨立性假設**：Go 與 Stop 歷程彼此獨立。其可檢驗的推論之一是：失敗停止試驗的反應時間，應比同一條件下 Go 試驗的反應時間短，因為只有較快的 Go 歷程才能搶先完成（Verbruggen et al., 2019）。違反此推論時，SSRT 的估計不應被詮釋。
 
-## SSD 追蹤與練習階段
+## SSRT 為何必須估計
 
-SSD 採用階梯法（staircase）逐試驗調整：停住則延長 SSD，沒停住則縮短，使 Stop 試驗的成功率逼近約 50%。作業依序包含：僅 Go 練習、含訊號的練習、僅 Go 的基準區塊、SSD 校準區塊，以及正式區塊。校準區塊以較早的反應資料決定正式區塊的起始 SSD。
+成功停止的試驗沒有可觀察的反應，因此 Stop 歷程的完成時間無法直接量測。SSRT 是由 Go 反應時間分布、SSD 與 *p*(respond | signal)（Stop 試驗中仍反應的比例）推論而得的**模型衍生量**，而非直接觀測值。
 
-## SSRT 的估計
+## 追蹤程序與估計方法
 
-停止歷程無法直接觀察，因此以馬賽跑模型（race model）估計**停止訊號反應時間（stop-signal reaction time, SSRT）**：假設 Go 歷程與 Stop 歷程獨立競爭，誰先完成就決定結果。作業採用共識指南所建議的**積分法（integration method）**（Verbruggen et al., 2019）：
+- **SSD 追蹤**：為使 *p*(respond | signal) 接近中間值，許多研究採用逐試驗調整 SSD 的追蹤程序（staircase），成功停止則延長 SSD，失敗則縮短。
+- **平均法**：以平均 Go 反應時間減去平均 SSD。
+- **積分法（integration method）**：將 Go 反應時間排序，取對應 *p*(respond | signal) 的分位數後減去平均 SSD。共識指南建議採用積分法，並將 Go 遺漏以最大反應時間替代，使 Go 遺漏不致造成估計偏誤（Verbruggen et al., 2019）。
 
-1. 將 Go 反應時間由小到大排序，Go 遺漏（omission）以最大反應時間替代；
-2. 取第 *n* 個值，*n* 為 Go 試驗數乘上 Stop 試驗中「仍反應」的比例；
-3. 以該值減去平均 SSD，得到 SSRT。
+## 何時不應報告 SSRT
 
-## 估計何時不可靠
+依共識指南的建議，下列情況下不宜報告或詮釋 SSRT（Verbruggen et al., 2019）：
 
-依共識指南的建議，以下情況不報告 SSRT（Verbruggen et al., 2019）：
+- *p*(respond | signal) 明顯偏離中間範圍，或為 0 或 1；
+- 失敗停止的反應時間不短於 Go 反應時間，表示獨立性假設不成立；
+- 每個條件的 Stop 試驗太少，造成估計不穩定。
 
-- Stop 試驗中仍反應的比例（*p*(respond | signal)）落在 .25 至 .75 之外，或恰為 0 或 1；
-- 失敗 Stop 試驗的平均反應時間**不短於** Go 反應時間，表示獨立競爭的假設不成立。
+## 延伸典範
 
-示範版會在結果頁標示這些檢查是否通過；沒有通過時只顯示說明，不給數值。
+| 方向 | 問題 | 代表研究 |
+|---|---|---|
+| 選擇性停止 | 同時準備多個動作，只需停止其中一部分 | Aron 與 Verbruggen（2008） |
+| 加入對照條件 | 區分注意力被訊號吸引與運動抑制本身 | Nguyen 等人（2021） |
+| 情緒刺激 | 情緒刺激是否影響抑制 | Verbruggen 與 De Houwer（2007） |
 
-## 依情緒分開估計的限制
+各延伸版本的對照條件與估計目標不同，**結果不能直接互相比較**。依刺激類別（如不同情緒）分別估計 SSRT 時，每個類別的 Stop 試驗數會變少，估計的精確度也會降低，通常只適合作為探索性分析。
 
-示範版也列出每種表情各自的資料，但每種表情的 Stop 試驗數很少，估計的精確度有限，只適合作為探索性觀察，不能當作情緒差異的證據。
+## 詮釋的限制
 
-## 刺激與使用限制
-
-- 臉孔為 AI 生成的虛構人物；難過至開心之間的中間步驟是影像混合，並非評定過的情緒強度，也未經效度驗證。
-- 瀏覽器端的計時受螢幕更新與輸入裝置延遲影響，不等同於實驗室設備。
-- 示範版題數遠少於正式實驗、僅單次施測，結果僅供體驗，不構成任何臨床或能力判斷。
+- SSRT 是模型估計值，且需要前提成立才能詮釋；
+- 其數值受 Go 作業特性、追蹤程序、訊號的顯著性與受試者策略影響；
+- 它不是臨床診斷指標，不應單獨用來評斷個人的抑制能力。
 
 ## References
 
+Aron, A. R., &amp; Verbruggen, F. (2008). Stop the presses: Dissociating a selective from a global mechanism for stopping. *Psychological Science, 19*(11), 1146–1153. https://doi.org/10.1111/j.1467-9280.2008.02216.x
+
+Lappin, J. S., &amp; Eriksen, C. W. (1966). Use of a delayed signal to stop a visual reaction-time response. *Journal of Experimental Psychology, 72*(6), 805–811. https://doi.org/10.1037/h0021266
+
+Logan, G. D., &amp; Cowan, W. B. (1984). On the ability to inhibit thought and action: A theory of an act of control. *Psychological Review, 91*(3), 295–327. https://doi.org/10.1037/0033-295X.91.3.295
+
+Logan, G. D., Cowan, W. B., &amp; Davis, K. A. (1984). On the ability to inhibit simple and choice reaction time responses: A model and a method. *Journal of Experimental Psychology: Human Perception and Performance, 10*(2), 276–291. https://doi.org/10.1037/0096-1523.10.2.276
+
 Nguyen, T. V., Balachandran, P., Muggleton, N. G., Liang, W.-K., &amp; Juan, C.-H. (2021). Dynamical EEG indices of progressive motor inhibition and error-monitoring. *Brain Sciences, 11*(4), Article 478. https://doi.org/10.3390/brainsci11040478
+
+Verbruggen, F., &amp; De Houwer, J. (2007). Do emotional stimuli interfere with response inhibition? Evidence from the stop signal paradigm. *Cognition and Emotion, 21*(2), 391–403. https://doi.org/10.1080/02699930600625081
+
+Verbruggen, F., &amp; Logan, G. D. (2008). Response inhibition in the stop-signal paradigm. *Trends in Cognitive Sciences, 12*(11), 418–424. https://doi.org/10.1016/j.tics.2008.07.005
 
 Verbruggen, F., Aron, A. R., Band, G. P., Beste, C., Bissett, P. G., Brockett, A. T., Brown, J. W., Chamberlain, S. R., Chambers, C. D., Colonius, H., Colzato, L. S., Corneil, B. D., Coxon, J. P., Dupuis, A., Eagle, D. M., Garavan, H., Greenhouse, I., Heathcote, A., Huster, R. J., … Boehler, C. N. (2019). A consensus guide to capturing the ability to inhibit actions and impulsive behaviors in the stop-signal task. *eLife, 8*, Article e46323. https://doi.org/10.7554/eLife.46323

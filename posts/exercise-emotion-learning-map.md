@@ -33,7 +33,7 @@
 1. [認知神經科學學習地圖：從大腦、認知到情緒](#/post/cognitive-neuroscience-learning-map)（100–200：情緒與認知的基本語言）
 2. [運動生理學學習地圖：從急性反應到運動處方](#/post/exercise-physiology-learning-map)（100–200：單次運動帶來的生理變化）
 3. [HRV 學習地圖：從自律神經、感測設備到指標解讀](#/post/hrv-learning-map)（200–300：自律神經指標的量測與限制）
-4. [看到紅框，你還煞得住嗎？認識情緒選擇性停止訊號作業](#/post/emotional-selective-stop-signal-task)（300：以行為作業測量情緒與抑制）
+4. [停止訊號作業的來龍去脈：從延遲訊號到賽跑模型](#/post/emotional-selective-stop-signal-task)（300：用行為作業測量抑制的背景與估計）
 5. [互動實驗室：情緒臉孔判斷](#/lab/face-judgment)（300：親自體驗情緒表情作業）
 6. [效果量、信賴區間與樣本數](#/post/effect-size-confidence-interval-sample-size)（400：結果有多大、有多確定）
 7. [走進山林，身體和情緒會發生什麼？戶外健行的多層次效益](#/post/outdoor-hiking-health-mind-review)（500：把運動情境與情緒放在一起讀）
@@ -84,7 +84,7 @@
 
 - 100–200：[認知神經科學](#/post/cognitive-neuroscience-learning-map)與[運動生理學](#/post/exercise-physiology-learning-map)。
 - 200–300：[HRV](#/post/hrv-learning-map) 與 [EEG](#/post/eeg-learning-map)。
-- 300：[情緒選擇性停止訊號作業](#/post/emotional-selective-stop-signal-task)與[互動實驗室](#/lab)中的情緒作業。
+- 300：[停止訊號作業的背景](#/post/emotional-selective-stop-signal-task)與[互動實驗室](#/lab)中的情緒作業。
 - 400：[效果量、信賴區間與樣本數](#/post/effect-size-confidence-interval-sample-size)與[統計學習地圖](#/learning/statistics)。
 
 ## 起始來源（APA 7th）
