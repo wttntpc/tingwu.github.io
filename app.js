@@ -536,18 +536,11 @@ async function renderHome() {
       <section class="home-block featured-publications"><div class="block-heading"><h2>${c.featuredTitle}</h2><a href="#/publications">${c.allPublications}</a></div><div class="publication-preview-list">${c.featuredPublications.map(item => `<a href="#/publications" class="publication-preview"><span>${item[0]}</span><div><b>${item[1]}</b><small>${item[2]}</small></div></a>`).join('')}</div></section>
     </div>
     <section class="home-projects" aria-labelledby="home-projects-title">
-      <header class="home-projects-heading"><p>${lang === 'zh' ? '實作專案 · 02' : 'Built projects · 02'}</p><h2 id="home-projects-title">${lang === 'zh' ? '研究工具與專案' : 'Research tools & projects'}</h2></header>
-      <div class="home-project-list">
-        <div class="home-project-row">
-          <div class="home-project-title"><span>${lang === 'zh' ? '課程資訊工具' : 'Course information tool'}</span><h3>${lang === 'zh' ? '進修課程雷達' : 'Continuing Education Course Radar'}</h3></div>
-          <div class="home-project-copy"><p>${lang === 'zh' ? '整合運動防護與緊急救護相關進修資訊，協助快速搜尋、篩選與追蹤課程。' : 'A searchable course tracker for continuing education in athletic training and emergency medical care.'}</p><ul aria-label="${lang === 'zh' ? '專案技術' : 'Project technologies'}"><li>Vercel</li><li>Supabase</li><li>${lang === 'zh' ? '資料整理' : 'Data curation'}</li></ul></div>
-          <div class="home-project-actions"><a class="project-action-primary" href="https://at-emt-1-course-radar.vercel.app/" target="_blank" rel="noopener noreferrer">${lang === 'zh' ? '開啟工具 ↗' : 'Open tool ↗'}</a><a href="#/post/at-emt-1-course-radar">${lang === 'zh' ? '閱讀開發紀錄 →' : 'Read build notes →'}</a></div>
-        </div>
-        <div class="home-project-row home-project-row-safety">
-          <div class="home-project-title"><span>${lang === 'zh' ? '現場安全衛教' : 'Field safety education'}</span><h3>${lang === 'zh' ? 'AT × EMT 運動傷害與急救助手' : 'AT × EMT Injury & First-Aid Assistant'}</h3></div>
-          <div class="home-project-copy"><p>${lang === 'zh' ? '從倒地、腦震盪、熱傷害與常見運動傷害情境開始，先辨識危險警訊，再查看現場處置、官方來源與傷害影片。' : 'Starts with collapse, concussion, heat illness, and common sports injuries—prioritizing red flags before field guidance, authoritative sources, and video learning.'}</p><ul aria-label="${lang === 'zh' ? '專案特色' : 'Project features'}"><li>${lang === 'zh' ? '危險警訊' : 'Red flags'}</li><li>${lang === 'zh' ? '官方來源' : 'Verified sources'}</li><li>${lang === 'zh' ? '影片學習' : 'Video learning'}</li></ul></div>
-          <div class="home-project-actions"><a class="project-action-primary" href="https://at-emt-1-course-radar.vercel.app/injury-assistant.html" target="_blank" rel="noopener noreferrer">${lang === 'zh' ? '開啟助手 ↗' : 'Open assistant ↗'}</a><a href="https://injury.sportsmedicine.tw/" target="_blank" rel="noopener noreferrer">${lang === 'zh' ? '影片來源 ↗' : 'Video source ↗'}</a></div>
-        </div>
+      <header class="home-projects-heading"><p>${lang === 'zh' ? '實作專案 · 01' : 'Built project · 01'}</p><h2 id="home-projects-title">${lang === 'zh' ? '研究工具與專案' : 'Research tools & projects'}</h2></header>
+      <div class="home-project-row">
+        <div class="home-project-title"><span>${lang === 'zh' ? '課程資訊工具' : 'Course information tool'}</span><h3>${lang === 'zh' ? '進修課程雷達' : 'Continuing Education Course Radar'}</h3></div>
+        <div class="home-project-copy"><p>${lang === 'zh' ? '整合運動防護與緊急救護相關進修資訊，協助快速搜尋、篩選與追蹤課程。' : 'A searchable course tracker for continuing education in athletic training and emergency medical care.'}</p><ul aria-label="${lang === 'zh' ? '專案技術' : 'Project technologies'}"><li>Vercel</li><li>Supabase</li><li>${lang === 'zh' ? '資料整理' : 'Data curation'}</li></ul></div>
+        <div class="home-project-actions"><a class="project-action-primary" href="https://at-emt-1-course-radar.vercel.app/" target="_blank" rel="noopener noreferrer">${lang === 'zh' ? '開啟工具 ↗' : 'Open tool ↗'}</a><a href="#/post/at-emt-1-course-radar">${lang === 'zh' ? '閱讀開發紀錄 →' : 'Read build notes →'}</a></div>
       </div>
     </section>
     <section class="home-block latest-section"><div class="block-heading"><h2>${c.latestTitle}</h2><a href="#/blog">${c.allPosts}</a></div><div class="post-list">${posts.map(postRow).join('')}</div></section>

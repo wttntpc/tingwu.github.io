@@ -96,9 +96,7 @@ button { font: inherit; }
 .home-projects-heading { display: grid; grid-template-columns: minmax(9rem, .32fr) minmax(0, 1fr); gap: 1.5rem; align-items: baseline; margin-bottom: 1.35rem; }
 .home-projects-heading p { margin: 0; color: var(--secondary); font-size: .66rem; font-weight: 600; letter-spacing: .11em; text-transform: uppercase; }
 .home-projects-heading h2 { margin: 0; font-family: var(--font-display); font-size: 1.15rem; letter-spacing: .02em; }
-.home-project-list { display: grid; gap: .8rem; }
 .home-project-row { display: grid; grid-template-columns: minmax(11rem, .8fr) minmax(16rem, 1.45fr) auto; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; padding: 1.35rem 1.4rem; border: 1px solid var(--tertiary); border-left: 3px solid var(--accent); border-radius: 4px; background: color-mix(in srgb, var(--paper) 78%, transparent); }
-.home-project-row-safety { border-left-color: #1478b8; }
 .home-project-title span { display: block; margin-bottom: .3rem; color: var(--secondary); font-size: .65rem; letter-spacing: .06em; }
 .home-project-title h3 { margin: 0; font-family: var(--font-display); font-size: 1rem; line-height: 1.5; }
 .home-project-copy p { margin: 0; color: var(--content); font-size: .79rem; line-height: 1.75; }
