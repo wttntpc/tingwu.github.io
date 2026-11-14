@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261114-01';
+const SITE_VERSION = '20261115-01';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -252,7 +252,8 @@ function updateChrome() {
     ).join('');
   }
   if (langToggle) {
-    langToggle.textContent = lang === 'zh' ? 'EN' : '中文';
+    const langLabel = langToggle.querySelector('.lang-label');
+    if (langLabel) langLabel.textContent = lang === 'zh' ? 'English' : '中文';
     const label = lang === 'zh' ? '切換為英文' : 'Switch to Chinese';
     langToggle.setAttribute('aria-label', label);
     langToggle.setAttribute('title', label);
