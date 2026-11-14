@@ -68,7 +68,7 @@
         warnRace: '平均而言，沒停住的反應並沒有比一般反應快，這違反了估計方法的前提，所以不報告 SSRT。',
         warnExtreme: '紅框後全部都停住或全部都按了，無法用這個方法估計 SSRT。',
         limitsTitle: '如何解讀', limits: ['SSRT 是模型估計值，不是直接量到的時間；它依賴「停止」與「前進」兩個過程賽跑的假設，並要求紅框後仍按鍵的比例接近一半。', '你的結果只代表這一次、這個簡短版本。正式研究的題數多很多，並先檢查前提是否成立才解讀。', '這個作業中，判斷表情本身就是你的反應，所以臉孔的情緒內容和你的任務有關；結果不能直接推論到「情緒與任務無關」的情境。', '紅框代表停止、綠框代表照常按，這個對應是固定的，所以顏色的效果無法和停止指令分開。', '臉孔是 AI 生成的虛構人物，未經驗證；這個示範不是用來判斷你的情緒或能力。'],
-        sourceTitle: '延伸閱讀', sources: [['Nguyen 等人（2021）：選擇性停止訊號作業', 'https://doi.org/10.3390/brainsci11040478'], ['Verbruggen 等人（2019）：停止訊號作業的共識指南', 'https://doi.org/10.7554/eLife.46323']],
+        sourceTitle: '延伸閱讀', sources: [['Nguyen 等人（2021）：含「繼續」條件的停止訊號作業（EEG）', 'https://doi.org/10.3390/brainsci11040478'], ['Verbruggen 等人（2019）：停止訊號作業的共識指南', 'https://doi.org/10.7554/eLife.46323']],
         retry: '再做一次'
       }
     },
@@ -128,7 +128,7 @@
         warnRace: 'On average, failed stops were not faster than ordinary go responses. This breaks an assumption of the method, so no SSRT is reported.',
         warnExtreme: 'You either stopped on every red-frame trial or on none, so the method cannot estimate an SSRT.',
         limitsTitle: 'How to read this', limits: ['SSRT is a model-based estimate, not a directly measured time; it assumes that “go” and “stop” processes race each other and needs the share of responses after the red frame to be close to half.', 'Your result describes this one short session. Formal studies use many more trials and check the assumptions before interpreting an estimate.', 'In this task, judging the expression is itself your response, so the emotional content of the faces is relevant to your task; the result cannot be generalized to situations where emotion is irrelevant.', 'Red always means stop and green always means respond, so the effect of colour cannot be separated from the stop instruction.', 'The faces are AI-generated images of fictional people and have not been validated; this demonstration is not used to judge your emotions or abilities.'],
-        sourceTitle: 'Further reading', sources: [['Nguyen et al. (2021): selective stop-signal task', 'https://doi.org/10.3390/brainsci11040478'], ['Verbruggen et al. (2019): consensus guide to the stop-signal task', 'https://doi.org/10.7554/eLife.46323']],
+        sourceTitle: 'Further reading', sources: [['Nguyen et al. (2021): stop-signal task with a continue-go condition (EEG)', 'https://doi.org/10.3390/brainsci11040478'], ['Verbruggen et al. (2019): consensus guide to the stop-signal task', 'https://doi.org/10.7554/eLife.46323']],
         retry: 'Try again'
       }
     }
