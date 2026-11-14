@@ -499,6 +499,26 @@ function renderInterests() {
   </div>`;
 }
 
+// The profile photo is a rubber sheet you can drag around (face-squish.js). Set PROFILE_PHOTO to the
+// image path once the photo has been added to the site; with null the TW monogram stays.
+const PROFILE_PHOTO = null;
+let faceHandles = [];
+function destroyProfileFaces() {
+  faceHandles.forEach((h) => h && h.destroy && h.destroy());
+  faceHandles = [];
+}
+function mountProfileFaces() {
+  if (!PROFILE_PHOTO || !window.FaceSquishUI) return;
+  const hint = lang === 'zh' ? '拖曳看看' : 'Drag me';
+  const alt = lang === 'zh' ? '吳亭葶的大頭照（可以用滑鼠或手指拖曳）' : 'Portrait of Ting-Ting Wu (drag it with the mouse or a finger)';
+  document.querySelectorAll('.avatar-wrap, .about-avatar > span').forEach((box) => {
+    const round = box.matches('.about-avatar > span');
+    window.FaceSquishUI.mount(box, { src: PROFILE_PHOTO, alt, hint, aspect: round ? 1 : 0.8, focusY: round ? 0.25 : 0.3 })
+      .then((h) => faceHandles.push(h))
+      .catch(() => {});
+  });
+}
+
 async function renderHome() {
   const allPosts = newestFirst((await getPosts()).filter(post => post.id !== 'publications' && post.category !== 'learning-foundations'));
   const posts = allPosts.slice(0, 2);
@@ -2198,6 +2218,7 @@ async function router() {
   window.InteractiveLab?.cleanup();
   window.EmotionGoNoGoUI?.cleanup();
   window.LabGamesUI?.cleanup();
+  destroyProfileFaces();
   window.HhsaIntuitionUI?.cleanup();
   closeMenu();
   updateChrome();
@@ -2231,6 +2252,7 @@ async function router() {
   }
   window.scrollTo(0, 0);
   if (app.focus) app.focus({ preventScroll: true });
+  mountProfileFaces();
 }
 
 if (langToggle) {
