@@ -1,5 +1,25 @@
 [
   {
+    "id": "exercise-emotion-learning-map",
+    "title": "運動與情緒學習地圖：從情緒的定義、量測到證據解讀",
+    "date": "2026-11-14",
+    "category": "learning-foundations",
+    "tags": ["運動與情緒", "情感量測", "單次運動", "證據解讀", "學習地圖"],
+    "description": "從情緒、心情與情感的區分出發，連結運動劑量、候選機制、自陳與行為與生理量測、研究設計陷阱及證據解讀。",
+    "titleEn": "Exercise and Emotion Learning Map: From Definitions and Measurement to Reading the Evidence",
+    "descriptionEn": "Starts from the difference between emotion, mood, and affect, then links exercise dose, candidate mechanisms, self-report, behavioral and physiological measures, design pitfalls, and how to read the evidence."
+  },
+  {
+    "id": "emotional-selective-stop-signal-task",
+    "title": "看到紅框，你還煞得住嗎？認識情緒選擇性停止訊號作業",
+    "date": "2026-11-14",
+    "category": "research-methods",
+    "tags": ["認知作業", "抑制控制", "停止訊號作業", "SSRT", "情緒"],
+    "description": "用紅框與綠框測量行動抑制：從 SSD 階梯法、馬賽跑模型到 SSRT 的積分法估計，以及什麼情況下不該報告 SSRT。",
+    "titleEn": "Can You Still Stop When a Red Frame Appears? The Emotional Selective Stop-Signal Task",
+    "descriptionEn": "Red and green frames to measure response inhibition: the staircase on stop-signal delay, the race model, integration-method SSRT estimation, and when SSRT should not be reported."
+  },
+  {
     "id": "bayesian-causal-inference-week-05",
     "title": "貝氏因果推論學習筆記 05：隨機化不只是抽籤——從估計目標到區組設計",
     "date": "2026-10-16",

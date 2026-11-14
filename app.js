@@ -304,6 +304,8 @@ function closeMenu() {
 }
 
 const POSTS_DATA = [
+  {"id": "exercise-emotion-learning-map", "title": "運動與情緒學習地圖：從情緒的定義、量測到證據解讀", "date": "2026-11-14", "category": "learning-foundations", "tags": ["運動與情緒", "情感量測", "單次運動", "證據解讀", "學習地圖"], "description": "從情緒、心情與情感的區分出發，連結運動劑量、候選機制、自陳與行為與生理量測、研究設計陷阱及證據解讀。", "titleEn": "Exercise and Emotion Learning Map: From Definitions and Measurement to Reading the Evidence", "descriptionEn": "Starts from the difference between emotion, mood, and affect, then links exercise dose, candidate mechanisms, self-report, behavioral and physiological measures, design pitfalls, and how to read the evidence."},
+  {"id": "emotional-selective-stop-signal-task", "title": "看到紅框，你還煞得住嗎？認識情緒選擇性停止訊號作業", "date": "2026-11-14", "category": "research-methods", "tags": ["認知作業", "抑制控制", "停止訊號作業", "SSRT", "情緒"], "description": "用紅框與綠框測量行動抑制：從 SSD 階梯法、馬賽跑模型到 SSRT 的積分法估計，以及什麼情況下不該報告 SSRT。", "titleEn": "Can You Still Stop When a Red Frame Appears? The Emotional Selective Stop-Signal Task", "descriptionEn": "Red and green frames to measure response inhibition: the staircase on stop-signal delay, the race model, integration-method SSRT estimation, and when SSRT should not be reported."},
   {"id": "bayesian-causal-inference-week-05", "title": "貝氏因果推論學習筆記 05：隨機化不只是抽籤——從估計目標到區組設計", "date": "2026-10-16", "category": "data-analysis", "tags": ["因果推論", "隨機化", "Estimand", "Neyman推論", "區組設計", "學習筆記"], "description": "從 Perfect Doctor、邊際與聯合分布、CRE 與 Bernoulli 隨機化，理解 estimand、estimator、Horvitz–Thompson 加權與區組設計。", "titleEn": "Bayesian Causal Inference Notes 05: Randomization Is More Than a Coin Flip—From Estimands to Block Designs", "descriptionEn": "From the Perfect Doctor example, marginal versus joint distributions, and completely randomized versus Bernoulli designs to estimands, estimators, Horvitz–Thompson weighting, and blocked designs."},
   {"id": "bayesian-causal-inference-week-04", "title": "貝氏因果推論學習筆記 04：只靠隨機分派，如何得到精確 p 值？", "date": "2026-10-13", "category": "data-analysis", "tags": ["因果推論", "Fisher隨機化檢定", "Sharp Null", "置換檢定", "研究設計", "學習筆記"], "description": "從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。", "titleEn": "Bayesian Causal Inference Notes 04: How Can Random Assignment Alone Give an Exact p Value?", "descriptionEn": "Fisher's sharp null, the randomization distribution, and Monte Carlo approximation: how to run an exact test that does not rely on normality, and why choosing the test statistic after seeing the data is risky."},
   {"id": "bayesian-causal-inference-week-03", "title": "貝氏因果推論學習筆記 03：從風險差到因果圖——哪些變數該控制？", "date": "2026-09-29", "category": "data-analysis", "tags": ["因果推論", "二元結果", "SUTVA", "DAG", "混淆變數", "學習筆記"], "description": "從 RD、RR、OR 與 Fisher 精確檢定，進入潛在結果、SUTVA、混淆變數、對撞變數、中介與工具變數，理解控制變數必須依因果結構決定。", "titleEn": "Bayesian Causal Inference Notes 03: From Risk Difference to Causal Graphs—Which Variables Should You Control?", "descriptionEn": "From RD, RR, OR, and Fisher's exact test to potential outcomes, SUTVA, confounders, colliders, mediators, and instruments, and why covariate adjustment must follow the causal structure."},
@@ -505,12 +507,12 @@ async function renderHome() {
     ['研究主軸', c.focuses.length, '查看專長', '#/about/skills'],
     ['公開文章', allPosts.length, '瀏覽文章', '#/blog'],
     ['精選發表', c.featuredPublications.length, '查看發表', '#/publications'],
-    ['學習路徑', 7, '開始學習', '#/learning']
+    ['學習路徑', 8, '開始學習', '#/learning']
   ] : [
     ['Research areas', c.focuses.length, 'View expertise', '#/about/skills'],
     ['Public articles', allPosts.length, 'Browse articles', '#/blog'],
     ['Selected works', c.featuredPublications.length, 'View publications', '#/publications'],
-    ['Learning paths', 7, 'Start learning', '#/learning']
+    ['Learning paths', 8, 'Start learning', '#/learning']
   ];
   app.innerHTML = `<div class="page-shell home-shell">
     <section class="profile-hero">
@@ -760,9 +762,9 @@ const learningMapContent = {
   zh: {
     eyebrow: 'Professional learning map',
     title: '專業學習地圖',
-    lead: '以「腦—身體—運動—量測—統計」串起七條核心主線，讓學習、複習與研究深化都能回到同一張地圖。',
+    lead: '以「腦—身體—運動—量測—統計」串起八條核心主線，讓學習、複習與研究深化都能回到同一張地圖。',
     guideTitle: '一份會持續成長的學習規劃',
-    guideText: '目前建立七條核心主線與 100–500 的共同進程，作為專業知識累積的基本架構。後續會依實際學習、研究需求與資料查核結果，陸續新增及更新相關文章。',
+    guideText: '目前建立八條核心主線與 100–500 的共同進程，作為專業知識累積的基本架構。後續會依實際學習、研究需求與資料查核結果，陸續新增及更新相關文章。',
     guidePoints: [
       ['學習背景', '先建立術語、解剖生理、核心理論與量測原理，避免只記分析步驟。'],
       ['定期複習', '用無提示回憶、概念圖與案例重新整理舊知，找出尚未連結的概念。'],
@@ -776,7 +778,7 @@ const learningMapContent = {
       ['400', '分析', '完成品質控制、模型與解讀'],
       ['500', '整合', '連結研究問題、證據與應用']
     ],
-    trackLabel: '七條核心主線',
+    trackLabel: '八條核心主線',
     trackLead: '第一次可由 01 開始；若正在處理特定研究，也可直接進入 EEG、HRV、運動生理學或統計分析。',
     open: '開啟學習路徑',
     tracks: [
@@ -786,7 +788,8 @@ const learningMapContent = {
       ['04', '運動傷害防護', '預防、評估與重返運動', '從風險辨識與急性照護，到復健、負荷管理及共享決策。', 'athletic-training-learning-map'],
       ['05', 'EEG 腦波', '生理、設備與分析', '理解訊號生成、硬體與事件同步，再進入前處理、時頻分析及可重現 QC。', 'eeg-learning-map'],
       ['06', 'HRV', '自律神經、設備與指標', '從 ECG／PPG 與 BBI 品質控制，進入時域、頻域、非線性指標與研究解讀。', 'hrv-learning-map'],
-      ['07', '統計分析', '貝氏統計與因果推論', '從因果問題、潛在結果與識別假設出發，逐步學習研究設計、貝氏估計、不確定性與模型查核。', '/learning/statistics']
+      ['07', '統計分析', '貝氏統計與因果推論', '從因果問題、潛在結果與識別假設出發，逐步學習研究設計、貝氏估計、不確定性與模型查核。', '/learning/statistics'],
+      ['08', '運動與情緒', '情感量測與證據解讀', '從情緒、心情與情感的區分出發，連結運動劑量、候選機制、量測方式、研究設計與證據解讀。', 'exercise-emotion-learning-map']
     ],
     methodTitle: '三種使用方式',
     methods: [
@@ -795,7 +798,7 @@ const learningMapContent = {
       ['深化', '比較理論、批判方法、重現分析，並把問題轉成可檢驗的研究設計。']
     ],
     bridgeTitle: '第七條主線與共同方法',
-    bridgeText: '統計分析已成為獨立的第七條主線；其中的貝氏統計與因果推論，也會與前六條專業主線共享研究設計、資料視覺化、可重現流程及 AI 查核方法。',
+    bridgeText: '統計分析已成為獨立的第七條主線；其中的貝氏統計與因果推論，也會與其他專業主線共享研究設計、資料視覺化、可重現流程及 AI 查核方法。',
     bridgeLink: '開啟統計學習地圖 →',
     dataLink: '瀏覽全部數據分析文章 →',
     sourceTitle: '下一階段：把您的資料放進正確位置',
@@ -804,9 +807,9 @@ const learningMapContent = {
   en: {
     eyebrow: 'Professional learning map',
     title: 'Professional learning map',
-    lead: 'Seven foundational tracks link brain, body, exercise, measurement, and statistics into one system for learning, review, and research development.',
+    lead: 'Eight foundational tracks link brain, body, exercise, emotion, measurement, and statistics into one system for learning, review, and research development.',
     guideTitle: 'A learning plan designed to keep growing',
-    guideText: 'The current version establishes seven core tracks and a shared 100–500 progression. New and revised articles will be added as learning continues, research needs emerge, and sources are verified.',
+    guideText: 'The current version establishes eight core tracks and a shared 100–500 progression. New and revised articles will be added as learning continues, research needs emerge, and sources are verified.',
     guidePoints: [
       ['Build foundations', 'Establish terminology, anatomy and physiology, core theories, and measurement principles before memorizing analysis steps.'],
       ['Review regularly', 'Use retrieval, concept maps, and cases to reorganize prior knowledge and expose missing links.'],
@@ -820,7 +823,7 @@ const learningMapContent = {
       ['400', 'Analysis', 'Perform quality control, modeling, and interpretation'],
       ['500', 'Integration', 'Connect research questions, evidence, and practice']
     ],
-    trackLabel: 'Seven core tracks',
+    trackLabel: 'Eight core tracks',
     trackLead: 'Start with Track 01 for a broad foundation, or enter EEG, HRV, exercise physiology, or statistics when a project requires it.',
     open: 'Open learning path',
     tracks: [
@@ -830,7 +833,8 @@ const learningMapContent = {
       ['04', 'Athletic training', 'Prevention, assessment, and return to sport', 'Follow the continuum from risk recognition and acute care to rehabilitation and shared decisions.', 'athletic-training-learning-map'],
       ['05', 'EEG', 'Physiology, equipment, and analysis', 'Understand signal generation, hardware, synchronization, preprocessing, time–frequency analysis, and QC.', 'eeg-learning-map'],
       ['06', 'HRV', 'Autonomic physiology, devices, and metrics', 'Move from ECG/PPG and interval QC to time, frequency, nonlinear metrics, and defensible interpretation.', 'hrv-learning-map'],
-      ['07', 'Statistics', 'Bayesian statistics and causal inference', 'Start from causal questions, potential outcomes, and identification assumptions, then build toward study design, Bayesian estimation, uncertainty, and model checking.', '/learning/statistics']
+      ['07', 'Statistics', 'Bayesian statistics and causal inference', 'Start from causal questions, potential outcomes, and identification assumptions, then build toward study design, Bayesian estimation, uncertainty, and model checking.', '/learning/statistics'],
+      ['08', 'Exercise and emotion', 'Affect measurement and reading the evidence', 'Start from the difference between emotion, mood, and affect, then link exercise dose, candidate mechanisms, measurement, study design, and how to read the evidence.', 'exercise-emotion-learning-map']
     ],
     methodTitle: 'Three ways to use the map',
     methods: [
@@ -839,7 +843,7 @@ const learningMapContent = {
       ['Deepen', 'Compare theories, critique methods, reproduce analyses, and design testable studies.']
     ],
     bridgeTitle: 'Track 07 and shared research methods',
-    bridgeText: 'Statistics is now an independent seventh track. Its Bayesian and causal-inference pathway also supplies study design, visualization, reproducibility, and AI-verification methods used across the first six tracks.',
+    bridgeText: 'Statistics is now an independent seventh track. Its Bayesian and causal-inference pathway also supplies study design, visualization, reproducibility, and AI-verification methods used across the other tracks.',
     bridgeLink: 'Open the statistics learning map →',
     dataLink: 'Browse all data analysis articles →',
     sourceTitle: 'Next phase: connecting sources to the chapters they support',
@@ -851,12 +855,12 @@ const learningRoutes = {
   zh: {
     label: '讀書路線',
     title: '依目標選一條路線',
-    lead: '七條主線不需要一次讀完。選一個你現在最需要的目標，照順序走；每完成一步就勾選，進度只存在這台裝置的瀏覽器。',
+    lead: '八條主線不需要一次讀完。選一個你現在最需要的目標，照順序走；每完成一步就勾選，進度只存在這台裝置的瀏覽器。',
     pace: '建議節奏：每步約 1–2 週，每週先做一次無提示回憶，再讀新內容。可依自己的背景調整，這不是標準課程。',
     progress: '已完成', stepWord: '步', integrate: '整合', open: '開啟',
     items: [
       { id: 'emotion-exercise', title: '運動、情緒與認知神經科學入門', goal: '想理解「運動如何影響情緒與認知」這類跨領域研究的人',
-        steps: [['01', '100–200', '先建立注意、執行功能與情緒的基本語言'], ['02', '100–200', '理解單次運動帶來的生理變化與測量方式'], ['06', '100–300', '學習用心率變異性觀察自律神經，並了解資料品質問題'], ['05', '100–300', '理解腦電訊號從哪裡來，以及它的限制'], ['07', '300–400', '把效果量、不確定性與研究設計放進結果解讀'], [null, '500', '用一篇原始研究，從問題、設計、量測到推論走一遍']] },
+        steps: [['01', '100–200', '先建立注意、執行功能與情緒的基本語言'], ['02', '100–200', '理解單次運動帶來的生理變化與測量方式'], ['08', '100–400', '分清楚情緒、心情與情感，學會怎麼量測、怎麼讀運動與情緒的證據'], ['06', '100–300', '學習用心率變異性觀察自律神經，並了解資料品質問題'], ['05', '100–300', '理解腦電訊號從哪裡來，以及它的限制'], ['07', '300–400', '把效果量、不確定性與研究設計放進結果解讀'], [null, '500', '用一篇原始研究，從問題、設計、量測到推論走一遍']] },
       { id: 'signals', title: '多模態生理訊號分析', goal: '要開始處理 HRV、EEG 等訊號資料的人',
         steps: [['03', '100', '先認識神經與心臟的結構，才看得懂訊號從哪裡來'], ['06', '100–400', '由 ECG／PPG 到 BBI 清理、指標計算與解讀'], ['05', '100–400', '由電極、前處理到時頻分析與品質控制'], ['07', '300–400', '用統計檢查資料與模型，量化不確定性'], [null, '500', '把兩種訊號放在同一個研究問題下比較']] },
       { id: 'foundation', title: '從零開始的身體與腦基礎', goal: '剛進入運動科學或想補齊背景的人',
@@ -866,12 +870,12 @@ const learningRoutes = {
   en: {
     label: 'Reading routes',
     title: 'Pick a route by goal',
-    lead: 'You do not need to read all seven tracks at once. Choose the goal you need most now and follow the steps in order, ticking each one as you finish. Progress is stored only in this browser on this device.',
+    lead: 'You do not need to read all eight tracks at once. Choose the goal you need most now and follow the steps in order, ticking each one as you finish. Progress is stored only in this browser on this device.',
     pace: 'Suggested pace: about 1–2 weeks per step, starting each week with an unaided recall before new reading. Adjust to your background; this is not a standard curriculum.',
     progress: 'Completed', stepWord: 'steps', integrate: 'Integration', open: 'Open',
     items: [
       { id: 'emotion-exercise', title: 'Exercise, emotion, and cognitive neuroscience: an introduction', goal: 'For anyone who wants to understand cross-disciplinary research on how exercise affects emotion and cognition',
-        steps: [['01', '100–200', 'Build a working vocabulary for attention, executive function, and emotion'], ['02', '100–200', 'Understand the physiological changes after a single bout of exercise and how they are measured'], ['06', '100–300', 'Use heart rate variability to look at autonomic function, and learn about data quality'], ['05', '100–300', 'Understand where EEG signals come from and what limits them'], ['07', '300–400', 'Bring effect sizes, uncertainty, and study design into how results are interpreted'], [null, '500', 'Walk through one primary study from question to design, measurement, and inference']] },
+        steps: [['01', '100–200', 'Build a working vocabulary for attention, executive function, and emotion'], ['02', '100–200', 'Understand the physiological changes after a single bout of exercise and how they are measured'], ['08', '100–400', 'Separate emotion, mood, and affect, and learn how to measure them and read the evidence on exercise and emotion'], ['06', '100–300', 'Use heart rate variability to look at autonomic function, and learn about data quality'], ['05', '100–300', 'Understand where EEG signals come from and what limits them'], ['07', '300–400', 'Bring effect sizes, uncertainty, and study design into how results are interpreted'], [null, '500', 'Walk through one primary study from question to design, measurement, and inference']] },
       { id: 'signals', title: 'Multimodal physiological signal analysis', goal: 'For anyone starting to work with HRV, EEG, or similar signal data',
         steps: [['03', '100', 'Learn the structure of the nervous system and heart first, so you know where signals come from'], ['06', '100–400', 'From ECG/PPG through BBI cleaning to computing and interpreting indices'], ['05', '100–400', 'From electrodes and preprocessing to time-frequency analysis and quality control'], ['07', '300–400', 'Use statistics to check data and models and to quantify uncertainty'], [null, '500', 'Compare the two signals under one research question']] },
       { id: 'foundation', title: 'Body and brain foundations from scratch', goal: 'For newcomers to exercise science, or anyone filling gaps in background',
