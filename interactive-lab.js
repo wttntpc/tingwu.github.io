@@ -21,8 +21,8 @@
       task2Desc: '改編自 Mirabella 等人（2023）的向前步態啟動研究：使用虛構的 AI 合成臉孔，比較情緒與任務相關或無關時，憤怒與快樂臉孔是否呈現不同反應。網站以單鍵安全模擬，約需 4–5 分鐘。',
       task3Label: '第三個互動實驗', task3Title: '模糊的臉，你會看成開心還是難過？', task3Name: '表情判斷曲線',
       task3Desc: '判斷一系列由難過漸變到開心的 AI 生成臉孔，畫出你回答「開心」的比例曲線，找出分界點與陡度。資料只留在你的瀏覽器，約需 3–4 分鐘。',
-      task4Label: '第四個互動實驗', task4Title: '看到「停」的訊號，你還煞得住嗎？', task4Name: '停止訊號作業',
-      task4Desc: '依箭頭快速按鍵，紅圈出現就忍住不按；作業會自動調整難度，並估計你停下一個動作所需的時間（SSRT）。約需 5 分鐘。',
+      task4Label: '第四個互動實驗', task4Title: '看到紅框，你還煞得住嗎？', task4Name: '情緒選擇性停止訊號作業',
+      task4Desc: '先用左右手判斷臉孔是開心還是難過；臉孔外圍突然出現紅框就要停住、綠框則照常按。作業會自動調整紅框出現的時間，並估計你停下一個動作所需的時間（SSRT）。約需 7–8 分鐘。',
       coming: '接下來',
       future: ['三分鐘活動挑戰：運動前後的反應時間與心情']
     },
@@ -40,8 +40,8 @@
       task2Desc: 'Adapted from Mirabella et al. (2023): use fictional AI-generated faces to compare angry and happy expressions when emotion is relevant versus irrelevant to the current goal. A single key safely stands in for a forward step. Allow 4–5 minutes.',
       task3Label: 'Third interactive experiment', task3Title: 'Do you read an ambiguous face as happy or sad?', task3Name: 'Facial-expression judgment curve',
       task3Desc: 'Judge AI-generated faces that shift from sad to happy, then see a curve of how often you answered “happy” with its balance point and steepness. Data stay in your browser. Allow 3–4 minutes.',
-      task4Label: 'Fourth interactive experiment', task4Title: 'Can you still stop when the “stop” signal appears?', task4Name: 'Stop-signal task',
-      task4Desc: 'Press for the arrow as fast as you can and hold back when a red ring appears. The task adapts its difficulty and estimates how long you need to stop an action (SSRT). Allow about 5 minutes.',
+      task4Label: 'Fourth interactive experiment', task4Title: 'Can you still stop when a red frame appears?', task4Name: 'Emotional selective stop-signal task',
+      task4Desc: 'Judge with the left or right hand whether a face looks happy or sad, but hold back when a red frame suddenly appears around it (a green frame means respond as usual). The task adapts when the red frame appears and estimates how long you need to stop an action (SSRT). Allow 7–8 minutes.',
       coming: 'Coming next',
       future: ['Three-minute movement challenge: response time and mood before and after activity']
     }
@@ -115,10 +115,13 @@
     }
   };
 
-  function previewFaces(levels, ring = false) {
+  function previewFaces(levels, frames = false) {
     const face = typeof globalThis !== 'undefined' ? globalThis.FaceImages : null;
     if (!face) return '';
-    return levels.map((level, index) => `<span class="preview-face">${face.faceHtml(level, { ring, identity: face.IDENTITIES[(index + (ring ? 1 : 0)) % face.IDENTITIES.length] })}</span>`).join('');
+    return levels.map((level, index) => {
+      const frame = Array.isArray(frames) ? frames[index] || null : (frames ? 'stop' : null);
+      return `<span class="preview-face">${face.faceHtml(level, { frame, identity: face.IDENTITIES[(index + (frame ? 1 : 0)) % face.IDENTITIES.length] })}</span>`;
+    }).join('');
   }
 
   function buildLabMarkup(lang = 'zh') {
@@ -128,7 +131,7 @@
       <section class="lab-feature" aria-labelledby="lab-feature-title"><div><p>${c.taskLabel}</p><h2 id="lab-feature-title">${c.taskTitle}</h2><strong>${c.taskName}</strong><p>${c.taskDesc}</p><a href="#/lab/posner">${c.open}</a></div><div class="lab-cue-preview" aria-hidden="true"><span>←</span><i>+</i><b>●</b></div></section>
       <section class="lab-feature lab-feature-emotion" aria-labelledby="lab-emotion-title"><div><p>${c.task2Label}</p><h2 id="lab-emotion-title">${c.task2Title}</h2><strong>${c.task2Name}</strong><p>${c.task2Desc}</p><a href="#/lab/emotion-gonogo">${c.open}</a></div><div class="lab-emotion-preview" aria-hidden="true"><span class="emotion-face"><img src="assets/emotion-faces/identity-a-happy.webp" alt="" width="512" height="512" decoding="async"></span><span class="emotion-face"><img src="assets/emotion-faces/identity-b-angry.webp" alt="" width="512" height="512" decoding="async"></span></div></section>
       <section class="lab-feature lab-feature-face" aria-labelledby="lab-face-title"><div><p>${c.task3Label}</p><h2 id="lab-face-title">${c.task3Title}</h2><strong>${c.task3Name}</strong><p>${c.task3Desc}</p><a href="#/lab/face-judgment">${c.open}</a></div><div class="lab-face-preview" aria-hidden="true">${previewFaces([0.1, 0.5, 0.9])}</div></section>
-      <section class="lab-feature lab-feature-stop" aria-labelledby="lab-stop-title"><div><p>${c.task4Label}</p><h2 id="lab-stop-title">${c.task4Title}</h2><strong>${c.task4Name}</strong><p>${c.task4Desc}</p><a href="#/lab/stop-signal">${c.open}</a></div><div class="lab-stop-preview" aria-hidden="true">${previewFaces([1], true)}</div></section>
+      <section class="lab-feature lab-feature-stop" aria-labelledby="lab-stop-title"><div><p>${c.task4Label}</p><h2 id="lab-stop-title">${c.task4Title}</h2><strong>${c.task4Name}</strong><p>${c.task4Desc}</p><a href="#/lab/stop-signal">${c.open}</a></div><div class="lab-stop-preview" aria-hidden="true">${previewFaces([1, 0, 1], [null, 'stop', 'cont'])}</div></section>
       <section class="lab-coming"><p class="eyebrow">${c.coming}</p><ol>${c.future.map(item => `<li>${item}</li>`).join('')}</ol></section></div>`;
   }
 

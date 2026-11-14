@@ -39,25 +39,36 @@
         retry: '再做一次'
       },
       stop: {
-        eyebrow: 'Inhibition · 04', title: '看到「停」的訊號，你還煞得住嗎？',
-        lead: '這是停止訊號作業：大多數時候要依箭頭方向快速按鍵，偶爾出現停止訊號就要立刻忍住不按。作業會依你的表現自動調整訊號出現的時間，最後估計你「停下一個動作需要多久」。',
-        guideTitle: '作業怎麼進行', guideLead: '臉孔下方有一個箭頭，臉孔本身與你的任務無關，只是背景。',
-        steps: [['1', '看箭頭按鍵', '電腦：← 或 →；手機：點左右按鈕。越快越好，但要按對方向。'], ['2', '紅圈出現就停', '約四分之一的題目，臉孔外圍會出現紅圈。看到紅圈就不要按。'], ['3', '不要刻意等待', '不要為了「怕被停」而故意放慢；請照平常速度回答，系統會自動調整難度。']],
-        predict: '先預測', question: '紅圈出現後，哪一種臉孔旁比較容易失敗（還是按了）？',
+        eyebrow: 'Inhibition · 04', title: '看到紅框，你還煞得住嗎？',
+        lead: '這是「情緒選擇性停止訊號作業」：每次看到一張臉，你要立刻用對應的手判斷它是開心還是難過；有些題目臉孔外圍會突然冒出紅框（要停住）或綠框（照常按）。作業會依你的表現自動調整紅框出現的時間，最後估計你「停下一個動作需要多久」。',
+        guideTitle: '作業怎麼進行', guideLead: '臉孔的表情就是你要判斷的內容：開心按一邊、難過按另一邊。',
+        steps: [['1', '看臉，馬上按鍵', '每題先看到「+」，再出現一張臉。開心與難過各對應一個按鍵（電腦：← / →；手機：點下方左右按鈕）。對應方式每次隨機決定，開始前會顯示。'], ['2', '紅框＝停住，綠框＝照常按', '約一半的題目沒有外框；四分之一的題目在臉出現一會兒後冒出紅框，請不要按；另外四分之一冒出綠框，照常按。'], ['3', '不要等框，照常快速判斷', '不要為了「怕被停」而故意放慢。紅框後大約一半停得住是正常的，系統會自動調整難度。']],
+        keyMapLabel: '按鍵對應', happyWord: '開心', sadWord: '難過', captionNone: '沒有框：按對應的鍵', captionStop: '紅框：不要按', captionCont: '綠框：照常按',
+        predict: '先預測', question: '紅框出現後，哪一種表情比較容易沒停住（還是按了）？',
         choices: [['happy', '開心臉'], ['sad', '難過臉'], ['same', '差不多']],
         start: '開始練習', left: '左', right: '右', happy: '開心臉', sad: '難過臉',
-        reminder: '看箭頭按鍵；紅圈出現時，請忍住不按。', hint: '電腦：← / → 鍵　手機／平板：點下方左右按鈕',
-        practiceDone: '練習完成', formalIntro: '正式測驗共 64 題，約 4 分鐘；其中 16 題會出現紅圈。不要刻意放慢，照平常速度反應。', formalStart: '開始正式測驗',
-        correct: '正確', wrong: '方向錯了', slow: '太慢了', stopOk: '成功停住', stopFail: '紅圈出現後還是按了，這很正常',
+        reminder: '看臉，用對應的鍵判斷開心或難過；紅框出現時請不要按，綠框照常按。', hint: '電腦：← / → 鍵　手機／平板：點下方左右按鈕',
+        stages: {
+          practice_go: { kicker: '練習 1', title: '快速判斷表情', body: '臉一出現就要馬上按，不用等任何訊號。請又快又準，每題會告訴你對錯。', button: '開始練習' },
+          practice_signal: { kicker: '練習 2', title: '加入外框變色', body: '現在有些題目臉孔外圍會冒出外框。紅框：不要按。綠框：照常按。外框是在臉出現後才變色，不要等它，照常快速判斷。每題會告訴你對錯。', button: '開始練習' },
+          baseline: { kicker: '第一部分', title: '判斷表情（沒有外框）', body: '這一段沒有外框，請又快又準。系統會用這一段的反應速度來設定紅框的起始時間。', button: '開始' },
+          calib: { kicker: '第二部分', title: '判斷表情；看到紅框就停', body: '從這裡開始，紅框與綠框都會出現。紅框出現的時間會隨你的表現自動調整，所以有時容易停、有時不容易；請不要故意放慢。如果太慢或沒反應，畫面會出現「請再快一點」。', button: '開始' },
+          formal: { kicker: '第三部分', title: '正式測驗', body: '規則和上一段相同，共 72 題，其中 18 題出現紅框。紅框的時間會分別為開心臉和難過臉自動調整。請照平常速度又快又準地判斷。', button: '開始正式測驗' }
+        },
+        statsTitle: '上一段', statsRt: '平均反應時間', statsOmit: '漏按', statsWrong: '按錯邊',
+        fb: { correct: '正確', wrong: '按錯邊了', slow: '太慢了，請再快一點', contOk: '正確（綠框要照常按）', contMiss: '綠框要照常按喔', stopOk: '成功停住', stopFail: '紅框後還是按了，這很正常', faster: '請再快一點' },
+        frameLabel: { stop: '，出現紅框，請停住', cont: '，出現綠框，照常按' },
         resultTitle: '你的停止速度', resultLead: '停止訊號反應時間（SSRT）是用整合法估計的「你需要多久才能停下一個已經準備好的動作」，並不是直接量到的。',
-        ssrt: '停止訊號反應時間（SSRT）', pRespond: '紅圈出現後仍按鍵的比例', meanSsd: '平均紅圈延遲', goRt: '一般題中位反應時間',
-        noSsrt: '無法估計', prediction: '你的預測', predictionLabels: { happy: '開心臉較難停', sad: '難過臉較難停', same: '差不多', unsure: '未選擇' },
-        tableTitle: '依表情分開看（僅供描述）', emotion: '臉孔', stopCount: '停止題數', omission: '一般題漏答率',
-        perEmotionNote: '每種表情只有 8 題停止題，樣本太少，不能用來估計各自的 SSRT，也不適合下「某種表情較難停」的結論。',
-        warnRate: '紅圈後仍按鍵的比例不在 25%–75% 之間，這次的 SSRT 可能不準。常見原因是故意等紅圈、或反應太亂；請照平常速度再做一次。',
-        warnRace: '平均而言，沒停住的反應並沒有比一般反應快，這違反了估計方法的前提，SSRT 只能當作粗略參考。',
-        limitsTitle: '如何解讀', limits: ['SSRT 是模型估計值，不是直接量到的時間；它依賴「停止」與「前進」兩個過程賽跑的假設。', '你的結果只代表這一次、這個簡短版本。正式研究的題數更多，並檢查前提是否成立後才解讀。', '這裡的臉孔是 AI 生成的虛構人物，目的在示範「情緒背景」這種實驗設計，不是用來判斷你的情緒或能力。'],
-        sourceTitle: '延伸閱讀', source: 'Verbruggen 等人（2019）：停止訊號作業的共識指南', doi: 'https://doi.org/10.7554/eLife.46323',
+        ssrt: '停止訊號反應時間（SSRT）', pRespond: '紅框出現後仍按鍵的比例', meanSsd: '平均紅框延遲', goRt: '一般題中位反應時間', goAcc: '一般題判斷正確率',
+        contRt: '綠框題平均反應時間', frameCost: '綠框題比一般題慢', frameCostNote: '綠框題需要照常按，但畫面有變化；慢多少反映了「看到外框」本身的干擾，用來和停止指令的效果區分。',
+        noSsrt: '無法可靠估計', prediction: '你的預測', predictionLabels: { happy: '開心臉較難停', sad: '難過臉較難停', same: '差不多', unsure: '未選擇' },
+        tableTitle: '依表情分開看（僅供描述）', emotion: '臉孔', stopCount: '停止題數', ssrtExplore: '探索性 SSRT', meanSsdShort: '平均紅框延遲',
+        perEmotionNote: '每種表情只有 9 題停止題，樣本太少，各自的 SSRT 只能當作探索，不適合下「某種表情較難停」的結論。「—」表示該表情沒有通過前提檢查，所以不報告。',
+        warnRate: '紅框後仍按鍵的比例不在 25%–75% 之間，這次的 SSRT 不可靠。常見原因是故意等紅框、或反應太亂；請照平常速度再做一次。',
+        warnRace: '平均而言，沒停住的反應並沒有比一般反應快，這違反了估計方法的前提，所以不報告 SSRT。',
+        warnExtreme: '紅框後全部都停住或全部都按了，無法用這個方法估計 SSRT。',
+        limitsTitle: '如何解讀', limits: ['SSRT 是模型估計值，不是直接量到的時間；它依賴「停止」與「前進」兩個過程賽跑的假設，並要求紅框後仍按鍵的比例接近一半。', '你的結果只代表這一次、這個簡短版本。正式研究的題數多很多，並先檢查前提是否成立才解讀。', '這個作業中，判斷表情本身就是你的反應，所以臉孔的情緒內容和你的任務有關；結果不能直接推論到「情緒與任務無關」的情境。', '紅框代表停止、綠框代表照常按，這個對應是固定的，所以顏色的效果無法和停止指令分開。', '臉孔是 AI 生成的虛構人物，未經驗證；這個示範不是用來判斷你的情緒或能力。'],
+        sourceTitle: '延伸閱讀', sources: [['Nguyen 等人（2021）：選擇性停止訊號作業', 'https://doi.org/10.3390/brainsci11040478'], ['Verbruggen 等人（2019）：停止訊號作業的共識指南', 'https://doi.org/10.7554/eLife.46323']],
         retry: '再做一次'
       }
     },
@@ -88,25 +99,36 @@
         retry: 'Try again'
       },
       stop: {
-        eyebrow: 'Inhibition · 04', title: 'Can you still stop when the “stop” signal appears?',
-        lead: 'In the stop-signal task you usually press a key for an arrow as fast as you can, but on some trials a stop signal tells you to hold back. The task adapts when the signal appears and estimates how long you need to stop an action.',
-        guideTitle: 'How it works', guideLead: 'An arrow sits below a face. The face is just background and is irrelevant to your task.',
-        steps: [['1', 'Press for the arrow', 'Computer: ← or →. Phone: tap the left or right button. Be fast, but press the correct direction.'], ['2', 'Red ring means stop', 'On about one trial in four a red ring appears around the face. When you see it, do not press.'], ['3', 'Do not wait on purpose', 'Do not slow down in fear of a stop signal. Respond at your normal speed; the task adjusts its difficulty automatically.']],
-        predict: 'Predict first', question: 'After the red ring appears, next to which faces will you fail to stop more often?',
+        eyebrow: 'Inhibition · 04', title: 'Can you still stop when a red frame appears?',
+        lead: 'This is an emotional selective stop-signal task. On every trial you see a face and judge at once, with the matching hand, whether it looks happy or sad. On some trials a coloured frame suddenly appears around the face: red means hold back, green means respond as usual. The task adapts when the red frame appears and then estimates how long you need to stop an action.',
+        guideTitle: 'How it works', guideLead: 'The expression is what you judge: one key for happy and the other for sad.',
+        steps: [['1', 'Look at the face and press', 'Each trial starts with a “+” and then a face appears. Happy and sad each have one key (computer: ← / →; phone: tap the left or right button). The assignment is chosen at random each time and shown before you start.'], ['2', 'Red frame means stop, green means go on', 'About half of the trials have no frame. On a quarter, a red frame appears a moment after the face: do not press. On another quarter a green frame appears: respond as usual.'], ['3', 'Do not wait for the frame', 'Do not slow down on purpose out of fear of being stopped. Failing to stop on about half of the red-frame trials is normal; the task adjusts its difficulty automatically.']],
+        keyMapLabel: 'Key assignment', happyWord: 'Happy', sadWord: 'Sad', captionNone: 'No frame: press the matching key', captionStop: 'Red frame: do not press', captionCont: 'Green frame: respond as usual',
+        predict: 'Predict first', question: 'After the red frame appears, next to which expression will you fail to stop more often?',
         choices: [['happy', 'Happy faces'], ['sad', 'Sad faces'], ['same', 'About the same']],
         start: 'Start practice', left: 'Left', right: 'Right', happy: 'Happy face', sad: 'Sad face',
-        reminder: 'Press for the arrow; hold back when the red ring appears.', hint: 'Computer: ← / → keys   Phone/tablet: tap the left or right button below',
-        practiceDone: 'Practice complete', formalIntro: 'The test has 64 trials and takes about four minutes; 16 of them show the red ring. Do not slow down on purpose—respond at your normal speed.', formalStart: 'Start the test',
-        correct: 'Correct', wrong: 'Wrong direction', slow: 'Too slow', stopOk: 'Stopped successfully', stopFail: 'You pressed after the ring appeared—this is normal',
+        reminder: 'Judge happy or sad with the matching key; do not press when the frame is red, respond as usual when it is green.', hint: 'Computer: ← / → keys   Phone/tablet: tap the left or right button below',
+        stages: {
+          practice_go: { kicker: 'Practice 1', title: 'Judge the expression quickly', body: 'Press as soon as the face appears; there is no signal to wait for. Be fast and accurate. Every trial tells you whether you were right.', button: 'Start practice' },
+          practice_signal: { kicker: 'Practice 2', title: 'Adding the coloured frame', body: 'Now some faces get a frame. Red: do not press. Green: respond as usual. The frame changes colour only after the face has appeared, so do not wait for it; keep judging quickly. Every trial tells you whether you were right.', button: 'Start practice' },
+          baseline: { kicker: 'Part 1', title: 'Judge the expression (no frames)', body: 'There are no frames in this part. Be fast and accurate. Your speed here sets where the red frame starts.', button: 'Start' },
+          calib: { kicker: 'Part 2', title: 'Judge the expression; stop at a red frame', body: 'From here on, red and green frames appear. When the red frame appears is adjusted to your performance, so stopping will sometimes be easy and sometimes hard; please do not slow down on purpose. If you are too slow or miss a trial, “Respond faster” appears.', button: 'Start' },
+          formal: { kicker: 'Part 3', title: 'The test', body: 'The rules are the same as in the previous part. There are 72 trials, 18 of them with a red frame. The red-frame timing is adjusted separately for happy and sad faces. Respond at your normal speed, fast and accurate.', button: 'Start the test' }
+        },
+        statsTitle: 'Previous part', statsRt: 'Mean reaction time', statsOmit: 'Missed', statsWrong: 'Wrong key',
+        fb: { correct: 'Correct', wrong: 'Wrong key', slow: 'Too slow, respond faster', contOk: 'Correct (respond as usual on green)', contMiss: 'Respond as usual on green', stopOk: 'Stopped successfully', stopFail: 'You pressed after the red frame—this is normal', faster: 'Respond faster' },
+        frameLabel: { stop: ', red frame: stop', cont: ', green frame: respond as usual' },
         resultTitle: 'Your stopping speed', resultLead: 'The stop-signal reaction time (SSRT) is estimated with the integration method: how long you need to stop an action that is already prepared. It is not measured directly.',
-        ssrt: 'Stop-signal reaction time (SSRT)', pRespond: 'Responses after the red ring', meanSsd: 'Mean ring delay', goRt: 'Median go reaction time',
-        noSsrt: 'Cannot be estimated', prediction: 'Your prediction', predictionLabels: { happy: 'Harder to stop with happy faces', sad: 'Harder to stop with sad faces', same: 'About the same', unsure: 'No prediction selected' },
-        tableTitle: 'By expression (descriptive only)', emotion: 'Face', stopCount: 'Stop trials', omission: 'Go omission rate',
-        perEmotionNote: 'Each expression has only 8 stop trials, which is too few to estimate separate SSRTs or to conclude that one expression is harder to stop.',
-        warnRate: 'The share of responses after the red ring is outside 25–75%, so this SSRT may be inaccurate. Common causes are waiting for the ring on purpose or erratic responding; try again at your normal speed.',
-        warnRace: 'On average, failed stops were not faster than ordinary go responses. This breaks an assumption of the method, so treat the SSRT as a rough guide only.',
-        limitsTitle: 'How to read this', limits: ['SSRT is a model-based estimate, not a directly measured time; it assumes that “go” and “stop” processes race each other.', 'Your result describes this one short session. Formal studies use more trials and check the assumptions before interpreting an estimate.', 'The faces are AI-generated images of fictional people that demonstrate an emotional-background design; they are not used to judge your emotions or abilities.'],
-        sourceTitle: 'Further reading', source: 'Verbruggen et al. (2019): consensus guide to the stop-signal task', doi: 'https://doi.org/10.7554/eLife.46323',
+        ssrt: 'Stop-signal reaction time (SSRT)', pRespond: 'Responses after the red frame', meanSsd: 'Mean red-frame delay', goRt: 'Median go reaction time', goAcc: 'Go accuracy',
+        contRt: 'Mean green-frame reaction time', frameCost: 'Green-frame trials slower than go', frameCostNote: 'Green-frame trials require the usual response but the display changes. How much slower they are reflects the interference of seeing a frame, which helps to separate it from the effect of the stop instruction.',
+        noSsrt: 'Cannot be estimated reliably', prediction: 'Your prediction', predictionLabels: { happy: 'Harder to stop with happy faces', sad: 'Harder to stop with sad faces', same: 'About the same', unsure: 'No prediction selected' },
+        tableTitle: 'By expression (descriptive only)', emotion: 'Face', stopCount: 'Stop trials', ssrtExplore: 'Exploratory SSRT', meanSsdShort: 'Mean red-frame delay',
+        perEmotionNote: 'Each expression has only 9 stop trials, which is too few for separate SSRTs to be more than exploratory, or to conclude that one expression is harder to stop. A dash means that expression did not pass the assumption checks, so no value is reported.',
+        warnRate: 'The share of responses after the red frame is outside 25–75%, so this SSRT is not reliable. Common causes are waiting for the frame on purpose or erratic responding; try again at your normal speed.',
+        warnRace: 'On average, failed stops were not faster than ordinary go responses. This breaks an assumption of the method, so no SSRT is reported.',
+        warnExtreme: 'You either stopped on every red-frame trial or on none, so the method cannot estimate an SSRT.',
+        limitsTitle: 'How to read this', limits: ['SSRT is a model-based estimate, not a directly measured time; it assumes that “go” and “stop” processes race each other and needs the share of responses after the red frame to be close to half.', 'Your result describes this one short session. Formal studies use many more trials and check the assumptions before interpreting an estimate.', 'In this task, judging the expression is itself your response, so the emotional content of the faces is relevant to your task; the result cannot be generalized to situations where emotion is irrelevant.', 'Red always means stop and green always means respond, so the effect of colour cannot be separated from the stop instruction.', 'The faces are AI-generated images of fictional people and have not been validated; this demonstration is not used to judge your emotions or abilities.'],
+        sourceTitle: 'Further reading', sources: [['Nguyen et al. (2021): selective stop-signal task', 'https://doi.org/10.3390/brainsci11040478'], ['Verbruggen et al. (2019): consensus guide to the stop-signal task', 'https://doi.org/10.7554/eLife.46323']],
         retry: 'Try again'
       }
     }
@@ -133,12 +155,6 @@
     const c = copy[lang] || copy.zh;
     const strip = FaceTask().LEVELS.filter((_, index) => index % 2 === 0).map((level, index) => `<span class="face-strip-item">${Face().faceHtml(level, { identity: Face().IDENTITIES[index % Face().IDENTITIES.length] })}</span>`).join('');
     return introShell(c, c.face, 'face', lang, `<div class="face-strip" aria-hidden="true">${strip}</div>`);
-  }
-
-  function buildStopIntroMarkup(lang = 'zh') {
-    const c = copy[lang] || copy.zh;
-    const demo = `<div class="face-strip" aria-hidden="true"><span class="face-strip-item">${Face().faceHtml(1, { identity: 'a' })}<b class="stop-arrow">→</b></span><span class="face-strip-item">${Face().faceHtml(0, { identity: 'b', ring: true })}<b class="stop-arrow">←</b></span></div>`;
-    return introShell(c, c.stop, 'stop', lang, demo);
   }
 
   function taskShell(c, g, namespace, lang, phase, total, stageClass, controls) {
@@ -181,19 +197,48 @@
       <button class="experiment-primary" type="button" data-face-retry>${g.retry}</button></div>`;
   }
 
+  function keyMapMarkup(g, mapping = 'A') {
+    const left = StopTask().keyFor('happy', mapping) === 'left' ? 'happy' : 'sad';
+    const right = left === 'happy' ? 'sad' : 'happy';
+    return `<div class="key-map" role="group" aria-label="${e(g.keyMapLabel)}"><span><kbd>←</kbd> ${g[`${left}Word`]}</span><span>${g[`${right}Word`]} <kbd>→</kbd></span></div>`;
+  }
+
+  function buildStopIntroMarkup(lang = 'zh', mapping = 'A') {
+    const c = copy[lang] || copy.zh; const g = c.stop;
+    const item = (level, identity, frame, caption) => `<span class="face-strip-item">${Face().faceHtml(level, { identity, frame })}<small class="frame-caption">${caption}</small></span>`;
+    const demo = `<div class="face-strip" aria-hidden="true">${item(1, 'a', null, g.captionNone)}${item(0, 'b', 'stop', g.captionStop)}${item(1, 'c', 'cont', g.captionCont)}</div>`;
+    return introShell(c, g, 'stop', lang, keyMapMarkup(g, mapping) + demo);
+  }
+
+  function statsMarkup(g, records) {
+    const go = records.filter(record => record.kind === 'go');
+    if (!go.length) return '';
+    const rts = go.filter(record => record.correct && Number.isFinite(record.rt)).map(record => record.rt);
+    const omitted = go.filter(record => !record.responded).length;
+    const wrong = go.filter(record => record.outcome === 'choice_error').length;
+    return `<p class="stage-stats"><strong>${g.statsTitle}</strong>　${g.statsRt} ${ms(StopTask().mean(rts))}　·　${g.statsOmit} ${omitted}　·　${g.statsWrong} ${wrong}</p>`;
+  }
+
+  function stagePanelMarkup(lang, stage, mapping, previous = []) {
+    const c = copy[lang] || copy.zh; const g = c.stop; const info = g.stages[stage];
+    return `<div class="page-shell experiment-page"><a class="back-link" href="#/lab">${c.back}</a><section class="experiment-transition"><p class="eyebrow">${info.kicker}</p><h1>${info.title}</h1>${statsMarkup(g, previous)}${keyMapMarkup(g, mapping)}<p>${info.body}</p><button class="experiment-primary" type="button" data-stop-next>${info.button}</button></section></div>`;
+  }
+
   function buildStopResultsMarkup(lang = 'zh', summary, prediction = 'unsure') {
     const c = copy[lang] || copy.zh; const g = c.stop;
-    const rows = StopTask().EMOTIONS.map(emotion => { const row = summary.byEmotion[emotion]; return `<tr><th scope="row">${g[emotion]}</th><td>${ms(row.goMedianRt)}</td><td>${pct(row.omissionRate)}</td><td>${pct(row.pRespondGivenSignal)}</td><td>${row.stopCount}</td></tr>`; }).join('');
-    const warnings = [];
-    if (summary.ssrt !== null && !summary.pRespondValid) warnings.push(g.warnRate);
-    if (summary.ssrt !== null && summary.raceModelHolds === false) warnings.push(g.warnRace);
-    if (summary.ssrt === null) warnings.push(g.warnRate);
+    const rows = StopTask().EMOTIONS.map(emotion => {
+      const row = summary.byEmotion[emotion];
+      return `<tr><th scope="row">${g[emotion]}</th><td>${ms(row.goMedianRt)}</td><td>${ms(row.contMeanRt)}</td><td>${pct(row.pRespondGivenStop)}</td><td>${ms(row.meanSsd)}</td><td>${row.ssrt === null ? '—' : ms(row.ssrt)}</td></tr>`;
+    }).join('');
+    const warningText = { rate: g.warnRate, race: g.warnRace, extreme: g.warnExtreme };
+    const warnings = summary.ssrt === null ? [...new Set((summary.flags.length ? summary.flags : ['extreme']).map(flag => warningText[flag]))] : [];
+    const cost = summary.frameCost === null ? '—' : `${summary.frameCost >= 0 ? '+' : '−'}${Math.abs(Math.round(summary.frameCost))} ms`;
     return `<div class="page-shell experiment-page"><a class="back-link" href="#/lab">${c.back}</a><header class="result-header"><p class="eyebrow">Result</p><h1>${g.resultTitle}</h1><p>${g.resultLead}</p></header>
-      <section class="result-summary" aria-labelledby="ssrt-title"><div><span>${g.ssrt}</span><strong id="ssrt-title">${summary.ssrt === null ? g.noSsrt : ms(summary.ssrt)}</strong><small>${lang === 'zh' ? '整合法：第 n 個一般反應時間 − 平均紅圈延遲' : 'Integration method: nth go reaction time − mean ring delay'}</small></div><p>${warnings.map(item => `<span class="result-warning">${item}</span>`).join(' ')}</p></section>
-      <dl class="result-notes"><div><dt>${g.pRespond}</dt><dd>${pct(summary.pRespond)}</dd></div><div><dt>${g.meanSsd}</dt><dd>${ms(summary.meanSsd)}</dd></div><div><dt>${g.goRt}</dt><dd>${ms(summary.goMedianRt)}</dd></div><div><dt>${g.prediction}</dt><dd>${g.predictionLabels[prediction] || g.predictionLabels.unsure}</dd></div></dl>
-      <section class="result-table-wrap"><h2 class="result-subtitle">${g.tableTitle}</h2><table><thead><tr><th>${g.emotion}</th><th>${g.goRt}</th><th>${g.omission}</th><th>${g.pRespond}</th><th>${g.stopCount}</th></tr></thead><tbody>${rows}</tbody></table><p class="result-footnote">${g.perEmotionNote}</p></section>
+      <section class="result-summary" aria-labelledby="ssrt-title"><div><span>${g.ssrt}</span><strong id="ssrt-title">${summary.ssrt === null ? g.noSsrt : ms(summary.ssrt)}</strong><small>${lang === 'zh' ? '整合法：第 n 個一般反應時間 − 平均紅框延遲（開心與難過合併）' : 'Integration method: nth go reaction time − mean red-frame delay (happy and sad pooled)'}</small></div><p>${warnings.map(item => `<span class="result-warning">${item}</span>`).join(' ')}</p></section>
+      <dl class="result-notes"><div><dt>${g.pRespond}</dt><dd>${pct(summary.pRespond)}</dd></div><div><dt>${g.meanSsd}</dt><dd>${ms(summary.meanSsd)}</dd></div><div><dt>${g.goRt}</dt><dd>${ms(summary.goMedianRt)}</dd></div><div><dt>${g.goAcc}</dt><dd>${pct(summary.goAccuracy)}</dd></div><div><dt>${g.contRt}</dt><dd>${ms(summary.contMeanRt)}</dd></div><div><dt>${g.frameCost}</dt><dd>${cost}<br><small>${g.frameCostNote}</small></dd></div><div><dt>${g.prediction}</dt><dd>${g.predictionLabels[prediction] || g.predictionLabels.unsure}</dd></div></dl>
+      <section class="result-table-wrap"><h2 class="result-subtitle">${g.tableTitle}</h2><table><thead><tr><th>${g.emotion}</th><th>${g.goRt}</th><th>${g.contRt}</th><th>${g.pRespond}</th><th>${g.meanSsdShort}</th><th>${g.ssrtExplore}</th></tr></thead><tbody>${rows}</tbody></table><p class="result-footnote">${g.perEmotionNote}</p></section>
       <section class="result-limits"><h2>${g.limitsTitle}</h2><ul>${g.limits.map(item => `<li>${item}</li>`).join('')}</ul></section>
-      <div class="result-sources"><a href="${g.doi}" target="_blank" rel="noopener noreferrer">${g.sourceTitle}：${g.source} ↗</a></div>
+      <div class="result-sources"><strong>${g.sourceTitle}</strong>${g.sources.map(source => `<a href="${source[1]}" target="_blank" rel="noopener noreferrer">${source[0]} ↗</a>`).join('')}</div>
       <button class="experiment-primary" type="button" data-stop-retry>${g.retry}</button></div>`;
   }
 
@@ -268,52 +313,107 @@
 
   function renderStopSignal(container, lang = 'zh') {
     cleanup();
-    const c = copy[lang] || copy.zh; const g = c.stop; const limits = StopTask().DEFAULT_LIMITS;
-    container.innerHTML = buildStopIntroMarkup(lang);
+    const Task = StopTask();
+    const c = copy[lang] || copy.zh; const g = c.stop; const cfg = Task.CONFIG;
+    const mapping = Math.random() < 0.5 ? 'A' : 'B';
+    container.innerHTML = buildStopIntroMarkup(lang, mapping);
     Face().preload();
-    let prediction = 'unsure'; let phase = 'practice'; let trials = []; let index = 0; let active = null; let onset = 0; let stairs = null; let results = [];
-    const controls = `<button type="button" data-stop-response="left" disabled>← ${g.left}</button><button type="button" data-stop-response="right" disabled>${g.right} →</button>`;
+    const leftEmotion = Task.keyFor('happy', mapping) === 'left' ? 'happy' : 'sad';
+    const rightEmotion = leftEmotion === 'happy' ? 'sad' : 'happy';
+    const controls = `<button type="button" data-stop-response="left" disabled>← ${g[`${leftEmotion}Word`]}</button><button type="button" data-stop-response="right" disabled>${g[`${rightEmotion}Word`]} →</button>`;
     const setControls = disabled => container.querySelectorAll('[data-stop-response]').forEach(button => { button.disabled = disabled; });
+    let prediction = 'unsure'; let stageIndex = -1; let trials = []; let index = 0; let active = null; let onset = 0;
+    let results = []; let stageResults = []; let baselineRts = []; let warnRt = null;
+    let calibSsd = cfg.ssdFallback; let calibStopSsds = []; let tracked = { happy: cfg.ssdFallback, sad: cfg.ssdFallback };
+    let pendingStage = null;
 
-    function finish(key) {
-      if (!active) return;
-      clearTimers();
-      const trial = active; active = null; setControls(true);
-      const responded = Boolean(key);
-      const record = { ...trial.spec, responded, rt: responded ? Math.round(performance.now() - onset) : null, correct: responded && key === trial.spec.arrow, ssd: trial.ssd, ringShown: trial.ringShown };
-      results.push(record);
-      if (trial.spec.type === 'stop') stairs[trial.spec.emotion].update(!responded);
-      const stage = container.querySelector('[data-stop-stage]');
-      if (phase === 'practice' && stage) {
-        let message; let ok;
-        if (trial.spec.type === 'stop') { ok = !responded; message = ok ? g.stopOk : g.stopFail; }
-        else if (!responded) { ok = false; message = g.slow; } else { ok = record.correct; message = ok ? g.correct : g.wrong; }
-        stage.innerHTML = `<p class="trial-feedback ${ok ? 'is-correct' : 'is-incorrect'}">${message}</p>`;
+    const stageName = () => Task.STAGE_ORDER[stageIndex];
+    const isPractice = () => stageName().startsWith('practice');
+    const correctGoRts = list => list.filter(record => record.kind === 'go' && record.correct && Number.isFinite(record.rt)).map(record => record.rt);
+
+    function ssdFor(spec) {
+      if (spec.kind === 'go') return null;
+      const stage = stageName();
+      if (stage === 'practice_signal') return 250;
+      if (stage === 'calib') return calibSsd;
+      if (stage === 'formal') return tracked[spec.emotion];
+      return null;
+    }
+
+    function feedbackFor(spec, scored) {
+      const f = g.fb;
+      if (isPractice()) {
+        if (spec.kind === 'stop') return { text: scored.correct ? f.stopOk : f.stopFail, ok: scored.correct };
+        if (spec.kind === 'cont') return scored.correct ? { text: f.contOk, ok: true } : { text: scored.outcome === 'omission' ? f.contMiss : f.wrong, ok: false };
+        if (scored.outcome === 'omission') return { text: f.slow, ok: false };
+        return { text: scored.correct ? f.correct : f.wrong, ok: scored.correct };
       }
-      later(next, phase === 'practice' ? 800 : 350);
+      const slow = spec.kind === 'go' && (scored.outcome === 'omission' || (warnRt !== null && Number.isFinite(scored.rt) && scored.rt > warnRt));
+      return slow ? { text: f.faster, ok: false, warn: true } : null;
+    }
+
+    function endTrial(trial, stage) {
+      if (active !== trial) return;
+      active = null; setControls(true);
+      const spec = trial.spec;
+      const scored = Task.scoreTrial(spec, trial.key, trial.rt, mapping, cfg.window);
+      const record = { ...spec, ...scored, key: trial.key, plannedSsd: trial.ssd, ssd: trial.actualSsd !== null ? trial.actualSsd : trial.ssd };
+      results.push(record); stageResults.push(record);
+      if (spec.kind === 'stop') {
+        if (stageName() === 'calib') { calibStopSsds.push(trial.ssd); calibSsd = Task.trackSsd(calibSsd, scored.correct); }
+        if (stageName() === 'formal') tracked[spec.emotion] = Task.trackSsd(tracked[spec.emotion], scored.correct);
+      }
+      const feedback = feedbackFor(spec, scored);
+      stage.innerHTML = feedback ? `<p class="trial-feedback ${feedback.ok ? 'is-correct' : 'is-incorrect'}">${feedback.text}</p>` : '';
+      later(next, cfg.iti);
+    }
+
+    function present(spec, stage) {
+      const ssd = ssdFor(spec);
+      const label = frame => `${g[spec.emotion]}${frame ? g.frameLabel[frame] : ''}`;
+      const draw = frame => `<div class="stop-trial" role="img" aria-label="${e(label(frame))}">${Face().faceHtml(spec.level, { identity: spec.identity, frame })}</div>`;
+      stage.innerHTML = draw(null);
+      const trial = { spec, ssd, actualSsd: null, key: null, rt: null };
+      active = trial; onset = performance.now(); setControls(false);
+      if (ssd !== null) {
+        later(() => {
+          if (active === trial && trial.key === null) { trial.actualSsd = Math.round(performance.now() - onset); stage.innerHTML = draw(spec.kind === 'stop' ? 'stop' : 'cont'); }
+        }, ssd);
+      }
+      later(() => endTrial(trial, stage), cfg.window);
     }
 
     function show(spec) {
       const stage = container.querySelector('[data-stop-stage]');
       if (!stage) return;
       stage.innerHTML = `<span class="posner-fixation" aria-hidden="true">+</span>`;
-      later(() => {
-        const ssd = spec.type === 'stop' ? stairs[spec.emotion].ssd : null;
-        const arrow = spec.arrow === 'left' ? '←' : '→';
-        const label = lang === 'zh' ? `${g[spec.emotion]}，箭頭向${spec.arrow === 'left' ? '左' : '右'}` : `${g[spec.emotion]}, arrow pointing ${spec.arrow}`;
-        const draw = ring => `<div class="stop-trial" role="img" aria-label="${e(label)}${ring ? (lang === 'zh' ? '，出現紅圈' : ', red ring shown') : ''}">${Face().faceHtml(spec.emotion === 'happy' ? 1 : 0, { identity: spec.identity, ring })}<b class="stop-arrow">${arrow}</b></div>`;
-        stage.innerHTML = draw(false);
-        const trial = { spec, ssd, ringShown: false };
-        active = trial; onset = performance.now(); setControls(false);
-        if (spec.type === 'stop') later(() => { if (active === trial) { trial.ringShown = true; stage.innerHTML = draw(true); } }, ssd);
-        later(() => finish(null), limits.maxRt);
-      }, 500);
+      later(() => { stage.innerHTML = ''; later(() => present(spec, stage), cfg.blank); }, cfg.fixation);
+    }
+
+    function respond(key) {
+      if (!active || active.key !== null) return;
+      active.key = key; active.rt = Math.round(performance.now() - onset);
+      setControls(true);
+    }
+
+    function afterStage() {
+      const stage = stageName();
+      if (stage === 'baseline') { baselineRts = correctGoRts(stageResults); warnRt = Task.warnThreshold(baselineRts); }
+      if (stage === 'calib') { const rts = correctGoRts(stageResults); if (rts.length >= 5) warnRt = Task.warnThreshold(rts); }
+    }
+
+    function showPanel(stage, previous = []) {
+      pendingStage = stage;
+      container.innerHTML = stagePanelMarkup(lang, stage, mapping, previous);
     }
 
     function next() {
       if (index >= trials.length) {
-        if (phase === 'practice') container.innerHTML = transition(c, g, lang, g.formalIntro, g.formalStart, 'data-stop-formal');
-        else container.innerHTML = buildStopResultsMarkup(lang, StopTask().summarizeTrials(results), prediction);
+        const finished = stageName(); const previous = stageResults;
+        afterStage();
+        const upcoming = Task.STAGE_ORDER[stageIndex + 1];
+        if (!upcoming) { container.innerHTML = buildStopResultsMarkup(lang, Task.summarizeTrials(results), prediction); return; }
+        showPanel(upcoming, finished === 'baseline' || finished === 'calib' ? previous : []);
         return;
       }
       const progress = container.querySelector('[data-stop-progress]');
@@ -321,29 +421,30 @@
       show(trials[index++]);
     }
 
-    function start(nextPhase) {
-      phase = nextPhase; index = 0; results = [];
-      stairs = { happy: StopTask().createStaircase(), sad: StopTask().createStaircase() };
-      trials = nextPhase === 'practice' ? StopTask().createTrials({ goPerEmotion: 3, stopPerEmotion: 1 }) : StopTask().createTrials({ goPerEmotion: 24, stopPerEmotion: 8 });
-      container.innerHTML = taskShell(c, g, 'stop', lang, phase, trials.length, 'stop-stage', controls);
+    function beginStage(name) {
+      stageIndex = Task.STAGE_ORDER.indexOf(name); index = 0; stageResults = [];
+      trials = Task.createBlock(name);
+      if (name === 'calib') { calibSsd = Task.startSsd(baselineRts); calibStopSsds = []; }
+      if (name === 'formal') { const critical = Task.finalizeCalibration(calibStopSsds).critical; tracked = { happy: critical, sad: critical }; }
+      container.innerHTML = taskShell(c, g, 'stop', lang, isPractice() ? 'practice' : 'formal', trials.length, 'stop-stage', controls);
       later(next, 600);
     }
 
     function onClick(event) {
-      if (event.target.closest('[data-stop-start]')) { prediction = container.querySelector('input[name="stop-prediction"]:checked')?.value || 'unsure'; start('practice'); return; }
-      if (event.target.closest('[data-stop-formal]')) { start('formal'); return; }
+      if (event.target.closest('[data-stop-start]')) { prediction = container.querySelector('input[name="stop-prediction"]:checked')?.value || 'unsure'; showPanel('practice_go'); return; }
+      if (event.target.closest('[data-stop-next]')) { beginStage(pendingStage); return; }
       if (event.target.closest('[data-stop-retry]')) { renderStopSignal(container, lang); return; }
       const button = event.target.closest('[data-stop-response]');
-      if (button) finish(button.dataset.stopResponse);
+      if (button) respond(button.dataset.stopResponse);
     }
     function onKeydown(event) {
       if (!active) return;
-      if (event.code === 'ArrowLeft') { event.preventDefault(); finish('left'); }
-      if (event.code === 'ArrowRight') { event.preventDefault(); finish('right'); }
+      if (event.code === 'ArrowLeft') { event.preventDefault(); respond('left'); }
+      if (event.code === 'ArrowRight') { event.preventDefault(); respond('right'); }
     }
     container.addEventListener('click', onClick); window.addEventListener('keydown', onKeydown);
     teardown = () => { container.removeEventListener('click', onClick); window.removeEventListener('keydown', onKeydown); active = null; };
   }
 
-  return { copy, buildFaceIntroMarkup, buildFaceResultsMarkup, buildStopIntroMarkup, buildStopResultsMarkup, renderFaceJudgment, renderStopSignal, cleanup };
+  return { copy, buildFaceIntroMarkup, buildFaceResultsMarkup, buildStopIntroMarkup, buildStopResultsMarkup, stagePanelMarkup, renderFaceJudgment, renderStopSignal, cleanup };
 });

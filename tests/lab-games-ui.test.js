@@ -23,9 +23,13 @@ function faceSummary() {
 }
 
 function stopSummary() {
-  const go = [380, 400, 420, 440, 460, 480, 500, 520].flatMap(rt => ['happy', 'sad'].map(emotion => ({ type: 'go', emotion, responded: true, correct: true, rt })));
-  const stop = [true, false, true, false].flatMap(responded => ['happy', 'sad'].map(emotion => ({ type: 'stop', emotion, responded, rt: responded ? 390 : null, ssd: 280 })));
-  return StopTask.summarizeTrials([...go, ...stop]);
+  const trials = [];
+  for (const emotion of ['happy', 'sad']) {
+    for (let i = 0; i < 18; i++) trials.push({ stage: 'formal', kind: 'go', emotion, responded: true, correct: true, rt: 420 + i * 12 });
+    for (let i = 0; i < 9; i++) trials.push({ stage: 'formal', kind: 'cont', emotion, responded: true, correct: true, rt: 470 + i * 8 });
+    for (let i = 0; i < 9; i++) trials.push({ stage: 'formal', kind: 'stop', emotion, responded: i % 2 === 1, correct: i % 2 === 0, rt: i % 2 === 1 ? 400 : null, ssd: 280 });
+  }
+  return StopTask.summarizeTrials(trials);
 }
 
 test('both games are routed, cleaned up on navigation, and loaded by the page', () => {
@@ -82,23 +86,65 @@ test('face results without a crossing say so instead of inventing a balance poin
   assert.doesNotMatch(markup, /curve-pse/);
 });
 
-test('stop results explain that SSRT is an estimate, warn when its assumptions fail, and avoid per-emotion SSRT', () => {
+test('stop results explain that SSRT is an estimate, report the frame cost, and keep per-emotion SSRT exploratory', () => {
   const summary = stopSummary();
   const markup = UI.buildStopResultsMarkup('zh', summary, 'happy');
   assert.match(markup, /模型估計值/);
   assert.match(markup, /整合法/);
   assert.match(markup, /https:\/\/doi\.org\/10\.7554\/eLife\.46323/);
-  assert.match(markup, /每種表情只有 8 題停止題/);
+  assert.match(markup, /https:\/\/doi\.org\/10\.3390\/brainsci11040478/);
+  assert.match(markup, /每種表情只有 9 題停止題/);
+  assert.match(markup, /綠框題比一般題慢/);
+  assert.match(markup, /判斷表情本身就是你的反應/);
+  assert.match(markup, /顏色的效果無法和停止指令分開/);
+  assert.match(markup, /探索性 SSRT/);
   const rows = markup.match(/<tbody>[\s\S]*<\/tbody>/)[0];
   assert.equal((rows.match(/<tr>/g) || []).length, 2);
-  assert.doesNotMatch(rows, /SSRT/);
   const bad = StopTask.summarizeTrials([
-    ...[400, 420, 440, 460].map(rt => ({ type: 'go', emotion: 'happy', responded: true, correct: true, rt })),
-    { type: 'stop', emotion: 'happy', responded: false, rt: null, ssd: 300 }, { type: 'stop', emotion: 'sad', responded: false, rt: null, ssd: 300 }
+    ...[400, 420, 440, 460].map(rt => ({ stage: 'formal', kind: 'go', emotion: 'happy', responded: true, correct: true, rt })),
+    { stage: 'formal', kind: 'stop', emotion: 'happy', responded: false, rt: null, ssd: 300 }, { stage: 'formal', kind: 'stop', emotion: 'sad', responded: false, rt: null, ssd: 300 }
   ]);
   const badMarkup = UI.buildStopResultsMarkup('zh', bad, 'unsure');
-  assert.match(badMarkup, /無法估計/);
+  assert.match(badMarkup, /無法可靠估計/);
   assert.match(badMarkup, /result-warning/);
+});
+
+test('the stop-signal task is the emotional selective version: expression keys, red and green frames, no arrows', () => {
+  for (const lang of ['zh', 'en']) {
+    for (const mapping of ['A', 'B']) {
+      const markup = UI.buildStopIntroMarkup(lang, mapping);
+      assert.match(markup, /class="key-map"/);
+      assert.match(markup, /has-ring/, 'a red frame is demonstrated');
+      assert.match(markup, /has-frame-cont/, 'a green frame is demonstrated');
+      assert.doesNotMatch(markup, /stop-arrow/);
+    }
+  }
+  const a = UI.buildStopIntroMarkup('en', 'A').match(/<kbd>←<\/kbd> (\w+)/)[1];
+  const b = UI.buildStopIntroMarkup('en', 'B').match(/<kbd>←<\/kbd> (\w+)/)[1];
+  assert.deepEqual([a, b], ['Happy', 'Sad']);
+  const src = fs.readFileSync(path.join(root, 'lab-games-ui.js'), 'utf8');
+  assert.doesNotMatch(src, /stop-arrow|ArrowPointing|箭頭/);
+  for (const stage of StopTask.STAGE_ORDER) {
+    for (const lang of ['zh', 'en']) assert.match(UI.copy[lang].stop.stages[stage].title, /\S/, `${lang} ${stage}`);
+  }
+});
+
+test('stage panels show the key assignment and, after a timed part, the previous part summary', () => {
+  const previous = [
+    { kind: 'go', emotion: 'happy', outcome: 'correct', responded: true, correct: true, rt: 500 },
+    { kind: 'go', emotion: 'sad', outcome: 'correct', responded: true, correct: true, rt: 600 },
+    { kind: 'go', emotion: 'sad', outcome: 'omission', responded: false, correct: false, rt: null },
+    { kind: 'go', emotion: 'happy', outcome: 'choice_error', responded: true, correct: false, rt: 450 }
+  ];
+  const panel = UI.stagePanelMarkup('en', 'calib', 'B', previous);
+  assert.match(panel, /Part 2/);
+  assert.match(panel, /<kbd>←<\/kbd> Sad/);
+  assert.match(panel, /Mean reaction time 550 ms/);
+  assert.match(panel, /Missed 1/);
+  assert.match(panel, /Wrong key 1/);
+  assert.match(panel, /data-stop-next/);
+  assert.doesNotMatch(UI.stagePanelMarkup('en', 'practice_go', 'A', []), /Previous part/);
+  assert.match(UI.stagePanelMarkup('zh', 'formal', 'A', []), /共 72 題，其中 18 題出現紅框/);
 });
 
 test('trial screens expose labelled response buttons and a keyboard hint', () => {

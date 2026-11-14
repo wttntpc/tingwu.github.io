@@ -29,7 +29,9 @@
   function faceHtml(value, options = {}) {
     const identity = options.identity || IDENTITIES[0];
     const label = options.label || '';
-    const ring = options.ring ? ' has-ring' : '';
+    // A red frame marks a stop trial and a green frame a continue trial; `ring` is the older name for the red frame.
+    const frame = options.frame || (options.ring ? 'stop' : null);
+    const ring = frame === 'stop' ? ' has-ring' : (frame === 'cont' ? ' has-frame-cont' : '');
     const alt = label ? `alt="${label}"` : 'alt="" aria-hidden="true"';
     return `<span class="face-photo${ring}"><img src="${src(identity, value)}" ${alt} width="192" height="192" decoding="async" draggable="false"></span>`;
   }

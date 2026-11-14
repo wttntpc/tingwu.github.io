@@ -604,7 +604,7 @@ const researchPageContent = {
       ['posner', '注意力：Posner 空間提示作業', '提示是否有效，會如何改變你的反應時間？'],
       ['emotion-gonogo', '情緒與動作：情緒臉孔 Go/No-Go', '情緒與任務目標相關時，表情才會改變反應嗎？'],
       ['face-judgment', '情緒知覺：表情判斷曲線', '模糊的臉，你會看成開心還是難過？'],
-      ['stop-signal', '抑制控制：停止訊號作業', '看到「停」的訊號時，你還煞得住嗎？']
+      ['stop-signal', '抑制控制：情緒選擇性停止訊號作業', '看到紅框時，你還煞得住嗎？']
     ],
     demoOpen: '開始 →',
     learnLabel: '想先補背景？', learnText: '依目標選一條讀書路線，從認知神經科學、運動生理、HRV、EEG 到統計，一步一步建立研究所需的基礎。', learnLink: '前往學習地圖與讀書路線 →'
@@ -619,7 +619,7 @@ const researchPageContent = {
       ['posner', 'Attention: Posner spatial cueing task', 'How does a valid or invalid cue change your reaction time?'],
       ['emotion-gonogo', 'Emotion and action: emotional-face Go/No-Go', 'Do expressions change responses only when emotion is relevant to the goal?'],
       ['face-judgment', 'Emotion perception: facial-expression judgment curve', 'Do you read an ambiguous face as happy or sad?'],
-      ['stop-signal', 'Inhibitory control: stop-signal task', 'Can you still stop when the “stop” signal appears?']
+      ['stop-signal', 'Inhibitory control: emotional selective stop-signal task', 'Can you still stop when a red frame appears?']
     ],
     demoOpen: 'Start →',
     learnLabel: 'Need the background first?', learnText: 'Pick a reading route by goal, from cognitive neuroscience, exercise physiology, HRV, and EEG to statistics, and build the foundations research needs step by step.', learnLink: 'Go to the learning map and reading routes →'
