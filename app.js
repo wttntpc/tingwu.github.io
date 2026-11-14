@@ -97,7 +97,7 @@ const copy = {
       ['專業證照', ['運動防護員', 'EMT-1', '銀髮族體適能 C 級指導員']]
     ],
     scholarships: [
-      ['2026', '教育部獎學金'],
+      ['2026', '教育部博士生獎學金'],
       ['2025', '教育部博士生獎學金'],
       ['2025', '國立中央大學 博士班入學獎學金'],
       ['2025', '平安菁英教育基金會 113-2 菁英獎學金']
@@ -192,7 +192,7 @@ const copy = {
       ['Certifications', ['Certified Athletic Trainer', 'EMT-1', 'Senior Fitness Instructor (Level C)']]
     ],
     scholarships: [
-      ['2026', 'Ministry of Education Scholarship, Taiwan'],
+      ['2026', 'Ministry of Education Ph.D. Scholarship, Taiwan'],
       ['2025', 'Ministry of Education Ph.D. Scholarship, Taiwan'],
       ['2025', 'Ph.D. Entrance Scholarship, National Central University'],
       ['2025', 'Ping-An Elite Educational Foundation Scholarship']

@@ -25,12 +25,12 @@ function listOf(block, key) {
   return [...m[1].matchAll(/\['([^']*)', '([^']*)'(?:, '([^']*)')?\]/g)].map(x => x.slice(1));
 }
 
-test('the 2026 Ministry of Education scholarship is listed first, in both languages, with the wording supplied', () => {
+test('the 2026 Ministry of Education scholarship is listed first, in both languages, with the wording supplied (a separate entry from 2025)', () => {
   const clean = rows => rows.map(row => row.filter(cell => cell !== undefined));
   const zhList = clean(listOf(zh, 'scholarships'));
   const enList = clean(listOf(en, 'scholarships'));
-  assert.deepEqual(zhList[0], ['2026', '教育部獎學金']);
-  assert.deepEqual(enList[0], ['2026', 'Ministry of Education Scholarship, Taiwan']);
+  assert.deepEqual(zhList[0], ['2026', '教育部博士生獎學金']);
+  assert.deepEqual(enList[0], ['2026', 'Ministry of Education Ph.D. Scholarship, Taiwan']);
   assert.equal(zhList.length, enList.length);
 });
 
