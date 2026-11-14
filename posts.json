@@ -7,7 +7,8 @@
     "tags": ["HRV", "12導程ECG", "PPG", "方法比較", "一致性分析", "設備驗證"],
     "description": "分清楚 12 導程 ECG、連續 ECG、胸帶與腕式 PPG 在驗證中的角色，並整理比較流程、一致性統計與常見錯誤。",
     "titleEn": "12-Lead ECG and PPG Devices: How to Compare Them With a Gold Standard\u2014An Introduction to HRV Device Validation",
-    "descriptionEn": "Clarifies the roles of 12-lead ECG, continuous ECG, chest straps, and wrist PPG in validation, and lays out the comparison workflow, agreement statistics, and common mistakes."
+    "descriptionEn": "Clarifies the roles of 12-lead ECG, continuous ECG, chest straps, and wrist PPG in validation, and lays out the comparison workflow, agreement statistics, and common mistakes.",
+    "bodyEn": true
   },
   {
     "id": "exercise-emotion-learning-map",
@@ -17,7 +18,8 @@
     "tags": ["運動與情緒", "情感量測", "單次運動", "證據解讀", "學習地圖"],
     "description": "從情緒、心情與情感的區分出發，連結運動劑量、候選機制、自陳與行為與生理量測、研究設計陷阱及證據解讀。",
     "titleEn": "Exercise and Emotion Learning Map: From Definitions and Measurement to Reading the Evidence",
-    "descriptionEn": "Starts from the difference between emotion, mood, and affect, then links exercise dose, candidate mechanisms, self-report, behavioral and physiological measures, design pitfalls, and how to read the evidence."
+    "descriptionEn": "Starts from the difference between emotion, mood, and affect, then links exercise dose, candidate mechanisms, self-report, behavioral and physiological measures, design pitfalls, and how to read the evidence.",
+    "bodyEn": true
   },
   {
     "id": "emotional-selective-stop-signal-task",
@@ -27,7 +29,8 @@
     "tags": ["認知作業", "抑制控制", "停止訊號作業", "SSRT", "研究方法"],
     "description": "從早期的延遲訊號研究、Logan 的賽跑模型到 SSRT 的估計，整理停止訊號作業的背景、假設、估計方法與延伸典範。",
     "titleEn": "The Stop-Signal Task in Context: From Delayed Signals to the Race Model",
-    "descriptionEn": "Background on the stop-signal task: early delayed-signal studies, the race model, how SSRT is estimated and when it should not be reported, and extensions such as selective stopping and emotional stimuli."
+    "descriptionEn": "Background on the stop-signal task: early delayed-signal studies, the race model, how SSRT is estimated and when it should not be reported, and extensions such as selective stopping and emotional stimuli.",
+    "bodyEn": true
   },
   {
     "id": "bayesian-causal-inference-week-05",
@@ -167,7 +170,8 @@
     "tags": ["認知神經科學", "大腦", "認知", "情緒", "學習地圖"],
     "description": "以神經系統基礎、認知功能、情緒機制、研究方法與整合推論五層，建立可學習、複習與深化的認知神經科學路徑。",
     "titleEn": "Cognitive Neuroscience Learning Map: From the Brain to Cognition and Emotion",
-    "descriptionEn": "A five-layer path—neural foundations, cognitive functions, emotion mechanisms, research methods, and integrative inference—designed for learning, review, and deepening."
+    "descriptionEn": "A five-layer path—neural foundations, cognitive functions, emotion mechanisms, research methods, and integrative inference—designed for learning, review, and deepening.",
+    "bodyEn": true
   },
   {
     "id": "exercise-physiology-learning-map",
@@ -177,7 +181,8 @@
     "tags": ["運動生理學", "能量系統", "心肺適能", "運動處方", "學習地圖"],
     "description": "由能量代謝、神經肌肉與心肺反應，逐步進入訓練適應、測量與個別化運動處方。",
     "titleEn": "Exercise Physiology Learning Map: From Acute Responses to Exercise Prescription",
-    "descriptionEn": "From energy metabolism and neuromuscular and cardiorespiratory responses to training adaptation, measurement, and individualized exercise prescription."
+    "descriptionEn": "From energy metabolism and neuromuscular and cardiorespiratory responses to training adaptation, measurement, and individualized exercise prescription.",
+    "bodyEn": true
   },
   {
     "id": "human-anatomy-learning-map",
@@ -187,7 +192,8 @@
     "tags": ["人體解剖學", "肌肉骨骼", "神經系統", "心血管", "學習地圖"],
     "description": "從解剖方位、組織與器官系統出發，把肌肉骨骼、神經與心肺結構連回動作、傷害與生理量測。",
     "titleEn": "Human Anatomy Learning Map: Understanding Movement and Physiology Through Structure",
-    "descriptionEn": "From anatomical position, tissues, and organ systems, connecting musculoskeletal, nervous, and cardiopulmonary structures to movement, injury, and physiological measurement."
+    "descriptionEn": "From anatomical position, tissues, and organ systems, connecting musculoskeletal, nervous, and cardiopulmonary structures to movement, injury, and physiological measurement.",
+    "bodyEn": true
   },
   {
     "id": "athletic-training-learning-map",
@@ -197,7 +203,8 @@
     "tags": ["運動傷害防護", "臨床評估", "急性照護", "復健", "重返運動"],
     "description": "整理預防、臨床評估、急性照護、治療介入、復健與重返運動的循證學習路徑。",
     "titleEn": "Athletic Training Learning Map: From Risk Identification to Return to Sport",
-    "descriptionEn": "An evidence-based path through prevention, clinical assessment, acute care, treatment, rehabilitation, and return to sport."
+    "descriptionEn": "An evidence-based path through prevention, clinical assessment, acute care, treatment, rehabilitation, and return to sport.",
+    "bodyEn": true
   },
   {
     "id": "eeg-learning-map",
@@ -207,7 +214,8 @@
     "tags": ["EEG", "腦波設備", "訊號處理", "品質控制", "學習地圖"],
     "description": "把腦電生理、電極與放大器、實驗設計、前處理、時頻分析及品質控制連成完整路徑。",
     "titleEn": "EEG Learning Map: From Neurophysiology and Equipment to Reproducible Analysis",
-    "descriptionEn": "Links brain electrophysiology, electrodes and amplifiers, experimental design, preprocessing, time-frequency analysis, and quality control into one path."
+    "descriptionEn": "Links brain electrophysiology, electrodes and amplifiers, experimental design, preprocessing, time-frequency analysis, and quality control into one path.",
+    "bodyEn": true
   },
   {
     "id": "hrv-learning-map",
@@ -217,7 +225,8 @@
     "tags": ["HRV", "自律神經", "ECG", "PPG", "非線性分析"],
     "description": "從心臟與自律神經生理、ECG／PPG 量測，到 BBI 清理、時域、頻域、非線性指標及研究解讀。",
     "titleEn": "HRV Learning Map: From the Autonomic Nervous System and Sensors to Interpreting Indices",
-    "descriptionEn": "From cardiac and autonomic physiology and ECG/PPG measurement to BBI cleaning, time-domain, frequency-domain, and nonlinear indices, and research interpretation."
+    "descriptionEn": "From cardiac and autonomic physiology and ECG/PPG measurement to BBI cleaning, time-domain, frequency-domain, and nonlinear indices, and research interpretation.",
+    "bodyEn": true
   },
   {
     "id": "marathon-hiit-autonomic-remodeling",
