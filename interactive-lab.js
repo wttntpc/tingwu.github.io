@@ -22,6 +22,8 @@
       task3Label: '第三個互動實驗', task3Title: '模糊的臉，你會看成開心還是難過？', task3Name: '表情判斷曲線',
       task3Desc: '判斷一系列由難過漸變到開心的 AI 生成臉孔，畫出你回答「開心」的比例曲線，找出分界點與陡度。資料只留在你的瀏覽器，約需 3–4 分鐘。',
       task4Label: '第四個互動實驗', task4Title: '看到紅框，你還煞得住嗎？', task4Name: '情緒選擇性停止訊號作業',
+      task5Label: '互動示範 · 訊號', task5Title: '誰在調變誰？', task5Name: '振幅調變與包絡',
+      task5Desc: '用滑桿調整載波與調幅，看傅立葉頻譜、包絡與載波–調幅平面各自能告訴你什麼。這是概念示範，不是 HHSA 計算，也沒有任何真人資料。約需 3–5 分鐘。', open5: '開始示範 →',
       task4Desc: '先用左右手判斷臉孔是開心還是難過；臉孔外圍突然出現紅框就要停住、綠框則照常按。作業會自動調整紅框出現的時間，並估計你停下一個動作所需的時間（SSRT）。約需 4–5 分鐘。',
       coming: '接下來',
       future: ['三分鐘活動挑戰：運動前後的反應時間與心情']
@@ -41,6 +43,8 @@
       task3Label: 'Third interactive experiment', task3Title: 'Do you read an ambiguous face as happy or sad?', task3Name: 'Facial-expression judgment curve',
       task3Desc: 'Judge AI-generated faces that shift from sad to happy, then see a curve of how often you answered “happy” with its balance point and steepness. Data stay in your browser. Allow 3–4 minutes.',
       task4Label: 'Fourth interactive experiment', task4Title: 'Can you still stop when a red frame appears?', task4Name: 'Emotional selective stop-signal task',
+      task5Label: 'Interactive demonstration · signals', task5Title: 'Who modulates whom?', task5Name: 'Amplitude modulation and the envelope',
+      task5Desc: 'Adjust a carrier and its modulation with sliders and see what the Fourier spectrum, the envelope, and the carrier–modulation plane each tell you. This is a concept demonstration, not an HHSA computation, and uses no human data. Allow 3–5 minutes.', open5: 'Start the demonstration →',
       task4Desc: 'Judge with the left or right hand whether a face looks happy or sad, but hold back when a red frame suddenly appears around it (a green frame means respond as usual). The task adapts when the red frame appears and estimates how long you need to stop an action (SSRT). Allow 4–5 minutes.',
       coming: 'Coming next',
       future: ['Three-minute movement challenge: response time and mood before and after activity']
@@ -124,6 +128,17 @@
     }).join('');
   }
 
+  // A small amplitude-modulated wave for the hub card: a carrier whose strength rises and falls.
+  function previewWave() {
+    let upper = ''; let lower = ''; let line = '';
+    for (let i = 0; i <= 240; i++) {
+      const t = i / 240; const env = 0.55 + 0.4 * Math.cos(2 * Math.PI * 1.5 * t);
+      const x = (t * 300).toFixed(1); const y = (50 + env * 40 * Math.cos(2 * Math.PI * 18 * t)).toFixed(1);
+      line += `${i === 0 ? 'M' : 'L'}${x} ${y}`; upper += `${i === 0 ? 'M' : 'L'}${x} ${(50 - env * 40).toFixed(1)}`; lower += `${i === 0 ? 'M' : 'L'}${x} ${(50 + env * 40).toFixed(1)}`;
+    }
+    return `<svg viewBox="0 0 300 100" focusable="false"><path class="hh-prev-env" d="${upper}" fill="none"/><path class="hh-prev-env" d="${lower}" fill="none"/><path class="hh-prev-wave" d="${line}" fill="none"/></svg>`;
+  }
+
   function buildLabMarkup(lang = 'zh') {
     const c = content[lang] || content.zh;
     return `<div class="page-shell lab-page"><header class="lab-hero"><p class="eyebrow">${c.eyebrow}</p><h1>${c.title}</h1><p>${c.lead}</p></header>
@@ -132,6 +147,7 @@
       <section class="lab-feature lab-feature-emotion" aria-labelledby="lab-emotion-title"><div><p>${c.task2Label}</p><h2 id="lab-emotion-title">${c.task2Title}</h2><strong>${c.task2Name}</strong><p>${c.task2Desc}</p><a href="#/lab/emotion-gonogo">${c.open}</a></div><div class="lab-emotion-preview" aria-hidden="true"><span class="emotion-face"><img src="assets/emotion-faces/identity-a-happy.webp" alt="" width="512" height="512" decoding="async"></span><span class="emotion-face"><img src="assets/emotion-faces/identity-b-angry.webp" alt="" width="512" height="512" decoding="async"></span></div></section>
       <section class="lab-feature lab-feature-face" aria-labelledby="lab-face-title"><div><p>${c.task3Label}</p><h2 id="lab-face-title">${c.task3Title}</h2><strong>${c.task3Name}</strong><p>${c.task3Desc}</p><a href="#/lab/face-judgment">${c.open}</a></div><div class="lab-face-preview" aria-hidden="true">${previewFaces([0.1, 0.5, 0.9])}</div></section>
       <section class="lab-feature lab-feature-stop" aria-labelledby="lab-stop-title"><div><p>${c.task4Label}</p><h2 id="lab-stop-title">${c.task4Title}</h2><strong>${c.task4Name}</strong><p>${c.task4Desc}</p><a href="#/lab/stop-signal">${c.open}</a></div><div class="lab-stop-preview" aria-hidden="true">${previewFaces([1, 0, 1], [null, 'stop', 'cont'])}</div></section>
+      <section class="lab-feature lab-feature-signal" aria-labelledby="lab-signal-title"><div><p>${c.task5Label}</p><h2 id="lab-signal-title">${c.task5Title}</h2><strong>${c.task5Name}</strong><p>${c.task5Desc}</p><a href="#/lab/hhsa">${c.open5}</a></div><div class="lab-signal-preview" aria-hidden="true">${previewWave()}</div></section>
       <section class="lab-coming"><p class="eyebrow">${c.coming}</p><ol>${c.future.map(item => `<li>${item}</li>`).join('')}</ol></section></div>`;
   }
 

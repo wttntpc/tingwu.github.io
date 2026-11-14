@@ -1051,3 +1051,69 @@ button { font: inherit; }
 .about-subsection { margin-top: 1.6rem; }
 .about-subsection h3 { margin: 0 0 .5rem; color: var(--secondary); font-size: .8rem; letter-spacing: .04em; }
 .about-note { margin-top: 1.4rem; color: var(--secondary); font-size: .8rem; }
+
+/* HHSA concept demonstration (amplitude modulation, envelope, carrier–modulation plane) */
+.lab-signal-preview { min-height: 190px; display: grid; place-items: center; padding: 1rem; }
+.lab-signal-preview svg { width: 100%; max-width: 340px; height: auto; }
+.hh-prev-wave { stroke: var(--accent); stroke-width: 1; }
+.hh-prev-env { stroke: var(--secondary); stroke-width: 1.4; stroke-dasharray: 4 3; }
+.hhsa-page { width: min(calc(100% - 40px), 920px); }
+.hhsa-page .experiment-header { max-width: none; }
+.hhsa-page .experiment-header h1 { max-width: none; }
+.hhsa-controls { margin: 1.4rem 0 1rem; padding: 1.2rem 1.3rem; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--paper); display: grid; gap: .9rem; }
+.hhsa-controls h2, .hhsa-figure h2, .hhsa-readout-wrap h2, .hhsa-claims h2, .hhsa-reading h2 { margin: 0; font-family: var(--font-display); font-size: 1.1rem; }
+.hhsa-control { display: grid; grid-template-columns: minmax(7.5rem, 11rem) minmax(0, 1fr) 5.5rem; gap: .8rem; align-items: center; }
+.hhsa-control label { color: var(--secondary); font-size: .78rem; font-weight: 600; }
+.hhsa-control input[type="range"] { width: 100%; min-height: 44px; accent-color: var(--accent); }
+.hhsa-control select { min-height: 44px; max-width: 9rem; padding: .3rem .6rem; border: 1px solid var(--tertiary); border-radius: var(--radius); color: var(--primary); background: var(--theme); font: inherit; font-size: .8rem; }
+.hhsa-control output { color: var(--primary); font-size: .78rem; font-variant-numeric: tabular-nums; text-align: right; }
+.hhsa-presets { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; padding-top: .3rem; border-top: 1px solid var(--tertiary); }
+.hhsa-presets > span { margin-right: .3rem; color: var(--secondary); font-size: .74rem; font-weight: 700; }
+.hhsa-presets button { min-height: 44px; padding: .4rem .85rem; border: 1px solid var(--tertiary); border-radius: 999px; color: var(--accent); background: var(--theme); font: inherit; font-size: .76rem; font-weight: 600; cursor: pointer; }
+.hhsa-presets button:hover { border-color: var(--accent); }
+.hhsa-alerts { margin: 0 0 1.4rem; padding: 0; list-style: none; display: grid; gap: .5rem; }
+.hhsa-alerts li { padding: .7rem .95rem; border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; background: var(--entry); color: var(--content); font-size: .8rem; line-height: 1.7; }
+.hhsa-alerts li.is-warn { border-left-color: #b45309; background: color-mix(in srgb, #b45309 10%, var(--entry)); }
+.hhsa-alerts li.is-ok { border-left-color: #2f7d4f; }
+.hhsa-figure { margin: 2rem 0; }
+.hhsa-figure > p { max-width: 46rem; margin: .4rem 0 .9rem; color: var(--secondary); font-size: .8rem; line-height: 1.8; }
+.hhsa-chart { width: 100%; height: auto; display: block; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--paper); }
+.hhsa-chart text { fill: var(--secondary); font-size: 11px; font-family: var(--font); }
+.hhsa-plane { max-width: 460px; }
+.hh-grid { stroke: var(--tertiary); stroke-width: .6; }
+.hh-signal { stroke: var(--secondary); stroke-opacity: .5; stroke-width: .7; }
+.hh-true { stroke: var(--secondary); stroke-width: 1.2; stroke-dasharray: 5 4; }
+.hh-env { stroke: var(--accent); stroke-width: 1.8; }
+.hh-env-low { stroke-opacity: .5; }
+.hh-spectrum { stroke: var(--accent); stroke-width: 1.6; }
+.hh-marker { stroke: var(--secondary); stroke-width: .8; stroke-dasharray: 3 3; }
+.hhsa-chart .hh-marker-label { fill: var(--primary); font-size: 10px; }
+.hh-forbid { fill: var(--secondary); fill-opacity: .16; }
+.hh-diagonal { stroke: var(--secondary); stroke-width: 1; stroke-dasharray: 4 3; }
+.hh-floor { fill: var(--tertiary); fill-opacity: .5; }
+.hhsa-chart .hh-note { fill: var(--secondary); font-size: 10px; font-style: italic; }
+.hh-point { fill: var(--accent); }
+.hh-est { fill: none; stroke: var(--accent); stroke-width: 2; }
+.hhsa-legend { margin: .6rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; list-style: none; color: var(--secondary); font-size: .74rem; }
+.hhsa-legend li { display: inline-flex; align-items: center; gap: .4rem; }
+.hh-key { display: inline-block; width: 22px; height: 0; border-top: 2px solid var(--accent); }
+.hh-key-signal { border-top: 1px solid var(--secondary); opacity: .6; }
+.hh-key-true { border-top: 2px dashed var(--secondary); }
+.hh-key-point { width: 10px; height: 10px; border: 0; border-radius: 50%; background: var(--accent); }
+.hh-key-est { width: 14px; height: 14px; border: 2px solid var(--accent); border-radius: 50%; }
+.hhsa-readout-wrap { margin: 2rem 0; }
+.hhsa-readout { margin: .8rem 0 0; display: grid; gap: .5rem; }
+.hhsa-readout > div { display: grid; grid-template-columns: minmax(8rem, 14rem) minmax(0, 1fr); gap: 1rem; padding: .6rem 0; border-bottom: 1px solid var(--tertiary); font-size: .8rem; }
+.hhsa-readout dt { color: var(--secondary); font-weight: 600; }
+.hhsa-readout dd { margin: 0; font-variant-numeric: tabular-nums; }
+.hhsa-claims { margin: 2rem 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.4rem; }
+.hhsa-claims > div { padding: 1.1rem 1.2rem; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--paper); }
+.hhsa-claims ul, .hhsa-reading ul { margin: .7rem 0 0; padding-left: 1.2rem; color: var(--secondary); font-size: .78rem; line-height: 1.8; }
+.hhsa-reading { margin: 2rem 0; }
+@media (max-width: 640px) {
+  .hhsa-chart:not(.hhsa-plane) text { font-size: 18px; }
+  .hhsa-chart:not(.hhsa-plane) .hh-marker-label { font-size: 16px; }
+  .hhsa-control { grid-template-columns: minmax(0, 1fr) auto; }
+  .hhsa-control input[type="range"], .hhsa-control select { grid-column: 1 / -1; }
+  .hhsa-readout > div, .hhsa-claims { grid-template-columns: minmax(0, 1fr); }
+}

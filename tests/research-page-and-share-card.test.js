@@ -38,7 +38,7 @@ test('Research page reuses the broad research-interest block and adds no study-d
 
 test('every demo on the Research page points to a routed experiment', () => {
   for (const lang of ['zh', 'en']) {
-    assert.equal(page[lang].demos.length, 4);
+    assert.equal(page[lang].demos.length, 5);
     for (const demo of page[lang].demos) assert.match(app, new RegExp(`path === '/lab/${demo[0]}'`), `${demo[0]} is not routed`);
   }
   assert.deepEqual(page.zh.demos.map(d => d[0]), page.en.demos.map(d => d[0]));

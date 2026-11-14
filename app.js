@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261113-01';
+const SITE_VERSION = '20261114-01';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -607,12 +607,13 @@ const researchPageContent = {
     title: '研究',
     lead: '這裡整理我的研究興趣、已發表的成果，以及能讓你親手體驗相關研究方法的互動示範。',
     pubLabel: '學術發表', pubSummary: '期刊論文 9 篇（第一作者 2 篇）· 研討會發表 14 場 · 最佳發表獎 3 項', pubLink: '查看完整發表列表 →',
-    demoLabel: '親手試試研究方法', demoLead: '這些互動示範改編自文獻中的經典作業，資料只留在你的瀏覽器，不是研究作業，也不做任何評估。',
+    demoLabel: '親手試試研究方法', demoLead: '這些互動示範改編自文獻中的經典作業與方法概念，資料只留在你的瀏覽器，不是研究作業，也不做任何評估。',
     demos: [
       ['posner', '注意力：Posner 空間提示作業', '提示是否有效，會如何改變你的反應時間？'],
       ['emotion-gonogo', '情緒與動作：情緒臉孔 Go/No-Go', '情緒與任務目標相關時，表情才會改變反應嗎？'],
       ['face-judgment', '情緒知覺：表情判斷曲線', '模糊的臉，你會看成開心還是難過？'],
-      ['stop-signal', '抑制控制：情緒選擇性停止訊號作業', '看到紅框時，你還煞得住嗎？']
+      ['stop-signal', '抑制控制：情緒選擇性停止訊號作業', '看到紅框時，你還煞得住嗎？'],
+      ['hhsa', '訊號：振幅調變與包絡', '誰在調變誰？']
     ],
     frameworkLabel: '研究框架', frameworkCaveat: '示意圖，簡化呈現研究變項間的關係，非統計模型或因果推論結果。',
     demoOpen: '開始 →',
@@ -623,12 +624,13 @@ const researchPageContent = {
     title: 'Research',
     lead: 'My research interests, published work, and interactive demonstrations that let you try the methods yourself.',
     pubLabel: 'Publications', pubSummary: '9 journal articles (2 as first author) · 14 conference presentations · 3 best-presentation awards', pubLink: 'See the full publication list →',
-    demoLabel: 'Try the methods yourself', demoLead: 'These demonstrations adapt classic tasks from the literature. Data stay in your browser; they are not research tasks and make no assessment of you.',
+    demoLabel: 'Try the methods yourself', demoLead: 'These demonstrations adapt classic tasks and methodological ideas from the literature. Data stay in your browser; they are not research tasks and make no assessment of you.',
     demos: [
       ['posner', 'Attention: Posner spatial cueing task', 'How does a valid or invalid cue change your reaction time?'],
       ['emotion-gonogo', 'Emotion and action: emotional-face Go/No-Go', 'Do expressions change responses only when emotion is relevant to the goal?'],
       ['face-judgment', 'Emotion perception: facial-expression judgment curve', 'Do you read an ambiguous face as happy or sad?'],
-      ['stop-signal', 'Inhibitory control: emotional selective stop-signal task', 'Can you still stop when a red frame appears?']
+      ['stop-signal', 'Inhibitory control: emotional selective stop-signal task', 'Can you still stop when a red frame appears?'],
+      ['hhsa', 'Signals: amplitude modulation and the envelope', 'Who modulates whom?']
     ],
     frameworkLabel: 'Research framework', frameworkCaveat: 'Simplified schematic of how these variables relate — not a statistical model or a causal claim.',
     demoOpen: 'Start →',
@@ -2202,6 +2204,7 @@ async function router() {
   window.InteractiveLab?.cleanup();
   window.EmotionGoNoGoUI?.cleanup();
   window.LabGamesUI?.cleanup();
+  window.HhsaIntuitionUI?.cleanup();
   closeMenu();
   updateChrome();
   app.innerHTML = '<div class="loading">Loading<span>…</span></div>';
@@ -2217,6 +2220,7 @@ async function router() {
     else if (path === '/lab/emotion-gonogo') window.EmotionGoNoGoUI.renderEmotionGoNoGo(app, lang);
     else if (path === '/lab/face-judgment') window.LabGamesUI.renderFaceJudgment(app, lang);
     else if (path === '/lab/stop-signal') window.LabGamesUI.renderStopSignal(app, lang);
+    else if (path === '/lab/hhsa') window.HhsaIntuitionUI.renderHhsaIntuition(app, lang);
     else if (path === '/interests') renderInterests();
     else if (path === '/publications') await renderPublications();
     else if (path === '/blog' || path.startsWith('/blog/')) await renderBlog(path.split('/')[2] || 'all');
