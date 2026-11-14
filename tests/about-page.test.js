@@ -86,7 +86,7 @@ test('the research framework figure moved from About to the Research page', () =
 });
 
 test('English About copy has no Chinese characters', () => {
-  const labels = app.match(/: \{\n    home: 'Home', title: 'About'[\s\S]*?moreResearch:[^\n]*\n/)[0];
+  const labels = app.replace(/\r\n/g, '\n').match(/: \{\n    home: 'Home', title: 'About'[\s\S]*?moreResearch:[^\n]*\n/)[0];
   // The language switch deliberately names the other language ("Language: 中文").
   assert.doesNotMatch(labels.replace(/language: '[^']*',/, ''), CJK);
   for (const key of ['education', 'experience', 'scholarships', 'honorsList']) assert.doesNotMatch(JSON.stringify(listOf(en, key)), CJK, key);
