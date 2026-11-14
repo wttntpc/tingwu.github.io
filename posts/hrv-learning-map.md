@@ -23,6 +23,7 @@ HRV（心率變異度）描述相鄰心搏間隔隨時間的變化，不是單�
 1. [從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？](#/post/hrv-bbi-rri-ibi-nni)（2026-08-26）
 2. [方法學專題：Garmin 可以取代 ECG 嗎？](#/post/garmin-ecg-validation-study-design)（研究設計與一致性分析）
 3. [分析實作：Garmin、Portable ECG 與 BIOPAC 如何進入同一條 HRV 流程？](#/post/hrv-three-device-analysis-practice)（2026-09-23；三設備、QC 與敏感度分析）
+4. [12 導程 ECG 與 PPG 設備：怎麼和「黃金標準」比較？](#/post/hrv-device-gold-standard-comparison)（2026-11-14；參考標準階層、同步、一致性統計）
 
 <!-- PROFESSIONAL -->
 # HRV 學習地圖：從自律神經、感測設備到指標解讀
@@ -33,6 +34,7 @@ HRV（心率變異度）描述相鄰心搏間隔隨時間的變化，不是單�
 1. [從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？](#/post/hrv-bbi-rri-ibi-nni)（2026-08-26）
 2. [方法學專題：Garmin 可以取代 ECG 嗎？](#/post/garmin-ecg-validation-study-design)（研究設計與一致性分析）
 3. [分析實作：Garmin、Portable ECG 與 BIOPAC 如何進入同一條 HRV 流程？](#/post/hrv-three-device-analysis-practice)（2026-09-23；三設備、QC 與敏感度分析）
+4. [12 導程 ECG 與 PPG 設備：怎麼和「黃金標準」比較？](#/post/hrv-device-gold-standard-comparison)（2026-11-14；參考標準階層、同步、一致性統計）
 
 ## 量測鏈
 

@@ -1,5 +1,15 @@
 [
   {
+    "id": "hrv-device-gold-standard-comparison",
+    "title": "12 導程 ECG 與 PPG 設備：怎麼和「黃金標準」比較？HRV 設備驗證入門",
+    "date": "2026-11-14",
+    "category": "research-methods",
+    "tags": ["HRV", "12導程ECG", "PPG", "方法比較", "一致性分析", "設備驗證"],
+    "description": "分清楚 12 導程 ECG、連續 ECG、胸帶與腕式 PPG 在驗證中的角色，並整理比較流程、一致性統計與常見錯誤。",
+    "titleEn": "12-Lead ECG and PPG Devices: How to Compare Them With a Gold Standard\u2014An Introduction to HRV Device Validation",
+    "descriptionEn": "Clarifies the roles of 12-lead ECG, continuous ECG, chest straps, and wrist PPG in validation, and lays out the comparison workflow, agreement statistics, and common mistakes."
+  },
+  {
     "id": "exercise-emotion-learning-map",
     "title": "運動與情緒學習地圖：從情緒的定義、量測到證據解讀",
     "date": "2026-11-14",
