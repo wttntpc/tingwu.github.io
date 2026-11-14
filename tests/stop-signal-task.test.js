@@ -16,11 +16,11 @@ test('the response is the expression judgement: each emotion has its own key and
 
 test('stage sizes follow the demonstration design and signals are split evenly into stop and continue', () => {
   const sizes = Object.fromEntries(Task.STAGE_ORDER.map(stage => [stage, Task.createBlock(stage, seeded()).length]));
-  assert.deepEqual(sizes, { practice_go: 8, practice_signal: 14, baseline: 8, calib: 32, formal: 72 });
+  assert.deepEqual(sizes, { practice_go: 4, practice_signal: 8, baseline: 6, calib: 16, formal: 40 });
   const formal = Task.createBlock('formal', seeded(5));
   for (const emotion of Task.EMOTIONS) {
     const count = kind => formal.filter(t => t.emotion === emotion && t.kind === kind).length;
-    assert.deepEqual([count('go'), count('stop'), count('cont')], [18, 9, 9]);
+    assert.deepEqual([count('go'), count('stop'), count('cont')], [10, 5, 5]);
   }
   assert.equal(formal.filter(t => t.kind === 'go').length / formal.length, 0.5);
 });
@@ -45,7 +45,7 @@ test('trial order rules hold: two go trials first, runs are limited, and express
 test('face identities are spread evenly within each emotion and trial kind', () => {
   const trials = Task.createBlock('formal', seeded(37));
   for (const emotion of Task.EMOTIONS) {
-    for (const [kind, per] of [['go', 18], ['stop', 9]]) {
+    for (const [kind, per] of [['go', 10], ['stop', 5]]) {
       const ids = trials.filter(t => t.emotion === emotion && t.kind === kind).map(t => t.identity);
       assert.equal(ids.length, per);
       const counts = Task.IDENTITIES.map(id => ids.filter(x => x === id).length);

@@ -53,7 +53,7 @@
           practice_signal: { kicker: '練習 2', title: '加入外框變色', body: '現在有些題目臉孔外圍會冒出外框。紅框：不要按。綠框：照常按。外框是在臉出現後才變色，不要等它，照常快速判斷。每題會告訴你對錯。', button: '開始練習' },
           baseline: { kicker: '第一部分', title: '判斷表情（沒有外框）', body: '這一段沒有外框，請又快又準。系統會用這一段的反應速度來設定紅框的起始時間。', button: '開始' },
           calib: { kicker: '第二部分', title: '判斷表情；看到紅框就停', body: '從這裡開始，紅框與綠框都會出現。紅框出現的時間會隨你的表現自動調整，所以有時容易停、有時不容易；請不要故意放慢。如果太慢或沒反應，畫面會出現「請再快一點」。', button: '開始' },
-          formal: { kicker: '第三部分', title: '正式測驗', body: '規則和上一段相同，共 72 題，其中 18 題出現紅框。紅框的時間會分別為開心臉和難過臉自動調整。請照平常速度又快又準地判斷。', button: '開始正式測驗' }
+          formal: { kicker: '第三部分', title: '正式測驗', body: '規則和上一段相同，共 {total} 題，其中 {stops} 題出現紅框。紅框的時間會分別為開心臉和難過臉自動調整。請照平常速度又快又準地判斷。', button: '開始正式測驗' }
         },
         statsTitle: '上一段', statsRt: '平均反應時間', statsOmit: '漏按', statsWrong: '按錯邊',
         fb: { correct: '正確', wrong: '按錯邊了', slow: '太慢了，請再快一點', contOk: '正確（綠框要照常按）', contMiss: '綠框要照常按喔', stopOk: '成功停住', stopFail: '紅框後還是按了，這很正常', faster: '請再快一點' },
@@ -63,7 +63,7 @@
         contRt: '綠框題平均反應時間', frameCost: '綠框題比一般題慢', frameCostNote: '綠框題需要照常按，但畫面有變化；慢多少反映了「看到外框」本身的干擾，用來和停止指令的效果區分。',
         noSsrt: '無法可靠估計', prediction: '你的預測', predictionLabels: { happy: '開心臉較難停', sad: '難過臉較難停', same: '差不多', unsure: '未選擇' },
         tableTitle: '依表情分開看（僅供描述）', emotion: '臉孔', stopCount: '停止題數', ssrtExplore: '探索性 SSRT', meanSsdShort: '平均紅框延遲',
-        perEmotionNote: '每種表情只有 9 題停止題，樣本太少，各自的 SSRT 只能當作探索，不適合下「某種表情較難停」的結論。「—」表示該表情沒有通過前提檢查，所以不報告。',
+        perEmotionNote: '每種表情只有 {perEmotion} 題停止題，樣本太少，各自的 SSRT 只能當作探索，不適合下「某種表情較難停」的結論。「—」表示該表情沒有通過前提檢查，所以不報告。',
         warnRate: '紅框後仍按鍵的比例不在 25%–75% 之間，這次的 SSRT 不可靠。常見原因是故意等紅框、或反應太亂；請照平常速度再做一次。',
         warnRace: '平均而言，沒停住的反應並沒有比一般反應快，這違反了估計方法的前提，所以不報告 SSRT。',
         warnExtreme: '紅框後全部都停住或全部都按了，無法用這個方法估計 SSRT。',
@@ -113,7 +113,7 @@
           practice_signal: { kicker: 'Practice 2', title: 'Adding the coloured frame', body: 'Now some faces get a frame. Red: do not press. Green: respond as usual. The frame changes colour only after the face has appeared, so do not wait for it; keep judging quickly. Every trial tells you whether you were right.', button: 'Start practice' },
           baseline: { kicker: 'Part 1', title: 'Judge the expression (no frames)', body: 'There are no frames in this part. Be fast and accurate. Your speed here sets where the red frame starts.', button: 'Start' },
           calib: { kicker: 'Part 2', title: 'Judge the expression; stop at a red frame', body: 'From here on, red and green frames appear. When the red frame appears is adjusted to your performance, so stopping will sometimes be easy and sometimes hard; please do not slow down on purpose. If you are too slow or miss a trial, “Respond faster” appears.', button: 'Start' },
-          formal: { kicker: 'Part 3', title: 'The test', body: 'The rules are the same as in the previous part. There are 72 trials, 18 of them with a red frame. The red-frame timing is adjusted separately for happy and sad faces. Respond at your normal speed, fast and accurate.', button: 'Start the test' }
+          formal: { kicker: 'Part 3', title: 'The test', body: 'The rules are the same as in the previous part. There are {total} trials, {stops} of them with a red frame. The red-frame timing is adjusted separately for happy and sad faces. Respond at your normal speed, fast and accurate.', button: 'Start the test' }
         },
         statsTitle: 'Previous part', statsRt: 'Mean reaction time', statsOmit: 'Missed', statsWrong: 'Wrong key',
         fb: { correct: 'Correct', wrong: 'Wrong key', slow: 'Too slow, respond faster', contOk: 'Correct (respond as usual on green)', contMiss: 'Respond as usual on green', stopOk: 'Stopped successfully', stopFail: 'You pressed after the red frame—this is normal', faster: 'Respond faster' },
@@ -123,7 +123,7 @@
         contRt: 'Mean green-frame reaction time', frameCost: 'Green-frame trials slower than go', frameCostNote: 'Green-frame trials require the usual response but the display changes. How much slower they are reflects the interference of seeing a frame, which helps to separate it from the effect of the stop instruction.',
         noSsrt: 'Cannot be estimated reliably', prediction: 'Your prediction', predictionLabels: { happy: 'Harder to stop with happy faces', sad: 'Harder to stop with sad faces', same: 'About the same', unsure: 'No prediction selected' },
         tableTitle: 'By expression (descriptive only)', emotion: 'Face', stopCount: 'Stop trials', ssrtExplore: 'Exploratory SSRT', meanSsdShort: 'Mean red-frame delay',
-        perEmotionNote: 'Each expression has only 9 stop trials, which is too few for separate SSRTs to be more than exploratory, or to conclude that one expression is harder to stop. A dash means that expression did not pass the assumption checks, so no value is reported.',
+        perEmotionNote: 'Each expression has only {perEmotion} stop trials, which is too few for separate SSRTs to be more than exploratory, or to conclude that one expression is harder to stop. A dash means that expression did not pass the assumption checks, so no value is reported.',
         warnRate: 'The share of responses after the red frame is outside 25–75%, so this SSRT is not reliable. Common causes are waiting for the frame on purpose or erratic responding; try again at your normal speed.',
         warnRace: 'On average, failed stops were not faster than ordinary go responses. This breaks an assumption of the method, so no SSRT is reported.',
         warnExtreme: 'You either stopped on every red-frame trial or on none, so the method cannot estimate an SSRT.',
@@ -219,9 +219,16 @@
     return `<p class="stage-stats"><strong>${g.statsTitle}</strong>　${g.statsRt} ${ms(StopTask().mean(rts))}　·　${g.statsOmit} ${omitted}　·　${g.statsWrong} ${wrong}</p>`;
   }
 
+  // Trial counts in the copy come from the task configuration, so shortening or lengthening a block never leaves stale numbers.
+  function fillCounts(text) {
+    const { STAGES, EMOTIONS } = StopTask();
+    const formal = STAGES.formal;
+    return text.replace('{total}', EMOTIONS.length * (formal.go + 2 * formal.signal)).replace('{stops}', EMOTIONS.length * formal.signal).replace('{perEmotion}', formal.signal);
+  }
+
   function stagePanelMarkup(lang, stage, mapping, previous = []) {
     const c = copy[lang] || copy.zh; const g = c.stop; const info = g.stages[stage];
-    return `<div class="page-shell experiment-page"><a class="back-link" href="#/lab">${c.back}</a><section class="experiment-transition"><p class="eyebrow">${info.kicker}</p><h1>${info.title}</h1>${statsMarkup(g, previous)}${keyMapMarkup(g, mapping)}<p>${info.body}</p><button class="experiment-primary" type="button" data-stop-next>${info.button}</button></section></div>`;
+    return `<div class="page-shell experiment-page"><a class="back-link" href="#/lab">${c.back}</a><section class="experiment-transition"><p class="eyebrow">${info.kicker}</p><h1>${info.title}</h1>${statsMarkup(g, previous)}${keyMapMarkup(g, mapping)}<p>${fillCounts(info.body)}</p><button class="experiment-primary" type="button" data-stop-next>${info.button}</button></section></div>`;
   }
 
   function buildStopResultsMarkup(lang = 'zh', summary, prediction = 'unsure') {
@@ -236,7 +243,7 @@
     return `<div class="page-shell experiment-page"><a class="back-link" href="#/lab">${c.back}</a><header class="result-header"><p class="eyebrow">Result</p><h1>${g.resultTitle}</h1><p>${g.resultLead}</p></header>
       <section class="result-summary" aria-labelledby="ssrt-title"><div><span>${g.ssrt}</span><strong id="ssrt-title">${summary.ssrt === null ? g.noSsrt : ms(summary.ssrt)}</strong><small>${lang === 'zh' ? '整合法：第 n 個一般反應時間 − 平均紅框延遲（開心與難過合併）' : 'Integration method: nth go reaction time − mean red-frame delay (happy and sad pooled)'}</small></div><p>${warnings.map(item => `<span class="result-warning">${item}</span>`).join(' ')}</p></section>
       <dl class="result-notes"><div><dt>${g.pRespond}</dt><dd>${pct(summary.pRespond)}</dd></div><div><dt>${g.meanSsd}</dt><dd>${ms(summary.meanSsd)}</dd></div><div><dt>${g.goRt}</dt><dd>${ms(summary.goMedianRt)}</dd></div><div><dt>${g.goAcc}</dt><dd>${pct(summary.goAccuracy)}</dd></div><div><dt>${g.contRt}</dt><dd>${ms(summary.contMeanRt)}</dd></div><div><dt>${g.frameCost}</dt><dd>${cost}<br><small>${g.frameCostNote}</small></dd></div><div><dt>${g.prediction}</dt><dd>${g.predictionLabels[prediction] || g.predictionLabels.unsure}</dd></div></dl>
-      <section class="result-table-wrap"><h2 class="result-subtitle">${g.tableTitle}</h2><table><thead><tr><th>${g.emotion}</th><th>${g.goRt}</th><th>${g.contRt}</th><th>${g.pRespond}</th><th>${g.meanSsdShort}</th><th>${g.ssrtExplore}</th></tr></thead><tbody>${rows}</tbody></table><p class="result-footnote">${g.perEmotionNote}</p></section>
+      <section class="result-table-wrap"><h2 class="result-subtitle">${g.tableTitle}</h2><table><thead><tr><th>${g.emotion}</th><th>${g.goRt}</th><th>${g.contRt}</th><th>${g.pRespond}</th><th>${g.meanSsdShort}</th><th>${g.ssrtExplore}</th></tr></thead><tbody>${rows}</tbody></table><p class="result-footnote">${fillCounts(g.perEmotionNote)}</p></section>
       <section class="result-limits"><h2>${g.limitsTitle}</h2><ul>${g.limits.map(item => `<li>${item}</li>`).join('')}</ul></section>
       <div class="result-sources"><strong>${g.sourceTitle}</strong>${g.sources.map(source => `<a href="${source[1]}" target="_blank" rel="noopener noreferrer">${source[0]} ↗</a>`).join('')}</div>
       <button class="experiment-primary" type="button" data-stop-retry>${g.retry}</button></div>`;

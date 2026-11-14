@@ -22,7 +22,7 @@
       task3Label: '第三個互動實驗', task3Title: '模糊的臉，你會看成開心還是難過？', task3Name: '表情判斷曲線',
       task3Desc: '判斷一系列由難過漸變到開心的 AI 生成臉孔，畫出你回答「開心」的比例曲線，找出分界點與陡度。資料只留在你的瀏覽器，約需 3–4 分鐘。',
       task4Label: '第四個互動實驗', task4Title: '看到紅框，你還煞得住嗎？', task4Name: '情緒選擇性停止訊號作業',
-      task4Desc: '先用左右手判斷臉孔是開心還是難過；臉孔外圍突然出現紅框就要停住、綠框則照常按。作業會自動調整紅框出現的時間，並估計你停下一個動作所需的時間（SSRT）。約需 7–8 分鐘。',
+      task4Desc: '先用左右手判斷臉孔是開心還是難過；臉孔外圍突然出現紅框就要停住、綠框則照常按。作業會自動調整紅框出現的時間，並估計你停下一個動作所需的時間（SSRT）。約需 4–5 分鐘。',
       coming: '接下來',
       future: ['三分鐘活動挑戰：運動前後的反應時間與心情']
     },
@@ -41,7 +41,7 @@
       task3Label: 'Third interactive experiment', task3Title: 'Do you read an ambiguous face as happy or sad?', task3Name: 'Facial-expression judgment curve',
       task3Desc: 'Judge AI-generated faces that shift from sad to happy, then see a curve of how often you answered “happy” with its balance point and steepness. Data stay in your browser. Allow 3–4 minutes.',
       task4Label: 'Fourth interactive experiment', task4Title: 'Can you still stop when a red frame appears?', task4Name: 'Emotional selective stop-signal task',
-      task4Desc: 'Judge with the left or right hand whether a face looks happy or sad, but hold back when a red frame suddenly appears around it (a green frame means respond as usual). The task adapts when the red frame appears and estimates how long you need to stop an action (SSRT). Allow 7–8 minutes.',
+      task4Desc: 'Judge with the left or right hand whether a face looks happy or sad, but hold back when a red frame suddenly appears around it (a green frame means respond as usual). The task adapts when the red frame appears and estimates how long you need to stop an action (SSRT). Allow 4–5 minutes.',
       coming: 'Coming next',
       future: ['Three-minute movement challenge: response time and mood before and after activity']
     }

@@ -93,7 +93,7 @@ test('stop results explain that SSRT is an estimate, report the frame cost, and 
   assert.match(markup, /整合法/);
   assert.match(markup, /https:\/\/doi\.org\/10\.7554\/eLife\.46323/);
   assert.match(markup, /https:\/\/doi\.org\/10\.3390\/brainsci11040478/);
-  assert.match(markup, /每種表情只有 9 題停止題/);
+  assert.match(markup, /每種表情只有 5 題停止題/);
   assert.match(markup, /綠框題比一般題慢/);
   assert.match(markup, /判斷表情本身就是你的反應/);
   assert.match(markup, /顏色的效果無法和停止指令分開/);
@@ -144,7 +144,7 @@ test('stage panels show the key assignment and, after a timed part, the previous
   assert.match(panel, /Wrong key 1/);
   assert.match(panel, /data-stop-next/);
   assert.doesNotMatch(UI.stagePanelMarkup('en', 'practice_go', 'A', []), /Previous part/);
-  assert.match(UI.stagePanelMarkup('zh', 'formal', 'A', []), /共 72 題，其中 18 題出現紅框/);
+  assert.match(UI.stagePanelMarkup('zh', 'formal', 'A', []), /共 40 題，其中 10 題出現紅框/);
 });
 
 test('trial screens expose labelled response buttons and a keyboard hint', () => {

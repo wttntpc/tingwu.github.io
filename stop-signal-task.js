@@ -19,11 +19,11 @@
   };
   // Trials per emotion. Signal trials are split evenly into stop and continue.
   const STAGES = {
-    practice_go: { go: 4, signal: 0 },
-    practice_signal: { go: 3, signal: 2 },
-    baseline: { go: 4, signal: 0 },
-    calib: { go: 8, signal: 4, useLast: 6 },
-    formal: { go: 18, signal: 9 }
+    practice_go: { go: 2, signal: 0 },
+    practice_signal: { go: 2, signal: 1 },
+    baseline: { go: 3, signal: 0 },
+    calib: { go: 4, signal: 2, useLast: 4 },
+    formal: { go: 10, signal: 5 }
   };
   const STAGE_ORDER = ['practice_go', 'practice_signal', 'baseline', 'calib', 'formal'];
 
