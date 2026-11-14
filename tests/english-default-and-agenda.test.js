@@ -46,9 +46,9 @@ test('research interests are bilingual, broad, and linked from the About page an
   assert.doesNotMatch(block, /RQ[0-9]|crossover|SSRT|VO₂peak|visit/i, 'public page must not expose study-specific design details');
 });
 
-test('home puts research and publications before tools, and the hero offers a contact action', () => {
+test('home puts research and publications before the project tool and latest posts, and the hero offers a contact action', () => {
   const home = app.slice(app.indexOf('async function renderHome()'), app.indexOf('const researchAgenda'));
-  const order = ['renderHomeAgenda', 'home-editorial-grid', 'latest-section', 'home-projects', 'home-lab-preview'].map(key => home.indexOf(key));
+  const order = ['renderHomeAgenda', 'home-editorial-grid', 'home-projects', 'latest-section', 'home-lab-preview'].map(key => home.indexOf(key));
   assert.ok(order.every(i => i >= 0), 'all home blocks present');
   assert.deepEqual([...order].sort((a, b) => a - b), order, 'blocks appear in research-first order');
   assert.match(home, /profile-contact/);

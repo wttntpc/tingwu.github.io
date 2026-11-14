@@ -534,7 +534,6 @@ async function renderHome() {
       <section class="home-block research-section"><h2>${c.selectedAreas}</h2><div class="pillar-grid">${c.focuses.map(item => `<a class="pillar-card" href="#/about/skills"><b>${item[0]}</b><span>${item[1]}</span></a>`).join('')}</div></section>
       <section class="home-block featured-publications"><div class="block-heading"><h2>${c.featuredTitle}</h2><a href="#/publications">${c.allPublications}</a></div><div class="publication-preview-list">${c.featuredPublications.map(item => `<a href="#/publications" class="publication-preview"><span>${item[0]}</span><div><b>${item[1]}</b><small>${item[2]}</small></div></a>`).join('')}</div></section>
     </div>
-    <section class="home-block latest-section"><div class="block-heading"><h2>${c.latestTitle}</h2><a href="#/blog">${c.allPosts}</a></div><div class="post-list">${posts.map(postRow).join('')}</div></section>
     <section class="home-projects" aria-labelledby="home-projects-title">
       <header class="home-projects-heading"><p>${lang === 'zh' ? '實作專案 · 01' : 'Built project · 01'}</p><h2 id="home-projects-title">${lang === 'zh' ? '研究工具與專案' : 'Research tools & projects'}</h2></header>
       <div class="home-project-row">
@@ -543,6 +542,7 @@ async function renderHome() {
         <div class="home-project-actions"><a class="project-action-primary" href="https://at-emt-1-course-radar.vercel.app/" target="_blank" rel="noopener noreferrer">${lang === 'zh' ? '開啟工具 ↗' : 'Open tool ↗'}</a><a href="#/post/at-emt-1-course-radar">${lang === 'zh' ? '閱讀開發紀錄 →' : 'Read build notes →'}</a></div>
       </div>
     </section>
+    <section class="home-block latest-section"><div class="block-heading"><h2>${c.latestTitle}</h2><a href="#/blog">${c.allPosts}</a></div><div class="post-list">${posts.map(postRow).join('')}</div></section>
     <section class="home-lab-preview" aria-labelledby="home-lab-title">
       <div class="home-lab-copy"><p>${lang === 'zh' ? 'Interactive experiments · 01' : 'Interactive experiments · 01'}</p><h2 id="home-lab-title">${lang === 'zh' ? '用自己的反應時間理解腦與行為' : 'Understand brain and behavior through your own response times'}</h2><p>${lang === 'zh' ? '先預測、親自作答、查看結果，再理解注意力如何被線索引導。第一個 Posner 空間提示作業已開放體驗。' : 'Predict, respond, inspect your result, and learn how cues guide attention. The first Posner spatial cueing task is ready to try.'}</p><a href="#/lab">${lang === 'zh' ? '進入互動實驗室 →' : 'Enter the interactive lab →'}</a></div>
       <div class="home-lab-visual" aria-hidden="true"><span>←</span><i>+</i><b>●</b></div>
