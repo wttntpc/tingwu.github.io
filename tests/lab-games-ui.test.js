@@ -32,10 +32,10 @@ test('both games are routed, cleaned up on navigation, and loaded by the page', 
   assert.match(app, /path === '\/lab\/face-judgment'\) window\.LabGamesUI\.renderFaceJudgment\(app, lang\)/);
   assert.match(app, /path === '\/lab\/stop-signal'\) window\.LabGamesUI\.renderStopSignal\(app, lang\)/);
   assert.match(app, /window\.LabGamesUI\?\.cleanup\(\)/);
-  for (const file of ['schematic-face.js', 'face-judgment-task.js', 'stop-signal-task.js', 'lab-games-ui.js']) {
+  for (const file of ['face-images.js', 'face-judgment-task.js', 'stop-signal-task.js', 'lab-games-ui.js']) {
     assert.match(html, new RegExp(`<script src="${file.replace('.', '\\.')}\\?v=[^"]+" defer></script>`), `${file} not loaded`);
   }
-  const order = ['schematic-face.js', 'face-judgment-task.js', 'stop-signal-task.js', 'lab-games-ui.js'].map(file => html.indexOf(file));
+  const order = ['face-images.js', 'face-judgment-task.js', 'stop-signal-task.js', 'lab-games-ui.js'].map(file => html.indexOf(file));
   assert.deepEqual([...order].sort((a, b) => a - b), order, 'dependencies load before the UI');
 });
 
@@ -44,12 +44,13 @@ test('the lab landing page offers four experiments including both new ones', () 
   assert.match(lab, /href=\\?"#\/lab\/stop-signal/);
 });
 
-test('intro pages explain the task, state that data stay local, and disclose that faces are drawn', () => {
+test('intro pages explain the task, state that data stay local, and disclose that faces are AI-generated', () => {
   for (const lang of ['zh', 'en']) {
     for (const [markup, name] of [[UI.buildFaceIntroMarkup(lang), 'face'], [UI.buildStopIntroMarkup(lang), 'stop']]) {
       assert.match(markup, new RegExp(`data-${name}-start`));
       assert.match(markup, lang === 'zh' ? /不會上傳、儲存/ : /not uploaded, stored/);
-      assert.match(markup, lang === 'zh' ? /不是照片/ : /not photographs/);
+      assert.match(markup, lang === 'zh' ? /AI 生成的虛構人物/ : /AI-generated images of fictional people/);
+      assert.match(markup, lang === 'zh' ? /未經驗證/ : /not been validated/);
       assert.match(markup, lang === 'zh' ? /不是研究作業/ : /not a research task/);
       assert.equal((markup.match(/name="[a-z]+-prediction"/g) || []).length, 3, 'three prediction choices');
     }

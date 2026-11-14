@@ -20,7 +20,7 @@
       task2Label: '第二個互動實驗', task2Title: '情緒會自動改變動作嗎？', task2Name: '情緒臉孔 × 動作啟動',
       task2Desc: '改編自 Mirabella 等人（2023）的向前步態啟動研究：使用虛構的 AI 合成臉孔，比較情緒與任務相關或無關時，憤怒與快樂臉孔是否呈現不同反應。網站以單鍵安全模擬，約需 4–5 分鐘。',
       task3Label: '第三個互動實驗', task3Title: '模糊的臉，你會看成開心還是難過？', task3Name: '表情判斷曲線',
-      task3Desc: '判斷一系列由難過漸變到開心的示意臉，畫出你回答「開心」的比例曲線，找出分界點與陡度。資料只留在你的瀏覽器，約需 3–4 分鐘。',
+      task3Desc: '判斷一系列由難過漸變到開心的 AI 生成臉孔，畫出你回答「開心」的比例曲線，找出分界點與陡度。資料只留在你的瀏覽器，約需 3–4 分鐘。',
       task4Label: '第四個互動實驗', task4Title: '看到「停」的訊號，你還煞得住嗎？', task4Name: '停止訊號作業',
       task4Desc: '依箭頭快速按鍵，紅圈出現就忍住不按；作業會自動調整難度，並估計你停下一個動作所需的時間（SSRT）。約需 5 分鐘。',
       coming: '接下來',
@@ -39,7 +39,7 @@
       task2Label: 'Second interactive experiment', task2Title: 'Does emotion automatically change action?', task2Name: 'Emotional faces × action initiation',
       task2Desc: 'Adapted from Mirabella et al. (2023): use fictional AI-generated faces to compare angry and happy expressions when emotion is relevant versus irrelevant to the current goal. A single key safely stands in for a forward step. Allow 4–5 minutes.',
       task3Label: 'Third interactive experiment', task3Title: 'Do you read an ambiguous face as happy or sad?', task3Name: 'Facial-expression judgment curve',
-      task3Desc: 'Judge schematic faces that shift from sad to happy, then see a curve of how often you answered “happy” with its balance point and steepness. Data stay in your browser. Allow 3–4 minutes.',
+      task3Desc: 'Judge AI-generated faces that shift from sad to happy, then see a curve of how often you answered “happy” with its balance point and steepness. Data stay in your browser. Allow 3–4 minutes.',
       task4Label: 'Fourth interactive experiment', task4Title: 'Can you still stop when the “stop” signal appears?', task4Name: 'Stop-signal task',
       task4Desc: 'Press for the arrow as fast as you can and hold back when a red ring appears. The task adapts its difficulty and estimates how long you need to stop an action (SSRT). Allow about 5 minutes.',
       coming: 'Coming next',
@@ -116,9 +116,9 @@
   };
 
   function previewFaces(levels, ring = false) {
-    const face = typeof globalThis !== 'undefined' ? globalThis.SchematicFace : null;
+    const face = typeof globalThis !== 'undefined' ? globalThis.FaceImages : null;
     if (!face) return '';
-    return levels.map(level => `<span class="preview-face">${face.faceSvg(level, { ring })}</span>`).join('');
+    return levels.map((level, index) => `<span class="preview-face">${face.faceHtml(level, { ring, identity: face.IDENTITIES[(index + (ring ? 1 : 0)) % face.IDENTITIES.length] })}</span>`).join('');
   }
 
   function buildLabMarkup(lang = 'zh') {

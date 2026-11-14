@@ -88,3 +88,13 @@ test('summary reports per-emotion go speed, omissions and stop rate without a pe
   assert.equal(summary.byEmotion.sad.pRespondGivenSignal, 1);
   assert.equal('ssrt' in summary.byEmotion.happy, false);
 });
+
+test('each emotion and trial type spreads the four face identities evenly', () => {
+  const trials = Task.createTrials({ goPerEmotion: 24, stopPerEmotion: 8 }, () => 0.37);
+  for (const emotion of Task.EMOTIONS) {
+    for (const [type, per] of [['go', 6], ['stop', 2]]) {
+      const ids = trials.filter(t => t.emotion === emotion && t.type === type).map(t => t.identity);
+      for (const id of ['a', 'b', 'c', 'd']) assert.equal(ids.filter(x => x === id).length, per, `${emotion} ${type} ${id}`);
+    }
+  }
+});

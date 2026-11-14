@@ -6,6 +6,7 @@
   // Ambiguous-face judgment: each face lies on a sad (0) to happy (1) continuum and the
   // person answers "happy" or "sad". The psychometric curve shows where answers flip.
   const LEVELS = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1];
+  const IDENTITIES = ['a', 'b', 'c', 'd'];
 
   function shuffle(items, random) {
     const result = items.slice();
@@ -20,14 +21,17 @@
     if (!Number.isInteger(repeats) || repeats <= 0) throw new Error('repeats must be a positive integer');
     const trials = [];
     for (const level of levels) {
-      for (let i = 0; i < repeats; i++) trials.push({ level, response: null, rt: null });
+      // Every identity is seen equally often at each level, in a random order per level.
+      const order = shuffle(IDENTITIES, random);
+      for (let i = 0; i < repeats; i++) trials.push({ level, identity: order[i % order.length], response: null, rt: null });
     }
     return shuffle(trials, random);
   }
 
   function createPracticeTrials(random = Math.random) {
     // Clear faces only, so people learn the controls before the ambiguous ones.
-    return shuffle([0, 0, 1, 1, 0.125, 0.875].map(level => ({ level, response: null, rt: null, practice: true })), random);
+    const order = shuffle(IDENTITIES, random);
+    return shuffle([0, 0, 1, 1, 0.125, 0.875].map((level, index) => ({ level, identity: order[index % order.length], response: null, rt: null, practice: true })), random);
   }
 
   function proportionsByLevel(trials) {

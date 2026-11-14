@@ -8,6 +8,7 @@
   // half of the stop trials succeed; SSRT is then estimated with the integration method
   // recommended by Verbruggen et al. (2019, eLife, https://doi.org/10.7554/eLife.46323).
   const EMOTIONS = ['happy', 'sad'];
+  const IDENTITIES = ['a', 'b', 'c', 'd'];
   const DEFAULT_LIMITS = { startSsd: 250, step: 50, minSsd: 50, maxSsd: 800, maxRt: 1000 };
 
   function shuffle(items, random) {
@@ -25,8 +26,11 @@
     }
     const trials = [];
     for (const emotion of EMOTIONS) {
-      for (let i = 0; i < goPerEmotion; i++) trials.push({ emotion, type: 'go', arrow: i % 2 ? 'left' : 'right' });
-      for (let i = 0; i < stopPerEmotion; i++) trials.push({ emotion, type: 'stop', arrow: i % 2 ? 'left' : 'right' });
+      // Identities are cycled in a random order within each emotion and trial type, so they stay balanced.
+      const goOrder = shuffle(IDENTITIES, random);
+      const stopOrder = shuffle(IDENTITIES, random);
+      for (let i = 0; i < goPerEmotion; i++) trials.push({ emotion, type: 'go', arrow: i % 2 ? 'left' : 'right', identity: goOrder[i % goOrder.length] });
+      for (let i = 0; i < stopPerEmotion; i++) trials.push({ emotion, type: 'stop', arrow: i % 2 ? 'left' : 'right', identity: stopOrder[i % stopOrder.length] });
     }
     const mixed = shuffle(trials, random);
     // Never start with a stop trial: people need two go trials to settle into a response rhythm.

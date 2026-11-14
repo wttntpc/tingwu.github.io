@@ -1,7 +1,9 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const Task = require('../face-judgment-task.js');
-const Face = require('../schematic-face.js');
+const Face = require('../face-images.js');
+const fs = require('node:fs');
+const path = require('node:path');
 
 function seeded(seed = 7) {
   let s = seed;
@@ -68,16 +70,29 @@ test('timeouts are counted and excluded, and clear-face accuracy is reported', (
   assert.ok(summary.clearAccuracy > 0.9);
 });
 
-test('schematic faces move smoothly from a frown to a smile without any image file', () => {
-  const sad = Face.faceGeometry(0); const happy = Face.faceGeometry(1); const mid = Face.faceGeometry(0.5);
-  const controlY = g => Number(g.mouth.match(/Q 50 ([\d.-]+)/)[1]);
-  assert.ok(controlY(sad) < controlY(mid) && controlY(mid) < controlY(happy));
-  assert.equal(controlY(mid), 69);
-  assert.ok(sad.leftBrow.y1 > sad.leftBrow.y2, 'sad brows slope up toward the middle');
-  assert.equal(happy.leftBrow.y1, happy.leftBrow.y2, 'happy brows stay level, not angry-slanted');
-  assert.ok(happy.leftBrow.y1 < mid.leftBrow.y1, 'happy brows sit slightly higher');
-  assert.ok(sad.rightBrow.y1 < sad.rightBrow.y2, 'right brow mirrors the left');
-  const svg = Face.faceSvg(0.3, { label: 'face' });
-  assert.match(svg, /<svg[^>]+role="img" aria-label="face"/);
-  assert.doesNotMatch(svg, /<img|href=|http/);
+test('every trial gets an identity and each identity is seen equally often at every level', () => {
+  const trials = Task.createTrials({ repeats: 4 }, seeded(3));
+  for (const level of Task.LEVELS) {
+    const ids = trials.filter(t => t.level === level).map(t => t.identity).sort();
+    assert.deepEqual(ids, ['a', 'b', 'c', 'd'], `level ${level}`);
+  }
+  assert.ok(Task.createPracticeTrials(seeded()).every(t => Face.IDENTITIES.includes(t.identity)));
+});
+
+test('face images: nine levels per identity map from sad to happy and every file exists', () => {
+  assert.equal(Face.levelIndex(0), 0);
+  assert.equal(Face.levelIndex(0.5), 4);
+  assert.equal(Face.levelIndex(1), 8);
+  assert.equal(Face.levelIndex(0.375), 3);
+  assert.equal(Face.sources().length, 36);
+  const root = path.resolve(__dirname, '..');
+  for (const file of Face.sources()) assert.ok(fs.existsSync(path.join(root, file)), `${file} missing`);
+  assert.throws(() => Face.src('z', 0.5), /unknown identity/);
+});
+
+test('face markup uses an image, keeps decorative faces out of the accessibility tree, and can draw the stop ring', () => {
+  const labelled = Face.faceHtml(0.3, { identity: 'b', label: 'face' });
+  assert.match(labelled, /<img src="assets\/emotion-faces\/continuum\/identity-b-level-2\.webp" alt="face"/);
+  assert.match(Face.faceHtml(1, { identity: 'a' }), /alt="" aria-hidden="true"/);
+  assert.match(Face.faceHtml(1, { identity: 'a', ring: true }), /face-photo has-ring/);
 });

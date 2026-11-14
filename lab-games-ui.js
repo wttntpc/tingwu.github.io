@@ -4,7 +4,7 @@
   else root.LabGamesUI = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function createLabGamesUIApi() {
   const dep = (name, file) => (typeof require === 'function' ? require(file) : globalThis[name]);
-  const Face = () => dep('SchematicFace', './schematic-face.js');
+  const Face = () => dep('FaceImages', './face-images.js');
   const FaceTask = () => dep('FaceJudgmentTask', './face-judgment-task.js');
   const StopTask = () => dep('StopSignalTask', './stop-signal-task.js');
 
@@ -15,7 +15,7 @@
     zh: {
       back: '← 返回互動實驗室', practice: '練習', formal: '正式測驗', progress: '進度',
       privacy: '所有反應只在你的瀏覽器中計算，不會上傳、儲存或加入任何研究資料庫。這是科普示範，不是研究作業，也不是心理或醫療評估。',
-      faceStimuli: '臉孔是用程式畫出的示意臉（只改變嘴角與眉毛弧度），不是照片，也沒有對應任何真人；它們的情緒強度沒有經過正式評定，不是研究用刺激。',
+      faceStimuli: '臉孔是 AI 生成的虛構人物影像，不對應任何真人。「難過 → 中性 → 開心」之間的中間格是兩張生成影像的混合步數，不是經過評定的情緒強度；這些影像未經驗證，不是研究用刺激。',
       face: {
         eyebrow: 'Interpretation · 03', title: '模糊的臉，你會看成開心還是難過？',
         lead: '真實生活中的表情常常不是「很明顯的開心」或「很明顯的難過」，而是介於兩者之間。這個小作業讓你判斷一系列由難過漸變到開心的臉，畫出你的「判斷曲線」。',
@@ -34,7 +34,7 @@
         noPse: '這次資料沒有讓曲線在 0%–100% 的範圍內跨過 50%，所以無法估計分界點。可能是你幾乎一律回答同一個答案，或題數不夠；再做一次看看。',
         method: { logistic: '以羅吉斯曲線（maximum likelihood）擬合', interpolation: '你的回答非常乾脆（幾乎沒有中間地帶），曲線無法擬合，因此用相鄰兩點內插求 50% 位置，陡度不估計', 'out-of-range': '曲線沒有在範圍內跨過 50%', none: '' },
         clearAcc: '明顯開心／難過臉的正確率', timeouts: '超時題數',
-        limitsTitle: '如何解讀', limits: ['分界點較低，表示臉孔還偏難過時你就已經開始回答「開心」；較高則相反。這只是這一次、這組示意臉的結果，不是固定特質。', '嘴角與眉毛是等距改變的，但人感受到的情緒強度不一定等距，所以曲線的形狀只能當作示範。', '研究文獻會用經過驗證的臉孔材料、更多題數與較大的樣本，並把這種分界點當成「情緒知覺偏誤」的一個指標，而非診斷工具。'],
+        limitsTitle: '如何解讀', limits: ['分界點較低，表示臉孔還偏難過時你就已經開始回答「開心」；較高則相反。這只是這一次、這組 AI 生成臉孔的結果，不是固定特質。', '臉孔是在影像上等距混合的，但人感受到的情緒強度不一定等距，所以曲線的形狀只能當作示範。', '研究文獻會用經過驗證的臉孔材料、更多題數與較大的樣本，並把這種分界點當成「情緒知覺偏誤」的一個指標，而非診斷工具。'],
         sourceTitle: '延伸閱讀', source: 'Penton-Voak、Munafò 與 Looi（2017）：情緒臉孔知覺偏誤與心理健康的回顧', doi: 'https://doi.org/10.1177/0963721417704405',
         retry: '再做一次'
       },
@@ -56,7 +56,7 @@
         perEmotionNote: '每種表情只有 8 題停止題，樣本太少，不能用來估計各自的 SSRT，也不適合下「某種表情較難停」的結論。',
         warnRate: '紅圈後仍按鍵的比例不在 25%–75% 之間，這次的 SSRT 可能不準。常見原因是故意等紅圈、或反應太亂；請照平常速度再做一次。',
         warnRace: '平均而言，沒停住的反應並沒有比一般反應快，這違反了估計方法的前提，SSRT 只能當作粗略參考。',
-        limitsTitle: '如何解讀', limits: ['SSRT 是模型估計值，不是直接量到的時間；它依賴「停止」與「前進」兩個過程賽跑的假設。', '你的結果只代表這一次、這個簡短版本。正式研究的題數更多，並檢查前提是否成立後才解讀。', '這裡的臉孔是示意圖，目的在示範「情緒背景」這種實驗設計，不是用來判斷你的情緒或能力。'],
+        limitsTitle: '如何解讀', limits: ['SSRT 是模型估計值，不是直接量到的時間；它依賴「停止」與「前進」兩個過程賽跑的假設。', '你的結果只代表這一次、這個簡短版本。正式研究的題數更多，並檢查前提是否成立後才解讀。', '這裡的臉孔是 AI 生成的虛構人物，目的在示範「情緒背景」這種實驗設計，不是用來判斷你的情緒或能力。'],
         sourceTitle: '延伸閱讀', source: 'Verbruggen 等人（2019）：停止訊號作業的共識指南', doi: 'https://doi.org/10.7554/eLife.46323',
         retry: '再做一次'
       }
@@ -64,7 +64,7 @@
     en: {
       back: '← Back to the interactive lab', practice: 'Practice', formal: 'Test', progress: 'Progress',
       privacy: 'All responses are calculated in this browser and are not uploaded, stored, or added to any research database. This is a science-communication demonstration, not a research task or a psychological or medical assessment.',
-      faceStimuli: 'The faces are schematic drawings made by code (only the curve of the mouth and brows changes). They are not photographs, depict no real person, and their emotional intensity has not been formally rated, so they are not validated research stimuli.',
+      faceStimuli: 'The faces are AI-generated images of fictional people and depict no real person. The steps between sad, neutral and happy are blends of generated images, not rated emotional intensities, and the images have not been validated, so they are not research stimuli.',
       face: {
         eyebrow: 'Interpretation · 03', title: 'Do you read an ambiguous face as happy or sad?',
         lead: 'Real expressions are often not clearly happy or clearly sad but somewhere in between. In this short task you judge faces that shift step by step from sad to happy, and we draw your judgment curve.',
@@ -83,7 +83,7 @@
         noPse: 'In this session the curve did not cross 50% within the 0–100% range, so no balance point can be estimated. You may have given almost the same answer every time, or there were too few trials; try again.',
         method: { logistic: 'Fitted with a logistic curve (maximum likelihood)', interpolation: 'Your answers switched almost abruptly (hardly any middle ground), so no curve could be fitted; the 50% point was interpolated between neighbouring levels and the steepness is not estimated', 'out-of-range': 'The curve did not cross 50% within the range', none: '' },
         clearAcc: 'Accuracy on clearly happy/sad faces', timeouts: 'Timed-out trials',
-        limitsTitle: 'How to read this', limits: ['A lower balance point means you began answering “happy” while the face still leaned sad; a higher one means the opposite. It reflects this session and this set of schematic faces, not a fixed trait.', 'The mouth and brows change in equal geometric steps, but perceived emotion does not necessarily change in equal steps, so the shape of the curve is only illustrative.', 'Research uses validated face sets, many more trials, and larger samples, and treats this kind of balance point as one index of emotion-perception bias, not as a diagnostic tool.'],
+        limitsTitle: 'How to read this', limits: ['A lower balance point means you began answering “happy” while the face still leaned sad; a higher one means the opposite. It reflects this session and this set of AI-generated faces, not a fixed trait.', 'The faces are blended in equal image steps, but perceived emotion does not necessarily change in equal steps, so the shape of the curve is only illustrative.', 'Research uses validated face sets, many more trials, and larger samples, and treats this kind of balance point as one index of emotion-perception bias, not as a diagnostic tool.'],
         sourceTitle: 'Further reading', source: 'Penton-Voak, Munafò, & Looi (2017): review of biased facial-emotion perception and mental health', doi: 'https://doi.org/10.1177/0963721417704405',
         retry: 'Try again'
       },
@@ -105,7 +105,7 @@
         perEmotionNote: 'Each expression has only 8 stop trials, which is too few to estimate separate SSRTs or to conclude that one expression is harder to stop.',
         warnRate: 'The share of responses after the red ring is outside 25–75%, so this SSRT may be inaccurate. Common causes are waiting for the ring on purpose or erratic responding; try again at your normal speed.',
         warnRace: 'On average, failed stops were not faster than ordinary go responses. This breaks an assumption of the method, so treat the SSRT as a rough guide only.',
-        limitsTitle: 'How to read this', limits: ['SSRT is a model-based estimate, not a directly measured time; it assumes that “go” and “stop” processes race each other.', 'Your result describes this one short session. Formal studies use more trials and check the assumptions before interpreting an estimate.', 'The faces are schematic drawings that demonstrate an emotional-background design; they are not used to judge your emotions or abilities.'],
+        limitsTitle: 'How to read this', limits: ['SSRT is a model-based estimate, not a directly measured time; it assumes that “go” and “stop” processes race each other.', 'Your result describes this one short session. Formal studies use more trials and check the assumptions before interpreting an estimate.', 'The faces are AI-generated images of fictional people that demonstrate an emotional-background design; they are not used to judge your emotions or abilities.'],
         sourceTitle: 'Further reading', source: 'Verbruggen et al. (2019): consensus guide to the stop-signal task', doi: 'https://doi.org/10.7554/eLife.46323',
         retry: 'Try again'
       }
@@ -131,13 +131,13 @@
 
   function buildFaceIntroMarkup(lang = 'zh') {
     const c = copy[lang] || copy.zh;
-    const strip = FaceTask().LEVELS.filter((_, index) => index % 2 === 0).map(level => `<span class="face-strip-item">${Face().faceSvg(level)}</span>`).join('');
+    const strip = FaceTask().LEVELS.filter((_, index) => index % 2 === 0).map((level, index) => `<span class="face-strip-item">${Face().faceHtml(level, { identity: Face().IDENTITIES[index % Face().IDENTITIES.length] })}</span>`).join('');
     return introShell(c, c.face, 'face', lang, `<div class="face-strip" aria-hidden="true">${strip}</div>`);
   }
 
   function buildStopIntroMarkup(lang = 'zh') {
     const c = copy[lang] || copy.zh;
-    const demo = `<div class="face-strip" aria-hidden="true"><span class="face-strip-item">${Face().faceSvg(1)}<b class="stop-arrow">→</b></span><span class="face-strip-item">${Face().faceSvg(0, { ring: true })}<b class="stop-arrow">←</b></span></div>`;
+    const demo = `<div class="face-strip" aria-hidden="true"><span class="face-strip-item">${Face().faceHtml(1, { identity: 'a' })}<b class="stop-arrow">→</b></span><span class="face-strip-item">${Face().faceHtml(0, { identity: 'b', ring: true })}<b class="stop-arrow">←</b></span></div>`;
     return introShell(c, c.stop, 'stop', lang, demo);
   }
 
@@ -201,6 +201,7 @@
     cleanup();
     const c = copy[lang] || copy.zh; const g = c.face;
     container.innerHTML = buildFaceIntroMarkup(lang);
+    Face().preload();
     let prediction = 'unsure'; let phase = 'practice'; let trials = []; let index = 0; let active = null; let onset = 0;
     const controls = `<button type="button" data-face-response="sad" disabled>← ${g.sad}</button><button type="button" data-face-response="happy" disabled>${g.happy} →</button>`;
 
@@ -225,7 +226,7 @@
       if (!stage) return;
       stage.innerHTML = `<span class="posner-fixation" aria-hidden="true">+</span>`;
       later(() => {
-        stage.innerHTML = Face().faceSvg(trial.level, { label: lang === 'zh' ? '一張示意臉孔' : 'A schematic face' });
+        stage.innerHTML = Face().faceHtml(trial.level, { identity: trial.identity, label: lang === 'zh' ? '一張 AI 生成的虛構臉孔' : 'An AI-generated fictional face' });
         active = trial; onset = performance.now(); setControls(false);
         later(() => finish(null), 4000);
       }, 500);
@@ -269,6 +270,7 @@
     cleanup();
     const c = copy[lang] || copy.zh; const g = c.stop; const limits = StopTask().DEFAULT_LIMITS;
     container.innerHTML = buildStopIntroMarkup(lang);
+    Face().preload();
     let prediction = 'unsure'; let phase = 'practice'; let trials = []; let index = 0; let active = null; let onset = 0; let stairs = null; let results = [];
     const controls = `<button type="button" data-stop-response="left" disabled>← ${g.left}</button><button type="button" data-stop-response="right" disabled>${g.right} →</button>`;
     const setControls = disabled => container.querySelectorAll('[data-stop-response]').forEach(button => { button.disabled = disabled; });
@@ -299,7 +301,7 @@
         const ssd = spec.type === 'stop' ? stairs[spec.emotion].ssd : null;
         const arrow = spec.arrow === 'left' ? '←' : '→';
         const label = lang === 'zh' ? `${g[spec.emotion]}，箭頭向${spec.arrow === 'left' ? '左' : '右'}` : `${g[spec.emotion]}, arrow pointing ${spec.arrow}`;
-        const draw = ring => `<div class="stop-trial" role="img" aria-label="${e(label)}${ring ? (lang === 'zh' ? '，出現紅圈' : ', red ring shown') : ''}">${Face().faceSvg(spec.emotion === 'happy' ? 1 : 0, { ring })}<b class="stop-arrow">${arrow}</b></div>`;
+        const draw = ring => `<div class="stop-trial" role="img" aria-label="${e(label)}${ring ? (lang === 'zh' ? '，出現紅圈' : ', red ring shown') : ''}">${Face().faceHtml(spec.emotion === 'happy' ? 1 : 0, { identity: spec.identity, ring })}<b class="stop-arrow">${arrow}</b></div>`;
         stage.innerHTML = draw(false);
         const trial = { spec, ssd, ringShown: false };
         active = trial; onset = performance.now(); setControls(false);

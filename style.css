@@ -978,15 +978,12 @@ button { font: inherit; }
 .publications-page h3 { margin: 2.2rem 0 .8rem; color: var(--accent); font-family: var(--font-display); font-size: 1.05rem; }
 
 /* Face-judgment and stop-signal games */
-.schematic-face { display: block; width: min(160px, 38vw); height: auto; }
-.schematic-face-skin { fill: color-mix(in srgb, var(--accent) 10%, var(--paper)); stroke: var(--primary); stroke-width: 2.2; }
-.schematic-face-line { stroke: var(--primary); stroke-width: 3; stroke-linecap: round; }
-.schematic-face-mouth { fill: none; }
-.schematic-face-eye { fill: var(--primary); }
-.schematic-face-ring { fill: none; stroke: #b34444; stroke-width: 5; }
+.face-photo { display: block; width: min(176px, 42vw); aspect-ratio: 1; margin: 6px; overflow: hidden; border-radius: 50%; background: var(--paper); box-shadow: 0 0 0 1px var(--tertiary); }
+.face-photo img { display: block; width: 100%; height: 100%; object-fit: cover; user-select: none; -webkit-user-drag: none; }
+.face-photo.has-ring { box-shadow: 0 0 0 5px #b34444; }
 .face-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: clamp(.5rem, 2vw, 1.25rem); margin: 1.5rem 0 .5rem; padding: 1.25rem; border: 1px solid var(--tertiary); background: var(--paper); }
 .face-strip-item { display: grid; justify-items: center; gap: .25rem; }
-.face-strip-item .schematic-face { width: min(104px, 17vw); }
+.face-strip-item .face-photo { width: min(104px, 17vw); }
 .stop-arrow { color: var(--accent); font-size: 2.4rem; font-weight: 700; line-height: 1; }
 .face-stage, .stop-stage { min-height: 300px; }
 .face-stage::before, .stop-stage::before { display: none; }
@@ -1006,7 +1003,7 @@ button { font: inherit; }
 .result-sources + .experiment-primary { margin-top: 1.25rem; }
 .result-footnote { margin: .75rem 0 0; color: var(--secondary); font-size: .72rem; line-height: 1.7; }
 .lab-face-preview, .lab-stop-preview { display: flex; align-items: center; justify-content: center; gap: .6rem; min-height: 170px; overflow: hidden; border: 1px solid var(--tertiary); background: var(--paper); }
-.preview-face .schematic-face { width: min(88px, 20vw); }
+.preview-face .face-photo { width: min(88px, 20vw); }
 @media (max-width: 640px) { .face-strip { padding: .9rem .5rem; } .face-stage, .stop-stage { min-height: 250px; } }
 
 /* Reading routes on the learning map */
