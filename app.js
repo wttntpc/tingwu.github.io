@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261115-02';
+const SITE_VERSION = '20261115-03';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -2253,6 +2253,7 @@ async function router() {
   window.scrollTo(0, 0);
   if (app.focus) app.focus({ preventScroll: true });
   mountProfileFaces();
+  if (window.EcgProgress) window.EcgProgress.sync(path);
 }
 
 if (langToggle) {
