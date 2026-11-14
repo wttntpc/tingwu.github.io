@@ -398,10 +398,6 @@ button { font: inherit; }
 .plain-list, .expertise-list { padding-left: 1.25rem; }
 .plain-list li, .expertise-list li { margin-bottom: .75rem; }
 .plain-list li span { color: var(--secondary); font-size: .78rem; }
-.about-skill-groups { display: grid; gap: .8rem; margin-top: 1.4rem; }
-.about-skill-groups > div { padding: .85rem 1rem; border: 1px solid var(--tertiary); border-radius: var(--radius); background: var(--paper); }
-.about-skill-groups h3 { margin: 0 0 .25rem; color: var(--primary); font-size: .82rem; }
-.about-skill-groups p { margin: 0; color: var(--secondary); font-size: .78rem; }
 .publication-links { display: flex; justify-content: flex-end; gap: .5rem; margin-bottom: .5rem; }
 .publication-links a { min-height: 44px; display: inline-flex; align-items: center; padding: .3rem .65rem; border-radius: var(--radius); background: var(--entry); color: var(--primary); text-decoration: none; font-size: .68rem; }
 .publications-page { padding: 3rem 0 5rem; }
@@ -1050,12 +1046,6 @@ button { font: inherit; }
 .research-demo em { color: var(--accent); font-size: .74rem; font-style: normal; font-weight: 700; }
 
 /* About page */
-.about-glance { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem 1.5rem; margin: 1.6rem 0 0; padding: 1.1rem 1.2rem; border: 1px solid var(--tertiary); background: var(--paper); }
-.about-glance dt { margin: 0 0 .2rem; color: var(--secondary); font-size: .68rem; font-weight: 700; letter-spacing: .06em; }
-.about-glance dd { margin: 0; font-size: .82rem; line-height: 1.7; }
-.about-areas { margin: 0 0 1rem; padding-left: 1.25rem; }
-.about-areas li { margin-bottom: .6rem; line-height: 1.8; }
 .about-subsection { margin-top: 1.6rem; }
 .about-subsection h3 { margin: 0 0 .5rem; color: var(--secondary); font-size: .8rem; letter-spacing: .04em; }
 .about-note { margin-top: 1.4rem; color: var(--secondary); font-size: .8rem; }
-@media (max-width: 640px) { .about-glance { grid-template-columns: minmax(0, 1fr); } }

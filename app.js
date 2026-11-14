@@ -80,9 +80,8 @@ const copy = {
     latestTitle: '最近的文章',
     allPosts: '查看所有文章 →',
     introTitle: '關於我',
-    introText: '你好，我是吳亭葶。我目前就讀國立中央大學認知神經科學研究所博士班，也具備台灣運動防護員證照。我的長期研究目標，是發展具認知神經科學與運動生理學基礎的運動處方，並檢驗其對情緒健康與認知功能的影響。',
     education: [
-      ['2025–至今', '國立中央大學・認知神經科學研究所 博士班', '研究方向：運動、執行功能與認知神經科學'],
+      ['2025–至今', '國立中央大學・認知神經科學研究所 博士班', '研究方向：運動、情緒、認知與神經機制'],
       ['2023–2025', '國立清華大學・運動科學系 碩士', '運動心理學、認知與健康老化研究'],
       ['2019–2023', '中國醫藥大學・運動醫學系 學士', '運動醫學與運動傷害防護']
     ],
@@ -92,7 +91,7 @@ const copy = {
     ],
     skillGroups: [
       ['研究領域', ['認知神經科學', '運動與健康老化', '執行功能', '心理健康']],
-      ['研究測量', ['EEG／腦電圖', 'VO₂max／體適能測量', '行為作業']],
+      ['研究測量', ['EEG／腦電圖', 'HRV／心率變異度', 'VO₂max／體適能測量', '行為作業']],
       ['資料分析工具', ['EEGLAB', 'SPM12', 'HHSA toolbox', 'Python', 'Matlab', 'SPSS', 'JASP']],
       ['專業證照', ['運動防護員', 'EMT-1', '銀髮族體適能 C 級指導員']]
     ],
@@ -175,9 +174,8 @@ const copy = {
     latestTitle: 'Latest writing',
     allPosts: 'See all writing →',
     introTitle: 'Profile',
-    introText: 'I am Ting-Ting Wu, a Ph.D. student at the Institute of Cognitive Neuroscience, National Central University, and a certified athletic trainer. My long-term research goal is to develop exercise prescriptions grounded in cognitive neuroscience and exercise physiology, and to test their effects on emotional well-being and cognitive function.',
     education: [
-      ['2025–present', 'Ph.D., Institute of Cognitive Neuroscience, NCU', 'Exercise, executive function, and cognitive neuroscience'],
+      ['2025–present', 'Ph.D., Institute of Cognitive Neuroscience, NCU', 'Exercise, emotion, cognition, and neural mechanisms'],
       ['2023–2025', 'M.S., Department of Kinesiology, NTHU', 'Exercise psychology, cognition, and healthy aging'],
       ['2019–2023', 'B.S., Department of Sports Medicine, CMU', 'Sports medicine and athletic training']
     ],
@@ -187,7 +185,7 @@ const copy = {
     ],
     skillGroups: [
       ['Research areas', ['Cognitive neuroscience', 'Exercise & healthy aging', 'Executive function', 'Mental health']],
-      ['Research measures', ['EEG', 'VO₂max & fitness testing', 'Behavioral tasks']],
+      ['Research measures', ['EEG', 'HRV', 'VO₂max & fitness testing', 'Behavioral tasks']],
       ['Data & software', ['EEGLAB', 'SPM12', 'HHSA toolbox', 'Python', 'Matlab', 'SPSS', 'JASP']],
       ['Certifications', ['Certified Athletic Trainer', 'EMT-1', 'Senior Fitness Instructor (Level C)']]
     ],
@@ -609,6 +607,7 @@ const researchPageContent = {
       ['face-judgment', '情緒知覺：表情判斷曲線', '模糊的臉，你會看成開心還是難過？'],
       ['stop-signal', '抑制控制：情緒選擇性停止訊號作業', '看到紅框時，你還煞得住嗎？']
     ],
+    frameworkLabel: '研究框架', frameworkCaveat: '示意圖，簡化呈現研究變項間的關係，非統計模型或因果推論結果。',
     demoOpen: '開始 →',
     learnLabel: '想先補背景？', learnText: '依目標選一條讀書路線，從認知神經科學、運動生理、HRV、EEG 到統計，一步一步建立研究所需的基礎。', learnLink: '前往學習地圖與讀書路線 →'
   },
@@ -624,6 +623,7 @@ const researchPageContent = {
       ['face-judgment', 'Emotion perception: facial-expression judgment curve', 'Do you read an ambiguous face as happy or sad?'],
       ['stop-signal', 'Inhibitory control: emotional selective stop-signal task', 'Can you still stop when a red frame appears?']
     ],
+    frameworkLabel: 'Research framework', frameworkCaveat: 'Simplified schematic of how these variables relate — not a statistical model or a causal claim.',
     demoOpen: 'Start →',
     learnLabel: 'Need the background first?', learnText: 'Pick a reading route by goal, from cognitive neuroscience, exercise physiology, HRV, and EEG to statistics, and build the foundations research needs step by step.', learnLink: 'Go to the learning map and reading routes →'
   }
@@ -634,6 +634,7 @@ function renderResearch() {
   app.innerHTML = `<div class="page-shell research-page">
     <header class="interests-hero"><p class="eyebrow">${c.eyebrow}</p><h1>${c.title}</h1><p>${c.lead}</p></header>
     ${renderResearchAgenda()}
+    <section id="research-framework" class="research-section" aria-labelledby="research-framework-title"><h2 id="research-framework-title">${c.frameworkLabel}</h2>${renderResearchFramework()}<p class="demo-caveat">⚠️ ${c.frameworkCaveat}</p></section>
     <section class="research-section" aria-labelledby="research-pubs-title"><h2 id="research-pubs-title">${c.pubLabel}</h2><p>${c.pubSummary}</p><a href="#/publications">${c.pubLink}</a></section>
     <section class="research-section" aria-labelledby="research-demos-title"><h2 id="research-demos-title">${c.demoLabel}</h2><p>${c.demoLead}</p><div class="research-demo-grid">${c.demos.map(demo => `<a class="research-demo" href="#/lab/${demo[0]}"><strong>${demo[1]}</strong><span>${demo[2]}</span><em>${c.demoOpen}</em></a>`).join('')}</div></section>
     <section class="research-section" aria-labelledby="research-learn-title"><h2 id="research-learn-title">${c.learnLabel}</h2><p>${c.learnText}</p><a href="#/learning">${c.learnLink}</a></section>
@@ -706,31 +707,39 @@ function renderResearchFramework() {
 
 async function renderAbout(section = '') {
   const c = t();
+  const workflowLink = '#/post/ai-assisted-reproducible-research-workflow';
   const labels = lang === 'zh' ? {
     home: '首頁', title: '關於我', meta: '吳亭葶 Ting-Ting Wu', language: '語言：English', toc: '目錄',
-    role: '認知神經科學博士生 / 運動防護員 / 研究者', education: '學歷', experience: '工作與研究經歷', expertise: '專長與技能', honors: '獎學金與榮譽', contact: '聯繫',
-    scholarships: '獎學金', honorsGroup: '榮譽與獎項', awardsNote: '研討會最佳發表獎項請見', awardsLink: '學術發表',
-    glance: '快速認識', glanceRows: [['現職', 'profileRole'], ['研究主軸', 'profilePillars'], ['訓練背景', '碩士：國立清華大學運動科學系；學士：中國醫藥大學運動醫學系'], ['專業證照', 'certs']],
-    moreResearch: '閱讀完整研究介紹與互動示範 →',
-    bio2: '我的研究位於運動科學與認知神經科學的交界，關注運動如何改變情緒與認知的神經生理機制。我運用生理訊號、行為作業、AI 與可重現資料分析，建立可檢驗且具實務應用潛力的研究流程。',
-    framework: '研究框架', agenda: '研究興趣與方向', frameworkCaveat: '示意圖，簡化呈現研究變項間的關係，非統計模型或因果推論結果。'
+    role: '認知神經科學博士生 / 運動防護員 / 研究者',
+    agenda: '研究軌跡', methods: '我怎麼做研究', background: '背景', education: '學歷', experience: '工作與研究經歷',
+    credentials: '證照、獎學金與榮譽', certifications: '專業證照', scholarships: '獎學金', honorsGroup: '榮譽與獎項', contact: '聯繫',
+    awardsNote: '研討會最佳發表獎項請見', awardsLink: '學術發表', pubLink: '查看完整發表列表 →',
+    lead: '認知神經科學博士生，也是具證照的運動防護員。我研究運動、身體活動與體適能如何影響認知與情緒，並從腦與自律神經的訊號，探討這些影響背後的神經機制。',
+    profile: '我目前就讀國立中央大學認知神經科學研究所博士班（2025 年起）。我想了解的不只是運動「有沒有效」，而是運動如何在腦與身體層面產生影響。為了回答這個問題，我結合行為作業、腦波（EEG）與心率變異度（HRV），並使用 HHSA（Holo-Hilbert Spectral Analysis）等進階的非線性分析方法，描述腦波中跨頻率的振幅調變。我的訓練起點是運動醫學與運動防護，因此我習慣從真實的運動情境與測量條件出發，思考研究問題。',
+    trajectory: '碩士階段與先前的研究，聚焦在運動與執行功能，對象包含高齡者，主題涵蓋阻力運動、身體活動與靜態行為。博士階段，我把重心擴展到運動與情緒，並加入 HRV 與 EEG 等神經生理指標，探討運動如何在腦與身體層面產生影響。',
+    methodMeasure: '測量', methodAnalysis: '分析', methodWorkflow: '流程',
+    workflow: `保留可重新執行的腳本與品質控制紀錄，以 AI 輔助、但每一步都查核（見<a href="${workflowLink}">我的 AI 輔助研究流程</a>）。`,
+    moreResearch: '閱讀完整研究介紹與互動示範 →'
   } : {
     home: 'Home', title: 'About', meta: 'Ting-Ting Wu', language: 'Language: 中文', toc: 'Table of contents',
-    role: 'Ph.D. Student in Cognitive Neuroscience / Athletic Trainer / Researcher', education: 'Education', experience: 'Experience', expertise: 'Expertise & skills', honors: 'Scholarships & honors', contact: 'Contact',
-    scholarships: 'Scholarships', honorsGroup: 'Honors & awards', awardsNote: 'Conference best-presentation awards are listed under', awardsLink: 'Publications',
-    glance: 'At a glance', glanceRows: [['Current', 'profileRole'], ['Focus', 'profilePillars'], ['Training', 'M.S., Kinesiology, National Tsing Hua University; B.S., Sports Medicine, China Medical University'], ['Credentials', 'certs']],
-    moreResearch: 'Read the full research overview and try the demonstrations →',
-    bio2: 'My work sits at the intersection of exercise science and cognitive neuroscience, and focuses on the neurophysiological mechanisms through which exercise changes emotion and cognition. I use biosignals, behavioral tasks, AI, and reproducible data analysis to build testable research workflows with practical relevance.',
-    framework: 'Research framework', agenda: 'Research interests & direction', frameworkCaveat: 'Simplified schematic of how these variables relate — not a statistical model or a causal claim.'
+    role: 'Ph.D. Student in Cognitive Neuroscience / Athletic Trainer / Researcher',
+    agenda: 'Research trajectory', methods: 'How I work', background: 'Background', education: 'Education', experience: 'Experience',
+    credentials: 'Credentials, scholarships & honors', certifications: 'Certifications', scholarships: 'Scholarships', honorsGroup: 'Honors & awards', contact: 'Contact',
+    awardsNote: 'Conference best-presentation awards are listed under', awardsLink: 'Publications', pubLink: 'See the full publication list →',
+    lead: 'Ph.D. student in cognitive neuroscience and certified athletic trainer. I study how exercise, physical activity, and fitness shape cognition and emotion, and I use brain and autonomic signals to ask about the neural mechanisms behind these effects.',
+    profile: 'I am a Ph.D. student at the Institute of Cognitive Neuroscience, National Central University (since 2025). I am interested not only in whether exercise helps, but in how it acts on the brain and body. To address this, I combine behavioral tasks, EEG, and heart rate variability (HRV), and use advanced nonlinear methods such as Holo-Hilbert Spectral Analysis (HHSA) to describe cross-frequency amplitude modulation in brain activity. My training began in sports medicine and athletic training, so I tend to frame research questions from real exercise settings and measurement conditions.',
+    trajectory: 'My master\u2019s-level work focused on exercise and executive function, including older adults, resistance exercise, and physical activity and sedentary behavior. In my doctoral work I am extending this to exercise and emotion, adding neurophysiological measures such as HRV and EEG to ask how exercise acts on the brain and body.',
+    methodMeasure: 'Measurement', methodAnalysis: 'Analysis', methodWorkflow: 'Workflow',
+    workflow: `Re-runnable scripts and documented quality control, with AI assistance and step-by-step verification (see <a href="${workflowLink}">my AI-assisted research workflow</a>).`,
+    moreResearch: 'Read the full research overview and try the demonstrations →'
   };
-  const tocItems = [[c.introTitle, 'intro'], [labels.agenda, 'agenda'], [labels.education, 'education'], [labels.experience, 'experience'], [labels.expertise, 'skills'], [labels.honors, 'awards'], [labels.contact, 'contact']];
+  const tocItems = [[c.introTitle, 'intro'], [labels.agenda, 'agenda'], [labels.methods, 'methods'], [labels.background, 'background'], [labels.credentials, 'awards'], [labels.contact, 'contact']];
   const sep = lang === 'zh' ? '：' : ': ';
-  const glanceValue = ([label, source]) => {
-    const value = source === 'profileRole' ? c.profileRole : source === 'profilePillars' ? c.profilePillars : source === 'certs' ? c.skillGroups[3][1].join(lang === 'zh' ? '、' : ', ') : source;
-    return `<div><dt>${label}</dt><dd>${value}</dd></div>`;
-  };
+  const listSep = lang === 'zh' ? '、' : ', ';
   const dated = item => `<li><strong>${item[0]}</strong>　${item[1]}${item[2] ? `<br><span>${item[2]}</span>` : ''}</li>`;
-  const agenda = researchAgenda[lang] || researchAgenda.en;
+  const measures = c.skillGroups[1][1].join(listSep);
+  const tools = c.skillGroups[2][1].join(listSep);
+  const methodRows = [[labels.methodMeasure, measures], [labels.methodAnalysis, tools], [labels.methodWorkflow, labels.workflow]];
 
   app.innerHTML = `<div class="page-shell about-page"><article class="about-article">
     <header class="post-header">
@@ -741,20 +750,18 @@ async function renderAbout(section = '') {
     <details class="about-toc" open><summary>${labels.toc}</summary><nav>${tocItems.map(item => `<a href="#/about/${item[1]}" ${section === item[1] ? 'aria-current="location"' : ''}>${item[0]}</a>`).join('')}</nav></details>
     <div class="about-content">
       <p class="about-avatar"><span role="img" aria-label="${lang === 'zh' ? 'TW 字母標誌' : 'TW monogram'}"><b aria-hidden="true">TW</b></span></p>
-      <section id="about-intro" class="about-section"><h2>${lang === 'zh' ? '吳亭葶 Ting-Ting Wu' : 'Ting-Ting Wu 吳亭葶'}</h2><blockquote><strong>${labels.role}</strong></blockquote><p>${c.introText}</p><p>${labels.bio2}</p>
-        <dl class="about-glance" aria-label="${labels.glance}">${labels.glanceRows.map(glanceValue).join('')}</dl></section>
-      <section id="about-agenda" class="about-section"><h2>${labels.agenda}</h2><p class="agenda-purpose">${agenda.purpose}</p><ul class="about-areas">${agenda.areas.map(area => `<li><b>${area[0]}</b>${sep}${area[1]}</li>`).join('')}</ul><p><a href="#/research">${labels.moreResearch}</a></p>
-        <div id="about-framework" class="about-subsection"><h3>${labels.framework}</h3>${renderResearchFramework()}<p class="demo-caveat">⚠️ ${labels.frameworkCaveat}</p></div></section>
-      <section id="about-education" class="about-section"><h2>${labels.education}</h2><ul class="plain-list">${c.education.map(dated).join('')}</ul></section>
-      <section id="about-experience" class="about-section"><h2>${labels.experience}</h2><ul class="plain-list">${c.experience.map(dated).join('')}</ul></section>
-      <section id="about-skills" class="about-section"><h2>${labels.expertise}</h2><ul class="expertise-list">${c.focuses.map(item => `<li><strong>${item[0]}</strong>${sep}${item[1]}</li>`).join('')}</ul><div class="about-skill-groups">${c.skillGroups.slice(1).map(group => `<div><h3>${group[0]}</h3><p>${group[1].join(lang === 'zh' ? '、' : ', ')}</p></div>`).join('')}</div></section>
-      <section id="about-awards" class="about-section"><h2>${labels.honors}</h2><div class="about-subsection"><h3>${labels.scholarships}</h3><ul class="plain-list">${c.scholarships.map(item => `<li><strong>${item[0]}</strong>　${item[1]}</li>`).join('')}</ul></div><div class="about-subsection"><h3>${labels.honorsGroup}</h3><ul class="plain-list">${c.honorsList.map(item => `<li><strong>${item[0]}</strong>　${item[1]}</li>`).join('')}</ul></div><p class="about-note">${labels.awardsNote} <a href="#/publications">${labels.awardsLink}</a>${lang === 'zh' ? '。' : '.'}</p></section>
+      <section id="about-intro" class="about-section"><h2>${lang === 'zh' ? '吳亭葶 Ting-Ting Wu' : 'Ting-Ting Wu 吳亭葶'}</h2><blockquote><strong>${labels.role}</strong></blockquote><p>${labels.lead}</p><p>${labels.profile}</p></section>
+      <section id="about-agenda" class="about-section"><h2>${labels.agenda}</h2><p>${labels.trajectory}</p><p><a href="#/research">${labels.moreResearch}</a><br><a href="#/publications">${labels.pubLink}</a></p></section>
+      <section id="about-methods" class="about-section"><h2>${labels.methods}</h2><ul class="expertise-list">${methodRows.map(row => `<li><strong>${row[0]}</strong>${sep}${row[1]}</li>`).join('')}</ul></section>
+      <section id="about-background" class="about-section"><h2>${labels.background}</h2><div class="about-subsection"><h3>${labels.education}</h3><ul class="plain-list">${c.education.map(dated).join('')}</ul></div><div class="about-subsection"><h3>${labels.experience}</h3><ul class="plain-list">${c.experience.map(dated).join('')}</ul></div></section>
+      <section id="about-awards" class="about-section"><h2>${labels.credentials}</h2><div class="about-subsection"><h3>${labels.certifications}</h3><p>${c.skillGroups[3][1].join(listSep)}</p></div><div class="about-subsection"><h3>${labels.scholarships}</h3><ul class="plain-list">${c.scholarships.map(item => `<li><strong>${item[0]}</strong>　${item[1]}</li>`).join('')}</ul></div><div class="about-subsection"><h3>${labels.honorsGroup}</h3><ul class="plain-list">${c.honorsList.map(item => `<li><strong>${item[0]}</strong>　${item[1]}</li>`).join('')}</ul></div><p class="about-note">${labels.awardsNote} <a href="#/publications">${labels.awardsLink}</a>${lang === 'zh' ? '。' : '.'}</p></section>
       <section id="about-contact" class="about-section"><h2>${labels.contact}</h2><ul><li>Email${lang === 'zh' ? '：' : ': '}<a href="mailto:tingwu.new@gmail.com">tingwu.new@gmail.com</a></li><li><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID</a></li><li><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar</a></li><li><a href="https://github.com/wttntpc" target="_blank" rel="noopener noreferrer">GitHub</a></li></ul></section>
     </div>
   </article></div>`;
   document.querySelector('.inline-language').addEventListener('click', () => langToggle.click());
   if (section) {
-    const target = section === 'journey' ? 'education' : section;
+    const aliases = { journey: 'background', education: 'background', experience: 'background', skills: 'methods' };
+    const target = aliases[section] || section;
     requestAnimationFrame(() => document.querySelector(`#about-${CSS.escape(target)}`)?.scrollIntoView());
   }
 }

@@ -56,13 +56,33 @@ test('education and work experience are separate lists with matching entries in 
   for (const [dates] of [...listOf(zh, 'education'), ...listOf(zh, 'experience')]) assert.doesNotMatch(dates, /—/, 'ranges use an en dash');
 });
 
-test('About page sections follow the new order and the old journey link still resolves', () => {
+test('About page sections follow the new order and the old section links still resolve', () => {
   const ids = [...app.matchAll(/<section id="about-([a-z]+)" class="about-section">/g)].map(m => m[1]);
-  assert.deepEqual(ids, ['intro', 'agenda', 'education', 'experience', 'skills', 'awards', 'contact']);
-  assert.match(app, /id="about-framework"/);
-  assert.match(app, /section === 'journey' \? 'education'/);
-  assert.match(app, /about-glance/);
+  assert.deepEqual(ids, ['intro', 'agenda', 'methods', 'background', 'awards', 'contact']);
+  assert.match(app, /journey: 'background', education: 'background', experience: 'background', skills: 'methods'/);
   assert.match(app, /<a href="#\/research">\$\{labels\.moreResearch\}<\/a>/);
+});
+
+test('About leads with the neural-mechanism focus and HHSA, and does not repeat the intro three times', () => {
+  const about = app.slice(app.indexOf("async function renderAbout"), app.indexOf("const learningMapContent"));
+  assert.match(about, /神經機制/);
+  assert.match(about, /neural mechanisms/);
+  assert.match(about, /HHSA \(Holo-Hilbert Spectral Analysis\)|HHSA（Holo-Hilbert Spectral Analysis）/);
+  assert.doesNotMatch(about, /about-glance|bio2/);
+  assert.doesNotMatch(about, /RQ[0-9]|crossover|SSRT|VO₂peak|visit/i, 'no study-design details on the public About page');
+});
+
+test('HRV is listed among the research measures in both languages', () => {
+  assert.match(app, /'HRV／心率變異度'/);
+  assert.match(app, /\['Research measures', \['EEG', 'HRV'/);
+});
+
+test('the research framework figure moved from About to the Research page', () => {
+  const about = app.slice(app.indexOf("async function renderAbout"), app.indexOf("const learningMapContent"));
+  assert.doesNotMatch(about, /renderResearchFramework\(\)/);
+  const research = app.slice(app.indexOf('function renderResearch()'), app.indexOf('function renderResearchAgenda'));
+  assert.match(research, /id="research-framework"/);
+  assert.match(research, /renderResearchFramework\(\)/);
 });
 
 test('English About copy has no Chinese characters', () => {
