@@ -1132,3 +1132,4 @@ button { font: inherit; }
 .face-squish-canvas:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .has-face-squish .face-hint { position: absolute; right: 6px; bottom: 6px; padding: .12rem .55rem; border-radius: 999px; background: color-mix(in srgb, var(--paper) 88%, transparent); border: 1px solid var(--tertiary); color: var(--accent); font-family: var(--font); font-size: .68rem; font-weight: 600; letter-spacing: .04em; pointer-events: none; transition: opacity .3s ease; }
 .has-face-squish.is-touched .face-hint { opacity: 0; }
+html[data-theme="dark"] .face-squish-canvas { background: #e8e3d6; }

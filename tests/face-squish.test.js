@@ -94,3 +94,17 @@ test('settle() snaps back instantly', () => {
   sim.settle();
   assert.equal(sim.energy(), 0);
 });
+
+test('the profile photo configured in app.js exists and is a transparent-background WebP', () => {
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const app = fs.readFileSync(path.join(__dirname, '..', 'app.js'), 'utf8');
+  const m = app.match(/const PROFILE_PHOTO = '([^']+)';/);
+  assert.ok(m, 'PROFILE_PHOTO is set');
+  const file = path.join(__dirname, '..', m[1]);
+  assert.ok(fs.existsSync(file), 'photo file exists: ' + m[1]);
+  const head = fs.readFileSync(file).subarray(0, 32);
+  assert.equal(head.subarray(0, 4).toString('ascii'), 'RIFF');
+  assert.equal(head.subarray(8, 12).toString('ascii'), 'WEBP');
+  assert.ok(fs.statSync(file).size < 200 * 1024, 'photo stays small');
+});

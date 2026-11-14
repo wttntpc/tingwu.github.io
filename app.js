@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261115-01';
+const SITE_VERSION = '20261115-02';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -500,8 +500,8 @@ function renderInterests() {
 }
 
 // The profile photo is a rubber sheet you can drag around (face-squish.js). Set PROFILE_PHOTO to the
-// image path once the photo has been added to the site; with null the TW monogram stays.
-const PROFILE_PHOTO = null;
+// image path; with null the TW monogram stays.
+const PROFILE_PHOTO = 'assets/profile.webp';
 let faceHandles = [];
 function destroyProfileFaces() {
   faceHandles.forEach((h) => h && h.destroy && h.destroy());
