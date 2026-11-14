@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261115-03';
+const SITE_VERSION = '20261115-04';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -506,6 +506,15 @@ let faceHandles = [];
 function destroyProfileFaces() {
   faceHandles.forEach((h) => h && h.destroy && h.destroy());
   faceHandles = [];
+  if (window.HomeDelight) window.HomeDelight.stopCounting();
+}
+// Small delights: tossable interest chips and count-up numbers on the home page, a heartbeat on the TW mark.
+function mountDelights(path) {
+  if (window.HomeDelight) window.HomeDelight.bindHeartbeat();
+  if (path !== '/') return;
+  const list = document.querySelector('.home-agenda-areas');
+  if (list && window.ChipPhysics) { const h = window.ChipPhysics.mount(list); if (h) faceHandles.push(h); }
+  if (window.HomeDelight) window.HomeDelight.countUp(Array.from(document.querySelectorAll('.overview-item strong')));
 }
 function mountProfileFaces() {
   if (!PROFILE_PHOTO || !window.FaceSquishUI) return;
@@ -2254,6 +2263,7 @@ async function router() {
   if (app.focus) app.focus({ preventScroll: true });
   mountProfileFaces();
   if (window.EcgProgress) window.EcgProgress.sync(path);
+  mountDelights(path);
 }
 
 if (langToggle) {

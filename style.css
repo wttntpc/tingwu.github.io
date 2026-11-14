@@ -1144,3 +1144,9 @@ html[data-theme="dark"] .face-squish-canvas { background: #e8e3d6; }
 @keyframes ecg-beat { 0% { transform: scale(1); } 18% { transform: scale(3.2); } 36% { transform: scale(1.4); } 54% { transform: scale(2.4); } 100% { transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) { .ecg-progress.is-complete .ecg-dot { animation: none; } }
 body:has(.ecg-progress:not([hidden])) .version-bar { top: 96px; }
+.home-agenda-areas.is-physics { position: relative; }
+.home-agenda-areas.is-physics > li { position: absolute; top: 0; left: 0; box-sizing: border-box; margin: 0; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; will-change: transform; transition: box-shadow .15s ease; }
+.home-agenda-areas.is-physics > li.is-dragging { z-index: 3; cursor: grabbing; box-shadow: 0 8px 18px rgba(20, 30, 50, .18); border-color: var(--accent); }
+.brand-mark.is-beating { animation: brand-beat .8s ease-out; }
+@keyframes brand-beat { 0% { transform: scale(1); } 14% { transform: scale(1.24); } 28% { transform: scale(1); } 42% { transform: scale(1.15); } 70%, 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .brand-mark.is-beating { animation: none; } }
