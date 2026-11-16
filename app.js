@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261116-01';
+const SITE_VERSION = '20261116-02';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -557,7 +557,6 @@ async function renderHome() {
   ];
   app.innerHTML = `<div class="page-shell home-shell">
     <section class="profile-hero">
-      <canvas class="neural-network-bg" data-neural-network aria-hidden="true"></canvas>
       <div class="profile-rail">
         <p class="profile-kicker">${lang === 'zh' ? '研究者檔案 · 01' : 'Research profile · 01'}</p>
         <div class="avatar-wrap" role="img" aria-label="${lang === 'zh' ? 'TW 字母標誌' : 'TW monogram'}"><span aria-hidden="true">TW</span></div>

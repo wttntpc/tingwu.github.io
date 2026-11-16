@@ -3,36 +3,6 @@
   if (typeof module === 'object' && module.exports) module.exports = api;
   else root.ScienceDelights = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this, function createScienceDelightsApi() {
-  function seededRandom(seed) {
-    let state = seed >>> 0;
-    return function random() {
-      state = (state * 1664525 + 1013904223) >>> 0;
-      return state / 4294967296;
-    };
-  }
-
-  function createNetwork(width, height, count = 24) {
-    const w = Math.max(1, width);
-    const h = Math.max(1, height);
-    const margin = Math.min(34, w * 0.08, h * 0.12);
-    const random = seededRandom(20261116);
-    const nodes = Array.from({ length: count }, (_, id) => ({
-      id,
-      x: margin + random() * Math.max(0, w - margin * 2),
-      y: margin + random() * Math.max(0, h - margin * 2),
-      radius: 1.3 + random() * 1.8
-    }));
-    const linkDistance = Math.max(72, Math.min(180, Math.min(w * 0.28, h * 0.56)));
-    const links = [];
-    for (let left = 0; left < nodes.length; left += 1) {
-      for (let right = left + 1; right < nodes.length; right += 1) {
-        const distance = Math.hypot(nodes[left].x - nodes[right].x, nodes[left].y - nodes[right].y);
-        if (distance <= linkDistance) links.push({ left, right, distance });
-      }
-    }
-    return { width: w, height: h, nodes, links, linkDistance };
-  }
-
   function gaussian(value, center, width) {
     const z = (value - center) / width;
     return Math.exp(-0.5 * z * z);
@@ -260,83 +230,9 @@
     };
   }
 
-  function mountNetwork(hero) {
-    const canvas = hero.querySelector('[data-neural-network]');
-    if (!canvas || canvas.dataset.scienceMounted) return null;
-    canvas.dataset.scienceMounted = 'true';
-    const reduceMotion = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let network = null;
-    let pointer = null;
-
-    function draw() {
-      const { width, height, ratio } = canvasSize(canvas);
-      if (!network || network.width !== width || network.height !== height) network = createNetwork(width, height, width < 600 ? 16 : 27);
-      const context = canvas.getContext('2d');
-      if (!context) return;
-      const colors = themeColors(hero);
-      context.setTransform(ratio, 0, 0, ratio, 0, 0);
-      context.clearRect(0, 0, width, height);
-      const displaced = network.nodes.map(node => {
-        if (!pointer || reduceMotion) return node;
-        const dx = node.x - pointer.x;
-        const dy = node.y - pointer.y;
-        const distance = Math.max(1, Math.hypot(dx, dy));
-        const influence = Math.max(0, 1 - distance / 150);
-        return { ...node, x: node.x + dx / distance * influence * 13, y: node.y + dy / distance * influence * 13 };
-      });
-      context.strokeStyle = colors.accent;
-      context.fillStyle = colors.accent;
-      context.lineWidth = 0.8;
-      network.links.forEach(link => {
-        const left = displaced[link.left];
-        const right = displaced[link.right];
-        context.globalAlpha = 0.045 + (1 - link.distance / network.linkDistance) * 0.08;
-        context.beginPath();
-        context.moveTo(left.x, left.y);
-        context.lineTo(right.x, right.y);
-        context.stroke();
-      });
-      displaced.forEach(node => {
-        context.globalAlpha = pointer ? 0.22 : 0.14;
-        context.beginPath();
-        context.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        context.fill();
-      });
-      context.globalAlpha = 1;
-    }
-
-    function onPointerMove(event) {
-      if (reduceMotion) return;
-      const rect = hero.getBoundingClientRect();
-      pointer = { x: event.clientX - rect.left, y: event.clientY - rect.top };
-      draw();
-    }
-
-    function onPointerLeave() { pointer = null; draw(); }
-    hero.addEventListener('pointermove', onPointerMove, { passive: true });
-    hero.addEventListener('pointerleave', onPointerLeave, { passive: true });
-    const resize = typeof ResizeObserver === 'function' ? new ResizeObserver(draw) : null;
-    resize?.observe(hero);
-    draw();
-
-    return {
-      destroy() {
-        resize?.disconnect();
-        hero.removeEventListener('pointermove', onPointerMove);
-        hero.removeEventListener('pointerleave', onPointerLeave);
-        delete canvas.dataset.scienceMounted;
-      }
-    };
-  }
-
   function mount(root) {
     if (!root || typeof root.querySelector !== 'function') return null;
     const handles = [];
-    const hero = root.querySelector('.profile-hero');
-    if (hero) {
-      const handle = mountNetwork(hero);
-      if (handle) handles.push(handle);
-    }
     root.querySelectorAll('[data-signal-tug]').forEach(button => {
       const handle = mountSignal(button);
       if (handle) handles.push(handle);
@@ -344,5 +240,5 @@
     return { destroy() { handles.forEach(handle => handle.destroy()); } };
   }
 
-  return { createNetwork, createSignalSpring, mount };
+  return { createSignalSpring, mount };
 });
