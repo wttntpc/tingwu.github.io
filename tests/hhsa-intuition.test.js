@@ -133,7 +133,7 @@ test('the demo is routed, loaded in the right order, listed on the lab hub and o
 
 test('the cache-busting version is the same everywhere and was bumped for this release', () => {
   const inApp = app.match(/const SITE_VERSION = '([^']+)'/)[1];
-  assert.equal(inApp, '20261115-04');
+  assert.equal(inApp, '20261116-01');
   for (const file of ['index.html', '404.html']) {
     const text = fs.readFileSync(path.join(root, file), 'utf8');
     const versions = [...new Set([...text.matchAll(/\?v=([0-9-]+)/g)].map(m => m[1]))];
