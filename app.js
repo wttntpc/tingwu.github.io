@@ -177,7 +177,7 @@ const copy = {
     education: [
       ['2025–present', 'Ph.D., Institute of Cognitive Neuroscience, NCU', 'Exercise, emotion, cognition, and neural mechanisms'],
       ['2023–2025', 'M.S., Department of Kinesiology, NTHU', 'Exercise psychology, cognition, and healthy aging'],
-      ['2019–2023', 'B.S., Department of Sports Medicine, CMU', 'Sports medicine and athletic training']
+      ['2019–2023', 'B.S., Department of Sports Medicine, China Medical University', 'Sports medicine and athletic training']
     ],
     experience: [
       ['2024–2026', 'Editorial Assistant, Journal of Sports Performance', 'Academic publishing and editorial support'],
@@ -198,7 +198,7 @@ const copy = {
     honorsList: [
       ['2025', 'Phi Tau Phi Scholastic Honor Society'],
       ['2023', 'Intellectual Award (Graduate Honor), China Medical University'],
-      ['2021–2022', 'Academic Excellence Award, Department of Sports Medicine, CMU']
+      ['2021–2022', 'Academic Excellence Award, Department of Sports Medicine, China Medical University']
     ],
     blogEyebrow: 'Writing',
     blogTitle: 'Research notes & ideas',
