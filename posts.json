@@ -5,9 +5,9 @@
     "date": "2026-11-21",
     "category": "popular-science",
     "tags": ["運動與情緒", "效價偏誤", "腦磁圖", "單次運動", "文獻導讀"],
-    "description": "一項 24 人的實驗發現，坐著休息後大腦較強處理負向圖片，低強度運動後差距消失，中強度運動後甚至反轉；這是單次運動的早期腦反應，不是長期效益。",
+    "description": "24 位健康成人的腦磁圖實驗：休息時大腦對負向圖片處理較強，低強度運動後差距消失，中強度運動後反轉；效應限於左半腦、沒有測量感受，且低強度與中強度的差異未達顯著。",
     "titleEn": "After Exercise, Does the Brain See the World More Positively?",
-    "descriptionEn": "A 24-person experiment found stronger brain processing of negative pictures after rest, no difference after low-intensity exercise, and a reversal after moderate-intensity exercise: an early brain response to a single bout, not a long-term benefit.",
+    "descriptionEn": "A magnetoencephalography experiment with 24 healthy adults: negative pictures were processed more strongly at rest, the gap disappeared after low-intensity exercise and reversed after moderate-intensity exercise; the effect was left-hemisphere only, feelings were not measured, and low versus moderate intensity did not differ significantly.",
     "bodyEn": true
   },
   {
@@ -23,13 +23,13 @@
   },
   {
     "id": "acute-exercise-implicit-emotion-flanker-erp",
-    "title": "一次運動，能減少「看不見的負面情緒」對專注的干擾嗎？",
+    "title": "一閃而過的負面圖片，運動後大腦還會被它抓住注意力嗎？",
     "date": "2026-11-21",
     "category": "popular-science",
     "tags": ["運動與情緒", "側翼作業", "事件相關電位", "情緒調節", "文獻導讀"],
-    "description": "40 位年輕女性的實驗：急性運動減弱了隱性負向情緒對早期腦波 N1 的影響，但額葉 alpha 不對稱沒有顯著變化；摘要層級的導讀，並說明小樣本的限制。",
-    "titleEn": "Can One Bout of Exercise Reduce the Interference of \"Unseen\" Negative Emotion on Attention?",
-    "descriptionEn": "An experiment with 40 young women: acute exercise reduced the effect of implicit negative emotion on the early N1 brain wave, but frontal alpha asymmetry did not change significantly; an abstract-level guide that spells out the limits of a small sample.",
+    "description": "40 位女大學生在箭頭側翼作業前被閃過 20 毫秒的圖片：負向圖片讓早期腦波 N1 變大但反應時間沒有變慢；運動後這個 N1 差異消失，不過對照組反而上升，其他指標也沒有改變。",
+    "titleEn": "After a Flashed Negative Picture, Does the Brain Still Give It Attention? A Study of One Bout of Exercise",
+    "descriptionEn": "Forty female students saw 20-ms flashed pictures before an arrow flanker task: negative pictures enlarged the early N1 brain wave without slowing responses; after exercise that N1 difference disappeared, but the control group's rose and the other measures did not change.",
     "bodyEn": true
   },
   {

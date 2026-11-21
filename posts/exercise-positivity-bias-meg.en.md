@@ -1,80 +1,103 @@
 <!-- SIMPLE -->
 # After Exercise, Does the Brain See the World More Positively?
 
-The same set of photos makes some people frown and others smile. Could the speed and strength with which the brain processes them differ right after exercise? A 2020 study used magnetic brain recordings to look at this and found that after exercise, the brain's priority for negative pictures shrank and even turned toward positive ones.
+The same set of photos makes some people frown and others smile. Could the speed and strength with which the brain processes them differ right after exercise? A 2020 study used magnetoencephalography to look at this. When people sat at rest, their brains processed negative pictures more strongly. After exercise the gap shrank, and after moderate-intensity exercise it even reversed toward positive pictures.
 
 > This is a popular-science summary, not medical or psychological advice. If emotional difficulties keep affecting your sleep, work, or relationships, please talk to a professional.
 
 ## How the study was done
 
-Twenty-four healthy adults (12 women) took part. On different days, each person went through three 30-minute conditions, in a randomized and balanced order: **low-intensity exercise**, **moderate-intensity exercise**, and **sitting at rest**. After each condition they viewed negative and positive pictures while the brain's event-related magnetic fields were recorded (magnetoencephalography), and the researchers reconstructed where in the brain the activity came from (Ligeza et al., 2020).
+Twenty-four healthy adults (12 men and 12 women, aged 18 to 35, mean age about 24) went through three 30-minute conditions on different days, 24 to 72 hours apart and always at the same time of day, in a randomized and fully balanced order (Ligeza et al., 2020):
+
+| Condition | What they did | Mean heart rate | Perceived exertion (6–20 scale) |
+|---|---|---|---|
+| Seated rest | Sat and read sports magazines for 30 minutes | about 64 beats/min | about 6 (very, very light) |
+| Low-intensity exercise | 5-minute warm-up, 20 minutes of exercise, 5-minute cool-down; heart rate kept at 30–40% of heart-rate reserve | about 110 beats/min | about 9.5 (light) |
+| Moderate-intensity exercise | Same, with heart rate kept at 60–70% of heart-rate reserve | about 148 beats/min | about 14 (somewhat hard) |
+
+Exercise was done on a bike ergometer (20 people) or a rowing machine (4 people). Afterwards, participants waited until their heart rate was back near its resting level (about 10 minutes) and then entered the magnetoencephalography room to **passively view pictures**: 100 grayscale pictures, half pleasant (for example sports and happy people) and half unpleasant (for example threats, injuries, and sad people). The researchers deliberately left out neutral pictures and made the pleasant and unpleasant sets equal in "how arousing" they were; participants' later ratings did not differ significantly. Each picture appeared for 0.6 seconds while the brain's event-related magnetic fields were recorded, and the researchers then estimated where in the brain those fields came from.
 
 ## What was found
 
-- **After sitting at rest:** the brain processed negative pictures more strongly than positive ones. The researchers call this a "negativity bias."
-- **After low-intensity exercise:** the gap disappeared and positive and negative pictures were processed about equally.
-- **After moderate-intensity exercise:** it reversed, and positive pictures were processed more strongly than negative ones, a "positivity bias."
-- **When it happened:** the differences appeared about 190 to 310 milliseconds after a picture appeared, less than a third of a second, across a large area of the left hemisphere. The authors take this to reflect very early, automatic processing, not a judgment reached after thinking it over.
+- **After seated rest:** a large area of the left hemisphere processed negative pictures more strongly than positive ones from about 200 to 300 milliseconds after the picture appeared (less than a third of a second), a negativity bias.
+- **After low-intensity exercise:** the gap shrank to a non-significant level; the two were processed about equally.
+- **After moderate-intensity exercise:** it reversed, and positive pictures were processed more strongly than negative ones, which was statistically significant (a positivity bias).
+- **Both kinds of exercise clearly reduced the negativity bias** compared with rest, but **the difference between low and moderate intensity did not reach statistical significance** (*p* = .063).
+- **The change looked more like positive pictures being processed more** than negative pictures being processed less, although that difference was not statistically significant either.
+- The direction was the same for pictures of higher and lower arousal, so this is not simply because the pictures were more exciting.
 
-## What this means, and what it does not
+The authors say this time window belongs to a very early, fairly automatic stage of attention, suggesting that exercise may tilt the brain's "natural selective attention" toward positive content.
 
-What was measured is the **relative strength of brain processing of pictures**. It is not the same as "the world feels nicer after exercise," and it is not a measure of how you interpret ambiguous situations. The abstract does not report participants' subjective feelings.
+## Where to be careful
 
-A few more cautions:
-
-- There were only 24 healthy adults, each condition was done once, and the study looked at changes shortly after a **single bout of exercise**. It cannot be turned into a claim that exercise treats depression or anxiety.
-- This is one study. It needs replication by other teams and in other populations.
-- The abstract does not say how exercise intensity was defined or where the pictures came from; those details need the full text.
+- **Feelings were not measured.** The study collected no behavioral or subjective ratings during the experiment, only magnetoencephalography data. So it cannot be said that "you feel the world is nicer after exercise," let alone that it measures how you interpret ambiguous situations.
+- **The effect is small and narrow.** The negativity bias at rest has an effect size of only about 0.3, and it appeared only in the **left hemisphere**, which the authors themselves call unexpected (responses to emotional pictures are usually bilateral), and their explanation for it is speculation.
+- **Only 24 healthy adults, a single bout of exercise, and only low and moderate intensity.** It cannot say what high intensity would do, nor be extended to groups with depression or anxiety. The authors recommend larger samples and measuring participants' cardiorespiratory fitness in future work.
+- **This is a short-term response about 10 minutes after exercise.** How long it lasts is not answered.
+- The mechanisms discussed in the paper, such as endorphins, dopamine, and serotonin, are only possible explanations and were not measured.
 
 ## Three things to take away
 
 1. In these participants, the brain processed negative pictures more strongly at rest. After exercise the gap shrank, and after moderate exercise it reversed.
-2. The change appeared quickly and early, in an automatic stage of processing.
-3. This is a short-term brain response to a single bout of exercise, which is not the same as a long-term mental-health benefit.
+2. The change appeared early, at an automatic stage of attention, and was concentrated in the left hemisphere.
+3. This is a short-term brain response after a single bout, with no feelings measured, and it is not the same as a long-term mental-health benefit.
 
 Further reading: [Emotion doesn't just "appear"](#/post/emotion-popular-science-primer) introduces the components and regulation of emotion; the [exercise and emotion learning map](#/post/exercise-emotion-learning-map) shows how to read the exercise–emotion evidence; the same series' [Does exercise intensity change how the brain responds to facial expressions?](#/post/exercise-intensity-emotional-faces-fmri) covers exercise intensity and emotional faces. To try a similar judgment yourself, visit the [interactive lab](#/lab) and look for the facial-expression judgment curve.
 
 <!-- PROFESSIONAL -->
 # A Single Bout of Aerobic Exercise and Early Brain Processing of Pleasant and Unpleasant Pictures: A Guide to Ligeza et al. (2020)
 
-**This summary is based on the paper's abstract and bibliographic record (DOI, journal, and volume were checked); the full text has not been read. Check numbers and details against the original before citing them.**
+This summary is based on the paper's full text (details were checked against it; page numbers are PDF pages); the bibliographic record and DOI were also checked. The paper is open access (CC BY).
 
 ## Research question
 
-Acute aerobic exercise is thought to benefit many aspects of emotional functioning, but how exercise affects the processing of emotional stimuli, and which brain mechanisms support this, is unclear. Ligeza et al. (2020) tested the influence of acute aerobic exercise on **valence biases** (preferential processing of negative or positive pictures) and used source reconstruction to examine brain activity after picture viewing.
+Acute aerobic exercise benefits many aspects of emotional functioning, but its effect on the processing of emotional stimuli and the brain mechanisms behind it remain unclear (p. 1). The design of Ligeza et al. (2020) addresses three limitations of earlier work: (1) negative and neutral stimuli differ not only in valence but also in arousal, so reduced responses could reflect a reduction for all highly arousing stimuli; (2) fMRI cannot capture temporal dynamics and the LPP is too late; and (3) most studies did not compare exercise intensities (pp. 2–3). They therefore used magnetoencephalography (MEG) with source reconstruction to compare **arousal-matched** pleasant and unpleasant pictures, with low and moderate intensities and a seated-rest control.
 
 ## Design and measures
 
-- **Participants:** 24 healthy participants (12 women).
-- **Design:** a randomized, counterbalanced within-subject design with three 30-minute protocols: low-intensity exercise (Low-Int), moderate-intensity exercise (Mod-Int), and a seated rest condition (REST).
-- **Task:** after each protocol, participants viewed negative and positive pictures while event-related magnetic fields were recorded.
-- **Analysis:** source reconstruction of brain activity after picture onset, comparing the processing of negative and positive pictures across the three conditions.
+- **Participants:** 24 healthy adults aged 18 to 35 (12 women, 12 men; mean age 24.13 ± 3.71 years), recruited at the University of Münster; two more were excluded for technical problems. An a priori power analysis based on η² = 0.085 from earlier work estimated that 24 were enough (pp. 3–4).
+- **Design:** within-subject, three sessions 24–72 hours apart at the same time of day, in randomized and fully counterbalanced order.
+- **Exercise:** 5-minute warm-up, 20 minutes of exercise, and 5-minute cool-down (30 minutes in total; 40–50 W during warm-up and cool-down). Low intensity was 30–40% of heart-rate reserve (HRR) and moderate intensity 60–70%; maximal heart rate was estimated as 211 − 0.64 × age. Participants chose a bike ergometer (20) or a rowing ergometer (4). The control condition (REST) was sitting and reading sports magazines for 30 minutes (p. 5).
+- **Manipulation check** (Table 2, p. 6): mean heart rate 64.0 (REST), 110.0 (low), and 148.4 (moderate) beats/min (%HRR 2.9, 36.8, 65.1); Borg RPE 6.3, 9.5, and 14.0; all pairwise differences *p* < .001.
+- **Task:** passive viewing about 10 minutes after exercise (and once heart rate was back to baseline ±10%) of 100 grayscale pictures (50 pleasant, such as sports and happy people; 50 unpleasant, such as threats, bodily harm, and sad people), each shown 3 times for 300 trials at 600 ms; neutral pictures were deliberately excluded. Ratings with the SAM afterwards: valence 29.2 (negative) versus 81.7 (positive), arousal 57.5 versus 53.5 (no significant difference) (p. 4).
+- **MEG and analysis:** 275-channel CTF system; L2 minimum-norm source estimates; a one-way (intensity) ANOVA on the pleasant-minus-unpleasant difference with cluster-permutation correction (1000 permutations) in four predefined time windows (pp. 5–6).
 
 ## Results
 
-Exercise strongly affected the valence processing of emotional scenes within a widely distributed left-hemispheric spatio-temporal cluster between 190 and 310 ms after picture onset:
+Main analysis (p. 6): a single, widely distributed **left-hemisphere** spatio-temporal cluster in the 200–300 ms window (*p*-cluster = .023; *F*(2, 46) = 12.49, η² = .352); post hoc extension of the window put the cluster at 200–320 ms. There was no effect in the right hemisphere, and the intensity × hemisphere interaction was significant (*F*(2, 46) = 5.27, *p* = .009).
 
-| Condition | Valence processing in the cluster |
+| Comparison (within the cluster, pleasant − unpleasant) | Result |
 |---|---|
-| Rest (REST) | negative > positive (negativity bias) |
-| Low-intensity exercise (Low-Int) | positive = negative (the bias disappeared) |
-| Moderate-intensity exercise (Mod-Int) | positive > negative (reversed to a positivity bias) |
+| REST | negativity bias, *t*(23) = −3.13, *p* = .005, *d* = 0.30 |
+| Low intensity | slight, non-significant positivity bias, *t*(23) = 0.90, *p* = .378 |
+| Moderate intensity | significant positivity bias, *t*(23) = 3.17, *p* = .004, *d* = 0.32 |
+| Bias difference, low vs. REST | *t*(23) = 3.52, *p* = .002, *d* = 0.82 |
+| Bias difference, moderate vs. REST | *t*(23) = 4.09, *p* < .001, *d* = 1.29 |
+| Moderate vs. low | *t*(23) = −1.95, *p* = .063 (not significant) |
 
-The authors conclude that acute aerobic exercise of low and moderate intensity induces a positivity bias that is reflected in early, automatic processes.
+Other findings:
+
+- Looking at pleasant and unpleasant pictures separately, the main effect of intensity was significant for pleasant pictures (*F*(2, 46) = 3.30, *p* = .046) and only near significance for unpleasant ones (*p* = .079); cluster-permutation analyses run separately found no significant cluster for either. The authors' discussion is that the bias "seemingly" resulted more from enhanced processing of pleasant scenes, but that difference was not significant (p. 8).
+- After a median split by arousal, low- and high-arousal pictures gave the same result, and the three-way interaction was not significant (*p* = .188).
+- Post hoc clusters for moderate vs. REST were at 137–220 ms and 240–373 ms; low vs. REST reached only trend level (*p*-cluster = .075, .096).
 
 ## How to read it
 
-- The effect is a **relative strength of brain activity**. Its relation to subjective emotion is not reported in the abstract.
-- It is an **early (about 190–310 ms)** index of processing. It is not the same as later conscious appraisal, nor as an interpretation bias in daily life, which would need a behavioral task with ambiguous situations.
-- With 24 healthy adults, the conclusion is limited to **short-term responses after a single bout** and cannot be extended to long-term exercise or clinical groups.
-- The abstract does not give the definition of exercise intensity (for example, relative to heart rate or the lactate threshold), the source and number of pictures, or the statistical correction used; these require the full text.
+The authors map the window and topography onto the **early posterior negativity (EPN)** interval (about 150–300 ms) and suggest that exercise may bias early, automatic selective attention toward positive content. The following limitations affect interpretation:
+
+1. **No behavioral or subjective measure:** the authors acknowledge that the study cannot say how exercise modulates emotional behavior related to emotional picture processing (p. 9).
+2. **Small bias effects, left hemisphere only:** the EPN is usually bilateral; the authors call this unexpected and offer an interaction of right-hemisphere attention networks as a "highly speculative" explanation (p. 9).
+3. **Intensity comparison is uncertain:** the direct moderate-versus-low difference was not significant (*p* = .063). The abstract's "low intensity removed the gap and moderate intensity reversed it" rests on tests of each condition against zero and is not evidence of an intensity difference; high intensity was not tested, so the inverted-U hypothesis cannot be examined.
+4. **Sample and population:** 24 healthy adults; the authors recommend larger samples and measuring cardiorespiratory fitness as a possible mediator.
+5. **Mechanisms are speculative:** endorphins, dopamine, serotonin, and stress regulation are discussed from the literature and were not measured here.
 
 ## Link to this site's research topics
 
-The study speaks to whether emotional processing biases change after exercise, but it measures brain processing of emotional pictures, not behavioral judgments of faces or ambiguous situations. Comparing the two requires first separating the stimuli (pictures versus faces), the measures (magnetic fields, EEG, behavior), and the time scale. For a fuller way to read the evidence, see the [exercise and emotion learning map](#/post/exercise-emotion-learning-map); for the face study in the same series, see [Does exercise intensity change how the brain responds to facial expressions?](#/post/exercise-intensity-emotional-faces-fmri).
+The study speaks to whether emotional processing biases change after exercise, but it measures **brain processing** of emotional **pictures**, not **behavioral judgments** of faces or ambiguous situations. Comparing the two requires first separating the stimuli (pictures versus faces), the measures (magnetic fields, EEG, fMRI, behavior), and the time scale. For a fuller way to read the evidence, see the [exercise and emotion learning map](#/post/exercise-emotion-learning-map); for the face fMRI study in the same series, see [Does exercise intensity change how the brain responds to facial expressions?](#/post/exercise-intensity-emotional-faces-fmri), which this paper cites as lacking a non-exercise control (p. 2).
 
 ## References (APA 7th)
 
 - Ligeza, T. S., Maciejczyk, M., Wyczesany, M., Wagner, H., Roesmann, K., & Junghofer, M. (2020). Acute aerobic exercise enhances pleasant compared to unpleasant visual scene processing. *Brain and Cognition, 143*, Article 105595. https://doi.org/10.1016/j.bandc.2020.105595
+- Schmitt, A., Martin, J. A., Rojas, S., Vafa, R., Scheef, L., Strüder, H. K., & Boecker, H. (2019). Effects of low- and high-intensity exercise on emotional face processing: An fMRI face-matching study. *Social Cognitive and Affective Neuroscience, 14*(6), 657–665. https://doi.org/10.1093/scan/nsz042
 
 > This page is a learning and popular-science summary and is not medical or mental-health advice. If you are struggling with your emotions, please talk to a professional.
