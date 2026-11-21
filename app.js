@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261116-02';
+const SITE_VERSION = '20261121-02';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -649,6 +649,7 @@ const researchPageContent = {
       ['emotion-gonogo', '情緒與動作：情緒臉孔 Go/No-Go', '情緒與任務目標相關時，表情才會改變反應嗎？'],
       ['face-judgment', '情緒知覺：表情判斷曲線', '模糊的臉，你會看成開心還是難過？'],
       ['stop-signal', '抑制控制：情緒選擇性停止訊號作業', '看到紅框時，你還煞得住嗎？'],
+      ['emotion-flanker', '注意控制：情緒臉孔側翼作業', '旁邊的臉，會干擾你判斷中間的臉嗎？'],
       ['hhsa', '訊號：振幅調變與包絡', '誰在調變誰？']
     ],
     frameworkLabel: '研究框架', frameworkCaveat: '示意圖，簡化呈現研究變項間的關係，非統計模型或因果推論結果。',
@@ -666,6 +667,7 @@ const researchPageContent = {
       ['emotion-gonogo', 'Emotion and action: emotional-face Go/No-Go', 'Do expressions change responses only when emotion is relevant to the goal?'],
       ['face-judgment', 'Emotion perception: facial-expression judgment curve', 'Do you read an ambiguous face as happy or sad?'],
       ['stop-signal', 'Inhibitory control: emotional selective stop-signal task', 'Can you still stop when a red frame appears?'],
+      ['emotion-flanker', 'Attention control: emotional-face flanker task', 'Do the faces beside a face disturb your judgment of the middle one?'],
       ['hhsa', 'Signals: amplitude modulation and the envelope', 'Who modulates whom?']
     ],
     frameworkLabel: 'Research framework', frameworkCaveat: 'Simplified schematic of how these variables relate — not a statistical model or a causal claim.',
@@ -2239,6 +2241,7 @@ async function router() {
   if (!app) return;
   window.InteractiveLab?.cleanup();
   window.EmotionGoNoGoUI?.cleanup();
+  window.EmotionFlankerUI?.cleanup();
   window.LabGamesUI?.cleanup();
   destroyProfileFaces();
   window.HhsaIntuitionUI?.cleanup();
@@ -2255,6 +2258,7 @@ async function router() {
     else if (path === '/lab') window.InteractiveLab.renderLab(app, lang);
     else if (path === '/lab/posner') window.InteractiveLab.renderPosner(app, lang);
     else if (path === '/lab/emotion-gonogo') window.EmotionGoNoGoUI.renderEmotionGoNoGo(app, lang);
+    else if (path === '/lab/emotion-flanker') window.EmotionFlankerUI.renderEmotionFlanker(app, lang);
     else if (path === '/lab/face-judgment') window.LabGamesUI.renderFaceJudgment(app, lang);
     else if (path === '/lab/stop-signal') window.LabGamesUI.renderStopSignal(app, lang);
     else if (path === '/lab/hhsa') window.HhsaIntuitionUI.renderHhsaIntuition(app, lang);
