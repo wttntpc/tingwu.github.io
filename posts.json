@@ -1,5 +1,16 @@
 [
   {
+    "id": "emotion-popular-science-primer",
+    "title": "情緒不是「突然出現」的：給一般讀者的情緒小百科",
+    "date": "2026-11-21",
+    "category": "popular-science",
+    "tags": ["情緒", "情緒調節", "心率變異", "運動與情緒", "科普"],
+    "description": "從「心跳加速是緊張還是興奮」出發，用幾個研究整理情緒是什麼、表情能告訴我們什麼、情緒調節哪些做法平均較有效，以及運動與情緒的關係。",
+    "titleEn": "Emotion Doesn't Just \"Appear\": A Plain-Language Primer",
+    "descriptionEn": "Starting from whether a racing heart means nerves or excitement, this primer uses a handful of studies to explain what emotion is, what facial expressions can and cannot tell us, which regulation strategies work better on average, and how exercise relates to emotion.",
+    "bodyEn": true
+  },
+  {
     "id": "hrv-device-gold-standard-comparison",
     "title": "12 導程 ECG 與 PPG 設備：怎麼和「黃金標準」比較？HRV 設備驗證入門",
     "date": "2026-11-14",

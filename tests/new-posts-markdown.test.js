@@ -6,7 +6,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const posts = JSON.parse(fs.readFileSync(path.join(root, 'posts.json'), 'utf8'));
 const postIds = new Set(posts.map(post => post.id));
-const NEW = ['emotional-selective-stop-signal-task', 'exercise-emotion-learning-map', 'hrv-device-gold-standard-comparison'];
+const NEW = ['emotional-selective-stop-signal-task', 'exercise-emotion-learning-map', 'hrv-device-gold-standard-comparison', 'emotion-popular-science-primer'];
 
 for (const id of NEW) {
   const body = fs.readFileSync(path.join(root, 'posts', `${id}.md`), 'utf8');
