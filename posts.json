@@ -1,5 +1,16 @@
 [
   {
+    "id": "self-control-life-course-dunedin",
+    "title": "趁年輕累積什麼？一項追蹤 30 年的研究，談「自我控制」",
+    "date": "2026-11-21",
+    "category": "popular-science",
+    "tags": ["人生成長", "自我控制", "長期追蹤", "執行功能", "文獻導讀"],
+    "description": "追蹤 1,037 位孩子到 32 歲：童年的自我控制預測成年後的健康、財富與犯罪紀錄，呈現連續的梯度；本文整理發現、青少年「陷阱」與重要限制，並說明哪些延伸是推論。",
+    "titleEn": "What Should You Build While You Are Young? A 30-Year Study on Self-Control",
+    "descriptionEn": "A cohort of 1,037 children followed to age 32: childhood self-control predicted adult health, wealth, and criminal records along a continuous gradient. This guide covers the findings, the adolescent \"snares,\" the key limits, and which extensions are inference.",
+    "bodyEn": true
+  },
+  {
     "id": "exercise-positivity-bias-meg",
     "title": "運動後，大腦看世界會更偏向正面嗎？",
     "date": "2026-11-21",

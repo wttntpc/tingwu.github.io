@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261121-04';
+const SITE_VERSION = '20261121-05';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -303,6 +303,7 @@ function closeMenu() {
 }
 
 const POSTS_DATA = [
+  {"id": "self-control-life-course-dunedin", "title": "趁年輕累積什麼？一項追蹤 30 年的研究，談「自我控制」", "date": "2026-11-21", "category": "popular-science", "tags": ["人生成長", "自我控制", "長期追蹤", "執行功能", "文獻導讀"], "description": "追蹤 1,037 位孩子到 32 歲：童年的自我控制預測成年後的健康、財富與犯罪紀錄，呈現連續的梯度；本文整理發現、青少年「陷阱」與重要限制，並說明哪些延伸是推論。", "titleEn": "What Should You Build While You Are Young? A 30-Year Study on Self-Control", "descriptionEn": "A cohort of 1,037 children followed to age 32: childhood self-control predicted adult health, wealth, and criminal records along a continuous gradient. This guide covers the findings, the adolescent \"snares,\" the key limits, and which extensions are inference.", "bodyEn": true},
   {"id": "exercise-positivity-bias-meg", "title": "運動後，大腦看世界會更偏向正面嗎？", "date": "2026-11-21", "category": "popular-science", "tags": ["運動與情緒", "效價偏誤", "腦磁圖", "單次運動", "文獻導讀"], "description": "24 位健康成人的腦磁圖實驗：休息時大腦對負向圖片處理較強，低強度運動後差距消失，中強度運動後反轉；效應限於左半腦、沒有測量感受，且低強度與中強度的差異未達顯著。", "titleEn": "After Exercise, Does the Brain See the World More Positively?", "descriptionEn": "A magnetoencephalography experiment with 24 healthy adults: negative pictures were processed more strongly at rest, the gap disappeared after low-intensity exercise and reversed after moderate-intensity exercise; the effect was left-hemisphere only, feelings were not measured, and low versus moderate intensity did not differ significantly.", "bodyEn": true},
   {"id": "exercise-intensity-emotional-faces-fmri", "title": "運動強度，會改變大腦看「表情」的反應嗎？", "date": "2026-11-21", "category": "popular-science", "tags": ["運動與情緒", "表情臉孔", "fMRI", "運動強度", "文獻導讀"], "description": "21 位男性運動員在低、高強度跑步前後做臉孔配對：正向情感上升，但大腦變化只出現在恐懼臉；沒有不運動的對照，也沒有證實強度的交互作用。", "titleEn": "Does Exercise Intensity Change How the Brain Responds to Facial Expressions?", "descriptionEn": "Twenty-one male athletes did a face-matching task in an fMRI scanner before and after low- and high-intensity runs: positive affect rose, but brain changes appeared only for fearful faces, with no non-exercise control and no confirmed intensity interaction.", "bodyEn": true},
   {"id": "acute-exercise-implicit-emotion-flanker-erp", "title": "一閃而過的負面圖片，運動後大腦還會被它抓住注意力嗎？", "date": "2026-11-21", "category": "popular-science", "tags": ["運動與情緒", "側翼作業", "事件相關電位", "情緒調節", "文獻導讀"], "description": "40 位女大學生在箭頭側翼作業前被閃過 20 毫秒的圖片：負向圖片讓早期腦波 N1 變大但反應時間沒有變慢；運動後這個 N1 差異消失，不過對照組反而上升，其他指標也沒有改變。", "titleEn": "After a Flashed Negative Picture, Does the Brain Still Give It Attention? A Study of One Bout of Exercise", "descriptionEn": "Forty female students saw 20-ms flashed pictures before an arrow flanker task: negative pictures enlarged the early N1 brain wave without slowing responses; after exercise that N1 difference disappeared, but the control group's rose and the other measures did not change.", "bodyEn": true},
