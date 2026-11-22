@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="用 Notion 收集可追溯的單字與語境，讓 Antigravity 產生待確認草稿，再把已查核內容匯入 NotebookLM 製作 Audio Overview；同時說明資料結構、安全、人工驗證與學習成效評估。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/notion-antigravity-notebooklm-vocabulary-workflow/" />
+    <meta property="og:title" content="從 Notion 單字庫到 Podcast：可查核的 Antigravity × NotebookLM 單字工作流" />
+    <meta property="og:description" content="用 Notion 收集可追溯的單字與語境，讓 Antigravity 產生待確認草稿，再把已查核內容匯入 NotebookLM 製作 Audio Overview；同時說明資料結構、安全、人工驗證與學習成效評估。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/notion-antigravity-notebooklm-vocabulary-workflow/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/notion-antigravity-notebooklm-vocabulary-workflow.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="從 Notion 單字庫到 Podcast：可查核的 Antigravity × NotebookLM 單字工作流" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="從 Notion 單字庫到 Podcast：可查核的 Antigravity × NotebookLM 單字工作流" />
+    <meta name="twitter:description" content="用 Notion 收集可追溯的單字與語境，讓 Antigravity 產生待確認草稿，再把已查核內容匯入 NotebookLM 製作 Audio Overview；同時說明資料結構、安全、人工驗證與學習成效評估。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/notion-antigravity-notebooklm-vocabulary-workflow.png" />
+    <title>從 Notion 單字庫到 Podcast：可查核的 Antigravity × NotebookLM 單字工作流 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-25" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"從 Notion 單字庫到 Podcast：可查核的 Antigravity × NotebookLM 單字工作流","description":"用 Notion 收集可追溯的單字與語境，讓 Antigravity 產生待確認草稿，再把已查核內容匯入 NotebookLM 製作 Audio Overview；同時說明資料結構、安全、人工驗證與學習成效評估。","datePublished":"2026-08-25","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/notion-antigravity-notebooklm-vocabulary-workflow/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/notion-antigravity-notebooklm-vocabulary-workflow/","image":"https://wttntpc.github.io/tingwu.github.io/og/notion-antigravity-notebooklm-vocabulary-workflow.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"AI 工作流, Notion, Antigravity, NotebookLM, 多益學習, Podcast, 知識管理"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/notion-antigravity-notebooklm-vocabulary-workflow');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">AI 工具與工作流 · 2026-08-25</div><h1>從 Notion 單字庫到 Podcast：可查核的 Antigravity × NotebookLM 單字工作流</h1><p>用 Notion 收集可追溯的單字與語境，讓 Antigravity 產生待確認草稿，再把已查核內容匯入 NotebookLM 製作 Audio Overview；同時說明資料結構、安全、人工驗證與學習成效評估。</p><div class="tag-list"><span>AI 工作流</span><span>Notion</span><span>Antigravity</span><span>NotebookLM</span><span>多益學習</span><span>Podcast</span><span>知識管理</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>如果你把英文單字記進 Notion，卻很少回頭複習，問題通常不是「不夠努力」，而是記錄、整理與複習分散在不同地方。我把它們串成一條工作流：<strong>Notion 負責收集，Antigravity 負責整理，NotebookLM 負責把內容轉成可以用聽的複習材料。</strong></p>
+<blockquote>
+<p><strong>一句話版本</strong>：看到生字先丟進 Notion；讓 AI 補上例句與搭配詞；人工確認後匯入 NotebookLM，生成 Audio Overview，最後再用小測驗確認自己真的記得。</p>
+</blockquote>
+<h2>三個工具各自負責什麼？</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>在流程中的角色</th>
+<th>不建議交給它的事</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Notion</strong></td>
+<td>保存單字、例句、來源與學習進度</td>
+<td>自動判斷內容一定正確</td>
+</tr>
+<tr>
+<td><strong>Antigravity</strong></td>
+<td>找出待整理單字、產生草稿、回寫欄位與匯出複習稿</td>
+<td>未經確認就大量覆蓋筆記</td>
+</tr>
+<tr>
+<td><strong>NotebookLM</strong></td>
+<td>依上傳來源生成 Audio Overview 等複習材料</td>
+<td>取代字典、教師或主動測驗</td>
+</tr>
+</tbody></table>
+<pre><code class="language-mermaid">flowchart LR
+    A[閱讀時遇到生字] --&gt; B[Notion 收集箱]
+    B --&gt; C[Antigravity 補上草稿]
+    C --&gt; D{人工確認}
+    D --&gt;|通過| E[匯出複習指南]
+    D --&gt;|需修正| C
+    E --&gt; F[NotebookLM Audio Overview]
+    F --&gt; G[主動回想與小測驗]
+    G --&gt; H[更新學習進度]
+</code></pre>
+<h2>開始前，只要準備五個欄位</h2>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>範例</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>單字／片語</td>
+<td><code>in compliance with</code></td>
+<td>要學習的內容</td>
+</tr>
+<tr>
+<td>中文意思</td>
+<td>符合、遵照</td>
+<td>經人工確認的核心釋義</td>
+</tr>
+<tr>
+<td>例句與搭配詞</td>
+<td>comply with regulations</td>
+<td>放進真實語境理解</td>
+</tr>
+<tr>
+<td>來源</td>
+<td>論文、郵件或題目連結</td>
+<td>回頭確認原始用法</td>
+</tr>
+<tr>
+<td>狀態</td>
+<td>待補充／待確認／複習中／已掌握</td>
+<td>告訴系統下一步要做什麼</td>
+</tr>
+</tbody></table>
+<p>「來源」很重要。相同單字在論文、商務郵件與多益題目裡可能有不同用法；留下原句，之後才知道 AI 的解釋是否符合當時情境。</p>
+<figure class="article-figure">
+  <img src="assets/notion-vocabulary-gallery-redacted.png" alt="Notion TOEIC 單字資料庫的畫廊檢視，顯示 enact、liable、reluctant 與 mandatory 等單字卡；帳號與私人側欄已遮蔽" loading="lazy">
+  <figcaption>實際的 Notion 單字庫畫廊：每張卡片可快速比較字義、搭配詞、例句與學習狀態。公開版已遮蔽帳號及私人側欄。</figcaption>
+</figure><h2>實作流程</h2>
+<h3>1. 先快速收集，不要中斷閱讀</h3>
+<p>閱讀時只記下單字、原句與來源，狀態設為「待補充」。不要為了把卡片做漂亮而中斷正在讀的內容。</p>
+<p><strong>成功長這樣：</strong> 即使其他欄位仍空白，你已經能從來源找回這個詞出現的完整情境。</p>
+<h3>2. 讓 Antigravity 產生「待確認草稿」</h3>
+<p>代理人可以補上詞性、繁體中文核心釋義、短例句、常見搭配詞、介系詞，以及容易混淆的詞。適合圖像化時，再加上一個簡單的記憶意象。</p>
+<p>例如 <code>liable</code> 不只要寫「負有責任的」，還要區分 <code>be liable for + 名詞</code> 與 <code>be liable to + 原形動詞</code>。不過，AI 產出的內容應先標成「待確認」，不能直接當成標準答案。</p>
+<p><strong>成功長這樣：</strong> 原本只有一個詞的卡片，已經有可追溯來源、例句及搭配詞，而且既有人工內容沒有被覆蓋。</p>
+<figure class="article-figure">
+  <img src="assets/notion-vocabulary-card-overview.png" alt="Notion 單字卡 enact 的頁面總覽，包含封面、詞性、學習狀態、例句與發音欄位" loading="lazy">
+  <figcaption>單字卡總覽：資料庫欄位先保留核心資訊，避免讀者一打開就被過多內容淹沒。</figcaption>
+</figure><figure class="article-figure">
+  <img src="assets/notion-vocabulary-card-details.png" alt="Notion 單字卡 enact 的補充內容，包含核心字義、高頻例句、搭配詞及同義詞" loading="lazy">
+  <figcaption>同一張卡片的補充區塊：AI 草稿把例句、collocations 與同義詞整理成容易人工查核的結構。</figcaption>
+</figure><h3>3. 人工確認後，再建立複習指南</h3>
+<p>確認字義、例句與搭配詞後，把狀態改成「複習中」。Antigravity 再把這批單字輸出成結構固定的 Markdown：每個詞只保留發音提示、核心意思、搭配詞、原句與一個自我測驗問題。</p>
+<p><strong>成功長這樣：</strong> 只要閱讀這份 Markdown，不開 Notion 也能完整複習；每一筆內容都能追溯到原始來源。</p>
+<h3>4. 上傳 NotebookLM，生成 Audio Overview</h3>
+<p>把確認過的複習指南加入 NotebookLM，在 Studio 中選擇 Audio Overview，指定繁體中文以及希望聚焦的內容，例如：「請比較容易混淆的搭配詞，先留幾秒讓聽者回答，再說明正確用法。」</p>
+<p>NotebookLM 的音訊是 AI 生成內容，仍可能不準確或出現音訊錯誤。因此，重要字義仍要回到原始來源或可信字典核對。</p>
+<p><strong>成功長這樣：</strong> 音訊確實使用這批單字、能指出常見混淆點，而且沒有加入來源中不存在的新規則。</p>
+<figure class="article-figure">
+  <img src="assets/notebooklm-vocabulary-audio-overview-redacted.png" alt="NotebookLM 中的 TOEIC 不熟單字複習筆記本，左側為來源，中間為來源摘要，右側顯示已產生的 Audio Overview；個人頭像已遮蔽" loading="lazy">
+  <figcaption>NotebookLM 成品：左側是經確認後匯入的單字指南，右側已產生 Audio Overview。公開版已遮蔽個人頭像。</figcaption>
+</figure><h3>5. 聽完後一定要「想答案」</h3>
+<p>Podcast 適合增加接觸次數，也方便在通勤或運動時複習，但被動聆聽不等於記住。比較好的做法是：</p>
+<ol>
+<li>聽到單字後先暫停，自己說出意思或搭配詞；</li>
+<li>回到 Notion 做一個簡短測驗；</li>
+<li>答錯就保留在「複習中」，連續答對後再改成「已掌握」；</li>
+<li>一段時間後再次抽查，而不是只看一次。</li>
+</ol>
+<h2>最容易忽略的三件事</h2>
+<ol>
+<li><strong>不要把密鑰寫進筆記或程式碼。</strong> Notion token 應放在環境變數或安全的憑證管理工具中。</li>
+<li><strong>不要讓 AI 無條件覆蓋資料。</strong> 只補空欄位或另存草稿，並保留最後修改時間。</li>
+<li><strong>不要上傳敏感內容。</strong> 工作郵件、未公開研究資料與個資要先去識別化，再決定是否送往外部服務。</li>
+</ol>
+<h2>總結</h2>
+<p>這套工作流真正節省的不是「背單字的時間」，而是整理資料的重複工作。Notion 保存可追溯的學習紀錄，Antigravity 處理格式化與搬運，NotebookLM 增加一種聽覺複習方式；最後是否學會，仍取決於人工查核、主動回想與重複測驗。</p>
+<h3>官方說明</h3>
+<ul>
+<li><a href="https://developers.notion.com/reference/authentication">Notion API Authentication</a></li>
+<li><a href="https://support.google.com/notebooklm/answer/16212820?hl=zh-Hant">NotebookLM：建立 Audio Overview</a></li>
+<li><a href="https://support.google.com/notebooklm/answer/16215270?hl=zh-Hant">NotebookLM：加入與管理來源</a></li>
+</ul>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><blockquote>
+<p><strong>系統定位</strong>：Notion 是單一資料來源（system of record），Antigravity 是工作流協調與內容草稿層，NotebookLM 是限定來源的衍生內容層。任何 AI 產出都必須經驗證，且不得直接覆蓋已確認資料。</p>
+</blockquote>
+<h2>1. 設計目標</h2>
+<p>這套系統要解決的不是單純「自動產生單字卡」，而是四個可操作的問題：降低收集成本、保留來源追溯、將重複格式轉換交給代理人，以及把確認過的內容轉成音訊，同時保留人工品質控制與學習成效測量。</p>
+<h2>2. 系統架構與信任邊界</h2>
+<pre><code class="language-mermaid">flowchart TD
+    subgraph N[Notion：權威資料層]
+      N1[原詞與原句] --&gt; N2[來源與狀態] --&gt; N3[已確認內容]
+    end
+    subgraph A[Antigravity：不可信草稿與協調層]
+      A1[查詢待處理項目] --&gt; A2[產生結構化草稿] --&gt; A3[驗證與批次回寫]
+    end
+    subgraph L[NotebookLM：衍生內容層]
+      L1[匯入確認過的來源] --&gt; L2[生成 Audio Overview]
+    end
+    N --&gt;|最小權限讀取| A
+    A --&gt;|僅回寫草稿欄位| N
+    N --&gt;|只匯出已確認項目| L
+    L --&gt;|人工抽查| N
+</code></pre>
+<p>代理人可以寫入草稿欄位，但只有使用者能把狀態改成 <code>verified</code>。NotebookLM 只接收已確認的匯出版本，避免錯誤經過多個生成步驟後被放大。</p>
+<figure class="article-figure">
+  <img src="assets/notion-vocabulary-gallery-redacted.png" alt="Notion 單字資料庫的 Gallery view，呈現多張包含字義、搭配詞、例句與狀態的卡片；個人資訊已遮蔽" loading="lazy">
+  <figcaption>Notion 作為 system of record 的實際介面。畫廊適合快速巡覽；正式處理仍應依結構化屬性與狀態查詢，不依賴畫面文字。</figcaption>
+</figure><h2>3. 建議的資料模型</h2>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>型別</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>term</code></td>
+<td>title</td>
+<td>單字或片語</td>
+</tr>
+<tr>
+<td><code>source_sentence</code></td>
+<td>rich text</td>
+<td>原始句子，不由 AI 改寫</td>
+</tr>
+<tr>
+<td><code>source_url</code></td>
+<td>URL</td>
+<td>來源；敏感資料可用內部識別碼</td>
+</tr>
+<tr>
+<td><code>context</code></td>
+<td>select</td>
+<td>academic／business／TOEIC／general</td>
+</tr>
+<tr>
+<td><code>draft_meaning</code></td>
+<td>rich text</td>
+<td>AI 草稿，不視為已確認內容</td>
+</tr>
+<tr>
+<td><code>verified_meaning</code></td>
+<td>rich text</td>
+<td>人工確認後的核心釋義</td>
+</tr>
+<tr>
+<td><code>collocations</code></td>
+<td>rich text</td>
+<td>固定搭配、介系詞與詞性變化</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>status</td>
+<td>captured／enriched／needs_review／verified／reviewing／mastered</td>
+</tr>
+<tr>
+<td><code>review_due</code></td>
+<td>date</td>
+<td>下一次主動回想日期</td>
+</tr>
+<tr>
+<td><code>source_hash</code></td>
+<td>rich text</td>
+<td>判斷輸入是否改變，避免重複處理</td>
+</tr>
+<tr>
+<td><code>agent_updated_at</code></td>
+<td>date</td>
+<td>代理人最後更新時間，便於稽核</td>
+</tr>
+</tbody></table>
+<p>若流程仍在試驗階段，<code>term + source_sentence</code> 可作為暫時去重鍵；正式批次流程則建議使用 page ID 與內容雜湊，避免同字異義被錯誤合併。</p>
+<h2>4. 狀態機與冪等更新</h2>
+<pre><code class="language-text">captured → enriched → needs_review → verified → reviewing → mastered
+                    ↘ rejected
+</code></pre>
+<p>每次執行應符合冪等性（idempotency）：相同輸入重跑不建立重複頁面，也不改寫人工確認欄位。建議只查詢待處理項目、將 AI 結果寫入 <code>draft_*</code>、更新前檢查 <code>last_edited_time</code>，並保存成功、跳過、失敗與重試紀錄。單筆失敗不應中止整批，也不能留下半完成狀態。</p>
+<h2>5. 內容產生契約</h2>
+<p>不要要求代理人直接產生自由格式長文。先定義結構化輸出，驗證後再轉成 Notion 欄位：</p>
+<pre><code class="language-json">{
+  &quot;term&quot;: &quot;compliance&quot;,
+  &quot;part_of_speech&quot;: [&quot;noun&quot;],
+  &quot;meaning_zh_tw&quot;: &quot;遵守；符合&quot;,
+  &quot;collocations&quot;: [&quot;in compliance with&quot;, &quot;regulatory compliance&quot;],
+  &quot;example&quot;: &quot;The procedure is in compliance with the regulations.&quot;,
+  &quot;review_question&quot;: &quot;compliance 最常與哪個介系詞搭配？&quot;,
+  &quot;needs_human_review&quot;: true
+}
+</code></pre>
+<p>回寫前至少檢查必要鍵、欄位型別、字串長度、例句是否包含目標詞，以及輸出是否與原始語境衝突。若需要精確發音、詞源或考試頻率，還應串接有授權且可追溯的字典或題庫，而不是只依賴生成模型。</p>
+<figure class="article-figure">
+  <img src="assets/notion-vocabulary-card-overview.png" alt="Notion 單字卡 enact 的屬性區域，包含釋義、補充、詞性、狀態及例句" loading="lazy">
+  <figcaption>屬性層保存可查詢資料；正文區則承載較長的教學內容。兩者分開可避免 API 批次處理與人工閱讀互相干擾。</figcaption>
+</figure><figure class="article-figure">
+  <img src="assets/notion-vocabulary-card-details.png" alt="Notion 單字卡正文中結構化的核心字義、例句、搭配詞與同義詞" loading="lazy">
+  <figcaption>結構化草稿的實際呈現。這些內容仍需通過來源、語境與字典查核，才能由 draft 狀態轉為 verified。</figcaption>
+</figure><h2>6. Notion API 實作注意事項</h2>
+<p>Notion API 以 bearer token 驗證。token 應放在環境變數或秘密管理服務，禁止硬編碼或提交到 GitHub。Connection 只分享至必要頁面，並遵循最小權限原則。</p>
+<p>Notion API 使用日期式版本標頭；實作時應依<a href="https://developers.notion.com/reference/versioning">官方版本文件</a>選擇與 SDK 相容的版本，並在升級前用測試資料庫驗證 schema 與回寫行為，不把可能過期的版本號永久寫死在教學文章中。</p>
+<h2>7. 匯出與 NotebookLM 整合</h2>
+<p>匯出器只選取 <code>verified</code> 或 <code>reviewing</code> 項目。每個詞固定包含來源語境、人工確認釋義、搭配詞、例句、混淆詞與一道主動回想題。</p>
+<p>NotebookLM 可以依匯入來源建立 Audio Overview，並設定語言、長度與聚焦提示；但官方提醒，AI 音訊仍可能不準確或出現音訊錯誤。生成後應抽查是否混淆詞性、虛構規則、使用來源外資訊，或暴露不應出現在音訊中的內容。</p>
+<p>若透過 CLI、MCP 或瀏覽器自動化操作 NotebookLM，應把它視為可替換的 adapter。工具介面改變時，只調整整合層，不影響 Notion schema 與已確認資料。</p>
+<figure class="article-figure">
+  <img src="assets/notebooklm-vocabulary-audio-overview-redacted.png" alt="NotebookLM 工作區顯示單字來源、摘要與已生成的 Audio Overview；使用者頭像已遮蔽" loading="lazy">
+  <figcaption>NotebookLM 整合層的實際成品：來源、對話與 Audio Overview 位於同一筆記本。截圖只表示生成成功，不代表內容已通過正確性驗證。</figcaption>
+</figure><h2>8. 隱私與安全</h2>
+<ol>
+<li>Notion token、Notebook 識別碼與存取憑證不得出現在提示詞、日誌或公開 repo。</li>
+<li>工作郵件、學生資料或未公開研究內容應先去識別化；必要時完全不要送往第三方服務。</li>
+<li>日誌只記錄 page ID、狀態與錯誤類型，不記完整敏感句子。</li>
+<li>測試與正式資料庫分離；批次回寫先使用少量測試頁面。</li>
+<li>為人工確認欄位保留修改歷史與回復方式。</li>
+</ol>
+<h2>9. 如何評估工作流是否真的有效？</h2>
+<table>
+<thead>
+<tr>
+<th>層級</th>
+<th>指標範例</th>
+<th>要回答的問題</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系統</td>
+<td>每筆處理時間、失敗率、重複率、人工修正率</td>
+<td>自動化是否可靠？</td>
+</tr>
+<tr>
+<td>內容</td>
+<td>錯誤字義率、無來源陳述率、搭配詞通過率</td>
+<td>產出是否可信？</td>
+</tr>
+<tr>
+<td>學習</td>
+<td>延遲回想正確率、保留率、到期項目完成率</td>
+<td>使用者是否真的記得？</td>
+</tr>
+</tbody></table>
+<p>最簡單的個人測試可以比較兩組單字：一組只閱讀文字卡，另一組加上 Audio Overview，但兩組使用相同的主動回想排程；一週後比較正確率。這比單憑新鮮感判斷更有意義。</p>
+<h2>10. 方法限制與延伸</h2>
+<p>Audio Overview 是複習介面，不是間隔重複系統；Notion 是資料庫，也不會自動形成有效測驗。完整閉環仍需加入到期排程、作答紀錄與依表現調整的複習規則。</p>
+<p>後續可以延伸為：從論文擷取術語但保留 DOI 與原句；依錯誤類型建立不同複習批次；將作答結果回寫 Notion 並計算下次複習日期；以及為不同來源建立獨立資料權限與匯出規則。</p>
+<h2>官方文件</h2>
+<ul>
+<li><a href="https://developers.notion.com/reference/authentication">Notion API：Authentication</a></li>
+<li><a href="https://developers.notion.com/reference/versioning">Notion API：Versioning</a></li>
+<li><a href="https://support.google.com/notebooklm/answer/16212820">NotebookLM：Generate Audio Overview</a></li>
+<li><a href="https://support.google.com/notebooklm/answer/16215270">NotebookLM：Add or discover new sources</a></li>
+</ul>
+<blockquote>
+<p><strong>版本與證據說明（2026-08-25）</strong>：本文描述的是可重用的工作流設計，不保證特定第三方 CLI 或 MCP 指令永久相容。實際串接前請以官方文件與目前安裝版本為準。</p>
+</blockquote>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

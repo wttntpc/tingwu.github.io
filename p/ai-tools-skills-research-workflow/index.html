@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/ai-tools-skills-research-workflow/" />
+    <meta property="og:title" content="把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流" />
+    <meta property="og:description" content="用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/ai-tools-skills-research-workflow/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/ai-tools-skills-research-workflow.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流" />
+    <meta name="twitter:description" content="用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/ai-tools-skills-research-workflow.png" />
+    <title>把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-03" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流","description":"用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。","datePublished":"2026-08-03","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/ai-tools-skills-research-workflow/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/ai-tools-skills-research-workflow/","image":"https://wttntpc.github.io/tingwu.github.io/og/ai-tools-skills-research-workflow.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"AI Skills, GitHub, Gemini Notebook, 研究工作流"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/ai-tools-skills-research-workflow');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">AI 工具與工作流 · 2026-08-03</div><h1>把 AI 工具連接變成可重用 Skills：我的 GitHub 研究工作流</h1><p>用 AI-tools-skills 串接 Gemini Notebook、GitHub、Zotero 與 HackMD，再延伸到完整的學術研究技能流程。</p><div class="tag-list"><span>AI Skills</span><span>GitHub</span><span>Gemini Notebook</span><span>研究工作流</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>當我開始同時使用 Claude、Codex、Antigravity 與 Hermes，最困擾的不是 AI 不夠聰明，而是每換一個 Agent，就要重新說明 GitHub 怎麼連、研究筆記放在哪裡、文獻庫如何查詢，以及哪些權限不能開放。</p>
+<p>因此，我把這些重複的設定與操作方式整理成 <a href="https://github.com/wttntpc/AI-tools-skills">AI-tools-skills</a>。它不是另一個聊天機器人，而是一套告訴不同 AI「如何連接工具、如何驗證、如何安全收工」的操作說明。</p>
+<h2>為什麼要把流程做成 Skill？</h2>
+<p>一般對話很容易隨著工作階段結束而消失。Skill 保存的是可以重複執行的程序，例如：</p>
+<ul>
+<li>先檢查工具是否已安裝與登入。</li>
+<li>只安裝目前真正需要的連接。</li>
+<li>將憑證保存在環境變數，不寫入 GitHub。</li>
+<li>完成後實際讀取資料，確認不是只有設定看起來成功。</li>
+<li>開工時檢查 Git 狀態，收工時只提交相關檔案。</li>
+</ul>
+<p>如此一來，即使換了 Agent，我仍能沿用相近的工作原則。</p>
+<h2>我會優先選擇四個研究連接</h2>
+<h3>GitHub：保存可追蹤的程式與流程</h3>
+<p>GitHub 適合保存程式、Skills、網站與修改紀錄。每次變更都能回查，而不是只留下 AI 最後貼出的一段程式。</p>
+<h3>Zotero：確認文獻是否已經收藏</h3>
+<p>Zotero 是我的文獻資料庫。連接後，AI 可以先查詢既有收藏、整理引用資訊，再決定是否需要搜尋新文獻，減少重複下載與遺漏來源。</p>
+<h3>HackMD：累積研究 SOP 與分析筆記</h3>
+<p>HackMD 適合保存統計分析、EEG 前處理與認知作業等研究筆記。AI 可以讀取既有 SOP，再將新的分析結果整理成一致格式。</p>
+<h3>Gemini Notebook：針對指定資料深入閱讀</h3>
+<p>Gemini Notebook（原 NotebookLM）適合把選定的論文、網頁與研究筆記放在同一個 notebook 中，再針對這些來源提問、比較內容或產生簡報摘要與 Audio Overview。它的回答會附上來源引用，方便回到原文核對，但仍不能取代閱讀原始文獻。</p>
+<p>我會把 Zotero 當作文獻收藏庫，把 Gemini Notebook 當作特定研究主題的閱讀與綜整空間；兩者用途不同。</p>
+<h2>連接工具後，還需要學術研究流程</h2>
+<p><a href="https://github.com/wttntpc/AI-tools-skills">AI-tools-skills</a> 解決「如何連上工具」，<a href="https://github.com/wttntpc/AI-academic-skills-">AI-academic-skills</a> 則處理「連上之後如何研究」。後者可以把文獻搜尋、品質評讀、內容整理、研究寫作、同儕審查與知識同步拆成不同階段。</p>
+<pre><code class="language-text">工具連接
+→ 文獻搜尋
+→ 品質評讀
+→ 研究筆記
+→ 寫作與審查
+→ 同步到 Zotero／Gemini Notebook／知識庫
+</code></pre>
+<blockquote>
+<p>工具連接只是入口。真正有價值的是把研究判斷整理成可以重複、查核與持續改善的流程。</p>
+</blockquote>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>多 Agent 工作環境的主要問題不是缺少工具，而是設定、權限與操作程序彼此分散。<code>AI-tools-skills</code> 將外部工具連接封裝成獨立 Skill，使 Claude Code、Antigravity、Codex、OpenCode 與 Hermes Agent 能依各自的規則檔與設定格式執行相同目標。</p>
+<h2>一、連結閱讀或安裝到本機</h2>
+<p>最輕量的方式，是直接把公開 repo 交給 Agent：</p>
+<pre><code class="language-text">請讀取 https://github.com/wttntpc/AI-tools-skills 的 README 與 AI 通用懶人包.md，
+先辨認目前的 Agent 與作業系統，再依需求協助我設定工具。
+每一步先檢查既有狀態，只要求最小必要權限，且不得把憑證寫進 repo。
+</code></pre>
+<p>若要長期使用，可複製到本機：</p>
+<pre><code class="language-bash">git clone https://github.com/wttntpc/AI-tools-skills.git
+</code></pre>
+<p>repo 內的 <code>skills/00-install-all</code> 可依序處理全部連接，但我更建議從單一 Skill 開始。研究環境通常先選：</p>
+<pre><code class="language-text">skills/01-notebooklm
+skills/02-github
+skills/10-zotero
+skills/11-hackmd
+</code></pre>
+<p>按需求安裝能減少不必要的憑證、背景服務與除錯範圍。</p>
+<h3>Gemini Notebook 的安裝與登入</h3>
+<p>Google 已將 NotebookLM 更名為 Gemini Notebook；目前第三方套件與指令仍沿用 <code>notebooklm</code> 名稱。Windows 可先安裝 CLI 與 Chromium，再完成瀏覽器登入並執行健康檢查：</p>
+<pre><code class="language-bash">uv tool install notebooklm-mcp-cli
+uvx --from playwright playwright install chromium
+uvx --from notebooklm-mcp-cli nlm login
+uvx --from notebooklm-mcp-cli nlm doctor
+</code></pre>
+<p>完成登入後，Hermes 的 <code>~/.hermes/config.yaml</code> 可加入：</p>
+<pre><code class="language-yaml">mcp_servers:
+  notebooklm:
+    command: uvx
+    args: [&quot;--from&quot;, &quot;notebooklm-mcp-cli&quot;, &quot;notebooklm-mcp&quot;]
+    enabled: true
+</code></pre>
+<p>這裡的 MCP 執行檔是 <code>notebooklm-mcp</code>，不是 <code>nlm mcp</code>。<code>notebooklm-mcp-cli</code> 與這套 MCP bridge 是第三方工具，並非 Google 官方產品，而且會使用瀏覽器授權狀態。使用前應檢查原始碼與帳號權限，不要把 cookie、快取或憑證提交到 GitHub；機密、未公開或受機構規範的研究資料，也應先確認是否允許上傳。</p>
+<h2>二、規則檔與工具設定分開管理</h2>
+<p>不同 Agent 讀取的專案規則檔不同：Claude Code 使用 <code>CLAUDE.md</code>，Codex 常使用 <code>AGENTS.md</code>，Hermes 可優先使用 <code>.hermes.md</code>。規則檔應保存工作原則、專案位置與驗證方式，不應保存 token。</p>
+<p>Hermes 的 MCP 設定位於 <code>~/.hermes/config.yaml</code>。其他 Agent 可能使用自己的 CLI 或 JSON 設定。即使語法不同，仍應遵守相同原則：</p>
+<ol>
+<li>API token 只存在環境變數或私密憑證儲存區。</li>
+<li>OAuth 與 API scope 採最小權限。</li>
+<li>連接完成後以實際讀取測試驗證。</li>
+<li>任何寫入、發信或新增文獻動作都需額外確認。</li>
+<li><code>.env</code>、token 與私人資料不得提交到 GitHub。</li>
+</ol>
+<h2>三、GitHub、Zotero、HackMD 與 Gemini Notebook 的分工</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>在研究流程中的角色</th>
+<th>驗證方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GitHub</td>
+<td>程式、Skill、版本與網站</td>
+<td>檢查登入、repo 與 diff</td>
+</tr>
+<tr>
+<td>Zotero</td>
+<td>文獻收藏、引用資訊與去重</td>
+<td>唯讀列出近期文獻或搜尋主題</td>
+</tr>
+<tr>
+<td>HackMD</td>
+<td>SOP、分析決策與共筆</td>
+<td>列出筆記並讀取指定內容</td>
+</tr>
+<tr>
+<td>Gemini Notebook</td>
+<td>指定來源的問答、跨文獻整理與 Audio Overview</td>
+<td>列出 notebook、匯入測試來源並核對引用</td>
+</tr>
+</tbody></table>
+<p>GitHub 保存可執行與可追蹤的研究資產；Zotero 管理文獻收藏與引用；HackMD 保存自己撰寫的方法與判斷紀錄；Gemini Notebook 則以選定來源為範圍協助閱讀、比較與綜整。四者不應互相取代，也不應把私人文獻內容或研究資料直接 commit 到公開 repo。</p>
+<h2>四、延伸到完整學術技能鏈</h2>
+<p><a href="https://github.com/wttntpc/AI-academic-skills-">AI-academic-skills</a> 將研究工作拆成：</p>
+<pre><code class="language-text">Find
+→ Appraise
+→ Organize
+→ Write
+→ Critique
+→ Sync
+</code></pre>
+<p>文獻可先由 <code>paper-lookup</code> 或 <code>litpilot</code> 發現，再交由 <code>paper-review</code>、<code>paper-digest</code> 評讀與整理；<code>research-organizer</code> 與 <code>knowledge-base</code> 保存結構化筆記；<code>scientific-writing</code>、<code>peer-review</code> 負責寫作與批判；最後再透過 Zotero 或 NotebookLM bridge 同步。</p>
+<p>這種分段方式比「請 AI 從搜尋一路幫我寫完論文」更容易查核。每一階段都有明確輸入、輸出與停止條件，也能在全文不足、來源無法驗證或涉及敏感資料時停止。</p>
+<h2>五、安裝完成不等於工作流完成</h2>
+<p>設定後應以一個小型任務驗收：讓 Agent 從 Zotero 找到一篇已知文獻、讀取一份 HackMD SOP、列出一個 Gemini Notebook 並核對已知來源的引用，再於 GitHub 建立不含敏感資料的修改，最後回報每個步驟的來源與狀態。</p>
+<p>若任何工具失敗，應先修復該連接，而不是讓模型憑記憶補出內容。Skills 的目的不是擴大 AI 權限，而是把權限邊界、操作順序與驗證方法寫得更清楚。</p>
+<h2>相關資源</h2>
+<ul>
+<li><a href="https://github.com/wttntpc/AI-tools-skills">AI-tools-skills：跨 Agent 工具連接</a></li>
+<li><a href="https://github.com/wttntpc/AI-tools-skills/tree/main/skills/01-notebooklm">Gemini Notebook Skill：連接與安裝說明</a></li>
+<li><a href="https://github.com/wttntpc/AI-academic-skills-">AI-academic-skills：學術研究技能鏈</a></li>
+<li><a href="https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/">Google：NotebookLM 更名為 Gemini Notebook</a></li>
+<li><a href="https://support.google.com/notebooklm/answer/16164461">Gemini Notebook 官方功能說明</a></li>
+</ul>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

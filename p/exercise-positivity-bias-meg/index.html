@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="24 位健康成人的腦磁圖實驗：休息時大腦對負向圖片處理較強，低強度運動後差距消失，中強度運動後反轉；效應限於左半腦、沒有測量感受，且低強度與中強度的差異未達顯著。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/exercise-positivity-bias-meg/" />
+    <meta property="og:title" content="運動後，大腦看世界會更偏向正面嗎？" />
+    <meta property="og:description" content="24 位健康成人的腦磁圖實驗：休息時大腦對負向圖片處理較強，低強度運動後差距消失，中強度運動後反轉；效應限於左半腦、沒有測量感受，且低強度與中強度的差異未達顯著。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/exercise-positivity-bias-meg/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/exercise-positivity-bias-meg.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="運動後，大腦看世界會更偏向正面嗎？" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="運動後，大腦看世界會更偏向正面嗎？" />
+    <meta name="twitter:description" content="24 位健康成人的腦磁圖實驗：休息時大腦對負向圖片處理較強，低強度運動後差距消失，中強度運動後反轉；效應限於左半腦、沒有測量感受，且低強度與中強度的差異未達顯著。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/exercise-positivity-bias-meg.png" />
+    <title>運動後，大腦看世界會更偏向正面嗎？ | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-11-21" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"運動後，大腦看世界會更偏向正面嗎？","description":"24 位健康成人的腦磁圖實驗：休息時大腦對負向圖片處理較強，低強度運動後差距消失，中強度運動後反轉；效應限於左半腦、沒有測量感受，且低強度與中強度的差異未達顯著。","datePublished":"2026-11-21","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/exercise-positivity-bias-meg/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/exercise-positivity-bias-meg/","image":"https://wttntpc.github.io/tingwu.github.io/og/exercise-positivity-bias-meg.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"運動與情緒, 效價偏誤, 腦磁圖, 單次運動, 文獻導讀"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/exercise-positivity-bias-meg');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">學術科普 · 2026-11-21</div><h1>運動後，大腦看世界會更偏向正面嗎？</h1><p>24 位健康成人的腦磁圖實驗：休息時大腦對負向圖片處理較強，低強度運動後差距消失，中強度運動後反轉；效應限於左半腦、沒有測量感受，且低強度與中強度的差異未達顯著。</p><div class="tag-list"><span>運動與情緒</span><span>效價偏誤</span><span>腦磁圖</span><span>單次運動</span><span>文獻導讀</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>同一組照片，有的讓人皺眉，有的讓人微笑。大腦處理它們的速度和強度，會不會因為你剛運動完而不同？一項 2020 年的研究用腦磁圖觀察這件事，發現坐著休息時，大腦對負向圖片的處理比較強；運動之後，這個差距縮小，中強度運動之後甚至反過來，偏向正向圖片。</p>
+<blockquote>
+<p>這是科普整理，不是醫療或心理諮商建議。如果情緒困擾持續影響睡眠、工作或人際關係，請諮詢專業人員。</p>
+</blockquote>
+<h2>研究怎麼做的</h2>
+<p>24 位健康成人（12 位男性、12 位女性，18 到 35 歲，平均約 24 歲）在不同的日子，各做三種各 30 分鐘的處理。每次相隔 24 到 72 小時，都在一天中的同一個時段，順序隨機並完全平衡（Ligeza et al., 2020）：</p>
+<table>
+<thead>
+<tr>
+<th>條件</th>
+<th>做什麼</th>
+<th>平均心率</th>
+<th>自覺費力（6–20 分）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>坐著休息</td>
+<td>坐著看運動雜誌 30 分鐘</td>
+<td>約 64 下</td>
+<td>約 6（非常非常輕鬆）</td>
+</tr>
+<tr>
+<td>低強度運動</td>
+<td>5 分鐘熱身、20 分鐘運動、5 分鐘緩和；心率維持在「心率儲備」的 30–40%</td>
+<td>約 110 下</td>
+<td>約 9.5（輕鬆）</td>
+</tr>
+<tr>
+<td>中強度運動</td>
+<td>同上，心率維持在心率儲備的 60–70%</td>
+<td>約 148 下</td>
+<td>約 14（有點吃力）</td>
+</tr>
+</tbody></table>
+<p>運動用腳踏車（20 人）或划船機（4 人）。結束後，受試者等心率回到接近安靜時的水準（約 10 分鐘），才進入腦磁圖室，<strong>被動看圖</strong>：共 100 張灰階圖片，一半是愉快的（例如運動、開心的人），一半是不愉快的（例如威脅、受傷、難過的人）。研究者刻意不放中性圖片，並讓愉快與不愉快圖片的「激動程度」相當，受試者事後評分也沒有顯著差異。每張圖出現 0.6 秒，同時記錄大腦的事件相關磁場，再推算磁場來自大腦哪裡。</p>
+<h2>發現了什麼</h2>
+<ul>
+<li><strong>坐著休息之後</strong>：左半腦一大片區域在圖片出現後約 200 到 300 毫秒（不到三分之一秒），處理負向圖片比正向圖片更強（負向偏誤）。</li>
+<li><strong>低強度運動之後</strong>：差距縮小到不顯著，兩者差不多。</li>
+<li><strong>中強度運動之後</strong>：反過來，處理正向圖片比負向圖片更強，統計上顯著（正向偏誤）。</li>
+<li><strong>兩種運動都讓負向偏誤明顯變小</strong>（與休息相比），但<strong>低強度與中強度之間的差異沒有達到統計顯著</strong>（<em>p</em> = .063）。</li>
+<li><strong>偏誤的變化，看起來比較像是正向圖片被處理得更多</strong>，而不是負向圖片被處理得更少；不過這個差別本身也沒有達到統計顯著。</li>
+<li>對喚起程度高低不同的圖片，結果的方向一致，表示這不是單純因為「圖片比較刺激」。</li>
+</ul>
+<p>作者認為，這個時間點屬於很早期、比較自動化的注意力階段，表示運動可能讓大腦的「自然選擇性注意」偏向正向內容。</p>
+<h2>要小心的地方</h2>
+<ul>
+<li><strong>沒有測量感受。</strong>這項研究沒有在實驗中收集行為或主觀評分，只有腦磁圖資料。所以不能說「運動後你覺得世界比較美好」，更不能說它是在測量你如何解讀模糊情境。</li>
+<li><strong>效應不大，範圍很窄。</strong>休息時的負向偏誤，效果量只有 0.3 左右；而且只出現在<strong>左半腦</strong>，作者自己也說這在預期之外（情緒圖片的這類反應通常是雙側的），並說對這個現象的解釋只是推測。</li>
+<li><strong>只有 24 位健康成人，單次運動，且只比較低與中強度。</strong>無法回答高強度會怎樣，也不能延伸到憂鬱或焦慮等族群。作者建議未來的研究增加人數，並測量受試者的心肺適能。</li>
+<li><strong>這是運動後約 10 分鐘的短期反應。</strong>能維持多久，這項研究沒有回答。</li>
+<li>文中討論的內啡肽、多巴胺、血清素等機制，都只是可能的解釋，這項研究並沒有測量。</li>
+</ul>
+<h2>帶走三件事</h2>
+<ol>
+<li>在這群受試者身上，休息時大腦對負向畫面的處理較強；運動後這個差距縮小，中強度運動後甚至反轉。</li>
+<li>變化出現得很早，發生在自動化的注意階段，而且集中在左半腦。</li>
+<li>這是單次運動後的短期腦部反應，沒有測量感受，不等於長期的心理健康效益。</li>
+</ol>
+<p>延伸閱讀：<a href="#/post/emotion-popular-science-primer">情緒不是「突然出現」的</a>介紹情緒的成分與調節；<a href="#/post/exercise-emotion-learning-map">運動與情緒學習地圖</a>整理運動與情緒的證據怎麼讀；同系列的<a href="#/post/exercise-intensity-emotional-faces-fmri">運動強度，會改變大腦看「表情」的反應嗎？</a>談運動強度與表情臉孔。想體驗類似的判斷，可以到<a href="#/lab">互動實驗室</a>試試「表情判斷曲線」。</p>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>本文依據該文獻的全文整理（細節已回到全文核對，頁碼為 PDF 頁碼）；書目與 DOI 已核對。該文為開放取用（CC BY）。</p>
+<h2>研究問題</h2>
+<p>急性有氧運動對情緒功能有許多好處，但對情緒刺激處理的影響，及背後的腦機制仍不清楚（第 1 頁）。Ligeza 等人（2020）的設計針對先前研究的三個限制：（1）負向與中性刺激不只在效價上不同，也在喚起程度上不同，因此無法排除運動降低的是「所有高喚起刺激」的反應；（2）fMRI 無法捕捉時間動態，ERP 的 LPP 又太晚；（3）多數研究沒有比較不同運動強度（第 2–3 頁）。因此他們用腦磁圖（MEG）與來源重建，比較<strong>喚起程度相當</strong>的正向與負向圖片，並納入低、中兩種強度與坐姿休息對照。</p>
+<h2>設計與測量</h2>
+<ul>
+<li><strong>受試者</strong>：24 位 18 至 35 歲健康成人（12 位女性、12 位男性；平均 24.13 ± 3.71 歲），招募自德國明斯特大學，另有 2 位因技術問題排除。事前統計檢定力分析以先前研究的 η² = 0.085 估計 24 人足夠（第 3–4 頁）。</li>
+<li><strong>設計</strong>：受試者內，三個流程相隔 24–72 小時、同一時段、順序隨機並完全平衡。</li>
+<li><strong>運動</strong>：5 分鐘熱身、20 分鐘運動、5 分鐘緩和（共 30 分鐘；熱身與緩和 40–50 W）。低強度為心率儲備（HRR）的 30–40%，中強度為 60–70%；最大心率以 211 − 0.64 × 年齡估計。可選腳踏車（20 人）或划船機（4 人）。對照（REST）為坐著讀運動雜誌 30 分鐘（第 5 頁）。</li>
+<li><strong>操弄檢核</strong>（表 2，第 6 頁）：平均心率 REST 64.0、低 110.0、中 148.4 次／分（%HRR 2.9／36.8／65.1）；Borg RPE 6.3／9.5／14.0；三者兩兩差異皆 <em>p</em> &lt; .001。</li>
+<li><strong>作業</strong>：運動結束後約 10 分鐘（且心率回到基線 ±10%）進行被動看圖，100 張灰階圖片（50 愉快：運動、開心的人等；50 不愉快：威脅、肢體傷害、難過的人等），每張重複 3 次共 300 試次，呈現 600 ms；刻意不含中性圖。事後以 SAM 評分：效價 29.2（負向）對 81.7（正向），喚起程度 57.5 對 53.5（無顯著差異）（第 4 頁）。</li>
+<li><strong>MEG 與分析</strong>：275 通道 CTF 系統；L2 最小範數來源估計；對「愉快減不愉快」的差分做單因子（強度）ANOVA，並以叢集置換檢定（1000 次）校正；分析 4 個預先定義的時窗（第 5–6 頁）。</li>
+</ul>
+<h2>結果</h2>
+<p>主分析（第 6 頁）：在 200–300 ms 時窗找到一個單一、分布廣泛的<strong>左半腦</strong>時空叢集（<em>p</em>-cluster = .023；<em>F</em>(2, 46) = 12.49，η² = .352）；事後延伸時窗顯示該叢集為 200–320 ms。右半腦沒有效果，且強度 × 半腦交互作用顯著（<em>F</em>(2, 46) = 5.27，<em>p</em> = .009）。</p>
+<table>
+<thead>
+<tr>
+<th>比較（叢集內，愉快 − 不愉快）</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>REST</td>
+<td>負向偏誤，<em>t</em>(23) = −3.13，<em>p</em> = .005，<em>d</em> = 0.30</td>
+</tr>
+<tr>
+<td>低強度</td>
+<td>輕微、不顯著的正向偏誤，<em>t</em>(23) = 0.90，<em>p</em> = .378</td>
+</tr>
+<tr>
+<td>中強度</td>
+<td>顯著的正向偏誤，<em>t</em>(23) = 3.17，<em>p</em> = .004，<em>d</em> = 0.32</td>
+</tr>
+<tr>
+<td>低強度 vs. REST 的偏誤差</td>
+<td><em>t</em>(23) = 3.52，<em>p</em> = .002，<em>d</em> = 0.82</td>
+</tr>
+<tr>
+<td>中強度 vs. REST 的偏誤差</td>
+<td><em>t</em>(23) = 4.09，<em>p</em> &lt; .001，<em>d</em> = 1.29</td>
+</tr>
+<tr>
+<td>中強度 vs. 低強度</td>
+<td><em>t</em>(23) = −1.95，<em>p</em> = .063（未達顯著）</td>
+</tr>
+</tbody></table>
+<p>其他發現：</p>
+<ul>
+<li>分開看愉快與不愉快圖片，強度的主效應在愉快圖片達顯著（<em>F</em>(2, 46) = 3.30，<em>p</em> = .046），在不愉快圖片僅接近顯著（<em>p</em> = .079）；叢集置換檢定分開分析時，兩者都沒有顯著叢集。作者的討論為：偏誤「看似」較來自愉快圖片處理增強，但該差異未達顯著（第 8 頁）。</li>
+<li>以喚起程度中位數切分後，低、高喚起圖片的結果一致，三因子交互作用不顯著（<em>p</em> = .188）。</li>
+<li>中強度 vs. REST 的事後叢集：137–220 ms 與 240–373 ms；低強度 vs. REST 僅達趨勢（<em>p</em>-cluster = .075、.096）。</li>
+</ul>
+<h2>如何解讀</h2>
+<p>作者將時窗與地形對應到<strong>早期後部負波（EPN）</strong>區間（約 150–300 ms），並認為運動可能使早期、自動化的選擇性注意偏向正向內容。以下限制影響解讀：</p>
+<ol>
+<li><strong>沒有行為或主觀測量</strong>：作者承認研究無法推論運動如何調節與情緒圖片處理相關的情緒行為（第 9 頁）。</li>
+<li><strong>偏誤效果量小，且僅在左半腦</strong>：EPN 通常為雙側，作者稱這在預期之外，並以右半腦的注意網絡交互作用作為「高度推測」的解釋（第 9 頁）。</li>
+<li><strong>強度比較不確定</strong>：中強度與低強度的直接差異未達顯著（<em>p</em> = .063），摘要的「低強度使差距消失、中強度使其反轉」是各條件分別對 0 的檢定，不是強度差異的證據；高強度的效果未測，無法檢驗倒 U 型假設。</li>
+<li><strong>樣本與族群</strong>：24 位健康成人；作者建議增加樣本並測量心肺適能是否為中介變項。</li>
+<li><strong>機制為推測</strong>：文中討論內啡肽、多巴胺、血清素與壓力調節等，皆為文獻推論，未在本研究測量。</li>
+</ol>
+<h2>與本站研究主題的連結</h2>
+<p>這項研究對應「運動後情緒處理偏誤是否改變」的問題，但測量的是對情緒<strong>圖片</strong>的<strong>腦處理</strong>，不是對表情臉孔或模糊情境的<strong>行為判斷</strong>。若要比較，需要先分清楚刺激（圖片、臉孔）、測量（腦磁、腦電、fMRI、行為）與時間尺度。更完整的讀證據方式見<a href="#/post/exercise-emotion-learning-map">運動與情緒學習地圖</a>；同一系列的臉孔 fMRI 研究見<a href="#/post/exercise-intensity-emotional-faces-fmri">運動強度，會改變大腦看「表情」的反應嗎？</a>，該研究因沒有不運動的對照條件，而被本研究作為先前研究的限制提出（第 2 頁）。</p>
+<h2>參考文獻（APA 7th）</h2>
+<ul>
+<li>Ligeza, T. S., Maciejczyk, M., Wyczesany, M., Wagner, H., Roesmann, K., &amp; Junghofer, M. (2020). Acute aerobic exercise enhances pleasant compared to unpleasant visual scene processing. <em>Brain and Cognition, 143</em>, Article 105595. <a href="https://doi.org/10.1016/j.bandc.2020.105595">https://doi.org/10.1016/j.bandc.2020.105595</a></li>
+<li>Schmitt, A., Martin, J. A., Rojas, S., Vafa, R., Scheef, L., Strüder, H. K., &amp; Boecker, H. (2019). Effects of low- and high-intensity exercise on emotional face processing: An fMRI face-matching study. <em>Social Cognitive and Affective Neuroscience, 14</em>(6), 657–665. <a href="https://doi.org/10.1093/scan/nsz042">https://doi.org/10.1093/scan/nsz042</a></li>
+</ul>
+<blockquote>
+<p>本頁為學習與科普整理，不構成醫療或心理健康建議；若有情緒困擾，請諮詢專業人員。</p>
+</blockquote>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

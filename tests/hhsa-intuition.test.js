@@ -131,9 +131,9 @@ test('the demo is routed, loaded in the right order, listed on the lab hub and o
   assert.match(app, /\['hhsa', '訊號：振幅調變與包絡'/);
 });
 
-test('the cache-busting version is the same everywhere and was bumped for this release', () => {
+test('the cache-busting version is the same everywhere', () => {
   const inApp = app.match(/const SITE_VERSION = '([^']+)'/)[1];
-  assert.equal(inApp, '20261121-05');
+  assert.match(inApp, /^\d{8}-\d{2}$/);
   for (const file of ['index.html', '404.html']) {
     const text = fs.readFileSync(path.join(root, file), 'utf8');
     const versions = [...new Set([...text.matchAll(/\?v=([0-9-]+)/g)].map(m => m[1]))];

@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="整合Garmin公開驗證研究與兩人三設備先導結果，分層解讀靜息Mean HR、Mean NN、SDNN、RMSSD及動作QC，並建立正式方法比較研究路徑。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/garmin-ecg-validation-study-design/" />
+    <meta property="og:title" content="Garmin 可以取代 ECG 嗎？從公開證據到兩人三設備先導實驗" />
+    <meta property="og:description" content="整合Garmin公開驗證研究與兩人三設備先導結果，分層解讀靜息Mean HR、Mean NN、SDNN、RMSSD及動作QC，並建立正式方法比較研究路徑。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/garmin-ecg-validation-study-design/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/garmin-ecg-validation-study-design.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Garmin 可以取代 ECG 嗎？從公開證據到兩人三設備先導實驗" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Garmin 可以取代 ECG 嗎？從公開證據到兩人三設備先導實驗" />
+    <meta name="twitter:description" content="整合Garmin公開驗證研究與兩人三設備先導結果，分層解讀靜息Mean HR、Mean NN、SDNN、RMSSD及動作QC，並建立正式方法比較研究路徑。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/garmin-ecg-validation-study-design.png" />
+    <title>Garmin 可以取代 ECG 嗎？從公開證據到兩人三設備先導實驗 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-09-03" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Garmin 可以取代 ECG 嗎？從公開證據到兩人三設備先導實驗","description":"整合Garmin公開驗證研究與兩人三設備先導結果，分層解讀靜息Mean HR、Mean NN、SDNN、RMSSD及動作QC，並建立正式方法比較研究路徑。","datePublished":"2026-09-03","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/garmin-ecg-validation-study-design/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/garmin-ecg-validation-study-design/","image":"https://wttntpc.github.io/tingwu.github.io/og/garmin-ecg-validation-study-design.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"Garmin, ECG, PPG, HRV, 效度研究, Bland–Altman"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/garmin-ecg-validation-study-design');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">研究方法 · 2026-09-03</div><h1>Garmin 可以取代 ECG 嗎？從公開證據到兩人三設備先導實驗</h1><p>整合Garmin公開驗證研究與兩人三設備先導結果，分層解讀靜息Mean HR、Mean NN、SDNN、RMSSD及動作QC，並建立正式方法比較研究路徑。</p><div class="tag-list"><span>Garmin</span><span>ECG</span><span>PPG</span><span>HRV</span><span>效度研究</span><span>Bland–Altman</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><blockquote>
+<p><strong>HRV 方法學專題｜科普版</strong>
+這篇文章不會只回答「Garmin 準不準」，而是把公開驗證研究與我們目前的兩人三設備先導實驗放在一起，回答一個更科學的問題：在特定型號、族群、量測情境與指標下，Garmin 的誤差是否小到足以支援預定用途？</p>
+</blockquote>
+<p><a href="#/post/hrv-learning-map">回到 HRV 學習地圖</a> · <a href="#/post/hrv-bbi-rri-ibi-nni">先讀：BBI、RRI、IBI 與 NNI</a> · <a href="#/post/hrv-three-device-analysis-practice">三設備分析實作</a> · <a href="#/post/garmin-raw-data-hrv">全景導讀：從手錶 PPG 到 HRV</a></p>
+<figure class="article-figure">
+  <img src="assets/garmin-ecg-validation-workflow.svg" alt="Garmin PPG 與 ECG 方法比較研究由用途、同步量測、品質控制到三層一致性判定的流程" loading="lazy">
+  <figcaption>Garmin–ECG 驗證流程。HR、逐拍間隔與 HRV 是三個不同層級；通過前一層不代表後一層也通過。</figcaption>
+</figure><h2>先把問題問對：驗證的不是品牌，而是一種用途</h2>
+<p>「Garmin 準嗎？」就像問「一把尺準嗎？」資訊仍然不夠。我們至少需要知道：</p>
+<ul>
+<li>哪一款 Garmin、什麼韌體與演算法？</li>
+<li>使用腕式 PPG、胸帶 ECG，還是手錶已計算好的摘要值？</li>
+<li>量測靜息、睡眠、運動中，還是運動後恢復？</li>
+<li>比較平均心率、逐拍間隔，還是 RMSSD、SDNN 等 HRV 指標？</li>
+<li>用來觀察自己的長期趨勢，還是要取代研究級 ECG？</li>
+</ul>
+<p>因此，合理的研究結論應該是：</p>
+<blockquote>
+<p>在某一族群與量測條件下，某一型號及版本產生的某項指標，與預先指定的 ECG 參考值相比，誤差是否符合該用途的接受界線。</p>
+</blockquote>
+<p>它不應被簡化成「Garmin 已經驗證」或「PPG 可以取代 ECG」。</p>
+<h2>三層驗證不能混在一起</h2>
+<h3>第一層：心率 HR</h3>
+<p>平均心率或每秒心率主要描述一段時間內跳得多快。少量心搏位置誤差經平均後可能互相抵消，因此 HR 很準，不代表逐拍間隔也同樣準。</p>
+<h3>第二層：逐拍間隔 BBI／RRI</h3>
+<p>ECG 以相鄰 R peaks 取得 RRI；腕式 PPG 以周邊脈搏波特徵點取得 PPI 或裝置所稱的 BBI。HRV 對逐拍誤差敏感，因此最好先檢查 Garmin 是否出現漏拍、多拍、錯位或長缺口。</p>
+<h3>第三層：HRV／PRV 指標</h3>
+<p>RMSSD、SDNN、頻域與非線性指標對錯誤的敏感程度不同。某裝置可以準確估計平均 HR 或較慢的整體變化，卻在 RMSSD 等短期逐拍變化指標上只有中等一致性。每一個指標都要分開判定。</p>
+<h2>現有研究告訴我們什麼？</h2>
+<table>
+<thead>
+<tr>
+<th>研究</th>
+<th>情境與設備</th>
+<th>可量化的主要發現</th>
+<th>不能外推到哪裡？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://doi.org/10.22489/CinC.2023.237">Williams 等人（2023）</a></td>
+<td>27名年輕健康成人；Garmin Venu 2／Health Snapshot 與 ECG 同步2分鐘</td>
+<td>自由呼吸時RHR：<i>r</i>=.99、bias −0.5 bpm、LoA −3.9至2.9 bpm；RMSSD：<i>r</i>=.85、bias −1.6 ms、LoA −32.6至29.5 ms、APE中位數20.3%</td>
+<td>兩分鐘、靜息且族群年輕；不能代表運動、睡眠、Forerunner 255或臨床用途</td>
+</tr>
+<tr>
+<td><a href="https://doi.org/10.1093/ehjdh/ztad022">Theurl 等人（2023）</a></td>
+<td>263人，含心肌梗塞、中風與對照；Garmin vivoactive 4 PPG 與1000 Hz ECG 仰臥同步30分鐘</td>
+<td>mean HR、SDANN、VLF一致性很高（CCC分別為.9998、.9617、.9613）；RMSSD與DFA-α1僅中等（.6617、.5919）</td>
+<td>僅標準化仰臥靜息，且結果具有指標差異；不能把mean HR的準確度外推到所有HRV指標</td>
+</tr>
+<tr>
+<td><a href="https://doi.org/10.14814/phy2.70527">Dial 等人（2025）</a></td>
+<td>13名健康成人、536個夜晚；Garmin Fenix 6等裝置對照Polar H10 ECG</td>
+<td>Garmin夜間HRV的CCC為.87、MAPE為10.52% ± 8.63%；研究並因演算法時間窗不明而未納入Garmin RHR比較</td>
+<td>536晚巢狀於13人；裝置摘要值不是逐拍BBI驗證，也不能代表白天活動</td>
+</tr>
+<tr>
+<td><a href="https://doi.org/10.1080/1091367X.2022.2161820">Merrigan 等人（2023）</a></td>
+<td>8名健康成人；Garmin Fenix 6、胸帶等與多導程ECG比較運動中的每秒HR</td>
+<td>Fenix 6於三種較穩定活動的MAPE為4.23%–5.44%、CCC為.76–.96；Tabata在所有裝置中誤差最差</td>
+<td>驗證的是運動中HR，不是逐拍HRV；不可用來宣稱運動中RMSSD有效</td>
+</tr>
+</tbody></table>
+<p>這些結果看似不同，其實回答的是不同問題。型號、量測時間、姿勢、呼吸、動作、族群和指標都不同。真正應學到的不是替品牌打分數，而是閱讀研究條件。</p>
+<h3>Garmin白皮書可以怎麼用？</h3>
+<p>Garmin Enhanced BBI白皮書說明PPG-BBI、逐拍confidence與缺口的技術概念，也展示一名男性在一晚睡眠中以Venu 2 Plus對照Firstbeat Bodyguard 2 ECG的結果。它適合用來理解資料欄位和廠商演算法，但不是獨立的群體驗證研究。即使一晚包含數萬個beats，研究單位仍只有一位受試者；不能把大量心搏當成大量獨立樣本，也不能據此推廣至其他型號、族群或運動情境。</p>
+<h2>我們目前的兩人三設備先導實驗</h2>
+<p>我們同步使用 Garmin Forerunner 255（腕式PPG-BBI）、BIOPAC Lead II ECG與Portable ECG，收集2位參與者在睜眼、閉眼、原地踏步100 bpm、運動後睜眼及閉眼五個情境的資料。每個情境取開始後20–320秒，共300秒。四個靜態情境形成8個 participant-condition paired windows；原地踏步只有2個窗口。</p>
+<p>這是一項<strong>流程驗證與失敗模式探索</strong>，不是產品效度試驗。下列數值來自2026-10-02版彙總輸出；bias一律定義為「Garmin − ECG」。傳統LoA以8個靜態窗口計算，尚未處理同一人多次量測的相依性，因此只能描述目前資料，不能當作母群體的95%推論區間。</p>
+<h3>靜息結果：平均速度接近，不代表逐拍變異可以互換</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th align="right">Garmin vs BIOPAC：bias（描述性LoA）</th>
+<th align="right">MAPE</th>
+<th align="right">Garmin vs Portable ECG：bias（描述性LoA）</th>
+<th align="right">MAPE</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mean HR</td>
+<td align="right">+0.08 bpm（−0.22至+0.39）</td>
+<td align="right">0.16%</td>
+<td align="right">+0.01 bpm（−0.11至+0.12）</td>
+<td align="right">0.05%</td>
+</tr>
+<tr>
+<td>Mean NN</td>
+<td align="right">−0.88 ms（−4.07至+2.31）</td>
+<td align="right">0.16%</td>
+<td align="right">−0.14 ms（−1.02至+0.73）</td>
+<td align="right">0.05%</td>
+</tr>
+<tr>
+<td>SDNN</td>
+<td align="right">+1.69 ms（−0.03至+3.41）</td>
+<td align="right">7.57%</td>
+<td align="right">+1.80 ms（+0.85至+2.75）</td>
+<td align="right">8.42%</td>
+</tr>
+<tr>
+<td>RMSSD</td>
+<td align="right">+5.32 ms（+1.74至+8.89）</td>
+<td align="right">30.34%</td>
+<td align="right">+5.32 ms（+1.93至+8.72）</td>
+<td align="right">30.25%</td>
+</tr>
+</tbody></table>
+<p>這張表揭示三個層次：</p>
+<ol>
+<li><strong>平均心率層次表現最好。</strong> 在目前8個靜態窗口中，Mean HR與Mean NN幾乎重疊。</li>
+<li><strong>SDNN有小幅正向偏差。</strong> Garmin在靜息窗口平均高約1.7–1.8 ms，但這仍只是兩人的描述性結果。</li>
+<li><strong>RMSSD最值得警惕。</strong> Garmin平均高約5.3 ms；因參考值本身不大，MAPE約30%。即使ICC約.83、兩人的高低排序大致保留，也不能因此說兩種方法可互換。兩位參與者間的差異很大，可能讓相關或ICC看起來漂亮，卻掩蓋固定偏差。</li>
+</ol>
+<p>BIOPAC與Portable ECG給出的靜息結果方向幾乎相同，這支持目前分析流程具有一定內部一致性；但它仍不能替代更多參與者、完整人工R-peak複核與正式同步驗證。</p>
+<h3>原地踏步結果：目前應視為「失敗警報」</h3>
+<p>在2個原地踏步窗口中，三設備的兩人平均輸出已明顯分開：Garmin、BIOPAC與Portable ECG的Mean HR分別為97.61、105.21與113.15 bpm；RMSSD分別為25.53、73.19與67.97 ms。因為只有2個窗口，且其中一個人的ECG衍生結果出現極端變動，這些平均值<strong>不能被解讀成運動生理反應或裝置效度估計</strong>。</p>
+<p>QC敏感度分析更清楚地指出問題：BIOPAC動作窗口的兩人平均RMSSD由保留全部的136.54 ms降至刪除後插補的66.14 ms；Portable ECG則由267.95 ms降至63.73 ms。Garmin在現行三種QC路徑皆維持25.53 ms，這不代表Garmin沒有偽影，而可能反映PPG-BBI已先經過無法看見的裝置演算法，或目前規則沒有捕捉其失敗型態。</p>
+<p>因此，動作資料目前最有價值的用途不是比較誰比較準，而是暴露四個待解問題：共同同步事件、clock drift、ECG R-peak人工複核、以及Garmin輸出缺口與confidence欄位的語義。</p>
+<h2>對照2026年HRV指引：我們做到什麼、還缺什麼？</h2>
+<p><a href="https://doi.org/10.1152/ajpheart.00041.2026">Carter 等人（2026）</a>建議實驗室HRV研究優先使用ECG、至少250 Hz取樣、固定姿勢與環境、使用至少5分鐘穩態窗口、監測呼吸，並以自動偵測加上人工視覺確認處理心搏。對穿戴式裝置則應報告型號、輸入訊號、韌體／演算法版本及已知限制。</p>
+<table>
+<thead>
+<tr>
+<th>已做到</th>
+<th>仍需補強</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BIOPAC採Lead II、1000 Hz；三設備同時量測；分析窗口固定為5分鐘；靜息與動作分層</td>
+<td>只有2位參與者；20秒穩定期短於指引建議；未同步量測呼吸；缺共同硬體事件與drift估計；韌體與配戴紀錄仍需資料字典化；人工R-peak複核需建立盲化及一致性紀錄</td>
+</tr>
+</tbody></table>
+<p>另一個重要限制是<strong>型號可移植性</strong>：上述公開研究使用Venu 2／2S、vivoactive 4或Fenix 6，而我們使用Forerunner 255。感測器、佩戴、韌體與演算法不同，因此文獻只能提供方法與合理預期，不能替Forerunner 255直接背書。</p>
+<h2>為什麼「高度相關」仍可能不準？</h2>
+<p>假設 ECG 測得五個人的 RMSSD 是 <code>20、30、40、50、60 ms</code>，Garmin 全部多估 <code>15 ms</code>，得到 <code>35、45、55、65、75 ms</code>。兩組數值的相關可以非常高，因為排名完全相同；但每個人的 Garmin 都固定多了15 ms，兩種方法並不能直接互換。</p>
+<p>所以驗證研究不能只報 Pearson 或 Spearman 相關。<a href="https://doi.org/10.1016/S0140-6736(86)90837-8">Bland 與 Altman（1986）</a>提出的方法比較觀點提醒我們，至少還要回答：</p>
+<ul>
+<li><strong>Bias（平均偏差）</strong>：Garmin 平均高估或低估多少？</li>
+<li><strong>95% limits of agreement（LoA）</strong>：大多數個別差異可能落在哪個範圍？</li>
+<li><strong>MAE／RMSE</strong>：典型誤差有多大？是否被少數大誤差拉高？</li>
+<li><strong>CCC／ICC</strong>：排序和數值接近程度合起來如何？使用的是哪種ICC？</li>
+<li><strong>Proportional bias</strong>：數值愈高時，誤差是否也愈大？</li>
+</ul>
+<p>最重要的是：這些誤差是否小於研究開始前定義的「可接受界線」。如果沒有先定義用途與界線，研究容易只剩下「看起來相關不錯」。</p>
+<h2>如果由我設計一項 Garmin–ECG 驗證研究</h2>
+<h3>步驟一：先寫用途與主要結果</h3>
+<p>示範研究問題：</p>
+<blockquote>
+<p>在健康成人標準化靜息測量中，Garmin腕式PPG產生的BBI、RMSSD與SDNN，與同步ECG產生的RRI、RMSSD與SDNN是否具有足以支援個人趨勢監測的一致性？</p>
+</blockquote>
+<p>這句話已限定族群、情境、設備來源、指標與用途。若目標是臨床診斷或運動即時回饋，需要另一套更嚴格、情境不同的驗證。</p>
+<h3>步驟二：選擇受試者，而不是只追求很多心搏</h3>
+<p>每個人可貢獻數百個心搏，但真正的獨立樣本仍主要是「人」。若20人各有500拍，不能假裝有10,000位受試者。樣本應涵蓋預定使用族群的重要差異，例如年齡、性別、膚色、腕圍、心肺適能與節律狀態；是否納入心律不整則應依研究目的事先決定。</p>
+<h3>步驟三：兩部設備必須同步</h3>
+<p>Garmin和ECG應在同一人、同一時段記錄。研究需要保存共同開始事件或同步標記、時區與時間戳精度，並檢查裝置是否逐漸產生 clock drift。僅把兩段「差不多同一時間」的摘要值放在一起，無法驗證逐拍間隔。</p>
+<h3>步驟四：把情境分開</h3>
+<p>可先做一個最小可行研究：標準化靜息、固定姿勢與自發呼吸，分別分析5分鐘視窗；再增加坐姿、站姿、受控呼吸、運動與恢復。這些情境不能混成一個平均結果，因為動作、周邊灌流與呼吸會改變PPG品質及生理變異。</p>
+<h3>步驟五：兩條訊號各自做品質控制</h3>
+<ul>
+<li>ECG：保存原始波形、R-peak標記、異位心搏與人工修正紀錄。</li>
+<li>Garmin：保存原始BBI、時間戳、confidence flag、缺口與韌體版本；若只能取得摘要值，要明確承認無法檢查逐拍錯誤。</li>
+<li>兩端使用相同分析視窗，但不能為了讓結果更漂亮而只刪除Garmin不利的片段。</li>
+<li>報告每人、每情境的有效時間、有效間隔比例、刪除與校正比例及最長缺口。</li>
+</ul>
+<h3>步驟六：依序分析</h3>
+<ol>
+<li>畫兩條時間序列，確認同步與遺漏。</li>
+<li>比較每拍事件配對與 interval error。</li>
+<li>對每個人、每個情境、每個固定視窗計算HR與HRV。</li>
+<li>畫 identity plot 與 Bland–Altman plot。</li>
+<li>報告 bias、LoA及其信賴區間，再補充MAE、CCC或指定ICC。</li>
+<li>檢查誤差是否隨數值、動作、姿勢、呼吸或族群特徵改變。</li>
+<li>以預先指定的接受界線，逐指標、逐情境下結論。</li>
+</ol>
+<h2>一個很小但重要的研究練習</h2>
+<p>請先替自己的研究填完這五格：</p>
+<table>
+<thead>
+<tr>
+<th>決策</th>
+<th>我的規劃</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>預定用途</td>
+<td>個人趨勢／研究量測／即時運動／臨床輔助？</td>
+</tr>
+<tr>
+<td>Garmin資料</td>
+<td>型號、韌體、PPG-BBI或裝置摘要？</td>
+</tr>
+<tr>
+<td>ECG參考</td>
+<td>設備、導程、取樣率與R-peak方法？</td>
+</tr>
+<tr>
+<td>主要指標</td>
+<td>BBI error、RMSSD、SDNN，或其他？</td>
+</tr>
+<tr>
+<td>可接受誤差</td>
+<td>根據用途，多少bias與LoA才可接受？</td>
+</tr>
+</tbody></table>
+<p>若這五格尚未填完，還不適合先決定統計檢定或樣本數。</p>
+<h2>今天應該帶走的結論</h2>
+<p>Garmin 不是單純的「準」或「不準」。公開研究與我們的先導資料都顯示：<strong>平均心率、Mean NN、SDNN與RMSSD必須逐層判斷；靜息結果不能外推到動作；保留個人趨勢不等於數值可與ECG互換。</strong>目前Forerunner 255在兩人的靜息窗口中能貼近ECG的平均速度，但RMSSD呈現約5.3 ms正偏差與約30% MAPE；動作窗口則仍有同步、偽影與QC問題。因此現階段最合理的結論是「流程已找出可用與失敗的層次」，而不是「Garmin已經通過驗證」。</p>
+<h2>核心參考文獻（APA 7th）</h2>
+<ul>
+<li>Bland, J. M., &amp; Altman, D. G. (1986). Statistical methods for assessing agreement between two methods of clinical measurement. <em>The Lancet, 327</em>(8476), 307–310. <a href="https://doi.org/10.1016/S0140-6736(86)90837-8">https://doi.org/10.1016/S0140-6736(86)90837-8</a></li>
+<li>Carter, J. R., Jenkins, N. D. M., Bigalke, J. A., Robinson, A. T., Keller-Ross, M. L., Greaney, J. L., Fonkoue, I. T., Fadel, P. J., Macefield, V. G., Charkoudian, N., Levine, B. D., &amp; Joyner, M. J. (2026). Guidelines for rigor and reproducibility of heart rate variability within human cardiovascular research. <em>American Journal of Physiology-Heart and Circulatory Physiology, 331</em>(3), H918–H943. <a href="https://doi.org/10.1152/ajpheart.00041.2026">https://doi.org/10.1152/ajpheart.00041.2026</a></li>
+<li>Dial, M. B., Hollander, M. E., Vatne, E. A., Emerson, A. M., Edwards, N. A., &amp; Hagen, J. A. (2025). Validation of nocturnal resting heart rate and heart rate variability in consumer wearables. <em>Physiological Reports, 13</em>, Article e70527. <a href="https://doi.org/10.14814/phy2.70527">https://doi.org/10.14814/phy2.70527</a></li>
+<li>Garmin Health. (2023). <em>Garmin enhanced BBI: An example night</em>. <a href="https://www8.garmin.com/garminhealth/news/Garmin-Enhanced-BBI_Final.pdf">https://www8.garmin.com/garminhealth/news/Garmin-Enhanced-BBI_Final.pdf</a></li>
+<li>Merrigan, J. J., Stovall, J. H., Stone, J. D., Stephenson, M., Finomore, V. S., &amp; Hagen, J. A. (2023). Validation of Garmin and Polar devices for continuous heart rate monitoring during common training movements in tactical populations. <em>Measurement in Physical Education and Exercise Science, 27</em>(3), 234–247. <a href="https://doi.org/10.1080/1091367X.2022.2161820">https://doi.org/10.1080/1091367X.2022.2161820</a></li>
+<li>Theurl, F., Schreinlechner, M., Sappler, N., Toifl, M., Dolejsi, T., Hofer, F., Massmann, C., Steinbring, C., Komarek, S., Mölgg, K., Dejakum, B., Böhme, C., Kirchmair, R., Reinstadler, S., &amp; Bauer, A. (2023). Smartwatch-derived heart rate variability: A head-to-head comparison with the gold standard in cardiovascular disease. <em>European Heart Journal – Digital Health, 4</em>(3), 155–164. <a href="https://doi.org/10.1093/ehjdh/ztad022">https://doi.org/10.1093/ehjdh/ztad022</a></li>
+<li>Williams, K., Jamieson, A., Chaturvedi, N., Hughes, A., &amp; Orini, M. (2023). Validation of wearable derived heart rate variability and oxygen saturation from Garmin&#39;s Health Snapshot. <em>Computing in Cardiology, 50</em>, 1–4. <a href="https://doi.org/10.22489/CinC.2023.237">https://doi.org/10.22489/CinC.2023.237</a></li>
+</ul>
+<blockquote>
+<p><strong>資料與查核說明：</strong>公開研究均回到論文或正式學術紀錄核對；NotebookLM只作為檢索介面。先導結果來自本機專案的彙總CSV與QC敏感度輸出，網站不公開原始生理訊號、逐拍資料或個別結果。本文不代表醫療建議，也不能把兩人的探索性結果或特定型號研究外推至所有Garmin裝置。</p>
+</blockquote>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><h2>研究定位</h2>
+<p>這是一項 repeated-measures method-comparison study，而不是一般「兩組是否有差」的研究。ECG是參考方法；腕式Garmin PPG是index method。研究目的不是檢定兩者平均值是否無顯著差異，而是估計個別差異的大小、分布、條件依賴性與不確定性，再依預定用途判定是否可接受。</p>
+<h3>三個應分開的estimands</h3>
+<ol>
+<li><strong>HR-level agreement</strong>：同一時間窗的Garmin與ECG心率差。</li>
+<li><strong>Beat-interval agreement</strong>：已配對PPG pulse與ECG R peak後，BBI/PPI和RRI的差；同時估計漏拍、多拍與錯配率。</li>
+<li><strong>Feature-level agreement</strong>：同一有效視窗中，Garmin-PRV與ECG-HRV之RMSSD、SDNN或其他指標差。</li>
+</ol>
+<p>不能用HR-level結果替feature-level效度背書；也不能由單一指標推論整套HRV有效。</p>
+<h2>現行先導資料集與分析意圖</h2>
+<p>目前資料來自2位參與者、3種設備與5個連續情境：EO(pre)、EC(pre)、原地踏步100 bpm、EO(post)、EC(post)。Index method為Garmin Forerunner 255輸出的PPG-BBI；兩個reference streams為BIOPAC Lead II ECG與Portable ECG。各情境採開始後20–320秒的300秒視窗。</p>
+<p>現階段分析意圖是<strong>exploratory／descriptive</strong>：驗證ingestion、時間切窗、R-peak detection、interval QC、feature extraction與報告流程，並定位失敗模式。它不是預先註冊的confirmatory validation，也沒有研究前設定的acceptance bounds。</p>
+<table>
+<thead>
+<tr>
+<th>分析層級</th>
+<th>現況</th>
+<th>可支持的用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Rate level</td>
+<td>已比較Mean HR與Mean NN</td>
+<td>檢查共同時間窗與平均速度是否接近</td>
+</tr>
+<tr>
+<td>Feature level</td>
+<td>已比較SDNN、RMSSD並完成描述性agreement輸出</td>
+<td>找出指標特異性偏差與QC敏感性</td>
+</tr>
+<tr>
+<td>Beat level</td>
+<td>尚未完成可靠共同事件與逐拍matching</td>
+<td>目前不能估計每拍誤差、漏拍或錯配率</td>
+</tr>
+<tr>
+<td>Population level</td>
+<td>僅2位參與者</td>
+<td>只能支援pipeline verification，不能進行產品效度宣稱</td>
+</tr>
+</tbody></table>
+<h2>靜態窗口的探索性agreement結果</h2>
+<p>靜態分析包含2人 × 4情境，共8個participant-condition windows。下表的bias為Garmin − reference；LoA是把8個窗口暫時當成獨立值計算的傳統描述值，<strong>未校正重複量測，也沒有LoA的confidence intervals</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Metric</th>
+<th align="right">n windows</th>
+<th align="right">Bias</th>
+<th align="right">描述性95% LoA</th>
+<th align="right">MAPE</th>
+<th align="right">ICC(2,1)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BIOPAC</td>
+<td>Mean HR</td>
+<td align="right">8</td>
+<td align="right">+0.083 bpm</td>
+<td align="right">−0.220至+0.385</td>
+<td align="right">0.163%</td>
+<td align="right">.9999</td>
+</tr>
+<tr>
+<td>BIOPAC</td>
+<td>Mean NN</td>
+<td align="right">8</td>
+<td align="right">−0.876 ms</td>
+<td align="right">−4.067至+2.314</td>
+<td align="right">0.163%</td>
+<td align="right">.9998</td>
+</tr>
+<tr>
+<td>BIOPAC</td>
+<td>SDNN</td>
+<td align="right">8</td>
+<td align="right">+1.694 ms</td>
+<td align="right">−0.026至+3.414</td>
+<td align="right">7.570%</td>
+<td align="right">.9874</td>
+</tr>
+<tr>
+<td>BIOPAC</td>
+<td>RMSSD</td>
+<td align="right">8</td>
+<td align="right">+5.316 ms</td>
+<td align="right">+1.739至+8.892</td>
+<td align="right">30.342%</td>
+<td align="right">.8294</td>
+</tr>
+<tr>
+<td>Portable ECG</td>
+<td>Mean HR</td>
+<td align="right">8</td>
+<td align="right">+0.010 bpm</td>
+<td align="right">−0.106至+0.125</td>
+<td align="right">0.050%</td>
+<td align="right">.99999</td>
+</tr>
+<tr>
+<td>Portable ECG</td>
+<td>Mean NN</td>
+<td align="right">8</td>
+<td align="right">−0.142 ms</td>
+<td align="right">−1.016至+0.732</td>
+<td align="right">0.050%</td>
+<td align="right">.99999</td>
+</tr>
+<tr>
+<td>Portable ECG</td>
+<td>SDNN</td>
+<td align="right">8</td>
+<td align="right">+1.796 ms</td>
+<td align="right">+0.847至+2.746</td>
+<td align="right">8.417%</td>
+<td align="right">.9882</td>
+</tr>
+<tr>
+<td>Portable ECG</td>
+<td>RMSSD</td>
+<td align="right">8</td>
+<td align="right">+5.322 ms</td>
+<td align="right">+1.928至+8.716</td>
+<td align="right">30.253%</td>
+<td align="right">.8302</td>
+</tr>
+</tbody></table>
+<p>這組數字不適合用「ICC很高」一句帶過。Mean HR與Mean NN的原始單位誤差很小；SDNN的bias仍小但MAPE上升；RMSSD則同時出現約+5.3 ms的固定方向偏差與約30% MAPE。RMSSD的ICC約.83主要表示這2位參與者的相對排序仍有保留，並不消除absolute disagreement。這正是方法比較研究必須同時報告bias、LoA、原始單位誤差與一致性係數的理由。</p>
+<p>兩個ECG reference對Garmin所得的靜態bias十分接近，可視為目前analysis-side implementation的交叉檢查。不過BIOPAC與Portable ECG並非完全獨立的真值：它們各有前端濾波、電極、同步及R-peak detection誤差，因此不能以「兩個參考都同意」取代waveform review與beat matching。</p>
+<h2>動作窗口與QC敏感度：先診斷失敗，再談效度</h2>
+<p>原地踏步只有2個participant windows，不足以估計可解讀的LoA或ICC。描述性輸出中，Garmin、BIOPAC與Portable ECG的兩人平均Mean HR分別為97.61、105.21與113.15 bpm；RMSSD為25.53、73.19與67.97 ms。跨設備差異同時混合了真實心率、動作偽影、R-peak detection、Garmin availability與時間對齊問題，不能解讀成自主神經差異。</p>
+<p>QC method sensitivity進一步顯示：</p>
+<ul>
+<li>BIOPAC動作窗口的平均RMSSD由<code>keep_all</code>的136.54 ms降至<code>delete_interpolate</code>的66.14 ms；</li>
+<li>Portable ECG由267.95 ms降至63.73 ms；</li>
+<li>Garmin在目前三條QC路徑均為25.53 ms。</li>
+</ul>
+<p>Garmin結果對現行QC規則「不變」，不等於沒有motion artifact。更可能的解釋包括：裝置端已進行未知處理、錯誤interval未被現行range／local-change規則標記，或availability failure在輸出前已被隱藏。正式研究應將accuracy與availability分開，並把raw／flagged／excluded／interpolated四種狀態留在可稽核資料表中。</p>
+<h2>與公開證據的整合解讀</h2>
+<p>我們的靜息結果方向與公開研究的「metric-specific agreement」一致，但不能視為複製成功。<a href="https://doi.org/10.22489/CinC.2023.237">Williams 等人（2023）</a>在2分鐘自由呼吸中觀察到RHR的窄LoA，但RMSSD的LoA達−32.6至29.5 ms、APE中位數20.3%；<a href="https://doi.org/10.1093/ehjdh/ztad022">Theurl 等人（2023）</a>亦發現mean HR的CCC為.9998，而RMSSD僅.6617。這些研究與本先導資料共同指出：時間平均能抵消部分逐拍錯誤，短期變異指標則會放大它們。</p>
+<p><a href="https://doi.org/10.14814/phy2.70527">Dial 等人（2025）</a>的13人、536夜研究顯示Garmin夜間HRV的CCC為.87、MAPE為10.52% ± 8.63%，同時暴露裝置摘要時間窗不透明的問題；<a href="https://doi.org/10.1080/1091367X.2022.2161820">Merrigan 等人（2023）</a>則顯示Fenix 6在較穩定活動的HR誤差較低，但Tabata的分歧最大。這兩者支持「情境與演算法輸出層級必須分開驗證」，卻都不能直接驗證Forerunner 255的逐拍BBI。</p>
+<h2>依2026指引進行gap analysis</h2>
+<p><a href="https://doi.org/10.1152/ajpheart.00041.2026">Carter 等人（2026）</a>提出的最新HRV嚴謹性指引，可直接用來審查目前protocol：</p>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>目前狀態</th>
+<th>正式研究的修正</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Input signal</td>
+<td>Garmin PPG-BBI＋兩套ECG；BIOPAC Lead II、1000 Hz</td>
+<td>完整記錄Portable ECG取樣、兩套ECG前端濾波與Garmin韌體／演算法版本</td>
+</tr>
+<tr>
+<td>Window</td>
+<td>固定300秒，符合最低5分鐘長度</td>
+<td>將穩定期由20秒提高至預先指定且合理的時間；指引建議理想上約10分鐘</td>
+</tr>
+<tr>
+<td>Respiration</td>
+<td>未同步納入目前分析</td>
+<td>記錄呼吸率與深度，避免把呼吸造成的RMSSD／HF改變誤判為裝置偏差</td>
+</tr>
+<tr>
+<td>Context</td>
+<td>靜息與動作已分層</td>
+<td>標準化姿勢、時段、溫度、咖啡因、酒精、餐食與前次運動並記錄偏離</td>
+</tr>
+<tr>
+<td>Beat review</td>
+<td>已有自動R-peak與review輸出格式</td>
+<td>完成盲化人工複核、adjudication與reviewer agreement</td>
+</tr>
+<tr>
+<td>Synchronization</td>
+<td>目前以紀錄起點／時間資訊切窗</td>
+<td>加入共同硬體事件，估計offset與session內clock drift</td>
+</tr>
+<tr>
+<td>Inference</td>
+<td>目前為2人描述性輸出</td>
+<td>以participant為樣本規劃核心，使用repeated-measures Bland–Altman或multilevel model</td>
+</tr>
+</tbody></table>
+<p>指引也提醒HRV不適合被直接稱為交感活性或「交感／副交感平衡」。即使未來Garmin與ECG在RMSSD上達到方法一致，也只能支持相應訊號與指標的可用性，不能自動升級成特定自主神經機制的證明。</p>
+<h2>建議的可重現研究架構</h2>
+<table>
+<thead>
+<tr>
+<th>元件</th>
+<th>預先指定內容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Population</td>
+<td>年齡範圍、健康／臨床狀態、節律、性別與膚色涵蓋；排除條件與理由</td>
+</tr>
+<tr>
+<td>Index method</td>
+<td>Garmin型號、感測模式、腕側、佩戴位置、韌體、SDK／匯出方式、confidence定義</td>
+</tr>
+<tr>
+<td>Reference</td>
+<td>ECG設備、導程、取樣率、電極位置、同步方式、R-peak演算法與人工審查</td>
+</tr>
+<tr>
+<td>Conditions</td>
+<td>穩定期、姿勢、呼吸、時段、室溫、咖啡因／運動限制、各階段持續時間</td>
+</tr>
+<tr>
+<td>Outcomes</td>
+<td>一個主要指標；其餘預先標記次要或探索性，避免多重比較後選最好結果</td>
+</tr>
+<tr>
+<td>Acceptance</td>
+<td>對bias、LoA、有效資料率或分類表現設定用途導向的接受界線</td>
+</tr>
+<tr>
+<td>Missingness</td>
+<td>無輸出、低信心、artifact及參與者退出各自的定義與處理</td>
+</tr>
+</tbody></table>
+<h2>資料結構與時間對齊</h2>
+<p>至少保存三張表：</p>
+<pre><code class="language-text">participants: participant_id, age_band, sex, skin_tone, wrist, fitness, rhythm_status
+beats: participant_id, condition, device, timestamp, interval_ms, quality_flag, qc_action
+windows: participant_id, condition, window_id, device, valid_seconds, valid_intervals,
+         missing_prop, corrected_prop, mean_hr, rmssd, sdnn
+</code></pre>
+<p>原始設備時間戳應先轉成同一時基。以共同事件或硬體同步校準offset，並檢查記錄後段是否出現drift。若只能對齊分鐘摘要，研究問題必須降級為window-level comparison，不能宣稱完成beat-level validation。</p>
+<h2>品質控制不能讓參考方法和測試方法互相污染</h2>
+<p>ECG的R peaks可依原始波形人工複核；Garmin BBI若沒有原始PPG波形，只能依時間序列、quality/confidence及預先規則處理。應保存：</p>
+<ul>
+<li>untouched raw資料；</li>
+<li>每一個被標記、刪除、替換或插補的事件；</li>
+<li>automatic-only與human-reviewed結果的版本；</li>
+<li>paired-window納入流程與各階段樣本數；</li>
+<li>因低品質排除後，樣本特徵是否改變。</li>
+</ul>
+<p>若只分析「兩部設備都有完整資料」的片段，可能高估現實可用性。因此accuracy和availability應分開報告：前者問有輸出時多接近ECG，後者問實際有多少時間能產生可用輸出。</p>
+<h2>核心統計分析</h2>
+<p>對每位受試者的一個預先指定paired summary，令Garmin值為 <i>G<sub>i</sub></i>、ECG值為 <i>E<sub>i</sub></i>：</p>
+<div class="article-equation"><i>d<sub>i</sub></i> = <i>G<sub>i</sub></i> − <i>E<sub>i</sub></i></div>
+<div class="article-equation"><i>m<sub>i</sub></i> = (<i>G<sub>i</sub></i> + <i>E<sub>i</sub></i>) / 2</div>
+<div class="article-equation">bias = mean(<i>d<sub>i</sub></i>)</div>
+<div class="article-equation">95% LoA = bias ± 1.96 × SD(<i>d<sub>i</sub></i>)</div><p>Bland–Altman圖以 <i>m<sub>i</sub></i> 為橫軸、<i>d<sub>i</sub></i> 為縱軸。除了bias和LoA，應提供其信賴區間並檢查proportional bias及異質變異。HRV常右偏；若差異隨量級增加，可預先規劃log scale分析並把結果解釋為ratio或百分比，而不是事後選擇較好看的尺度。</p>
+<h3>其他指標的角色</h3>
+<ul>
+<li><strong>MAE／RMSE</strong>：描述誤差大小，但不顯示誤差方向；RMSE對大誤差更敏感。</li>
+<li><strong>MAPE</strong>：容易理解，但分母很小時不穩定；須同時報告原始單位誤差。</li>
+<li><strong>Lin&#39;s CCC</strong>：同時考慮precision與accuracy，仍不能取代bias與LoA。</li>
+<li><strong>ICC</strong>：必須寫明模型、單一或平均量測、consistency或absolute agreement及信賴區間。</li>
+<li><strong>Correlation</strong>：只描述共同變動，不證明數值可互換；只能作補充。</li>
+</ul>
+<h3>重複量測與偽重複</h3>
+<p>每位受試者有多個beats、windows或nights時，觀測值彼此相關。不可把所有心搏放進普通Bland–Altman或相關分析，假裝它們相互獨立。可依研究問題採用：</p>
+<ul>
+<li>每位受試者、每情境先形成一個paired summary；或</li>
+<li>repeated-measures Bland–Altman；或</li>
+<li>mixed-effects model估計固定bias、條件效應與participant random effects。</li>
+</ul>
+<p>夜間研究尤其要分清「13位受試者、536晚」的兩層資訊；大量夜晚增加個體內精確度，但不能完全取代更多受試者所提供的個體間代表性。</p>
+<h2>建議的分析順序</h2>
+<pre><code class="language-text">資料可用性與排除流程
+→ 同步與beat matching診斷
+→ 原始差值分布與視覺化
+→ bias與95% LoA（含CI）
+→ CCC／指定ICC、MAE、RMSE
+→ proportional bias與異質變異
+→ condition／population interaction
+→ QC與缺失敏感度分析
+→ 對照預先接受界線
+</code></pre>
+<p>敏感度分析可比較：低信心BBI納入與排除、未校正與校正、2分鐘與5分鐘、正常與受控呼吸、仰臥與坐姿、靜息與運動，以及不同韌體版本。這些分析需先區分confirmatory與exploratory。</p>
+<h2>樣本數怎麼規劃？</h2>
+<p>不要從「相關係數顯著」倒推樣本數，也不要把每拍當獨立樣本。先決定主要estimand與希望LoA有多精確，再利用預期差值標準差、每位重複次數、群內相關與可能失敗率進行模擬或專用方法比較樣本數估計。若尚無差值分布，可先做pilot估計變異與資料可用率；pilot的接受界線仍應由使用目的決定，而不是由pilot結果反向設定。</p>
+<h2>最低報告清單</h2>
+<ol>
+<li>Garmin型號、韌體、資料欄位、演算法可見程度與匯出日期。</li>
+<li>ECG參考系統、採樣、導程、同步及R-peak審查。</li>
+<li>族群、情境、姿勢、呼吸、時間與配戴方式。</li>
+<li>HR、interval、HRV三層中實際驗證了哪一層。</li>
+<li>每個指標的分析視窗、公式、單位及轉換。</li>
+<li>artifact、ectopy、missing、confidence與排除流程。</li>
+<li>participant與paired observation數量，避免只報大量beats。</li>
+<li>bias、LoA與CI；CCC／ICC模型；MAE／RMSE及相關作補充。</li>
+<li>預先接受界線、主要／次要分析及所有未通過結果。</li>
+<li>僅對實際型號、版本、族群、情境、指標與用途下結論。</li>
+</ol>
+<h2>可直接改寫成研究計畫的主要問題</h2>
+<blockquote>
+<p>本研究旨在評估［Garmin型號與版本］於［族群］在［條件］下所產生之［PPG-BBI／RMSSD／SDNN］，相較同步［ECG參考系統］之criterion validity。主要estimand為［bias與95% LoA／其他］，並以研究前依［預定用途］設定之［接受界線］判定是否具有可接受一致性。次要分析評估姿勢、呼吸、運動強度、訊號品質及個體特徵是否改變方法間差異。</p>
+</blockquote>
+<p>本文已納入目前兩人先導實驗的探索性結果，但它仍不是正式效度研究的最終結論。下一階段需依設備輸出能力、倫理審查、預定族群與主要用途，預先建立protocol、資料字典、接受界線與統計分析計畫；正式研究也應把confirmatory與exploratory分析清楚分開。</p>
+<h2>參考文獻（APA 7th）</h2>
+<ul>
+<li>Bland, J. M., &amp; Altman, D. G. (1986). Statistical methods for assessing agreement between two methods of clinical measurement. <em>The Lancet, 327</em>(8476), 307–310. <a href="https://doi.org/10.1016/S0140-6736(86)90837-8">https://doi.org/10.1016/S0140-6736(86)90837-8</a></li>
+<li>Carter, J. R., Jenkins, N. D. M., Bigalke, J. A., Robinson, A. T., Keller-Ross, M. L., Greaney, J. L., Fonkoue, I. T., Fadel, P. J., Macefield, V. G., Charkoudian, N., Levine, B. D., &amp; Joyner, M. J. (2026). Guidelines for rigor and reproducibility of heart rate variability within human cardiovascular research. <em>American Journal of Physiology-Heart and Circulatory Physiology, 331</em>(3), H918–H943. <a href="https://doi.org/10.1152/ajpheart.00041.2026">https://doi.org/10.1152/ajpheart.00041.2026</a></li>
+<li>Coste, A., Millour, G., &amp; Hausswirth, C. (2025). A comparative study between ECG- and PPG-based heart rate sensors for heart rate variability measurements: Influence of body position, duration, sex, and age. <em>Sensors, 25</em>(18), Article 5745. <a href="https://doi.org/10.3390/s25185745">https://doi.org/10.3390/s25185745</a></li>
+<li>Dial, M. B., Hollander, M. E., Vatne, E. A., Emerson, A. M., Edwards, N. A., &amp; Hagen, J. A. (2025). Validation of nocturnal resting heart rate and heart rate variability in consumer wearables. <em>Physiological Reports, 13</em>, Article e70527. <a href="https://doi.org/10.14814/phy2.70527">https://doi.org/10.14814/phy2.70527</a></li>
+<li>Garmin Health. (2023). <em>Garmin enhanced BBI: An example night</em>. <a href="https://www8.garmin.com/garminhealth/news/Garmin-Enhanced-BBI_Final.pdf">https://www8.garmin.com/garminhealth/news/Garmin-Enhanced-BBI_Final.pdf</a></li>
+<li>Georgiou, K., Larentzakis, A. V., Khamis, N. N., Alsuhaibani, G. I., Alaska, Y. A., &amp; Giallafos, E. J. (2018). Can wearable devices accurately measure heart rate variability? A systematic review. <em>Folia Medica, 60</em>(1), 7–20. <a href="https://doi.org/10.2478/folmed-2018-0012">https://doi.org/10.2478/folmed-2018-0012</a></li>
+<li>Laborde, S., Mosley, E., &amp; Thayer, J. F. (2017). Heart rate variability and cardiac vagal tone in psychophysiological research: Recommendations for experiment planning, data analysis, and data reporting. <em>Frontiers in Psychology, 8</em>, Article 213. <a href="https://doi.org/10.3389/fpsyg.2017.00213">https://doi.org/10.3389/fpsyg.2017.00213</a></li>
+<li>Merrigan, J. J., Stovall, J. H., Stone, J. D., Stephenson, M., Finomore, V. S., &amp; Hagen, J. A. (2023). Validation of Garmin and Polar devices for continuous heart rate monitoring during common training movements in tactical populations. <em>Measurement in Physical Education and Exercise Science, 27</em>(3), 234–247. <a href="https://doi.org/10.1080/1091367X.2022.2161820">https://doi.org/10.1080/1091367X.2022.2161820</a></li>
+<li>Quigley, K. S., Gianaros, P. J., Norman, G. J., Jennings, J. R., Berntson, G. G., &amp; de Geus, E. J. C. (2024). Publication guidelines for human heart rate and heart rate variability studies in psychophysiology—Part 1: Physiological underpinnings and foundations of measurement. <em>Psychophysiology, 61</em>(9), Article e14604. <a href="https://doi.org/10.1111/psyp.14604">https://doi.org/10.1111/psyp.14604</a></li>
+<li>Theurl, F., Schreinlechner, M., Sappler, N., Toifl, M., Dolejsi, T., Hofer, F., Massmann, C., Steinbring, C., Komarek, S., Mölgg, K., Dejakum, B., Böhme, C., Kirchmair, R., Reinstadler, S., &amp; Bauer, A. (2023). Smartwatch-derived heart rate variability: A head-to-head comparison with the gold standard in cardiovascular disease. <em>European Heart Journal – Digital Health, 4</em>(3), 155–164. <a href="https://doi.org/10.1093/ehjdh/ztad022">https://doi.org/10.1093/ehjdh/ztad022</a></li>
+<li>Williams, K., Jamieson, A., Chaturvedi, N., Hughes, A., &amp; Orini, M. (2023). Validation of wearable derived heart rate variability and oxygen saturation from Garmin&#39;s Health Snapshot. <em>Computing in Cardiology, 50</em>, 1–4. <a href="https://doi.org/10.22489/CinC.2023.237">https://doi.org/10.22489/CinC.2023.237</a></li>
+</ul>
+<blockquote>
+<p><strong>資料與查核說明：</strong>本文以作者指定的HRV NotebookLM資料庫定位研究，再回到論文或正式學術紀錄核對設計、設備、樣本、分析與主要數值；NotebookLM是檢索介面，不是證據本身。先導結果來自本機專案的彙總CSV與QC敏感度輸出，網站不公開原始生理訊號、逐拍資料或個別結果。本文不代表醫療建議，也不能把兩人的探索性結果或特定型號研究外推至所有Garmin裝置。</p>
+</blockquote>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/data-types-tidy-research-data/" />
+    <meta property="og:title" content="資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？" />
+    <meta property="og:description" content="從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/data-types-tidy-research-data/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/data-types-tidy-research-data.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？" />
+    <meta name="twitter:description" content="從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/data-types-tidy-research-data.png" />
+    <title>資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？ | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-14" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？","description":"從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。","datePublished":"2026-08-14","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/data-types-tidy-research-data/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/data-types-tidy-research-data/","image":"https://wttntpc.github.io/tingwu.github.io/og/data-types-tidy-research-data.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"資料整理, Tidy Data, 資料字典, 可重現研究"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/data-types-tidy-research-data');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">數據分析 · 2026-08-14</div><h1>資料類型與 Tidy Data：如何把研究資料整理成可分析的格式？</h1><p>從測量尺度、觀察單位與長寬格式，到資料字典、缺失值及驗證規則，建立能被正確理解與重現的研究資料。</p><div class="tag-list"><span>資料整理</span><span>Tidy Data</span><span>資料字典</span><span>可重現研究</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>拿到研究資料時，第一個問題通常不是「要用哪個統計檢定」，而是：<strong>每一欄到底代表什麼？每一列又代表誰、哪一次測量？</strong></p>
+<p>如果這一步沒有說清楚，再進階的統計方法也可能分析錯對象。資料整理的目的不是把試算表變漂亮，而是讓資料的意義、單位和測量結構可以被人與程式正確理解。</p>
+<blockquote>
+<p>本文是「數據整理與統計分析」系列第 1 篇。核心原則：先定義變項，再整理表格；先保留原始資料，再建立可分析版本。</p>
+</blockquote>
+<h2>先區分：資料型態不只一種分類</h2>
+<p>研究者常把幾個不同概念混在一起：</p>
+<ul>
+<li><strong>儲存型態</strong>：文字、整數、小數、日期或布林值。</li>
+<li><strong>測量尺度</strong>：名目、順序、等距或等比尺度。</li>
+<li><strong>數值特性</strong>：離散或連續。</li>
+<li><strong>研究角色</strong>：結果變項、解釋變項、共變項或識別欄位。</li>
+</ul>
+<p>例如「組別」在檔案裡可能用 <code>0</code>、<code>1</code> 儲存，但它仍是名目類別；數字只是編碼，不代表兩組之間可以做加減乘除。</p>
+<table>
+<thead>
+<tr>
+<th>測量尺度</th>
+<th>可以回答的問題</th>
+<th>研究範例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>名目</td>
+<td>是否屬於同一類？</td>
+<td>實驗組／控制組、裝置型號</td>
+</tr>
+<tr>
+<td>順序</td>
+<td>哪一個較高？</td>
+<td>疼痛等級、Likert 題目</td>
+</tr>
+<tr>
+<td>等距</td>
+<td>差多少？</td>
+<td>某些標準化分數、攝氏溫度</td>
+</tr>
+<tr>
+<td>等比</td>
+<td>差多少、是幾倍？</td>
+<td>年齡、反應時間、VO₂peak</td>
+</tr>
+</tbody></table>
+<p>這套四尺度分類來自 Stevens（1946），適合用來思考「數值能做哪些有意義的運算」，但不能只看尺度名稱就自動決定統計方法。研究設計、資料分布、重複測量與模型目的也同樣重要。</p>
+<h2>一列應該代表一個觀察</h2>
+<p>Wickham（2014）把適合分析的 tidy data 濃縮成三條原則：</p>
+<ol>
+<li>每一個變項放在一欄。</li>
+<li>每一個觀察放在一列。</li>
+<li>每一類觀察單位放在一張表。</li>
+</ol>
+<p>以下是虛構的運動研究資料：</p>
+<table>
+<thead>
+<tr>
+<th>participant_id</th>
+<th>group</th>
+<th>time</th>
+<th align="right">vo2peak</th>
+<th align="right">rmssd_ms</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P001</td>
+<td>exercise</td>
+<td>pre</td>
+<td align="right">31.2</td>
+<td align="right">36.4</td>
+</tr>
+<tr>
+<td>P001</td>
+<td>exercise</td>
+<td>post</td>
+<td align="right">34.7</td>
+<td align="right">41.8</td>
+</tr>
+<tr>
+<td>P002</td>
+<td>control</td>
+<td>pre</td>
+<td align="right">29.5</td>
+<td align="right">33.1</td>
+</tr>
+</tbody></table>
+<p>這種「長格式」讓每一列代表一位受試者在一個時間點的觀察，適合重複量測圖表與混合模型。寬格式不是永遠錯誤，但應依分析目的轉換，而且轉換過程需要留下程式與紀錄。</p>
+<h2>資料字典比欄位名稱更重要</h2>
+<p>只寫 <code>HRV</code>、<code>score</code> 或 <code>time</code> 不夠清楚。一份可使用的資料字典至少應記錄：</p>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>定義</th>
+<th>單位／編碼</th>
+<th>合理範圍</th>
+<th>缺失值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>participant_id</td>
+<td>去識別化受試者代碼</td>
+<td>P001…</td>
+<td>不可重複</td>
+<td>不允許</td>
+</tr>
+<tr>
+<td>group</td>
+<td>隨機分派組別</td>
+<td>exercise／control</td>
+<td>指定類別</td>
+<td>不允許</td>
+</tr>
+<tr>
+<td>vo2peak</td>
+<td>心肺適能峰值</td>
+<td>mL·kg⁻¹·min⁻¹</td>
+<td>依研究族群設定</td>
+<td>空白</td>
+</tr>
+<tr>
+<td>rmssd_ms</td>
+<td>清理後 BBI 計算的 RMSSD</td>
+<td>ms</td>
+<td>依量測流程設定</td>
+<td>空白</td>
+</tr>
+</tbody></table>
+<p>「合理範圍」是品質檢查門檻，不是看到超出範圍就直接刪除。超出範圍可能是輸入錯誤、單位錯誤、設備問題，也可能是真實但少見的觀察，必須回到來源判斷。</p>
+<h2>缺失不是零，也不應用神祕代碼</h2>
+<p><code>0</code>、空白、<code>NA</code>、<code>999</code> 可能代表完全不同的事情。若 <code>999</code> 被當成真實心率，平均數和圖表都會失真。建議：</p>
+<ul>
+<li>原始資料保留原貌並設為唯讀。</li>
+<li>分析資料使用一致的缺失表示方式。</li>
+<li>另設欄位記錄缺失原因，例如設備失敗、退出研究或未施測。</li>
+<li>不因為軟體不接受空白，就任意把缺失補成平均數或零。</li>
+</ul>
+<h2>一份可以直接使用的整理清單</h2>
+<ol>
+<li>每個受試者是否有穩定且去識別化的 ID？</li>
+<li>每一欄是否只有一種定義與單位？</li>
+<li>類別編碼是否在資料字典中完整說明？</li>
+<li>每一列代表的觀察單位是否一致？</li>
+<li>重複量測是否有受試者 ID 與時間欄位？</li>
+<li>缺失、未施測與真正的零是否可以區分？</li>
+<li>原始檔是否保持唯讀，所有清理能否由程式重現？</li>
+</ol>
+<h3>延伸閱讀</h3>
+<ul>
+<li><a href="https://notebook.google.com/notebook/14a8e333-8feb-462f-b7e3-54d36eef200a">我的 Statistics and Research Methods NotebookLM</a>（可能需要登入與權限）</li>
+<li><a href="#/post/data-analysis-workflow">數據如何變成結論？完整分析流程</a></li>
+</ul>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>研究資料的可分析性取決於三個彼此相關但不相同的層次：測量概念、資料結構與分析模型。把欄位存成 numeric 並不會自動使它成為連續變項；同樣地，把 Likert 題目標為 ordinal，也不能單獨決定最終模型。專業整理流程應先建立資料生成過程與變項定義，再設計機器可讀的資料結構。</p>
+<h2>測量尺度、數值特性與模型角色</h2>
+<p>Stevens（1946）提出名目、順序、等距與等比尺度，核心在於不同轉換下哪些關係仍保持不變。這個分類提供有用的測量起點，但現代分析不宜把它簡化成「名目只能做某檢定、連續只能做另一檢定」的決策表。</p>
+<p>選擇分析方法時至少還要考慮：</p>
+<ul>
+<li>結果變項的條件分布與連結函數；</li>
+<li>觀察是否獨立、配對、巢狀或重複；</li>
+<li>研究目標是描述、估計、預測或因果推論；</li>
+<li>測量誤差、天花板／地板效應與取值範圍；</li>
+<li>預先指定的主要 estimand。</li>
+</ul>
+<p>離散／連續是數值取值特性；名目／順序／等距／等比是測量關係；outcome／predictor／covariate 則是模型角色。三者應分開記錄。</p>
+<h2>Tidy data 與觀察單位</h2>
+<p>Wickham（2014）將 tidy data 定義為每欄一個變項、每列一個觀察、每表一類觀察單位。真正困難的地方通常是「觀察」如何界定。例如運動介入研究可能同時存在：</p>
+<ul>
+<li>participant-level：年齡、組別與基線特徵；</li>
+<li>visit-level：前測、後測及追蹤測量；</li>
+<li>trial-level：每一認知作業試次的反應與正確性；</li>
+<li>beat-level：每一個 BBI 與品質旗標。</li>
+</ul>
+<p>若把不同粒度硬塞在同一張表，participant-level 欄位會大量重複，trial-level 缺失也容易被誤當成 participant-level 缺失。較穩定的設計是分表保存，再用明確的鍵值連結。</p>
+<h2>建立資料契約</h2>
+<p>資料字典可以進一步轉成 validation schema。每個欄位至少記錄：</p>
+<ol>
+<li>穩定欄位名稱與顯示名稱；</li>
+<li>概念定義、單位與量測時間；</li>
+<li>儲存型態與允許類別；</li>
+<li>合理範圍與不可缺失條件；</li>
+<li>衍生公式與原始來源；</li>
+<li>違規時的處理方式。</li>
+</ol>
+<p>以下 Python 範例只示範結構檢查，不代表任何特定研究的排除標準：</p>
+<pre><code class="language-python">required = {&quot;participant_id&quot;, &quot;group&quot;, &quot;time&quot;, &quot;vo2peak&quot;, &quot;rmssd_ms&quot;}
+missing_columns = required.difference(df.columns)
+assert not missing_columns, f&quot;Missing columns: {missing_columns}&quot;
+
+assert df[&quot;participant_id&quot;].notna().all()
+assert df[&quot;group&quot;].isin([&quot;exercise&quot;, &quot;control&quot;]).all()
+assert df[&quot;time&quot;].isin([&quot;pre&quot;, &quot;post&quot;]).all()
+
+duplicate_keys = df.duplicated([&quot;participant_id&quot;, &quot;time&quot;], keep=False)
+review_rows = df.loc[duplicate_keys]
+</code></pre>
+<p>程式發現異常後應輸出待查核清單，而不是自動刪除。任何更正都應連回原始紀錄、處理決策與執行版本。</p>
+<h2>寬格式與長格式的選擇</h2>
+<p>寬格式把 <code>pre</code>、<code>post</code> 放在不同欄，適合部分配對計算與人工閱讀；長格式使用 <code>time</code> 欄表示測量時點，通常更適合視覺化、群組摘要與混合效果模型。轉換時必須檢查：</p>
+<ul>
+<li>主鍵轉換後是否仍唯一；</li>
+<li>測量時點是否遺失或重複；</li>
+<li>單位與欄位名稱是否被錯配；</li>
+<li>列數變化是否符合預期；</li>
+<li>round-trip 或抽樣核對是否能還原原意。</li>
+</ul>
+<h2>缺失與異常值需要語意</h2>
+<p>空值只能表示「目前沒有數值」，不能說明原因。若分析需要區分技術失敗、退出研究、拒答與結構性未施測，應另設 reason code。缺失機制與處理方法屬於後續分析決策，不能在資料整理階段以單一平均值填補掩蓋。</p>
+<p>同理，range check 只是偵測器。研究者需回到儀器紀錄、量表規則或原始表單，將異常列分類成可更正錯誤、不可判定、排除或保留，並保存決策軌跡。</p>
+<h2>建議的輸出層次</h2>
+<pre><code class="language-text">data/raw/          唯讀原始輸出
+data/interim/      去識別、格式轉換與待查核資料
+data/processed/    依鎖定規則產生的分析資料
+metadata/          資料字典、單位、值標籤與排除規則
+scripts/           匯入、驗證、清理與衍生程式
+reports/qc/        缺失、重複、範圍與流程摘要
+</code></pre>
+<p>資料整理完成的標準不是「Excel 看起來整齊」，而是另一位研究者能從唯讀原始檔、資料字典和程式重建相同的分析資料。</p>
+<h2>APA 7th 參考文獻</h2>
+<p>Stevens, S. S. (1946). On the theory of scales of measurement. <em>Science, 103</em>(2684), 677–680. <a href="https://doi.org/10.1126/science.103.2684.677">https://doi.org/10.1126/science.103.2684.677</a></p>
+<p>Wickham, H. (2014). Tidy data. <em>Journal of Statistical Software, 59</em>(10), 1–23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a></p>
+<h2>素材來源說明</h2>
+<p>本文以我的 <a href="https://notebook.google.com/notebook/14a8e333-8feb-462f-b7e3-54d36eef200a">Statistics and Research Methods NotebookLM</a> 作為主題整理起點，再回到公開論文核對概念與書目。未轉載 Notebook 中的私人教材或原始 PDF。</p>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

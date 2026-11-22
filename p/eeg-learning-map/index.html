@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="把腦電生理、電極與放大器、實驗設計、前處理、時頻分析及品質控制連成完整路徑。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/eeg-learning-map/" />
+    <meta property="og:title" content="EEG 學習地圖：從神經生理、設備到可重現分析" />
+    <meta property="og:description" content="把腦電生理、電極與放大器、實驗設計、前處理、時頻分析及品質控制連成完整路徑。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/eeg-learning-map/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/eeg-learning-map.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="EEG 學習地圖：從神經生理、設備到可重現分析" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="EEG 學習地圖：從神經生理、設備到可重現分析" />
+    <meta name="twitter:description" content="把腦電生理、電極與放大器、實驗設計、前處理、時頻分析及品質控制連成完整路徑。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/eeg-learning-map.png" />
+    <title>EEG 學習地圖：從神經生理、設備到可重現分析 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-25" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"EEG 學習地圖：從神經生理、設備到可重現分析","description":"把腦電生理、電極與放大器、實驗設計、前處理、時頻分析及品質控制連成完整路徑。","datePublished":"2026-08-25","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/eeg-learning-map/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/eeg-learning-map/","image":"https://wttntpc.github.io/tingwu.github.io/og/eeg-learning-map.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"EEG, 腦波設備, 訊號處理, 品質控制, 學習地圖"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/eeg-learning-map');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">學習地圖 · 2026-08-25</div><h1>EEG 學習地圖：從神經生理、設備到可重現分析</h1><p>把腦電生理、電極與放大器、實驗設計、前處理、時頻分析及品質控制連成完整路徑。</p><div class="tag-list"><span>EEG</span><span>腦波設備</span><span>訊號處理</span><span>品質控制</span><span>學習地圖</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>EEG 是頭皮電位隨時間變化的量測。它的時間解析度高，但訊號微弱，會受到眼動、肌電、電極接觸、參考方式與環境雜訊影響。真正理解 EEG，要把生理來源、設備、實驗設計、前處理與統計分析一起學。</p>
+<h2>建議的五級路徑</h2>
+<ol>
+<li><strong>100 生理</strong>：膜電位、突觸後電位、群體神經活動、體積傳導與頭皮電位。</li>
+<li><strong>200 設備</strong>：電極、導電介面、阻抗、參考電極、放大器、ADC、取樣率與觸發器。</li>
+<li><strong>300 取得</strong>：10–20 系統、實驗時序、事件標記、受試者準備與原始資料備份。</li>
+<li><strong>400 分析</strong>：檢查原始波形、濾波、壞道、重參考、ICA、分段、基線、ERP、頻譜與時頻分析。</li>
+<li><strong>500 推論</strong>：品質控制、統計模型、多重比較、可重現程式與透明報告。</li>
+</ol>
+<h2>複習檢核</h2>
+<p>對每一個處理步驟回答：「它改變了什麼？依據是什麼？可能刪掉真正訊號嗎？如何用前後圖與數量報告？」如果只記得按鈕位置，還不能算理解分析。</p>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><h2>從生成模型到統計模型</h2>
+<p>EEG 分析可分成五個相依層：神經電流源、頭部體積傳導、電極與放大器量測、數位訊號處理、統計推論。後一層不能修復前一層未記錄或設計錯誤的資訊，因此研究規劃必須先於前處理。</p>
+<table>
+<thead>
+<tr>
+<th>層級</th>
+<th>必學問題</th>
+<th>QC 產出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>生理／物理</td>
+<td>訊號如何生成並傳到頭皮？</td>
+<td>對來源與定位限制的說明</td>
+</tr>
+<tr>
+<td>硬體</td>
+<td>動態範圍、雜訊、共模抑制、同步是否足夠？</td>
+<td>設備、位置、阻抗與事件紀錄</td>
+</tr>
+<tr>
+<td>取得</td>
+<td>作業、試次與比較條件能否辨識目標效應？</td>
+<td>原始資料唯讀備份與 metadata</td>
+</tr>
+<tr>
+<td>處理</td>
+<td>每一步的假設、參數與副作用為何？</td>
+<td>排除數、前後圖、參數與版本</td>
+</tr>
+<tr>
+<td>推論</td>
+<td>分析單位、搜尋空間與不確定性為何？</td>
+<td>效果估計、多重比較與敏感度分析</td>
+</tr>
+</tbody></table>
+<h2>建議的深化順序</h2>
+<p>先掌握連續資料與事件資料的結構，再學 ERP；之後進入 Welch PSD、FFT、時頻與小波，最後才處理來源定位、連結性、跨頻耦合及 HHSA。每個進階方法都要先用模擬訊號驗證，再用真實資料檢查邊界效應、偽影與參數敏感度。</p>
+<h2>起始來源（APA 7th）</h2>
+<ul>
+<li>Pernet, C. R., Garrido, M. I., Gramfort, A., et al. (2020). Issues and recommendations from the OHBM COBIDAS MEEG committee for reproducible EEG and MEG research. <em>Nature Neuroscience, 23</em>(12), 1473–1483. <a href="https://doi.org/10.1038/s41593-020-00709-0">https://doi.org/10.1038/s41593-020-00709-0</a></li>
+<li>Keil, A., Debener, S., Gratton, G., et al. (2014). Committee report: Publication guidelines and recommendations for studies using electroencephalography and magnetoencephalography. <em>Psychophysiology, 51</em>(1), 1–21. <a href="https://doi.org/10.1111/psyp.12147">https://doi.org/10.1111/psyp.12147</a></li>
+</ul>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

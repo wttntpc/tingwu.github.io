@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="HRV 每日學習第一篇：從 ECG R peak、腕式 PPG 脈搏波與品質控制，分清 IBI、BBI、RRI、PPI 與 NNI。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/hrv-bbi-rri-ibi-nni/" />
+    <meta property="og:title" content="從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？" />
+    <meta property="og:description" content="HRV 每日學習第一篇：從 ECG R peak、腕式 PPG 脈搏波與品質控制，分清 IBI、BBI、RRI、PPI 與 NNI。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/hrv-bbi-rri-ibi-nni/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/hrv-bbi-rri-ibi-nni.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？" />
+    <meta name="twitter:description" content="HRV 每日學習第一篇：從 ECG R peak、腕式 PPG 脈搏波與品質控制，分清 IBI、BBI、RRI、PPI 與 NNI。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/hrv-bbi-rri-ibi-nni.png" />
+    <title>從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？ | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-26" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？","description":"HRV 每日學習第一篇：從 ECG R peak、腕式 PPG 脈搏波與品質控制，分清 IBI、BBI、RRI、PPI 與 NNI。","datePublished":"2026-08-26","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/hrv-bbi-rri-ibi-nni/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/hrv-bbi-rri-ibi-nni/","image":"https://wttntpc.github.io/tingwu.github.io/og/hrv-bbi-rri-ibi-nni.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"HRV, BBI, RRI, NNI, PPG, ECG"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/hrv-bbi-rri-ibi-nni');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">學習地圖 · 2026-08-26</div><h1>從一次心跳開始：BBI、RRI、IBI 與 NNI 到底有什麼不同？</h1><p>HRV 每日學習第一篇：從 ECG R peak、腕式 PPG 脈搏波與品質控制，分清 IBI、BBI、RRI、PPI 與 NNI。</p><div class="tag-list"><span>HRV</span><span>BBI</span><span>RRI</span><span>NNI</span><span>PPG</span><span>ECG</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><blockquote>
+<p><strong>HRV 每日學習 01｜難度：入門</strong><br>今天的目標不是背四個縮寫，而是能看見一欄「心搏間隔」資料時，先問清楚：它由什麼設備取得、用哪個特徵點計算，以及是否經過品質控制。</p>
+</blockquote>
+<p><a href="#/post/hrv-learning-map">回到 HRV 學習地圖</a> · <a href="#/post/garmin-raw-data-hrv">延伸閱讀：從手錶 PPG 到 HRV</a></p>
+<h2>先想一個問題</h2>
+<p>手錶輸出一個 <code>750 ms</code> 的間隔，我們可以直接把它寫成 RR interval 嗎？</p>
+<p><strong>不一定。</strong> <code>750 ms</code> 只告訴我們兩個事件相隔多久，還沒有告訴我們事件是 ECG 的 R peak、PPG 的脈搏波特徵點，還是經過裝置演算法處理後的結果。名詞應跟著量測來源走。</p>
+<h2>一張表先分清楚</h2>
+<table>
+<thead>
+<tr>
+<th>名詞</th>
+<th>白話意思</th>
+<th>常見訊號來源</th>
+<th>使用時要注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IBI（inter-beat interval）</td>
+<td>相鄰兩次心搏事件之間的時間</td>
+<td>廣義名稱，來源需另寫</td>
+<td>不能只寫 IBI 而省略設備與偵測方式</td>
+</tr>
+<tr>
+<td>BBI（beat-to-beat interval）</td>
+<td>逐拍間隔</td>
+<td>用法依裝置與文獻而異；Garmin 用它稱腕式 PPG 的脈搏間隔</td>
+<td>應寫成 <code>PPG-BBI</code>，避免被誤認為 ECG</td>
+</tr>
+<tr>
+<td>RRI（R–R interval）</td>
+<td>ECG 上相鄰兩個 R peak 的時間差</td>
+<td>ECG</td>
+<td>只有來源真的是 ECG R peak 時，才適合稱 RRI</td>
+</tr>
+<tr>
+<td>NNI（normal-to-normal interval）</td>
+<td>相鄰正常竇性心搏形成、且經品質控制的間隔</td>
+<td>通常指清理後的 ECG RRI</td>
+<td>原始 RRI 不會因為存進分析軟體就自動成為 NNI</td>
+</tr>
+<tr>
+<td>PPI（pulse-to-pulse interval）</td>
+<td>PPG 上相鄰脈搏波特徵點的時間差</td>
+<td>PPG</td>
+<td>它的變異稱 PRV，不能無條件等同 ECG-HRV</td>
+</tr>
+</tbody></table>
+<p>最安全的寫法不是爭論某個縮寫「只能」有一種用法，而是完整寫出：</p>
+<blockquote>
+<p>本研究使用腕式 PPG，在每個脈搏波選定的特徵點之間計算逐拍間隔（PPG-derived BBI）。</p>
+</blockquote>
+<h2>RRI 怎麼算？</h2>
+<p>假設 ECG 偵測到兩個相鄰 R peak：</p>
+<ul>
+<li>第一個 R peak：<code>12,450 ms</code></li>
+<li>第二個 R peak：<code>13,200 ms</code></li>
+</ul>
+<p>則：</p>
+<p><code>RRI = 13,200 − 12,450 = 750 ms</code></p>
+<p>瞬時心率可換算為：</p>
+<p><code>HR = 60,000 ÷ RRI(ms) = 60,000 ÷ 750 = 80 bpm</code></p>
+<p>反過來，若心率是 <code>60 bpm</code>，一個心搏週期約為 <code>1,000 ms</code>。若心率是 <code>100 bpm</code>，則約為 <code>600 ms</code>。</p>
+<blockquote>
+<p><strong>別忘了：</strong>偵測到 <code>N</code> 個 R peaks，只會形成 <code>N − 1</code> 個 RRI。心率與間隔是倒數關係，因此「先平均每拍心率」和「先平均間隔再換算」不一定得到完全相同的數值。</p>
+</blockquote>
+<h2>為什麼 PPG 間隔不能直接叫 RRI？</h2>
+<p>ECG 記錄的是心臟電氣活動；R peak 是心室去極化相關的明顯特徵。PPG 則在手腕等周邊位置觀察每次心搏後到達的血容量脈搏波。它們測到的不是同一個物理事件。</p>
+<p>從心臟電氣活動到手腕脈搏波，中間還經過心室射血、血管傳導與周邊循環。動作、接觸壓力、末梢灌流、流汗與演算法也可能改變 PPG 特徵點的位置。因此，靜息時 PPG 與 ECG 的結果可能相近，並不代表在運動或訊號不佳時仍可互換。</p>
+<p>較精確的研究用語是：</p>
+<ul>
+<li>ECG：<code>RRI</code>，清理後可形成 <code>NNI</code>，其變異通常稱 HRV。</li>
+<li>PPG：<code>PPI</code> 或清楚標示的 <code>PPG-BBI</code>，其變異較嚴謹地稱 PRV。</li>
+</ul>
+<h2>原始 RRI 如何成為 NNI？</h2>
+<p><code>原始訊號 → peak detection → 原始間隔 → 品質檢查 → 正常竇性間隔 → HRV 指標</code></p>
+<p>品質檢查至少要分開辨識：</p>
+<ol>
+<li><strong>多偵測（extra detection）</strong>：雜訊或其他波形被錯認成一個 R peak，產生不合理的短間隔。</li>
+<li><strong>漏偵測（missed detection）</strong>：真正的 R peak 沒被找到，形成異常長間隔。</li>
+<li><strong>異位心搏（ectopic beat）</strong>：這是真實但不是正常竇房結節律的心搏，不能當成單純偵測錯誤。</li>
+<li><strong>動作或接觸偽影</strong>：訊號受到移動、電極或光學接觸等因素干擾。</li>
+<li><strong>長時間缺口（long gap）</strong>：連續資料不存在；不能用複製前一筆或跨越長缺口插值來製造心搏。</li>
+</ol>
+<p>若保留了原始 ECG，研究者可以回到波形確認 R peak；只有 interval 序列時，能判斷的資訊較少。自動演算法可以協助標記，但 Quigley 等人（2024）與 Laborde 等人（2017）都強調視覺檢查與透明報告的重要性。刪除、替換或插補多少資料，都應留下紀錄。</p>
+<h2>五個常見錯誤</h2>
+<ol>
+<li>把所有裝置輸出的間隔都稱為 RR interval。</li>
+<li>認為原始 RRI 就等於 NNI。</li>
+<li>對 BBI 再做一次 <code>diff()</code>，把相鄰間隔的差誤當成 BBI。</li>
+<li>用 forward fill 補滿缺失 BBI，因而憑空製造心搏。</li>
+<li>只看最後的 RMSSD 或 SDNN，卻沒有檢查原始波形、間隔序列與修正比例。</li>
+</ol>
+<h2>今天的自我檢核</h2>
+<p>請先不看答案，回答下面三題：</p>
+<ol>
+<li>手錶 PPG 輸出的 <code>800 ms</code> 為什麼不應直接稱為 ECG RRI？</li>
+<li>兩個 R peak 分別在 <code>5.20 s</code> 與 <code>6.00 s</code>，RRI 與瞬時心率是多少？</li>
+<li>一個異常長間隔可能由哪兩類完全不同的原因造成？</li>
+</ol>
+<details>
+<summary>完成後再展開參考答案</summary><ol>
+<li>PPG 偵測的是周邊脈搏波特徵點，不是 ECG 的 R peak；還可能受到脈搏傳導及光學訊號品質影響。</li>
+<li><code>6.00 − 5.20 = 0.80 s = 800 ms</code>；<code>60,000 ÷ 800 = 75 bpm</code>。</li>
+<li>可能是真正漏偵測一個心搏，也可能是生理上的節律異常或連續訊號缺失；必須回到波形與情境判斷。</li>
+</ol>
+</details><h2>今天完成到什麼程度才算學會？</h2>
+<p>您應該能用自己的話完成這句話：</p>
+<blockquote>
+<p>我取得的間隔來自 ______ 設備，以 ______ 作為每拍特徵點；原始間隔經過 ______ 品質控制後，才用來計算 ______。</p>
+</blockquote>
+<p>下一篇將從這條量測鏈往前追：<strong>心臟為什麼不是節拍器？從竇房結、交感與副交感神經理解心搏間隔的變化。</strong></p>
+<h2>參考文獻（APA 7th）</h2>
+<ul>
+<li>Garmin Health. (n.d.). <em>Garmin enhanced BBI: An example night</em>. <a href="https://www8.garmin.com/garminhealth/news/Garmin-Enhanced-BBI_Final.pdf">https://www8.garmin.com/garminhealth/news/Garmin-Enhanced-BBI_Final.pdf</a></li>
+<li>Georgiou, K., Larentzakis, A. V., Khamis, N. N., Alsuhaibani, G. I., Alaska, Y. A., &amp; Giallafos, E. J. (2018). Can wearable devices accurately measure heart rate variability? A systematic review. <em>Folia Medica, 60</em>(1), 7–20. <a href="https://doi.org/10.2478/folmed-2018-0012">https://doi.org/10.2478/folmed-2018-0012</a></li>
+<li>Laborde, S., Mosley, E., &amp; Thayer, J. F. (2017). Heart rate variability and cardiac vagal tone in psychophysiological research: Recommendations for experiment planning, data analysis, and data reporting. <em>Frontiers in Psychology, 8</em>, Article 213. <a href="https://doi.org/10.3389/fpsyg.2017.00213">https://doi.org/10.3389/fpsyg.2017.00213</a></li>
+<li>Lipponen, J. A., &amp; Tarvainen, M. P. (2019). A robust algorithm for heart rate variability time series artefact correction using novel beat classification. <em>Journal of Medical Engineering &amp; Technology, 43</em>(3), 173–181. <a href="https://doi.org/10.1080/03091902.2019.1640306">https://doi.org/10.1080/03091902.2019.1640306</a></li>
+<li>Quigley, K. S., Gianaros, P. J., Norman, G. J., Jennings, J. R., Berntson, G. G., &amp; de Geus, E. J. C. (2024). Publication guidelines for human heart rate and heart rate variability studies in psychophysiology—Part 1: Physiological underpinnings and foundations of measurement. <em>Psychophysiology, 61</em>(9), Article e14604. <a href="https://doi.org/10.1111/psyp.14604">https://doi.org/10.1111/psyp.14604</a></li>
+<li>Shaffer, F., &amp; Ginsberg, J. P. (2017). An overview of heart rate variability metrics and norms. <em>Frontiers in Public Health, 5</em>, Article 258. <a href="https://doi.org/10.3389/fpubh.2017.00258">https://doi.org/10.3389/fpubh.2017.00258</a></li>
+<li>Task Force of the European Society of Cardiology and the North American Society of Pacing and Electrophysiology. (1996). Heart rate variability: Standards of measurement, physiological interpretation and clinical use. <em>Circulation, 93</em>(5), 1043–1065. <a href="https://doi.org/10.1161/01.CIR.93.5.1043">https://doi.org/10.1161/01.CIR.93.5.1043</a></li>
+</ul>
+<blockquote>
+<p><strong>資料與查核說明：</strong>本文先以作者的 HRV NotebookLM 資料庫定位跨來源內容，再回到方法指引與來源書目整理。NotebookLM 是檢索工具，不是證據本身；本文為持續更新的學習筆記，重要研究決策仍應核對原始全文與設備文件。</p>
+</blockquote>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><h2>操作型定義</h2>
+<p>令第 <code>i</code> 個 ECG R peak 的時間為 <code>tᵣ(i)</code>：</p>
+<p><code>RRI(i) = tᵣ(i+1) − tᵣ(i)</code></p>
+<p>若兩個相鄰 QRS complex 均源自竇房結去極化，並已處理技術偽影、錯誤峰值與不適合納入的異常搏動，該間隔才可納入 NNI 序列。NNI 因此不是另一種感測器輸出，而是經生理判定與品質控制後的分析構念。</p>
+<p>令第 <code>i</code> 個 PPG pulse fiducial point 的時間為 <code>tₚ(i)</code>：</p>
+<p><code>PPI(i) = tₚ(i+1) − tₚ(i)</code></p>
+<p>部分裝置與文獻將此輸出稱為 BBI。研究報告應把縮寫綁定到操作型定義，例如 <code>wrist-PPG-derived BBI</code>，並將其變異標示為 PRV。這可避免把周邊脈搏到達時間的變化誤併入 ECG 所定義的 RRI。</p>
+<h2>心率與心搏週期不是線性轉換</h2>
+<p><code>HR(i) = 60,000 / interval(i)</code></p>
+<p>因為此關係為倒數函數，<code>mean[60,000 / interval(i)]</code> 一般不等於 <code>60,000 / mean[interval(i)]</code>。方法中應說明報告的是逐拍瞬時心率平均，或由平均心搏週期換算的心率。</p>
+<h2>RR 到 NN 的品質控制邏輯</h2>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>序列上的可能表現</th>
+<th>優先查核</th>
+<th>不應直接做的事</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Extra detection</td>
+<td>一個真實週期被切成數個短間隔</td>
+<td>回看原始 ECG 與 peak labels</td>
+<td>把它當成真實高 HRV</td>
+</tr>
+<tr>
+<td>Missed detection</td>
+<td>一個間隔約為鄰近週期的倍數</td>
+<td>回看是否存在未標記的 R peak</td>
+<td>未說明就均分或插值</td>
+</tr>
+<tr>
+<td>Ectopic beat</td>
+<td>短—長或其他節律改變</td>
+<td>QRS／P wave 形態與節律是否重置</td>
+<td>當成單純技術 artifact</td>
+</tr>
+<tr>
+<td>Misaligned detection</td>
+<td>peak 位置偏移，successive differences 異常</td>
+<td>peak fiducial point 是否一致</td>
+<td>只靠固定生理門檻判定</td>
+</tr>
+<tr>
+<td>Long gap</td>
+<td>一段連續資料不存在</td>
+<td>配戴、動作、設備與時間戳</td>
+<td>forward fill 或跨長缺口製造資料</td>
+</tr>
+</tbody></table>
+<p>Lipponen 與 Tarvainen（2019）示範以隨時間變動的 successive-RR-difference 門檻分類 extra、missed、misaligned 與 ectopic beats；這是可重現的方法範例，不代表所有 ECG、胸帶或 PPG 資料都能直接套用相同參數。自動標記後仍應依研究設計進行波形或序列審查，並保存原始資料與修正紀錄。</p>
+<h2>最低報告項目</h2>
+<p>一份可重現的 HRV／PRV 方法至少應記錄：</p>
+<ol>
+<li>訊號來源、裝置型號、感測位置與取樣資訊。</li>
+<li>每拍使用的 fiducial point 與 peak-detection 方法。</li>
+<li>interval 的名稱與操作型定義。</li>
+<li>extra、missed、ectopic、misaligned 與 gap 的判定方式。</li>
+<li>人工檢查、自動校正、刪除及插補規則。</li>
+<li>原始與有效 interval 數、有效時間、修改比例及最長缺口。</li>
+<li>HRV 或 PRV 指標、分析視窗、軟體與版本。</li>
+</ol>
+<h2>證據界線</h2>
+<p>靜息條件下部分穿戴裝置的 PRV 與 ECG-HRV 指標可呈現良好一致性，但這是特定裝置、指標、族群與量測情境下的效度結果，不是 PPI 與 RRI 在生理或數學上完全相同的證明。運動、動作、周邊灌流改變或節律異常時，這項假設尤其需要重新驗證。</p>
+<p>參考文獻與自我檢核題同 SIMPLE 版。本文的下一步是把這些定義套用到一小段真實或模擬 interval 序列，練習標記 extra detection、missed detection、ectopic beat 與 long gap。</p>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

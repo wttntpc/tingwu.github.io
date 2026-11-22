@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="解讀一項比較高、低體適能年輕男性的研究：較高體適能與持續注意反應及較穩定的 HRV 有關，但不是所有認知能力都較好。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/fitness-hrv-cognitive-performance/" />
+    <meta property="og:title" content="體適能較好，注意力就更穩嗎？從 HRV 看認知作業中的心身調節" />
+    <meta property="og:description" content="解讀一項比較高、低體適能年輕男性的研究：較高體適能與持續注意反應及較穩定的 HRV 有關，但不是所有認知能力都較好。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/fitness-hrv-cognitive-performance/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/fitness-hrv-cognitive-performance.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="體適能較好，注意力就更穩嗎？從 HRV 看認知作業中的心身調節" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="體適能較好，注意力就更穩嗎？從 HRV 看認知作業中的心身調節" />
+    <meta name="twitter:description" content="解讀一項比較高、低體適能年輕男性的研究：較高體適能與持續注意反應及較穩定的 HRV 有關，但不是所有認知能力都較好。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/fitness-hrv-cognitive-performance.png" />
+    <title>體適能較好，注意力就更穩嗎？從 HRV 看認知作業中的心身調節 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-12" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"體適能較好，注意力就更穩嗎？從 HRV 看認知作業中的心身調節","description":"解讀一項比較高、低體適能年輕男性的研究：較高體適能與持續注意反應及較穩定的 HRV 有關，但不是所有認知能力都較好。","datePublished":"2026-08-12","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/fitness-hrv-cognitive-performance/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/fitness-hrv-cognitive-performance/","image":"https://wttntpc.github.io/tingwu.github.io/og/fitness-hrv-cognitive-performance.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"心肺適能, HRV, 持續注意, 認知功能, 研究解讀"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/fitness-hrv-cognitive-performance');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">學術科普 · 2026-08-12</div><h1>體適能較好，注意力就更穩嗎？從 HRV 看認知作業中的心身調節</h1><p>解讀一項比較高、低體適能年輕男性的研究：較高體適能與持續注意反應及較穩定的 HRV 有關，但不是所有認知能力都較好。</p><div class="tag-list"><span>心肺適能</span><span>HRV</span><span>持續注意</span><span>認知功能</span><span>研究解讀</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>如果一個人的心肺適能比較好，他在需要長時間專注時，是否也比較不容易「掉速」？Luque-Casado 等人（2013）比較高、低體適能年輕男性在三種認知作業中的表現與心率變異度（HRV）。結果顯示，高體適能組在持續注意作業的反應較快，進行作業期間的 HRV 也較穩定；但這種優勢沒有出現在所有認知作業。</p>
+<blockquote>
+<p><strong>先說結論</strong>：這篇研究支持「體適能可能和持續注意力及較穩定的自律調節有關」，但不能證明運動訓練造成了這些差異，也不能推論體適能越高，所有認知能力就一定越好。</p>
+</blockquote>
+<h2>這篇研究想問什麼？</h2>
+<p>HRV 描述相鄰心搏間隔隨時間變化的程度。當我們休息、思考或持續執行工作時，自律神經會不斷調節心臟，因此 HRV 可能隨心理負荷和作業時間改變。</p>
+<p>研究者想回答兩個問題：</p>
+<ol>
+<li>不同認知作業是否會產生不同的 HRV 變化？</li>
+<li>高體適能者是否具有較好的認知表現，以及較能維持穩定的 HRV？</li>
+</ol>
+<p>如果想先理解 RR interval、RMSSD 與 SDNN，可以搭配本站的<a href="#/post/garmin-raw-data-hrv">HRV 入門文章</a>閱讀。</p>
+<h2>研究怎麼進行？</h2>
+<p>研究最初招募 28 名年輕男性，依最大攝氧量檢查後排除兩名位於分組邊界的參與者，最後分析 26 人：高體適能組與低體適能組各 13 人。高體適能組主要由自行車選手組成；兩組的平均 VO₂max 分別為 69.05 與 36.19 mL/kg/min，確實存在明顯的心肺適能差異。</p>
+<blockquote>
+<p><strong>研究流程</strong>：28 名年輕男性 → 最大運動測試確認體適能 → 排除 2 名分組邊界個案 → 高、低體適能組各 13 人 → 比較靜息 HRV、三種認知作業表現及作業期間的 HRV 變化。</p>
+</blockquote>
+<p>每位參與者先仰躺休息 10 分鐘，再以平衡順序完成三種作業：</p>
+<table>
+<thead>
+<tr>
+<th>認知作業</th>
+<th>主要測量內容</th>
+<th>白話理解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Psychomotor Vigilance Task（PVT）</td>
+<td>持續注意、對不定時刺激快速反應</td>
+<td>能否一直保持警覺，不因時間拖長而變慢</td>
+</tr>
+<tr>
+<td>Temporal orienting task</td>
+<td>依時間線索預測目標何時出現</td>
+<td>能否把注意力準備在正確時間點</td>
+</tr>
+<tr>
+<td>Duration discrimination task</td>
+<td>分辨兩個視覺刺激呈現時間的長短</td>
+<td>能否精細判斷時間差異</td>
+</tr>
+</tbody></table>
+<p>研究同步記錄心搏間隔，計算平均 RR interval（RRi）、SDNN 與 rMSSD。每項作業取前 10 分鐘，切成三個 200 秒區塊，以觀察 HRV 是否隨時間下降。</p>
+<h2>研究發現了什麼？</h2>
+<h3>一、高體適能組的持續注意反應較快</h3>
+<p>在 PVT 中，高體適能組平均反應時間為 278 ± 22 ms，低體適能組為 297 ± 21 ms，兩組相差約 19 ms（p = .03）。差異在最慢的 10% 反應特別明顯：高體適能組為 379 ± 51 ms，低體適能組為 429 ± 44 ms（p = .01）。</p>
+<p>這代表高體適能組不只是平均較快，在最容易分心或反應遲緩的時刻，也較少出現明顯「掉速」。不過，反應遺漏次數的組間差異沒有達到統計顯著。</p>
+<h3>二、優勢沒有出現在所有認知作業</h3>
+<p>兩組在時間定向作業及時間長短辨識作業中都沒有顯著表現差異。因此，研究結果不是「高體適能者所有認知功能都比較好」，而是較集中在持續注意這項能力。</p>
+<h3>三、不同認知作業會伴隨不同 HRV</h3>
+<p>三項 HRV 指標都受到作業類型影響。時間長短辨識作業的 RRi、SDNN 與 rMSSD 整體較低；研究者認為，精細知覺判斷的負荷可能比原先預期更強。</p>
+<p>這裡要特別注意：HRV 降低不等於「大腦表現一定變差」，而是表示這個作業伴隨不同的心臟自律調節。HRV 是生理反應線索，不是認知能力的單一分數。</p>
+<h3>四、低體適能組的 HRV 隨作業時間下降</h3>
+<p>把每項作業的前 10 分鐘切成三段後，高體適能組的 HRV 大致穩定；低體適能組則隨時間出現較清楚的下降。例如低體適能組的 rMSSD 從第一段的 59.7 ms，下降到第二段的 52.5 ms 與第三段的 46.8 ms；高體適能組則約維持在 82.3–84.8 ms。</p>
+<p>這項結果和 PVT 的反應時間一起指向同一個可能性：較高體適能或許與長時間維持注意時的「生理穩定性」有關。</p>
+<h2>我們可以怎麼理解？</h2>
+<p>把持續注意想成長時間開車：重要的不是起步時有多快，而是過了幾分鐘後，能不能維持穩定反應。這篇研究中，高體適能組的最慢反應較快，HRV 也較少隨作業時間下降，顯示體適能與心臟—大腦調節的穩定性可能彼此相關。</p>
+<p>但這仍不是「運動讓大腦變聰明」的直接證據。研究只比較既有的兩群人，沒有把參與者隨機分配到運動訓練與控制組。高體適能組多為自行車選手，兩組可能還有訓練經驗、生活習慣、睡眠或其他未測量差異。</p>
+<h2>這篇研究有哪些限制？</h2>
+<ul>
+<li>最終樣本只有 26 人，而且全部是年輕男性。</li>
+<li>屬於橫斷式組間比較，不能證明運動或體適能造成認知與 HRV 差異。</li>
+<li>高體適能組與低體適能組並非只在 VO₂max 不同，也可能存在其他背景差異。</li>
+<li>研究只分析時域 HRV，且使用 2013 年當時的偽影處理方式。</li>
+<li>HRV 會受平均心率影響；高體適能組本來就有較低的靜息心率，因此不能把所有 HRV 差異都直接解釋為較好的自律神經功能。</li>
+<li>多項作業、指標與事後比較增加偶然顯著結果的可能性，仍需較大型研究重複驗證。</li>
+</ul>
+<h2>帶走三個重點</h2>
+<ol>
+<li>高體適能組在持續注意作業平均快約 19 ms，最慢的反應也較少「掉速」。</li>
+<li>作業進行 10 分鐘時，低體適能組的 HRV 逐漸下降，高體適能組相對穩定。</li>
+<li>兩組在其他兩種認知作業沒有顯著差異；這是一項關聯性、小樣本研究，不能直接推論因果。</li>
+</ol>
+<blockquote>
+<p><strong>一句話總結</strong>：較好的心肺適能可能不是讓每一種思考都變快，而是和「長時間維持注意與生理調節」有較密切的關係。</p>
+</blockquote>
+<h2>參考文獻（APA 7th）</h2>
+<p>Luque-Casado, A., Zabala, M., Morales, E., Mateo-March, M., &amp; Sanabria, D. (2013). Cognitive performance and heart rate variability: The influence of fitness level. <em>PLOS ONE, 8</em>(2), e56935. <a href="https://doi.org/10.1371/journal.pone.0056935">https://doi.org/10.1371/journal.pone.0056935</a></p>
+<hr>
+<p>本文為單篇研究的學術科普解讀，不是系統性文獻回顧，也不提供個人運動或醫療建議。</p>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>Luque-Casado 等人（2013）以橫斷式極端組別比較設計，檢驗心肺適能、認知作業需求與作業時間對心率變異度（HRV）及行為表現的關係。研究的主要訊息具有選擇性：高體適能組在持續注意作業中反應較快，且 HRV 較不隨作業時間下降；但時間定向與時間辨識表現未呈現組間差異。</p>
+<blockquote>
+<p><strong>證據定位</strong>：本研究可用來提出「體適能與持續注意／心臟自律調節穩定性相關」的假說，不能用來證明運動訓練的因果效果，也不能把結果外推至女性、其他年齡層或臨床族群。</p>
+</blockquote>
+<h2>研究問題與假設</h2>
+<p>研究者提出兩項主要問題：第一，不同認知歷程是否產生不同的 HRV 調節；第二，心肺適能是否調節認知作業中的行為表現與 HRV。作者原先預期高體適能組具有較高 HRV，並在執行功能需求較高的時間定向作業表現較佳；也預期低體適能組在認知作業中的 HRV 下降幅度較大。</p>
+<h2>研究設計與樣本</h2>
+<p>研究最初招募 28 名年輕男性。經漸增式腳踏車測試後，兩名 VO₂max 位於預設群組邊界的參與者被排除，正式分析包含高、低體適能組各 13 人。</p>
+<table>
+<thead>
+<tr>
+<th>變項</th>
+<th align="right">高體適能組</th>
+<th align="right">低體適能組</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>樣本數</td>
+<td align="right">13</td>
+<td align="right">13</td>
+</tr>
+<tr>
+<td>年齡範圍</td>
+<td align="right">18–29 歲</td>
+<td align="right">17–23 歲</td>
+</tr>
+<tr>
+<td>VO₂max（mL/kg/min）</td>
+<td align="right">69.05 ± 5.6</td>
+<td align="right">36.19 ± 5.5</td>
+</tr>
+<tr>
+<td>靜息心率（bpm）</td>
+<td align="right">54.67 ± 10.5</td>
+<td align="right">66.68 ± 8.5</td>
+</tr>
+<tr>
+<td>靜息 RRi（ms）</td>
+<td align="right">1153.70 ± 200.8</td>
+<td align="right">925.69 ± 119.3</td>
+</tr>
+<tr>
+<td>靜息 SDNN（ms）</td>
+<td align="right">74.14 ± 25.3</td>
+<td align="right">58.20 ± 17.9</td>
+</tr>
+<tr>
+<td>靜息 rMSSD（ms）</td>
+<td align="right">92.31 ± 39.3</td>
+<td align="right">61.60 ± 21.2</td>
+</tr>
+</tbody></table>
+<p>高體適能組中 11 人來自 U23 自行車隊、2 人來自運動科學相關系所；低體適能組為大學生。這使組間差異容易辨識，但也增加選樣與未測量混雜的可能。</p>
+<h2>認知作業與 HRV 分析</h2>
+<p>所有參與者先以仰臥姿勢休息 10 分鐘，再以 counterbalanced order 完成三項作業：</p>
+<ol>
+<li><strong>Psychomotor Vigilance Task（PVT）</strong>：10 分鐘，測量持續注意；主要結果包含平均反應時間、最慢／最快 10% 反應及 lapse 次數。</li>
+<li><strong>Temporal orienting task</strong>：96 個正式 trials，約 12–15 分鐘；以有效／無效時間線索測量內生性時間注意。</li>
+<li><strong>Duration discrimination task</strong>：128 trials，約 10–13 分鐘；以 just noticeable difference（JND）測量視覺時間辨識精度。</li>
+</ol>
+<p>HRV 由 FirstBeat Bodyguard 以 1000 Hz 記錄，使用 Kubios HRV 2.0 分析。與前後 RR interval 相差超過 25% 的 interval 被移除，並以 spline interpolation 補值；smoothness-priors detrending 的 λ 設為 500。研究僅報告時域指標 RRi、SDNN 與 rMSSD。</p>
+<p>為使作業可比較，每項作業取前 600 秒，再切成三個 200 秒區塊。HRV 經自然對數轉換後，以 Group × Task × Block 重複量數 ANOVA 分析；研究另使用獨立樣本 t 檢定、配對比較及 Mann–Whitney U 檢定。</p>
+<h2>主要結果</h2>
+<h3>行為表現：差異集中在持續注意</h3>
+<table>
+<thead>
+<tr>
+<th>結果</th>
+<th align="right">高體適能組</th>
+<th align="right">低體適能組</th>
+<th>統計結果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PVT 平均反應時間（ms）</td>
+<td align="right">278 ± 22</td>
+<td align="right">297 ± 21</td>
+<td>t(24) = 2.22, p = .03</td>
+</tr>
+<tr>
+<td>PVT 最慢 10% 反應（ms）</td>
+<td align="right">379 ± 51</td>
+<td align="right">429 ± 44</td>
+<td>t(24) = 2.69, p = .01</td>
+</tr>
+<tr>
+<td>PVT 最快 10% 反應（ms）</td>
+<td align="right">230 ± 11</td>
+<td align="right">238 ± 17</td>
+<td>p = .17</td>
+</tr>
+<tr>
+<td>PVT lapse 次數</td>
+<td align="right">0.5 ± 0.7</td>
+<td align="right">1.1 ± 1.2</td>
+<td>p = .24</td>
+</tr>
+</tbody></table>
+<p>時間定向作業中，Group 主效果及所有涉及 Group 的交互作用均未達顯著（均 p &gt; .21）。時間辨識作業的兩種 JND 與主觀時間估計也沒有顯著組間差異（均 p &gt; .18 或 p &gt; .29）。因此，較佳表現不能泛化為全面性的執行功能或時間知覺優勢。</p>
+<h3>靜息 HRV：RRi 與 rMSSD 有組間差異</h3>
+<p>靜息 RRi 與 rMSSD 在高體適能組較高，分別為 t(24) = 3.41, p &lt; .01 與 t(24) = 2.10, p &lt; .05；SDNN 差異未達顯著，t(24) = 1.58, p = .13。作業期間的 Group 主效果僅在 RRi 達顯著，F(1, 24) = 8.24, p = .01, ηp² = .26；SDNN 與 rMSSD 的組別主效果均未達顯著（p &gt; .12）。</p>
+<h3>作業類型：時間辨識作業的 HRV 最低</h3>
+<p>Task 主效果在 RRi、SDNN 與 rMSSD 均達顯著：</p>
+<table>
+<thead>
+<tr>
+<th>HRV 指標</th>
+<th align="right">PVT</th>
+<th align="right">時間定向</th>
+<th align="right">時間辨識</th>
+<th>Task 主效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RRi（ms）</td>
+<td align="right">944.2 ± 190.2</td>
+<td align="right">939.3 ± 187.9</td>
+<td align="right">917.5 ± 171.6</td>
+<td>F(2, 48) = 5.66, p &lt; .01, ηp² = .19</td>
+</tr>
+<tr>
+<td>SDNN（ms）</td>
+<td align="right">77.1 ± 28.4</td>
+<td align="right">66.8 ± 26.2</td>
+<td align="right">63.8 ± 24.1</td>
+<td>F(1.38, 33.08) = 13.72, p &lt; .01, ηp² = .36</td>
+</tr>
+<tr>
+<td>rMSSD（ms）</td>
+<td align="right">71.7 ± 34.9</td>
+<td align="right">69.1 ± 36.2</td>
+<td align="right">64.2 ± 33.4</td>
+<td>F(1.38, 33.04) = 4.08, p = .039, ηp² = .14</td>
+</tr>
+</tbody></table>
+<p>作者將較低 HRV 解釋為時間辨識作業具有較高的精細知覺需求。不過，這是作業層級的生理差異，不能單憑 HRV 判定某項作業「比較傷腦」或認知表現比較差。</p>
+<h3>Time-on-task：體適能組別調節 HRV 的時間變化</h3>
+<p>Group × Block 交互作用在 RRi 與 rMSSD 達顯著，分別為 F(2, 48) = 5.40, p = .01, ηp² = .18，以及 F(1.44, 34.61) = 5.59, p = .01, ηp² = .19；SDNN 為邊緣顯著，p = .053。</p>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>組別</th>
+<th align="right">0–200 秒</th>
+<th align="right">200–400 秒</th>
+<th align="right">400–600 秒</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RRi（ms）</td>
+<td>高體適能</td>
+<td align="right">1036.4</td>
+<td align="right">1028.7</td>
+<td align="right">1017.0</td>
+</tr>
+<tr>
+<td>RRi（ms）</td>
+<td>低體適能</td>
+<td align="right">868.8</td>
+<td align="right">833.0</td>
+<td align="right">818.2</td>
+</tr>
+<tr>
+<td>rMSSD（ms）</td>
+<td>高體適能</td>
+<td align="right">83.8</td>
+<td align="right">84.8</td>
+<td align="right">82.3</td>
+</tr>
+<tr>
+<td>rMSSD（ms）</td>
+<td>低體適能</td>
+<td align="right">59.7</td>
+<td align="right">52.5</td>
+<td align="right">46.8</td>
+</tr>
+</tbody></table>
+<p>低體適能組的 Block 主效果較明顯，高體適能組各區塊多數比較沒有顯著差異。這與 PVT 的行為結果共同支持「較高體適能與持續注意過程中的調節穩定性相關」的解讀，但仍不能建立訓練因果。</p>
+<h2>方法學解讀與限制</h2>
+<h3>可以支持的結論</h3>
+<ul>
+<li>認知作業類型與作業時間會伴隨 HRV 改變。</li>
+<li>在此樣本中，高體適能與較快的持續注意反應，以及較穩定的 time-on-task HRV pattern 相關。</li>
+<li>體適能相關的認知差異具有選擇性，沒有出現在所有作業。</li>
+</ul>
+<h3>不能支持的結論</h3>
+<ul>
+<li>不能說運動訓練「造成」注意力或 HRV 改善。</li>
+<li>不能把較高 HRV 直接等同於較佳認知功能或健康程度。</li>
+<li>不能外推到女性、兒童、中高齡者、臨床族群或不同運動項目。</li>
+<li>不能把時間定向作業的虛無結果解讀成兩組完全等效；n = 13／組的估計精確度有限。</li>
+</ul>
+<p>此外，HRV 與平均心率具有數學及生理相依性，高體適能組的靜息心率較低。研究沒有呈現 heart-rate correction 後的 HRV，因此「迷走調節較佳」與「平均心率不同所帶來的 HRV 差異」無法完全分離。偽影校正、自然對數轉換與多重比較策略也應在後續重複研究中更完整地做敏感度分析。</p>
+<h2>對後續研究的啟示</h2>
+<p>較強的驗證設計應採隨機運動介入，於介入前後同時測量 VO₂max、平均心率、呼吸、HRV 與持續注意，並預先指定主要結果與多重比較方法。若要回答「體適能是否提高持續注意的生理韌性」，Group × Time 的變化、效果量與信賴區間會比單純比較顯著與否更具資訊性。</p>
+<h2>結論</h2>
+<p>這篇研究最值得保留的不是「運動者比較聰明」，而是較精確的命題：<strong>在 26 名年輕男性的橫斷比較中，高體適能與較快的持續注意反應，以及認知作業期間較穩定的 HRV 時間變化相關；其他兩項認知作業沒有觀察到組間表現差異。</strong></p>
+<h2>參考文獻（APA 7th）</h2>
+<p>Luque-Casado, A., Zabala, M., Morales, E., Mateo-March, M., &amp; Sanabria, D. (2013). Cognitive performance and heart rate variability: The influence of fitness level. <em>PLOS ONE, 8</em>(2), e56935. <a href="https://doi.org/10.1371/journal.pone.0056935">https://doi.org/10.1371/journal.pone.0056935</a></p>
+<hr>
+<p>本文為單篇研究的學術科普解讀，不是系統性文獻回顧。所有數值均依原始論文正文與表格轉述。</p>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

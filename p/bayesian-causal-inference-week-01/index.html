@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="從 TMS 例子理解潛在結果、反事實、隨機分派、混淆與因果識別，並釐清 Bayesian 建模之前必須先回答的研究問題。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/bayesian-causal-inference-week-01/" />
+    <meta property="og:title" content="貝氏因果推論學習筆記 01：兩組平均數不同，為什麼還不等於因果效果？" />
+    <meta property="og:description" content="從 TMS 例子理解潛在結果、反事實、隨機分派、混淆與因果識別，並釐清 Bayesian 建模之前必須先回答的研究問題。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/bayesian-causal-inference-week-01/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/bayesian-causal-inference-week-01.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="貝氏因果推論學習筆記 01：兩組平均數不同，為什麼還不等於因果效果？" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="貝氏因果推論學習筆記 01：兩組平均數不同，為什麼還不等於因果效果？" />
+    <meta name="twitter:description" content="從 TMS 例子理解潛在結果、反事實、隨機分派、混淆與因果識別，並釐清 Bayesian 建模之前必須先回答的研究問題。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/bayesian-causal-inference-week-01.png" />
+    <title>貝氏因果推論學習筆記 01：兩組平均數不同，為什麼還不等於因果效果？ | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-09-15" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"貝氏因果推論學習筆記 01：兩組平均數不同，為什麼還不等於因果效果？","description":"從 TMS 例子理解潛在結果、反事實、隨機分派、混淆與因果識別，並釐清 Bayesian 建模之前必須先回答的研究問題。","datePublished":"2026-09-15","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/bayesian-causal-inference-week-01/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/bayesian-causal-inference-week-01/","image":"https://wttntpc.github.io/tingwu.github.io/og/bayesian-causal-inference-week-01.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"貝氏統計, 因果推論, 潛在結果, 隨機分派, DAG, 學習筆記"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/bayesian-causal-inference-week-01');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">數據分析 · 2026-09-15</div><h1>貝氏因果推論學習筆記 01：兩組平均數不同，為什麼還不等於因果效果？</h1><p>從 TMS 例子理解潛在結果、反事實、隨機分派、混淆與因果識別，並釐清 Bayesian 建模之前必須先回答的研究問題。</p><div class="tag-list"><span>貝氏統計</span><span>因果推論</span><span>潛在結果</span><span>隨機分派</span><span>DAG</span><span>學習筆記</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><blockquote>
+<p><strong>每週課程紀錄｜白話版</strong>
+這是我的貝氏因果推論學習系列第一篇。第一週還沒有急著套用 Bayes 公式，而是先建立因果推論的語言：如果我想說「某個介入造成了改變」，究竟需要比較什麼，又需要哪些研究設計與假設？</p>
+</blockquote>
+<p><a href="#/learning/statistics">回到統計學習地圖</a> · <a href="#/blog/data-analysis">瀏覽數據分析文章</a></p>
+<h2>這週我想回答的三個問題</h2>
+<ol>
+<li>為什麼看到兩組平均數不同，不能立刻說是治療造成的？</li>
+<li>「如果同一個人沒有接受這個介入，結果會怎樣？」為什麼是因果推論的核心？</li>
+<li>隨機分派、混淆變項與因果圖，分別在解決什麼問題？</li>
+</ol>
+<h2>從一個 TMS 研究問題開始</h2>
+<p>假設我想研究真正的經顱磁刺激（Active TMS）是否能改善記憶表現。我把刺激條件記為 <code>Z</code>，刺激後的記憶分數記為 <code>Y</code>：</p>
+<ul>
+<li><code>Z = 1</code>：接受 Active TMS；</li>
+<li><code>Z = 0</code>：接受 Sham TMS；</li>
+<li><code>Y</code>：刺激後的記憶測驗分數。</li>
+</ul>
+<p>最直覺的做法，是比較 Active TMS 組與 Sham TMS 組的平均分數。如果前者平均高 2 分，我能不能說「TMS 讓記憶增加 2 分」？答案取決於兩組為什麼會不同。</p>
+<p>如果受試者是隨機分派，兩組在介入前較有機會保持可比；如果是受試者自行選擇，原本記憶能力、年齡、疾病嚴重度或參與動機都可能同時影響分組和結果。此時看到的差異可能混合了真正的治療效果與原先就存在的組間差異。</p>
+<h2>因果問題其實是在比較兩個世界</h2>
+<p>對同一位受試者 <code>i</code>，可以想像兩個潛在結果：</p>
+<ul>
+<li><code>Yᵢ(1)</code>：這個人接受 Active TMS 時的記憶分數；</li>
+<li><code>Yᵢ(0)</code>：同一個人接受 Sham TMS 時的記憶分數。</li>
+</ul>
+<p>個人的因果效果可以寫成：</p>
+<div class="article-equation">τᵢ = Yᵢ(1) − Yᵢ(0)</div><p>問題是，同一個人在同一個時間只能接受其中一種條件。我們可以看到 <code>Yᵢ(1)</code> 或 <code>Yᵢ(0)</code>，卻不能同時看到兩者。沒有被觀察到的那個結果，就是反事實（counterfactual）。</p>
+<p>這讓我理解到：因果推論不是單純找出「誰的分數比較高」，而是在用研究設計與統計方法，估計那個永遠缺少一半的比較。</p>
+<h2>隨機分派做了什麼？</h2>
+<p>隨機分派不是保證每一次實驗的兩組都完全相同，也不是讓每一位受試者的反事實突然出現。它真正提供的是：在重複隨機分派的概念下，治療分配不再由受試者原本的特徵系統性決定。</p>
+<p>因此，兩組平均值的差異可以用來估計平均因果效果：</p>
+<div class="article-equation">平均因果效果 = 平均的 Y(1) − 平均的 Y(0)</div><p>簡單地說，隨機分派讓「拿不同的人互相比較」更接近「比較同一群人在兩種可能世界中的結果」。它是在平均層次解決問題，不是在個人層次重建不可觀察的結果。</p>
+<h2>相關、迴歸與因果不是同一件事</h2>
+<p>相關與迴歸很有用，但它們首先描述的是變項之間如何一起變動。即使迴歸模型寫成：</p>
+<div class="article-equation">Y = α + βZ + ε</div><p><code>β</code> 也不會因為出現在迴歸式中，就自動變成因果效果。當 <code>Z</code> 是二元分組時，<code>β</code> 等於兩組平均數之差；它究竟只是組間關聯，還是可以解釋成因果效果，取決於分派機制與研究假設。</p>
+<p>同一個統計公式，可能有完全不同的科學意義。</p>
+<h2>混淆變項：一條讓比較失真的後門路徑</h2>
+<p>假設介入前的記憶能力 <code>X</code> 同時影響是否接受 TMS 與最後的記憶表現：</p>
+<div class="article-equation">Z ← X → Y</div><p>此時 <code>X</code> 是混淆變項。若沒有處理它，<code>Z</code> 與 <code>Y</code> 的關係可能同時包含：</p>
+<ul>
+<li>TMS 對記憶的效果；</li>
+<li>原本記憶能力造成的差異。</li>
+</ul>
+<p>在觀察性研究中，我們常用迴歸調整、配對、傾向分數或加權，嘗試讓治療組與對照組在已觀察到的介入前變項上更可比。但這些方法不會憑空創造真正的隨機分派，也無法自動消除未量測的混淆。</p>
+<h2>不是變項放得愈多愈好</h2>
+<p>因果圖（DAG）提醒我，不同變項扮演的角色不同：</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>結構</th>
+<th>一般思考方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>混淆變項</td>
+<td><code>Z ← X → Y</code></td>
+<td>通常需要適當調整</td>
+</tr>
+<tr>
+<td>中介變項</td>
+<td><code>Z → M → Y</code></td>
+<td>是否調整取決於要估計總效果或直接效果</td>
+</tr>
+<tr>
+<td>碰撞變項</td>
+<td><code>Z → C ← Y</code></td>
+<td>通常不應任意調整，以免打開原本封閉的路徑</td>
+</tr>
+</tbody></table>
+<p>這修正了我以前「控制愈多變項，模型就愈嚴謹」的直覺。調整策略應該由因果問題與變項發生的時間順序決定，而不是把所有可取得的欄位一次塞進模型。</p>
+<h2>這和「貝氏」有什麼關係？</h2>
+<p>這一週的重點仍是因果問題與識別條件，而不是先驗分布或後驗分布。這個順序很重要：Bayesian 方法可以表達未知量的不確定性，也能對缺失的潛在結果建立模型；但再精緻的後驗分布，也不能替代不清楚的介入定義、錯誤的因果圖或無法辯護的識別假設。</p>
+<p>我目前把它理解成兩個層次：</p>
+<ol>
+<li><strong>先問因果效果能否被資料識別</strong>：研究設計、交換性、一致性與正值性是否合理？</li>
+<li><strong>再問如何估計不確定性</strong>：在模型與先驗假設下，資料如何更新我們對因果效果的信念？</li>
+</ol>
+<h2>本週小練習</h2>
+<p>看到一項「有運動習慣者的 HRV 高於久坐者」的研究時，我會先寫下：</p>
+<ul>
+<li><code>Z</code> 是什麼？運動介入，還是既有運動習慣？</li>
+<li><code>Y</code> 是哪一個 HRV 指標，在哪個時間窗與姿勢量測？</li>
+<li>哪些介入前變項可能同時影響運動習慣與 HRV？</li>
+<li>我想估計的是這批受試者的效果，還是更大目標族群的效果？</li>
+<li>資料支持的是關聯描述，還是有足夠設計與假設支持因果解釋？</li>
+</ul>
+<h2>我目前帶走的重點</h2>
+<p>因果推論不是把「相關」換成更複雜的統計模型，而是先清楚定義：介入、結果、比較對象、目標效果與使比較成立的條件。隨機分派能以設計建立可比性；觀察性研究則需要更多不可由資料單獨驗證的假設。第一週最重要的學習，不是記住某個公式，而是練習在分析以前先問：「我真正想比較的兩個可能世界是什麼？」</p>
+<h2>課程來源與查核說明</h2>
+<ul>
+<li>國立中央大學 NS5141 課程教材：<em>Bayesian Causal Inference: Introduction to Causal Thinking</em>（2026年9月15日）。</li>
+<li>課堂錄音與補充教材：<em>Two-Sample Testing through Potential Outcomes &amp; Observational Study Tools</em>。</li>
+<li>Ding, P. (2024). <em>A first course in causal inference</em>. Chapman and Hall/CRC. <a href="https://arxiv.org/abs/2305.18793">https://arxiv.org/abs/2305.18793</a></li>
+</ul>
+<blockquote>
+<p>本文是依課堂教材與個人 NotebookLM 資料庫整理的原創學習筆記，不是課程逐字稿，也不能取代原始講義。NotebookLM 用於定位內容；公式、概念與例子仍以原始課程資料為主。尚未完成的理解會在後續文章持續修正。</p>
+</blockquote>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><h2>文章定位</h2>
+<p>本篇記錄課程第一階段的因果思考框架。核心不是立即建立 Bayesian model，而是先定義 estimand、釐清 observed association 與 causal effect 的差異，並辨認使因果效果可識別的研究設計與假設。</p>
+<h2>1. 潛在結果與基本問題</h2>
+<p>對受試者 <code>i</code>，令 <code>Zᵢ ∈ {0,1}</code> 表示治療分配，<code>Yᵢ(1)</code> 與 <code>Yᵢ(0)</code> 分別表示在治療與控制條件下的潛在結果。個體因果效果為：</p>
+<div class="article-equation">τᵢ = Yᵢ(1) − Yᵢ(0)</div><p>觀察結果可寫成：</p>
+<div class="article-equation">Yᵢobs = ZᵢYᵢ(1) + (1 − Zᵢ)Yᵢ(0)</div><p>由於每位受試者只能暴露於一種條件，另一個潛在結果無法同時觀察。因果推論的基本問題因此可視為 missing potential outcome problem。</p>
+<h2>2. Estimand：先定義要估計的平均效果</h2>
+<p>第一週先以這次實際納入的 <code>n</code> 位受試者為對象，將潛在結果視為固定，主要隨機性來自治療分派：</p>
+<div class="article-equation">τ = (1/n) Σᵢ [Yᵢ(1) − Yᵢ(0)]</div><p>如何從有限母體推論到更大母體，是後續 9 月 22 日課程才正式展開的問題；屆時目標可寫成：</p>
+<div class="article-equation">PATE = E[Y(1) − Y(0)]</div><p>這裡只先預告：兩種框架沒有孰優孰劣，而是回答不同推論範圍。第一週的核心仍是先把介入、潛在結果與平均因果效果定義清楚。</p>
+<h2>3. 隨機分派與 difference-in-means</h2>
+<p>在 complete randomization 下，若 treatment assignment 與 science table 無關，治療組與控制組平均數差：</p>
+<div class="article-equation">τ̂ = Ȳobs₁ − Ȳobs₀</div><p>對分派機制取期望時可得到 <code>E_Z(τ̂) = SATE</code>。這表示 estimator 在重複隨機分派下以目標效果為中心，而不是宣稱單次實驗的估計值必然等於真實效果。</p>
+<p>若每位受試者的分派機率 <code>πᵢ = P(Zᵢ = 1)</code> 已知但不相等，可使用與設計相符的 Horvitz–Thompson estimator：</p>
+<div class="article-equation">τ̂HT = (1/n) Σᵢ [ZᵢYᵢobs/πᵢ − (1−Zᵢ)Yᵢobs/(1−πᵢ)]</div><p>這也說明：估計方法必須對應資料的 assignment mechanism。</p>
+<h2>4. 因果識別的基本條件</h2>
+<p>將觀察資料解釋為因果效果時，至少要明確討論：</p>
+<ol>
+<li><strong>Exchangeability／unconfoundedness</strong>：在無條件或給定介入前共變項 <code>X</code> 後，治療分派與潛在結果獨立。</li>
+<li><strong>Consistency／SUTVA</strong>：實際接受條件 <code>z</code> 時，觀察結果等於 <code>Y(z)</code>；同時需排除未定義的多種治療版本與不合理的單位間干擾。</li>
+<li><strong>Positivity／overlap</strong>：對目標族群中的相關 <code>X</code>，每種治療皆具有非零機率。</li>
+</ol>
+<p>這些條件不是由顯著的 p 值或高模型配適度自動證明。它們必須由設計、測量、領域知識與敏感度分析共同辯護。</p>
+<h2>5. 同一個迴歸係數的兩種解釋</h2>
+<p>對二元 <code>Z</code> 擬合：</p>
+<div class="article-equation">Yᵢ = α + βZᵢ + εᵢ</div><p>OLS 的 <code>β̂</code> 等於兩組觀察平均數之差。若沒有因果識別條件，它只描述 association；在適當的隨機化設計或可辯護的條件交換性下，才可能被賦予 causal interpretation。因果意義來自設計與假設，不是來自模型名稱。</p>
+<h2>6. 觀察性研究工具的共同限制</h2>
+<p>課程介紹的常見策略包括 outcome regression、matching、propensity-score stratification、inverse-probability weighting（IPW）與 doubly robust estimation。它們使用 <code>X</code> 的方式不同，但通常仍依賴 conditional exchangeability 與 overlap。</p>
+<p>其中 doubly robust 的「雙重穩健」是指：在一般識別條件成立時，outcome model 或 propensity model 其中一個正確設定，估計量仍可能保持一致；它不代表可以抵抗未量測混淆，也不代表兩個模型皆可任意錯設。</p>
+<p>若重要未量測混淆仍存在，可能需要 instrumental variables、regression discontinuity、natural experiments 或 sensitivity analysis 等不同策略。每種策略會引入新的、需要被清楚說明的識別假設。</p>
+<h2>7. DAG 對變項調整的提醒</h2>
+<ul>
+<li>Confounder 是 treatment 與 outcome 的介入前共同原因，忽略可能產生偏差。</li>
+<li>Mediator 位於 <code>Z → M → Y</code> 的因果路徑上；是否調整取決於 estimand 是 total effect 或 direct effect。</li>
+<li>Collider 是兩個變項的共同結果；對 collider conditioning 可能打開原本封閉的非因果路徑。</li>
+</ul>
+<p>因此，共變項選擇應由時間順序與因果結構主導，而不是以單變項顯著性、自動 stepwise selection 或「能取得多少就控制多少」決定。</p>
+<h2>8. 與 Bayesian 推論的銜接</h2>
+<p>Bayesian causal inference 可以對未知參數、缺失潛在結果與模型不確定性建立 posterior distribution，但須區分：</p>
+<ul>
+<li><strong>Identification</strong>：若擁有無限資料，目標因果效果能否由觀察分布與假設決定？</li>
+<li><strong>Estimation</strong>：在有限資料下，如何估計效果及其不確定性？</li>
+</ul>
+<p>Prior 與 likelihood 可以幫助估計，卻不能自行修復不明確的 treatment、違反 positivity 的資料或未辯護的 causal structure。後續筆記再進一步記錄 Bayesian model 如何將先驗資訊與資料結合。</p>
+<h2>9. 後續每週筆記模板</h2>
+<p>往後每篇都固定回答六件事：</p>
+<ol>
+<li>本週科學問題與 estimand 是什麼？</li>
+<li>資料生成或 treatment assignment mechanism 是什麼？</li>
+<li>需要哪些 identification assumptions？</li>
+<li>模型、prior、likelihood 與 posterior 分別扮演什麼角色？</li>
+<li>哪些假設可診斷，哪些只能靠設計、知識或敏感度分析辯護？</li>
+<li>如何把方法連回認知神經科學、運動科學、EEG 或 HRV 的研究問題？</li>
+</ol>
+<h2>本週待釐清問題</h2>
+<ul>
+<li>Finite-population 與 superpopulation 的 Bayesian 建模方式如何對應？</li>
+<li>Treatment effect heterogeneity 應如何進入 estimand 與階層模型？</li>
+<li>在 propensity score 極端、overlap 不佳時，應改變 estimand、截尾權重，還是重新界定研究族群？</li>
+<li>Posterior uncertainty 與 identification uncertainty 應如何分開呈現？</li>
+</ul>
+<h2>課程來源</h2>
+<ul>
+<li>Chang, M.-C. (2026, September 15). <em>Bayesian causal inference: Introduction to causal thinking</em> [Course slides]. National Central University.</li>
+<li>Chang, M.-C. (2026). <em>Two-sample testing through potential outcomes &amp; observational study tools</em> [Course supplement]. National Central University.</li>
+<li>Ding, P. (2024). <em>A first course in causal inference</em>. Chapman and Hall/CRC. <a href="https://arxiv.org/abs/2305.18793">https://arxiv.org/abs/2305.18793</a></li>
+</ul>
+<blockquote>
+<p><strong>範圍聲明：</strong>本文為學習紀錄，內容經個人理解重新組織，不是教師講義或錄音的完整重製。尚未回到正式出版品逐條驗證的歷史與文獻資訊，只作課程脈絡提示；研究或引用時應查閱原始來源。</p>
+</blockquote>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

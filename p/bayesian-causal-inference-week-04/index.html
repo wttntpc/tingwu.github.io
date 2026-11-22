@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/bayesian-causal-inference-week-04/" />
+    <meta property="og:title" content="貝氏因果推論學習筆記 04：只靠隨機分派，如何得到精確 p 值？" />
+    <meta property="og:description" content="從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/bayesian-causal-inference-week-04/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/bayesian-causal-inference-week-04.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="貝氏因果推論學習筆記 04：只靠隨機分派，如何得到精確 p 值？" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="貝氏因果推論學習筆記 04：只靠隨機分派，如何得到精確 p 值？" />
+    <meta name="twitter:description" content="從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/bayesian-causal-inference-week-04.png" />
+    <title>貝氏因果推論學習筆記 04：只靠隨機分派，如何得到精確 p 值？ | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-10-13" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"貝氏因果推論學習筆記 04：只靠隨機分派，如何得到精確 p 值？","description":"從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。","datePublished":"2026-10-13","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/bayesian-causal-inference-week-04/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/bayesian-causal-inference-week-04/","image":"https://wttntpc.github.io/tingwu.github.io/og/bayesian-causal-inference-week-04.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"因果推論, Fisher隨機化檢定, Sharp Null, 置換檢定, 研究設計, 學習筆記"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/bayesian-causal-inference-week-04');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">數據分析 · 2026-10-13</div><h1>貝氏因果推論學習筆記 04：只靠隨機分派，如何得到精確 p 值？</h1><p>從 Fisher 嚴格虛無假設、隨機化分配與蒙地卡羅近似，理解不依賴常態假設的精確檢定，以及事後挑選統計量的風險。</p><div class="tag-list"><span>因果推論</span><span>Fisher隨機化檢定</span><span>Sharp Null</span><span>置換檢定</span><span>研究設計</span><span>學習筆記</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><blockquote>
+<p><strong>每週課程紀錄｜2026/10/13</strong>
+這週進入 Fisher 隨機化檢定：不先假設結果服從常態分布，而是回到實驗「原本如何隨機分派」。</p>
+</blockquote>
+<p><a href="#/learning/statistics">回到統計學習地圖</a> · <a href="#/post/bayesian-causal-inference-week-03">上一篇：二元結果、SUTVA 與因果圖</a></p>
+<h2>把實驗重新洗牌</h2>
+<p>想像一項運動介入研究，把受試者隨機分成運動組與控制組。研究完成後，兩組認知分數不同。Fisher 的問題是：如果運動對每一個人其實都完全沒有影響，光靠當初的隨機分派，出現目前這麼大差異的機率有多高？</p>
+<p>做法像把組別標籤重新洗牌，但每一次洗牌都必須遵守原始實驗設計。例如原本固定 10 人運動、10 人控制，重抽時仍要保持 10 比 10。</p>
+<h2>什麼是「嚴格虛無假設」？</h2>
+<p>Fisher sharp null 假設處置對每位受試者都沒有影響：</p>
+<div class="article-equation">H₀ᶠ: Yᵢ(1) = Yᵢ(0)，對所有 i</div><p>它比「平均效果為零」更強。平均效果為零仍可能有人受益、有人變差；sharp null 則說每個人的效果都是零。</p>
+<p>強假設帶來一個重要優點：在虛無假設下，我們可以用已觀察結果補齊每個人的另一個反事實，然後對所有合法分派重新計算統計量。</p>
+<h2>p 值從哪裡來？</h2>
+<ol>
+<li>計算實際資料的統計量，例如兩組平均差。</li>
+<li>依原始隨機化規則重新分派組別。</li>
+<li>每次重分派都重新計算統計量。</li>
+<li>看有多少次結果至少和實際觀察一樣極端。</li>
+</ol>
+<p>因此，這個 p 值的參考分布來自研究設計，而不是先假設母體一定常態。這並不表示方法「沒有任何假設」；它仍要求隨機分派機制清楚且真正被遵守。</p>
+<h2>組合太多怎麼辦？</h2>
+<p>樣本增加後，所有合法分派可能多到無法逐一列舉。此時可隨機抽取大量合法分派，用蒙地卡羅方法近似 p 值。抽取次數愈多，模擬誤差通常愈小；分析時應記錄亂數種子與抽樣次數，讓結果可以重現。</p>
+<h2>選哪一個統計量？</h2>
+<ul>
+<li>平均差：對位置平移直觀，但可能受極端值影響。</li>
+<li>Studentized statistic：把效果與標準誤一起考慮。</li>
+<li>Wilcoxon rank-sum：著重排序，對極端值較不敏感。</li>
+<li>Kolmogorov–Smirnov：可偵測整體分布形狀差異。</li>
+</ul>
+<p>不能看完資料後挑出 p 值最小的那一個，卻把它當作唯一事先規劃的分析。比較安全的做法是事前指定主要統計量、進行多重比較校正，或把「挑選規則」本身也納入整個隨機化流程。</p>
+<h2>這能回答所有問題嗎？</h2>
+<p>不能。Fisher randomization test 很適合回答「這組資料與完全無個體效果是否相容」，但單一 p 值不會告訴我們效果多大、個體差異如何，也不能取代信賴區間或後驗分布。研究報告仍應呈現效果估計、分布與研究限制。</p>
+<h2>本週帶走的重點</h2>
+<p>隨機化不是資料收完後的裝飾，而是推論的來源。分析必須尊重真實 assignment mechanism；如果原本有區組、固定組別人數或不等分派機率，重新抽樣也必須照同一套規則。</p>
+<h2>課程來源與延伸閱讀</h2>
+<ul>
+<li>Chang, M.-C. (2026, October 13). <em>Complete randomized experiments and Fisher randomization tests</em> [Course lecture and recordings]. National Central University.</li>
+<li>Ding, P. (2024). <em>A first course in causal inference</em>. Chapman and Hall/CRC. <a href="https://arxiv.org/abs/2305.18793">https://arxiv.org/abs/2305.18793</a></li>
+<li>Wu, J., &amp; Ding, P. (2021). Randomization tests for weak null hypotheses in randomized experiments. <em>Journal of the American Statistical Association, 116</em>(536), 1898–1913. <a href="https://arxiv.org/abs/1809.07419">https://arxiv.org/abs/1809.07419</a></li>
+</ul>
+<blockquote>
+<p>本文依課程講義、錄音與作業整理，不是課程逐字稿。檢定結果必須和原始隨機化設計一起解讀。</p>
+</blockquote>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p><a href="#/learning/statistics">回到統計學習地圖</a></p>
+<h2>1. 設計型推論的起點</h2>
+<p>在有限母體觀點下，潛在結果表視為固定，隨機性來自指派向量 <code>Z</code>。完全隨機化實驗固定處置組人數 <code>n₁</code>，合法指派共有：</p>
+<div class="article-equation">M = C(n, n₁)</div><p>在 CRE 下，每一合法向量等機率；若實驗使用其他設計，機率權重也必須改用該設計的 <code>P(Z=z)</code>。</p>
+<h2>2. Fisher sharp null</h2>
+<div class="article-equation">H₀ᶠ: Yᵢ(1) = Yᵢ(0)，∀i</div><p>由於 sharp null 可補齊所有缺失潛在結果，任一候選指派 <code>z</code> 下的統計量 <code>T(z,Y)</code> 都可被計算。單側隨機化 p 值可寫成：</p>
+<div class="article-equation">pᶠʳᵗ = Σ_z P(Z=z) I{T(z,Y) ≥ Tobs}</div><p>在 CRE 中，這等同極端指派數除以全部合法指派數。其 exactness 來自已知 assignment mechanism，而不是 outcome distribution 的參數假設。</p>
+<h2>3. Monte Carlo approximation</h2>
+<p>當 <code>M</code> 太大時，從 <code>P(Z)</code> 抽取 <code>R</code> 個合法指派，計算：</p>
+<div class="article-equation">p̂ = [1 + Σᵣ I{Tᵣ ≥ Tobs}] / (R + 1)</div><p>加一修正可避免有限次模擬得到零 p 值。應報告 <code>R</code>、亂數種子、雙尾定義與重抽樣限制，並確認抽樣器尊重原始區組或不等機率設計。</p>
+<h2>4. Test statistic 對 alternative 的敏感性</h2>
+<p>平均差、studentized statistic、rank statistic 與 KS statistic 對不同 alternative 有不同 power。統計量應依研究問題、尺度與預期偏離形式預先選擇，而不是依觀察資料挑選最有利結果。</p>
+<p>若分析同時考察多個統計量，可：</p>
+<ul>
+<li>事前指定 primary statistic；</li>
+<li>使用 Bonferroni 等 multiplicity correction；</li>
+<li>定義 combined statistic，例如每次合法分派皆重新執行同一個選擇程序，使資料依賴選擇被納入 reference distribution。</li>
+</ul>
+<h2>5. Sharp null 與 weak null 不同</h2>
+<p>Fisher sharp null 要求所有 unit-level effects 為零；Neyman weak null 通常只限制平均效果為零。一般 FRT 對 sharp null exact，不代表對任意 weak null 與異質效果都能直接維持相同型一錯誤性質。後續需要 studentization、漸近理論或其他方法處理。</p>
+<h2>6. 報告建議</h2>
+<p>完整報告至少包含：randomization design、合法 assignment space、統計量、單尾或雙尾規則、exact enumeration 或 Monte Carlo 次數、效果估計，以及 sharp null 與研究問題的對應限制。</p>
+<h2>課程來源與參考文獻</h2>
+<ul>
+<li>Chang, M.-C. (2026, October 13). <em>Complete randomized experiments and Fisher randomization tests</em> [Course lecture and recordings]. National Central University.</li>
+<li>Ding, P. (2024). <em>A first course in causal inference</em>. Chapman and Hall/CRC. <a href="https://arxiv.org/abs/2305.18793">https://arxiv.org/abs/2305.18793</a></li>
+<li>Wu, J., &amp; Ding, P. (2021). Randomization tests for weak null hypotheses in randomized experiments. <em>Journal of the American Statistical Association, 116</em>(536), 1898–1913. <a href="https://arxiv.org/abs/1809.07419">https://arxiv.org/abs/1809.07419</a></li>
+</ul>
+<blockquote>
+<p><strong>範圍聲明：</strong>本文為課程學習紀錄。FRT 的有效性取決於正確的 assignment mechanism；不能把一般置換操作一律稱為設計型隨機化推論。</p>
+</blockquote>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

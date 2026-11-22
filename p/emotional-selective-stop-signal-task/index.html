@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="從早期的延遲訊號研究、Logan 的賽跑模型到 SSRT 的估計，整理停止訊號作業的背景、假設、估計方法與延伸典範。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/emotional-selective-stop-signal-task/" />
+    <meta property="og:title" content="停止訊號作業的來龍去脈：從延遲訊號到賽跑模型" />
+    <meta property="og:description" content="從早期的延遲訊號研究、Logan 的賽跑模型到 SSRT 的估計，整理停止訊號作業的背景、假設、估計方法與延伸典範。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/emotional-selective-stop-signal-task/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/emotional-selective-stop-signal-task.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="停止訊號作業的來龍去脈：從延遲訊號到賽跑模型" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="停止訊號作業的來龍去脈：從延遲訊號到賽跑模型" />
+    <meta name="twitter:description" content="從早期的延遲訊號研究、Logan 的賽跑模型到 SSRT 的估計，整理停止訊號作業的背景、假設、估計方法與延伸典範。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/emotional-selective-stop-signal-task.png" />
+    <title>停止訊號作業的來龍去脈：從延遲訊號到賽跑模型 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-11-14" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"停止訊號作業的來龍去脈：從延遲訊號到賽跑模型","description":"從早期的延遲訊號研究、Logan 的賽跑模型到 SSRT 的估計，整理停止訊號作業的背景、假設、估計方法與延伸典範。","datePublished":"2026-11-14","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/emotional-selective-stop-signal-task/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/emotional-selective-stop-signal-task/","image":"https://wttntpc.github.io/tingwu.github.io/og/emotional-selective-stop-signal-task.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"認知作業, 抑制控制, 停止訊號作業, SSRT, 研究方法"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/emotional-selective-stop-signal-task');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">研究方法 · 2026-11-14</div><h1>停止訊號作業的來龍去脈：從延遲訊號到賽跑模型</h1><p>從早期的延遲訊號研究、Logan 的賽跑模型到 SSRT 的估計，整理停止訊號作業的背景、假設、估計方法與延伸典範。</p><div class="tag-list"><span>認知作業</span><span>抑制控制</span><span>停止訊號作業</span><span>SSRT</span><span>研究方法</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>日常生活中，「停下來」常常來得很突然：開車時前方的人突然煞車，或是話說到一半發現不該說。認知科學想問的是：<strong>一個已經開始準備的動作，還來不來得及被取消？取消它需要多久</strong>？停止訊號作業（stop-signal task）就是為了回答這個問題而發展出來的。</p>
+<p>延伸閱讀：<a href="#/lab/stop-signal">互動實驗室</a>。</p>
+<h2>「停止」和「不做」不一樣</h2>
+<p>如果規則是「看到 X 就不要按」，你從一開始就不會準備動作，這比較像「選擇不做」。停止訊號作業關心的是另一件事：<strong>動作已經在準備了，才出現要你停下來的訊號</strong>。這時大腦要在動作送出之前把它攔住，所以更適合用來研究「抑制」。</p>
+<h2>它是怎麼來的</h2>
+<ul>
+<li><strong>1960 年代的早期做法</strong>：Lappin 與 Eriksen（1966）讓受試者對視覺刺激做反應，但偶爾在刺激之後延遲一小段時間，再給一個訊號要求停止。這個「延遲訊號」的做法，就是後來停止訊號作業的雛形。</li>
+<li><strong>1980 年代的理論</strong>：Logan 與 Cowan（1984）提出一個理論，把「能不能停下來」寫成一場賽跑，並說明怎麼從資料估計「停下來需要多久」。同年 Logan、Cowan 與 Davis（1984）再把這個模型與估計方法整理成可以實際使用的程序。</li>
+<li><strong>之後的發展</strong>：這個作業成為研究抑制控制最常用的方法之一（Verbruggen &amp; Logan, 2008）；2019 年，多位研究者合寫了共識指南，說明怎麼設計、怎麼分析、怎麼報告（Verbruggen et al., 2019）。</li>
+</ul>
+<h2>核心想法：一場賽跑</h2>
+<p>想像大腦裡同時有兩位選手：</p>
+<ul>
+<li><strong>「Go」選手</strong>：看到刺激後準備按鍵，從刺激出現開始跑。</li>
+<li><strong>「Stop」選手</strong>：只有在停止訊號出現後才起跑。</li>
+</ul>
+<p>誰先跑到終點，就決定結果：Go 先到，動作就送出去（停止失敗）；Stop 先到，動作就被攔下來（停止成功）。</p>
+<p>停止訊號出現得越晚，Stop 選手越吃虧，越難停住；出現得越早，越容易停住。</p>
+<h2>「停止速度」為什麼要用估計的</h2>
+<p>停止成功時，<strong>沒有按鍵，也就沒有任何反應時間可以記錄</strong>。所以沒辦法像平常一樣直接量到「停下來花了多久」。研究者的做法是：用 Go 反應時間的分布、停止訊號出現的時間，以及「有多少次沒停住」，反推 Stop 選手大概需要多久，這個估計值稱為<strong>停止訊號反應時間</strong>（SSRT）。</p>
+<h2>SSRT 越短，代表什麼？</h2>
+<p>數值越短，代表停止歷程越快完成。但它是<strong>模型估計值</strong>，不是直接量到的，而且需要滿足一些前提，才能被信任。它不是診斷工具，也不是一個人固定的「能力分數」。</p>
+<h2>後來的延伸</h2>
+<p>研究者在這個基本架構上，又問了更多問題：</p>
+<ul>
+<li><strong>只停止其中一部分動作</strong>：例如同時準備兩個動作，只需要停止其中一個（Aron &amp; Verbruggen, 2008）。這是「選擇性停止」的研究方向。</li>
+<li><strong>加入對照條件，區分「停止」與「注意到訊號」</strong>：有研究在停止訊號作業中加入「繼續」條件，用來區分注意力被新訊號吸引，與運動抑制本身（Nguyen et al., 2021）。</li>
+<li><strong>使用情緒刺激</strong>：研究情緒刺激是否影響抑制（Verbruggen &amp; De Houwer, 2007）。</li>
+</ul>
+<p>這些延伸版本各自回答不同的問題，不能把它們的結果混在一起解讀。</p>
+<h2>讀停止訊號研究時要問的問題</h2>
+<ol>
+<li>他們測的是整體的停止，還是選擇性的停止？</li>
+<li>有沒有包含對照條件，來控制訊號本身的影響？</li>
+<li>每個條件有多少次停止試驗？試驗太少，估計會不穩定。</li>
+<li>SSRT 的前提有沒有被檢查？</li>
+</ol>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><h2>歷史與理論脈絡</h2>
+<p>停止訊號典範的前身是 Lappin 與 Eriksen（1966）在視覺反應時間作業中，於刺激之後延遲呈現訊號以要求停止反應的做法。Logan 與 Cowan（1984）提出「控制行為」（act of control）的理論，將行動抑制形式化為 Go 歷程與 Stop 歷程之間的<strong>賽跑模型（race model）</strong>，並導出估計 Stop 歷程時間的方法；Logan 等人（1984）進一步說明了簡單與選擇反應時間作業下的模型與估計程序。Verbruggen 與 Logan（2008）整理了此典範在認知與神經科學中的應用；Verbruggen 等人（2019）則提出涵蓋設計、分析與報告的共識指南。</p>
+<h2>賽跑模型與其假設</h2>
+<p>在 Stop 試驗中，Go 歷程於刺激出現時啟動，Stop 歷程於停止訊號延遲（stop-signal delay, SSD）之後啟動。若 Go 歷程先完成，則反應被送出（失敗停止）；若 Stop 歷程先完成，則反應被抑制（成功停止）。</p>
+<p>模型的估計仰賴<strong>獨立性假設</strong>：Go 與 Stop 歷程彼此獨立。其可檢驗的推論之一是：失敗停止試驗的反應時間，應比同一條件下 Go 試驗的反應時間短，因為只有較快的 Go 歷程才能搶先完成（Verbruggen et al., 2019）。違反此推論時，SSRT 的估計不應被詮釋。</p>
+<h2>SSRT 為何必須估計</h2>
+<p>成功停止的試驗沒有可觀察的反應，因此 Stop 歷程的完成時間無法直接量測。SSRT 是由 Go 反應時間分布、SSD 與 <em>p</em>(respond | signal)（Stop 試驗中仍反應的比例）推論而得的<strong>模型衍生量</strong>，而非直接觀測值。</p>
+<h2>追蹤程序與估計方法</h2>
+<ul>
+<li><strong>SSD 追蹤</strong>：為使 <em>p</em>(respond | signal) 接近中間值，許多研究採用逐試驗調整 SSD 的追蹤程序（staircase），成功停止則延長 SSD，失敗則縮短。</li>
+<li><strong>平均法</strong>：以平均 Go 反應時間減去平均 SSD。</li>
+<li><strong>積分法（integration method）</strong>：將 Go 反應時間排序，取對應 <em>p</em>(respond | signal) 的分位數後減去平均 SSD。共識指南建議採用積分法，並將 Go 遺漏以最大反應時間替代，使 Go 遺漏不致造成估計偏誤（Verbruggen et al., 2019）。</li>
+</ul>
+<h2>何時不應報告 SSRT</h2>
+<p>依共識指南的建議，下列情況下不宜報告或詮釋 SSRT（Verbruggen et al., 2019）：</p>
+<ul>
+<li><em>p</em>(respond | signal) 明顯偏離中間範圍，或為 0 或 1；</li>
+<li>失敗停止的反應時間不短於 Go 反應時間，表示獨立性假設不成立；</li>
+<li>每個條件的 Stop 試驗太少，造成估計不穩定。</li>
+</ul>
+<h2>延伸典範</h2>
+<table>
+<thead>
+<tr>
+<th>方向</th>
+<th>問題</th>
+<th>代表研究</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>選擇性停止</td>
+<td>同時準備多個動作，只需停止其中一部分</td>
+<td>Aron 與 Verbruggen（2008）</td>
+</tr>
+<tr>
+<td>加入對照條件</td>
+<td>區分注意力被訊號吸引與運動抑制本身</td>
+<td>Nguyen 等人（2021）</td>
+</tr>
+<tr>
+<td>情緒刺激</td>
+<td>情緒刺激是否影響抑制</td>
+<td>Verbruggen 與 De Houwer（2007）</td>
+</tr>
+</tbody></table>
+<p>各延伸版本的對照條件與估計目標不同，<strong>結果不能直接互相比較</strong>。依刺激類別（如不同情緒）分別估計 SSRT 時，每個類別的 Stop 試驗數會變少，估計的精確度也會降低，通常只適合作為探索性分析。</p>
+<h2>詮釋的限制</h2>
+<ul>
+<li>SSRT 是模型估計值，且需要前提成立才能詮釋；</li>
+<li>其數值受 Go 作業特性、追蹤程序、訊號的顯著性與受試者策略影響；</li>
+<li>它不是臨床診斷指標，不應單獨用來評斷個人的抑制能力。</li>
+</ul>
+<h2>References</h2>
+<p>Aron, A. R., &amp; Verbruggen, F. (2008). Stop the presses: Dissociating a selective from a global mechanism for stopping. <em>Psychological Science, 19</em>(11), 1146–1153. <a href="https://doi.org/10.1111/j.1467-9280.2008.02216.x">https://doi.org/10.1111/j.1467-9280.2008.02216.x</a></p>
+<p>Lappin, J. S., &amp; Eriksen, C. W. (1966). Use of a delayed signal to stop a visual reaction-time response. <em>Journal of Experimental Psychology, 72</em>(6), 805–811. <a href="https://doi.org/10.1037/h0021266">https://doi.org/10.1037/h0021266</a></p>
+<p>Logan, G. D., &amp; Cowan, W. B. (1984). On the ability to inhibit thought and action: A theory of an act of control. <em>Psychological Review, 91</em>(3), 295–327. <a href="https://doi.org/10.1037/0033-295X.91.3.295">https://doi.org/10.1037/0033-295X.91.3.295</a></p>
+<p>Logan, G. D., Cowan, W. B., &amp; Davis, K. A. (1984). On the ability to inhibit simple and choice reaction time responses: A model and a method. <em>Journal of Experimental Psychology: Human Perception and Performance, 10</em>(2), 276–291. <a href="https://doi.org/10.1037/0096-1523.10.2.276">https://doi.org/10.1037/0096-1523.10.2.276</a></p>
+<p>Nguyen, T. V., Balachandran, P., Muggleton, N. G., Liang, W.-K., &amp; Juan, C.-H. (2021). Dynamical EEG indices of progressive motor inhibition and error-monitoring. <em>Brain Sciences, 11</em>(4), Article 478. <a href="https://doi.org/10.3390/brainsci11040478">https://doi.org/10.3390/brainsci11040478</a></p>
+<p>Verbruggen, F., &amp; De Houwer, J. (2007). Do emotional stimuli interfere with response inhibition? Evidence from the stop signal paradigm. <em>Cognition and Emotion, 21</em>(2), 391–403. <a href="https://doi.org/10.1080/02699930600625081">https://doi.org/10.1080/02699930600625081</a></p>
+<p>Verbruggen, F., &amp; Logan, G. D. (2008). Response inhibition in the stop-signal paradigm. <em>Trends in Cognitive Sciences, 12</em>(11), 418–424. <a href="https://doi.org/10.1016/j.tics.2008.07.005">https://doi.org/10.1016/j.tics.2008.07.005</a></p>
+<p>Verbruggen, F., Aron, A. R., Band, G. P., Beste, C., Bissett, P. G., Brockett, A. T., Brown, J. W., Chamberlain, S. R., Chambers, C. D., Colonius, H., Colzato, L. S., Corneil, B. D., Coxon, J. P., Dupuis, A., Eagle, D. M., Garavan, H., Greenhouse, I., Heathcote, A., Huster, R. J., … Boehler, C. N. (2019). A consensus guide to capturing the ability to inhibit actions and impulsive behaviors in the stop-signal task. <em>eLife, 8</em>, Article e46323. <a href="https://doi.org/10.7554/eLife.46323">https://doi.org/10.7554/eLife.46323</a></p>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

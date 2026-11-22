@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261121-05';
+const SITE_VERSION = '20261122-01';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -139,6 +139,7 @@ const copy = {
     dataAllArticles: '全部數據分析文章',
     dataAllArticlesDesc: '可使用搜尋欄查找統計名詞、方法或研究應用。',
     simpleVersion: '簡單白話版',
+    shareLink: '複製分享連結', shareCopied: '已複製連結', shareFailed: '請手動複製下方網址',
     professionalVersion: '專業版',
     versionHint: '先掌握重點，或切換到專業版閱讀術語、方法與研究細節。',
     back: '← 返回文章列表',
@@ -233,6 +234,7 @@ const copy = {
     dataAllArticles: 'All data analysis articles',
     dataAllArticlesDesc: 'Search for a statistical term, method, or research application.',
     simpleVersion: 'Plain-language',
+    shareLink: 'Copy share link', shareCopied: 'Link copied', shareFailed: 'Copy the address below',
     professionalVersion: 'Professional',
     versionHint: 'Start with the key ideas, or switch to the professional version for terminology, methods, and research detail.',
     back: '← Back to writing',
@@ -2203,10 +2205,24 @@ async function renderPost(id) {
   const versions = parseArticleVersions(await response.text());
   const selectedVersion = localStorage.getItem('tingting-article-version') === 'professional' ? 'professional' : 'simple';
   const c = t();
-  app.innerHTML = `<article class="article-shell"><a class="back-link" href="#/blog">${c.back}</a><header class="article-header"><div class="post-meta">${meta ? `${categoryLabel(meta.category)} · ${meta.date}` : ''}</div><h1>${meta ? postTitle(meta) : ''}</h1>${meta && postDescription(meta) ? `<p>${postDescription(meta)}</p>` : ''}${meta ? tagList(meta) : ''}${lang === 'en' && !hasEnglishBody ? '<p class="article-language-note">The full text of this article is currently written in Chinese. The title and summary above are provided in English.</p>' : ''}</header>
+  app.innerHTML = `<article class="article-shell"><a class="back-link" href="#/blog">${c.back}</a><header class="article-header"><div class="post-meta">${meta ? `${categoryLabel(meta.category)} · ${meta.date}` : ''}</div><h1>${meta ? postTitle(meta) : ''}</h1>${meta && postDescription(meta) ? `<p>${postDescription(meta)}</p>` : ''}${meta ? tagList(meta) : ''}${meta ? `<p class="share-row"><button type="button" class="share-link" data-share-link="${meta.id}">${c.shareLink}</button></p>` : ''}${lang === 'en' && !hasEnglishBody ? '<p class="article-language-note">The full text of this article is currently written in Chinese. The title and summary above are provided in English.</p>' : ''}</header>
     <div class="version-bar"><div class="version-toggle" role="group" aria-label="${lang === 'zh' ? '文章版本切換' : 'Article version'}"><button type="button" data-version="simple" aria-pressed="${selectedVersion === 'simple'}">${c.simpleVersion}</button><button type="button" data-version="professional" aria-pressed="${selectedVersion === 'professional'}">${c.professionalVersion}</button></div><p>${c.versionHint}</p></div>
     <div class="article-version markdown-body" data-version-content="simple" ${selectedVersion !== 'simple' ? 'hidden' : ''}>${safeMarkdownParse(versions.simple)}</div>
     <div class="article-version markdown-body" data-version-content="professional" ${selectedVersion !== 'professional' ? 'hidden' : ''}>${safeMarkdownParse(versions.professional)}</div></article>`;
+  // Share the pre-rendered article page (p/<id>/), which has its own title and preview card; the #/post route has neither.
+  document.querySelectorAll('[data-share-link]').forEach(button => button.addEventListener('click', async () => {
+    const url = new URL(`p/${button.dataset.shareLink}/`, new URL('./', location.href.replace(/\/p\/[^/]+\/.*$/, '/'))).href;
+    try {
+      await navigator.clipboard.writeText(url);
+      button.textContent = c.shareCopied;
+    } catch (error) {
+      button.textContent = c.shareFailed;
+      button.insertAdjacentHTML('afterend', `<input class="share-url" readonly value="${url}" aria-label="${c.shareLink}">`);
+      const field = button.parentElement.querySelector('.share-url');
+      if (field) { field.focus(); field.select(); }
+    }
+    setTimeout(() => { button.textContent = c.shareLink; }, 2200);
+  }));
   document.querySelectorAll('.version-toggle button').forEach(button => button.addEventListener('click', () => {
     const version = button.dataset.version;
     localStorage.setItem('tingting-article-version', version);

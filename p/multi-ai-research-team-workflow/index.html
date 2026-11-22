@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="把四套 AI 工具安排成研究內容、程式實作、視覺驗證與長期排程的協作團隊，並建立避免檔案衝突、責任擴散與自動化偏誤的規則。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/multi-ai-research-team-workflow/" />
+    <meta property="og:title" content="Claude、Codex、Antigravity、Hermes：我的 AI 研究團隊如何分工" />
+    <meta property="og:description" content="把四套 AI 工具安排成研究內容、程式實作、視覺驗證與長期排程的協作團隊，並建立避免檔案衝突、責任擴散與自動化偏誤的規則。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/multi-ai-research-team-workflow/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/multi-ai-research-team-workflow.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Claude、Codex、Antigravity、Hermes：我的 AI 研究團隊如何分工" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Claude、Codex、Antigravity、Hermes：我的 AI 研究團隊如何分工" />
+    <meta name="twitter:description" content="把四套 AI 工具安排成研究內容、程式實作、視覺驗證與長期排程的協作團隊，並建立避免檔案衝突、責任擴散與自動化偏誤的規則。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/multi-ai-research-team-workflow.png" />
+    <title>Claude、Codex、Antigravity、Hermes：我的 AI 研究團隊如何分工 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-14" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Claude、Codex、Antigravity、Hermes：我的 AI 研究團隊如何分工","description":"把四套 AI 工具安排成研究內容、程式實作、視覺驗證與長期排程的協作團隊，並建立避免檔案衝突、責任擴散與自動化偏誤的規則。","datePublished":"2026-08-14","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/multi-ai-research-team-workflow/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/multi-ai-research-team-workflow/","image":"https://wttntpc.github.io/tingwu.github.io/og/multi-ai-research-team-workflow.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"AI 工作流, 多代理協作, Claude, Codex, Hermes"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/multi-ai-research-team-workflow');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">AI 工具與工作流 · 2026-08-14</div><h1>Claude、Codex、Antigravity、Hermes：我的 AI 研究團隊如何分工</h1><p>把四套 AI 工具安排成研究內容、程式實作、視覺驗證與長期排程的協作團隊，並建立避免檔案衝突、責任擴散與自動化偏誤的規則。</p><div class="tag-list"><span>AI 工作流</span><span>多代理協作</span><span>Claude</span><span>Codex</span><span>Hermes</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>我同時使用 Claude、Codex、Antigravity 與 Hermes，但我不把它們當成四位可以自由改動所有內容的「全能助理」。對我而言，更安全的做法是把它們安排成一個有角色、有交接規則，也有最終負責人的研究團隊。</p>
+<blockquote>
+<p><strong>先說結論</strong>：AI 分工的目的不是找出「最強模型」，而是讓每個任務都有明確負責者、輸入、輸出與查核方式。任何重要研究判斷，最後仍由研究者負責。</p>
+</blockquote>
+<h2>為什麼不要四個 AI 同時做同一件事？</h2>
+<p>生成式 AI 確實可能提高效率。Noy 與 Zhang（2023）在 453 名受試者的寫作實驗中發現，使用 AI 的參與者平均完成得更快，成品評分也較高。不過，AI 的幫助不是每個任務都一樣。Dell’Acqua 等人（2026）把這種現象稱為「鋸齒狀技術前沿」：有些看起來很難的工作，AI 做得很好；另一些看似相近的工作，AI 卻可能讓人更容易答錯。</p>
+<p>如果四個 AI 同時修改同一個 GitHub repo、HackMD 筆記或 Skill，常見結果不是四倍效率，而是：</p>
+<ul>
+<li>同一段文字被不同版本覆蓋。</li>
+<li>一個 AI 刪除另一個 AI 剛新增的設定。</li>
+<li>分析條件改了，README 卻仍保留舊說明。</li>
+<li>每個 AI 都以為另一個已經查核文獻。</li>
+<li>最後無法回答「這個結論是誰決定的」。</li>
+</ul>
+<p>這不只是技術問題，也與自動化偏誤有關。系統性回顧顯示，人可能因過度相信自動系統而採納錯誤建議，或因系統沒有提醒就漏做必要動作（Goddard et al., 2012）。因此，多 AI 工作流必須比單一聊天更重視責任與紀錄。</p>
+<h2>我的四個工具怎麼分工？</h2>
+<p>以下不是四個產品的永久能力排名，而是我為自己的研究環境設定的角色。</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>我安排的主要角色</th>
+<th>適合交付的成品</th>
+<th>不讓它單獨決定的事</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude</td>
+<td>研究內容編輯與批判性討論</td>
+<td>文章架構、研究問題、段落改寫、方法限制清單</td>
+<td>最終引用、統計結論、直接發布</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td>程式、Git 與可驗證實作</td>
+<td>分析程式、測試、README、網站修改、版本紀錄</td>
+<td>未經驗證的研究推論</td>
+</tr>
+<tr>
+<td>Antigravity</td>
+<td>視覺化開發與互動檢查</td>
+<td>dashboard、介面原型、瀏覽器測試、圖表呈現</td>
+<td>原始資料的不可逆修改</td>
+</tr>
+<tr>
+<td>Hermes</td>
+<td>長期運作與定時傳送</td>
+<td>Telegram 文獻簡報、排程、日常提醒、背景任務</td>
+<td>未查核文獻直接進入正式論文</td>
+</tr>
+</tbody></table>
+<p>這個分工的核心是：<strong>Claude 幫我想清楚，Codex 幫我做得可驗證，Antigravity 幫我看見成品，Hermes 幫我持續執行。</strong> 四者可以互相補位，但不能同時擁有同一份檔案的寫入權。</p>
+<h2>一個實際例子：寫 HRV 科普文章</h2>
+<p>我可以把工作拆成以下流程：</p>
+<ol>
+<li>我先決定文章問題，例如「腕式 PPG 得到的 BBI 能不能直接當成 ECG 的 RR interval？」</li>
+<li>Claude 協助整理讀者會困惑的概念與文章架構。</li>
+<li>文獻必須透過資料庫、DOI 或原始全文核對，而不是相信聊天模型列出的引用。</li>
+<li>Codex 把核對後的內容寫進網站、檢查文章路由、搜尋與 Markdown 顯示。</li>
+<li>Antigravity 或瀏覽器測試負責查看手機與桌面版，確認圖表和文字是否容易閱讀。</li>
+<li>Hermes 之後可以定期蒐集新文章，但只進入「待閱讀」，不會自動改寫已發布結論。</li>
+</ol>
+<p>這樣做的好處是，每一步都有不同的成功標準。文章寫得流暢不代表引用正確；程式能執行不代表統計方法合理；網站能打開也不代表研究解釋沒有過度推論。</p>
+<h2>避免 AI 打架的五條規則</h2>
+<h3>1. 同一時間只有一個寫作者</h3>
+<p>同一個 branch、檔案或 HackMD 筆記，只指定一個 AI 修改。其他 AI 只能讀取、評論或提出 patch 建議。</p>
+<h3>2. 每次交接都留下四項資訊</h3>
+<pre><code class="language-text">任務：這次要完成什麼？
+輸入：使用哪些檔案、文獻或資料版本？
+輸出：改了哪些檔案、產生哪些結果？
+未決事項：哪些內容還沒有查核或需要我決定？
+</code></pre>
+<h3>3. GitHub 是程式版本的裁判</h3>
+<p>AI 說「已經改好」不算完成。必須能在 Git diff 中看見修改、通過測試、留下清楚 commit，並確認遠端與網站版本一致。</p>
+<h3>4. 文獻存在不代表支持該句話</h3>
+<p>Walters 與 Wilder（2023）發現，早期 ChatGPT 版本產生的引用中有相當比例是捏造或帶有書目錯誤。即使 DOI 存在，也要打開全文確認研究設計、樣本及結果是否真的支持文章中的句子。</p>
+<h3>5. 最終決策不能委託</h3>
+<p>研究問題、排除標準、主要結果、因果解釋、作者署名與是否公開，必須由研究者決定。AI 可以提出選項，但不能替我承擔學術責任。</p>
+<h2>我如何判斷任務交給誰？</h2>
+<p>先問三個問題：</p>
+<ol>
+<li>這是內容理解、程式實作、視覺檢查，還是長期排程？</li>
+<li>結果能不能用測試、DOI、原始輸出或畫面驗證？</li>
+<li>如果做錯，能不能用 Git 或備份恢復？</li>
+</ol>
+<p>如果答案不清楚，我會先讓 AI 做唯讀分析，不直接修改。如果涉及研究資料、公開發布或 Git 歷史改寫，則提高人工確認層級。</p>
+<h2>帶走三個重點</h2>
+<ol>
+<li>多 AI 的價值來自角色清楚，不是工具數量。</li>
+<li>每一個 AI 交付物都要有外部可驗證依據。</li>
+<li>我是整個工作流的研究負責人，AI 是具有不同介面的協作工具。</li>
+</ol>
+<blockquote>
+<p><strong>一句話總結</strong>：最好的 AI 研究團隊不是四個 AI 同時回答，而是每一步都知道誰在做、依據什麼、由誰查核。</p>
+</blockquote>
+<h2>參考文獻（APA 7th）</h2>
+<p>Dell’Acqua, F., McFowland, E., III, Mollick, E., Lifshitz, H., Kellogg, K. C., Rajendran, S., Krayer, L., Candelon, F., &amp; Lakhani, K. R. (2026). Navigating the jagged technological frontier: Field experimental evidence of the effects of artificial intelligence on knowledge worker productivity and quality. <em>Organization Science, 37</em>(2), 403–423. <a href="https://doi.org/10.1287/orsc.2025.21838">https://doi.org/10.1287/orsc.2025.21838</a></p>
+<p>Goddard, K., Roudsari, A., &amp; Wyatt, J. C. (2012). Automation bias: A systematic review of frequency, effect mediators, and mitigators. <em>Journal of the American Medical Informatics Association, 19</em>(1), 121–127. <a href="https://doi.org/10.1136/amiajnl-2011-000089">https://doi.org/10.1136/amiajnl-2011-000089</a></p>
+<p>Messeri, L., &amp; Crockett, M. J. (2024). Artificial intelligence and illusions of understanding in scientific research. <em>Nature, 627</em>(8002), 49–58. <a href="https://doi.org/10.1038/s41586-024-07146-0">https://doi.org/10.1038/s41586-024-07146-0</a></p>
+<p>Noy, S., &amp; Zhang, W. (2023). Experimental evidence on the productivity effects of generative artificial intelligence. <em>Science, 381</em>(6654), 187–192. <a href="https://doi.org/10.1126/science.adh2586">https://doi.org/10.1126/science.adh2586</a></p>
+<p>Walters, W. H., &amp; Wilder, E. I. (2023). Fabrication and errors in the bibliographic citations generated by ChatGPT. <em>Scientific Reports, 13</em>, Article 14045. <a href="https://doi.org/10.1038/s41598-023-41032-5">https://doi.org/10.1038/s41598-023-41032-5</a></p>
+<hr>
+<p>本文中的工具分工是我的個人研究工作流設計，不代表四套工具之間已有直接比較研究，也會隨版本與實際需求調整。</p>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>多代理研究環境的治理問題，不在於「哪個模型分數最高」，而在於如何分配寫入權、證據責任與驗證責任。我目前同時使用 Claude、Codex、Antigravity 與 Hermes，因此需要的不是更多互相重疊的提示，而是一套能避免狀態衝突、責任擴散與研究錯誤的 operating model。</p>
+<blockquote>
+<p><strong>證據定位</strong>：目前沒有研究直接比較這四套工具組成的學術工作流。本文的角色配置是根據官方功能、我的使用情境及人機協作研究提出的可檢驗設計；工具能力可能隨版本更新。</p>
+</blockquote>
+<h2>為什麼以任務分工，而不是以模型品牌分工？</h2>
+<p>Noy 與 Zhang（2023）的隨機實驗顯示，生成式 AI 能改善特定專業寫作任務的完成時間與品質。然而，Dell’Acqua 等人（2026）對 758 名知識工作者進行預先註冊實驗，發現 AI 在能力邊界內提高工作量、速度與品質，但在邊界外的複雜任務中，使用 AI 的參與者反而較不容易得到正確答案。</p>
+<p>這表示「AI 是否有用」不是工具層級的固定屬性，而是工具、模型、輸入品質、任務類型、驗證條件與使用者專業共同形成的結果。因此，我不宣稱 Claude 天生只適合寫作、Codex 只適合程式。我的做法是依<strong>當前介面可以留下什麼可驗證產物</strong>來分工。</p>
+<h2>四層角色架構</h2>
+<table>
+<thead>
+<tr>
+<th>層級</th>
+<th>主要工具</th>
+<th>任務邊界</th>
+<th>必要證據</th>
+<th>完成條件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>研究推理與編輯</td>
+<td>Claude</td>
+<td>問題拆解、論證、反方觀點、文字結構</td>
+<td>DOI、全文定位、使用者提供的研究材料</td>
+<td>未核對主張被明確標示</td>
+</tr>
+<tr>
+<td>執行與版本化</td>
+<td>Codex</td>
+<td>程式、測試、Git、網站與可重現腳本</td>
+<td>diff、測試輸出、commit、檔案雜湊</td>
+<td>工作樹清楚且可重跑</td>
+</tr>
+<tr>
+<td>互動與呈現</td>
+<td>Antigravity</td>
+<td>IDE 實作、瀏覽器檢查、dashboard、介面原型</td>
+<td>screenshot、DOM/console、視覺檢查</td>
+<td>桌機與手機主要流程可用</td>
+</tr>
+<tr>
+<td>持續運作</td>
+<td>Hermes</td>
+<td>gateway、Telegram、cron、例行蒐集與提醒</td>
+<td>執行紀錄、排程、訊息送達</td>
+<td>任務可重複執行且失敗可觀察</td>
+</tr>
+</tbody></table>
+<p>Claude Code 的官方文件描述其可跨專案讀取檔案、協調修改並執行測試；Codex 是可在程式環境中讀取、修改與執行程式的 coding agent；Antigravity IDE 支援 agent panel、Skills、MCP 與瀏覽器驗證；Hermes 則提供持續記憶、gateway、訊息平台及背景運作。這些功能支持角色配置，但不構成模型品質的直接比較。</p>
+<h2>核心治理原則：Single-writer, multiple-reviewers</h2>
+<p>同一項 artifact 在同一時間只允許一個寫作者。其他代理可以提出 review，但不能在未同步的情況下直接改寫。這條規則適用於：</p>
+<ul>
+<li>Git branch 與網站文章。</li>
+<li>HackMD 方法筆記。</li>
+<li>共用 <code>SKILL.md</code>、<code>AGENTS.md</code> 或 <code>CLAUDE.md</code>。</li>
+<li>統計分析腳本與輸出表。</li>
+<li>Hermes 的排程與主題設定。</li>
+</ul>
+<p>若需要平行工作，應拆成彼此獨立的 artifact，例如由一個代理檢索來源、另一個代理檢查程式，但兩者不能各自在相同分析檔案中「順便修正」。整合者必須逐項接受或拒絕變更。</p>
+<h2>標準交接封包</h2>
+<p>每次跨工具交接都應包含：</p>
+<pre><code class="language-yaml">task_id: hrv-article-2026-08
+objective: 說明 PPG、BBI 與 RR interval 的關係
+owner: codex
+inputs:
+  - source_manifest.md
+  - posts/garmin-raw-data-hrv.md
+constraints:
+  - 不新增未驗證引用
+  - 不修改其他文章
+outputs:
+  - revised_markdown
+  - route_test_result
+verification:
+  - DOI resolution
+  - git diff review
+  - browser rendering
+open_issues:
+  - PPG artifact threshold 尚未確認
+</code></pre>
+<p>這種封包把「上下文」變成可追蹤資料，而不是只存在聊天紀錄。它也降低代理切換後自行補猜研究設計的風險。</p>
+<h2>研究任務的風險分級</h2>
+<table>
+<thead>
+<tr>
+<th>風險</th>
+<th>範例</th>
+<th>AI 權限</th>
+<th>人工閘門</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>低</td>
+<td>格式化 Markdown、搜尋檔案、產生草稿標題</td>
+<td>可自動執行</td>
+<td>抽查 diff</td>
+</tr>
+<tr>
+<td>中</td>
+<td>重構分析程式、整理文獻表、修改網站</td>
+<td>可執行但需測試</td>
+<td>合併前審查</td>
+</tr>
+<tr>
+<td>高</td>
+<td>排除參與者、選主要模型、解釋因果、公開未發表結果</td>
+<td>只能提出方案</td>
+<td>研究者明確決定</td>
+</tr>
+<tr>
+<td>極高</td>
+<td>刪除資料、改寫 Git 歷史、上傳個資、使用憑證</td>
+<td>預設禁止或逐次授權</td>
+<td>精確目標與復原／撤銷方案</td>
+</tr>
+</tbody></table>
+<h2>自動化偏誤與責任擴散</h2>
+<p>Goddard 等人（2012）的系統性回顧指出，自動化偏誤可表現為接受錯誤建議的 commission error，或因系統未提醒而未執行必要行動的 omission error。多代理環境還增加另一項風險：每個代理都產生看似合理的片段，但沒有人對整體一致性負責。</p>
+<p>Messeri 與 Crockett（2024）進一步提醒，科研 AI 可能帶來「理解錯覺」：研究者把系統可產生流暢解釋，誤認為自己已掌握機制；也可能因工具擅長處理某類問題，而不自覺縮窄研究問題。對我的工作流而言，對策不是禁止 AI，而是要求每個重要結論都回答：</p>
+<ol>
+<li>來源是資料、文獻、政策，還是 AI 建議？</li>
+<li>哪一個 artifact 保存了證據？</li>
+<li>哪個人批准了研究決策？</li>
+<li>如果模型改版，結果能否重新生成？</li>
+</ol>
+<h2>防止 Claude 與 Codex 修改衝突</h2>
+<p>我採用以下操作規則：</p>
+<ol>
+<li>開工前先執行 <code>git status</code> 與 <code>git fetch</code>。</li>
+<li>每個任務使用明確 branch 或 worktree。</li>
+<li>AI 不得覆蓋來源不明的未提交修改。</li>
+<li>一個 Skill 只設定一個 canonical location；其他平台使用連結或同步腳本，不複製後各自修改。</li>
+<li>commit 必須描述變更目的，不能只寫「AI update」。</li>
+<li>發布前比較本機、遠端與 GitHub Pages 的實際版本。</li>
+</ol>
+<h2>任務路由決策</h2>
+<pre><code class="language-text">是否需要長期排程或手機訊息？ ── 是 → Hermes
+                 │
+                 否
+                 ↓
+是否主要修改程式、Git 或網站？ ── 是 → Codex
+                 │
+                 否
+                 ↓
+是否主要需要視覺原型與瀏覽器互動？ ── 是 → Antigravity
+                 │
+                 否
+                 ↓
+研究論證、內容結構與批判性整理 → Claude／人工研究者
+</code></pre>
+<p>這只決定「第一責任工具」，不是禁止其他工具 review。當任務跨層時，以交接封包傳遞，不把全部權限同時打開。</p>
+<h2>完成定義</h2>
+<p>一項 AI 研究任務只有同時滿足以下條件才算完成：</p>
+<ul>
+<li>交付物有確定路徑與版本。</li>
+<li>中央主張可連到來源或分析輸出。</li>
+<li>程式可執行並保存環境與參數。</li>
+<li>已知限制與未決事項沒有被流暢文字掩蓋。</li>
+<li>公開內容不含 token、個資或未授權材料。</li>
+<li>人類研究者完成最終科學判斷。</li>
+</ul>
+<h2>參考文獻（APA 7th）</h2>
+<p>Anthropic. (n.d.). <em>How Claude Code works</em>. Retrieved August 14, 2026, from <a href="https://code.claude.com/docs/en/how-claude-code-works">https://code.claude.com/docs/en/how-claude-code-works</a></p>
+<p>Dell’Acqua, F., McFowland, E., III, Mollick, E., Lifshitz, H., Kellogg, K. C., Rajendran, S., Krayer, L., Candelon, F., &amp; Lakhani, K. R. (2026). Navigating the jagged technological frontier: Field experimental evidence of the effects of artificial intelligence on knowledge worker productivity and quality. <em>Organization Science, 37</em>(2), 403–423. <a href="https://doi.org/10.1287/orsc.2025.21838">https://doi.org/10.1287/orsc.2025.21838</a></p>
+<p>Goddard, K., Roudsari, A., &amp; Wyatt, J. C. (2012). Automation bias: A systematic review of frequency, effect mediators, and mitigators. <em>Journal of the American Medical Informatics Association, 19</em>(1), 121–127. <a href="https://doi.org/10.1136/amiajnl-2011-000089">https://doi.org/10.1136/amiajnl-2011-000089</a></p>
+<p>Google. (n.d.). <em>Getting started with Antigravity IDE</em>. Retrieved August 14, 2026, from <a href="https://codelabs.developers.google.com/getting-started-agy-ide">https://codelabs.developers.google.com/getting-started-agy-ide</a></p>
+<p>Messeri, L., &amp; Crockett, M. J. (2024). Artificial intelligence and illusions of understanding in scientific research. <em>Nature, 627</em>(8002), 49–58. <a href="https://doi.org/10.1038/s41586-024-07146-0">https://doi.org/10.1038/s41586-024-07146-0</a></p>
+<p>Nous Research. (n.d.). <em>Hermes Agent</em> [Computer software]. GitHub. Retrieved August 14, 2026, from <a href="https://github.com/NousResearch/hermes-agent">https://github.com/NousResearch/hermes-agent</a></p>
+<p>Noy, S., &amp; Zhang, W. (2023). Experimental evidence on the productivity effects of generative artificial intelligence. <em>Science, 381</em>(6654), 187–192. <a href="https://doi.org/10.1126/science.adh2586">https://doi.org/10.1126/science.adh2586</a></p>
+<p>OpenAI. (n.d.). <em>OpenAI Codex CLI—Getting started</em>. Retrieved August 14, 2026, from <a href="https://help.openai.com/en/articles/11096431">https://help.openai.com/en/articles/11096431</a></p>
+<p>Walters, W. H., &amp; Wilder, E. I. (2023). Fabrication and errors in the bibliographic citations generated by ChatGPT. <em>Scientific Reports, 13</em>, Article 14045. <a href="https://doi.org/10.1038/s41598-023-41032-5">https://doi.org/10.1038/s41598-023-41032-5</a></p>
+<hr>
+<p>本文是公開的研究工作流設計，不是四種 AI 工具的效能試驗。工具功能與授權可能更新，實際使用時應以官方文件及目前版本為準。</p>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

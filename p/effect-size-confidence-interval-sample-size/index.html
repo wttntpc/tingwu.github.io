@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="把原始與標準化效果、區間精確度、SESOI、power 與 precision-based planning 放進同一套研究規劃與結果判讀框架。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/effect-size-confidence-interval-sample-size/" />
+    <meta property="og:title" content="效果量、信賴區間與樣本數：研究結果有多大、又有多確定？" />
+    <meta property="og:description" content="把原始與標準化效果、區間精確度、SESOI、power 與 precision-based planning 放進同一套研究規劃與結果判讀框架。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/effect-size-confidence-interval-sample-size/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/effect-size-confidence-interval-sample-size.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="效果量、信賴區間與樣本數：研究結果有多大、又有多確定？" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="效果量、信賴區間與樣本數：研究結果有多大、又有多確定？" />
+    <meta name="twitter:description" content="把原始與標準化效果、區間精確度、SESOI、power 與 precision-based planning 放進同一套研究規劃與結果判讀框架。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/effect-size-confidence-interval-sample-size.png" />
+    <title>效果量、信賴區間與樣本數：研究結果有多大、又有多確定？ | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-14" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"效果量、信賴區間與樣本數：研究結果有多大、又有多確定？","description":"把原始與標準化效果、區間精確度、SESOI、power 與 precision-based planning 放進同一套研究規劃與結果判讀框架。","datePublished":"2026-08-14","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/effect-size-confidence-interval-sample-size/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/effect-size-confidence-interval-sample-size/","image":"https://wttntpc.github.io/tingwu.github.io/og/effect-size-confidence-interval-sample-size.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"效果量, 信賴區間, 樣本數, 統計檢定力"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/effect-size-confidence-interval-sample-size');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">數據分析 · 2026-08-14</div><h1>效果量、信賴區間與樣本數：研究結果有多大、又有多確定？</h1><p>把原始與標準化效果、區間精確度、SESOI、power 與 precision-based planning 放進同一套研究規劃與結果判讀框架。</p><div class="tag-list"><span>效果量</span><span>信賴區間</span><span>樣本數</span><span>統計檢定力</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>一項研究得到 <code>p &lt; .05</code>，只能說資料與指定的虛無假設較不相容，不能回答「差異有多大」「估計有多準」或「這個差異是否值得在意」。要回答這些問題，需要把<strong>效果量、信賴區間與樣本數規劃</strong>放在一起看。</p>
+<blockquote>
+<p>本文是「數據整理與統計分析」系列第 4 篇。重點不是追求最大的效果，而是事先定義值得回答的問題，並收集足以提供有用精確度的資料。</p>
+</blockquote>
+<h2>效果量回答「差多少」</h2>
+<p>效果量可分成兩種：</p>
+<ul>
+<li><strong>原始效果量</strong>：保留研究單位，例如反應時間減少 25 ms、VO₂peak 增加 2.4 mL·kg⁻¹·min⁻¹。</li>
+<li><strong>標準化效果量</strong>：把差異除以某種變異尺度，例如 Cohen’s d、Hedges’ g 或相關係數 r。</li>
+</ul>
+<p>若原始單位容易理解，通常應優先報告。標準化效果適合跨量表比較或統合分析，但其大小會受分母、研究族群變異與設計影響，不能把 <code>d = 0.5</code> 自動解讀成任何領域都「中等且重要」。</p>
+<h2>信賴區間回答「有多不確定」</h2>
+<p>以下皆為虛構示例。假設運動介入後，認知分數的組間平均差是 3 分：</p>
+<table>
+<thead>
+<tr>
+<th>結果</th>
+<th>可以怎麼理解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3 分，95% CI [2, 4]</td>
+<td>估計相對精確，與零差異不相容</td>
+</tr>
+<tr>
+<td>3 分，95% CI [−5, 11]</td>
+<td>估計不精確，重要好處、無差異與可能壞處都不能排除</td>
+</tr>
+<tr>
+<td>3 分，95% CI [1, 5]，重要門檻為 8 分</td>
+<td>可能統計顯著，但仍低於事前定義的實務重要程度</td>
+</tr>
+</tbody></table>
+<p>95% CI 不是「真實效果有 95% 機率位於這個區間」。較精確的頻率學派解讀是：若不斷重複相同程序，所建構的區間長期約有 95% 會涵蓋真實參數。</p>
+<h2>先定義最小值得在意的效果</h2>
+<p>樣本數規劃不能只說「前人都收 30 人」。應先思考 smallest effect size of interest（SESOI）：小於多少的差異，即使存在也不會改變理論或實務決策？</p>
+<p>SESOI 可以來自：</p>
+<ul>
+<li>臨床或運動實務上的最小重要改變；</li>
+<li>測量工具能可靠辨識的差異；</li>
+<li>理論預測或資源效益門檻；</li>
+<li>高品質先前研究與統合分析；</li>
+<li>利害關係人的決策需求。</li>
+</ul>
+<p>不能等看完結果後，再把剛好觀察到的效果定義成「重要」。</p>
+<h2>樣本數不是只有 power analysis 一種理由</h2>
+<p>Lakens（2022）整理多種樣本數論證方式，包括：</p>
+<ol>
+<li>幾乎涵蓋完整且有限的母體；</li>
+<li>受資源限制，並誠實評估可回答的範圍；</li>
+<li>事前檢定力分析；</li>
+<li>規劃估計精確度，例如目標 CI 寬度；</li>
+<li>採用有明確來源與限制的經驗法則；</li>
+<li>明確承認沒有充分的樣本數理由。</li>
+</ol>
+<p>其中經驗法則或沒有充分理由通常較弱，但透明揭露仍比事後虛構理由更好。</p>
+<p>所以「樣本數越大越好」不是完整答案。樣本數要和研究目標、設計、預期變異、流失、重複測量相關與多重結果一起規劃。</p>
+<h2>Power 不是研究為真的機率</h2>
+<p>若設定 80% power，意思是：假設指定的母體效果真的存在，且模型條件成立，長期重複研究時約有 80% 能依規則檢出。它不是：</p>
+<ul>
+<li>這項研究有 80% 機率正確；</li>
+<li>顯著結果有 80% 機率是真的；</li>
+<li>不顯著結果有 20% 機率是假陰性。</li>
+</ul>
+<p>研究完成後，也不建議用同一份資料的觀察效果計算 observed post-hoc power 來解釋 p 值，因為它通常只是把原結果重新編碼。</p>
+<h2>建議一起報告</h2>
+<pre><code class="language-text">實際分析 N
+＋ 每組描述統計
+＋ 原始尺度效果
+＋ 明確命名的標準化效果量
+＋ 95% CI
+＋ 確切 p 值
+＋ 事前定義的重要效果門檻
+＋ 樣本數規劃依據
+</code></pre>
+<h3>延伸閱讀</h3>
+<ul>
+<li><a href="#/post/post-hoc-power-confidence-interval">統計不顯著後，要算 Post-hoc Power 嗎？</a></li>
+<li><a href="https://notebook.google.com/notebook/14a8e333-8feb-462f-b7e3-54d36eef200a">我的 Statistics and Research Methods NotebookLM</a></li>
+</ul>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>效果估計、區間估計與樣本數論證應共享同一個 estimand。若研究的主要問題是組間平均改變差，效果量、CI 與 power／precision calculation 都應對應相同的設計、對比與變異結構，而不是各自使用軟體最容易輸出的指標。</p>
+<h2>原始效果與標準化效果</h2>
+<p>對兩組平均數而言，常見原始效果為：</p>
+<pre><code class="language-text">Δ = mean₁ − mean₂
+</code></pre>
+<p>標準化平均差則以某種標準差作為分母。Cohen’s d 與 Hedges’ g 的差別之一，是後者加入小樣本偏差校正。配對設計還可能以差值標準差、原始分數標準差或其他分母標準化，因此只寫 <code>d</code> 不足以重現或比較結果。</p>
+<p>Lakens（2013）建議清楚報告效果量的定義與計算方式。跨研究比較時，研究族群越異質，標準差可能越大，即使原始差異相同，標準化效果也可能變小。因此：</p>
+<ul>
+<li>實務可解讀時優先保留原始尺度；</li>
+<li>標準化效果需命名版本與分母；</li>
+<li>不以固定 small／medium／large 門檻取代領域意義；</li>
+<li>效果量也要附不確定性區間。</li>
+</ul>
+<h2>CI 是相容範圍，不是二元檢定附件</h2>
+<p>CI 可協助判斷資料能否區分：</p>
+<ul>
+<li>practically important benefit；</li>
+<li>effects close to zero；</li>
+<li>practically important harm。</li>
+</ul>
+<p>區間很窄且落在預先定義的等效界線內，與「不存在重要差異」相容；但若要正式主張等效，仍需依預先規劃的 equivalence design 與相應檢定。區間很寬時，結論應是 imprecise／inconclusive，而非 negative study。</p>
+<p>Cumming（2014）主張以 estimation、CI、replication 與 meta-analytic thinking 補足只依賴 NHST 的研究文化。這不代表 CI 不受模型假設與選擇性分析影響；若分析流程偏誤，漂亮的區間仍可能精確地估計錯誤目標。</p>
+<h2>事前樣本數規劃的輸入</h2>
+<p>傳統 a priori power analysis 至少需要：</p>
+<pre><code class="language-text">研究設計與主要檢定
+α 與單／雙尾設定
+目標 power
+具有理據的母體效果或 SESOI
+變異、相關、ICC 或事件率等設計參數
+預期流失、缺失與不遵從
+多重主要結果或比較策略
+</code></pre>
+<p>最不穩定的輸入通常是預期效果。直接採用一篇小型先導研究的 observed effect，容易因抽樣誤差與出版偏差高估效果，進而低估所需樣本。應優先使用實務門檻、保守情境、統合證據或一段合理效果範圍，並做 sensitivity analysis。</p>
+<h2>Power-based 與 precision-based planning</h2>
+<p>Power-based planning 問的是：「若指定效果存在，設計以既定規則檢出的長期機率是多少？」Precision-based planning 則問：「為了讓 CI 寬度小到能支持決策，需要多少資訊？」</p>
+<p>若研究主要目標是估計 VO₂peak 平均改變，而不是做零假設拒絕決策，以目標 CI 寬度規劃可能更貼近問題。若目標是檢驗交互作用，則樣本數計算必須直接針對交互作用及其重複量測相關結構，不能以簡單兩組 d 代替。</p>
+<h2>固定樣本數時仍要誠實論證</h2>
+<p>受限於特定班級、罕見族群或設備容量時，樣本數可能先被資源決定。這不表示無法論證，而是應報告：</p>
+<ol>
+<li>可取得的最大 N 與限制來源；</li>
+<li>在多個合理效果下的 power sensitivity；</li>
+<li>最小可達顯著效果與預期 CI 精確度；</li>
+<li>哪些科學問題仍可回答，哪些不能；</li>
+<li>將分析定位為估計、探索、可行性或正式驗證。</li>
+</ol>
+<p>Lakens（2022）強調，樣本數理由應服務於研究的推論目標，而不是套用單一慣例。</p>
+<h2>與 post-hoc power 的界線</h2>
+<p>合理的研究後分析包括以固定 N、α 與目標 power 計算 detectable effect，或描述不同假設效果下的敏感度。問題出在把同一資料的 observed effect 帶回公式，計算 observed power，再用它解釋同一個 p 值。詳細區分可見<a href="#/post/post-hoc-power-confidence-interval">事後檢定力專文</a>。</p>
+<h2>報告範本</h2>
+<blockquote>
+<p>本研究的主要 estimand 為組間平均改變差。樣本數於收案前依事先定義的最小重要差異、預期變異、雙尾 α、目標 power、前後測相關及預期流失規劃。結果將報告原始平均差、Hedges’ g、各自的 95% CI、實際分析 N 與確切 p 值。所有輸入值與來源應依真實研究補入，不能以此範本代替分析紀錄。</p>
+</blockquote>
+<h2>APA 7th 參考文獻</h2>
+<p>Cumming, G. (2014). The new statistics: Why and how. <em>Psychological Science, 25</em>(1), 7–29. <a href="https://doi.org/10.1177/0956797613504966">https://doi.org/10.1177/0956797613504966</a></p>
+<p>Greenland, S., Senn, S. J., Rothman, K. J., Carlin, J. B., Poole, C., Goodman, S. N., &amp; Altman, D. G. (2016). Statistical tests, P values, confidence intervals, and power: A guide to misinterpretations. <em>European Journal of Epidemiology, 31</em>(4), 337–350. <a href="https://doi.org/10.1007/s10654-016-0149-3">https://doi.org/10.1007/s10654-016-0149-3</a></p>
+<p>Lakens, D. (2013). Calculating and reporting effect sizes to facilitate cumulative science: A practical primer for t-tests and ANOVAs. <em>Frontiers in Psychology, 4</em>, Article 863. <a href="https://doi.org/10.3389/fpsyg.2013.00863">https://doi.org/10.3389/fpsyg.2013.00863</a></p>
+<p>Lakens, D. (2022). Sample size justification. <em>Collabra: Psychology, 8</em>(1), Article 33267. <a href="https://doi.org/10.1525/collabra.33267">https://doi.org/10.1525/collabra.33267</a></p>
+<h2>素材來源說明</h2>
+<p>本文以我的 <a href="https://notebook.google.com/notebook/14a8e333-8feb-462f-b7e3-54d36eef200a">Statistics and Research Methods NotebookLM</a> 作為知識整理起點，再依公開方法學文獻核對內容與引用。未上傳或公開 Notebook 中的私人教材檔案。</p>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

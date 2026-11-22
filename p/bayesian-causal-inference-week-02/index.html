@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="從觀察性資料的混淆問題出發，理解傾向分數、交換性與重疊性，並區分有限母體和超母體推論回答的不同問題。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/bayesian-causal-inference-week-02/" />
+    <meta property="og:title" content="貝氏因果推論學習筆記 02：沒有隨機實驗，傾向分數能幫上什麼忙？" />
+    <meta property="og:description" content="從觀察性資料的混淆問題出發，理解傾向分數、交換性與重疊性，並區分有限母體和超母體推論回答的不同問題。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/bayesian-causal-inference-week-02/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/bayesian-causal-inference-week-02.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="貝氏因果推論學習筆記 02：沒有隨機實驗，傾向分數能幫上什麼忙？" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="貝氏因果推論學習筆記 02：沒有隨機實驗，傾向分數能幫上什麼忙？" />
+    <meta name="twitter:description" content="從觀察性資料的混淆問題出發，理解傾向分數、交換性與重疊性，並區分有限母體和超母體推論回答的不同問題。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/bayesian-causal-inference-week-02.png" />
+    <title>貝氏因果推論學習筆記 02：沒有隨機實驗，傾向分數能幫上什麼忙？ | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-09-22" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"貝氏因果推論學習筆記 02：沒有隨機實驗，傾向分數能幫上什麼忙？","description":"從觀察性資料的混淆問題出發，理解傾向分數、交換性與重疊性，並區分有限母體和超母體推論回答的不同問題。","datePublished":"2026-09-22","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/bayesian-causal-inference-week-02/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/bayesian-causal-inference-week-02/","image":"https://wttntpc.github.io/tingwu.github.io/og/bayesian-causal-inference-week-02.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"因果推論, 傾向分數, 觀察性研究, 有限母體, 超母體, 學習筆記"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/bayesian-causal-inference-week-02');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">數據分析 · 2026-09-22</div><h1>貝氏因果推論學習筆記 02：沒有隨機實驗，傾向分數能幫上什麼忙？</h1><p>從觀察性資料的混淆問題出發，理解傾向分數、交換性與重疊性，並區分有限母體和超母體推論回答的不同問題。</p><div class="tag-list"><span>因果推論</span><span>傾向分數</span><span>觀察性研究</span><span>有限母體</span><span>超母體</span><span>學習筆記</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><blockquote>
+<p><strong>每週課程紀錄｜2026/09/22</strong>
+這一週從隨機實驗走向觀察性資料：當研究者不能決定誰接受介入時，如何讓比較更公平？</p>
+</blockquote>
+<p><a href="#/learning/statistics">回到統計學習地圖</a> · <a href="#/post/bayesian-causal-inference-week-01">上一篇：潛在結果與因果思考</a></p>
+<h2>先從運動與 HRV 的問題想起</h2>
+<p>假設資料顯示「有運動習慣的人 HRV 較高」。這是一個有用的觀察，卻不能直接證明運動造成 HRV 上升。經常運動的人可能同時較年輕、睡眠較佳、較少抽菸，或原本健康狀況就不同。這些介入前差異若同時影響運動習慣與 HRV，就是混淆。</p>
+<p>真正的問題不是「能不能跑一個更複雜的模型」，而是：資料中是否存在背景足夠相近、但運動暴露不同的人，讓我們能建立合理比較？</p>
+<h2>傾向分數是在估計什麼？</h2>
+<p>傾向分數是某人在已知介入前特徵 <code>X</code> 下，接受處置的機率：</p>
+<div class="article-equation">e(X) = P(Z = 1 | X)</div><p>它把年齡、性別、基線健康、既有疾病等多個共變項，整理成一個「在這些背景條件下接受介入的傾向」。接著可以配對、分層或加權，比較傾向分數接近的人。</p>
+<p>但它不是把觀察研究瞬間變成隨機試驗。它只能處理模型中已測量、放入且處理合理的變項；沒有量到的混淆仍然存在。</p>
+<h2>兩個不能略過的條件</h2>
+<h3>1. 條件交換性</h3>
+<p>在給定足夠的介入前共變項後，處置分派不再系統性地與潛在結果相關。白話說，就是同樣背景的人之間，誰接受介入不能還藏著另一個沒有處理的重要原因。</p>
+<h3>2. 重疊性</h3>
+<p>每一種納入研究的背景，都必須同時存在接受與未接受介入的可能。如果所有嚴重個案都接受治療、所有輕症都未接受，就沒有真正可比的對照。</p>
+<div class="article-equation">0 &lt; e(X) &lt; 1</div><p>若傾向分數幾乎沒有重疊，硬做加權通常會產生極端權重。此時可能要限縮研究族群、改變目標效果或重新思考研究設計，而不是只更換統計軟體。</p>
+<h2>有限母體與超母體回答不同問題</h2>
+<ul>
+<li><strong>有限母體觀點</strong>：想知道這次納入的受試者，平均因果效果是多少；潛在結果視為固定，隨機性主要來自分派。</li>
+<li><strong>超母體觀點</strong>：把樣本視為來自更大的族群，希望推論到未觀察的人；除了分派，也要處理抽樣與母體模型的不確定性。</li>
+</ul>
+<p>所以「結果能不能外推」不是看到顯著 p 值就能回答。研究對象如何被招募、目標族群如何定義，和採用哪個模型一樣重要。</p>
+<h2>我會怎麼檢查一份傾向分數分析？</h2>
+<ol>
+<li>變項是否都是介入前測量？</li>
+<li>是否解釋為什麼選擇這些混淆變項？</li>
+<li>配對或加權後，兩組共變項是否真的平衡？</li>
+<li>傾向分數分布是否有足夠重疊？</li>
+<li>是否檢查極端權重與結果對分析選擇的敏感度？</li>
+<li>結論是否承認未測量混淆仍可能存在？</li>
+</ol>
+<h2>本週帶走的重點</h2>
+<p>傾向分數不是因果保證書，而是建立可比性的工具。它的可信度取決於研究問題、變項時間順序、交換性與重疊性，以及平衡診斷是否充分。先判斷「誰能和誰比較」，再計算效果，會比先跑模型再找解釋可靠。</p>
+<h2>課程來源與延伸閱讀</h2>
+<ul>
+<li>Chang, M.-C. (2026, September 22). <em>Bayesian causal inference</em> [Course lecture and recordings]. National Central University.</li>
+<li>Ding, P. (2024). <em>A first course in causal inference</em>. Chapman and Hall/CRC. <a href="https://arxiv.org/abs/2305.18793">Author and book information</a></li>
+<li>Rosenbaum, P. R., &amp; Rubin, D. B. (1983). The central role of the propensity score in observational studies for causal effects. <em>Biometrika, 70</em>(1), 41–55. <a href="https://doi.org/10.1093/biomet/70.1.41">https://doi.org/10.1093/biomet/70.1.41</a></li>
+</ul>
+<blockquote>
+<p>本文依課程講義、錄音與個人 NotebookLM 限定來源整理，不是課程逐字稿。因果結論仍須回到原始研究設計、資料與假設。</p>
+</blockquote>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p><a href="#/learning/statistics">回到統計學習地圖</a> · <a href="#/post/bayesian-causal-inference-week-01">上一篇</a></p>
+<h2>1. 從 assignment mechanism 到觀察性研究</h2>
+<p>令 <code>Z ∈ {0,1}</code> 為處置，<code>Y(1), Y(0)</code> 為潛在結果，<code>X</code> 為介入前共變項。隨機試驗由研究設計給定 <code>P(Z)</code>；觀察性研究的處置機制未知，且 <code>Z</code> 往往與 <code>X</code> 及潛在結果相關。未經設計或識別假設的兩組平均差，因此通常只是 association。</p>
+<h2>2. Propensity score 的角色</h2>
+<div class="article-equation">e(X) = P(Z = 1 | X)</div><p>Rosenbaum 與 Rubin 證明，在適當條件下，傾向分數是 balancing score：</p>
+<div class="article-equation">Z ⟂ X | e(X)</div><p>實務上可用 matching、stratification、inverse-probability weighting 或 weighting for overlap 等方式建立加權後的偽母體。重點不在 propensity model 的分類準確率，而在加權或配對後的共變項平衡。</p>
+<h2>3. 識別條件</h2>
+<p>常見平均因果效果的識別需要：</p>
+<ol>
+<li><strong>Consistency／well-defined treatment</strong>：觀察到的結果與實際接受處置的相應潛在結果一致。</li>
+<li><strong>Conditional exchangeability</strong>：<code>{Y(1),Y(0)} ⟂ Z | X</code>。</li>
+<li><strong>Positivity／overlap</strong>：對目標族群內的 <code>X=x</code>，有 <code>0 &lt; P(Z=1|X=x) &lt; 1</code>。</li>
+</ol>
+<p>這些條件不能僅由模型配適指標證明。交換性需要領域知識與測量設計辯護；positivity 則要同時檢查結構性違反與有限樣本中的實務違反。</p>
+<h2>4. 估計目標會改變權重</h2>
+<ul>
+<li>ATE 權重：處置組約為 <code>1/e(X)</code>，對照組約為 <code>1/[1-e(X)]</code>。</li>
+<li>ATT 權重：以已接受處置者為目標族群。</li>
+<li>Overlap estimand：把重點放在兩組皆可能接受的共同支持區域。</li>
+</ul>
+<p>當極端 propensity score 造成不穩定權重時，不能只機械式截尾；應說明截尾是否改變 estimand，以及新目標族群是誰。</p>
+<h2>5. Finite population 與 superpopulation</h2>
+<p>有限母體推論把目前 <code>n</code> 個單位的潛在結果視為固定，重點是 assignment mechanism 下的隨機性。超母體推論則把單位視為從某個生成分布抽樣而來，推論範圍超出目前樣本，因而需要額外的 sampling 與 model assumptions。</p>
+<p>此差異會影響 estimand、標準誤及外推語言。針對研究內部受試者的設計式不偏估計，不能直接等同對其他年齡、疾病程度或場域的 population effect。</p>
+<h2>6. 分析報告最低要求</h2>
+<ul>
+<li>以 DAG、時間順序或領域知識說明共變項選擇；</li>
+<li>報告處理前後 standardized mean differences，而非只報 p 值；</li>
+<li>顯示 propensity score／權重分布與 common support；</li>
+<li>診斷極端權重、effective sample size 與變異數估計；</li>
+<li>進行不同模型、截尾規則及未測量混淆的敏感度分析；</li>
+<li>使用符合 estimand 的效果與限制語言。</li>
+</ul>
+<h2>7. 與 Bayesian causal inference 的銜接</h2>
+<p>Bayesian model 可以對 outcome model、propensity model 或缺失潛在結果表達參數不確定性；但 posterior 不會自動建立 exchangeability 或 positivity。識別條件仍來自設計與科學假設。下一階段要繼續區分：哪些不確定性可由 posterior 描述，哪些是模型外的 identification uncertainty。</p>
+<h2>課程來源與參考文獻</h2>
+<ul>
+<li>Chang, M.-C. (2026, September 22). <em>Bayesian causal inference</em> [Course lecture and recordings]. National Central University.</li>
+<li>Ding, P. (2024). <em>A first course in causal inference</em>. Chapman and Hall/CRC. <a href="https://arxiv.org/abs/2305.18793">https://arxiv.org/abs/2305.18793</a></li>
+<li>Rosenbaum, P. R., &amp; Rubin, D. B. (1983). The central role of the propensity score in observational studies for causal effects. <em>Biometrika, 70</em>(1), 41–55. <a href="https://doi.org/10.1093/biomet/70.1.41">https://doi.org/10.1093/biomet/70.1.41</a></li>
+</ul>
+<blockquote>
+<p><strong>範圍聲明：</strong>本文是個人學習紀錄，不是課堂教材的替代品。傾向分數方法不能排除未量測混淆，也不應單憑模型輸出宣稱因果。</p>
+</blockquote>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

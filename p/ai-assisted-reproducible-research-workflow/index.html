@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="從 estimand、分析計畫、原始資料保護與品質檢查，到模型診斷、效果估計、敏感度分析及可重現發布，說明 AI 可以參與與不能代替的判斷。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/ai-assisted-reproducible-research-workflow/" />
+    <meta property="og:title" content="從研究問題到可重現分析：我的 AI 輔助研究完整流程" />
+    <meta property="og:description" content="從 estimand、分析計畫、原始資料保護與品質檢查，到模型診斷、效果估計、敏感度分析及可重現發布，說明 AI 可以參與與不能代替的判斷。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/ai-assisted-reproducible-research-workflow/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/ai-assisted-reproducible-research-workflow.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="從研究問題到可重現分析：我的 AI 輔助研究完整流程" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="從研究問題到可重現分析：我的 AI 輔助研究完整流程" />
+    <meta name="twitter:description" content="從 estimand、分析計畫、原始資料保護與品質檢查，到模型診斷、效果估計、敏感度分析及可重現發布，說明 AI 可以參與與不能代替的判斷。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/ai-assisted-reproducible-research-workflow.png" />
+    <title>從研究問題到可重現分析：我的 AI 輔助研究完整流程 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-14" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"從研究問題到可重現分析：我的 AI 輔助研究完整流程","description":"從 estimand、分析計畫、原始資料保護與品質檢查，到模型診斷、效果估計、敏感度分析及可重現發布，說明 AI 可以參與與不能代替的判斷。","datePublished":"2026-08-14","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/ai-assisted-reproducible-research-workflow/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/ai-assisted-reproducible-research-workflow/","image":"https://wttntpc.github.io/tingwu.github.io/og/ai-assisted-reproducible-research-workflow.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"AI 研究, 可重現研究, 資料分析, 研究設計, 版本控制"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/ai-assisted-reproducible-research-workflow');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">研究方法 · 2026-08-14</div><h1>從研究問題到可重現分析：我的 AI 輔助研究完整流程</h1><p>從 estimand、分析計畫、原始資料保護與品質檢查，到模型診斷、效果估計、敏感度分析及可重現發布，說明 AI 可以參與與不能代替的判斷。</p><div class="tag-list"><span>AI 研究</span><span>可重現研究</span><span>資料分析</span><span>研究設計</span><span>版本控制</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>很多人把數據分析想成「把資料交給 AI，請它選一個統計方法」。但真正可靠的分析，其實早在執行 t test、ANOVA 或 regression 之前就開始了。</p>
+<blockquote>
+<p><strong>先說結論</strong>：AI 可以協助整理問題、寫程式與找錯誤，但一套可重現的研究流程必須留下問題、資料版本、排除條件、程式版本、統計假設與結果限制。只有最終表格，不能算完整分析。</p>
+</blockquote>
+<h2>全流程長什麼樣？</h2>
+<pre><code class="language-text">研究問題
+  ↓
+研究設計與分析計畫
+  ↓
+原始資料與資料字典
+  ↓
+資料品質檢查
+  ↓
+正式分析與模型診斷
+  ↓
+效果量、信賴區間與敏感度分析
+  ↓
+可重現圖表與報告
+  ↓
+版本保存與公開範圍確認
+</code></pre>
+<p>這條流程中，AI 可以參與每一步，但每一步需要的輸入與成功標準不同。</p>
+<h2>第一步：把研究問題寫成可以分析的形式</h2>
+<p>以我的研究方向為例，「運動對認知有沒有幫助？」太寬泛。更可分析的問題會是：</p>
+<blockquote>
+<p>在大學生中，較高 VO₂peak 是否與抑制控制作業的反應時間及準確率相關？這個關係是否在控制年齡、性別與身體組成後仍存在？</p>
+</blockquote>
+<p>這一句已經說明研究對象、主要預測因子、結果變項與可能共變項。AI 可以幫我指出缺少的部分，但不能替我把原本沒有收集的變項加進研究。</p>
+<h2>第二步：分析前先寫計畫</h2>
+<p>正式分析前至少決定：</p>
+<ul>
+<li>主要與次要結果是什麼？</li>
+<li>一位參與者有幾筆資料，哪些觀察是獨立的？</li>
+<li>遺漏值怎麼處理？</li>
+<li>反應時間太快或太慢的排除標準是什麼？</li>
+<li>主要模型與敏感度分析是什麼？</li>
+<li>如果結果不顯著，要如何解釋？</li>
+</ul>
+<p>預先註冊的目的不是保證研究一定正確，而是把事前假設與看完資料後才產生的探索分開（Nosek et al., 2018）。如果分析方法後來必須改變，也可以改，但需要說明原因。</p>
+<h2>第三步：保護原始資料</h2>
+<p>原始資料應該保留不動。清理與衍生變項由程式重新產生：</p>
+<pre><code class="language-text">data/raw/        # 唯讀原始資料
+data/processed/  # 由程式產生
+src/01_clean.py
+src/02_analyze.py
+outputs/         # 圖表與表格
+</code></pre>
+<p>如果直接在 Excel 原始檔中刪除列、改變數字，過幾個月通常無法重建當時做了什麼。Wilson 等人（2017）建議以純文字格式、程式化步驟、版本控制與清楚資料結構支持科學運算。</p>
+<h2>第四步：先檢查資料，再跑統計</h2>
+<p>分析前的最低檢查包括：</p>
+<ul>
+<li>每個欄位的型態、單位與允許範圍。</li>
+<li>參與者 ID 是否重複或遺失。</li>
+<li>缺失值使用什麼代碼。</li>
+<li>各組樣本數是否符合預期。</li>
+<li>離群值是輸入錯誤、生理上可能，還是分析上極端？</li>
+<li>重複量測的時間順序是否正確。</li>
+</ul>
+<p>對 HRV 與 EEG 而言，數字能被讀入不代表訊號品質合格。AI 可以找出極端值，但偽影、裝置限制與生理合理性仍需要領域判斷。</p>
+<h2>第五步：統計方法要對應研究設計</h2>
+<p>同樣是比較兩組，可能使用獨立樣本 t test、配對 t test、Mann–Whitney U test、mixed model 或其他方法。選擇取決於：</p>
+<ul>
+<li>組別是否獨立。</li>
+<li>是否有重複量測。</li>
+<li>結果變項的分布與尺度。</li>
+<li>共變項與資料階層。</li>
+<li>研究主要想估計什麼效果。</li>
+</ul>
+<p>AI 如果不知道資料結構，只看到「幫我比較 pre 和 post」，很容易做出外觀合理但設計錯誤的分析。</p>
+<h2>第六步：不要只看 p 值</h2>
+<p>美國統計學會指出，p 值不能衡量假設為真的機率，也不應單獨決定科學結論（Wasserstein &amp; Lazar, 2016）。報告至少應包含：</p>
+<ul>
+<li>各組描述統計。</li>
+<li>效果量或模型估計值。</li>
+<li>信賴區間。</li>
+<li>模型假設與診斷。</li>
+<li>樣本數、排除與遺漏情形。</li>
+<li>主要分析與探索性分析的區別。</li>
+</ul>
+<p>「p &gt; .05」不等於兩組相同，也不等於研究沒有價值；它可能代表效果接近零，也可能只是估計不精確。</p>
+<h2>第七步：讓結果可以重新產生</h2>
+<p>Sandve 等人（2013）提出的可重現原則包括記錄每個結果如何產生、避免手動資料操作、保存程式版本與中間結果。我會要求最終報告中的圖表由程式輸出，而不是手動複製數字後重新畫圖。</p>
+<p>每個結果至少能回答：</p>
+<pre><code class="language-text">輸入資料版本是什麼？
+使用哪一個 commit？
+執行哪個程式？
+排除了多少資料，為什麼？
+軟體與套件版本是什麼？
+</code></pre>
+<h2>AI 在每一步扮演什麼角色？</h2>
+<table>
+<thead>
+<tr>
+<th>階段</th>
+<th>AI 可以做</th>
+<th>研究者必須確認</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>問題</td>
+<td>找出模糊概念、提出可測量版本</td>
+<td>問題是否符合研究目的</td>
+</tr>
+<tr>
+<td>設計</td>
+<td>產生分析計畫草稿與檢查清單</td>
+<td>主要假設、排除與因果界線</td>
+</tr>
+<tr>
+<td>資料</td>
+<td>寫資料驗證程式、產生資料字典</td>
+<td>單位、編碼與生理合理性</td>
+</tr>
+<tr>
+<td>分析</td>
+<td>寫可重跑程式與診斷圖</td>
+<td>模型適用性及結果解釋</td>
+</tr>
+<tr>
+<td>報告</td>
+<td>整理表格、APA 文字與限制</td>
+<td>數字、引用、語氣與責任</td>
+</tr>
+</tbody></table>
+<h2>帶走三個重點</h2>
+<ol>
+<li>分析流程始於研究問題與設計，不是統計檢定。</li>
+<li>原始資料、程式、參數與排除紀錄必須分開保存。</li>
+<li>AI 的每個產出都要能回到資料、程式或文獻驗證。</li>
+</ol>
+<blockquote>
+<p><strong>一句話總結</strong>：可重現研究不是讓 AI 再回答一次，而是讓另一位研究者能用同一份資料與程式重新得到結果。</p>
+</blockquote>
+<h2>參考文獻（APA 7th）</h2>
+<p>Munafò, M. R., Nosek, B. A., Bishop, D. V. M., Button, K. S., Chambers, C. D., Percie du Sert, N., Simonsohn, U., Wagenmakers, E.-J., Ware, J. J., &amp; Ioannidis, J. P. A. (2017). A manifesto for reproducible science. <em>Nature Human Behaviour, 1</em>, Article 0021. <a href="https://doi.org/10.1038/s41562-016-0021">https://doi.org/10.1038/s41562-016-0021</a></p>
+<p>Nosek, B. A., Ebersole, C. R., DeHaven, A. C., &amp; Mellor, D. T. (2018). The preregistration revolution. <em>Proceedings of the National Academy of Sciences, 115</em>(11), 2600–2606. <a href="https://doi.org/10.1073/pnas.1708274114">https://doi.org/10.1073/pnas.1708274114</a></p>
+<p>Sandve, G. K., Nekrutenko, A., Taylor, J., &amp; Hovig, E. (2013). Ten simple rules for reproducible computational research. <em>PLOS Computational Biology, 9</em>(10), e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a></p>
+<p>Wasserstein, R. L., &amp; Lazar, N. A. (2016). The ASA statement on p-values: Context, process, and purpose. <em>The American Statistician, 70</em>(2), 129–133. <a href="https://doi.org/10.1080/00031305.2016.1154108">https://doi.org/10.1080/00031305.2016.1154108</a></p>
+<p>Wilson, G., Bryan, J., Cranston, K., Kitzes, J., Nederbragt, L., &amp; Teal, T. K. (2017). Good enough practices in scientific computing. <em>PLOS Computational Biology, 13</em>(6), e1005510. <a href="https://doi.org/10.1371/journal.pcbi.1005510">https://doi.org/10.1371/journal.pcbi.1005510</a></p>
+<hr>
+<p>本文是一般研究方法介紹；實際分析仍需依研究設計、資料結構與領域規範調整。</p>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>AI 輔助研究的品質不應以「是否成功產生程式與 p 值」判斷，而應以整條 claim–data–code–result 鏈是否可追溯、可診斷與可重跑判斷。以下流程適用於行為資料、HRV、EEG 與一般觀察性研究，但各訊號仍需要專屬品質控制。</p>
+<blockquote>
+<p><strong>證據定位</strong>：本文整合可重現研究與統計報告原則，並提供實務工作流；不是對某一套 AI 平台的效能評估。</p>
+</blockquote>
+<h2>Stage 0：研究問題與 estimand</h2>
+<p>分析前先定義要估計的量，而不是先選檢定：</p>
+<pre><code class="language-yaml">population: 大學生
+exposure: VO2peak（連續變項）
+outcome: 抑制控制作業 median reaction time
+contrast: VO2peak 每增加 5 mL/kg/min 的平均差異
+covariates: age, sex, body composition
+timepoint: baseline
+analysis_unit: participant
+</code></pre>
+<p>這可避免把「有相關嗎」交給 AI 自行補上族群、時間點與比較方式。對重複量測或 trial-level 資料，analysis unit 尤其重要；把每個 trial 當成獨立樣本會造成 pseudoreplication。</p>
+<h2>Stage 1：protocol 與分析意圖</h2>
+<p>Nosek 等人（2018）強調，預先註冊有助於區分事前檢驗與事後探索。最低分析計畫應包含：</p>
+<ul>
+<li>primary/secondary outcomes 與時間點。</li>
+<li>inclusion/exclusion criteria。</li>
+<li>sample-size justification。</li>
+<li>缺失資料策略。</li>
+<li>transformation 與 outlier rule。</li>
+<li>primary model、contrasts 與 covariates。</li>
+<li>multiplicity 控制。</li>
+<li>assumption checks 與 sensitivity analyses。</li>
+</ul>
+<p>Lakens（2022）指出，樣本數可以依精確度、最小效果、資源限制、期望效果或其他明確目標決定；關鍵是說明理由，而不是只使用慣例數字。</p>
+<p>若分析計畫改變，應在 deviation log 記錄時間、原因、是否在看過結果後決定，以及對結論的影響。</p>
+<h2>Stage 2：immutable raw data 與資料契約</h2>
+<p>原始資料設定為 read-only，所有更動由程式產生。資料契約至少包括：</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Unit</th>
+<th>Allowed values</th>
+<th>Missing code</th>
+<th>Derivation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>participant_id</td>
+<td>string</td>
+<td>—</td>
+<td>unique</td>
+<td>none</td>
+<td>source</td>
+</tr>
+<tr>
+<td>vo2peak</td>
+<td>float</td>
+<td>mL/kg/min</td>
+<td>plausible range defined in protocol</td>
+<td>NA</td>
+<td>device output/QC</td>
+</tr>
+<tr>
+<td>rt_ms</td>
+<td>float</td>
+<td>ms</td>
+<td>task-specific window</td>
+<td>NA</td>
+<td>raw seconds × 1000</td>
+</tr>
+<tr>
+<td>rmssd</td>
+<td>float</td>
+<td>ms</td>
+<td>&gt; 0 after artifact QC</td>
+<td>NA</td>
+<td>validated NN intervals</td>
+</tr>
+</tbody></table>
+<p>資料版本可以用 checksum、release ID 或不可變路徑記錄。任何手動修正都要進入 correction table，而不是直接覆蓋 cell。</p>
+<h2>Stage 3：資料品質與盲化檢查</h2>
+<p>先檢查 structure，再看研究效果：</p>
+<ol>
+<li>schema、型態、單位與唯一鍵。</li>
+<li>join 前後列數與 unmatched IDs。</li>
+<li>缺失模式與各階段樣本數。</li>
+<li>impossible values 與重複紀錄。</li>
+<li>時間順序、裝置時區與同步。</li>
+<li>signal-specific quality flags。</li>
+</ol>
+<p>對 PPG/HRV，需另記錄 motion artifact、偵測失敗、有效 BBI 比例、量測長度、姿勢與呼吸；對 EEG，需記錄壞頻道、濾波、重參考、ICA 決策與 epoch rejection。AI 可執行規則，但不能從沒有 waveform 的 summary CSV 判定訊號品質。</p>
+<h2>Stage 4：探索性分析與正式分析隔離</h2>
+<p>EDA 的目的是發現資料結構與錯誤，不應無痕地改寫主要假設。建議分開：</p>
+<pre><code class="language-text">notebooks/eda/            # 探索，不產生正式數字
+src/confirmatory/         # 依計畫執行
+src/sensitivity/          # 替代規格
+outputs/confirmatory/     # 正式表圖
+outputs/exploratory/      # 明確標示探索
+</code></pre>
+<p>如果 EDA 發現偏態而改用 robust model，應說明這是預定決策規則或事後調整，而不是把結果重新包裝成原先計畫。</p>
+<h2>Stage 5：模型選擇與診斷</h2>
+<p>模型選擇至少對應以下資訊：</p>
+<ul>
+<li>outcome distribution 與 link function。</li>
+<li>independent、paired、clustered 或 repeated observations。</li>
+<li>fixed/random effects 與階層。</li>
+<li>covariate 的時序與因果角色。</li>
+<li>nonlinear relation 與 interaction 是否事前指定。</li>
+<li>residual、influence、convergence 與 collinearity diagnostics。</li>
+</ul>
+<p>AI 應輸出「為何選擇」與「什麼條件下不適用」，而不只是程式碼。診斷失敗時，優先檢查資料與模型規格，不應只為得到 p &lt; .05 不斷更換方法。</p>
+<h2>Stage 6：效果估計、區間與不確定性</h2>
+<p>Wasserstein 與 Lazar（2016）及 Greenland 等人（2016）都反對把 p 值當成單一科學裁決。報告應綁定：</p>
+<pre><code class="language-text">estimate + confidence/credible interval + units + analysis population
++ model specification + assumptions + missingness + multiplicity
+</code></pre>
+<p>例如「β = −8.4 ms per 5 mL/kg/min VO₂peak, 95% CI [−14.2, −2.6]」比「達顯著」提供更多資訊。若區間很寬，應承認不精確；若要主張等效或最小重要差異，需要事先定義 margin。</p>
+<h2>Stage 7：敏感度分析</h2>
+<p>根據實際風險選擇，而不是排列所有可能模型：</p>
+<ul>
+<li>不同合理 outlier rule。</li>
+<li>complete-case 與適當 missing-data 方法。</li>
+<li>participant-level summary 與 trial-level mixed model。</li>
+<li>含／不含有爭議 covariate。</li>
+<li>對 HRV 進行平均心率或量測品質相關調整。</li>
+<li>對多重比較採用不同控制策略。</li>
+</ul>
+<p>主要結論若只在單一任意規格成立，應降低確定性。</p>
+<h2>Stage 8：可重現 pipeline</h2>
+<p>Sandve 等人（2013）建議記錄每項結果如何產生、避免手動步驟、保存程式與中間結果。實作上可設計一個命令：</p>
+<pre><code class="language-bash">python src/run_pipeline.py --config configs/main.yaml
+</code></pre>
+<p>並產生：</p>
+<pre><code class="language-text">run_manifest.json
+├─ input_hash
+├─ git_commit
+├─ environment
+├─ parameters
+├─ exclusions
+├─ sample_counts
+└─ output_hashes
+</code></pre>
+<p>圖表與 APA 報告文字應從同一個結果物件產生，降低手動複製造成的不一致。</p>
+<h2>Stage 9：AI 的受控介入點</h2>
+<table>
+<thead>
+<tr>
+<th>AI action</th>
+<th>Required input</th>
+<th>Required output</th>
+<th>Verification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>選擇候選模型</td>
+<td>design schema、estimand</td>
+<td>候選與排除理由</td>
+<td>統計專業審查</td>
+</tr>
+<tr>
+<td>產生清理程式</td>
+<td>data dictionary、規則</td>
+<td>deterministic code、tests</td>
+<td>列數與例外案例</td>
+</tr>
+<tr>
+<td>解釋結果</td>
+<td>verified result object</td>
+<td>bounded prose</td>
+<td>數字一致性與因果語氣</td>
+</tr>
+<tr>
+<td>找文獻</td>
+<td>search contract</td>
+<td>DOI/PMID/URL</td>
+<td>資料庫解析與全文定位</td>
+</tr>
+<tr>
+<td>修改 repo</td>
+<td>clean status、scope</td>
+<td>diff、tests、commit</td>
+<td>code review 與遠端核對</td>
+</tr>
+</tbody></table>
+<p>任何 AI 產出的 simulated value、example code 與真實結果必須清楚分開。若 AI 無法存取必要資料，就應輸出 <code>unknown</code>，不能補出合理數字。</p>
+<h2>Stage 10：release checklist</h2>
+<ul>
+<li>研究問題與 estimand 一致。</li>
+<li>每個圖表數字可回到 result object。</li>
+<li>主要與探索性分析明確標示。</li>
+<li>樣本數在流程各階段一致。</li>
+<li>exclusions、missingness 與 sensitivity 有紀錄。</li>
+<li>DOI 與引用支持逐項確認。</li>
+<li>repo 不含 token、個資與未授權 PDF。</li>
+<li>README 提供最小重跑方式。</li>
+<li>公開限制與資料取得條件清楚。</li>
+</ul>
+<h2>參考文獻（APA 7th）</h2>
+<p>Greenland, S., Senn, S. J., Rothman, K. J., Carlin, J. B., Poole, C., Goodman, S. N., &amp; Altman, D. G. (2016). Statistical tests, p values, confidence intervals, and power: A guide to misinterpretations. <em>European Journal of Epidemiology, 31</em>(4), 337–350. <a href="https://doi.org/10.1007/s10654-016-0149-3">https://doi.org/10.1007/s10654-016-0149-3</a></p>
+<p>Lakens, D. (2022). Sample size justification. <em>Collabra: Psychology, 8</em>(1), Article 33267. <a href="https://doi.org/10.1525/collabra.33267">https://doi.org/10.1525/collabra.33267</a></p>
+<p>Munafò, M. R., Nosek, B. A., Bishop, D. V. M., Button, K. S., Chambers, C. D., Percie du Sert, N., Simonsohn, U., Wagenmakers, E.-J., Ware, J. J., &amp; Ioannidis, J. P. A. (2017). A manifesto for reproducible science. <em>Nature Human Behaviour, 1</em>, Article 0021. <a href="https://doi.org/10.1038/s41562-016-0021">https://doi.org/10.1038/s41562-016-0021</a></p>
+<p>Nosek, B. A., Ebersole, C. R., DeHaven, A. C., &amp; Mellor, D. T. (2018). The preregistration revolution. <em>Proceedings of the National Academy of Sciences, 115</em>(11), 2600–2606. <a href="https://doi.org/10.1073/pnas.1708274114">https://doi.org/10.1073/pnas.1708274114</a></p>
+<p>Sandve, G. K., Nekrutenko, A., Taylor, J., &amp; Hovig, E. (2013). Ten simple rules for reproducible computational research. <em>PLOS Computational Biology, 9</em>(10), e1003285. <a href="https://doi.org/10.1371/journal.pcbi.1003285">https://doi.org/10.1371/journal.pcbi.1003285</a></p>
+<p>Wasserstein, R. L., &amp; Lazar, N. A. (2016). The ASA statement on p-values: Context, process, and purpose. <em>The American Statistician, 70</em>(2), 129–133. <a href="https://doi.org/10.1080/00031305.2016.1154108">https://doi.org/10.1080/00031305.2016.1154108</a></p>
+<p>Wilson, G., Bryan, J., Cranston, K., Kitzes, J., Nederbragt, L., &amp; Teal, T. K. (2017). Good enough practices in scientific computing. <em>PLOS Computational Biology, 13</em>(6), e1005510. <a href="https://doi.org/10.1371/journal.pcbi.1005510">https://doi.org/10.1371/journal.pcbi.1005510</a></p>
+<hr>
+<p>本文提供研究流程框架，不替代領域統計諮詢、研究倫理審查或資料管理計畫。正式分析必須以實際 protocol、資料結構與診斷結果為準。</p>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

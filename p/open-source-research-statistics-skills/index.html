@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="盤點具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權的學術研究與統計 Skills，說明用途、適用階段與再利用注意事項。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/open-source-research-statistics-skills/" />
+    <meta property="og:title" content="開源研究 Skills 怎麼選？文獻、統計與研究寫作工具箱" />
+    <meta property="og:description" content="盤點具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權的學術研究與統計 Skills，說明用途、適用階段與再利用注意事項。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/open-source-research-statistics-skills/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/open-source-research-statistics-skills.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="開源研究 Skills 怎麼選？文獻、統計與研究寫作工具箱" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="開源研究 Skills 怎麼選？文獻、統計與研究寫作工具箱" />
+    <meta name="twitter:description" content="盤點具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權的學術研究與統計 Skills，說明用途、適用階段與再利用注意事項。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/open-source-research-statistics-skills.png" />
+    <title>開源研究 Skills 怎麼選？文獻、統計與研究寫作工具箱 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-11" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"開源研究 Skills 怎麼選？文獻、統計與研究寫作工具箱","description":"盤點具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權的學術研究與統計 Skills，說明用途、適用階段與再利用注意事項。","datePublished":"2026-08-11","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/open-source-research-statistics-skills/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/open-source-research-statistics-skills/","image":"https://wttntpc.github.io/tingwu.github.io/og/open-source-research-statistics-skills.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"開源軟體, AI Skills, 文獻研究, 統計分析, 研究工作流"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/open-source-research-statistics-skills');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">AI 工具與工作流 · 2026-08-11</div><h1>開源研究 Skills 怎麼選？文獻、統計與研究寫作工具箱</h1><p>盤點具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權的學術研究與統計 Skills，說明用途、適用階段與再利用注意事項。</p><div class="tag-list"><span>開源軟體</span><span>AI Skills</span><span>文獻研究</span><span>統計分析</span><span>研究工作流</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>GitHub 上找得到的 Skill，就一定是開源嗎？<strong>不是。</strong>「公開可讀」只代表我們看得到檔案；只有作者附上明確的開源授權，我們才知道能否合法地複製、修改與再散布。</p>
+<p>我盤點目前安裝的研究工具後，將具有明確 MIT、BSD-3-Clause 或 Apache-2.0 授權，而且直接服務於文獻研究、統計分析或生醫資料處理的 Skills 整理在這篇文章。這不是一張「全部都要安裝」的清單，而是一套按研究階段挑選工具的方法。</p>
+<h2>先看結論：我會怎麼選</h2>
+<table>
+<thead>
+<tr>
+<th>研究工作</th>
+<th>建議 Skill</th>
+<th>能協助什麼</th>
+<th>授權</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>找文獻</td>
+<td><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/paper-lookup"><code>paper-lookup</code></a></td>
+<td>查 PubMed、PMC、Crossref、OpenAlex 等來源，保留 DOI 與查詢資訊</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>快速讀懂單篇論文</td>
+<td><a href="https://github.com/drpwchen/paper-review-and-digest/tree/main/paper-digest"><code>paper-digest</code></a></td>
+<td>依全文整理研究問題、方法、結果與複習卡</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>深度評讀單篇論文</td>
+<td><a href="https://github.com/drpwchen/paper-review-and-digest/tree/main/paper-review"><code>paper-review</code></a></td>
+<td>檢查期刊、作者、方法、引用與研究限制</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>多篇文獻整合</td>
+<td><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/literature-review"><code>literature-review</code></a></td>
+<td>規劃跨資料庫搜尋、篩選、主題統整與引文查核</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>研究寫作</td>
+<td><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/scientific-writing"><code>scientific-writing</code></a></td>
+<td>管理論述與證據對應、報告規範及引用一致性</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>稿件品質檢查</td>
+<td><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/peer-review"><code>peer-review</code></a></td>
+<td>檢查方法、統計、倫理、圖表、可重現性與報告完整度</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>計畫書</td>
+<td><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/research-grants"><code>research-grants</code></a></td>
+<td>整理研究意義、創新性、方法、預算與計畫格式</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>選擇統計方法</td>
+<td><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/statistical-analysis"><code>statistical-analysis</code></a></td>
+<td>檢定選擇、假設檢查、效果量與 APA 格式報告</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>樣本數規劃</td>
+<td><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/statistical-power"><code>statistical-power</code></a></td>
+<td>事前檢力、最小可偵測效果、power curve 與模擬</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>統計模型實作</td>
+<td><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/statsmodels"><code>statsmodels</code></a></td>
+<td>OLS、GLM、混合模型、時間序列與模型診斷</td>
+<td>BSD-3-Clause</td>
+</tr>
+<tr>
+<td>HRV／PPG／EEG 等生理訊號</td>
+<td><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/neurokit2"><code>neurokit2</code></a></td>
+<td>生理訊號處理、HRV、事件分析與複雜度指標</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>通用資料分析流程</td>
+<td><a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills"><code>data:*</code></a></td>
+<td>資料探索、統計分析、視覺化、Dashboard 與結果驗證</td>
+<td>Apache-2.0</td>
+</tr>
+<tr>
+<td>生醫與單細胞研究</td>
+<td><a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills"><code>bio-research:*</code></a></td>
+<td>單細胞 QC、scvi-tools、Nextflow 與實驗資料轉換</td>
+<td>Apache-2.0</td>
+</tr>
+</tbody></table>
+<p>其中，K-Dense 的研究 Skills 集合在公開儲存庫中採 MIT 授權，但作者也提醒：<strong>每個 Skill 仍應以自身 <code>SKILL.md</code> 的 <code>license</code> 欄位為準。</strong> Anthropic 的 Data 與 Bio Research 則收錄於 Apache-2.0 的 <a href="https://github.com/anthropics/knowledge-work-plugins">Knowledge Work Plugins</a>。</p>
+<h2>一條適合我的精簡研究流程</h2>
+<pre><code class="language-mermaid">flowchart LR
+  A[研究問題] --&gt; B[paper-lookup]
+  B --&gt; C[paper-digest 或 paper-review]
+  C --&gt; D[statistical-power]
+  D --&gt; E[statistical-analysis]
+  E --&gt; F[statsmodels 或 neurokit2]
+  F --&gt; G[scientific-writing]
+  G --&gt; H[peer-review]
+</code></pre>
+<p>這條流程不需要一次啟用所有工具。找資料時用文獻 Skill；規劃研究時用樣本數 Skill；真的要建模時，才呼叫 <code>statsmodels</code> 或 <code>neurokit2</code>。這樣較省提示內容，也能避免不同 Skill 同時給出互相矛盾的指示。</p>
+<h3>最小核心組合</h3>
+<p>對我的運動科學、認知神經科學、HRV 與 EEG 研究，我會先保留六項：</p>
+<ol>
+<li><code>paper-lookup</code>：可重現地找文獻。</li>
+<li><code>paper-review</code>：深入判讀單篇研究是否可信。</li>
+<li><code>statistical-power</code>：在收資料前規劃樣本數。</li>
+<li><code>statistical-analysis</code>：決定分析方法與報告內容。</li>
+<li><code>neurokit2</code>：處理 PPG、ECG、HRV、EEG 等生理訊號。</li>
+<li><code>scientific-writing</code>：把分析結果寫成有證據來源的研究文字。</li>
+</ol>
+<p>若要做較複雜的迴歸、混合模型或時間序列，再加入 <code>statsmodels</code>；若要執行單細胞或生物資訊流程，再從 <code>bio-research:*</code> 按需求選裝。</p>
+<h2>開源不等於完全免費，也不等於結果正確</h2>
+<p>Skill 通常是一組教 AI 如何工作的 Markdown 指引與輔助程式。它採開源授權，不代表：</p>
+<ul>
+<li>所連接的資料庫、模型或 API 一定免費。</li>
+<li>搜到的論文一定能免費下載全文。</li>
+<li>AI 選的統計方法一定適合你的研究設計。</li>
+<li>產生的結論已經通過研究者、統計顧問或同儕審查。</li>
+</ul>
+<p>我會把 Skill 當成「研究流程的檢查表與助手」，而不是把研究判斷外包給 AI。任何關鍵結果仍須核對原始論文、資料字典、模型假設、效果量、信賴區間與分析程式。</p>
+<h2>哪些目前不列入「明確開源」？</h2>
+<p>以下工具可能很好用，但我目前沒有找到足以支持自由再散布的明確授權，因此不放入上面的開源清單：</p>
+<ul>
+<li><code>litpilot</code>、<code>ting-litpilot</code></li>
+<li><code>research-organizer</code></li>
+<li><code>knowledge-base</code></li>
+<li><code>ai-tools-zotero</code></li>
+</ul>
+<p>另外，我自己建立的 <code>zotero-bridge</code> 與 <code>notebooklm-bridge</code> 雖在 metadata 宣告 MIT，但最好再補上一份完整 <code>LICENSE</code> 檔與作者年份，才方便別人清楚理解再利用條件。</p>
+<blockquote>
+<p>判斷原則很簡單：沒有 LICENSE 或清楚的授權聲明，就先視為「版權保留」，不要因為儲存庫是 public 就假設可以自由改作與散布。</p>
+</blockquote>
+<h2>實際使用前的五項檢查</h2>
+<ol>
+<li>查看儲存庫根目錄的 <code>LICENSE</code>。</li>
+<li>再看個別 <code>SKILL.md</code> 是否另有 <code>license</code> 欄位。</li>
+<li>檢查外部 API、模型、資料庫與套件的個別條款。</li>
+<li>安裝前閱讀 Skill 的指令與腳本，確認不會上傳機密資料或執行危險命令。</li>
+<li>分享修改版時保留原作者、著作權與授權文字，並清楚標記修改內容。</li>
+</ol>
+<p>我的結論是：<strong>值得安裝的不是最多的 Skills，而是授權清楚、用途不重複，而且能在研究流程中指出何時需要人工判斷的 Skills。</strong></p>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>Agent Skill 是提供給 AI agent 的可重用程序知識，可能包含 <code>SKILL.md</code>、參考文件、範例程式與外部工具設定。評估其是否適合研究工作，至少需要分開回答三個問題：它是否具有明確授權、是否符合研究方法需求，以及其依賴的資料與服務是否有不同條款。</p>
+<h2>稽核範圍與納入標準</h2>
+<p>本次盤點以目前環境中已安裝、且主要用途為文獻研究、科學寫作、統計分析或生醫資料處理的 Skills 為範圍。只有符合下列任一條件者才列為「明確開源」：</p>
+<ol>
+<li>Skill 所在公開儲存庫具有 OSI 常見開源授權，且個別 Skill 未宣告衝突條款。</li>
+<li>個別 <code>SKILL.md</code> 明確標示 MIT 或 BSD-3-Clause，並可在安裝內容中找到相應授權文字。</li>
+<li>Plugin 根目錄的授權明確涵蓋其 Skills 目錄，例如 Anthropic Knowledge Work Plugins 的 Apache-2.0。</li>
+</ol>
+<p>單純公開原始碼、README 使用「free」或「community」，以及 metadata 只有作者名稱，都不足以判定為開源。</p>
+<h2>依研究生命週期分類</h2>
+<h3>1. 文獻探索與證據吸收</h3>
+<ul>
+<li><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/paper-lookup"><code>paper-lookup</code></a>：面向多資料庫檢索與識別碼查找，強調可重現的查詢來源、參數和取得日期。</li>
+<li><a href="https://github.com/drpwchen/paper-review-and-digest/tree/main/paper-digest"><code>paper-digest</code></a>：以單篇全文為前提做教學式內容重組，不應用摘要取代全文，也不等同品質評讀。</li>
+<li><a href="https://github.com/drpwchen/paper-review-and-digest/tree/main/paper-review"><code>paper-review</code></a>：負責單篇研究的深度批判性評讀，涵蓋期刊與作者背景、引用查核、研究設計、統計與限制。</li>
+<li><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/literature-review"><code>literature-review</code></a>：處理多篇文獻的系統性搜尋、篩選、資料擷取與主題統整；實際執行仍應事先登錄 protocol，並保存完整搜尋式與排除理由。</li>
+</ul>
+<p>這四項不是彼此替代。<code>paper-lookup</code> 回答「有哪些文獻」，<code>paper-digest</code> 回答「這篇做了什麼」，<code>paper-review</code> 回答「這篇多可信」，<code>literature-review</code> 則回答「整體證據如何」。</p>
+<h3>2. 研究規劃與統計推論</h3>
+<ul>
+<li><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/statistical-power"><code>statistical-power</code></a> 適合資料收集前的樣本數規劃、最小可偵測效果與模擬式檢力；不應把觀察到的 p 值倒推成事後檢力，作為不顯著結果的解釋。</li>
+<li><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/statistical-analysis"><code>statistical-analysis</code></a> 提供從研究問題、變項型態、相依結構到假設檢查、效果量與報告格式的分析路徑。</li>
+<li><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/statsmodels"><code>statsmodels</code></a> 是較低階的模型實作 Skill，適合需要係數推論、殘差診斷、GLM、mixed models 或 time series 的任務。</li>
+<li>Anthropic <a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills"><code>data:*</code></a> 是較完整的資料工作流，包括 <a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/explore-data"><code>explore-data</code></a>、<a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/statistical-analysis"><code>statistical-analysis</code></a>、<a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/create-viz"><code>create-viz</code></a>、<a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/build-dashboard"><code>build-dashboard</code></a> 與 <a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/data/skills/validate-data"><code>validate-data</code></a>。其中 <code>validate-data</code> 特別適合作為分享前的獨立 QA 關卡。</li>
+</ul>
+<p>建議保留「問題定義 → 資料品質 → 模型假設 → 效果估計 → 敏感度分析 → 可重現報告」順序，而不是先選一個檢定名稱再尋找合理化理由。</p>
+<h3>3. 生理訊號與生醫分析</h3>
+<ul>
+<li><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/neurokit2"><code>neurokit2</code></a> 將 ECG、PPG、HRV、EEG、EDA、呼吸與肌電等生理訊號的處理流程帶入研究工作；腕式 PPG 的峰值間隔、移動偽影與裝置演算法限制仍需獨立記錄。</li>
+<li>Anthropic <a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills"><code>bio-research:*</code></a> 涵蓋 <a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills/single-cell-rna-qc"><code>single-cell-rna-qc</code></a>、<a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills/scvi-tools"><code>scvi-tools</code></a>、<a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills/nextflow-development"><code>nextflow-development</code></a> 與 <a href="https://github.com/anthropics/knowledge-work-plugins/tree/main/bio-research/skills/instrument-data-to-allotrope"><code>instrument-data-to-allotrope</code></a> 等較專門流程，適合實際有相應資料與運算環境時按需安裝，不適合為了「可能有一天會用到」而整包載入。</li>
+</ul>
+<h3>4. 科學寫作與品質控制</h3>
+<ul>
+<li><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/scientific-writing"><code>scientific-writing</code></a> 強調論述—證據對應、報告規範、作者責任、保密與一致性檢查。</li>
+<li><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/peer-review"><code>peer-review</code></a> 將方法、統計、可重現性、倫理、圖表與引用檢查整理成結構化審查，但最終評語仍由具領域知識的人負責。</li>
+<li><a href="https://github.com/K-Dense-AI/scientific-agent-skills/tree/main/skills/research-grants"><code>research-grants</code></a> 協助組織研究意義、創新性、方法與申請格式；各補助機構的當年度規定仍須回到官方公告確認。</li>
+</ul>
+<h2>三種授權的實務差異</h2>
+<table>
+<thead>
+<tr>
+<th>授權</th>
+<th>一般可做的事</th>
+<th>再散布時的主要注意事項</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://opensource.org/license/mit">MIT</a></td>
+<td>使用、修改、散布與商業使用</td>
+<td>保留著作權與授權聲明；軟體按現況提供</td>
+</tr>
+<tr>
+<td><a href="https://opensource.org/license/bsd-3-clause">BSD-3-Clause</a></td>
+<td>使用、修改、散布與商業使用</td>
+<td>保留聲明；不得以作者或貢獻者名稱為衍生產品背書</td>
+</tr>
+<tr>
+<td><a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0</a></td>
+<td>使用、修改、散布與商業使用</td>
+<td>保留 LICENSE／NOTICE、標示修改，並包含明確專利授權條款</td>
+</tr>
+</tbody></table>
+<p>這是研究工具管理上的實務整理，不是法律意見。若要將修改版 Skill 納入商業服務、封閉產品或跨組織散布，仍應逐一閱讀完整授權文字。</p>
+<h2>Skill 授權不等於整條工作流的授權</h2>
+<p>一個 MIT Skill 可能呼叫有速率限制的文獻 API、付費語言模型、受資料使用協議約束的臨床資料，或另有授權的 Python 套件。因此，完整的可重現研究清單至少應記錄：</p>
+<ul>
+<li>Skill 名稱、來源儲存庫、版本或 commit SHA。</li>
+<li>Skill 與儲存庫授權。</li>
+<li>Python／R 套件與版本鎖定檔。</li>
+<li>外部資料庫、API、模型和全文存取條件。</li>
+<li>提示詞、查詢式、執行日期、隨機種子與人工修訂紀錄。</li>
+</ul>
+<p>這也說明為何「開源」與「科學可信度」是兩條不同軸線。授權回答能否合法再利用；研究品質則由設計、資料、方法、查核與透明報告共同決定。</p>
+<h2>我的安裝策略</h2>
+<p>我不會把所有研究 Skills 永久放入每次對話的上下文，而是建立三層配置：</p>
+<table>
+<thead>
+<tr>
+<th>層級</th>
+<th>Skills</th>
+<th>啟用時機</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>日常核心</td>
+<td><code>paper-lookup</code>、<code>paper-review</code>、<code>statistical-analysis</code></td>
+<td>找文獻、評讀與一般研究分析</td>
+</tr>
+<tr>
+<td>專案型</td>
+<td><code>statistical-power</code>、<code>statsmodels</code>、<code>neurokit2</code>、<code>scientific-writing</code></td>
+<td>規劃樣本數、正式建模、生理訊號與論文撰寫</td>
+</tr>
+<tr>
+<td>領域型</td>
+<td><code>literature-review</code>、<code>research-grants</code>、<code>data:*</code>、<code>bio-research:*</code></td>
+<td>系統性回顧、計畫申請、完整資料專案或生醫分析</td>
+</tr>
+</tbody></table>
+<p>這種分層能減少上下文與 token 消耗，也讓每次工作只有一個清楚的主要方法框架。安裝前仍應檢閱 <code>SKILL.md</code>、相關腳本與外部連線權限；授權清楚只是最低門檻，不是安全與品質保證。</p>
+<h2>參考來源</h2>
+<ul>
+<li><a href="https://github.com/k-dense-ai/scientific-agent-skills">K-Dense Scientific Agent Skills</a>：公開科研 Skills 集合與個別授權說明。</li>
+<li><a href="https://github.com/anthropics/knowledge-work-plugins">Anthropic Knowledge Work Plugins</a>：Data 與 Bio Research Plugins，儲存庫採 Apache-2.0。</li>
+<li><a href="https://opensource.org/license/mit">MIT License（Open Source Initiative）</a></li>
+<li><a href="https://opensource.org/license/bsd-3-clause">BSD 3-Clause License（Open Source Initiative）</a></li>
+<li><a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a></li>
+</ul>
+<p>最後的原則是：<strong>選擇授權明確、範圍清楚、能留下可重現紀錄的 Skill；讓 AI 協助執行，讓研究者保留判斷與責任。</strong></p>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="數據分析不只是選檢定與計算 p 值；從問題定義、資料清理、探索、模型診斷到效果估計，整理一套能被檢查與重現的完整流程。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/data-analysis-workflow/" />
+    <meta property="og:title" content="數據如何變成結論？從研究問題到可重現報告的分析流程" />
+    <meta property="og:description" content="數據分析不只是選檢定與計算 p 值；從問題定義、資料清理、探索、模型診斷到效果估計，整理一套能被檢查與重現的完整流程。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/data-analysis-workflow/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/data-analysis-workflow.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="數據如何變成結論？從研究問題到可重現報告的分析流程" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="數據如何變成結論？從研究問題到可重現報告的分析流程" />
+    <meta name="twitter:description" content="數據分析不只是選檢定與計算 p 值；從問題定義、資料清理、探索、模型診斷到效果估計，整理一套能被檢查與重現的完整流程。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/data-analysis-workflow.png" />
+    <title>數據如何變成結論？從研究問題到可重現報告的分析流程 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-06" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"數據如何變成結論？從研究問題到可重現報告的分析流程","description":"數據分析不只是選檢定與計算 p 值；從問題定義、資料清理、探索、模型診斷到效果估計，整理一套能被檢查與重現的完整流程。","datePublished":"2026-08-06","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/data-analysis-workflow/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/data-analysis-workflow/","image":"https://wttntpc.github.io/tingwu.github.io/og/data-analysis-workflow.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"數據分析, 研究設計, 統計推論, 可重現研究"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/data-analysis-workflow');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">數據分析 · 2026-08-06</div><h1>數據如何變成結論？從研究問題到可重現報告的分析流程</h1><p>數據分析不只是選檢定與計算 p 值；從問題定義、資料清理、探索、模型診斷到效果估計，整理一套能被檢查與重現的完整流程。</p><div class="tag-list"><span>數據分析</span><span>研究設計</span><span>統計推論</span><span>可重現研究</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>當我們拿到一份研究資料，最容易立刻問：「要用 t 檢定、ANOVA，還是迴歸？」但數據分析真正的起點，不是打開統計軟體，而是先弄清楚自己想回答什麼問題。</p>
+<p>數據分析也不只是算出一個 p 值。它是一段從研究問題、資料整理、統計建模到結果溝通的完整過程。每一步都會影響最後的結論。</p>
+<h2>一、先把研究問題說清楚</h2>
+<p>同一份資料可以回答很多問題，但不能在看完結果後才決定研究目的。開始分析前，應先確認：</p>
+<ul>
+<li>研究對象是誰？</li>
+<li>主要結果指標是什麼？</li>
+<li>想比較差異、探索關聯，還是建立預測模型？</li>
+<li>資料來自不同受試者，還是同一批人的重複測量？</li>
+<li>哪些分析是事先規劃，哪些只是探索？</li>
+</ul>
+<p>例如，「運動組的認知功能是否優於控制組」與「運動介入前後是否改變」，雖然都涉及認知分數，資料結構和統計方法卻不相同。</p>
+<blockquote>
+<p>好的分析不是從統計方法出發，而是從一個可以被資料回答的問題出發。</p>
+</blockquote>
+<h2>二、保留原始資料，建立資料字典</h2>
+<p>原始資料應保留一份唯讀版本，不直接在上面刪除、排序或修改。清理後的資料另存新檔，才能在出錯時回到起點。</p>
+<p>接著建立資料字典，記錄每個欄位的意義、單位、編碼方式與合理範圍。例如：</p>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>意義</th>
+<th>單位或編碼</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>participant_id</td>
+<td>受試者代碼</td>
+<td>不可重複識別個人</td>
+</tr>
+<tr>
+<td>group</td>
+<td>實驗組別</td>
+<td>control／exercise</td>
+</tr>
+<tr>
+<td>time</td>
+<td>測量時間</td>
+<td>pre／post</td>
+</tr>
+<tr>
+<td>vo2peak</td>
+<td>心肺適能</td>
+<td>mL·kg⁻¹·min⁻¹</td>
+</tr>
+</tbody></table>
+<p>這一步看似基本，卻能避免把缺失值代碼當成真實數值、弄反組別，或在不同分析中使用不一致的變項定義。</p>
+<h2>三、清理資料，但不要任意修剪</h2>
+<p>資料清理包含檢查重複紀錄、資料型別、缺失值、不合理範圍與測量品質。例如反應時間為負數、受試者代碼缺漏，或同一人在同一時間點出現兩筆紀錄，都需要回頭確認。</p>
+<p>離群值不應只因為「看起來太大」就刪除。研究者應先判斷它是輸入錯誤、儀器雜訊，還是真實但少見的觀察值，並記錄排除規則及排除前後的分析差異。</p>
+<p>缺失值也不能一律用平均數補上。處理方式取決於缺失比例、發生原因、研究設計與模型特性；必要時可採用多重插補或能處理不完整測量的模型。</p>
+<h2>四、先探索，再正式檢定</h2>
+<p>正式建模前，先用描述統計與圖表認識資料：</p>
+<ul>
+<li>平均數或中位數呈現典型狀況。</li>
+<li>標準差、四分位距與範圍呈現個體差異。</li>
+<li>直方圖與 Q–Q plot 觀察分布。</li>
+<li>盒鬚圖與原始資料點檢查極端個案。</li>
+<li>散佈圖觀察兩個連續變項的關係。</li>
+<li>前後測軌跡圖呈現每位受試者的變化。</li>
+</ul>
+<p>探索性分析不是用來挑選「最容易顯著」的結果，而是用來發現資料品質問題、理解分布，並確認原先的分析計畫是否合理。</p>
+<h2>五、依研究設計選擇方法</h2>
+<p>統計方法必須配合資料的尺度與相依結構：</p>
+<table>
+<thead>
+<tr>
+<th>研究問題</th>
+<th>常見起點</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>比較兩個獨立組別</td>
+<td>獨立樣本 t 檢定或 Welch t 檢定</td>
+</tr>
+<tr>
+<td>比較同一批人的前後測</td>
+<td>配對 t 檢定</td>
+</tr>
+<tr>
+<td>比較三組以上</td>
+<td>ANOVA 或相應的穩健方法</td>
+</tr>
+<tr>
+<td>同時分析組別與時間</td>
+<td>混合設計 ANOVA 或線性混合模型</td>
+</tr>
+<tr>
+<td>分析類別結果</td>
+<td>卡方檢定或 Logistic 迴歸</td>
+</tr>
+<tr>
+<td>探索連續變項的關聯</td>
+<td>相關或迴歸模型</td>
+</tr>
+</tbody></table>
+<p>這張表只是起點，不是按表自動選答案。樣本是否獨立、資料是否重複測量、結果變項的分布及研究目的，都會影響最後的選擇。</p>
+<h2>六、檢查模型，而不只是檢查常態性</h2>
+<p>不同方法的假設不完全相同。除了常態性，還可能需要檢查獨立性、線性關係、變異數同質性、殘差分布、共線性與具影響力的個案。</p>
+<p>常態性也不是單看 Shapiro–Wilk 檢定的 p 值。小樣本可能難以發現偏離，大樣本則可能把輕微偏離判定為顯著，因此需要同時查看圖形、殘差與分析方法的穩健性。</p>
+<p>當假設不理想時，不一定只能改用無母數檢定。研究者也可以考慮 Welch 方法、資料轉換、穩健標準誤、廣義模型或混合效果模型，並說明選擇理由。</p>
+<h2>七、一起解讀估計值、信賴區間與 p 值</h2>
+<p>p 值描述在特定模型與虛無假設下，目前資料有多不尋常；它不是效果存在的機率，也不能證明研究假設為真。</p>
+<p>完整的結果至少應包含：</p>
+<ul>
+<li>每組實際樣本數與描述統計。</li>
+<li>差異或迴歸係數等估計值。</li>
+<li>95% 信賴區間。</li>
+<li>檢定統計量、自由度與確切 p 值。</li>
+<li>事先指定的效果量。</li>
+<li>缺失資料、排除個案與敏感度分析。</li>
+</ul>
+<p>如果結果沒有達到統計顯著，也不能直接說「完全沒有效果」。信賴區間可以協助判斷資料究竟支持接近零的效果，還是因為估計太不精確而無法下結論。</p>
+<h2>八、把分析變成可以重現的研究紀錄</h2>
+<p>最後的成果不應只有一張統計軟體截圖。可靠的分析應保留原始資料說明、清理規則、分析程式或 Syntax、軟體版本、結果表與圖表。圖表的任務是幫助讀者看懂結果，而不是只讓報告看起來漂亮。</p>
+<p>我會把完整流程整理成：</p>
+<div class="mermaid-wrap">
+<pre class="mermaid">
+flowchart TD
+    A[研究問題] --> B[分析計畫]
+    B --> C[(原始資料)]
+    C --> D[資料字典]
+    D --> E[清理與品質檢查]
+    E --> F[探索性分析 EDA]
+    F --> G[模型選擇]
+    G --> H{假設與診斷}
+    H -. 違反假設 .-> E
+    H -. 修正模型 .-> G
+    H -- 通過 --> I[效果估計]
+    I --> J[視覺化]
+    J --> K[報告與重現]
+</pre>
+</div><p>數據分析的價值不在於產生最多表格，而在於讓每一個判斷都有理由、每一個結果都能追溯，並讓讀者知道結論可以支持到哪裡。</p>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>數據分析是研究設計的延伸，不是資料收集完成後才開始的獨立技術工作。一套可信且可重現的流程，必須讓研究問題、資料生成機制、前處理規則、模型設定與報告內容彼此一致。</p>
+<h2>1. 將研究問題轉換為可估計的目標</h2>
+<p>分析前應定義研究母群、暴露或介入、比較條件、結果變項、時間結構及目標估計量（estimand）。同時區分確認性與探索性分析，預先指定主要結果、排除規則、多重比較策略，以及必要的敏感度分析。</p>
+<p>檢定名稱不是研究問題。例如「執行 t 檢定」沒有交代要估計哪一種差異、比較哪些觀察值，也沒有說明觀察值是否獨立。更完整的問題應是：「估計運動介入組相對控制組在介入後認知分數的平均差異，並考量基線分數。」</p>
+<h2>2. 建立資料來源與版本界線</h2>
+<p>原始資料應保持不可變，衍生資料由程式或 Syntax 重新產生。分析專案至少包含：</p>
+<ul>
+<li>原始資料及來源說明。</li>
+<li>資料字典與變項衍生規則。</li>
+<li>清理後的分析資料。</li>
+<li>分析程式、套件與軟體版本。</li>
+<li>執行紀錄、圖表及結果表。</li>
+</ul>
+<p>若涉及生理訊號或認知作業，還應保留設備設定、取樣頻率、前處理參數、試驗排除規則與受試者層級的品質指標。</p>
+<h2>3. 執行可稽核的資料驗證與前處理</h2>
+<p>資料驗證應涵蓋欄位完整性、型別、允許範圍、唯一鍵、重複紀錄、跨欄位邏輯及測量次數。寬格式與長格式的轉換必須保留受試者識別碼及測量層級，避免破壞重複觀測的相依關係。</p>
+<p>缺失資料的處理應根據缺失機制及模型假設決定。完整個案分析、單一填補、多重插補與最大概似估計並非可以任意互換；報告時應交代各階段樣本數及缺失處理方法。</p>
+<p>離群值判定也應結合資料來源、測量品質與模型影響度。標準分數或四分位距規則可以作為警示，不能自動等同於刪除依據。若排除決定可能影響結論，應進行包含與排除該資料的敏感度分析。</p>
+<h2>4. 使用 EDA 理解資料，而非尋找顯著結果</h2>
+<p>探索性數據分析應呈現集中趨勢、離散程度、分布形狀、缺失模式及個體軌跡。圖表選擇應對應資料結構：獨立組別呈現原始點與分布，重複測量呈現配對連線，連續變項呈現散佈與可能的非線性關係。</p>
+<p>若 EDA 揭露未預期的分組或關係，可以形成新的探索性假設，但不應在同一資料中把事後發現包裝成事前確認性檢驗。</p>
+<h2>5. 由資料生成機制與相依結構選擇模型</h2>
+<p>模型選擇應考量結果變項尺度、觀測獨立性、重複測量、階層結構、共變數與樣本不平衡。前後測研究不一定只適合分析變化量；依研究問題與隨機化設計，基線調整的 ANCOVA 或混合效果模型可能提供更合適的估計。</p>
+<p>線性混合模型可處理受試者內相關、不等測量次數與部分遺漏時間點，但仍需合理指定固定效果、隨機效果與共變異結構。模型較複雜不代表一定較好，選擇應由研究問題、設計與資料支持程度共同決定。</p>
+<h2>6. 進行與模型相符的診斷</h2>
+<p>假設檢查應針對模型的實際對象。例如配對 t 檢定關注配對差值的分布，線性模型主要檢查殘差，而不是機械地要求每個原始變項都通過常態性檢定。</p>
+<p>診斷內容可包括殘差的線性與變異型態、具影響力觀察值、共線性、變異數結構，以及模型是否收斂。若採取資料轉換、穩健估計或替代模型，應保留判斷理由並比較主要結論是否穩定。</p>
+<h2>7. 將統計推論視為估計與不確定性的表達</h2>
+<p>統計報告應以估計值及其不確定性為核心，而不是只依 <code>p &lt; .05</code> 二分結論。至少報告樣本數、描述統計、估計值、95% 信賴區間、效果量、檢定統計量、自由度與確切 p 值。涉及多個結果或比較時，應說明多重比較控制方式。</p>
+<p>效果量的種類必須清楚標示，例如 Cohen&#39;s d、Hedges&#39; g、η²、partial η² 或標準化迴歸係數；不同效果量的定義與分母不同，不能只寫「效果量」。其大小也應結合研究情境、測量誤差與實質重要性判斷。</p>
+<h2>8. 讓報告可以被檢查與重新執行</h2>
+<p>Methods 應交代資料處理、模型、假設檢查、軟體版本及偏離原計畫之處；Results 則忠實呈現估計與不確定性，不加入因果範圍以外的解釋。Discussion 才進一步連結研究問題、可能機制、限制與外部效度。</p>
+<p>理想情況下，從分析資料到表格與圖形都由同一套程式或 Syntax 產生，避免人工複製造成數字不一致。若資料因隱私無法公開，仍可提供去識別化範例資料、變項字典、分析程式及重現說明。</p>
+<div class="mermaid-wrap">
+<pre class="mermaid">
+flowchart TD
+    A[研究問題與估計目標] --> B[建立資料來源與版本]
+    B --> C[資料驗證與前處理]
+    C --> D[探索性數據分析 EDA]
+    D --> E[考量相依結構選擇模型]
+    E --> F{模型診斷}
+    F -. 違反假設 .-> C
+    F -. 修正模型 .-> E
+    F -- 通過 --> G[效果估計與不確定性]
+    G --> H[可重現報告]
+</pre>
+</div><h2>結語</h2>
+<p>完整的數據分析流程不是一條完全線性的生產線，而是有紀錄、有界線的反覆檢查。研究者可能因資料品質回到前處理，也可能因模型診斷重新思考估計方式；重要的是保留每次變更的理由，並區分事前規劃與事後探索。</p>
+<p>真正好的流程，不會替研究者隱藏判斷，而是讓資料如何成為結論的每一步都能被看見。</p>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

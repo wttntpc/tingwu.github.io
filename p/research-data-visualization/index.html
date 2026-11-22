@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/research-data-visualization/" />
+    <meta property="og:title" content="不要只畫平均數：研究資料視覺化的選圖與判讀原則" />
+    <meta property="og:description" content="依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/research-data-visualization/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/research-data-visualization.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="不要只畫平均數：研究資料視覺化的選圖與判讀原則" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="不要只畫平均數：研究資料視覺化的選圖與判讀原則" />
+    <meta name="twitter:description" content="依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/research-data-visualization.png" />
+    <title>不要只畫平均數：研究資料視覺化的選圖與判讀原則 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-14" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"不要只畫平均數：研究資料視覺化的選圖與判讀原則","description":"依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。","datePublished":"2026-08-14","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/research-data-visualization/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/research-data-visualization/","image":"https://wttntpc.github.io/tingwu.github.io/og/research-data-visualization.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"資料視覺化, 原始資料, 信賴區間, 重複量測"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/research-data-visualization');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">數據分析 · 2026-08-14</div><h1>不要只畫平均數：研究資料視覺化的選圖與判讀原則</h1><p>依資料型態與研究設計選圖，正確區分 SD、SE 與 CI，並用原始點、配對線與分布揭露長條圖容易隱藏的資訊。</p><div class="tag-list"><span>資料視覺化</span><span>原始資料</span><span>信賴區間</span><span>重複量測</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>兩組資料的平均數完全一樣，不代表兩組資料長得一樣。可能一組非常集中，另一組有明顯離群值；也可能平均差異只由一個人拉動。若只放一張長條圖，這些資訊都會消失。</p>
+<blockquote>
+<p>本文是「數據整理與統計分析」系列第 2 篇。圖表不是統計結果的裝飾，而是讓讀者看見資料分布、研究設計與不確定性的分析工具。</p>
+</blockquote>
+<h2>先問問題，再選圖</h2>
+<table>
+<thead>
+<tr>
+<th>想回答的問題</th>
+<th>建議起點</th>
+<th>容易出錯的圖</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一個連續變項如何分布？</td>
+<td>點圖、直方圖、密度圖</td>
+<td>只顯示平均數的長條圖</td>
+</tr>
+<tr>
+<td>兩組獨立樣本有何差異？</td>
+<td>原始點＋摘要與區間</td>
+<td>隱藏樣本數的長條圖</td>
+</tr>
+<tr>
+<td>同一批人前後如何變化？</td>
+<td>配對線圖、差值圖</td>
+<td>把前後測畫成獨立兩組</td>
+</tr>
+<tr>
+<td>兩個連續變項是否相關？</td>
+<td>散佈圖＋合理的趨勢線</td>
+<td>雙 Y 軸暗示關聯</td>
+</tr>
+<tr>
+<td>數值隨時間如何改變？</td>
+<td>時間序列或個體軌跡</td>
+<td>類別順序不清的折線圖</td>
+</tr>
+</tbody></table>
+<p>圖表種類不是由軟體預設決定，而是由研究問題、資料型態和相依結構決定。</p>
+<h2>為什麼不建議用長條圖呈現連續資料？</h2>
+<p>Weissgerber 等人（2015）檢視 703 篇生理學研究，發現多數文章以長條圖或折線圖呈現連續結果，但很少顯示能讓讀者查看分布的點圖、箱形圖或直方圖。問題在於：許多完全不同的分布，可以產生相似的平均數與誤差棒。</p>
+<p>研究樣本不大時，優先顯示每個原始資料點通常更誠實。讀者可以直接看到：</p>
+<ul>
+<li>每組實際有多少人；</li>
+<li>資料是否偏斜或有離群值；</li>
+<li>組間有多少重疊；</li>
+<li>結果是否由少數觀察驅動。</li>
+</ul>
+<h2>SD、SE 與 CI 不能互換</h2>
+<ul>
+<li><strong>標準差（SD）</strong>描述樣本中個體數值的分散程度。</li>
+<li><strong>標準誤（SE）</strong>描述平均數估計的抽樣精確度，通常為 <code>SD / √n</code>。</li>
+<li><strong>信賴區間（CI）</strong>呈現與資料及模型相容的參數範圍。</li>
+</ul>
+<p>圖說必須明確寫出誤差棒是哪一種。只寫「mean ± error」沒有解釋價值。若要讓讀者理解個體差異，不能用很窄的 SE 取代原始點或 SD。</p>
+<h2>前後測一定要讓「同一個人」被看見</h2>
+<p>假設運動介入前後的平均認知分數都有提升，至少可能存在三種情況：</p>
+<ol>
+<li>幾乎每位受試者都小幅進步；</li>
+<li>少數人進步很多，多數人沒有變化；</li>
+<li>有人進步、有人退步，平均後剛好呈現上升。</li>
+</ol>
+<p>兩根長條無法區分這三種模式。配對線圖或直接畫出每個人的 <code>post − pre</code> 差值，才能呈現變化的一致性與異質性。</p>
+<h2>圖表也可能誤導</h2>
+<p>製圖時應檢查：</p>
+<ul>
+<li>座標軸是否被截斷到誇大差異；</li>
+<li>類別排序是否有明確理由；</li>
+<li>顏色是否為唯一的辨識方式；</li>
+<li>點太多時是否嚴重重疊；</li>
+<li>趨勢線是否掩蓋非線性或群聚；</li>
+<li>是否同時呈現樣本數、單位與不確定性；</li>
+<li>圖說是否能單獨說明研究設計。</li>
+</ul>
+<h2>我的選圖順序</h2>
+<ol>
+<li>先畫原始資料與每組樣本數。</li>
+<li>再依研究設計加入配對線、分布或時間結構。</li>
+<li>加上有明確定義的摘要值與區間。</li>
+<li>檢查圖形是否與模型分析的是同一個量。</li>
+<li>最後才調整顏色、字體與版面。</li>
+</ol>
+<h3>延伸閱讀</h3>
+<ul>
+<li><a href="https://notebook.google.com/notebook/14a8e333-8feb-462f-b7e3-54d36eef200a">我的 Statistics and Research Methods NotebookLM</a></li>
+<li><a href="#/post/data-types-tidy-research-data">資料類型與 tidy data：如何整理研究資料？</a></li>
+</ul>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>科學圖表的主要任務是暴露資料結構，而非壓縮成最容易閱讀的單一摘要。有效的圖形應讓讀者辨認變項尺度、樣本量、分布、相依性、估計值與不確定性，並與統計模型的分析單位一致。</p>
+<h2>圖形必須對應研究設計</h2>
+<p>獨立組、配對資料、重複量測與巢狀資料即使共享相同平均數，也需要不同的視覺編碼：</p>
+<table>
+<thead>
+<tr>
+<th>設計</th>
+<th>至少要呈現</th>
+<th>推薦圖形</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>單一連續結果</td>
+<td>分布、樣本數與異常點</td>
+<td>jittered dot plot、ECDF、histogram</td>
+</tr>
+<tr>
+<td>兩個獨立組</td>
+<td>各組原始點與估計差異</td>
+<td>dot plot＋difference estimate／CI</td>
+</tr>
+<tr>
+<td>配對前後測</td>
+<td>個體對應與差值分布</td>
+<td>paired plot＋difference plot</td>
+</tr>
+<tr>
+<td>多時間點</td>
+<td>個體軌跡及群體趨勢</td>
+<td>spaghetti plot＋model estimate</td>
+</tr>
+<tr>
+<td>連續變項關聯</td>
+<td>聯合分布、非線性與群聚</td>
+<td>scatterplot＋診斷適當的 smoother</td>
+</tr>
+</tbody></table>
+<p>圖形若忽略相依結構，會讓配對資料看起來像兩組獨立觀察，也可能將受試者內變化與受試者間差異混在一起。</p>
+<h2>不要讓摘要統計遮住分布</h2>
+<p>Weissgerber 等人（2015）指出，小樣本連續資料只以 mean ± SE 或 mean ± SD 呈現，會隱藏偏態、離群值、群聚與組間重疊。其系統性檢視納入 703 篇文章；這個數字描述的是特定時期與期刊範圍的觀察，不應被直接外推成所有學科的比例，但它充分示範了圖形慣例如何限制讀者查核結果。</p>
+<p>專業呈現可採「原始資料＋估計量＋區間」的分層結構：</p>
+<pre><code class="language-text">第一層：每個獨立觀察或受試者軌跡
+第二層：與研究問題對應的摘要或模型估計
+第三層：信賴區間或其他明確定義的不確定性
+</code></pre>
+<p>若資料點不是獨立觀察，例如同一受試者有多個 trial，不能把所有 trial 畫成彷彿樣本數大幅增加。圖形與模型都必須清楚區分 participant-level 與 trial-level 資訊。</p>
+<h2>SD、SE 與 CI 的不同角色</h2>
+<p>SD 描述觀察值離散程度；SE 是估計量在重複抽樣下的標準差；CI 則由估計量、標準誤、臨界值與模型假設構成。三者回答不同問題：</p>
+<pre><code class="language-text">SD：受試者之間有多不同？
+SE：這次平均數估計有多精確？
+CI：哪些母體參數值與資料及模型較相容？
+</code></pre>
+<p>誤差棒的圖說應寫明 SD、SE 或 CI、區間水準、分析單位及樣本數。重複量測設計若呈現 within-subject error bar，也必須說明計算方法，不能讓讀者誤認為一般組間 CI。</p>
+<h2>視覺化是模型診斷的一部分</h2>
+<p>建模前應利用圖形檢查：</p>
+<ul>
+<li>response distribution 與可能的 floor／ceiling effect；</li>
+<li>組間變異是否差異明顯；</li>
+<li>線性與同方差假設是否合理；</li>
+<li>少數點是否具有高 leverage 或 influence；</li>
+<li>重複量測軌跡是否呈現不同斜率；</li>
+<li>缺失是否集中於特定組別或時間點。</li>
+</ul>
+<p>模型完成後，再畫 observed values、fitted values、residuals 與 uncertainty。探索圖與正式結果圖可以不同，但兩者的資料處理規則都應可重現。</p>
+<h2>一個可重現的製圖範例</h2>
+<p>以下使用虛構資料示範配對圖；程式不包含任何真實研究數值：</p>
+<pre><code class="language-python">import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.lineplot(
+    data=df,
+    x=&quot;time&quot;,
+    y=&quot;cognitive_score&quot;,
+    units=&quot;participant_id&quot;,
+    estimator=None,
+    color=&quot;#9aa6b2&quot;,
+    alpha=0.45
+)
+sns.pointplot(
+    data=df,
+    x=&quot;time&quot;,
+    y=&quot;cognitive_score&quot;,
+    errorbar=(&quot;ci&quot;, 95),
+    color=&quot;#163a5f&quot;
+)
+plt.ylabel(&quot;Cognitive score (specified scale)&quot;)
+plt.xlabel(&quot;Assessment time&quot;)
+</code></pre>
+<p>實際研究仍需確認 point estimate、CI 的估計方法與主要統計模型一致，並在圖說中報告分析 N、排除與單位。</p>
+<h2>發布前圖表檢查</h2>
+<ol>
+<li>原始點或分布是否可見？若不可見，理由是什麼？</li>
+<li>圖形是否正確表達獨立、配對或巢狀結構？</li>
+<li>SD、SE、CI 與模型區間是否清楚命名？</li>
+<li>樣本數是否指獨立分析單位，而非重複資料列數？</li>
+<li>軸、單位、缺失、排除及轉換是否完整？</li>
+<li>不依賴顏色時是否仍可辨識？</li>
+<li>圖形產生程式與輸入資料版本是否保存？</li>
+</ol>
+<h2>APA 7th 參考文獻</h2>
+<p>Weissgerber, T. L., Milic, N. M., Winham, S. J., &amp; Garovic, V. D. (2015). Beyond bar and line graphs: Time for a new data presentation paradigm. <em>PLOS Biology, 13</em>(4), e1002128. <a href="https://doi.org/10.1371/journal.pbio.1002128">https://doi.org/10.1371/journal.pbio.1002128</a></p>
+<p>Wickham, H. (2014). Tidy data. <em>Journal of Statistical Software, 59</em>(10), 1–23. <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a></p>
+<h2>素材來源說明</h2>
+<p>本文以我的 <a href="https://notebook.google.com/notebook/14a8e333-8feb-462f-b7e3-54d36eef200a">Statistics and Research Methods NotebookLM</a> 整理主題，再以公開論文核對方法與書目。未公開 Notebook 中的原始教材。</p>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

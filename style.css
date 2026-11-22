@@ -1187,3 +1187,8 @@ body:has(.ecg-progress:not([hidden])) .version-bar { top: 96px; }
 .lab-flanker-preview .emotion-face.is-target { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
 .flanker-target-split { margin: 2rem 0; }
 @media (max-width: 720px) { .flanker-conditions > div { grid-template-columns: 1fr; } .flanker-stage { min-height: 170px; } }
+.share-row { margin: .9rem 0 0; }
+.share-link { min-height: 36px; padding: 0 .85rem; border: 1px solid var(--tertiary); border-radius: 999px; background: transparent; color: var(--accent); font: inherit; font-size: .78rem; font-weight: 600; cursor: pointer; }
+.share-link:hover, .share-link:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+.share-url { width: min(100%, 34rem); margin-left: .6rem; padding: .4rem .6rem; border: 1px solid var(--tertiary); border-radius: 4px; background: var(--paper); color: var(--primary); font: inherit; font-size: .78rem; }
+@media print { .share-row { display: none; } }

@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/fft-wavelet-eeg-time-frequency/" />
+    <meta property="og:title" content="FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖" />
+    <meta property="og:description" content="從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/fft-wavelet-eeg-time-frequency/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/fft-wavelet-eeg-time-frequency.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖" />
+    <meta name="twitter:description" content="從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/fft-wavelet-eeg-time-frequency.png" />
+    <title>FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-14" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖","description":"從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。","datePublished":"2026-08-14","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/fft-wavelet-eeg-time-frequency/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/fft-wavelet-eeg-time-frequency/","image":"https://wttntpc.github.io/tingwu.github.io/og/fft-wavelet-eeg-time-frequency.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"EEG, FFT, Welch PSD, Morlet wavelet, 時間頻率分析"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/fft-wavelet-eeg-time-frequency');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">研究方法 · 2026-08-14</div><h1>FFT 與小波分析：從整段頻譜到 EEG 時間－頻率地圖</h1><p>從 sampling、Nyquist、頻率解析度與 spectral leakage，到 STFT、Morlet cycles、baseline 與 edge effects，並用互動工具比較 FFT 與小波結果。</p><div class="tag-list"><span>EEG</span><span>FFT</span><span>Welch PSD</span><span>Morlet wavelet</span><span>時間頻率分析</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>一條 EEG 曲線看起來忽高忽低，但肉眼很難回答：裡面有多少 10 Hz alpha？20 Hz 活動只出現在前半段，還是持續存在？頻率是否從慢逐漸變快？</p>
+<p>FFT 與小波分析都把複雜訊號和一組規則波形比較，卻保留不同資訊：<strong>FFT 擅長回答整段有哪些頻率；小波則進一步回答這些頻率何時出現。</strong></p>
+<blockquote>
+<p>閱讀指引：先用下方工具比較三種合成訊號。若要設定 EEG 分析參數，再閱讀專業版的 Nyquist frequency、頻率解析度、窗函數、Morlet cycles、基線與邊緣效應。</p>
+</blockquote>
+<h2>先從取樣開始</h2>
+<p>EEG 儀器並不是連續保存電壓，而是每秒量測很多次。若 sampling rate 是 250 Hz，代表每秒有 250 個樣本。理想條件下，可辨識的最高頻率是 sampling rate 的一半，也就是 Nyquist frequency：</p>
+<div class="math-block" role="math" aria-label="Nyquist frequency equals sampling rate divided by two">f<sub>Nyquist</sub> = f<sub>s</sub> / 2</div><p>因此，250 Hz 取樣無法可靠表示超過 125 Hz 的成分。實際系統還需在取樣前使用 anti-aliasing filter；僅在分析後刪除高頻，不能逆轉已發生的 aliasing。</p>
+<h2>FFT：把訊號和很多頻率逐一比對</h2>
+<p>Fourier transform 的直覺很像拿一組不同速度的正弦波與餘弦波，逐一和資料做內積：</p>
+<ul>
+<li>模板頻率與資料吻合時，相乘後會同向累積，係數較大。</li>
+<li>不吻合時，正負值互相抵銷，係數較小。</li>
+</ul>
+<p>Discrete Fourier Transform（DFT）是離散資料的數學形式；Fast Fourier Transform（FFT）是有效率計算 DFT 的演算法。FFT 不是另一種不同的頻譜，而是更快得到相同 DFT 結果的方法。</p>
+<h2>FFT 最容易被誤解的三件事</h2>
+<h3>1. 它不知道「何時」出現</h3>
+<p>FFT 使用整個分析區段。一段 10 Hz 只出現 0.5 秒，和 10 Hz 持續整段，在頻譜上都可能有 10 Hz 峰值，但其大小與展寬不同；單看整段頻譜無法知道事件時間。</p>
+<h3>2. 記錄越長，頻率格點越細</h3>
+<p>頻率格點間距約為：</p>
+<div class="math-block" role="math" aria-label="frequency bin spacing equals sampling rate divided by number of samples, or one divided by duration">Δf = f<sub>s</sub> / N = 1 / T</div><p>2 秒資料的格點間距是 0.5 Hz，10 秒則是 0.1 Hz。這是數學格點，不等於能在雜訊中分辨兩個鄰近神經振盪的實際能力。</p>
+<h3>3. 補零不會增加真實資訊</h3>
+<p>zero padding 會讓頻譜曲線更密、更容易讀取峰值位置，但沒有增加觀察時間，因此不會創造新的實質頻率解析度。</p>
+<h2>Windowing 與 spectral leakage</h2>
+<p>FFT 會把分析片段視為可週期重複。如果片段兩端接不起來，邊界突跳會把能量散到附近頻率，形成 spectral leakage。Hann 等 taper 讓兩端平滑靠近零，可減少 leakage，但也會改變峰值寬度與振幅；沒有一個窗函數對所有問題都最好。</p>
+<p>Welch PSD 會把長資料切成重疊小段、每段加窗後計算 periodogram，再加以平均。它通常比單次 periodogram 穩定，但小段越短，頻率格點越粗。</p>
+<h2>小波：加入「何時出現」</h2>
+<p>小波是一段有中心、會衰減的短波。分析時把它沿時間移動，並改變尺度或中心頻率，計算每個時間與頻率位置的相似度。EEG 常用 complex Morlet wavelet，因為它可以同時估計振幅／功率與相位。</p>
+<p>小波沒有免費得到完美解析度：</p>
+<ul>
+<li>wavelet 較短、cycles 較少：較容易定位「何時發生」，但頻率較模糊。</li>
+<li>wavelet 較長、cycles 較多：頻率較精細，但事件開始與結束會被時間平滑。</li>
+</ul>
+<h2>動手比較 FFT 與小波</h2>
+<div class="tf-demo" data-time-frequency-demo>
+  <fieldset class="tf-scenarios">
+    <legend>選擇合成訊號</legend>
+    <button type="button" data-signal="steady" aria-pressed="true">穩定 10 Hz</button>
+    <button type="button" data-signal="bursts" aria-pressed="false">兩段短暫 burst</button>
+    <button type="button" data-signal="chirp" aria-pressed="false">頻率逐漸升高</button>
+  </fieldset>
+  <label class="tf-cycle-control"><span>Morlet cycles：<output data-cycle-value>6</output></span><input type="range" min="3" max="12" step="1" value="6" data-cycle-slider></label>
+  <div class="tf-plot-grid">
+    <figure><figcaption>時間訊號</figcaption><canvas width="720" height="210" data-time-plot role="img" aria-label="合成時間序列"></canvas></figure>
+    <figure><figcaption>FFT：整段頻率內容</figcaption><canvas width="720" height="210" data-fft-plot role="img" aria-label="合成訊號的傅立葉功率頻譜"></canvas></figure>
+    <figure class="tf-scalogram"><figcaption>Morlet wavelet：時間 × 頻率</figcaption><canvas width="720" height="300" data-wavelet-plot role="img" aria-label="合成訊號的小波時間頻率圖"></canvas></figure>
+  </div>
+  <p class="tf-demo-note" data-tf-note role="status">FFT 會在 10 Hz 顯示集中峰值；小波圖則顯示它持續整段時間。調整 cycles 比較時間與頻率的模糊程度。</p>
+</div>
+<p class="demo-caveat">工具使用固定公式產生 3 秒、128 Hz 的合成資料。顏色代表相對 wavelet power，只用於教學，不是 EEG 診斷、顯著性檢定或軟體驗證基準。</p><h2>如何選方法？</h2>
+<table>
+<thead>
+<tr>
+<th>研究問題</th>
+<th>優先考慮</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一段穩定 resting EEG 有哪些頻率？</td>
+<td>FFT／Welch PSD</td>
+<td>直接、成熟、便於比較頻帶功率</td>
+</tr>
+<tr>
+<td>刺激後 theta 何時增強？</td>
+<td>STFT／wavelet</td>
+<td>保留時間資訊</td>
+</tr>
+<tr>
+<td>短暫 burst 或頻率逐漸改變？</td>
+<td>wavelet／其他 time-frequency 方法</td>
+<td>能追蹤非平穩變化</td>
+</tr>
+<tr>
+<td>快節律振幅受哪個慢頻率調節？</td>
+<td>PAC／HHSA 等</td>
+<td>需要 carrier 與 modulation 的關係</td>
+</tr>
+</tbody></table>
+<p>延伸理解最後一列，可閱讀<a href="#/post/hhsa-nonlinear-eeg">從 EMD、瞬時頻率到 HHSA</a>。</p>
+<h2>一份不容易漏步驟的 EEG 檢查表</h2>
+<ol>
+<li>sampling rate 與 anti-aliasing filter 是否足以涵蓋目標頻率？</li>
+<li>分析區段長度是否支援所需頻率格點與低頻週期數？</li>
+<li>是否處理壞道、眼動、肌電、動作與 line noise？</li>
+<li>FFT 使用哪個 taper、segment length、overlap 與 PSD scaling？</li>
+<li>wavelet 使用哪個中心頻率、cycles 或 temporal／spectral FWHM？</li>
+<li>是否說明 padding、edge trimming 與 cone of influence？</li>
+<li>event-related power 使用何種 baseline（ratio、percent 或 dB）？</li>
+<li>time × frequency × channel 的多重比較如何控制？</li>
+<li>結果是否同時呈現個體差異、效果量與不確定性？</li>
+</ol>
+<h3>延伸閱讀</h3>
+<ul>
+<li><a href="https://notebook.google.com/notebook/20b5bdeb-f540-4ee3-82fa-818ec3f08aa9">我的 EEG, ERP NotebookLM</a>（可能需要登入與權限）</li>
+<li><a href="#/post/eeg-preprocessing-principles">EEG 前處理不是按下按鈕</a></li>
+<li><a href="#/post/hhsa-nonlinear-eeg">從 EMD、瞬時頻率到 HHSA</a></li>
+</ul>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>FFT、STFT 與 wavelet transform 都可視為把訊號投影到一組分析函數，但其基底的時間支撐與參數化方式不同。方法選擇應由 estimand 決定：global spectrum、event-related power、phase consistency、burst timing 或 cross-frequency structure 不是同一個問題。</p>
+<h2>1. DFT 與 FFT</h2>
+<p>對長度 N、sampling interval Δt 的離散訊號 x[n]，DFT 定義為：</p>
+<div class="math-block" role="math" aria-label="discrete Fourier transform">X[k] = Σ<sub>n=0</sub><sup>N−1</sup> x[n] e<sup>−i2πkn/N</sup>,　k = 0, …, N−1</div><p>其反轉換為：</p>
+<div class="math-block" role="math" aria-label="inverse discrete Fourier transform">x[n] = (1/N) Σ<sub>k=0</sub><sup>N−1</sup> X[k] e<sup>i2πkn/N</sup></div><p>X[k] 是 complex coefficient；magnitude、phase、amplitude spectrum、power spectrum 與 power spectral density（PSD）需依資料單位、雙邊／單邊頻譜及正規化規則另行定義。FFT 只是以較低計算複雜度求得 DFT，不改變這些定義。</p>
+<h3>Sampling、Nyquist 與 aliasing</h3>
+<p>離散頻率格點為 f<sub>k</sub> = kf<sub>s</sub>/N，格點間距 Δf = f<sub>s</sub>/N = 1/T。對實值訊號，負頻率與正頻率呈 conjugate symmetry，通常報告 0 至 f<sub>s</sub>/2 的單邊譜。</p>
+<p>高於 Nyquist frequency 的訊號會折返到較低頻率，形成 aliasing。這是 acquisition 問題，需由充分 sampling rate 與類比 anti-aliasing filter 預防；後處理 low-pass 無法判斷某個低頻究竟是真訊號或已 alias 的高頻。</p>
+<h2>2. Finite window、leakage 與 zero padding</h2>
+<p>實際分析等同把無限訊號乘上一個有限觀察窗。時間域相乘在頻域變成 convolution，因此 rectangular window 的頻率響應會使能量擴散。若正弦頻率不恰好落在 DFT bin，或片段邊界不連續，spectral leakage 更明顯。</p>
+<p>Taper 可降低 sidelobes，但會加寬 main lobe；這是 dynamic range 與頻率分離能力的取捨。報告「有使用 Hann window」仍不夠，還需說明 epoch／segment 長度、overlap、detrending、demeaning 與 scaling。</p>
+<p>zero padding 把額外零值接到資料尾端，使 DFT 在更密的頻率位置取樣，相當於對既有 spectrum 做 interpolation。原始觀察時間 T 沒有增加，因此不能把補零後的細格點當成更高的獨立頻率解析度。</p>
+<h2>3. Periodogram 與 Welch PSD</h2>
+<p>Periodogram 以單一有限片段的 Fourier magnitude squared 估計功率。Welch（1967）把資料分成可能重疊的 segments、逐段 taper 與計算 modified periodogram，再平均以降低估計變異：</p>
+<div class="math-block" role="math" aria-label="Welch power spectral density is the mean of modified periodograms">Ŝ<sub>xx</sub>(f) = (1/L) Σ<sub>ℓ=1</sub><sup>L</sup> P̃<sub>ℓ</sub>(f)</div><p>增加平均段數通常讓 PSD 較平滑、variance 較低；縮短 segment 卻會增大 Δf。overlap 也不會使 segments 完全獨立。Welch PSD 適合相對穩定的 resting／continuous EEG 摘要，但仍是分析片段內的平均表徵。</p>
+<h2>4. STFT：固定窗的 time-frequency transform</h2>
+<p>STFT 對中心時間 τ 附近的資料乘上固定窗 w(t−τ)，再做 Fourier transform：</p>
+<div class="math-block" role="math" aria-label="short time Fourier transform">STFT<sub>x</sub>(τ,f) = ∫ x(t)w(t−τ)e<sup>−i2πft</sup>dt</div><p>短窗提高 temporal localization、降低 spectral precision；長窗相反。因同一窗長套用所有頻率，若研究同時涵蓋低 theta 與高 gamma，固定解析度可能不符合各頻率的週期尺度。</p>
+<h2>5. Continuous Morlet wavelet transform</h2>
+<p>一般 continuous wavelet transform（CWT）為：</p>
+<div class="math-block" role="math" aria-label="continuous wavelet transform">W<sub>x</sub>(a,b) = (1/√a) ∫ x(t) ψ<sup>*</sup>((t−b)/a) dt</div><p>a 是 scale、b 是時間位移、ψ 是 mother wavelet。Complex Morlet wavelet 可視為 complex sinusoid 乘上 Gaussian envelope：</p>
+<div class="math-block" role="math" aria-label="complex Morlet wavelet is a complex sinusoid inside a Gaussian envelope">ψ(t;f<sub>0</sub>) = e<sup>i2πf<sub>0</sub>t</sup> e<sup>−t²/(2σ<sub>t</sub>²)</sup></div><p>若用 n cycles 參數化，常見關係為 σ<sub>t</sub> = n/(2πf<sub>0</sub>)；cycles 增加會擴大 temporal width 並縮小 spectral width。不同軟體對「cycles」、support、normalization 與 frequency-domain Gaussian 的定義可能不同。Cohen（2019）建議用 temporal 與 spectral full-width at half-maximum（FWHM）直接描述 smoothing，較容易重現。</p>
+<p>complex coefficient W 包含 magnitude 與 phase：|W|² 可形成 time-frequency power，arg(W) 可用於 phase-based measures。功率增加不等同 phase locking；若要區分 induced 與 evoked activity，trial averaging 的順序必須符合問題。</p>
+<h2>6. Baseline normalization</h2>
+<p>event-related time-frequency power 常相對基線表達。例如 decibel normalization：</p>
+<div class="math-block" role="math" aria-label="decibel power change equals ten log ten of power divided by baseline power">P<sub>dB</sub>(t,f) = 10 log<sub>10</sub>[P(t,f) / P<sub>baseline</sub>(f)]</div><p>ratio、percent change、dB 與 baseline subtraction 不是可隨意互換的顯示選項。基線若含條件差異、anticipatory activity、artifact 或過少週期，會把偏差帶到整張圖。分析應報告 baseline window、先在 trial 或 participant 層級轉換、以及 averaging 順序。</p>
+<h2>7. Edge effects 與 cone of influence</h2>
+<p>卷積需要訊號邊界外的資料，但實際 epoch 有限，因此常以 zero、reflection 或其他方式 padding。越低頻、cycles 越多，wavelet 越長，受邊緣影響的範圍越大。Torrence 與 Compo（1998）用 cone of influence 標示 edge effects 不可忽略的區域。</p>
+<p>padding 只是定義邊界外如何延伸，不會創造真實觀察。若 epoch 太短，低頻分析可能整段都被邊緣影響；應延長 epoch、縮小分析範圍或放棄該低頻，而不是只裁掉圖的最外側幾個點。</p>
+<h2>8. Time-frequency inference 不是看熱圖選亮點</h2>
+<p>一張 channel × time × frequency 圖包含大量相關比較。先看圖再選 ROI 並用相同資料檢定，會產生 circular analysis。較穩健做法包括：</p>
+<ul>
+<li>預先指定通道、時間與頻率 ROI；</li>
+<li>使用獨立 localizer 或 cross-validation 定義 ROI；</li>
+<li>對完整搜尋空間使用 permutation／cluster-based correction，並清楚說明 cluster statistic 回答的是區域層級問題；</li>
+<li>報告 participant-level 分布、effect size 與 uncertainty，而非只呈現 group heatmap；</li>
+<li>對 cycles／FWHM、baseline、padding 與 artifact threshold 做敏感度分析。</li>
+</ul>
+<h2>9. 方法優缺點總表</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>優點</th>
+<th>缺點</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FFT periodogram</td>
+<td>快速、數學透明、保留 magnitude 與 phase</td>
+<td>高變異、不保留時間</td>
+<td>單段頻率成分與 phase</td>
+</tr>
+<tr>
+<td>Welch PSD</td>
+<td>降低 PSD 變異、實務成熟</td>
+<td>分段平均犧牲 Δf，仍不定位事件時間</td>
+<td>resting EEG、band power</td>
+</tr>
+<tr>
+<td>STFT</td>
+<td>簡單的 time-frequency 表徵</td>
+<td>所有頻率共用固定窗</td>
+<td>頻帶範圍較窄、固定時間尺度事件</td>
+</tr>
+<tr>
+<td>Morlet wavelet</td>
+<td>適應不同頻率週期、同時取得 power 與 phase</td>
+<td>cycles／FWHM、edge、baseline 與 normalization 影響大</td>
+<td>event-related oscillation、burst timing</td>
+</tr>
+<tr>
+<td>HHT／HHSA</td>
+<td>資料驅動瞬時頻率；HHSA 額外分離 carrier × AM</td>
+<td>mode mixing、端點、參數與推論標準較不成熟</td>
+<td>非平穩振盪與振幅調變的補充分析</td>
+</tr>
+</tbody></table>
+<h2>10. 互動工具</h2>
+<div class="tf-demo" data-time-frequency-demo>
+  <fieldset class="tf-scenarios">
+    <legend>選擇合成訊號</legend>
+    <button type="button" data-signal="steady" aria-pressed="true">穩定 10 Hz</button>
+    <button type="button" data-signal="bursts" aria-pressed="false">兩段短暫 burst</button>
+    <button type="button" data-signal="chirp" aria-pressed="false">頻率逐漸升高</button>
+  </fieldset>
+  <label class="tf-cycle-control"><span>Morlet cycles：<output data-cycle-value>6</output></span><input type="range" min="3" max="12" step="1" value="6" data-cycle-slider></label>
+  <div class="tf-plot-grid">
+    <figure><figcaption>時間訊號</figcaption><canvas width="720" height="210" data-time-plot role="img" aria-label="合成時間序列"></canvas></figure>
+    <figure><figcaption>FFT：整段頻率內容</figcaption><canvas width="720" height="210" data-fft-plot role="img" aria-label="合成訊號的傅立葉功率頻譜"></canvas></figure>
+    <figure class="tf-scalogram"><figcaption>Morlet wavelet：時間 × 頻率</figcaption><canvas width="720" height="300" data-wavelet-plot role="img" aria-label="合成訊號的小波時間頻率圖"></canvas></figure>
+  </div>
+  <p class="tf-demo-note" data-tf-note role="status">FFT 會在 10 Hz 顯示集中峰值；小波圖則顯示它持續整段時間。調整 cycles 比較時間與頻率的模糊程度。</p>
+</div>
+<p class="demo-caveat">本工具以直接 DFT 與教學用 Morlet convolution 即時計算。它刻意省略正式 EEG pipeline 的 taper、PSD scaling、trial aggregation、baseline 與統計推論，不能用於驗證研究程式。</p><h2>APA 7th 參考文獻</h2>
+<p>Bruns, A. (2004). Fourier-, Hilbert- and wavelet-based signal analysis: Are they really different approaches? <em>Journal of Neuroscience Methods, 137</em>(2), 321–332. <a href="https://doi.org/10.1016/j.jneumeth.2004.03.002">https://doi.org/10.1016/j.jneumeth.2004.03.002</a></p>
+<p>Cohen, M. X. (2019). A better way to define and describe Morlet wavelets for time-frequency analysis. <em>NeuroImage, 199</em>, 81–86. <a href="https://doi.org/10.1016/j.neuroimage.2019.05.048">https://doi.org/10.1016/j.neuroimage.2019.05.048</a></p>
+<p>Delorme, A., &amp; Makeig, S. (2004). EEGLAB: An open source toolbox for analysis of single-trial EEG dynamics including independent component analysis. <em>Journal of Neuroscience Methods, 134</em>(1), 9–21. <a href="https://doi.org/10.1016/j.jneumeth.2003.10.009">https://doi.org/10.1016/j.jneumeth.2003.10.009</a></p>
+<p>Torrence, C., &amp; Compo, G. P. (1998). A practical guide to wavelet analysis. <em>Bulletin of the American Meteorological Society, 79</em>(1), 61–78. <a href="https://doi.org/10.1175/1520-0477%281998%29079%3C0061%3AAPGTWA%3E2.0.CO%3B2">https://doi.org/10.1175/1520-0477%281998%29079%3C0061%3AAPGTWA%3E2.0.CO%3B2</a></p>
+<p>Welch, P. D. (1967). The use of fast Fourier transform for the estimation of power spectra: A method based on time averaging over short, modified periodograms. <em>IEEE Transactions on Audio and Electroacoustics, 15</em>(2), 70–73. <a href="https://doi.org/10.1109/TAU.1967.1161901">https://doi.org/10.1109/TAU.1967.1161901</a></p>
+<h2>素材與證據來源說明</h2>
+<p>本文以我的 <a href="https://notebook.google.com/notebook/20b5bdeb-f540-4ee3-82fa-818ec3f08aa9">EEG, ERP NotebookLM</a> 中〈Basics of Time-Frequency Analysis: FFT and Coherence〉課程教材作為主題順序起點。該教材沒有 DOI，且未涵蓋 Nyquist、spectral leakage、zero padding、Morlet cycles、baseline、cone of influence 與多重比較的完整方法，因此本文另回到上述同行評審原始來源核對並補足。未轉載私人課堂錄音、投影片或原始 PDF。</p>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

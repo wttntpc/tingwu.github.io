@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="從非平穩與非線性的差異、EMD 與 IMF，到 HHSA 的 carrier × AM frequency 表徵，完整說明分析流程、應用邊界與可重現研究要點。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/hhsa-nonlinear-eeg/" />
+    <meta property="og:title" content="從 EMD、瞬時頻率到 HHSA：如何看見腦波的振幅調變？" />
+    <meta property="og:description" content="從非平穩與非線性的差異、EMD 與 IMF，到 HHSA 的 carrier × AM frequency 表徵，完整說明分析流程、應用邊界與可重現研究要點。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/hhsa-nonlinear-eeg/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/hhsa-nonlinear-eeg.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="從 EMD、瞬時頻率到 HHSA：如何看見腦波的振幅調變？" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="從 EMD、瞬時頻率到 HHSA：如何看見腦波的振幅調變？" />
+    <meta name="twitter:description" content="從非平穩與非線性的差異、EMD 與 IMF，到 HHSA 的 carrier × AM frequency 表徵，完整說明分析流程、應用邊界與可重現研究要點。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/hhsa-nonlinear-eeg.png" />
+    <title>從 EMD、瞬時頻率到 HHSA：如何看見腦波的振幅調變？ | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-14" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"從 EMD、瞬時頻率到 HHSA：如何看見腦波的振幅調變？","description":"從非平穩與非線性的差異、EMD 與 IMF，到 HHSA 的 carrier × AM frequency 表徵，完整說明分析流程、應用邊界與可重現研究要點。","datePublished":"2026-08-14","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/hhsa-nonlinear-eeg/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/hhsa-nonlinear-eeg/","image":"https://wttntpc.github.io/tingwu.github.io/og/hhsa-nonlinear-eeg.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"EEG, HHSA, EMD, 瞬時頻率, 跨頻耦合"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/hhsa-nonlinear-eeg');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">研究方法 · 2026-08-14</div><h1>從 EMD、瞬時頻率到 HHSA：如何看見腦波的振幅調變？</h1><p>從非平穩與非線性的差異、EMD 與 IMF，到 HHSA 的 carrier × AM frequency 表徵，完整說明分析流程、應用邊界與可重現研究要點。</p><div class="tag-list"><span>EEG</span><span>HHSA</span><span>EMD</span><span>瞬時頻率</span><span>跨頻耦合</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>腦波分析常把訊號拆成 delta、theta、alpha、beta 與 gamma，再比較各頻段的功率。這能回答「整段訊號有哪些節律」，卻不一定能回答另外兩個問題：<strong>頻率是否隨時間改變？一個快節律的振幅，是否跟著較慢節律起伏？</strong></p>
+<p>Holo-Hilbert Spectral Analysis（HHSA）就是為這類非平穩、具有振幅調變的訊號而發展的方法。它不是用來取代所有 FFT 或小波分析，而是增加一種觀察訊號的角度。</p>
+<blockquote>
+<p>閱讀指引：先用白話版理解「載波 × 調幅」；若要實作或評讀論文，再切換到專業版查看 EMD、IMF、瞬時頻率與分析流程。</p>
+</blockquote>
+<h2>先分清楚：非平穩不等於非線性</h2>
+<ul>
+<li><strong>非平穩（non-stationary）</strong>：訊號的平均、變異或頻率內容會隨時間改變。例如閉眼後 alpha 增強，或一次短暫刺激只在特定時間引發振盪。</li>
+<li><strong>非線性（nonlinear）</strong>：系統的輸出不能只用輸入的線性加總解釋，例如一個節律會調節另一個節律的振幅。</li>
+</ul>
+<p>EEG 經常非平穩，但「看到訊號在變」本身不能證明產生它的神經系統具有某種非線性機制。方法可以揭露候選結構，生理意義仍需研究設計、對照條件與統計檢驗支持。</p>
+<h2>FFT、小波與 HHSA 分別在看什麼？</h2>
+<p>可以把一段音樂想成研究訊號：</p>
+<ul>
+<li><strong>FFT／功率頻譜</strong>像曲目統計：告訴你低音與高音各有多少，但不保留它們何時出現。</li>
+<li><strong>STFT／小波</strong>像時間軸：告訴你某個頻率大約在哪一段變強。</li>
+<li><strong>HHSA</strong>再多問一層：高頻「音量包絡」是否用另一個較慢頻率在起伏？</li>
+</ul>
+<p>因此，這些方法不是單純的新舊排名，而是回答不同問題。想先理解 FFT 與小波，可閱讀<a href="#/post/fft-wavelet-eeg-time-frequency">FFT 與小波分析：從整段頻譜到時間－頻率地圖</a>。</p>
+<h2>EMD：讓資料自己長出振盪成分</h2>
+<p>Empirical Mode Decomposition（EMD）不先指定固定的正弦波或母小波，而是利用訊號的局部極大值、極小值與包絡線，反覆執行 sifting，將資料分成數個 Intrinsic Mode Functions（IMFs）與趨勢項（Huang et al., 1998）。</p>
+<p>白話地說，每個 IMF 是資料中一個相對單純的振盪尺度。較快的成分通常先被取出，較慢的成分與趨勢留在後面。不過 IMF 並不是自動等同於傳統 EEG 頻段，也不保證每一個 IMF 都有獨立的神經來源。</p>
+<h2>從 IMF 得到瞬時振幅與瞬時頻率</h2>
+<p>將 IMF 表示成隨時間改變的振幅與相位後，可以得到：</p>
+<ul>
+<li><strong>瞬時振幅</strong>：這個節律在該時刻有多強。</li>
+<li><strong>瞬時相位</strong>：目前位於一個週期的哪個位置。</li>
+<li><strong>瞬時頻率</strong>：相位在該時刻改變得多快。</li>
+</ul>
+<p>這就是 Hilbert-Huang Transform（HHT）的核心概念。它保留頻率隨時間變動的資訊，不必把整段資料硬塞成固定頻率的正弦波組合。</p>
+<h2>跨頻耦合：慢節律調節快節律</h2>
+<p>phase-amplitude coupling（PAC）描述慢節律的相位與快節律振幅之間的關係。Canolty 與 Knight（2010）提出，這可能是大尺度網路活動與局部快速運算溝通的機制之一；但非正弦波形、濾波方式與共同事件也可能製造看似耦合的圖樣，因此不能看到 PAC 就直接推論神經溝通。</p>
+<div class="cfc-demo" id="cfcDemo">
+  <canvas id="cfcCanvas" width="640" height="220" role="img" aria-label="跨頻耦合數學示意圖：慢波相位調節快波振幅"></canvas>
+  <div class="cfc-controls">
+    <label for="cfcSlider">耦合強度</label>
+    <input type="range" id="cfcSlider" min="0" max="100" value="70">
+    <span id="cfcValue">70%</span>
+  </div>
+  <p class="rt-demo-status">藍色代表慢節律，青色代表快節律。拖動滑桿，觀察快波的振幅包絡如何跟著慢波相位起伏。</p>
+</div>
+<p class="demo-caveat">此圖由固定公式產生，是概念示範，不是真實 EEG，也不是耦合顯著性檢定。</p><h2>HHSA 為什麼需要「兩層」分解？</h2>
+<p>第一層 EMD 先拆出載波振盪並計算其瞬時頻率；第二層再對每個載波的振幅包絡做 EMD，找出包絡本身的調變頻率（Huang et al., 2016）。結果形成兩個頻率軸：</p>
+<table>
+<thead>
+<tr>
+<th>頻率軸</th>
+<th>白話意義</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>載波頻率（carrier frequency）</td>
+<td>被觀察的快節律</td>
+<td>16 Hz 振盪</td>
+</tr>
+<tr>
+<td>調幅頻率（AM frequency）</td>
+<td>快節律的振幅以多快速度變大、變小</td>
+<td>振幅每秒起伏 3 次</td>
+</tr>
+</tbody></table>
+<p>若 16 Hz 載波被 3 Hz 包絡調節，Holo-Hilbert spectrum 會把能量放在「carrier 16 Hz × AM 3 Hz」附近。這比只有一條頻率軸的功率譜更直接呈現振幅調變結構。</p>
+<h2>HHSA 能帶來什麼，又不能保證什麼？</h2>
+<p>可能的優點：</p>
+<ul>
+<li>不先用固定頻帶切割資料，分解能跟隨局部時間尺度。</li>
+<li>同時呈現載波與調幅頻率，而非只看 sidebands 或單一頻段功率。</li>
+<li>可保留耦合強度隨時間變化的資訊。</li>
+<li>Juan 等人（2021）的模擬與視覺神經 entrainment 研究顯示，HHSA 能呈現動態振幅調變，並減少非正弦波諧波對部分傳統 PAC 分析的干擾。</li>
+</ul>
+<p>不能保證：</p>
+<ul>
+<li>HHSA 不會自動消除雜訊、眼動、肌電或動作偽影。</li>
+<li>圖上出現峰值不等於生理耦合已被證明，也不代表因果方向。</li>
+<li>EMD 仍會受到 mode mixing、端點效應、停止條件及 masking／noise-assisted 參數影響。</li>
+<li>更精細的圖不一定帶來更穩定、可重現或可跨研究比較的結果。</li>
+</ul>
+<h2>放進運動與認知研究時，建議怎麼做？</h2>
+<p>Kao 等人（2025）指出，非線性 EEG 與跨頻方法在運動與運動認知研究仍有明顯應用缺口。這使 HHSA 具有探索價值，但「研究少」同時代表標準流程、效應穩定性與可重現性仍待建立。</p>
+<p>一個較穩健的順序是：</p>
+<ol>
+<li>先完成 EEG 前處理、偽影處理與品質報告。</li>
+<li>明確定義主要通道、時段、carrier × AM 區域與結果指標。</li>
+<li>用合成訊號確認 pipeline 能找回已知的載波與調幅。</li>
+<li>記錄 EMD 版本、停止規則、mask 或 noise-assisted 參數。</li>
+<li>使用無耦合與保留自相關結構的 surrogate data 建立虛無分布。</li>
+<li>控制通道、時間與頻率格點造成的多重比較。</li>
+<li>同時報告效果量、不確定性與敏感度分析，不只展示顏色最亮的區域。</li>
+</ol>
+<p>因此，我把 HHSA 定位為：<strong>用來檢驗傳統頻譜可能忽略之振幅調變結構的補充方法，而不是保證產生新發現的黑盒子。</strong></p>
+<h3>延伸閱讀</h3>
+<ul>
+<li><a href="https://notebook.google.com/notebook/6866e69a-9e32-4a5a-a1ff-8cc3f5b13d12">我的 HHT &amp; Prof. Liang Course NotebookLM</a>（可能需要登入與權限）</li>
+<li><a href="#/post/eeg-preprocessing-principles">EEG 前處理不是按下按鈕</a></li>
+<li><a href="#/post/fft-wavelet-eeg-time-frequency">FFT 與小波分析</a></li>
+</ul>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>HHSA 的技術價值不是籠統的「非線性分析」，而是把傳統一維頻率或二維時間－頻率表徵，擴充為可分離 carrier frequency 與 amplitude-modulation frequency 的表徵。要正確評估它，需先理解 EMD、mono-component 表徵、瞬時頻率與第二層振幅分解。</p>
+<h2>1. EMD 與 IMF</h2>
+<p>EMD 將訊號分解為有限個 IMF 與殘差：</p>
+<div class="math-block" role="math" aria-label="x of t equals the sum of intrinsic mode functions plus a residual">x(t) = Σ<sub>j=1</sub><sup>J</sup> c<sub>j</sub>(t) + r<sub>J</sub>(t)</div><p>原始 EMD 以局部極值建立上下包絡，計算其局部平均並反覆 sifting。傳統 IMF 判準包括：</p>
+<ol>
+<li>全訊號的零交叉數與極值數相同或最多相差 1；</li>
+<li>由局部極大值與極小值形成之上下包絡，其局部平均接近 0。</li>
+</ol>
+<p>這些條件使 IMF 接近可定義瞬時相位的 narrow-band／mono-component 成分，但 EMD 是經驗性、資料驅動的演算法；IMF 的統計與生理唯一性不能由定義本身保證（Huang et al., 1998）。</p>
+<h2>2. analytic signal 與瞬時頻率</h2>
+<p>對 IMF c<sub>j</sub>(t) 施作 Hilbert transform，可構成 analytic signal：</p>
+<div class="math-block" role="math" aria-label="analytic signal equals the intrinsic mode function plus i times its Hilbert transform">z<sub>j</sub>(t) = c<sub>j</sub>(t) + iℋ{c<sub>j</sub>(t)} = a<sub>j</sub>(t)e<sup>iφ<sub>j</sub>(t)</sup></div><div class="math-block" role="math" aria-label="instantaneous frequency equals one over two pi times the derivative of phase">f<sub>j</sub>(t) = (1 / 2π) · dφ<sub>j</sub>(t) / dt</div><p>其中 a<sub>j</sub>(t) 為瞬時振幅、φ<sub>j</sub>(t) 為 unwrap 後相位。部分 HHSA 實作使用 direct quadrature（DQ）估計振幅與相位，以處理特定數值問題；論文應明確報告採用 Hilbert transform、normalized Hilbert transform 或 DQ，而不能只寫「計算瞬時頻率」。相位微分會放大雜訊，因此平滑、取樣率、低振幅時段與邊界處理都會影響結果。</p>
+<h2>3. 第二層 EMD：從 carrier 到 AM frequency</h2>
+<p>第一層得到的每個 IMF 可寫為：</p>
+<div class="math-block" role="math" aria-label="intrinsic mode function equals amplitude times cosine phase">c<sub>j</sub>(t) = a<sub>j</sub>(t) cos[φ<sub>j</sub>(t)]</div><p>HHSA 再對振幅函數 a<sub>j</sub>(t) 做第二層 EMD：</p>
+<div class="math-block" role="math" aria-label="amplitude envelope equals a sum of modulation modes plus residual">a<sub>j</sub>(t) = Σ<sub>k=1</sub><sup>K</sup> a<sub>jk</sub>(t) cos[Φ<sub>jk</sub>(t)] + R<sub>j</sub>(t)</div><p>第一層相位導數形成 carrier frequency f<sub>c</sub>；第二層相位導數形成 AM frequency f<sub>AM</sub>。能量可投影到 H(f<sub>AM</sub>, f<sub>c</sub>, t)，再沿時間積分或加總為二維 marginal HHS。由於包絡需比載波變化慢，有效區域通常滿足 f<sub>AM</sub> &lt; f<sub>c</sub>（Huang et al., 2016）。</p>
+<p>Juan 等人（2021）的實作以 masking EMD 配合 DQ，並將低於指定 AM 閾值的能量折疊至最低 bin。這類顯示與 binning 規則會改變圖面，必須在方法中報告，不能視為 HHSA 自動固定的標準。</p>
+<h2>4. 為何 FFT 會出現 sidebands？</h2>
+<p>對簡單 amplitude-modulated signal：</p>
+<div class="math-block" role="math" aria-label="amplitude modulated carrier signal">x(t) = [1 + m cos(2πf<sub>m</sub>t)] cos(2πf<sub>c</sub>t)</div><p>利用三角恆等式可展開成 f<sub>c</sub> 與 f<sub>c</sub> ± f<sub>m</sub> 三個加成頻率。FFT 能看見 sidebands，但只看一維頻譜時，sidebands 也可能被誤解為三個獨立振盪。HHSA 的目標是把 f<sub>m</sub> 明確放到 AM 軸，保留其與 carrier 的配對。</p>
+<p>這不代表 Fourier 或小波「錯誤」。若問題是穩態頻率成分、phase、coherence 或已知頻帶功率，傳統方法通常更成熟、計算透明且便於跨研究比較。</p>
+<h2>5. 方法比較</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>基底／分解</th>
+<th>主要輸出</th>
+<th>適合問題</th>
+<th>主要限制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FFT／Welch PSD</td>
+<td>固定正弦／餘弦</td>
+<td>全段頻譜／PSD</td>
+<td>整段有哪些頻率與功率？</td>
+<td>不保留發生時間；受窗與穩態近似影響</td>
+</tr>
+<tr>
+<td>STFT</td>
+<td>固定時間窗內 FFT</td>
+<td>time × frequency</td>
+<td>頻率何時改變？</td>
+<td>固定窗造成時間－頻率解析度取捨</td>
+</tr>
+<tr>
+<td>Morlet wavelet</td>
+<td>縮放、平移的小波</td>
+<td>time × frequency</td>
+<td>短暫振盪何時出現？</td>
+<td>cycle／FWHM、邊緣、基線與平滑選擇影響結果</td>
+</tr>
+<tr>
+<td>HHT</td>
+<td>EMD + Hilbert／DQ</td>
+<td>instantaneous frequency × time</td>
+<td>資料驅動的非平穩振盪</td>
+<td>mode mixing、端點與演算法選擇</td>
+</tr>
+<tr>
+<td>HHSA</td>
+<td>第二層 EMD + Hilbert／DQ</td>
+<td>AM frequency × carrier frequency × time</td>
+<td>載波振幅由何種慢頻率調節？</td>
+<td>維度高、參數多、推論與跨研究標準仍有限</td>
+</tr>
+</tbody></table>
+<h2>6. Mode mixing 與 noise-assisted variants</h2>
+<p>Mode mixing 指單一 IMF 含有差異很大的時間尺度，或同一尺度分散到不同 IMF。EEMD 透過多次加入不同白噪音後做 EMD，再對 ensemble averaging，利用噪音提供較均勻的時間－頻率參考（Wu &amp; Huang, 2009）。CEEMDAN 與 improved CEEMDAN 進一步改善完整重建與殘留噪音問題（Colominas et al., 2014）。</p>
+<p>但 noise-assisted 不等於無參數：噪音幅度、ensemble 次數、停止條件、隨機種子與計算成本都需報告。masking EMD 則需要 mask frequency／amplitude 規則。不同變體產生的 IMF 不能假定完全可互換。</p>
+<h2>7. 建議的可重現分析流程</h2>
+<ol>
+<li><strong>定義 estimand</strong>：例如特定 condition difference 的 HHS power，而非先看圖再選亮區。</li>
+<li><strong>EEG 品質控制</strong>：記錄通道、參考、濾波、artifact rejection／ICA、可用時長與排除。</li>
+<li><strong>正向模擬</strong>：建立無調幅、已知調幅、非正弦波與短暫 burst，量化 false positive 與 recovery error。</li>
+<li><strong>鎖定分解器</strong>：EMD 變體、停止條件、mask、noise amplitude、ensemble 次數與 seed。</li>
+<li><strong>鎖定頻率投影</strong>：carrier／AM bins、power normalization、低頻 collapse 與時間 marginal 規則。</li>
+<li><strong>surrogate inference</strong>：選擇能破壞目標耦合但保留必要自相關／功率結構的 surrogate。</li>
+<li><strong>multiplicity control</strong>：對 channel × time × carrier × AM 搜尋空間預先指定 ROI 或使用適合的 permutation／cluster 方法。</li>
+<li><strong>敏感度分析</strong>：更換合理參數、邊界裁切、分解變體與 artifact 門檻，檢查結論是否穩定。</li>
+<li><strong>報告不確定性</strong>：提供個體分布、效果量、區間估計與完整分析碼，而非只放 group-average heatmap。</li>
+</ol>
+<h2>8. 研究解讀的邊界</h2>
+<p>HHS power 表示特定 carrier 的振幅包絡含有特定 AM 頻率成分。它不單獨回答：哪一個腦區驅動另一個腦區、耦合是否具方向性、是否由同一個刺激事件共同造成、或變化是否導致認知表現。若要回答這些問題，仍需空間資訊、對照設計、方向性模型、行為關聯與外部驗證。</p>
+<p>對運動介入而言，HHSA 特別適合作為預先定義或清楚標示的探索性補充分析。Gramkow 等人（2020）顯示運動介入靜息 EEG 文獻存在小樣本、方法異質與結果不一致；採用更高維方法時，更需要縮小假設空間與報告穩健性。</p>
+<h2>APA 7th 參考文獻</h2>
+<p>Canolty, R. T., &amp; Knight, R. T. (2010). The functional role of cross-frequency coupling. <em>Trends in Cognitive Sciences, 14</em>(11), 506–515. <a href="https://doi.org/10.1016/j.tics.2010.09.001">https://doi.org/10.1016/j.tics.2010.09.001</a></p>
+<p>Colominas, M. A., Schlotthauer, G., &amp; Torres, M. E. (2014). Improved complete ensemble EMD: A suitable tool for biomedical signal processing. <em>Biomedical Signal Processing and Control, 14</em>, 19–29. <a href="https://doi.org/10.1016/j.bspc.2014.06.009">https://doi.org/10.1016/j.bspc.2014.06.009</a></p>
+<p>Gramkow, M. H., Hasselbalch, S. G., Waldemar, G., &amp; Frederiksen, K. S. (2020). Resting state EEG in exercise intervention studies: A systematic review of effects and methods. <em>Frontiers in Human Neuroscience, 14</em>, Article 155. <a href="https://doi.org/10.3389/fnhum.2020.00155">https://doi.org/10.3389/fnhum.2020.00155</a></p>
+<p>Huang, N. E., Hu, K., Yang, A. C. C., Chang, H.-C., Jia, D., Liang, W.-K., Yeh, J. R., Kao, C.-L., Juan, C.-H., Peng, C. K., Meijer, J. H., Wang, Y.-H., Long, S. R., &amp; Wu, Z. (2016). On Holo-Hilbert spectral analysis: A full informational spectral representation for nonlinear and non-stationary data. <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences, 374</em>(2065), Article 20150206. <a href="https://doi.org/10.1098/rsta.2015.0206">https://doi.org/10.1098/rsta.2015.0206</a></p>
+<p>Huang, N. E., Shen, Z., Long, S. R., Wu, M. C., Shih, H. H., Zheng, Q., Yen, N.-C., Tung, C. C., &amp; Liu, H. H. (1998). The empirical mode decomposition and the Hilbert spectrum for nonlinear and non-stationary time series analysis. <em>Proceedings of the Royal Society A: Mathematical, Physical and Engineering Sciences, 454</em>(1971), 903–995. <a href="https://doi.org/10.1098/rspa.1998.0193">https://doi.org/10.1098/rspa.1998.0193</a></p>
+<p>Juan, C.-H., Nguyen, K. T., Liang, W.-K., Quinn, A. J., Chen, Y.-H., Muggleton, N. G., Yeh, J.-R., Woolrich, M. W., Nobre, A. C., &amp; Huang, N. E. (2021). Revealing the dynamic nature of amplitude modulated neural entrainment with Holo-Hilbert spectral analysis. <em>Frontiers in Neuroscience, 15</em>, Article 673369. <a href="https://doi.org/10.3389/fnins.2021.673369">https://doi.org/10.3389/fnins.2021.673369</a></p>
+<p>Kao, S.-C., Liang, W.-K., Wang, C.-H., &amp; Moreau, D. (2025). Beyond linear measures: Revealing hidden neural dynamics in sports and exercise cognition with non-linear EEG. <em>Biological Psychology, 201</em>, Article 109126. <a href="https://doi.org/10.1016/j.biopsycho.2025.109126">https://doi.org/10.1016/j.biopsycho.2025.109126</a></p>
+<p>Wu, Z., &amp; Huang, N. E. (2009). Ensemble empirical mode decomposition: A noise-assisted data analysis method. <em>Advances in Adaptive Data Analysis, 1</em>(1), 1–41. <a href="https://doi.org/10.1142/S1793536909000047">https://doi.org/10.1142/S1793536909000047</a></p>
+<h2>素材與證據來源說明</h2>
+<p>本文以我的 <a href="https://notebook.google.com/notebook/6866e69a-9e32-4a5a-a1ff-8cc3f5b13d12">HHT &amp; Prof. Liang Course NotebookLM</a> 作為主題索引，限定查詢 Huang 等人（2016）、Juan 等人（2021）及相關方法來源，再回到公開期刊與 DOI 紀錄核對。本文未轉載私人課堂錄音、投影片或原始 PDF；分析建議是方法學整理，不是已完成研究結果。</p>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>

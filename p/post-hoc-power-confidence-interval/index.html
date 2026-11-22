@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="description" content="Observed post-hoc power 常只是 p 值的回音；改用效果量、信賴區間、重要效果門檻與敏感度分析，才能分辨接近零與結果不精確。" />
+    <base href="../../" />
+    <link rel="canonical" href="https://wttntpc.github.io/tingwu.github.io/p/post-hoc-power-confidence-interval/" />
+    <meta property="og:title" content="統計不顯著後，要算 Post-hoc Power 嗎？從信賴區間看懂研究結果" />
+    <meta property="og:description" content="Observed post-hoc power 常只是 p 值的回音；改用效果量、信賴區間、重要效果門檻與敏感度分析，才能分辨接近零與結果不精確。" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://wttntpc.github.io/tingwu.github.io/p/post-hoc-power-confidence-interval/" />
+    <meta property="og:image" content="https://wttntpc.github.io/tingwu.github.io/og/post-hoc-power-confidence-interval.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="統計不顯著後，要算 Post-hoc Power 嗎？從信賴區間看懂研究結果" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="統計不顯著後，要算 Post-hoc Power 嗎？從信賴區間看懂研究結果" />
+    <meta name="twitter:description" content="Observed post-hoc power 常只是 p 值的回音；改用效果量、信賴區間、重要效果門檻與敏感度分析，才能分辨接近零與結果不精確。" />
+    <meta name="twitter:image" content="https://wttntpc.github.io/tingwu.github.io/og/post-hoc-power-confidence-interval.png" />
+    <title>統計不顯著後，要算 Post-hoc Power 嗎？從信賴區間看懂研究結果 | Ting-Ting Wu 吳亭葶</title>
+    <link rel="alternate" type="application/rss+xml" title="Ting-Ting Wu 吳亭葶" href="feed.xml" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;family=Noto+Serif+TC:wght@500;600;700&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=20261122-01" />
+    <script>try{if(localStorage.getItem('tingting-theme')==='dark'){document.documentElement.dataset.theme='dark';document.querySelector('meta[name="theme-color"]').content='#111a27'}}catch(e){}</script>
+    <script src="conflict-task.js?v=20261122-01" defer></script>
+    <script src="posner-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-task.js?v=20261122-01" defer></script>
+    <script src="emotion-gonogo-ui.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-task.js?v=20261122-01" defer></script>
+    <script src="emotion-flanker-ui.js?v=20261122-01" defer></script>
+    <script src="face-images.js?v=20261122-01" defer></script>
+    <script src="face-judgment-task.js?v=20261122-01" defer></script>
+    <script src="stop-signal-task.js?v=20261122-01" defer></script>
+    <script src="lab-games-ui.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition.js?v=20261122-01" defer></script>
+    <script src="hhsa-intuition-ui.js?v=20261122-01" defer></script>
+    <script src="ecg-progress.js?v=20261122-01" defer></script>
+    <script src="chip-physics.js?v=20261122-01" defer></script>
+    <script src="home-delight.js?v=20261122-01" defer></script>
+    <script src="science-delights.js?v=20261122-01" defer></script>
+    <script src="face-squish.js?v=20261122-01" defer></script>
+    <script src="face-squish-ui.js?v=20261122-01" defer></script>
+    <script src="interactive-lab.js?v=20261122-01" defer></script>
+    <script src="app.js?v=20261122-01" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" async onload="window.dispatchEvent(new Event('markdownready'))"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" async></script>
+    <script type="module" async>
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'strict' });
+      window.__mermaid = mermaid;
+      window.dispatchEvent(new Event('mermaidready'));
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "吳亭葶",
+        "alternateName": "Ting-Ting Wu",
+        "jobTitle": "Ph.D. Student in Cognitive Neuroscience",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "National Central University"
+        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "National Tsing Hua University" },
+          { "@type": "CollegeOrUniversity", "name": "China Medical University" }
+        ],
+        "url": "https://wttntpc.github.io/tingwu.github.io/",
+        "sameAs": [
+          "https://orcid.org/0009-0003-2432-9812",
+          "https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&hl=zh-TW"
+        ],
+        "knowsAbout": ["Kinesiology", "Cognitive Neuroscience", "Emotion", "Healthy Aging", "Exercise Prescription", "EEG", "Heart Rate Variability", "Athletic Training"]
+      }
+    </script>
+      <meta property="og:locale" content="zh_TW" />
+    <meta property="og:locale:alternate" content="en" />
+    <meta property="article:published_time" content="2026-08-06" />
+    <meta property="article:author" content="Ting-Ting Wu 吳亭葶" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"統計不顯著後，要算 Post-hoc Power 嗎？從信賴區間看懂研究結果","description":"Observed post-hoc power 常只是 p 值的回音；改用效果量、信賴區間、重要效果門檻與敏感度分析，才能分辨接近零與結果不精確。","datePublished":"2026-08-06","inLanguage":"zh-Hant","url":"https://wttntpc.github.io/tingwu.github.io/p/post-hoc-power-confidence-interval/","mainEntityOfPage":"https://wttntpc.github.io/tingwu.github.io/p/post-hoc-power-confidence-interval/","image":"https://wttntpc.github.io/tingwu.github.io/og/post-hoc-power-confidence-interval.png","author":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶","url":"https://wttntpc.github.io/tingwu.github.io/"},"publisher":{"@type":"Person","name":"Ting-Ting Wu 吳亭葶"},"keywords":"統計分析, Statistical Power, 信賴區間, MCID, 等效性檢定"}</script>
+    <script>if(!location.hash){history.replaceState(null,'',location.pathname+location.search+'#/post/post-hoc-power-confidence-interval');}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to main content</a>
+    <header class="site-header">
+      <div class="nav-shell">
+        <a class="brand" href="#/" aria-label="Back to home">
+          <span class="brand-mark">TW</span>
+          <span class="brand-name">Ting-Ting Wu</span>
+        </a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch to Chinese" title="Switch to Chinese"><svg class="lang-globe" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg><span class="lang-label">中文</span></button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span></span><span></span><span></span><span class="sr-only">Open menu</span>
+        </button>
+        <div class="nav-panel" id="nav-panel">
+          <nav aria-label="Main navigation"><ul class="nav-links" id="nav-links"></ul></nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode"><span aria-hidden="true">◐</span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <article class="article-shell" data-prerendered="true"><a class="back-link" href="#/blog">← 返回文章列表</a><header class="article-header"><div class="post-meta">數據分析 · 2026-08-06</div><h1>統計不顯著後，要算 Post-hoc Power 嗎？從信賴區間看懂研究結果</h1><p>Observed post-hoc power 常只是 p 值的回音；改用效果量、信賴區間、重要效果門檻與敏感度分析，才能分辨接近零與結果不精確。</p><div class="tag-list"><span>統計分析</span><span>Statistical Power</span><span>信賴區間</span><span>MCID</span><span>等效性檢定</span></div></header>
+    <div class="article-version markdown-body" data-version-content="simple"><p>研究結果跑出 <code>p &gt; .05</code> 時，第一個直覺常是：「是不是樣本太少、檢定力不足？」於是把這次研究觀察到的效果量、樣本數與顯著水準放回軟體，算一個 <strong>post-hoc power（事後檢定力、observed power）</strong>。這個數字看似替不顯著結果補上解釋，實際上通常沒有提供新資訊。</p>
+<blockquote>
+<p>一句話先記住：研究前用 power 規劃樣本數很重要；研究後用同一份資料的觀察效果量計算 observed power，通常是循環論證。</p>
+</blockquote>
+<p>本文受到<a href="https://drpwchen.com/posts/ebm-post-hoc-power-analysis/">陳柏威醫師〈當統計不顯著時，我該計算研究的檢力嗎？〉</a>啟發，並依方法學文獻重新整理成適合一般健康、運動與認知研究的判讀流程。</p>
+<h2>Power 原本在回答什麼？</h2>
+<p>統計檢定力是：假設母體真的存在我們事先指定的效果，在目前研究設計與樣本數下，檢定能正確拒絕虛無假設的機率。常見的 80% power，意思不是「研究結果有 80% 機率是真的」，而是長期重複相同設計時，若指定效果確實存在，約有 80% 的研究會檢出它。</p>
+<p>在收資料前，我們可以設定：</p>
+<ul>
+<li>想偵測的最小重要效果；</li>
+<li>顯著水準，例如 α = .05；</li>
+<li>期望檢定力，例如 80% 或 90%；</li>
+<li>研究設計與預期變異；</li>
+</ul>
+<p>再估計需要多少受試者。這是合理的樣本數規劃。</p>
+<h2>為什麼 observed post-hoc power 幫助不大？</h2>
+<p>研究結束後，如果把「這次剛好觀察到的效果量」帶回 power 公式，p 值與 observed power 其實都由同一組資訊決定：效果估計、標準誤、樣本數及 α。因此，p 值較大時通常會得到較低的 observed power；p 值很小時則通常得到較高的 observed power。</p>
+<p>這無法回答我們真正關心的問題：</p>
+<ol>
+<li>母體效果真的接近零；</li>
+<li>存在重要效果，但這次估計太不精確；</li>
+<li>真實效果比原先預期小；</li>
+<li>資料變異、遺漏或測量誤差降低了精確度。</li>
+</ol>
+<p>低 observed power 只是在換一種方式重述「結果不顯著」，不能分辨以上情況。</p>
+<h2>改看效果量、95% 信賴區間與重要門檻</h2>
+<p>更實用的方法，是先定義 <strong>最小重要效果</strong>。臨床研究常稱為 MCID；其他領域可稱 SESOI（smallest effect size of interest）或最小實務重要差異。</p>
+<p>假設運動介入對認知分數的「值得在意差異」設定為 ±5 分：</p>
+<table>
+<thead>
+<tr>
+<th>估計差異與 95% CI</th>
+<th>可以怎麼理解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1 分，95% CI [−2, 3]</td>
+<td>區間很窄且排除 ±5；資料與「沒有重要差異」相容，但若要正式主張等效，仍應做預先規劃的等效性檢定。</td>
+</tr>
+<tr>
+<td>1 分，95% CI [−8, 10]</td>
+<td>雖然不顯著，但區間包含重要好處與重要壞處；結果是不精確，而不是證明沒有效果。</td>
+</tr>
+<tr>
+<td>6 分，95% CI [1, 11]</td>
+<td>排除 0，且可能超過重要門檻；還要結合量表、偏差與研究情境判斷。</td>
+</tr>
+<tr>
+<td>2 分，95% CI [0.5, 3.5]</td>
+<td>統計上可能顯著，但整段區間未達 5 分；「有差異」不等於「差異值得在意」。</td>
+</tr>
+</tbody></table>
+<p>這種讀法同時處理方向、大小與不確定性，比只看 <code>p &lt; .05</code> 或 observed power 更接近研究決策。</p>
+<h2>研究做完後，還能做哪些分析？</h2>
+<p><strong>第一，效果量敏感度分析。</strong> 固定實際樣本數、α 與目標 power，反推這個設計能穩定偵測的最小效果。它回答的是「這個樣本規模對多大的效果才足夠敏感」，而不是用觀察效果替自己打分數。</p>
+<p><strong>第二，等效性檢定。</strong> 如果研究問題是「兩組差異是否小到可以忽略」，可以預先設定等效界線並使用 TOST。單純 <code>p &gt; .05</code> 不能證明兩組等效。</p>
+<p><strong>第三，貝氏分析。</strong> 在清楚說明 prior 與模型的前提下，可比較資料對不同假設提供多少支持；它也不是把不顯著結果自動變成「支持沒有差異」。</p>
+<h2>一個可以直接使用的判讀順序</h2>
+<p>看到不顯著結果時，我會依序問：</p>
+<ol>
+<li>效果估計是多少，方向為何？</li>
+<li>95% 信賴區間有多寬？</li>
+<li>研究前定義的重要效果門檻是多少？</li>
+<li>區間是否仍包含實務上重要的好處或壞處？</li>
+<li>研究是否受測量誤差、遺漏值或設計偏差影響？</li>
+<li>若要主張「沒有重要效果」，是否採用了等效性或合適的貝氏方法？</li>
+</ol>
+<blockquote>
+<p>不顯著不等於沒有差異；寬廣的信賴區間通常代表我們還不知道，而不是兩組已經被證明相同。</p>
+</blockquote>
+<h3>延伸研究筆記</h3>
+<p>我也把相關資料整理在這份 <a href="https://notebook.google.com/notebook/14a8e333-8feb-462f-b7e3-54d36eef200a">Google Notebook：Post-hoc power 與結果判讀</a>。此連結可能需要登入 Google 帳號及相應的瀏覽權限。</p>
+</div>
+    <div class="article-version markdown-body" data-version-content="professional"><p>當主要分析得到 non-significant result，研究者有時會將觀察到的效果量、實際樣本數與 α 輸入 power formula，計算 observed post-hoc power，並用低 power 解釋未達顯著。這個做法的核心問題不是「分析發生在研究之後」，而是把高取樣誤差的 observed effect 當成 true population effect，再用同一份資料重新描述原有檢定結果。</p>
+<p>本文受<a href="https://drpwchen.com/posts/ebm-post-hoc-power-analysis/">陳柏威醫師的 EBM 文章</a>啟發，並結合 observed power、confidence interval、SESOI、sensitivity analysis 與 equivalence testing 的方法學文獻重新撰寫。以下內容不是原文轉載。</p>
+<h2>先區分四個容易混用的概念</h2>
+<table>
+<thead>
+<tr>
+<th>分析</th>
+<th>已知輸入</th>
+<th>主要輸出</th>
+<th>合理用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>樣本數規劃（a priori）</td>
+<td>α、目標 power、設計、預先論證的效果</td>
+<td>所需 N</td>
+<td>收案前規劃研究</td>
+</tr>
+<tr>
+<td>Power determination</td>
+<td>N、α、外部或理論指定的母體效果</td>
+<td>Power</td>
+<td>評估固定設計對特定效果的偵測能力</td>
+</tr>
+<tr>
+<td>效果量敏感度分析</td>
+<td>N、α、目標 power、設計</td>
+<td>最小可偵測效果</td>
+<td>樣本數固定時描述設計靈敏度</td>
+</tr>
+<tr>
+<td>Observed-effect post-hoc power</td>
+<td>N、α、同一樣本的 observed effect</td>
+<td>Observed power</td>
+<td>不建議用來解釋同一研究結果</td>
+</tr>
+</tbody></table>
+<p>因此，不應把所有研究後進行的 power-related calculations 一概視為無效。問題集中在最後一列：以同一份資料的 observed effect 估計同一檢定的 power。</p>
+<h2>Observed power 為何是 p 值的回音？</h2>
+<p>在固定 α 與檢定架構下，檢定統計量由效果估計相對於標準誤的大小決定；observed power 又把這個標準化觀察效果帶入替代假設。因此兩者存在單調的一對一關係。觀察效果受抽樣誤差影響，尤其小樣本估計可能高度不穩定，不能被當作已知母體效果。</p>
+<p>這會產生 power approach paradox：越接近虛無效果的資料，會同時產生越大的 p 值與越低的 observed power；研究者再用「power 太低」解釋該 p 值，沒有增加辨識力。反過來，偶然高估效果的研究會得到較小 p 值與較高 observed power，也不代表設計原本具有良好可重現性。</p>
+<h2>不顯著結果至少有兩種不同情況</h2>
+<p>令 θ 為目標效果、0 為 null value，並預先設定 <code>−Δ</code> 與 <code>+Δ</code> 為最小實務重要效果界線：</p>
+<pre><code class="language-text">精確地接近零：95% CI 完全位於 [−Δ, +Δ] 內
+不精確／未定論：95% CI 同時跨越 0 與至少一個重要效果界線
+</code></pre>
+<p>兩者都可能得到 <code>p &gt; .05</code>，但科學意義完全不同。前者可排除部分重要效果；後者仍與重要好處、重要壞處或兩者相容。Cochrane Handbook 對結果解釋也強調 point estimate、confidence interval 與決策門檻，而不是只依顯著性二分。</p>
+<p>需注意，95% CI 落在重要界線內可作為估計觀點的直觀判讀，但若研究目標是正式證明 practical equivalence，應預先設定 equivalence bounds，並採用 TOST 等等效性檢定。傳統 α = .05 的 TOST 通常對應 90% CI，不能把一般 difference test 的 <code>p &gt; .05</code> 直接改寫成等效。</p>
+<h2>研究完成後的合理替代方案</h2>
+<h3>1. 報告效果估計與信賴區間</h3>
+<p>報告 raw effect、standardized effect、95% CI、樣本數與描述統計。解讀時對照事前設定的 MCID 或 SESOI，說明區間是否排除 important benefit、important harm 或兩者。</p>
+<h3>2. 效果量敏感度分析</h3>
+<p>若實際 N 已固定，可計算在指定 α、設計及 80% power 下能偵測的 minimum detectable effect。以兩獨立組 t test 為例：</p>
+<pre><code class="language-python">from statsmodels.stats.power import tt_ind_solve_power
+
+detectable_d = tt_ind_solve_power(
+    effect_size=None,
+    nobs1=30,       # 每組 30 人
+    alpha=0.05,
+    power=0.80,
+    ratio=1.0,
+    alternative=&quot;two-sided&quot;
+)
+print(detectable_d)
+</code></pre>
+<p>這個結果應寫成「在模型假設成立時，本設計對至少此大小的母體效果具有 80% power」，不能寫成「本研究有 80% 機率得到正確答案」。若研究是配對、重複量測、叢集或交互作用設計，必須使用對應模型並納入相關係數、ICC、流失與多重檢定等條件。</p>
+<h3>3. 等效性檢定或貝氏模型</h3>
+<p>若研究問題要支持 absence of a meaningful effect，可使用以 SESOI 為界的 TOST；若希望比較假設間的相對證據，可使用有明確 prior justification、敏感度檢查與模型診斷的 Bayesian analysis。兩者都需要在研究問題與分析計畫中事先說明，不能在看見不顯著後任意挑選最有利方法。</p>
+<h2>建議的報告文字</h2>
+<p>不建議寫：</p>
+<blockquote>
+<p>結果未達顯著，事後檢定力僅為 34%，顯示研究樣本不足。</p>
+</blockquote>
+<p>可改寫為：</p>
+<blockquote>
+<p>組間平均差為 1.2 分，95% CI [−2.4, 4.8]，區間包含虛無值，但未跨越事先定義的 ±5 分最小重要差異。本結果可排除 5 分以上的平均差異；然而，對「兩組實務等效」的推論仍應依預先規劃的等效性檢定，而非 observed post-hoc power。</p>
+</blockquote>
+<p>若區間很寬，則應誠實寫成：</p>
+<blockquote>
+<p>平均差為 1.2 分，95% CI [−8.1, 10.5]。區間同時包含重要好處、無差異與重要壞處，因此結果不精確，無法據此主張介入有效、無效或兩組等效。</p>
+</blockquote>
+<h2>研究判讀清單</h2>
+<ol>
+<li>樣本數是否在收案前依具有理據的效果門檻規劃？</li>
+<li>是否完整報告估計值、95% CI、效果量與實際分析 N？</li>
+<li>MCID／SESOI 是否在看結果前決定，且具領域依據？</li>
+<li>CI 是否包含 null、important benefit 或 important harm？</li>
+<li>是否誤把 non-significance 寫成 no effect？</li>
+<li>若主張 practical equivalence，是否使用預先規劃的 equivalence test？</li>
+<li>若做 sensitivity analysis，是否使用固定 N 與目標 power，而非 observed effect？</li>
+</ol>
+<h2>我的 Notebook 與參考資料</h2>
+<ul>
+<li><a href="https://notebook.google.com/notebook/14a8e333-8feb-462f-b7e3-54d36eef200a">Google Notebook：Post-hoc power 與結果判讀</a>（可能需要登入 Google 帳號及權限）</li>
+<li><a href="https://drpwchen.com/posts/ebm-post-hoc-power-analysis/">陳柏威醫師：當統計不顯著時，我該計算研究的檢力嗎？</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7286546/">Dziak et al.：The Interpretation of Statistical Power after the Data have been Gathered</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9452450/">Heinsberg &amp; Weeks：Post hoc Power is Not Informative</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5502906/">Lakens：Equivalence Tests—A Practical Primer</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11193916/">Power to Detect What? Considerations for Planning and Evaluating Sample Size</a></li>
+<li><a href="https://training.cochrane.org/handbook/current/chapter-15">Cochrane Handbook：Interpreting results and drawing conclusions</a></li>
+</ul>
+</div></article>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-name">Ting-Ting Wu</p>
+        <p id="footer-tagline">Exploring how physical activity shapes the mind.</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:tingwu.new@gmail.com">Email</a>
+        <a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Scholar ↗</a>
+        <a id="footer-disclaimer-link" href="#/disclaimer">Website statement</a>
+      </div>
+      <p id="footer-disclaimer-note" class="footer-disclaimer">This personal academic website includes AI-assisted material that may contain errors. It is not medical, legal, or other professional advice; verify important decisions against original and official sources.</p>
+      <p class="copyright">© <span id="year"></span> Ting-Ting Wu</p>
+    </footer>
+    <button id="top-link" class="top-link" type="button" aria-label="Back to top">↑</button>
+  </body>
+</html>
