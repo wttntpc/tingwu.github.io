@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261125-01';
+const SITE_VERSION = '20261125-02';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -521,7 +521,6 @@ function mountDelights(path) {
   if (path !== '/') return;
   const list = document.querySelector('.home-agenda-areas');
   if (list && window.ChipPhysics) { const h = window.ChipPhysics.mount(list); if (h) faceHandles.push(h); }
-  if (window.ScienceDelights) { const h = window.ScienceDelights.mount(document); if (h) faceHandles.push(h); }
   if (window.HomeDelight) window.HomeDelight.countUp(Array.from(document.querySelectorAll('.overview-item strong')));
 }
 function mountProfileFaces() {
@@ -540,17 +539,6 @@ async function renderHome() {
   const allPosts = newestFirst((await getPosts()).filter(post => post.id !== 'publications' && post.category !== 'learning-foundations'));
   const posts = allPosts.slice(0, 2);
   const c = t();
-  const signalCopy = lang === 'zh' ? {
-    title: '把訊號拉開看看',
-    hint: '拖曳曲線，放開後會回到原本的形狀。',
-    eeg: '拖曳 EEG 腦波曲線；鍵盤可按 Enter 或空白鍵讓曲線回彈。',
-    hrv: '拖曳 HRV 心搏曲線；鍵盤可按 Enter 或空白鍵讓曲線回彈。'
-  } : {
-    title: 'Give the signals a gentle tug',
-    hint: 'Drag either trace and release it to watch the signal spring back.',
-    eeg: 'Drag the EEG trace; keyboard users can press Enter or Space to make it spring.',
-    hrv: 'Drag the HRV trace; keyboard users can press Enter or Space to make it spring.'
-  };
   const overview = lang === 'zh' ? [
     ['研究主軸', c.focuses.length, '查看專長', '#/about/skills'],
     ['公開文章', allPosts.length, '瀏覽文章', '#/blog'],
@@ -607,7 +595,7 @@ async function renderHome() {
     </section>
     ${renderHomeAgenda()}
     <div class="home-editorial-grid">
-      <section class="home-block research-section"><h2>${c.selectedAreas}</h2><div class="signal-delight"><div class="signal-delight-copy"><strong>${signalCopy.title}</strong><span>${signalCopy.hint}</span></div><div class="signal-tug-grid"><button class="signal-tug" type="button" data-signal-tug="eeg" aria-label="${signalCopy.eeg}"><span>EEG</span><canvas aria-hidden="true"></canvas></button><button class="signal-tug" type="button" data-signal-tug="hrv" aria-label="${signalCopy.hrv}"><span>HRV</span><canvas aria-hidden="true"></canvas></button></div></div><div class="pillar-grid">${c.focuses.map(item => `<a class="pillar-card" href="#/about/skills"><b>${item[0]}</b><span>${item[1]}</span></a>`).join('')}</div></section>
+      <section class="home-block research-section"><h2>${c.selectedAreas}</h2><div class="pillar-grid">${c.focuses.map(item => `<a class="pillar-card" href="#/about/skills"><b>${item[0]}</b><span>${item[1]}</span></a>`).join('')}</div></section>
       <section class="home-block featured-publications"><div class="block-heading"><h2>${c.featuredTitle}</h2><a href="#/publications">${c.allPublications}</a></div><div class="publication-preview-list">${c.featuredPublications.map(item => `<a href="#/publications" class="publication-preview"><span>${item[0]}</span><div><b>${item[1]}</b><small>${item[2]}</small></div></a>`).join('')}</div></section>
     </div>
     <section class="home-projects" aria-labelledby="home-projects-title">
