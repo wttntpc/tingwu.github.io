@@ -5,7 +5,7 @@ const menuToggle = document.querySelector('#menu-toggle');
 const navPanel = document.querySelector('#nav-panel');
 const themeToggle = document.querySelector('#theme-toggle');
 const topLink = document.querySelector('#top-link');
-const SITE_VERSION = '20261122-01';
+const SITE_VERSION = '20261125-01';
 
 let lang = 'en';
 try { lang = localStorage.getItem('tingting-language') || 'en'; } catch (e) { lang = 'en'; }
@@ -562,6 +562,27 @@ async function renderHome() {
     ['Selected works', c.featuredPublications.length, 'View publications', '#/publications'],
     ['Learning paths', 8, 'Start learning', '#/learning']
   ];
+  const portal = lang === 'zh' ? {
+    eyebrow: 'Research portal',
+    title: '從你想做的事開始',
+    lead: '第一次來不必先理解網站架構。選一個目的，直接進入研究框架、學習路徑、互動作業或公開研究資源。',
+    items: [
+      ['01', '理解我的研究', '從核心問題、腦—身體機制到運動處方，看見研究主軸如何串在一起。', '研究框架 · 方法 · 學術發表', '#/research'],
+      ['02', '建立專業知識', '依認知神經科學、EEG、HRV、運動生理與統計主線，循序學習與複習。', '8 條學習路徑', '#/learning'],
+      ['03', '親手體驗作業', '用自己的反應時間理解注意、抑制、情緒知覺與訊號分析概念。', '互動實驗 · 瀏覽器內完成', '#/lab'],
+      ['04', '使用公開資源', '查看研究文章、資料分析紀錄、原始碼與可重現工作流程。', 'Writing · GitHub · Open workflow', 'https://github.com/wttntpc']
+    ]
+  } : {
+    eyebrow: 'Research portal',
+    title: 'Start with what you want to do',
+    lead: 'You do not need to learn the site structure first. Choose a goal and go directly to the research framework, learning routes, interactive tasks, or open resources.',
+    items: [
+      ['01', 'Understand my research', 'See how the core questions connect brain–body mechanisms, exercise prescription, and outcomes.', 'Framework · methods · publications', '#/research'],
+      ['02', 'Build the foundations', 'Follow routes through cognitive neuroscience, EEG, HRV, exercise physiology, and statistics.', '8 learning routes', '#/learning'],
+      ['03', 'Try a task yourself', 'Use your own response times to explore attention, inhibition, emotion perception, and signal concepts.', 'Interactive · runs in your browser', '#/lab'],
+      ['04', 'Use open resources', 'Explore research writing, analysis notes, source code, and reproducible workflows.', 'Writing · GitHub · open workflow', 'https://github.com/wttntpc']
+    ]
+  };
   app.innerHTML = `<div class="page-shell home-shell">
     <section class="profile-hero">
       <div class="profile-rail">
@@ -571,6 +592,7 @@ async function renderHome() {
       <div class="profile-id">
         <h1>${lang === 'zh' ? '吳亭葶' : 'Ting-Ting Wu'} <span>${lang === 'zh' ? 'Ting-Ting Wu' : '吳亭葶'}</span></h1>
         <p class="profile-role">${c.profileRole}</p>
+        <p class="profile-pillars">${c.profilePillars}</p>
         <p class="profile-tagline">${c.heroTagline}</p>
         <p class="profile-intro">${c.heroLead}</p>
         <div class="profile-links"><a class="profile-contact" href="mailto:tingwu.new@gmail.com">${c.contact}</a><a href="#/about">${c.fullProfile}</a><a href="https://orcid.org/0009-0003-2432-9812" target="_blank" rel="noopener noreferrer">ORCID ↗</a><a href="https://scholar.google.com.tw/citations?user=uHNX07sAAAAJ&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></div>
@@ -579,6 +601,10 @@ async function renderHome() {
     <nav class="home-overview" aria-label="${lang === 'zh' ? '研究與內容概覽' : 'Research and content overview'}">
       ${overview.map((item, index) => `<a href="${item[3]}" class="overview-item${index === 1 ? ' overview-item-primary' : ''}"><span>${item[0]}</span><strong>${item[1]}</strong><small>${item[2]} →</small></a>`).join('')}
     </nav>
+    <section class="home-portal" aria-labelledby="home-portal-title">
+      <header class="home-portal-intro"><p>${portal.eyebrow}</p><h2 id="home-portal-title">${portal.title}</h2><span>${portal.lead}</span></header>
+      <ol class="home-portal-list">${portal.items.map((item, index) => `<li class="${index === 0 ? 'home-portal-featured' : ''}"><a href="${item[4]}" ${item[4].startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}><span>${item[0]}</span><div><h3>${item[1]}</h3><p>${item[2]}</p><small>${item[3]}</small></div><i aria-hidden="true">${item[4].startsWith('http') ? '↗' : '→'}</i></a></li>`).join('')}</ol>
+    </section>
     ${renderHomeAgenda()}
     <div class="home-editorial-grid">
       <section class="home-block research-section"><h2>${c.selectedAreas}</h2><div class="signal-delight"><div class="signal-delight-copy"><strong>${signalCopy.title}</strong><span>${signalCopy.hint}</span></div><div class="signal-tug-grid"><button class="signal-tug" type="button" data-signal-tug="eeg" aria-label="${signalCopy.eeg}"><span>EEG</span><canvas aria-hidden="true"></canvas></button><button class="signal-tug" type="button" data-signal-tug="hrv" aria-label="${signalCopy.hrv}"><span>HRV</span><canvas aria-hidden="true"></canvas></button></div></div><div class="pillar-grid">${c.focuses.map(item => `<a class="pillar-card" href="#/about/skills"><b>${item[0]}</b><span>${item[1]}</span></a>`).join('')}</div></section>

@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "若您在研究、教學或技術文件中使用本站的研究框架或互動資源，請引用此網站；個別文章的實證主張仍應引用原始研究。"
+title: "Ting-Ting Wu 吳亭葶：運動、情緒與認知個人學術網站"
+type: software
+version: 2026.11.25
+date-released: 2026-11-25
+authors:
+  - family-names: "Wu"
+    given-names: "Ting-Ting"
+    orcid: "https://orcid.org/0009-0003-2432-9812"
+repository-code: "https://github.com/wttntpc/tingwu.github.io"
+url: "https://wttntpc.github.io/tingwu.github.io/"
+abstract: "A bilingual academic portal on exercise, emotion, cognition, EEG, HRV, interactive cognitive tasks, and reproducible research workflows."
+keywords:
+  - cognitive neuroscience
+  - exercise science
+  - emotion
+  - electroencephalography
+  - heart rate variability
+  - reproducible research

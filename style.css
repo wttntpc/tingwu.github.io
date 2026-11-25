@@ -96,6 +96,26 @@ button { font: inherit; }
 .overview-item:hover { color: var(--accent); background: var(--paper); }
 .overview-item-primary { background: color-mix(in srgb, var(--accent-soft) 34%, transparent); }
 
+.home-portal { display: grid; grid-template-columns: minmax(13rem, .62fr) minmax(0, 1.38fr); gap: clamp(2rem, 6vw, 5rem); padding: 4rem 0 4.4rem; border-bottom: 1px solid var(--tertiary); animation: editorial-rise .38s .04s ease-out both; }
+.home-portal-intro { align-self: start; }
+.home-portal-intro > p { margin: 0 0 .55rem; color: var(--accent); font-size: .66rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.home-portal-intro h2 { max-width: 11ch; margin: 0; font-family: var(--font-display); font-size: clamp(1.7rem, 3.5vw, 2.45rem); line-height: 1.34; letter-spacing: -.015em; text-wrap: balance; }
+.home-portal-intro > span { display: block; max-width: 27rem; margin-top: 1rem; color: var(--secondary); font-size: .8rem; line-height: 1.85; text-wrap: pretty; }
+.home-portal-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding: 0; border-top: 1px solid var(--tertiary); list-style: none; counter-reset: none; }
+.home-portal-list li { min-width: 0; border-bottom: 1px solid var(--tertiary); }
+.home-portal-list li:nth-child(even):not(.home-portal-featured) { border-left: 1px solid var(--tertiary); }
+.home-portal-list .home-portal-featured { grid-column: 1 / -1; border-left: 3px solid var(--accent); background: color-mix(in srgb, var(--accent-soft) 30%, transparent); }
+.home-portal-list a { min-height: 9.5rem; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr) auto; gap: .85rem; align-items: start; padding: 1.35rem 1.15rem; color: inherit; text-decoration: none; transition: padding .18s ease, background .18s ease; }
+.home-portal-list .home-portal-featured a { min-height: 0; padding: 1.5rem 1.35rem; }
+.home-portal-list a:hover { padding-right: .8rem; padding-left: 1.5rem; background: var(--paper); }
+.home-portal-list a > span { padding-top: .18rem; color: var(--accent); font: 700 .66rem/1.5 ui-monospace, "SFMono-Regular", Consolas, monospace; letter-spacing: .08em; }
+.home-portal-list h3 { margin: 0; font-family: var(--font-display); font-size: 1rem; line-height: 1.5; }
+.home-portal-list p { margin: .45rem 0 .8rem; color: var(--secondary); font-size: .73rem; line-height: 1.75; text-wrap: pretty; }
+.home-portal-list small { color: var(--accent); font-size: .62rem; font-weight: 700; letter-spacing: .035em; }
+.home-portal-list i { color: var(--accent); font-style: normal; transition: transform .18s ease; }
+.home-portal-list a:hover i { transform: translateX(4px); }
+.home-portal-list a:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
 .home-projects { padding: 2.8rem 0 3rem; border-bottom: 1px solid var(--tertiary); animation: editorial-rise .38s .05s ease-out both; }
 .home-projects-heading { display: grid; grid-template-columns: minmax(9rem, .32fr) minmax(0, 1fr); gap: 1.5rem; align-items: baseline; margin-bottom: 1.35rem; }
 .home-projects-heading p { margin: 0; color: var(--secondary); font-size: .66rem; font-weight: 600; letter-spacing: .11em; text-transform: uppercase; }
@@ -864,6 +884,9 @@ button { font: inherit; }
   .home-overview { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .overview-item:nth-child(2) { border-right: 0; }
   .overview-item:nth-child(-n+2) { border-bottom: 1px solid var(--tertiary); }
+  .home-portal { grid-template-columns: 1fr; gap: 1.7rem; padding: 3rem 0 3.4rem; }
+  .home-portal-intro h2 { max-width: none; }
+  .home-portal-intro > span { max-width: 42rem; }
   .profile-hero { grid-template-columns: 104px minmax(0, 1fr); gap: 1.5rem; align-items: start; padding-bottom: 3rem; }
   .profile-rail { gap: 1rem; }
   .avatar-wrap { width: 104px; }
@@ -925,6 +948,11 @@ button { font: inherit; }
   .avatar-wrap { width: 86px; justify-self: end; }
   .profile-links { gap: .7rem; }
   .overview-item { padding: 1rem .8rem; }
+  .home-portal-list { grid-template-columns: 1fr; }
+  .home-portal-list .home-portal-featured { grid-column: auto; }
+  .home-portal-list li:nth-child(even):not(.home-portal-featured) { border-left: 0; }
+  .home-portal-list a, .home-portal-list .home-portal-featured a { min-height: 0; padding: 1.2rem .8rem; }
+  .home-portal-list a:hover { padding-right: .55rem; padding-left: 1.05rem; }
   .overview-item strong { font-size: 1.45rem; }
   .site-footer { grid-template-columns: 1fr; }
   .footer-links { flex-wrap: wrap; }
